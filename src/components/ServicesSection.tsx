@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { useState, useEffect } from "react";
 import { Check, Send, Users, TrendingUp, Target, Award } from "lucide-react";
 
@@ -151,9 +152,13 @@ const ServicesSection = () => {
                 {/* Cold Outreach with Send Button Animation */}
                 {service.type === "outreach" && (
                   <div className="bg-gradient-to-br from-card to-muted/20 rounded-3xl p-12 text-center shadow-card">
-                    <div className="text-7xl font-black text-primary mb-6">
-                      {service.stat}
-                    </div>
+                    <AnimatedCounter 
+                      start={100} 
+                      end={297} 
+                      duration={2500} 
+                      suffix="k+" 
+                      className="text-7xl font-black text-primary mb-6"
+                    />
                     <div className="text-muted-foreground text-xl font-medium mb-8">{service.statLabel}</div>
                     <div className="space-y-4 mb-8">
                       <div className="bg-white rounded-xl p-4 text-foreground font-medium shadow-sm">
