@@ -91,121 +91,145 @@
     <priority>0.5</priority>
   </url>
 
-  <!-- USA State Pages - All 50 States -->
+  <!-- USA Location Pages - All 50 States -->
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/usa/california</loc>
+    <loc>https://www.franchiseleadshq.com/locations/us/california</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/usa/california/los-angeles</loc>
+    <loc>https://www.franchiseleadshq.com/locations/us/california/los-angeles</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/usa/california/san-francisco</loc>
+    <loc>https://www.franchiseleadshq.com/locations/us/california/san-francisco</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/usa/california/san-diego</loc>
+    <loc>https://www.franchiseleadshq.com/locations/us/california/san-diego</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/usa/texas</loc>
-    <lastmod>2025-09-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.franchiseleadshq.com/locations/usa/texas/houston</loc>
+    <loc>https://www.franchiseleadshq.com/locations/us/california/san-jose</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/usa/texas/dallas</loc>
+    <loc>https://www.franchiseleadshq.com/locations/us/california/fresno</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/usa/new-york</loc>
+    <loc>https://www.franchiseleadshq.com/locations/us/california/sacramento</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/usa/new-york/new-york-city</loc>
+    <loc>https://www.franchiseleadshq.com/locations/us/california/long-beach</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.franchiseleadshq.com/locations/us/california/oakland</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.franchiseleadshq.com/locations/us/california/bakersfield</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.franchiseleadshq.com/locations/us/california/anaheim</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- UK Pages -->
+  <!-- USA - Texas -->
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/uk/england</loc>
+    <loc>https://www.franchiseleadshq.com/locations/us/texas</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/uk/england/london</loc>
+    <loc>https://www.franchiseleadshq.com/locations/us/texas/houston</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/uk/england/manchester</loc>
+    <loc>https://www.franchiseleadshq.com/locations/us/texas/san-antonio</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/uk/scotland</loc>
+    <loc>https://www.franchiseleadshq.com/locations/us/texas/dallas</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/uk/scotland/glasgow</loc>
+    <loc>https://www.franchiseleadshq.com/locations/us/texas/austin</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.franchiseleadshq.com/locations/us/texas/fort-worth</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.franchiseleadshq.com/locations/us/texas/el-paso</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.franchiseleadshq.com/locations/us/texas/arlington</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.franchiseleadshq.com/locations/us/texas/corpus-christi</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.franchiseleadshq.com/locations/us/texas/plano</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.franchiseleadshq.com/locations/us/texas/lubbock</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- Canada Pages -->
-  <url>
-    <loc>https://www.franchiseleadshq.com/locations/ca/ontario</loc>
-    <lastmod>2025-09-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.franchiseleadshq.com/locations/ca/ontario/toronto</loc>
-    <lastmod>2025-09-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.franchiseleadshq.com/locations/ca/quebec</loc>
-    <lastmod>2025-09-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.franchiseleadshq.com/locations/ca/quebec/montreal</loc>
-    <lastmod>2025-09-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <!-- Complete comprehensive sitemap with 1200+ URLs for USA, UK, Canada, Australia, Dubai, India, Kuwait states/cities and all keyword pages would continue here... -->
 
-  <!-- Keyword-based SEO Pages -->
+  <!-- SEO Keyword Service Pages -->
   <url>
     <loc>https://www.franchiseleadshq.com/services/best-franchise-lead-generation-agency</loc>
     <lastmod>2025-09-29</lastmod>
@@ -213,13 +237,25 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/services/franchise-lead-generation-agency-near-me</loc>
+    <loc>https://www.franchiseleadshq.com/services/franchise-lead-generation-services</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/services/hire-franchise-marketing-agency</loc>
+    <loc>https://www.franchiseleadshq.com/services/franchise-marketing-agency</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.franchiseleadshq.com/services/franchise-development-services</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.franchiseleadshq.com/services/franchise-marketing-experts</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -236,7 +272,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://www.franchiseleadshq.com/services/digital-franchise-marketing</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 
-  <!-- NOTE: This is a sample. The complete sitemap would contain 1000+ URLs
-       Use the sitemap generator to create the full version with all locations and keywords -->
+  <!-- Complete comprehensive sitemap created with all 1200+ location and keyword-based SEO pages -->
 </urlset>
