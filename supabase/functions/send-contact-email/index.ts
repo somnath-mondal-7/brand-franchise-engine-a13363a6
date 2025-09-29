@@ -50,8 +50,9 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send notification email to your team
     const notificationResponse = await sendEmail({
-      from: "FranchiseLeads HQ <noreply@franchiseleadshq.com>",
-      to: ["info@franchiseleadshq.com"], // Your team email
+      from: "FranchiseLeads HQ <support@franchiseleadshq.com>",
+      to: ["iamsomnath@franchiseleadshq.com"], // Your team email
+      reply_to: "support@franchiseleadshq.com",
       subject: `New Contact Form Submission from ${firstName} ${lastName}`,
       html: `
         <h2>New Contact Form Submission</h2>
@@ -69,8 +70,9 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send confirmation email to the user
     const confirmationResponse = await sendEmail({
-      from: "FranchiseLeads HQ <noreply@franchiseleadshq.com>",
+      from: "FranchiseLeads HQ <support@franchiseleadshq.com>",
       to: [email],
+      reply_to: "support@franchiseleadshq.com",
       subject: "Thank you for contacting FranchiseLeads HQ",
       html: `
         <h1>Thank you for reaching out, ${firstName}!</h1>
@@ -87,11 +89,11 @@ const handler = async (req: Request): Promise<Response> => {
         
         <p>Best regards,<br>
         <strong>The FranchiseLeads HQ Team</strong><br>
-        📧 info@franchiseleadshq.com<br>
+        📧 support@franchiseleadshq.com<br>
         📞 +1 (555) 123-4567</p>
         
         <hr>
-        <p><em>This is an automated response. Please don't reply to this email.</em></p>
+        <p><em>This is an automated response. Please reply to this email if you have any questions.</em></p>
       `,
     });
 
