@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { Users, Megaphone, Search, Filter, Handshake, Target, TrendingUp, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -149,7 +150,13 @@ const Services = () => {
               <div className="text-brand-gray">Franchise Professionals Served</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-primary mb-2">297K+</div>
+              <AnimatedCounter 
+                start={100} 
+                end={297} 
+                duration={2500} 
+                suffix="+" 
+                className="text-4xl font-bold text-primary mb-2"
+              />
               <div className="text-brand-gray">Qualified Leads Generated</div>
             </div>
             <div className="text-center">
