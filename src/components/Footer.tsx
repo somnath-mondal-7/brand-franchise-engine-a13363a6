@@ -1,4 +1,5 @@
-import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Instagram, Facebook } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   return (
@@ -7,21 +8,25 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-md flex items-center justify-center">
-                <span className="text-white font-bold text-lg">F</span>
-              </div>
+            <div className="flex items-center space-x-3">
+              <img src={logo} alt="FranchiseLeadsHQ Logo" className="w-10 h-10 object-contain" />
               <span className="text-xl font-semibold">
-                Franchiseleads<span className="text-blue-400">HQ</span>
+                <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">Franchiseleads</span><span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-bold">HQ</span>
               </span>
             </div>
             <p className="text-gray-400">
               We don't just generate leads, we build brands that dominate the franchise market.
             </p>
             <div className="flex space-x-4">
-              <Linkedin className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
-              <Twitter className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
-              <Facebook className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
+              <a href="https://www.linkedin.com/company/franchiseleadshq/" target="_blank" rel="noopener noreferrer">
+                <Linkedin className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
+              </a>
+              <a href="https://www.facebook.com/people/Franchiseleadshq/61579709174263/" target="_blank" rel="noopener noreferrer">
+                <Facebook className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
+              </a>
+              <a href="https://www.instagram.com/iamsomnath_mondal?" target="_blank" rel="noopener noreferrer">
+                <Instagram className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
+              </a>
             </div>
           </div>
 
