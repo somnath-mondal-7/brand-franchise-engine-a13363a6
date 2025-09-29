@@ -3,8 +3,77 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Calendar, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    company: "",
+    message: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Save to database
+      const { error: dbError } = await supabase
+        .from('contact_submissions')
+        .insert({
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          role: 'prospect',
+          service_interest: 'franchise-leads',
+          message: formData.message || 'Strategy call request',
+        });
+
+      if (dbError) throw dbError;
+
+      // Send email
+      const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
+      });
+
+      if (emailError) throw emailError;
+
+      toast.success("Thank you! We'll contact you within 24 hours.");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        company: "",
+        message: ""
+      });
+    } catch (error) {
+      console.error('Contact form error:', error);
+      toast.error("Something went wrong. Please try again or call us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="py-20 bg-brand-light">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,79 +99,102 @@ const Contact = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="firstName" className="block text-sm font-medium text-brand-navy mb-2">
+                      First Name *
+                    </label>
+                    <Input 
+                      id="firstName" 
+                      value={formData.firstName}
+                      onChange={handleInputChange}
+                      placeholder="John" 
+                      className="border-border focus:border-brand-blue"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="lastName" className="block text-sm font-medium text-brand-navy mb-2">
+                      Last Name *
+                    </label>
+                    <Input 
+                      id="lastName" 
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                      placeholder="Doe" 
+                      className="border-border focus:border-brand-blue"
+                      required
+                    />
+                  </div>
+                </div>
+                
                 <div>
-                  <label htmlFor="firstName" className="block text-sm font-medium text-brand-navy mb-2">
-                    First Name *
+                  <label htmlFor="email" className="block text-sm font-medium text-brand-navy mb-2">
+                    Email Address *
                   </label>
                   <Input 
-                    id="firstName" 
-                    placeholder="John" 
+                    id="email" 
+                    type="email" 
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="john@example.com" 
+                    className="border-border focus:border-brand-blue"
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-brand-navy mb-2">
+                    Phone Number *
+                  </label>
+                  <Input 
+                    id="phone" 
+                    type="tel" 
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="+1 (555) 123-4567" 
+                    className="border-border focus:border-brand-blue"
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="company" className="block text-sm font-medium text-brand-navy mb-2">
+                    Company/Franchise Name
+                  </label>
+                  <Input 
+                    id="company" 
+                    value={formData.company}
+                    onChange={handleInputChange}
+                    placeholder="Your Franchise Brand" 
                     className="border-border focus:border-brand-blue"
                   />
                 </div>
+                
                 <div>
-                  <label htmlFor="lastName" className="block text-sm font-medium text-brand-navy mb-2">
-                    Last Name *
+                  <label htmlFor="message" className="block text-sm font-medium text-brand-navy mb-2">
+                    Tell us about your goals
                   </label>
-                  <Input 
-                    id="lastName" 
-                    placeholder="Doe" 
+                  <Textarea 
+                    id="message" 
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Describe your current challenges and what you're looking to achieve..."
+                    rows={4}
                     className="border-border focus:border-brand-blue"
                   />
                 </div>
-              </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-brand-navy mb-2">
-                  Email Address *
-                </label>
-                <Input 
-                  id="email" 
-                  type="email" 
-                  placeholder="john@example.com" 
-                  className="border-border focus:border-brand-blue"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-brand-navy mb-2">
-                  Phone Number *
-                </label>
-                <Input 
-                  id="phone" 
-                  type="tel" 
-                  placeholder="+1 (555) 123-4567" 
-                  className="border-border focus:border-brand-blue"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="company" className="block text-sm font-medium text-brand-navy mb-2">
-                  Company/Franchise Name
-                </label>
-                <Input 
-                  id="company" 
-                  placeholder="Your Franchise Brand" 
-                  className="border-border focus:border-brand-blue"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-brand-navy mb-2">
-                  Tell us about your goals
-                </label>
-                <Textarea 
-                  id="message" 
-                  placeholder="Describe your current challenges and what you're looking to achieve..."
-                  rows={4}
-                  className="border-border focus:border-brand-blue"
-                />
-              </div>
-              
-              <Button className="w-full bg-gradient-primary text-primary-foreground shadow-elegant py-3">
-                Book My Strategy Call <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+                
+                <Button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-primary text-primary-foreground shadow-elegant py-3"
+                >
+                  {isSubmitting ? "Sending..." : "Book My Strategy Call"} 
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </form>
               
               <p className="text-sm text-brand-gray text-center">
                 We'll respond within 2 hours during business hours
