@@ -25,6 +25,7 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Form submission started", formData);
     
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
       toast.error("Please fill in all required fields");
@@ -32,9 +33,11 @@ const Contact = () => {
     }
 
     setIsSubmitting(true);
+    console.log("Starting form submission process");
 
     try {
       // Save to database
+      console.log("Attempting to save to database");
       const { error: dbError } = await supabase
         .from('contact_submissions')
         .insert({
@@ -48,14 +51,23 @@ const Contact = () => {
           message: formData.message || 'Strategy call request',
         });
 
-      if (dbError) throw dbError;
+      if (dbError) {
+        console.error("Database error:", dbError);
+        throw dbError;
+      }
+      console.log("Database save successful");
 
       // Send email
+      console.log("Attempting to send email");
       const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
         body: formData
       });
 
-      if (emailError) throw emailError;
+      if (emailError) {
+        console.error("Email error:", emailError);
+        throw emailError;
+      }
+      console.log("Email sent successfully");
 
       toast.success("Thank you! We'll contact you within 24 hours.");
       setFormData({
