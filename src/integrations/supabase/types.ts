@@ -181,6 +181,39 @@ export type Database = {
         }
         Relationships: []
       }
+      session_recordings: {
+        Row: {
+          created_at: string
+          duration: number | null
+          events: Json
+          id: string
+          page_url: string | null
+          session_id: string
+          updated_at: string
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          duration?: number | null
+          events: Json
+          id?: string
+          page_url?: string | null
+          session_id: string
+          updated_at?: string
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          duration?: number | null
+          events?: Json
+          id?: string
+          page_url?: string | null
+          session_id?: string
+          updated_at?: string
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

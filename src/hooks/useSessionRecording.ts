@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { record } from 'rrweb';
 import { supabase } from '@/integrations/supabase/client';
+import { TablesInsert } from '@/integrations/supabase/types';
 
 export interface SessionEvent {
   type: number;
@@ -43,15 +44,17 @@ export const useSessionRecording = () => {
 
     // Save session to Supabase
     try {
+      const sessionData: TablesInsert<'session_recordings'> = {
+        session_id: sessionId,
+        events: events as any,
+        duration: events.length > 0 ? events[events.length - 1].timestamp - events[0].timestamp : 0,
+        user_agent: navigator.userAgent,
+        page_url: window.location.href,
+      };
+
       const { error } = await supabase
         .from('session_recordings')
-        .insert({
-          session_id: sessionId,
-          events: events,
-          duration: events.length > 0 ? events[events.length - 1].timestamp - events[0].timestamp : 0,
-          user_agent: navigator.userAgent,
-          page_url: window.location.href,
-        });
+        .insert(sessionData);
 
       if (error) {
         console.error('Error saving session:', error);
