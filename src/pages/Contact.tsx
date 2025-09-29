@@ -125,6 +125,7 @@ const Contact = () => {
                             <SelectItem value="brand-building">Brand Building</SelectItem>
                             <SelectItem value="both">Both Services</SelectItem>
                             <SelectItem value="consultation">General Consultation</SelectItem>
+                            <SelectItem value="support">Support</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -166,7 +167,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="font-semibold text-brand-navy">Email</p>
-                        <p className="text-brand-gray">hello@franchiseleadshq.com</p>
+                        <p className="text-brand-gray">support@franchiseleadshq.com</p>
                       </div>
                     </div>
                     
@@ -176,7 +177,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="font-semibold text-brand-navy">Phone</p>
-                        <p className="text-brand-gray">+1 (555) 123-4567</p>
+                        <p className="text-brand-gray">+1 (321) 515-9932</p>
                       </div>
                     </div>
                     
