@@ -7,8 +7,58 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Mail, Phone, MapPin, Clock, ArrowRight, MessageSquare } from "lucide-react";
+import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const getVal = (selector: string) => (form.querySelector(selector) as HTMLInputElement | HTMLTextAreaElement | null)?.value?.trim() || '';
+
+    const firstName = getVal('#firstName');
+    const lastName = getVal('#lastName');
+    const email = getVal('#email');
+    const phone = getVal('#phone');
+    const company = getVal('#company');
+    const message = getVal('#message');
+
+    if (!firstName || !lastName || !email || !phone) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const { error: dbError } = await supabase.from('contact_submissions').insert({
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        phone,
+        company,
+        role: 'prospect',
+        service_interest: 'franchise-leads',
+        message: message || 'Strategy call request',
+      });
+      if (dbError) throw dbError;
+
+      const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
+        body: { firstName, lastName, email, phone, company, message },
+      });
+      if (emailError) throw emailError;
+
+      toast.success("Thank you! We'll contact you within 24 hours.");
+      form.reset();
+    } catch (err: any) {
+      console.error('Contact form error:', err);
+      toast.error('Something went wrong. Please try again or call us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -47,7 +97,7 @@ const Contact = () => {
                     </p>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    <form className="space-y-6">
+                    <form className="space-y-6" onSubmit={handleSubmit}>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <Label htmlFor="firstName">First Name *</Label>
@@ -140,8 +190,8 @@ const Contact = () => {
                         />
                       </div>
 
-                      <Button 
-                        type="submit"
+                       <Button 
+                         type="submit" disabled={isSubmitting}
                         size="lg" 
                         className="w-full bg-gradient-primary hover:shadow-elegant text-lg py-6"
                       >
