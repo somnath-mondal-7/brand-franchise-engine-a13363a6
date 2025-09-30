@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Target, Award, TrendingUp } from "lucide-react";
 
 // Team member imports
-import ceoMichaelRoss from "@/assets/team/ceo-michael-ross.jpg";
+import ceoFounder from "@/assets/team/ceo-founder.jpg";
 import marketingDirectorSarahChen from "@/assets/team/marketing-director-sarah-chen.jpg";
 import leadSpecialistDavidMartinez from "@/assets/team/lead-specialist-david-martinez.jpg";  
 import brandStrategistEmilyThompson from "@/assets/team/brand-strategist-emily-thompson.jpg";
@@ -14,7 +14,7 @@ const About = () => {
     {
       name: "Michael Ross",
       position: "CEO & Founder",
-      image: ceoMichaelRoss,
+      image: ceoFounder,
       bio: "15+ years of franchise industry experience. Built and scaled multiple franchise consulting firms, helping over 1,000 franchisors expand nationwide.",
       expertise: ["Franchise Strategy", "Business Development", "Market Expansion"]
     },
