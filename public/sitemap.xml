@@ -227,7 +227,74 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Complete comprehensive sitemap with 1200+ URLs for USA, UK, Canada, Australia, Dubai, India, Kuwait states/cities and all keyword pages would continue here... -->
+  <!-- ALL 50 US STATES -->
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/new-york</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/florida</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/illinois</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/pennsylvania</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/ohio</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/georgia</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/north-carolina</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/michigan</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/arizona</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/tennessee</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/indiana</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/missouri</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/maryland</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/wisconsin</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/colorado</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/minnesota</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/south-carolina</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/alabama</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/louisiana</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/kentucky</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/oregon</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/oklahoma</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/connecticut</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/utah</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/iowa</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/nevada</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/arkansas</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/mississippi</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/kansas</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/new-mexico</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/nebraska</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/west-virginia</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/idaho</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/hawaii</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/new-hampshire</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/maine</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/montana</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/rhode-island</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/delaware</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/south-dakota</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/north-dakota</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/alaska</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/vermont</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/wyoming</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/washington</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/massachusetts</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/new-jersey</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/usa/virginia</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- UK REGIONS -->
+  <url><loc>https://www.franchiseleadshq.com/locations/uk/england</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/uk/scotland</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/uk/wales</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/uk/northern-ireland</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- CANADA PROVINCES -->
+  <url><loc>https://www.franchiseleadshq.com/locations/canada/ontario</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/canada/quebec</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/canada/british-columbia</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/canada/alberta</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/canada/manitoba</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/canada/saskatchewan</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- AUSTRALIA STATES -->
+  <url><loc>https://www.franchiseleadshq.com/locations/australia/new-south-wales</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/australia/victoria</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.franchiseleadshq.com/locations/australia/queensland</loc><lastmod>2025-09-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
   <!-- SEO Keyword Service Pages -->
   <url>
