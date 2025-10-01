@@ -1,5 +1,5 @@
 import { Mail, Phone, MapPin, Linkedin, Instagram, Facebook } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-hq.png";
 
 const Footer = () => {
   return (
@@ -10,8 +10,8 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
               <img src={logo} alt="FranchiseLeadsHQ Logo" className="w-10 h-10 object-contain" />
-              <span className="text-xl font-semibold">
-                <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">Franchiseleads</span><span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-bold">HQ</span>
+              <span className="text-xl font-semibold text-white">
+                franchiseleads<span className="text-primary font-bold">HQ</span>
               </span>
             </div>
             <p className="text-gray-400">

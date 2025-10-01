@@ -12,10 +12,10 @@ import brandStrategistEmilyThompson from "@/assets/team/brand-strategist-emily-t
 const About = () => {
   const teamMembers = [
     {
-      name: "Michael Ross",
+      name: "Somnath Mondal",
       position: "CEO & Founder",
       image: ceoFounder,
-      bio: "15+ years of franchise industry experience. Built and scaled multiple franchise consulting firms, helping over 1,000 franchisors expand nationwide.",
+      bio: "A decade of experience in the franchise industry. Built and scaled multiple franchise consulting firms, helping over 1,000 franchisors expand nationwide.",
       expertise: ["Franchise Strategy", "Business Development", "Market Expansion"]
     },
     {
