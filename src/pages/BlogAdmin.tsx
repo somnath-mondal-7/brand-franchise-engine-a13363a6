@@ -30,6 +30,7 @@ interface BlogPost {
   read_time_minutes: number;
   created_at: string;
   published_at: string;
+  attachments?: any;
 }
 
 interface Category {
@@ -60,6 +61,14 @@ export default function BlogAdmin() {
     is_published: false,
     is_featured: false,
   });
+
+  const [attachments, setAttachments] = useState<Array<{
+    name: string;
+    url: string;
+    type: string;
+    size: number;
+  }>>([]);
+  const [uploadingFiles, setUploadingFiles] = useState(false);
 
   useEffect(() => {
     fetchPosts();
@@ -117,6 +126,54 @@ export default function BlogAdmin() {
     return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
   };
 
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    setUploadingFiles(true);
+    try {
+      const uploadedFiles = [];
+
+      for (const file of Array.from(files)) {
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${Math.random()}.${fileExt}`;
+        const filePath = `${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from('blog-attachments')
+          .upload(filePath, file);
+
+        if (uploadError) throw uploadError;
+
+        const { data: { publicUrl } } = supabase.storage
+          .from('blog-attachments')
+          .getPublicUrl(filePath);
+
+        uploadedFiles.push({
+          name: file.name,
+          url: publicUrl,
+          type: file.type,
+          size: file.size
+        });
+      }
+
+      setAttachments([...attachments, ...uploadedFiles]);
+      toast({ title: "Success", description: "Files uploaded successfully!" });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to upload files",
+        variant: "destructive",
+      });
+    } finally {
+      setUploadingFiles(false);
+    }
+  };
+
+  const removeAttachment = (index: number) => {
+    setAttachments(attachments.filter((_, i) => i !== index));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -134,6 +191,7 @@ export default function BlogAdmin() {
         seo_title: formData.seo_title || formData.title,
         seo_description: formData.seo_description || formData.excerpt,
         published_at: formData.is_published ? new Date().toISOString() : null,
+        attachments: attachments,
       };
 
       if (editingPost) {
@@ -181,6 +239,7 @@ export default function BlogAdmin() {
       is_published: false,
       is_featured: false,
     });
+    setAttachments([]);
     setEditingPost(null);
   };
 
@@ -199,6 +258,12 @@ export default function BlogAdmin() {
       is_published: post.is_published,
       is_featured: post.is_featured || false,
     });
+    // Load existing attachments if any
+    if (post.attachments && Array.isArray(post.attachments)) {
+      setAttachments(post.attachments as any);
+    } else {
+      setAttachments([]);
+    }
     setShowForm(true);
   };
 
@@ -424,6 +489,43 @@ export default function BlogAdmin() {
                         💡 Tip: Just write naturally! The system automatically handles SEO optimization, 
                         generates proper headings, and estimates read time.
                       </p>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="attachments">Attachments (Images, PDFs, Documents)</Label>
+                      <Input
+                        id="attachments"
+                        type="file"
+                        multiple
+                        accept="image/*,.pdf,.doc,.docx"
+                        onChange={handleFileUpload}
+                        disabled={uploadingFiles}
+                        className="cursor-pointer"
+                      />
+                      <p className="text-xs text-muted-foreground mt-2">
+                        Upload images, PDFs, or documents (max 10MB each)
+                      </p>
+                      
+                      {/* Show uploaded attachments */}
+                      {attachments.length > 0 && (
+                        <div className="mt-4 space-y-2">
+                          <Label className="text-sm">Uploaded Files:</Label>
+                          {attachments.map((file, index) => (
+                            <div key={index} className="flex items-center justify-between p-2 bg-muted rounded">
+                              <span className="text-sm truncate flex-1">{file.name}</span>
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => removeAttachment(index)}
+                                className="ml-2"
+                              >
+                                Remove
+                              </Button>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
 
                     <div className="flex gap-4">

@@ -43,6 +43,7 @@ export type Database = {
       }
       blog_posts: {
         Row: {
+          attachments: Json | null
           author_name: string
           category_id: string | null
           content: string
@@ -62,6 +63,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          attachments?: Json | null
           author_name?: string
           category_id?: string | null
           content: string
@@ -81,6 +83,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          attachments?: Json | null
           author_name?: string
           category_id?: string | null
           content?: string
