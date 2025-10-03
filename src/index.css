@@ -179,6 +179,127 @@
   border-radius: 0 0 8px 8px !important;
 }
 
+/* Blog Content Styles - Applied to published blog posts */
+.blog-content h1,
+.blog-content .ql-editor h1 {
+  font-size: 2.5em !important;
+  font-weight: 700 !important;
+  margin-top: 1.5em !important;
+  margin-bottom: 0.5em !important;
+  line-height: 1.2 !important;
+  color: hsl(var(--brand-navy)) !important;
+  border-bottom: 2px solid hsl(var(--border)) !important;
+  padding-bottom: 0.5em !important;
+}
+
+.blog-content h2,
+.blog-content .ql-editor h2 {
+  font-size: 2em !important;
+  font-weight: 700 !important;
+  margin-top: 1.5em !important;
+  margin-bottom: 0.5em !important;
+  line-height: 1.3 !important;
+  color: hsl(var(--brand-navy)) !important;
+  border-bottom: 1px solid hsl(var(--border)) !important;
+  padding-bottom: 0.3em !important;
+}
+
+.blog-content h3,
+.blog-content .ql-editor h3 {
+  font-size: 1.75em !important;
+  font-weight: 600 !important;
+  margin-top: 1.5em !important;
+  margin-bottom: 0.5em !important;
+  color: hsl(var(--brand-navy)) !important;
+}
+
+.blog-content h4,
+.blog-content .ql-editor h4 {
+  font-size: 1.5em !important;
+  font-weight: 600 !important;
+  margin-top: 1.25em !important;
+  margin-bottom: 0.5em !important;
+  color: hsl(var(--brand-navy)) !important;
+}
+
+.blog-content h5,
+.blog-content .ql-editor h5 {
+  font-size: 1.25em !important;
+  font-weight: 600 !important;
+  margin-top: 1em !important;
+  margin-bottom: 0.5em !important;
+  color: hsl(var(--brand-navy)) !important;
+}
+
+.blog-content h6,
+.blog-content .ql-editor h6 {
+  font-size: 1.125em !important;
+  font-weight: 600 !important;
+  margin-top: 1em !important;
+  margin-bottom: 0.5em !important;
+  color: hsl(var(--brand-navy)) !important;
+}
+
+.blog-content p,
+.blog-content .ql-editor p {
+  font-size: 1.125rem !important;
+  line-height: 1.8 !important;
+  margin-bottom: 1.5em !important;
+  color: hsl(var(--brand-gray)) !important;
+}
+
+.blog-content ul,
+.blog-content ol,
+.blog-content .ql-editor ul,
+.blog-content .ql-editor ol {
+  margin: 1.5em 0 !important;
+  padding-left: 2em !important;
+}
+
+.blog-content li,
+.blog-content .ql-editor li {
+  margin-bottom: 0.5em !important;
+  line-height: 1.8 !important;
+  font-size: 1.125rem !important;
+  color: hsl(var(--brand-gray)) !important;
+}
+
+.blog-content img,
+.blog-content .ql-editor img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 8px !important;
+  margin: 20px 0 !important;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important;
+}
+
+.blog-content strong,
+.blog-content .ql-editor strong {
+  font-weight: 700 !important;
+  color: hsl(var(--brand-navy)) !important;
+}
+
+.blog-content a,
+.blog-content .ql-editor a {
+  color: hsl(var(--primary)) !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+}
+
+.blog-content a:hover,
+.blog-content .ql-editor a:hover {
+  text-decoration: underline !important;
+}
+
+.blog-content blockquote,
+.blog-content .ql-editor blockquote {
+  border-left: 4px solid hsl(var(--primary)) !important;
+  padding-left: 1.5em !important;
+  font-style: italic !important;
+  margin: 2em 0 !important;
+  color: hsl(var(--brand-gray)) !important;
+}
+
 /* Scrolling animation for client logos */
 @keyframes scroll {
   0% {

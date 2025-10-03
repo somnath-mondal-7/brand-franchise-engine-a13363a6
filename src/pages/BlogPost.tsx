@@ -135,17 +135,49 @@ const BlogPost = () => {
         <title>{post.seo_title || post.title} | FranchiseLeads HQ</title>
         <meta name="description" content={post.seo_description || post.excerpt} />
         <meta name="keywords" content={post.tags?.join(', ')} />
+        <link rel="canonical" href={`https://www.franchiseleadshq.com/blog/${post.slug}`} />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:title" content={post.seo_title || post.title} />
+        <meta property="og:description" content={post.seo_description || post.excerpt} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`https://www.franchiseleadshq.com/blog/${post.slug}`} />
+        {post.featured_image_url && <meta property="og:image" content={post.featured_image_url} />}
+        <meta property="article:published_time" content={post.published_at} />
+        <meta property="article:author" content={post.author_name} />
+        {post.tags?.map(tag => <meta key={tag} property="article:tag" content={tag} />)}
+        
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.seo_title || post.title} />
+        <meta name="twitter:description" content={post.seo_description || post.excerpt} />
+        {post.featured_image_url && <meta name="twitter:image" content={post.featured_image_url} />}
+        
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             "headline": post.title,
             "description": post.seo_description || post.excerpt,
+            "image": post.featured_image_url,
             "author": {
               "@type": "Organization",
               "name": post.author_name
             },
+            "publisher": {
+              "@type": "Organization",
+              "name": "FranchiseLeads HQ",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.franchiseleadshq.com/logo-hq.png"
+              }
+            },
             "datePublished": post.published_at,
+            "dateModified": post.published_at,
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": `https://www.franchiseleadshq.com/blog/${post.slug}`
+            },
             "keywords": post.tags?.join(", ")
           })}
         </script>
@@ -215,28 +247,7 @@ const BlogPost = () => {
 
             {/* Content */}
             <div 
-              className="prose prose-lg max-w-none
-                prose-headings:text-brand-navy prose-headings:font-bold prose-headings:leading-tight
-                prose-h1:text-5xl prose-h1:mt-16 prose-h1:mb-8 prose-h1:border-b prose-h1:border-border prose-h1:pb-4
-                prose-h2:text-4xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:border-b prose-h2:border-border prose-h2:pb-3
-                prose-h3:text-3xl prose-h3:mt-10 prose-h3:mb-5
-                prose-h4:text-2xl prose-h4:mt-8 prose-h4:mb-4
-                prose-h5:text-xl prose-h5:mt-6 prose-h5:mb-3
-                prose-h6:text-lg prose-h6:mt-6 prose-h6:mb-3
-                prose-p:text-brand-gray prose-p:leading-relaxed prose-p:mb-6 prose-p:text-lg
-                prose-a:text-primary prose-a:font-medium prose-a:no-underline hover:prose-a:underline hover:prose-a:text-primary/80
-                prose-strong:text-brand-navy prose-strong:font-semibold
-                prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
-                prose-ol:my-6 prose-ol:list-decimal prose-ol:pl-6
-                prose-li:text-brand-gray prose-li:mb-3 prose-li:text-lg prose-li:leading-relaxed
-                prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:my-8 prose-blockquote:text-brand-gray
-                prose-code:bg-muted prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-mono
-                prose-pre:bg-muted prose-pre:p-4 prose-pre:rounded-lg prose-pre:overflow-x-auto prose-pre:my-6
-                prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8 prose-img:w-full
-                prose-hr:my-12 prose-hr:border-border
-                prose-table:my-8 prose-table:border-collapse
-                prose-th:border prose-th:border-border prose-th:bg-muted prose-th:p-3 prose-th:text-left prose-th:font-semibold
-                prose-td:border prose-td:border-border prose-td:p-3"
+              className="blog-content prose prose-lg max-w-none"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
 
