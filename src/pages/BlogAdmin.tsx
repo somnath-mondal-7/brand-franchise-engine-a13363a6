@@ -11,7 +11,9 @@ import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { PlusCircle, Edit, Trash2, Eye } from 'lucide-react';
+import { PlusCircle, Edit, Trash2, Eye, Upload, X, FileText } from 'lucide-react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 interface BlogPost {
   id: string;
@@ -476,18 +478,39 @@ export default function BlogAdmin() {
 
                     <div>
                       <Label htmlFor="content">Blog Content *</Label>
-                      <Textarea
-                        id="content"
-                        value={formData.content}
-                        onChange={(e) => setFormData({...formData, content: e.target.value})}
-                        placeholder="Write your blog content here... Just write naturally - the system will handle all the HTML and SEO automatically!"
-                        rows={20}
-                        className="font-mono text-sm"
-                        required
-                      />
+                      <div className="border rounded-lg overflow-hidden bg-white">
+                        <ReactQuill
+                          theme="snow"
+                          value={formData.content}
+                          onChange={(value) => setFormData({...formData, content: value})}
+                          modules={{
+                            toolbar: [
+                              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                              ['bold', 'italic', 'underline', 'strike'],
+                              [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                              [{ 'indent': '-1'}, { 'indent': '+1' }],
+                              [{ 'color': [] }, { 'background': [] }],
+                              [{ 'align': [] }],
+                              ['link', 'image', 'video'],
+                              ['blockquote', 'code-block'],
+                              ['clean']
+                            ]
+                          }}
+                          formats={[
+                            'header',
+                            'bold', 'italic', 'underline', 'strike',
+                            'list', 'bullet', 'indent',
+                            'color', 'background',
+                            'align',
+                            'link', 'image', 'video',
+                            'blockquote', 'code-block'
+                          ]}
+                          placeholder="Write your blog post content here..."
+                          className="min-h-[500px] bg-white"
+                        />
+                      </div>
                       <p className="text-xs text-muted-foreground mt-2">
-                        💡 Tip: Just write naturally! The system automatically handles SEO optimization, 
-                        generates proper headings, and estimates read time.
+                        💡 Use the rich text editor toolbar to format your content with headings, bold text, lists, images, and more!
                       </p>
                     </div>
 

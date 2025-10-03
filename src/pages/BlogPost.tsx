@@ -216,13 +216,27 @@ const BlogPost = () => {
             {/* Content */}
             <div 
               className="prose prose-lg max-w-none
-                prose-headings:text-brand-navy prose-headings:font-bold
-                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-                prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-                prose-p:text-brand-gray prose-p:leading-relaxed prose-p:mb-6
-                prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                prose-headings:text-brand-navy prose-headings:font-bold prose-headings:leading-tight
+                prose-h1:text-5xl prose-h1:mt-16 prose-h1:mb-8 prose-h1:border-b prose-h1:border-border prose-h1:pb-4
+                prose-h2:text-4xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:border-b prose-h2:border-border prose-h2:pb-3
+                prose-h3:text-3xl prose-h3:mt-10 prose-h3:mb-5
+                prose-h4:text-2xl prose-h4:mt-8 prose-h4:mb-4
+                prose-h5:text-xl prose-h5:mt-6 prose-h5:mb-3
+                prose-h6:text-lg prose-h6:mt-6 prose-h6:mb-3
+                prose-p:text-brand-gray prose-p:leading-relaxed prose-p:mb-6 prose-p:text-lg
+                prose-a:text-primary prose-a:font-medium prose-a:no-underline hover:prose-a:underline hover:prose-a:text-primary/80
                 prose-strong:text-brand-navy prose-strong:font-semibold
-                prose-ul:my-6 prose-li:text-brand-gray prose-li:mb-2"
+                prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
+                prose-ol:my-6 prose-ol:list-decimal prose-ol:pl-6
+                prose-li:text-brand-gray prose-li:mb-3 prose-li:text-lg prose-li:leading-relaxed
+                prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:my-8 prose-blockquote:text-brand-gray
+                prose-code:bg-muted prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-mono
+                prose-pre:bg-muted prose-pre:p-4 prose-pre:rounded-lg prose-pre:overflow-x-auto prose-pre:my-6
+                prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8 prose-img:w-full
+                prose-hr:my-12 prose-hr:border-border
+                prose-table:my-8 prose-table:border-collapse
+                prose-th:border prose-th:border-border prose-th:bg-muted prose-th:p-3 prose-th:text-left prose-th:font-semibold
+                prose-td:border prose-td:border-border prose-td:p-3"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
 
