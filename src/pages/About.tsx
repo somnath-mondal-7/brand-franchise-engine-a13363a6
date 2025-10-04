@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Target, Award, TrendingUp } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 // Team member imports
 import ceoFounder from "@/assets/team/ceo-founder.jpg";
@@ -65,9 +66,53 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-      
+      <div className="min-h-screen bg-background">
+        <Helmet>
+          <title>About FranchiseLeadsHQ | Franchise Marketing & Lead Generation</title>
+          <meta name="description" content="Learn about FranchiseLeadsHQ — franchise marketing and lead generation experts serving USA, UK, Canada, India and worldwide." />
+          <link rel="canonical" href="https://www.franchiseleadshq.com/about" />
+        </Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is FranchiseLeadsHQ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "FranchiseLeadsHQ is a specialized franchise marketing and lead generation agency helping consultants and franchisors grow with qualified leads and strong brand positioning."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Where do you operate?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We serve clients worldwide, with strong presence across the USA, UK, Canada, Australia, Dubai, India and Kuwait."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What services do you provide?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We offer franchise lead generation, brand building, digital marketing strategy, campaign execution, and conversion optimization tailored to the franchise industry."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How fast can I see results?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Many clients start seeing qualified franchise inquiries within 30 days, depending on budget, market, and goals."
+                }
+              }
+            ]
+          })}
+        </script>
+        <Navigation />
       {/* Hero Section */}
       <section className="pt-24 pb-20 bg-gradient-to-br from-background via-accent/30 to-primary/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
