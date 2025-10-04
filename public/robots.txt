@@ -3,6 +3,7 @@ Allow: /
 
 # Sitemaps
 Sitemap: https://www.franchiseleadshq.com/sitemap.xml
+Sitemap: https://www.franchiseleadshq.com/sitemap-blog.xml
 
 # Crawl-delay for better server performance
 Crawl-delay: 1

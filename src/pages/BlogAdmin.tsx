@@ -213,6 +213,15 @@ export default function BlogAdmin() {
         toast({ title: "Success", description: "Blog post created successfully!" });
       }
 
+      if (postData.is_published) {
+        try {
+          await supabase.functions.invoke('sitemap-ping', { body: { slug } });
+          toast({ title: "Indexing requested", description: "Search engines pinged to crawl your sitemap and post." });
+        } catch (e) {
+          console.error('Sitemap ping failed', e);
+        }
+      }
+
       resetForm();
       fetchPosts();
       setShowForm(false);
