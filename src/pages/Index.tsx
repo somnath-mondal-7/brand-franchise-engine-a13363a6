@@ -10,6 +10,7 @@ import FAQSection from "@/components/FAQSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
 import SEOBreadcrumbs from "@/components/SEOBreadcrumbs";
+import SEOInternalLinks from "@/components/SEOInternalLinks";
 
 const Index = () => {
   return (
@@ -62,6 +63,7 @@ const Index = () => {
       </script>
 
       <Navigation />
+      <SEOBreadcrumbs />
       <Hero />
       <ProcessSection />
       <ServicesSection />
@@ -69,6 +71,8 @@ const Index = () => {
       <AboutSection />
       <TestimonialsSection />
       <BlogSection />
+      {/* SEO Internal Links to improve discoverability */}
+      <SEOInternalLinks />
       <FAQSection />
       <FinalCTASection />
       <Footer />
