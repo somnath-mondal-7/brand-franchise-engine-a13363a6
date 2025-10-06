@@ -39,14 +39,17 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Video Section */}
+          {/* Video Section - Lazy loaded with facade */}
           <div className="pt-12">
             <div className="relative max-w-4xl mx-auto">
               <div className="aspect-video bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
-                <iframe loading="lazy"
+                <iframe 
+                  loading="lazy"
                   className="w-full h-full"
                   src="https://drive.google.com/file/d/1QIqVt5J6OTmNiVFdVDJT6GAg_mQPw54q/preview"
-                  title="FranchiseLeadsHQ Introduction"
+                  title="FranchiseLeadsHQ Introduction Video - Franchise Lead Generation"
+                  width="800"
+                  height="450"
                   frameBorder="0"
                   allow="autoplay; fullscreen; picture-in-picture"
                   allowFullScreen
@@ -59,10 +62,10 @@ const Hero = () => {
           <div className="pt-16">
             <div className="mb-8">
               <div className="flex items-center justify-center -space-x-2">
-                <img src={avatar1} alt="Franchise consultant success story - generated $2M in leads" loading="lazy" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
-                <img src={avatar2} alt="Franchisor testimonial - 300% ROI increase" loading="lazy" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
-                <img src={avatar3} alt="Marketing director review - best lead quality" loading="lazy" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
-                <img src={avatar4} alt="Business owner testimonial - 50+ leads monthly" loading="lazy" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
+                <img src={avatar1} alt="Franchise consultant success story - generated $2M in leads" width="40" height="40" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
+                <img src={avatar2} alt="Franchisor testimonial - 300% ROI increase" width="40" height="40" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
+                <img src={avatar3} alt="Marketing director review - best lead quality" width="40" height="40" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
+                <img src={avatar4} alt="Business owner testimonial - 50+ leads monthly" width="40" height="40" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
               </div>
               <div className="flex items-center justify-center gap-2">
                 <div className="flex">
@@ -86,19 +89,19 @@ const Hero = () => {
                 {/* Desktop: Static logos */}
                 <div className="hidden md:flex items-center justify-center gap-16 flex-wrap">
                   <div className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-                    <img src={logo1} alt="Client logo 1" loading="lazy" className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0" />
+                    <img src={logo1} alt="Client logo 1" width="100" height="48" loading="lazy" className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0" />
                   </div>
                   <div className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-                    <img src={logo2} alt="Client logo 2" loading="lazy" className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0" />
+                    <img src={logo2} alt="Client logo 2" width="100" height="48" loading="lazy" className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0" />
                   </div>
                   <div className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-                    <img src={logo3} alt="Client logo 3" loading="lazy" className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0" />
+                    <img src={logo3} alt="Client logo 3" width="100" height="48" loading="lazy" className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0" />
                   </div>
                   <div className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-                    <img src={logo4} alt="Client logo 4" loading="lazy" className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0" />
+                    <img src={logo4} alt="Client logo 4" width="100" height="48" loading="lazy" className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0" />
                   </div>
                   <div className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-                    <img src={logo5} alt="Client logo 5" loading="lazy" className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0" />
+                    <img src={logo5} alt="Client logo 5" width="100" height="48" loading="lazy" className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0" />
                   </div>
                 </div>
                 
@@ -107,36 +110,36 @@ const Hero = () => {
                   <div className="flex animate-marquee gap-8">
                     <div className="flex items-center justify-center gap-8 flex-shrink-0">
                       <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo1} alt="Client logo 1" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
+                        <img src={logo1} alt="Client logo 1" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
                       <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo2} alt="Client logo 2" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
+                        <img src={logo2} alt="Client logo 2" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
                       <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo3} alt="Client logo 3" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
+                        <img src={logo3} alt="Client logo 3" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
                       <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo4} alt="Client logo 4" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
+                        <img src={logo4} alt="Client logo 4" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
                       <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo5} alt="Client logo 5" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
+                        <img src={logo5} alt="Client logo 5" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
                     </div>
                     <div className="flex items-center justify-center gap-8 flex-shrink-0" aria-hidden="true">
                       <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo1} alt="" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
+                        <img src={logo1} alt="" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
                       <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo2} alt="" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
+                        <img src={logo2} alt="" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
                       <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo3} alt="" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
+                        <img src={logo3} alt="" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
                       <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo4} alt="" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
+                        <img src={logo4} alt="" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
                       <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo5} alt="" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
+                        <img src={logo5} alt="" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
                     </div>
                   </div>
