@@ -1,7 +1,8 @@
 {
-  "redirects": [
+  "version": 2,
+  "routes": [
     {
-      "source": "/:path(.*)",
+      "src": "/(.*)",
       "has": [
         {
           "type": "header",
@@ -9,22 +10,20 @@
           "value": "http"
         }
       ],
-      "destination": "https://www.franchiseleadshq.com/:path*",
-      "permanent": true
+      "status": 308,
+      "dest": "https://www.franchiseleadshq.com/$1"
     },
     {
-      "source": "/:path(.*)",
+      "src": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "franchiseleadshq.com"
         }
       ],
-      "destination": "https://www.franchiseleadshq.com/:path*",
-      "permanent": true
-    }
-  ],
-  "routes": [
+      "status": 308,
+      "dest": "https://www.franchiseleadshq.com/$1"
+    },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
   ],
