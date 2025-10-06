@@ -9,8 +9,8 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <img src={logo} alt="FranchiseLeadsHQ Logo" className="w-10 h-10 object-contain" />
-              <span className="text-xl font-semibold text-white">
+              <img src={logo} alt="FranchiseLeadsHQ Logo - Franchise Lead Generation Experts" width="40" height="40" className="w-10 h-10 object-contain" />
+              <span className="text-xl font-semibold text-white" aria-label="FranchiseLeadsHQ">
                 franchiseleads<span className="text-primary font-bold">HQ</span>
               </span>
             </div>

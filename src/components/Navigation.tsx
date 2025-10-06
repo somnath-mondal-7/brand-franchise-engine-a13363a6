@@ -20,8 +20,12 @@ const Navigation = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="/logo-hq.png" 
-                alt="FranchiseLeadsHQ Logo" 
+                alt="FranchiseLeadsHQ - #1 Franchise Lead Generation Agency Logo" 
+                width="40"
+                height="40"
                 className="w-10 h-10 object-contain"
+                loading="eager"
+                fetchPriority="high"
               />
               <span className="text-xl font-semibold text-gray-900">
                 Franchiseleads<span className="text-primary">HQ</span>

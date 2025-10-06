@@ -228,7 +228,9 @@ const ServicesSection = () => {
                           <div className="flex items-center gap-3 mb-4">
                             <img 
                               src={`https://logo.clearbit.com/${platform.icon}?size=500`} 
-                              alt={platform.name}
+                              alt={`${platform.name} social media platform logo`}
+                              width="32"
+                              height="32"
                               loading="lazy"
                               decoding="async"
                               className="w-8 h-8"

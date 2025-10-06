@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Play } from "lucide-react";
+import YouTubeFacade from "@/components/YouTubeFacade";
 import logo1 from "@/assets/clients/logo1.svg";
 import logo2 from "@/assets/clients/logo2.png";
 import logo3 from "@/assets/clients/logo3.png";
@@ -39,27 +39,12 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Video Section - YouTube embed for optimal performance */}
+          {/* Video Section - Optimized YouTube facade for performance */}
           <div className="pt-12">
-            <div className="relative max-w-4xl mx-auto">
-              <div className="aspect-video bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
-                <iframe 
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/VyZDMn7GtdI?si=Lp88p85HkRIAQlcl"
-                  title="FranchiseLeadsHQ Introduction - Franchise Lead Generation Services"
-                  width="800"
-                  height="450"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                  loading="lazy"
-                ></iframe>
-              </div>
-              <p className="text-center text-sm text-muted-foreground mt-4">
-                See how we've helped 5000+ franchise businesses generate qualified leads
-              </p>
-            </div>
+            <YouTubeFacade 
+              videoId="VyZDMn7GtdI" 
+              title="FranchiseLeadsHQ Introduction - Franchise Lead Generation Services"
+            />
           </div>
 
           {/* Client Photos, Rating and Logos */}
