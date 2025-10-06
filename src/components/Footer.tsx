@@ -106,8 +106,8 @@ const Footer = () => {
               © 2025 FranchiseLeadsHQ. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+              <a href="/legal-terms/privacy-policy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+              <a href="/legal-terms/refund-satisfaction-guarantee-policy" className="text-gray-400 hover:text-white transition-colors">Refund Policy</a>
             </div>
           </div>
         </div>

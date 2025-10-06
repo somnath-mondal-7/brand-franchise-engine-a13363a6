@@ -19,8 +19,7 @@ const Hero = () => {
           {/* Main Headline */}
           <div className="space-y-4">
             <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-              We Don't Just Generate Leads{" "}
-              <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">We Build Brands.</span>
+              #1 <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Franchise Lead Generation</span> Agency — We Build Brands
             </h1>
           </div>
 
@@ -44,7 +43,7 @@ const Hero = () => {
           <div className="pt-12">
             <div className="relative max-w-4xl mx-auto">
               <div className="aspect-video bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
-                <iframe
+                <iframe loading="lazy"
                   className="w-full h-full"
                   src="https://drive.google.com/file/d/1QIqVt5J6OTmNiVFdVDJT6GAg_mQPw54q/preview"
                   title="FranchiseLeadsHQ Introduction"

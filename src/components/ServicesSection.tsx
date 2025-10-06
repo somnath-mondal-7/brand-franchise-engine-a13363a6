@@ -229,6 +229,8 @@ const ServicesSection = () => {
                             <img 
                               src={`https://logo.clearbit.com/${platform.icon}?size=500`} 
                               alt={platform.name}
+                              loading="lazy"
+                              decoding="async"
                               className="w-8 h-8"
                               onError={(e) => {
                                 e.currentTarget.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" fill="%23f3f4f6" rx="6"/><text x="16" y="20" text-anchor="middle" fill="%236b7280" font-size="8" font-weight="bold">${platform.name.charAt(0)}</text></svg>`;

@@ -118,7 +118,9 @@ const Services = () => {
           <div className="relative">
             <img 
               src={leadGeneration} 
-              alt="Lead Generation Process" 
+              alt="Franchise lead generation process"
+              loading="lazy"
+              decoding="async"
               className="rounded-lg shadow-card w-full"
             />
           </div>
@@ -128,7 +130,9 @@ const Services = () => {
           <div className="relative lg:order-1">
             <img 
               src={brandBuilding} 
-              alt="Brand Building Process" 
+              alt="Franchise brand building strategy"
+              loading="lazy"
+              decoding="async"
               className="rounded-lg shadow-card w-full"
             />
           </div>
