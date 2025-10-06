@@ -39,21 +39,22 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Video Section - Lazy loaded with facade */}
+          {/* Video Section - Native HTML5 video for better performance */}
           <div className="pt-12">
             <div className="relative max-w-4xl mx-auto">
               <div className="aspect-video bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
-                <iframe 
-                  loading="lazy"
+                <video 
                   className="w-full h-full"
-                  src="https://drive.google.com/file/d/1QIqVt5J6OTmNiVFdVDJT6GAg_mQPw54q/preview"
-                  title="FranchiseLeadsHQ Introduction Video - Franchise Lead Generation"
+                  controls
+                  preload="metadata"
+                  poster="/videos/hero-intro-poster.jpg"
                   width="800"
                   height="450"
-                  frameBorder="0"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                  aria-label="FranchiseLeadsHQ Introduction Video - Franchise Lead Generation"
+                >
+                  <source src="/videos/hero-intro.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
             </div>
           </div>
