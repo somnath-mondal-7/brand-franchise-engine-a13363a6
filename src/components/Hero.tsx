@@ -45,12 +45,13 @@ const Hero = () => {
               <div className="aspect-video bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
                 <iframe 
                   className="w-full h-full"
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+                  src="https://www.youtube.com/embed/VyZDMn7GtdI?si=Lp88p85HkRIAQlcl"
                   title="FranchiseLeadsHQ Introduction - Franchise Lead Generation Services"
                   width="800"
                   height="450"
                   frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
                   loading="lazy"
                 ></iframe>
