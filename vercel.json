@@ -11,6 +11,17 @@
       ],
       "destination": "https://www.franchiseleadshq.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/:path(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "franchiseleadshq.com"
+        }
+      ],
+      "destination": "https://www.franchiseleadshq.com/:path*",
+      "permanent": true
     }
   ],
   "routes": [
@@ -28,6 +39,18 @@
       "source": "/robots\\.txt",
       "headers": [
         { "key": "Content-Type", "value": "text/plain; charset=utf-8" }
+      ]
+    },
+    {
+      "source": "/",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/index.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store, max-age=0, must-revalidate" }
       ]
     }
   ]
