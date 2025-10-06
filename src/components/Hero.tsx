@@ -39,23 +39,25 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Video Section - Native HTML5 video for better performance */}
+          {/* Video Section - YouTube embed for optimal performance */}
           <div className="pt-12">
             <div className="relative max-w-4xl mx-auto">
               <div className="aspect-video bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
-                <video 
+                <iframe 
                   className="w-full h-full"
-                  controls
-                  preload="metadata"
-                  poster="/videos/hero-intro-poster.jpg"
+                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+                  title="FranchiseLeadsHQ Introduction - Franchise Lead Generation Services"
                   width="800"
                   height="450"
-                  aria-label="FranchiseLeadsHQ Introduction Video - Franchise Lead Generation"
-                >
-                  <source src="/videos/hero-intro.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                ></iframe>
               </div>
+              <p className="text-center text-sm text-muted-foreground mt-4">
+                See how we've helped 5000+ franchise businesses generate qualified leads
+              </p>
             </div>
           </div>
 
@@ -63,10 +65,10 @@ const Hero = () => {
           <div className="pt-16">
             <div className="mb-8">
               <div className="flex items-center justify-center -space-x-2">
-                <img src={avatar1} alt="Franchise consultant success story - generated $2M in leads" width="40" height="40" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
-                <img src={avatar2} alt="Franchisor testimonial - 300% ROI increase" width="40" height="40" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
-                <img src={avatar3} alt="Marketing director review - best lead quality" width="40" height="40" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
-                <img src={avatar4} alt="Business owner testimonial - 50+ leads monthly" width="40" height="40" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
+                <img src={avatar1} alt="Franchise consultant success story - generated $2M in leads" width="40" height="40" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" loading="eager" fetchPriority="high" />
+                <img src={avatar2} alt="Franchisor testimonial - 300% ROI increase" width="40" height="40" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" loading="eager" />
+                <img src={avatar3} alt="Marketing director review - best lead quality" width="40" height="40" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" loading="eager" />
+                <img src={avatar4} alt="Business owner testimonial - 50+ leads monthly" width="40" height="40" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" loading="eager" />
               </div>
               <div className="flex items-center justify-center gap-2">
                 <div className="flex">
