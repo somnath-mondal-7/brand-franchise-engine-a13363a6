@@ -24,6 +24,7 @@ import FranchiseLeadsKuwait from "./pages/FranchiseLeadsKuwait";
 import LocationPage from "./pages/LocationPage";
 import KeywordPage from "./pages/KeywordPage";
 import ServiceLocationPage from "./pages/ServiceLocationPage";
+import CountryLocationPage from "./pages/CountryLocationPage";
 import SitemapGenerator from "./pages/SitemapGenerator";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
@@ -51,6 +52,7 @@ const App = () => (
           <Route path="/franchise-leads-india" element={<FranchiseLeadsIndia />} />
           <Route path="/franchise-leads-kuwait" element={<FranchiseLeadsKuwait />} />
             {/* Dynamic Location Routes */}
+            <Route path="/locations/:country" element={<CountryLocationPage />} />
             <Route path="/locations/:country/:location" element={<LocationPage />} />
             <Route path="/locations/:country/:location/:city" element={<LocationPage />} />
             {/* Dynamic Service + Location Routes */}
