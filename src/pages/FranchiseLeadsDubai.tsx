@@ -31,17 +31,17 @@ const FranchiseLeadsDubai = () => {
           "description": "Professional franchise lead generation services for consultants and franchisors across Dubai, UAE, Abu Dhabi, Sharjah and Middle East",
           "provider": {
             "@type": "Organization",
-            "name": "FranchiseLeadsHQ"
+            "name": "FranchiseLeadsHQ",
+            "url": "https://www.franchiseleadshq.com"
           },
           "areaServed": {
             "@type": "Country",
             "name": "United Arab Emirates"
           },
           "serviceType": "Franchise Lead Generation",
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "280"
+          "offers": {
+            "@type": "Offer",
+            "availability": "https://schema.org/InStock"
           }
         })}
         </script>

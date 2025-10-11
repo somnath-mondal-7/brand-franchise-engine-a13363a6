@@ -31,17 +31,17 @@ const FranchiseLeadsKuwait = () => {
           "description": "Professional franchise lead generation services for consultants and franchisors across Kuwait including Kuwait City, Hawalli, Ahmadi, Jahra",
           "provider": {
             "@type": "Organization",
-            "name": "FranchiseLeadsHQ"
+            "name": "FranchiseLeadsHQ",
+            "url": "https://www.franchiseleadshq.com"
           },
           "areaServed": {
             "@type": "Country",
             "name": "Kuwait"
           },
           "serviceType": "Franchise Lead Generation",
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "160"
+          "offers": {
+            "@type": "Offer",
+            "availability": "https://schema.org/InStock"
           }
         })}
         </script>

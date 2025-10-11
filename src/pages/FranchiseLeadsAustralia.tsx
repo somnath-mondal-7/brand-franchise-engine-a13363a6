@@ -31,17 +31,17 @@ const FranchiseLeadsAustralia = () => {
           "description": "Professional franchise lead generation services for consultants and franchisors across Australia including Sydney, Melbourne, Brisbane, Perth, Adelaide",
           "provider": {
             "@type": "Organization",
-            "name": "FranchiseLeadsHQ"
+            "name": "FranchiseLeadsHQ",
+            "url": "https://www.franchiseleadshq.com"
           },
           "areaServed": {
             "@type": "Country",
             "name": "Australia"
           },
           "serviceType": "Franchise Lead Generation",
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "420"
+          "offers": {
+            "@type": "Offer",
+            "availability": "https://schema.org/InStock"
           }
         })}
         </script>

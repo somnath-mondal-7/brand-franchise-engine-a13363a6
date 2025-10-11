@@ -31,17 +31,17 @@ const FranchiseLeadsUK = () => {
           "description": "Professional franchise lead generation services for consultants and franchisors across the United Kingdom",
           "provider": {
             "@type": "Organization",
-            "name": "FranchiseLeadsHQ"
+            "name": "FranchiseLeadsHQ",
+            "url": "https://www.franchiseleadshq.com"
           },
           "areaServed": {
             "@type": "Country",
             "name": "United Kingdom"
           },
           "serviceType": "Franchise Lead Generation",
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "640"
+          "offers": {
+            "@type": "Offer",
+            "availability": "https://schema.org/InStock"
           }
         })}
         </script>
