@@ -24,6 +24,7 @@ import FranchiseLeadsKuwait from "./pages/FranchiseLeadsKuwait";
 import LocationPage from "./pages/LocationPage";
 import KeywordPage from "./pages/KeywordPage";
 import ServiceLocationPage from "./pages/ServiceLocationPage";
+import SitemapGenerator from "./pages/SitemapGenerator";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import NotFound from "./pages/NotFound";
@@ -62,6 +63,11 @@ const App = () => (
             <Route path="/admin/blog" element={
               <ProtectedAdminRoute>
                 <BlogAdmin />
+              </ProtectedAdminRoute>
+            } />
+            <Route path="/admin/sitemap-generator" element={
+              <ProtectedAdminRoute>
+                <SitemapGenerator />
               </ProtectedAdminRoute>
             } />
             <Route path="/testimonials" element={<Testimonials />} />
