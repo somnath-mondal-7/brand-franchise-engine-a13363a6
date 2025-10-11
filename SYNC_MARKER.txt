@@ -1,0 +1,10 @@
+SYNC MARKER — Created by Lovable to test GitHub integration
+
+Project: brand-franchise-engine
+Repo: somnath-mondal-7/brand-franchise-engine
+Source: Lovable editor automatic sync test
+
+Timestamp (UTC): 2025-10-11
+
+If you see this file in GitHub on the main branch, the sync is working.
+If not, please reauthorize the Lovable GitHub App for this repo and ensure branch protections don’t require signed commits or restrict pushes.
