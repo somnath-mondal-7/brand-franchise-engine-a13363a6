@@ -3,9 +3,9 @@
   "installCommand": "npm install",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "routes": [
+  "redirects": [
     {
-      "src": "/(.*)",
+      "source": "/(.*)",
       "has": [
         {
           "type": "header",
@@ -13,22 +13,23 @@
           "value": "http"
         }
       ],
-      "status": 308,
-      "dest": "https://www.franchiseleadshq.com/$1"
+      "destination": "https://www.franchiseleadshq.com/$1",
+      "permanent": true
     },
     {
-      "src": "/(.*)",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "franchiseleadshq.com"
         }
       ],
-      "status": 308,
-      "dest": "https://www.franchiseleadshq.com/$1"
-    },
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
+      "destination": "https://www.franchiseleadshq.com/$1",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
     {
