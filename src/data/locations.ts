@@ -1317,3 +1317,27 @@ export const serviceKeywords = [
   "franchise analytics",
   "franchise ROI optimization"
 ];
+
+// Broad marketing keywords that people actually search for
+export const broadMarketingKeywords = [
+  "marketing agency",
+  "digital marketing agency",
+  "lead generation agency",
+  "franchise marketing agency",
+  "best marketing agency",
+  "top marketing agency",
+  "marketing company",
+  "digital marketing company",
+  "lead generation company",
+  "franchise marketing company",
+  "marketing services",
+  "digital marketing services",
+  "lead generation services",
+  "marketing consultant",
+  "franchise consultant",
+  "business development agency",
+  "business growth agency",
+  "franchise business agency",
+  "franchise growth agency",
+  "franchise expansion services"
+];

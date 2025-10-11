@@ -23,6 +23,7 @@ import FranchiseLeadsIndia from "./pages/FranchiseLeadsIndia";
 import FranchiseLeadsKuwait from "./pages/FranchiseLeadsKuwait";
 import LocationPage from "./pages/LocationPage";
 import KeywordPage from "./pages/KeywordPage";
+import ServiceLocationPage from "./pages/ServiceLocationPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import NotFound from "./pages/NotFound";
@@ -51,6 +52,9 @@ const App = () => (
             {/* Dynamic Location Routes */}
             <Route path="/locations/:country/:location" element={<LocationPage />} />
             <Route path="/locations/:country/:location/:city" element={<LocationPage />} />
+            {/* Dynamic Service + Location Routes */}
+            <Route path="/:service/:country/:location" element={<ServiceLocationPage />} />
+            <Route path="/:service/:country/:location/:city" element={<ServiceLocationPage />} />
             {/* Dynamic Keyword Routes */}
             <Route path="/services/:keyword" element={<KeywordPage />} />
             <Route path="/blog" element={<Blog />} />
