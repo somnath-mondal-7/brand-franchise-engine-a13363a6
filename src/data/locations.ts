@@ -1339,5 +1339,110 @@ export const broadMarketingKeywords = [
   "business growth agency",
   "franchise business agency",
   "franchise growth agency",
-  "franchise expansion services"
+  "franchise expansion services",
+  
+  // USA-focused keywords (perfect match)
+  "best franchise marketing agency in usa",
+  "top franchise marketing agency in usa",
+  "franchise marketing agency usa",
+  "franchise marketing agency in united states",
+  "best franchise marketing agency united states",
+  "top franchise marketing agency america",
+  "franchise digital marketing agency usa",
+  "best franchise digital marketing agency in usa",
+  "franchise marketing company usa",
+  "franchise marketing services usa",
+  "franchise lead generation agency usa",
+  "franchise marketing experts usa",
+  "franchise marketing specialists usa",
+  "usa franchise marketing agency",
+  "united states franchise marketing agency",
+  "american franchise marketing agency",
+  "nationwide franchise marketing agency",
+  "us franchise marketing agency",
+  
+  // USA-focused with variations
+  "franchise marketing agency in the usa",
+  "franchise marketing agency in the united states",
+  "best franchise marketing in usa",
+  "top franchise marketing in usa",
+  "franchise marketing services in usa",
+  "franchise marketing agency across usa",
+  "franchise lead generation in usa",
+  "franchise advertising agency usa",
+  "franchise branding agency usa",
+  "franchise development agency usa",
+  
+  // Common misspellings (USA focus)
+  "best franchise mareting agency in usa",
+  "best franchise marketing agenccy in usa",
+  "best franchise marketting agency in usa",
+  "franchise marketing agancy usa",
+  "franchise digital amrketing agency in usa",
+  "franchise digital marketing ageency usa",
+  "best francise marketing agency usa",
+  "franchise marketng agency usa",
+  "franchise maketing agency in usa",
+  "franshise marketing agency usa",
+  
+  // Service + USA combinations
+  "franchise seo agency usa",
+  "franchise ppc agency usa",
+  "franchise social media marketing usa",
+  "franchise content marketing agency usa",
+  "franchise email marketing services usa",
+  "franchise web design agency usa",
+  "franchise advertising services usa",
+  "franchise brand building usa",
+  
+  // Competitive positioning USA
+  "affordable franchise marketing agency usa",
+  "enterprise franchise marketing agency usa",
+  "b2b franchise marketing agency usa",
+  "full service franchise marketing agency usa",
+  "integrated franchise marketing agency usa",
+  "strategic franchise marketing agency usa",
+  
+  // Location-specific USA keywords
+  "franchise marketing agency near me",
+  "local franchise marketing agency usa",
+  "franchise marketing agency servicing usa",
+  "national franchise marketing agency",
+  "coast to coast franchise marketing",
+  
+  // Industry leader keywords USA
+  "leading franchise marketing agency usa",
+  "premier franchise marketing agency usa",
+  "award winning franchise marketing agency usa",
+  "top rated franchise marketing agency usa",
+  "highly rated franchise marketing agency usa",
+  "trusted franchise marketing agency usa",
+  "proven franchise marketing agency usa",
+  "established franchise marketing agency usa",
+  
+  // Results-focused USA keywords
+  "franchise lead generation experts usa",
+  "franchise growth marketing agency usa",
+  "franchise sales marketing agency usa",
+  "franchise roi marketing agency usa",
+  "franchise marketing agency with proven results usa",
+  
+  // Size-specific USA keywords
+  "small business franchise marketing usa",
+  "multi unit franchise marketing usa",
+  "emerging franchise marketing usa",
+  "established franchise marketing usa",
+  
+  // Technology-focused USA
+  "digital first franchise marketing agency usa",
+  "data driven franchise marketing agency usa",
+  "performance franchise marketing agency usa",
+  "online franchise marketing agency usa",
+  
+  // Specific services USA
+  "franchise website design usa",
+  "franchise local marketing usa",
+  "franchise territory marketing usa",
+  "franchise recruitment marketing usa",
+  "franchise discovery day marketing usa"
 ];

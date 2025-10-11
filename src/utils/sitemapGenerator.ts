@@ -41,7 +41,7 @@ export const generateLocationUrls = (): SitemapUrl[] => {
 export const generateKeywordUrls = (): SitemapUrl[] => {
   const urls: SitemapUrl[] = [];
   const currentDate = new Date().toISOString().split('T')[0];
-  const allKeywords = [...seoKeywords, ...serviceKeywords];
+  const allKeywords = [...seoKeywords, ...serviceKeywords, ...broadMarketingKeywords];
 
   allKeywords.forEach(keyword => {
     const keywordSlug = keyword.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
