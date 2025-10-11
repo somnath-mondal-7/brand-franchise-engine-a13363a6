@@ -16,7 +16,6 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isResetMode, setIsResetMode] = useState(false);
-  const [isSignUpMode, setIsSignUpMode] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -69,37 +68,6 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
     }
   };
 
-  const handleSignUp = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    
-    try {
-      const { error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-          emailRedirectTo: `${window.location.origin}/admin/blog`,
-        }
-      });
-      
-      if (error) throw error;
-      
-      toast({
-        title: "Success",
-        description: "Admin account created! You can now sign in.",
-      });
-      setIsSignUpMode(false);
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message || "Failed to create account. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   const handlePasswordReset = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -134,19 +102,14 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
           <div className="flex justify-center">
             <Shield className="h-12 w-12 text-primary" />
           </div>
-          <CardTitle className="text-2xl">
-            {isSignUpMode ? 'Create Admin Account' : 'Admin Access'}
-          </CardTitle>
+          <CardTitle className="text-2xl">Admin Access</CardTitle>
           <p className="text-muted-foreground text-sm">
-            {isSignUpMode 
-              ? 'Create your admin account to access the blog panel'
-              : 'Secure authentication required for blog administration'
-            }
+            Secure authentication required for blog administration
           </p>
         </CardHeader>
         
         <CardContent className="space-y-4">
-          <form onSubmit={isResetMode ? handlePasswordReset : (isSignUpMode ? handleSignUp : handleSignIn)} className="space-y-4">
+          <form onSubmit={isResetMode ? handlePasswordReset : handleSignIn} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email" className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
@@ -157,7 +120,7 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your admin email..."
+                placeholder="support@franchiseleadshq.com"
                 required
                 disabled={isLoading}
               />
@@ -177,50 +140,26 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
                   placeholder="Enter your password..."
                   required
                   disabled={isLoading}
-                  minLength={6}
                 />
-                {isSignUpMode && (
-                  <p className="text-xs text-muted-foreground">
-                    Password must be at least 6 characters
-                  </p>
-                )}
               </div>
             )}
             
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading 
-                ? (isResetMode ? 'Sending Reset Link...' : (isSignUpMode ? 'Creating Account...' : 'Signing In...'))
-                : (isResetMode ? 'Send Reset Link' : (isSignUpMode ? 'Create Admin Account' : 'Sign In to Admin Panel'))
-              }
+              {isLoading ? (isResetMode ? 'Sending Reset Link...' : 'Signing In...') : (isResetMode ? 'Send Reset Link' : 'Sign In to Admin Panel')}
             </Button>
             
-            <div className="flex flex-col gap-2">
-              {!isResetMode && (
-                <button
-                  type="button"
-                  onClick={() => setIsSignUpMode(!isSignUpMode)}
-                  className="text-sm text-primary hover:underline w-full text-center"
-                  disabled={isLoading}
-                >
-                  {isSignUpMode ? '← Back to Sign In' : "Don't have an account? Sign Up"}
-                </button>
-              )}
-              
-              {!isSignUpMode && (
-                <button
-                  type="button"
-                  onClick={() => setIsResetMode(!isResetMode)}
-                  className="text-sm text-primary hover:underline w-full text-center"
-                  disabled={isLoading}
-                >
-                  {isResetMode ? '← Back to Sign In' : 'Forgot Password?'}
-                </button>
-              )}
-            </div>
+            <button
+              type="button"
+              onClick={() => setIsResetMode(!isResetMode)}
+              className="text-sm text-primary hover:underline w-full text-center"
+              disabled={isLoading}
+            >
+              {isResetMode ? '← Back to Sign In' : 'Forgot Password?'}
+            </button>
             
             <div className="text-xs text-muted-foreground text-center space-y-1">
               <p>🔒 Secure email/password authentication</p>
-              <p>Only authorized administrators can access this panel</p>
+              <p>Contact: support@franchiseleadshq.com</p>
             </div>
           </form>
         </CardContent>
