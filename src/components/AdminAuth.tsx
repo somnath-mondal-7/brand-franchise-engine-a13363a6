@@ -15,6 +15,7 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isResetMode, setIsResetMode] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -67,6 +68,33 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
     }
   };
 
+  const handlePasswordReset = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/admin/blog`,
+      });
+      
+      if (error) throw error;
+      
+      toast({
+        title: "Reset Email Sent",
+        description: "Check your email for the password reset link.",
+      });
+      setIsResetMode(false);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send reset email. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
@@ -81,7 +109,7 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
         </CardHeader>
         
         <CardContent className="space-y-4">
-          <form onSubmit={handleSignIn} className="space-y-4">
+          <form onSubmit={isResetMode ? handlePasswordReset : handleSignIn} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email" className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
@@ -98,25 +126,36 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
               />
             </div>
             
-            <div className="space-y-2">
-              <Label htmlFor="password" className="flex items-center gap-2">
-                <Lock className="h-4 w-4" />
-                Password
-              </Label>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your password..."
-                required
-                disabled={isLoading}
-              />
-            </div>
+            {!isResetMode && (
+              <div className="space-y-2">
+                <Label htmlFor="password" className="flex items-center gap-2">
+                  <Lock className="h-4 w-4" />
+                  Password
+                </Label>
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your password..."
+                  required
+                  disabled={isLoading}
+                />
+              </div>
+            )}
             
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? 'Signing In...' : 'Sign In to Admin Panel'}
+              {isLoading ? (isResetMode ? 'Sending Reset Link...' : 'Signing In...') : (isResetMode ? 'Send Reset Link' : 'Sign In to Admin Panel')}
             </Button>
+            
+            <button
+              type="button"
+              onClick={() => setIsResetMode(!isResetMode)}
+              className="text-sm text-primary hover:underline w-full text-center"
+              disabled={isLoading}
+            >
+              {isResetMode ? '← Back to Sign In' : 'Forgot Password?'}
+            </button>
             
             <div className="text-xs text-muted-foreground text-center space-y-1">
               <p>🔒 Secure email/password authentication</p>
