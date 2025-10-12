@@ -87,7 +87,11 @@ const DigitalMarketing = () => {
                 Transform your franchise with cutting-edge digital marketing strategies that drive real results. 
                 From PPC campaigns to SEO dominance, we've got your growth covered.
               </p>
-              <Button size="lg" className="bg-gradient-to-r from-orange-500 to-blue-500 hover:from-orange-600 hover:to-blue-600 text-white px-8 py-4 text-lg">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-orange-500 to-blue-500 hover:from-orange-600 hover:to-blue-600 text-white px-8 py-4 text-lg"
+                onClick={() => window.open('https://calendly.com/franchiseleadshq/30min', '_blank')}
+              >
                 Get Started Today
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
@@ -178,6 +182,7 @@ const DigitalMarketing = () => {
                       <Button 
                         variant="outline" 
                         className="w-full border-orange-300 text-orange-600 hover:bg-orange-50 group-hover:border-blue-400 group-hover:text-blue-600 transition-all duration-300"
+                        onClick={() => window.open('https://calendly.com/franchiseleadshq/30min', '_blank')}
                       >
                         Learn More
                         <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -202,11 +207,20 @@ const DigitalMarketing = () => {
                 Let's create a custom digital marketing strategy that drives real results for your franchise.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-gradient-to-r from-orange-500 to-blue-500 hover:from-orange-600 hover:to-blue-600 text-white px-8 py-4">
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-orange-500 to-blue-500 hover:from-orange-600 hover:to-blue-600 text-white px-8 py-4"
+                  onClick={() => window.open('https://calendly.com/franchiseleadshq/30min', '_blank')}
+                >
                   Start Your Campaign
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
-                <Button size="lg" variant="outline" className="border-orange-300 text-orange-600 hover:bg-orange-50 px-8 py-4">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-orange-300 text-orange-600 hover:bg-orange-50 px-8 py-4"
+                  onClick={() => window.open('https://calendly.com/franchiseleadshq/30min', '_blank')}
+                >
                   Schedule Consultation
                 </Button>
               </div>
