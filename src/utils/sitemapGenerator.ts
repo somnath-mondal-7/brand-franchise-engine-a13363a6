@@ -12,6 +12,15 @@ export const generateLocationUrls = (): SitemapUrl[] => {
   const currentDate = new Date().toISOString().split('T')[0];
 
   locationData.forEach(country => {
+    // Country level pages
+    const countryUrl = `https://www.franchiseleadshq.com/locations/${country.countryCode.toLowerCase()}`;
+    urls.push({
+      loc: countryUrl,
+      lastmod: currentDate,
+      changefreq: 'weekly',
+      priority: '0.9'
+    });
+
     country.states.forEach(state => {
       // State/region level pages
       const stateUrl = `https://www.franchiseleadshq.com/locations/${country.countryCode.toLowerCase()}/${state.slug}`;
