@@ -229,6 +229,7 @@ const Contact = () => {
                 <Button 
                   variant="secondary"
                   className="w-full bg-white text-brand-navy hover:bg-gray-50"
+                  onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
                 >
                   Open Calendar Booking
                 </Button>
