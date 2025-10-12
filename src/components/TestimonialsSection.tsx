@@ -40,16 +40,17 @@ const TestimonialsSection = () => {
                 key={index}
                 className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group max-w-sm mx-auto"
               >
-                <div className="aspect-square bg-gray-900 relative overflow-hidden">
+                <div className="aspect-square bg-gray-900 relative">
                   {testimonial.isYouTube || testimonial.videoSrc.includes('youtube.com') || testimonial.videoSrc.includes('youtu.be') ? (
                     <iframe
-                      className="w-full h-full absolute inset-0"
+                      className="w-full h-full object-cover"
                       src={testimonial.videoSrc}
                       title={`${testimonial.name} testimonial video`}
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       referrerPolicy="strict-origin-when-cross-origin"
                       allowFullScreen
+                      style={{ border: 'none' }}
                     ></iframe>
                   ) : (
                     <video
