@@ -31,6 +31,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import NotFound from "./pages/NotFound";
 import Search from "./pages/Search";
+import BackToTop from "./components/BackToTop";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <BackToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />

@@ -90,7 +90,7 @@ const DigitalMarketing = () => {
               <Button 
                 size="lg" 
                 className="bg-gradient-to-r from-orange-500 to-blue-500 hover:from-orange-600 hover:to-blue-600 text-white px-8 py-4 text-lg"
-                onClick={() => window.open('https://calendly.com/franchiseleadshq/30min', '_blank')}
+                onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
               >
                 Get Started Today
                 <ArrowRight className="ml-2 w-5 h-5" />
@@ -182,7 +182,7 @@ const DigitalMarketing = () => {
                       <Button 
                         variant="outline" 
                         className="w-full border-orange-300 text-orange-600 hover:bg-orange-50 group-hover:border-blue-400 group-hover:text-blue-600 transition-all duration-300"
-                        onClick={() => window.open('https://calendly.com/franchiseleadshq/30min', '_blank')}
+                        onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
                       >
                         Learn More
                         <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -210,7 +210,7 @@ const DigitalMarketing = () => {
                 <Button 
                   size="lg" 
                   className="bg-gradient-to-r from-orange-500 to-blue-500 hover:from-orange-600 hover:to-blue-600 text-white px-8 py-4"
-                  onClick={() => window.open('https://calendly.com/franchiseleadshq/30min', '_blank')}
+                  onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
                 >
                   Start Your Campaign
                   <ArrowRight className="ml-2 w-5 h-5" />
@@ -219,7 +219,7 @@ const DigitalMarketing = () => {
                   size="lg" 
                   variant="outline" 
                   className="border-orange-300 text-orange-600 hover:bg-orange-50 px-8 py-4"
-                  onClick={() => window.open('https://calendly.com/franchiseleadshq/30min', '_blank')}
+                  onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
                 >
                   Schedule Consultation
                 </Button>
