@@ -246,6 +246,27 @@ export const ServiceLocationTemplate = ({
           </div>
         </section>
 
+        {/* Related Pages Section for Internal Linking */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-2xl font-bold mb-6">Explore More {capitalizedService} Services</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a href={`/locations/${countryCode.toLowerCase()}/${stateSlug}`} className="text-primary hover:underline">
+                  All {state} Locations
+                </a>
+                <a href="/services/franchise-lead-generation" className="text-primary hover:underline">Lead Generation</a>
+                <a href="/services/franchise-consulting" className="text-primary hover:underline">Franchise Consulting</a>
+                <a href="/digital-marketing" className="text-primary hover:underline">Digital Marketing</a>
+                <a href="/testimonials" className="text-primary hover:underline">Success Stories</a>
+                <a href="/blog" className="text-primary hover:underline">Franchise Resources</a>
+                <a href="/contact" className="text-primary hover:underline">Contact Us</a>
+                <a href="/about" className="text-primary hover:underline">About FranchiseLeadsHQ</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="py-20 bg-gradient-primary text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">

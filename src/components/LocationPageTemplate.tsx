@@ -264,6 +264,25 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
                 <p className="text-muted-foreground">Yes! All leads from {locationTitle} campaigns are pre-qualified based on your specific criteria including investment capacity, location preferences, and industry interest. We offer 100% satisfaction guarantee - if you're not happy with lead quality, we'll work until you are.</p>
               </div>
             </div>
+            
+            {/* Internal Links for SEO */}
+            <div className="mt-12 pt-8 border-t border-border">
+              <h3 className="text-xl font-semibold mb-4">Related Services in {locationTitle}</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <a href="/services/franchise-marketing" className="text-primary hover:underline">Franchise Marketing</a>
+                <a href="/services/franchise-consulting" className="text-primary hover:underline">Franchise Consulting</a>
+                <a href="/services/digital-marketing-franchise" className="text-primary hover:underline">Digital Marketing</a>
+                {nearbyLocations.slice(0, 3).map((nearby, idx) => (
+                  <a 
+                    key={idx}
+                    href={`/locations/${countryCode.toLowerCase()}/${state?.toLowerCase().replace(/\s+/g, '-')}/${nearby.toLowerCase().replace(/\s+/g, '-')}`}
+                    className="text-primary hover:underline"
+                  >
+                    Franchise Leads {nearby}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -260,6 +260,25 @@ export const KeywordPageTemplate: React.FC<KeywordPageProps> = ({
         </div>
       </section>
 
+      {/* Related Resources Section for SEO */}
+      <section className="py-16 bg-muted">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl font-bold mb-6">Related {capitalizeKeyword} Resources</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <a href="/franchise-leads-usa" className="text-primary hover:underline">USA Franchise Leads</a>
+              <a href="/franchise-leads-uk" className="text-primary hover:underline">UK Franchise Leads</a>
+              <a href="/franchise-leads-canada" className="text-primary hover:underline">Canada Franchise Leads</a>
+              <a href="/services/franchise-marketing" className="text-primary hover:underline">Franchise Marketing</a>
+              <a href="/services/franchise-consulting" className="text-primary hover:underline">Franchise Consulting</a>
+              <a href="/digital-marketing" className="text-primary hover:underline">Digital Marketing</a>
+              <a href="/testimonials" className="text-primary hover:underline">Client Success Stories</a>
+              <a href="/blog" className="text-primary hover:underline">Franchise Blog</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-primary text-white">
         <div className="container mx-auto px-4">

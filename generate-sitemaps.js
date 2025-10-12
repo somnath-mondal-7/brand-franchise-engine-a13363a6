@@ -1,6 +1,7 @@
-// Build sitemap index and chunked sitemaps (CommonJS for easy Node usage)
+// Build sitemap index and chunked sitemaps with gzip compression (CommonJS for easy Node usage)
 const fs = require('fs');
 const path = require('path');
+const zlib = require('zlib');
 const { generateLocationUrls, generateKeywordUrls, generateServiceLocationUrls } = require('./src/utils/sitemapGenerator.ts');
 
 const chunk = (arr, size) => {
@@ -34,14 +35,27 @@ const indexEntries = [];
 
 groups.forEach((urls, i) => {
   const file = `sitemap-${i + 1}.xml`;
+  const gzipFile = `${file}.gz`;
   const abs = path.join(mapsDir, file);
-  fs.writeFileSync(abs, buildSitemap(urls), 'utf-8');
-  const loc = `https://www.franchiseleadshq.com/sitemaps/${file}`;
-  indexEntries.push(`  <sitemap>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n  </sitemap>`);
+  const gzipAbs = path.join(mapsDir, gzipFile);
+  
+  const xmlContent = buildSitemap(urls);
+  
+  // Write regular XML
+  fs.writeFileSync(abs, xmlContent, 'utf-8');
+  
+  // Write gzipped version
+  const compressed = zlib.gzipSync(xmlContent);
+  fs.writeFileSync(gzipAbs, compressed);
+  
+  // Add both to index (Google prefers gzip)
+  const gzipLoc = `https://www.franchiseleadshq.com/sitemaps/${gzipFile}`;
+  indexEntries.push(`  <sitemap>\n    <loc>${gzipLoc}</loc>\n    <lastmod>${today}</lastmod>\n  </sitemap>`);
 });
 
 const indexXml = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexEntries.join('\n')}\n</sitemapindex>`;
 
 fs.writeFileSync(path.join(outDir, 'sitemap.xml'), indexXml, 'utf-8');
 
-console.log(`✅ Wrote ${groups.length} sitemap files and index at public/sitemap.xml`);
+console.log(`✅ Wrote ${groups.length} sitemap files (XML + GZIP) and index at public/sitemap.xml`);
+console.log(`📦 Total URLs: ${all.length.toLocaleString()}`);
