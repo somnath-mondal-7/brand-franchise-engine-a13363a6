@@ -18,7 +18,8 @@ const TestimonialsSection = () => {
     {
       name: "Bob Vearling",
       title: "Franchise Broker, iFranchise LLC",
-      videoSrc: "https://drive.google.com/uc?export=download&id=1R9aNfy9Hl2nkFu8WMey-bRUii2ttOBnS"
+      videoSrc: "https://www.youtube.com/embed/ZkphNmLkrcU?si=VcIzJ_zeMDA__vKD",
+      isYouTube: true
     }
   ];
 
@@ -40,21 +41,14 @@ const TestimonialsSection = () => {
                 className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group max-w-sm mx-auto"
               >
                 <div className="aspect-square bg-gray-900 relative">
-                  {testimonial.videoSrc.includes('drive.google.com') ? (
+                  {testimonial.isYouTube || testimonial.videoSrc.includes('youtube.com') || testimonial.videoSrc.includes('youtu.be') ? (
                     <iframe
                       className="w-full h-full"
-                      src={(() => {
-                        const url = testimonial.videoSrc;
-                        let id: string | null = null;
-                        const viewMatch = url.match(/\/d\/([^/]+)\//);
-                        if (viewMatch) id = viewMatch[1];
-                        const idParamMatch = url.match(/[?&]id=([^&]+)/);
-                        if (!id && idParamMatch) id = idParamMatch[1];
-                        return id ? `https://drive.google.com/file/d/${id}/preview` : url;
-                      })()}
+                      src={testimonial.videoSrc}
                       title={`${testimonial.name} testimonial video`}
                       frameBorder="0"
-                      allow="autoplay; fullscreen; picture-in-picture"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
                       allowFullScreen
                     ></iframe>
                   ) : (
