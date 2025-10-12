@@ -11,8 +11,16 @@ const CountryLocationPage: React.FC = () => {
 
   if (!country) return <NotFound />;
 
+  const normalizeCountry = (c: string) => {
+    const v = c.toLowerCase();
+    if (v === 'us' || v === 'united-states' || v === 'united-states-of-america') return 'usa';
+    return v;
+  };
+
+  const normalized = normalizeCountry(country);
+
   const countryData = locationData.find(
-    (c) => c.countryCode.toLowerCase() === country.toLowerCase()
+    (c) => c.countryCode.toLowerCase() === normalized || c.country.toLowerCase().replace(/\s+/g, '-') === normalized
   );
 
   if (!countryData) return <NotFound />;

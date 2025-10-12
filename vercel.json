@@ -26,6 +26,16 @@
       ],
       "destination": "https://www.franchiseleadshq.com/$1",
       "permanent": true
+    },
+    {
+      "source": "/locations/us",
+      "destination": "/locations/usa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/us/(.*)",
+      "destination": "/locations/usa/$1",
+      "permanent": true
     }
   ],
   "rewrites": [

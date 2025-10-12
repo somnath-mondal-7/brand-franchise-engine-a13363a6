@@ -10,8 +10,17 @@ const LocationPage = () => {
     return <NotFound />;
   }
 
-  // Find the country data
-  const countryData = locationData.find(c => c.countryCode.toLowerCase() === country.toLowerCase());
+// Find the country data with normalization for common variants
+  const normalizeCountry = (c: string) => {
+    const v = c.toLowerCase();
+    if (v === 'us' || v === 'united-states' || v === 'united-states-of-america') return 'usa';
+    return v;
+  };
+  const normalized = normalizeCountry(country);
+
+  const countryData = locationData.find(c => 
+    c.countryCode.toLowerCase() === normalized || c.country.toLowerCase().replace(/\s+/g, '-') === normalized
+  );
   if (!countryData) {
     return <NotFound />;
   }

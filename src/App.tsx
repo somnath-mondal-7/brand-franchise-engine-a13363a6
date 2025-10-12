@@ -30,6 +30,7 @@ import Sitemap from "./pages/Sitemap";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import NotFound from "./pages/NotFound";
+import Search from "./pages/Search";
 
 const queryClient = new QueryClient();
 
@@ -76,6 +77,7 @@ const App = () => (
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/sitemap" element={<Sitemap />} />
+            <Route path="/search" element={<Search />} />
             <Route path="/legal-terms/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/legal-terms/refund-satisfaction-guarantee-policy" element={<RefundPolicy />} />
             <Route path="*" element={<NotFound />} />
