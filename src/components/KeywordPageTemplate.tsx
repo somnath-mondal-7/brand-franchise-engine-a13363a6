@@ -110,7 +110,7 @@ export const KeywordPageTemplate: React.FC<KeywordPageProps> = ({
             <Button 
               size="lg" 
               className="bg-accent hover:bg-accent-dark text-white px-8 py-4 text-lg font-semibold"
-              onClick={() => window.open('https://calendly.com/iamsomnath-franchiseleadshq/30min', '_blank')}
+              onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
             >
               Get Started Today
             </Button>
@@ -295,7 +295,7 @@ export const KeywordPageTemplate: React.FC<KeywordPageProps> = ({
                 size="lg" 
                 variant="secondary"
                 className="px-8 py-4 text-lg font-semibold"
-                onClick={() => window.open('https://calendly.com/iamsomnath-franchiseleadshq/30min', '_blank')}
+                onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
               >
                 Schedule Free Consultation
               </Button>

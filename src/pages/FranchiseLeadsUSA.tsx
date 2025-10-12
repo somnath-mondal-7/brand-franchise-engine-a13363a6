@@ -64,7 +64,7 @@ const FranchiseLeadsUSA = () => {
               <Button 
                 size="lg"
                 className="bg-white text-primary hover:bg-gray-100 px-8 py-4 text-lg rounded-xl font-semibold"
-                onClick={() => window.open('https://calendly.com/som832707/book-an-1-1consualtation', '_blank')}
+                onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
               >
                 Get US Franchise Leads Now
               </Button>
@@ -209,7 +209,7 @@ const FranchiseLeadsUSA = () => {
               <Button 
                 size="lg"
                 className="bg-white text-primary hover:bg-gray-100 px-8 py-4 text-lg rounded-xl font-semibold"
-                onClick={() => window.open('https://calendly.com/som832707/book-an-1-1consualtation', '_blank')}
+                onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
               >
                 Start Getting US Franchise Leads Today
               </Button>
