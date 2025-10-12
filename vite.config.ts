@@ -14,7 +14,7 @@ const sitemapPlugin = () => {
     async closeBundle() {
       console.log('🗺️  Generating sitemap...');
       try {
-        await execAsync('npx tsx src/scripts/buildSitemapIndex.ts');
+        await execAsync('npx tsx src/scripts/buildSitemap.ts');
         console.log('✅ Sitemap generated successfully');
       } catch (error) {
         console.error('❌ Failed to generate sitemap:', error);
