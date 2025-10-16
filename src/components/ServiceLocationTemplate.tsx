@@ -32,9 +32,10 @@ export const ServiceLocationTemplate = ({
   const locationSlug = location.toLowerCase().replace(/\s+/g, '-');
   const stateSlug = state?.toLowerCase().replace(/\s+/g, '-');
   
-  const canonicalUrl = state 
+  const rawCanonical = state 
     ? `https://www.franchiseleadshq.com/${serviceSlug}/${countryCode.toLowerCase()}/${stateSlug}/${locationSlug}`
     : `https://www.franchiseleadshq.com/${serviceSlug}/${countryCode.toLowerCase()}/${locationSlug}`;
+  const canonicalUrl = encodeURI(rawCanonical);
 
   const title = `${capitalizedService} ${location} - #1 ${capitalizedService} Agency in ${location}`;
   const description = `Leading ${service} agency in ${fullLocation}. Get qualified franchise leads and grow your business with proven ${service} strategies. Results guaranteed.`;
@@ -44,6 +45,7 @@ export const ServiceLocationTemplate = ({
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="keywords" content={`${service} ${location}, ${service} ${state || country}, ${service} agency ${location}, best ${service} ${location}, top ${service} ${location}, ${service} company ${location}, ${service} services ${location}`} />
         <link rel="canonical" href={canonicalUrl} />
         
@@ -252,8 +254,8 @@ export const ServiceLocationTemplate = ({
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl font-bold mb-6">Explore More {capitalizedService} Services</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <a href={`/locations/${countryCode.toLowerCase()}/${stateSlug}`} className="text-primary hover:underline">
-                  All {state} Locations
+                <a href={`/locations/${countryCode.toLowerCase()}/${state ? stateSlug : locationSlug}`} className="text-primary hover:underline">
+                  All {(state || location)} Locations
                 </a>
                 <a href="/services/franchise-lead-generation" className="text-primary hover:underline">Lead Generation</a>
                 <a href="/services/franchise-consulting" className="text-primary hover:underline">Franchise Consulting</a>
