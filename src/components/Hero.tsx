@@ -42,7 +42,7 @@ const Hero = () => {
           {/* Video Section - Optimized YouTube facade for performance */}
           <div className="pt-12">
             <YouTubeFacade 
-              videoId="VyZDMn7GtdI" 
+              videoId="IVhegXG0Ngk" 
               title="FranchiseLeadsHQ Introduction - Franchise Lead Generation Services"
             />
           </div>
