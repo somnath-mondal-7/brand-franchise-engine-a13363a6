@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import YouTubeFacade from "@/components/YouTubeFacade";
+import heroThumbnail from "@/assets/hero-video-thumbnail.png";
 import logo1 from "@/assets/clients/logo1.svg";
 import logo2 from "@/assets/clients/logo2.png";
 import logo3 from "@/assets/clients/logo3.png";
@@ -44,6 +45,7 @@ const Hero = () => {
             <YouTubeFacade 
               videoId="IVhegXG0Ngk" 
               title="FranchiseLeadsHQ Introduction - Franchise Lead Generation Services"
+              customThumbnail={heroThumbnail}
             />
           </div>
 

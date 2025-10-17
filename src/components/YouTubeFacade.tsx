@@ -4,9 +4,10 @@ import { Play } from 'lucide-react';
 interface YouTubeFacadeProps {
   videoId: string;
   title: string;
+  customThumbnail?: string;
 }
 
-const YouTubeFacade = ({ videoId, title }: YouTubeFacadeProps) => {
+const YouTubeFacade = ({ videoId, title, customThumbnail }: YouTubeFacadeProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handlePlay = () => {
@@ -22,9 +23,9 @@ const YouTubeFacade = ({ videoId, title }: YouTubeFacadeProps) => {
             className="relative w-full h-full group cursor-pointer"
             aria-label={`Play video: ${title}`}
           >
-            {/* Thumbnail from YouTube - optimized */}
+            {/* Thumbnail - custom or YouTube default */}
             <img
-              src={`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`}
+              src={customThumbnail || `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`}
               alt={`${title} video thumbnail`}
               loading="eager"
               fetchPriority="high"
