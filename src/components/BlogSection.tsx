@@ -3,43 +3,84 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, ArrowRight, User } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+
+interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  author_name: string;
+  published_at: string;
+  read_time_minutes: number;
+  category_id: string;
+  featured_image_url: string | null;
+}
+
+interface Category {
+  id: string;
+  name: string;
+}
 
 const BlogSection = () => {
-  const blogPosts = [
-    {
-      id: 1,
-      title: "How to Generate Quality Franchise Leads in 2024",
-      excerpt: "Discover the latest strategies and techniques for generating high-quality franchise leads that convert.",
-      category: "Lead Generation",
-      author: "Sarah Chen",
-      date: "March 15, 2024",
-      readTime: "5 min read",
-      image: "/api/placeholder/400/250",
-      slug: "how-to-generate-quality-franchise-leads-2024"
-    },
-    {
-      id: 2,
-      title: "Building a Strong Franchise Brand Identity",
-      excerpt: "Learn how to create a compelling brand identity that attracts the right franchise partners and customers.",
-      category: "Brand Building",
-      author: "Michael Ross",
-      date: "March 12, 2024",
-      readTime: "7 min read",
-      image: "/api/placeholder/400/250",
-      slug: "building-strong-franchise-brand-identity"
-    },
-    {
-      id: 3,
-      title: "Digital Marketing Trends for Franchise Success",
-      excerpt: "Explore the top digital marketing trends that franchise businesses should leverage for maximum growth.",
-      category: "Digital Marketing",
-      author: "David Martinez",
-      date: "March 10, 2024",
-      readTime: "6 min read",
-      image: "/api/placeholder/400/250",
-      slug: "digital-marketing-trends-franchise-success"
-    }
-  ];
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBlogPosts = async () => {
+      try {
+        // Fetch categories
+        const { data: categoriesData } = await supabase
+          .from('blog_categories' as any)
+          .select('*');
+        
+        if (categoriesData) {
+          setCategories(categoriesData as unknown as Category[]);
+        }
+
+        // Fetch latest 3 published blog posts
+        const { data: postsData } = await supabase
+          .from('blog_posts' as any)
+          .select('*')
+          .eq('is_published', true)
+          .order('published_at', { ascending: false })
+          .limit(3);
+
+        if (postsData) {
+          setBlogPosts(postsData as unknown as BlogPost[]);
+        }
+      } catch (error) {
+        console.error('Error fetching blog posts:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchBlogPosts();
+  }, []);
+
+  const getCategoryName = (categoryId: string) => {
+    const category = categories.find(cat => cat.id === categoryId);
+    return category?.name || 'Uncategorized';
+  };
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
+
+  if (isLoading) {
+    return null; // or a loading skeleton
+  }
+
+  if (blogPosts.length === 0) {
+    return null; // Don't show section if no posts
+  }
 
   return (
     <section id="blog" className="py-24 bg-gradient-to-b from-muted/30 to-white">
@@ -60,10 +101,17 @@ const BlogSection = () => {
           {blogPosts.map((post) => (
             <Card key={post.id} className="group bg-card border-border/50 hover:border-primary/20 transition-all duration-300 hover:shadow-hover overflow-hidden">
               <div className="aspect-video bg-gradient-to-br from-primary/10 to-primary/5 relative overflow-hidden">
+                {post.featured_image_url && (
+                  <img 
+                    src={post.featured_image_url} 
+                    alt={post.title}
+                    className="w-full h-full object-cover"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />
                 <div className="absolute bottom-4 left-4">
                   <Badge variant="secondary" className="bg-primary text-primary-foreground">
-                    {post.category}
+                    {getCategoryName(post.category_id)}
                   </Badge>
                 </div>
               </div>
@@ -72,15 +120,15 @@ const BlogSection = () => {
                 <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
                   <div className="flex items-center gap-1">
                     <User className="w-4 h-4" />
-                    {post.author}
+                    {post.author_name}
                   </div>
                   <div className="flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
-                    {post.date}
+                    {formatDate(post.published_at)}
                   </div>
                   <div className="flex items-center gap-1">
                     <Clock className="w-4 h-4" />
-                    {post.readTime}
+                    {post.read_time_minutes} min read
                   </div>
                 </div>
                 
