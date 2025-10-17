@@ -14,26 +14,26 @@ import avatar4 from "@/assets/clients/avatars/avatar4.jpg";
 
 const Hero = () => {
   return (
-    <section className="pt-16 pb-20 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
+    <section className="pt-16 pb-12 md:pb-20 bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-20">
+        <div className="max-w-4xl mx-auto text-center space-y-4 md:space-y-8">
           {/* Main Headline */}
-          <div className="space-y-4">
-            <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+          <div className="space-y-2 md:space-y-4">
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-foreground leading-tight">
               #1 <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Franchise Lead Generation</span> Agency — We Build Brands
             </h1>
           </div>
 
           {/* Subheadline */}
-          <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
             Transform your franchise business with our proven lead generation system. We've generated <strong>50,000+ qualified leads</strong> for franchise consultants and franchisors worldwide.
           </p>
 
           {/* CTA Button */}
-          <div className="pt-4">
+          <div className="pt-2 md:pt-4">
             <Button 
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg rounded-lg"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-lg"
               onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
             >
               Get Your Free Strategy Call
@@ -41,7 +41,7 @@ const Hero = () => {
           </div>
 
           {/* Video Section - Optimized YouTube facade for performance */}
-          <div className="pt-12">
+          <div className="pt-6 md:pt-12">
             <YouTubeFacade 
               videoId="IVhegXG0Ngk" 
               title="FranchiseLeadsHQ Introduction - Franchise Lead Generation Services"
