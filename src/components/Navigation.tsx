@@ -23,11 +23,11 @@ const Navigation = () => {
                 alt="FranchiseLeadsHQ - #1 Franchise Lead Generation Agency Logo" 
                 width="40"
                 height="40"
-                className="w-10 h-10 object-contain"
+                className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
                 loading="eager"
                 fetchPriority="high"
               />
-              <span className="text-xl font-semibold text-gray-900">
+              <span className="hidden sm:inline text-xl font-semibold text-gray-900">
                 Franchiseleads<span className="text-primary">HQ</span>
               </span>
             </Link>
@@ -133,12 +133,13 @@ const Navigation = () => {
           {/* Mobile menu button */}
           <div className="lg:hidden">
             <Button
-              variant="ghost"
+              variant="outline"
               size="sm"
               onClick={toggleMenu}
-              className="text-gray-700"
+              className="text-gray-900 border-gray-300 bg-white"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              <span className="ml-2 hidden sm:inline">Menu</span>
             </Button>
           </div>
         </div>
