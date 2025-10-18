@@ -27,6 +27,7 @@ import ServiceLocationPage from "./pages/ServiceLocationPage";
 import CountryLocationPage from "./pages/CountryLocationPage";
 import SitemapGenerator from "./pages/SitemapGenerator";
 import Sitemap from "./pages/Sitemap";
+import BlogSitemap from "./pages/BlogSitemap";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import NotFound from "./pages/NotFound";
@@ -81,6 +82,7 @@ const App = () => (
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/sitemap" element={<Sitemap />} />
+            <Route path="/sitemap-blog.xml" element={<BlogSitemap />} />
             <Route path="/search" element={<Search />} />
             <Route path="/legal-terms/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/legal-terms/refund-satisfaction-guarantee-policy" element={<RefundPolicy />} />
