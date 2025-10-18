@@ -11,6 +11,7 @@ import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
 import SEOBreadcrumbs from "@/components/SEOBreadcrumbs";
 import SEOInternalLinks from "@/components/SEOInternalLinks";
+import ChatWidget from "@/components/ChatWidget";
 
 const Index = () => {
   return (
@@ -76,6 +77,7 @@ const Index = () => {
       <FAQSection />
       <FinalCTASection />
       <Footer />
+      <ChatWidget />
     </div>
   );
 };
