@@ -34,6 +34,42 @@ const ChatWidget = () => {
     scrollToBottom();
   }, [messages]);
 
+  // Auto-open chat and send proactive messages
+  useEffect(() => {
+    const hasVisited = sessionStorage.getItem('chat_visited');
+    
+    if (!hasVisited) {
+      sessionStorage.setItem('chat_visited', 'true');
+      
+      // Open chat after 3 seconds
+      const openTimer = setTimeout(() => {
+        setIsOpen(true);
+      }, 3000);
+
+      // Start conversation after 4 seconds
+      const startTimer = setTimeout(async () => {
+        await startConversation();
+      }, 4000);
+
+      // Send follow-up messages
+      const followUpTimer = setTimeout(async () => {
+        if (conversationId) {
+          await addMessage(conversationId, "Looking for help with franchise lead generation? I'm here to assist!", 'bot');
+          
+          setTimeout(async () => {
+            await addMessage(conversationId, "What brings you to our site today? Are you interested in:\n\n• Lead Generation Services\n• Digital Marketing\n• Growing Your Franchise", 'bot');
+          }, 3000);
+        }
+      }, 8000);
+
+      return () => {
+        clearTimeout(openTimer);
+        clearTimeout(startTimer);
+        clearTimeout(followUpTimer);
+      };
+    }
+  }, [conversationId]);
+
   const getBotResponse = (userMessage: string): string => {
     const lowerMessage = userMessage.toLowerCase();
 
