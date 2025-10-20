@@ -81,44 +81,75 @@ const ChatWidget = () => {
 
   const getBotResponse = (userMessage: string): string => {
     const lowerMessage = userMessage.toLowerCase();
+    const calendlyLink = "https://calendly.com/franchiseleadshq/consultation";
 
     // Greeting responses
     if (lowerMessage.match(/\b(hi|hello|hey|greetings)\b/)) {
-      return "Hello! Welcome to FranchiseLeads HQ. How can I help you today? We specialize in franchise lead generation and marketing.";
+      return "Hello! I'm Somnath from FranchiseLeads HQ. How can I help you today? We specialize in franchise lead generation, digital marketing, and brand building for franchise businesses.";
     }
 
-    // Services
-    if (lowerMessage.match(/\b(service|services|what do you do|help with)\b/)) {
-      return "We offer comprehensive franchise lead generation services including:\n\n• Digital Marketing & SEO\n• Lead Generation Campaigns\n• Brand Building\n• Multi-Channel Marketing\n\nWould you like to know more about any specific service?";
+    // Services - Enhanced with more details
+    if (lowerMessage.match(/\b(service|services|what do you do|help with|offer)\b/)) {
+      return "We offer comprehensive franchise marketing services:\n\n🎯 Lead Generation\n• Qualified franchise prospect acquisition\n• Multi-channel lead campaigns\n• Lead nurturing & follow-up systems\n\n📱 Digital Marketing\n• SEO optimization for franchise visibility\n• PPC advertising campaigns\n• Social media marketing & management\n• Content marketing strategies\n\n🎨 Brand Building\n• Franchise brand development\n• Marketing collateral design\n• Website development & optimization\n• Brand consistency across locations\n\n💼 Consulting Services\n• Marketing strategy development\n• Franchise growth planning\n• Market analysis & research\n\nWhich service interests you most?";
+    }
+
+    // SEO specific
+    if (lowerMessage.match(/\b(seo|search engine|ranking|google|optimization)\b/)) {
+      return "Our SEO services help franchise businesses dominate local and national search results:\n\n• Keyword research & strategy\n• On-page & technical SEO\n• Local SEO for multiple locations\n• Content optimization\n• Link building campaigns\n• Monthly reporting & analytics\n\nWe've helped franchises increase organic traffic by 200%+ on average. Want to discuss your SEO needs? Book a call: " + calendlyLink;
+    }
+
+    // Lead generation - Enhanced
+    if (lowerMessage.match(/\b(lead|leads|generate|generation|prospect)\b/)) {
+      return "We specialize in generating high-quality franchise leads through:\n\n✅ Targeted Digital Campaigns\n• Facebook & Instagram ads\n• Google Ads (Search & Display)\n• LinkedIn B2B targeting\n\n✅ Lead Qualification\n• Pre-screened prospects\n• Financial qualification\n• Territory-specific targeting\n\n✅ CRM Integration\n• Automated lead delivery\n• Lead scoring systems\n• Follow-up automation\n\nOur average client sees 50-100 qualified leads per month. Ready to scale your franchise? Schedule a consultation: " + calendlyLink;
     }
 
     // Pricing
-    if (lowerMessage.match(/\b(price|pricing|cost|how much)\b/)) {
-      return "Our pricing varies based on your specific needs and goals. I'd recommend speaking with our team for a customized quote. Would you like to leave your contact information so we can reach out to you?";
+    if (lowerMessage.match(/\b(price|pricing|cost|how much|budget|investment)\b/)) {
+      return "Our pricing is customized based on your specific needs, goals, and scale. We offer flexible packages for:\n\n• Startup franchises (1-5 locations)\n• Growing franchises (6-20 locations)\n• Established franchises (20+ locations)\n\nTypical investments range from $2,500-$15,000/month depending on services and scope.\n\nLet's discuss your needs and create a custom proposal. Book a strategy call: " + calendlyLink;
     }
 
     // Contact
-    if (lowerMessage.match(/\b(contact|reach|call|email|phone)\b/)) {
-      return "You can contact us through our contact form, or provide your email here and our team will reach out to you shortly. What works best for you?";
-    }
-
-    // Lead generation
-    if (lowerMessage.match(/\b(lead|leads|generate|generation)\b/)) {
-      return "We specialize in generating high-quality franchise leads through targeted digital marketing campaigns, SEO optimization, and multi-channel strategies. Our approach is data-driven and focuses on delivering qualified prospects. Would you like to learn more about our process?";
+    if (lowerMessage.match(/\b(contact|reach|call|email|phone|talk|speak|meeting|consultation)\b/)) {
+      return "I'd love to connect you with our team! Here are your options:\n\n📅 Book a Free Consultation: " + calendlyLink + "\n\n📧 Email: contact@franchiseleadshq.com\n\n📞 Or share your email here and we'll reach out within 24 hours.\n\nWhat works best for you?";
     }
 
     // Results/ROI
-    if (lowerMessage.match(/\b(result|results|roi|success|track record)\b/)) {
-      return "We've helped numerous franchise businesses grow their lead pipeline with measurable results. Our clients typically see increased qualified leads within the first few months. Would you like to see some case studies or testimonials?";
+    if (lowerMessage.match(/\b(result|results|roi|success|track record|case study|testimonial)\b/)) {
+      return "Our clients see impressive results:\n\n📈 Average ROI: 300-500%\n📊 Lead Volume: 50-150 qualified leads/month\n🎯 Conversion Rate: 15-25% lead-to-franchisee\n⭐ Client Satisfaction: 4.8/5 stars\n\nRecent Success Stories:\n• Restaurant franchise: 180 leads in 90 days\n• Fitness franchise: 5 new locations in 6 months\n• Service franchise: 400% increase in qualified inquiries\n\nWant to see detailed case studies? Let's schedule a call: " + calendlyLink;
     }
 
     // Getting started
-    if (lowerMessage.match(/\b(start|get started|begin|signup|sign up)\b/)) {
-      return "Great! To get started, we'll need to understand your franchise goals and current situation. The best next step is to schedule a consultation with our team. Can you provide your email address?";
+    if (lowerMessage.match(/\b(start|get started|begin|signup|sign up|onboard)\b/)) {
+      return "Great! Here's how we get started:\n\n1️⃣ Discovery Call (30 min)\n• Understand your franchise goals\n• Assess current marketing\n• Identify opportunities\n\n2️⃣ Custom Strategy Proposal\n• Tailored marketing plan\n• Transparent pricing\n• Expected results timeline\n\n3️⃣ Launch & Optimize\n• Campaign setup (2 weeks)\n• Ongoing optimization\n• Regular reporting\n\nReady to begin? Book your discovery call: " + calendlyLink;
     }
 
-    // Default response
-    return "Thank you for your message. I'm a simple bot, but I'd love to help! Our team specializes in franchise lead generation and digital marketing. Could you tell me more about what you're looking for, or would you prefer to speak with a human team member?";
+    // Social media
+    if (lowerMessage.match(/\b(social media|facebook|instagram|linkedin|twitter|tiktok)\b/)) {
+      return "Our social media services for franchises include:\n\n📱 Platform Management\n• Facebook & Instagram\n• LinkedIn (B2B focus)\n• TikTok (for select industries)\n\n🎨 Content Creation\n• Custom graphics & videos\n• Engaging copy & captions\n• Brand-consistent messaging\n\n📊 Advertising Campaigns\n• Targeted franchise lead ads\n• Retargeting campaigns\n• Performance tracking\n\nLet's discuss your social media strategy: " + calendlyLink;
+    }
+
+    // PPC/Advertising
+    if (lowerMessage.match(/\b(ppc|pay per click|google ads|facebook ads|advertising|paid)\b/)) {
+      return "Our paid advertising expertise includes:\n\n💰 Google Ads\n• Search campaigns\n• Display network\n• YouTube advertising\n\n📱 Social Media Ads\n• Facebook & Instagram\n• LinkedIn B2B campaigns\n• Retargeting strategies\n\n📊 Campaign Management\n• A/B testing\n• Conversion optimization\n• ROI tracking & reporting\n\nAverage Cost Per Lead: $25-$75 (industry dependent)\n\nLet's maximize your ad spend: " + calendlyLink;
+    }
+
+    // Website/Design
+    if (lowerMessage.match(/\b(website|web design|landing page|site|online presence)\b/)) {
+      return "We create high-converting franchise websites:\n\n🎨 Custom Design\n• Brand-aligned aesthetics\n• Mobile-responsive layouts\n• Fast loading speeds\n\n🔧 Key Features\n• Lead capture forms\n• Multi-location support\n• Franchise opportunity pages\n• Testimonials & case studies\n\n⚡ Optimization\n• SEO-friendly structure\n• Conversion rate optimization\n• Analytics integration\n\nNeed a website audit or new site? Let's talk: " + calendlyLink;
+    }
+
+    // Timeline/Speed
+    if (lowerMessage.match(/\b(how long|timeline|when|fast|quick|speed|time frame)\b/)) {
+      return "Our typical timelines:\n\n⚡ Campaign Launch: 2-3 weeks\n📈 First Results: 30-45 days\n🎯 Optimized Performance: 60-90 days\n\nWhat we deliver from day one:\n• Detailed strategy document\n• Campaign setup & launch\n• Weekly progress updates\n• Monthly performance reports\n\nWant to get started quickly? Book now: " + calendlyLink;
+    }
+
+    // Industries/Franchise types
+    if (lowerMessage.match(/\b(industry|industries|type|restaurant|fitness|service|retail)\b/)) {
+      return "We work with franchises across all industries:\n\n🍔 Food & Beverage\n• Restaurants, QSR, Coffee shops\n\n💪 Health & Fitness\n• Gyms, Studios, Wellness centers\n\n🏠 Home Services\n• Cleaning, Repair, Maintenance\n\n🛍️ Retail\n• Specialty retail, Convenience stores\n\n📚 Education & Childcare\n• Tutoring, Daycare, Enrichment\n\n✨ And many more!\n\nLet's discuss your specific franchise: " + calendlyLink;
+    }
+
+    // Default response with Calendly
+    return "Thank you for your message! I'm here to help answer questions about our franchise lead generation and marketing services.\n\nIf you have a specific question, feel free to ask about:\n• Lead generation strategies\n• Digital marketing services\n• Pricing & packages\n• Success stories & ROI\n• Getting started process\n\nOr, if you'd prefer to speak with our team directly, book a free consultation: " + calendlyLink + "\n\nHow can I help you today?";
   };
 
   const startConversation = async () => {
@@ -140,8 +171,8 @@ const ChatWidget = () => {
 
       // Send welcome message
       const welcomeMessage = visitorName 
-        ? `Hi ${visitorName}! Welcome to FranchiseLeads HQ.`
-        : "Welcome to FranchiseLeads HQ!";
+        ? `Hi ${visitorName}! I'm Somnath from FranchiseLeads HQ.`
+        : "Hi! I'm Somnath from FranchiseLeads HQ.";
       
       await addMessage(data.id, welcomeMessage, 'bot');
     } catch (error) {
@@ -271,8 +302,11 @@ const ChatWidget = () => {
                   />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm">FranchiseLeads HQ</h3>
-                  <p className="text-xs opacity-90">Chatting with Support</p>
+                  <h3 className="font-semibold text-sm">Somnath Mondal</h3>
+                  <div className="flex items-center gap-1.5 justify-center">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                    <p className="text-xs opacity-90">Available Now</p>
+                  </div>
                 </div>
                 <div className="bg-white/20 rounded-lg p-3 space-y-2">
                   <p className="text-sm font-semibold">We are ONLINE!</p>
@@ -311,8 +345,11 @@ const ChatWidget = () => {
                   />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm">Chat with us</h3>
-                  <p className="text-xs text-muted-foreground">We're online</p>
+                  <h3 className="font-semibold text-sm">Somnath Mondal</h3>
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                    <p className="text-xs text-muted-foreground">Available Now</p>
+                  </div>
                 </div>
               </div>
               <div className="flex gap-1">
