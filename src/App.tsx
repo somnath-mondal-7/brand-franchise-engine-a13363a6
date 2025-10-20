@@ -34,6 +34,7 @@ import NotFound from "./pages/NotFound";
 import Search from "./pages/Search";
 import BackToTop from "./components/BackToTop";
 import ScrollToTop from "./components/ScrollToTop";
+import ChatWidget from "./components/ChatWidget";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ const App = () => (
         <BrowserRouter>
           <ScrollToTop />
           <BackToTop />
+          <ChatWidget />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
