@@ -5,6 +5,7 @@ import { Input } from './ui/input';
 import { Card } from './ui/card';
 import { useToast } from './ui/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import chatAvatar from '@/assets/chat-avatar.png';
 
 interface Message {
   id: string;
@@ -243,23 +244,31 @@ const ChatWidget = () => {
       {!isOpen && (
         <Button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg bg-primary hover:bg-primary/90 z-40"
+          className="fixed bottom-32 right-6 h-16 w-16 rounded-full shadow-2xl border-4 border-white hover:scale-110 transition-transform z-40 p-0 overflow-hidden"
           size="icon"
           aria-label="Open chat"
         >
-          <MessageCircle className="h-6 w-6" />
+          <img 
+            src={chatAvatar} 
+            alt="Chat with us" 
+            className="w-full h-full object-cover"
+          />
         </Button>
       )}
 
       {/* Chat Window */}
       {isOpen && (
-        <Card className={`fixed bottom-6 right-4 md:right-6 w-[calc(100vw-2rem)] md:w-[450px] lg:w-[500px] shadow-2xl z-40 flex transition-all overflow-hidden ${isMinimized ? 'h-16' : 'h-[90vh] md:h-[600px]'}`}>
+        <Card className={`fixed bottom-32 right-4 md:right-6 w-[calc(100vw-2rem)] md:w-[450px] lg:w-[500px] shadow-2xl z-40 flex transition-all overflow-hidden ${isMinimized ? 'h-16' : 'h-[90vh] md:h-[600px]'}`}>
           {/* Left Sidebar - Hidden when minimized */}
           {!isMinimized && (
             <div className="hidden md:flex md:w-[180px] lg:w-[200px] bg-gradient-to-b from-primary to-primary/90 text-primary-foreground flex-col items-center justify-between p-4">
               <div className="text-center space-y-4 w-full">
-                <div className="w-16 h-16 rounded-full bg-white/20 mx-auto flex items-center justify-center">
-                  <MessageCircle className="h-8 w-8" />
+                <div className="w-20 h-20 rounded-full border-4 border-white/30 mx-auto overflow-hidden">
+                  <img 
+                    src={chatAvatar} 
+                    alt="Support Agent" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
                   <h3 className="font-semibold text-sm">FranchiseLeads HQ</h3>
@@ -294,8 +303,12 @@ const ChatWidget = () => {
             {/* Header */}
             <div className="flex items-center justify-between p-3 md:p-4 border-b bg-background">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center md:hidden">
-                  <MessageCircle className="h-4 w-4 text-primary" />
+                <div className="w-10 h-10 rounded-full border-2 border-primary/20 overflow-hidden md:hidden">
+                  <img 
+                    src={chatAvatar} 
+                    alt="Support Agent" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
                   <h3 className="font-semibold text-sm">Chat with us</h3>
