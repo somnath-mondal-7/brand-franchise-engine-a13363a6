@@ -30,7 +30,12 @@ const ChatWidget = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [showOptionsMenu, setShowOptionsMenu] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
-  const [currentAgent, setCurrentAgent] = useState<AgentProfile>(getRandomAgent());
+  // Use consistent agent - Somnath Mondal
+  const [currentAgent] = useState<AgentProfile>({
+    name: "Somnath Mondal",
+    role: "Lead Generation Specialist",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=faces"
+  });
   const [hasShownProactivePopup, setHasShownProactivePopup] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inactivityTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -45,14 +50,14 @@ const ChatWidget = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Update favicon when unread count changes
+  // Update favicon and title when chat starts or has unread messages
   useEffect(() => {
-    if (unreadCount > 0) {
+    if (isOpen || unreadCount > 0) {
       updateFaviconWithNotification();
     } else {
       resetFavicon();
     }
-  }, [unreadCount]);
+  }, [unreadCount, isOpen]);
 
   // Store original favicon on mount
   useEffect(() => {
@@ -87,8 +92,8 @@ const ChatWidget = () => {
       favicon.href = canvas.toDataURL('image/png');
     }
 
-    // Update title
-    document.title = `(${unreadCount}) New Messages - FranchiseLeads HQ`;
+    // Update title with "(New Message)" text
+    document.title = `(New Message) FranchiseLeads HQ`;
   };
 
   const resetFavicon = () => {
@@ -99,7 +104,7 @@ const ChatWidget = () => {
     document.title = 'FranchiseLeads HQ - Franchise Lead Generation Experts';
   };
 
-  // Play urgent notification sound
+  // Play clear, professional notification sound
   const playNotificationSound = () => {
     if (!isMuted) {
       const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
@@ -109,14 +114,12 @@ const ChatWidget = () => {
       oscillator.connect(gainNode);
       gainNode.connect(audioContext.destination);
       
-      // Urgent triple beep - higher pitch and faster
-      oscillator.frequency.setValueAtTime(1000, audioContext.currentTime);
-      oscillator.frequency.setValueAtTime(1200, audioContext.currentTime + 0.08);
-      oscillator.frequency.setValueAtTime(1000, audioContext.currentTime + 0.16);
+      // Clear notification tone - gentle rising pitch
+      oscillator.type = 'sine';
+      oscillator.frequency.setValueAtTime(600, audioContext.currentTime);
+      oscillator.frequency.linearRampToValueAtTime(800, audioContext.currentTime + 0.1);
       
-      gainNode.gain.setValueAtTime(0.25, audioContext.currentTime);
-      gainNode.gain.setValueAtTime(0.25, audioContext.currentTime + 0.08);
-      gainNode.gain.setValueAtTime(0.25, audioContext.currentTime + 0.16);
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
       gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
       
       oscillator.start(audioContext.currentTime);
@@ -124,22 +127,47 @@ const ChatWidget = () => {
     }
   };
 
-  // Check for inactivity and send follow-up after 15 seconds
+  // Track follow-up state
+  const followUpCountRef = useRef(0);
+  const lastMessageTimeRef = useRef<number>(Date.now());
+
+  // Send follow-up after 30s, then after 1min, then stop
   const resetInactivityTimer = () => {
     if (inactivityTimerRef.current) {
       clearTimeout(inactivityTimerRef.current);
     }
     
+    // Reset follow-up count and timestamp on user activity
+    followUpCountRef.current = 0;
+    lastMessageTimeRef.current = Date.now();
+    
     if (isOpen && conversationId) {
+      // First follow-up after 30 seconds
       inactivityTimerRef.current = setTimeout(async () => {
-        // Send "Are you still there?" message
-        const followUpMsg = "Are you still there? I'm here to help! 😊";
-        await addMessage(conversationId, followUpMsg, 'bot');
-        playNotificationSound();
-        if (!isOpen) {
-          setUnreadCount(prev => prev + 1);
+        if (followUpCountRef.current === 0) {
+          followUpCountRef.current = 1;
+          const followUpMsg = "Are you still there? 😊";
+          await addMessage(conversationId, followUpMsg, 'bot');
+          playNotificationSound();
+          if (!isOpen) {
+            setUnreadCount(prev => prev + 1);
+          }
+          
+          // Schedule second follow-up after another 30 seconds (1 minute total)
+          inactivityTimerRef.current = setTimeout(async () => {
+            if (followUpCountRef.current === 1) {
+              followUpCountRef.current = 2;
+              const secondFollowUp = "I'm here whenever you're ready to chat!";
+              await addMessage(conversationId, secondFollowUp, 'bot');
+              playNotificationSound();
+              if (!isOpen) {
+                setUnreadCount(prev => prev + 1);
+              }
+              // Stop after this - no more follow-ups
+            }
+          }, 30000); // Another 30 seconds
         }
-      }, 15000); // 15 seconds
+      }, 30000); // 30 seconds
     }
   };
 
@@ -222,7 +250,6 @@ const ChatWidget = () => {
   // Send AI-generated response
   const sendAIResponse = async (conversationId: string, userMessage: string) => {
     try {
-      await simulateTyping(conversationId, userMessage);
       setIsTyping(true);
 
       const conversationHistory = messages
