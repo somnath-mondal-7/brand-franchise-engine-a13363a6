@@ -34,6 +34,7 @@ const ChatWidget = () => {
   const [hasShownProactivePopup, setHasShownProactivePopup] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inactivityTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const originalFaviconRef = useRef<string>('');
   const { toast } = useToast();
 
   const scrollToBottom = () => {
@@ -44,10 +45,63 @@ const ChatWidget = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Play notification sound - LinkedIn-style
+  // Update favicon when unread count changes
+  useEffect(() => {
+    if (unreadCount > 0) {
+      updateFaviconWithNotification();
+    } else {
+      resetFavicon();
+    }
+  }, [unreadCount]);
+
+  // Store original favicon on mount
+  useEffect(() => {
+    const favicon = document.querySelector('link[rel*="icon"]') as HTMLLinkElement;
+    if (favicon) {
+      originalFaviconRef.current = favicon.href;
+    }
+  }, []);
+
+  const updateFaviconWithNotification = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 32;
+    canvas.height = 32;
+    const ctx = canvas.getContext('2d');
+    
+    if (!ctx) return;
+
+    // Draw orange background
+    ctx.fillStyle = '#FF6B35';
+    ctx.fillRect(0, 0, 32, 32);
+    
+    // Add text "New"
+    ctx.fillStyle = '#FFFFFF';
+    ctx.font = 'bold 11px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('New', 16, 16);
+
+    // Update favicon
+    const favicon = document.querySelector('link[rel*="icon"]') as HTMLLinkElement;
+    if (favicon) {
+      favicon.href = canvas.toDataURL('image/png');
+    }
+
+    // Update title
+    document.title = `(${unreadCount}) New Messages - FranchiseLeads HQ`;
+  };
+
+  const resetFavicon = () => {
+    const favicon = document.querySelector('link[rel*="icon"]') as HTMLLinkElement;
+    if (favicon && originalFaviconRef.current) {
+      favicon.href = originalFaviconRef.current;
+    }
+    document.title = 'FranchiseLeads HQ - Franchise Lead Generation Experts';
+  };
+
+  // Play urgent notification sound
   const playNotificationSound = () => {
     if (!isMuted) {
-      // Create a simple pleasant notification sound
       const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
       const oscillator = audioContext.createOscillator();
       const gainNode = audioContext.createGain();
@@ -55,10 +109,14 @@ const ChatWidget = () => {
       oscillator.connect(gainNode);
       gainNode.connect(audioContext.destination);
       
-      oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-      oscillator.frequency.setValueAtTime(600, audioContext.currentTime + 0.1);
+      // Urgent triple beep - higher pitch and faster
+      oscillator.frequency.setValueAtTime(1000, audioContext.currentTime);
+      oscillator.frequency.setValueAtTime(1200, audioContext.currentTime + 0.08);
+      oscillator.frequency.setValueAtTime(1000, audioContext.currentTime + 0.16);
       
-      gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
+      gainNode.gain.setValueAtTime(0.25, audioContext.currentTime);
+      gainNode.gain.setValueAtTime(0.25, audioContext.currentTime + 0.08);
+      gainNode.gain.setValueAtTime(0.25, audioContext.currentTime + 0.16);
       gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
       
       oscillator.start(audioContext.currentTime);
@@ -66,20 +124,22 @@ const ChatWidget = () => {
     }
   };
 
-  // Auto-close after 1 minute of inactivity
+  // Check for inactivity and send follow-up after 15 seconds
   const resetInactivityTimer = () => {
     if (inactivityTimerRef.current) {
       clearTimeout(inactivityTimerRef.current);
     }
     
-    if (isOpen) {
-      inactivityTimerRef.current = setTimeout(() => {
-        setIsOpen(false);
-        toast({
-          title: "Chat closed",
-          description: "Chat closed due to inactivity. Feel free to reach out again!",
-        });
-      }, 60000); // 1 minute
+    if (isOpen && conversationId) {
+      inactivityTimerRef.current = setTimeout(async () => {
+        // Send "Are you still there?" message
+        const followUpMsg = "Are you still there? I'm here to help! 😊";
+        await addMessage(conversationId, followUpMsg, 'bot');
+        playNotificationSound();
+        if (!isOpen) {
+          setUnreadCount(prev => prev + 1);
+        }
+      }, 15000); // 15 seconds
     }
   };
 
@@ -93,7 +153,7 @@ const ChatWidget = () => {
         clearTimeout(inactivityTimerRef.current);
       }
     };
-  }, [isOpen]);
+  }, [isOpen, conversationId, messages]);
 
   // Show proactive popup after 5 seconds
   useEffect(() => {
@@ -403,9 +463,10 @@ const ChatWidget = () => {
       {!isOpen && !showProactivePopup && (
         <div className="fixed bottom-6 right-6 z-40">
           <div className="relative">
-            <Button
+              <Button
               onClick={async () => {
                 setIsOpen(true);
+                setUnreadCount(0);
                 resetInactivityTimer();
                 if (!conversationId) {
                   await handleProactiveMessages();
@@ -481,6 +542,7 @@ const ChatWidget = () => {
                 size="icon"
                 onClick={() => {
                   setIsOpen(false);
+                  setUnreadCount(0);
                   if (inactivityTimerRef.current) {
                     clearTimeout(inactivityTimerRef.current);
                   }
