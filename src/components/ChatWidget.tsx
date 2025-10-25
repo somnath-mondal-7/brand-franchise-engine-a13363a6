@@ -422,7 +422,9 @@ const ChatWidget = () => {
 
       {/* Chat Window - Centered on desktop */}
       {isOpen && (
-        <Card className={`fixed inset-0 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:inset-auto w-full md:w-[420px] shadow-2xl z-50 flex flex-col transition-all overflow-hidden ${isMinimized ? 'h-16' : 'h-full md:h-[650px]'}`}>
+        <>
+          <div className="fixed inset-0 z-40 bg-background/70 backdrop-blur-sm" />
+          <Card className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[94vw] max-w-[480px] shadow-2xl z-50 flex flex-col transition-all overflow-hidden border-2 border-border ${isMinimized ? 'h-16' : 'h-[70vh] md:h-[650px]'}`}>
 
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-primary to-primary/90">
@@ -601,6 +603,7 @@ const ChatWidget = () => {
             </>
           )}
         </Card>
+        </>
       )}
     </>
   );
