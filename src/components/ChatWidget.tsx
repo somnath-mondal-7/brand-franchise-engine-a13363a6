@@ -484,13 +484,26 @@ const ChatWidget = () => {
               <X className="h-4 w-4" />
             </Button>
             
-            <div className="mb-4">
-              <p className="text-sm font-semibold text-foreground mb-2">
-                Hello! Welcome to FranchiseLeads HQ
-              </p>
-              <p className="text-xs text-muted-foreground">
-                I'm {currentAgent.name}, here to help you grow your franchise
-              </p>
+            <div className="flex items-start gap-3 mb-4">
+              {/* Agent Photo with Active Status */}
+              <div className="relative flex-shrink-0">
+                <img 
+                  src={currentAgent.avatar} 
+                  alt={currentAgent.name}
+                  className="w-12 h-12 rounded-full object-cover border-2 border-primary"
+                />
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-card"></div>
+              </div>
+              
+              {/* Message Content */}
+              <div className="flex-1 pt-1">
+                <p className="text-sm font-semibold text-foreground mb-1">
+                  Hello! Welcome to FranchiseLeads HQ
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  I'm {currentAgent.name}, here to help you grow your franchise
+                </p>
+              </div>
             </div>
             
             {/* Action buttons */}
