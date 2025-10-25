@@ -82,19 +82,14 @@ const ChatWidget = () => {
     };
   }, [isOpen]);
 
-  // Show proactive popup after 2-3 seconds
+  // Show proactive popup after 5 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!hasShownProactivePopup && !isOpen) {
         setShowProactivePopup(true);
         setHasShownProactivePopup(true);
-        
-        // Start conversation and send proactive messages
-        setTimeout(() => {
-          handleProactiveMessages();
-        }, 1000);
       }
-    }, 2500); // 2.5 seconds
+    }, 5000); // 5 seconds
 
     return () => clearTimeout(timer);
   }, [hasShownProactivePopup, isOpen]);
@@ -312,13 +307,13 @@ const ChatWidget = () => {
     }
   };
 
-  const handleProactivePopupAction = (action: 'question' | 'consultation' | 'other') => {
+  const handleProactivePopupAction = async (action: string) => {
     setShowProactivePopup(false);
     setIsOpen(true);
-    setShowOptionsMenu(true);
     
+    // Start conversation and send proactive messages when full chatbox opens
     if (!conversationId) {
-      startConversation();
+      await handleProactiveMessages();
     }
   };
 
@@ -336,17 +331,14 @@ const ChatWidget = () => {
 
   return (
     <>
-      {/* Proactive Popup - Small notification */}
+      {/* Proactive Popup - Simple welcome with action buttons */}
       {showProactivePopup && !isOpen && (
         <div className="fixed bottom-36 right-6 w-80 bg-card border-2 border-primary shadow-2xl rounded-2xl z-50 animate-in slide-in-from-bottom-4">
           <div className="relative p-5">
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => {
-                setShowProactivePopup(false);
-                setIsOpen(true); // Open full chatbox when closed
-              }}
+              onClick={() => handleProactivePopupAction('close')}
               className="absolute top-2 right-2 h-6 w-6 rounded-full"
               aria-label="Close popup"
             >
@@ -354,7 +346,7 @@ const ChatWidget = () => {
             </Button>
             
             <div className="mb-4">
-              <p className="text-sm font-semibold text-foreground mb-1">
+              <p className="text-sm font-semibold text-foreground mb-2">
                 Hello! Welcome to FranchiseLeads HQ
               </p>
               <p className="text-xs text-muted-foreground">
@@ -362,13 +354,33 @@ const ChatWidget = () => {
               </p>
             </div>
             
-            {/* Show recent messages */}
-            <div className="space-y-2 max-h-40 overflow-y-auto">
-              {messages.slice(-2).map((msg) => (
-                <div key={msg.id} className="text-xs bg-muted/50 p-2 rounded">
-                  {msg.message}
-                </div>
-              ))}
+            {/* Action buttons */}
+            <div className="space-y-2">
+              <Button
+                onClick={() => handleProactivePopupAction("I'd like a free consultation")}
+                className="w-full"
+                size="sm"
+              >
+                Free Consultation
+              </Button>
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => handleProactivePopupAction("I have a question")}
+                  variant="outline"
+                  className="flex-1"
+                  size="sm"
+                >
+                  I have a question
+                </Button>
+                <Button
+                  onClick={() => handleProactivePopupAction("Other")}
+                  variant="outline"
+                  className="flex-1"
+                  size="sm"
+                >
+                  Other
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -379,11 +391,11 @@ const ChatWidget = () => {
         <div className="fixed bottom-6 right-6 z-40">
           <div className="relative">
             <Button
-              onClick={() => {
+              onClick={async () => {
                 setIsOpen(true);
                 resetInactivityTimer();
                 if (!conversationId) {
-                  setShowOptionsMenu(true);
+                  await handleProactiveMessages();
                 }
               }}
               className="h-16 w-16 rounded-full shadow-2xl border-4 border-white hover:scale-110 transition-transform p-0 overflow-hidden"
