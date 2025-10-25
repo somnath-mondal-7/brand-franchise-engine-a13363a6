@@ -148,7 +148,7 @@ const ChatWidget = () => {
   const followUpCountRef = useRef(0);
   const lastMessageTimeRef = useRef<number>(Date.now());
 
-  // Send follow-up after 30s, then after 1min, then stop
+  // Send follow-up after 1 minute if no response, then stop
   const resetInactivityTimer = () => {
     if (inactivityTimerRef.current) {
       clearTimeout(inactivityTimerRef.current);
@@ -159,32 +159,19 @@ const ChatWidget = () => {
     lastMessageTimeRef.current = Date.now();
     
     if (isOpen && conversationId) {
-      // First follow-up after 30 seconds
+      // Single follow-up after 1 minute (60 seconds)
       inactivityTimerRef.current = setTimeout(async () => {
         if (followUpCountRef.current === 0) {
           followUpCountRef.current = 1;
-          const followUpMsg = "Are you still there? 😊";
+          const followUpMsg = "Are you still there? I'm here whenever you're ready to chat! 😊";
           await addMessage(conversationId, followUpMsg, 'bot');
           playNotificationSound();
           if (!isOpen) {
             setUnreadCount(prev => prev + 1);
           }
-          
-          // Schedule second follow-up after another 30 seconds (1 minute total)
-          inactivityTimerRef.current = setTimeout(async () => {
-            if (followUpCountRef.current === 1) {
-              followUpCountRef.current = 2;
-              const secondFollowUp = "I'm here whenever you're ready to chat!";
-              await addMessage(conversationId, secondFollowUp, 'bot');
-              playNotificationSound();
-              if (!isOpen) {
-                setUnreadCount(prev => prev + 1);
-              }
-              // Stop after this - no more follow-ups
-            }
-          }, 30000); // Another 30 seconds
+          // Stop after this - no more follow-ups
         }
-      }, 30000); // 30 seconds
+      }, 60000); // 60 seconds (1 minute)
     }
   };
 
@@ -296,7 +283,6 @@ const ChatWidget = () => {
       if (error) throw error;
 
       if (data?.response) {
-        playNotificationSound();
         // Check if this is within the first 3 bot messages (use fast typing)
         const isFastResponse = botMessageCountRef.current < 3;
         
@@ -314,8 +300,12 @@ const ChatWidget = () => {
         await addMessage(conversationId, data.response, 'bot');
         botMessageCountRef.current += 1; // Increment count
         
+        // Increment unread count and play sound if chat is closed
         if (!isOpen) {
           setUnreadCount(prev => prev + 1);
+          playNotificationSound();
+        } else {
+          playNotificationSound();
         }
       }
     } catch (error: any) {
@@ -612,7 +602,13 @@ const ChatWidget = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setIsMinimized(!isMinimized)}
+                onClick={() => {
+                  setIsOpen(false);
+                  setIsMinimized(false);
+                  if (inactivityTimerRef.current) {
+                    clearTimeout(inactivityTimerRef.current);
+                  }
+                }}
                 className="h-8 w-8 text-white hover:bg-white/20"
                 aria-label="Minimize"
               >
