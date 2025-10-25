@@ -14,6 +14,9 @@ interface Message {
   created_at: string;
 }
 
+// Notification sound data URL
+const NOTIFICATION_SOUND = "data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADhAC7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7v/////////////////////////////////";
+
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
@@ -26,8 +29,17 @@ const ChatWidget = () => {
   const [hasProvidedInfo, setHasProvidedInfo] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [showOptionsMenu, setShowOptionsMenu] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const originalTitleRef = useRef<string>(document.title);
   const { toast } = useToast();
+
+  // Initialize audio
+  useEffect(() => {
+    audioRef.current = new Audio(NOTIFICATION_SOUND);
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -36,6 +48,61 @@ const ChatWidget = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Favicon notification effect
+  useEffect(() => {
+    if (unreadCount > 0 && !isOpen) {
+      let favicon = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
+      if (!favicon) {
+        favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        document.head.appendChild(favicon);
+      }
+      
+      // Create canvas for notification badge
+      const canvas = document.createElement('canvas');
+      canvas.width = 32;
+      canvas.height = 32;
+      const ctx = canvas.getContext('2d');
+      
+      if (ctx) {
+        // Draw red circle
+        ctx.fillStyle = '#ff0000';
+        ctx.beginPath();
+        ctx.arc(24, 8, 8, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // Draw count
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 14px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(unreadCount.toString(), 24, 8);
+      }
+      
+      favicon.href = canvas.toDataURL();
+      
+      // Title notification
+      const interval = setInterval(() => {
+        document.title = document.title === originalTitleRef.current 
+          ? `(${unreadCount}) New Message!` 
+          : originalTitleRef.current;
+      }, 1000);
+      
+      return () => {
+        clearInterval(interval);
+        document.title = originalTitleRef.current;
+        favicon.href = '/favicon.png';
+      };
+    }
+  }, [unreadCount, isOpen]);
+
+  // Reset unread count when chat opens
+  useEffect(() => {
+    if (isOpen) {
+      setUnreadCount(0);
+    }
+  }, [isOpen]);
 
   // Auto-open chat with proactive popup
   useEffect(() => {
@@ -47,35 +114,38 @@ const ChatWidget = () => {
       // Show small proactive popup after 10 seconds
       setTimeout(() => {
         setShowProactivePopup(true);
+        playNotificationSound();
+        setUnreadCount(1);
       }, 10000);
 
       // Open full chat after 60 seconds
       setTimeout(() => {
         setShowProactivePopup(false);
         setIsOpen(true);
+        setShowOptionsMenu(true);
         startConversation();
       }, 60000);
     }
   }, []);
 
-  // Send sequential proactive messages after conversation starts
-  useEffect(() => {
-    if (!conversationId || messages.length > 1) return;
+  // Play notification sound
+  const playNotificationSound = () => {
+    if (!isMuted && audioRef.current) {
+      audioRef.current.play().catch(e => console.log('Audio play failed:', e));
+    }
+  };
 
-    const sendProactiveMessages = async () => {
-      // First message after 2 seconds
-      setTimeout(async () => {
-        await addMessage(conversationId, "I'm here to help you explore how we can accelerate your franchise growth. What brings you here today?", 'bot');
-      }, 2000);
-
-      // Second message after 5 seconds
-      setTimeout(async () => {
-        await addMessage(conversationId, "I can provide insights on:\n\n✓ Lead generation strategies & ROI expectations\n✓ Digital marketing solutions for franchises\n✓ SEO & paid advertising approaches\n✓ Pricing & custom package options\n\nFeel free to ask me anything!", 'bot');
-      }, 5000);
-    };
-
-    sendProactiveMessages();
-  }, [conversationId]);
+  // Send messages one by one naturally
+  const sendSequentialMessages = async (conversationId: string, messageTexts: string[], delayMs: number = 1500) => {
+    for (let i = 0; i < messageTexts.length; i++) {
+      await new Promise(resolve => setTimeout(resolve, i * delayMs));
+      await addMessage(conversationId, messageTexts[i], 'bot');
+      if (!isOpen) {
+        setUnreadCount(prev => prev + 1);
+        playNotificationSound();
+      }
+    }
+  };
 
   const getBotResponse = (userMessage: string): string => {
     const lowerMessage = userMessage.toLowerCase();
@@ -295,20 +365,36 @@ const ChatWidget = () => {
   const handleProactivePopupAction = (action: 'question' | 'consultation' | 'other') => {
     setShowProactivePopup(false);
     setIsOpen(true);
+    setShowOptionsMenu(true);
     
     if (!conversationId) {
-      startConversation().then(() => {
-        if (action === 'consultation') {
-          setTimeout(() => {
-            setInputMessage("I'd like to schedule a consultation");
-          }, 1000);
-        } else if (action === 'question') {
-          setTimeout(() => {
-            setInputMessage("I have a question about your services");
-          }, 1000);
-        }
-      });
+      startConversation();
     }
+  };
+
+  const handleOptionSelect = async (option: string) => {
+    setShowOptionsMenu(false);
+    
+    if (!conversationId) return;
+    
+    // User selects an option
+    await addMessage(conversationId, option, 'visitor');
+    
+    // Bot responds naturally
+    setTimeout(async () => {
+      let response = '';
+      if (option.includes('lead generation')) {
+        response = "Great choice! Lead generation is our specialty. Can you tell me a bit more about your business? What industry are you in?";
+      } else if (option.includes('Digital marketing')) {
+        response = "Excellent! We offer comprehensive digital marketing solutions. What's your main goal - increasing brand awareness, driving traffic, or generating qualified leads?";
+      } else if (option.includes('SEO')) {
+        response = "Perfect! SEO is crucial for franchise growth. Are you looking to improve local SEO for specific locations or overall brand visibility?";
+      } else if (option.includes('Pricing')) {
+        response = "Happy to discuss pricing! Our packages are customized based on your specific needs and goals. What's your franchise size - are you just starting out or do you have multiple locations?";
+      }
+      
+      await addMessage(conversationId, response, 'bot');
+    }, 1000);
   };
 
   return (
@@ -367,12 +453,17 @@ const ChatWidget = () => {
         </div>
       )}
 
-      {/* Chat Button with Green Dot */}
+      {/* Chat Button with Green Dot and Unread Badge */}
       {!isOpen && !showProactivePopup && (
-        <div className="fixed bottom-32 right-6 z-40">
+        <div className="fixed bottom-6 right-6 z-40">
           <div className="relative">
             <Button
-              onClick={() => setIsOpen(true)}
+              onClick={() => {
+                setIsOpen(true);
+                if (!conversationId) {
+                  setShowOptionsMenu(true);
+                }
+              }}
               className="h-16 w-16 rounded-full shadow-2xl border-4 border-white hover:scale-110 transition-transform p-0 overflow-hidden"
               size="icon"
               aria-label="Open chat"
@@ -385,190 +476,216 @@ const ChatWidget = () => {
             </Button>
             {/* Green availability dot */}
             <div className="absolute bottom-0 right-0 w-5 h-5 bg-green-500 rounded-full border-2 border-white animate-pulse shadow-lg"></div>
+            {/* Unread count badge */}
+            {unreadCount > 0 && (
+              <div className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-xs font-bold border-2 border-white animate-bounce">
+                {unreadCount}
+              </div>
+            )}
           </div>
         </div>
       )}
 
       {/* Chat Window - Full screen on mobile, card on desktop */}
       {isOpen && (
-        <Card className={`fixed inset-0 md:bottom-32 md:right-6 md:inset-auto w-full md:w-[450px] lg:w-[500px] shadow-2xl z-50 flex transition-all overflow-hidden ${isMinimized ? 'h-16' : 'h-full md:h-[600px]'}`}>
-          {/* Left Sidebar - Hidden when minimized */}
-          {!isMinimized && (
-            <div className="hidden md:flex md:w-[180px] lg:w-[200px] bg-gradient-to-b from-primary to-primary/90 text-primary-foreground flex-col items-center justify-between p-4">
-              <div className="text-center space-y-4 w-full">
-                <div className="w-20 h-20 rounded-full border-4 border-white/30 mx-auto overflow-hidden">
-                  <img 
-                    src={chatAvatar} 
-                    alt="Support Agent" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-sm">Somnath Mondal</h3>
-                  <div className="flex items-center gap-1.5 justify-center">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                    <p className="text-xs opacity-90">Available Now</p>
-                  </div>
-                </div>
-                <div className="bg-white/20 rounded-lg p-3 space-y-2">
-                  <p className="text-sm font-semibold">We are ONLINE!</p>
-                  <p className="text-xs opacity-90">We'd love to help you</p>
-                </div>
-                <a 
-                  href="tel:+1234567890" 
-                  className="flex items-center justify-center gap-2 bg-white/20 hover:bg-white/30 rounded-lg p-2 transition-colors"
-                >
-                  <Phone className="h-4 w-4" />
-                  <span className="text-xs">Call Us</span>
-                </a>
+        <Card className={`fixed inset-0 md:bottom-6 md:right-6 md:inset-auto w-full md:w-[420px] shadow-2xl z-50 flex flex-col transition-all overflow-hidden ${isMinimized ? 'h-16' : 'h-full md:h-[650px]'}`}>
+
+          {/* Header with Somnath Available */}
+          <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-primary to-primary/90">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-full border-3 border-white overflow-hidden">
+                <img 
+                  src={chatAvatar} 
+                  alt="Somnath Mondal" 
+                  className="w-full h-full object-cover"
+                />
               </div>
+              <div>
+                <h3 className="font-semibold text-white">Somnath Mondal</h3>
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                  <p className="text-xs text-white/90">Available Now</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex gap-1">
               <Button
                 variant="ghost"
-                size="sm"
+                size="icon"
                 onClick={() => setIsMuted(!isMuted)}
-                className="text-primary-foreground hover:bg-white/20 w-full"
+                className="h-8 w-8 text-white hover:bg-white/20"
+                aria-label={isMuted ? "Unmute" : "Mute"}
               >
-                {isMuted ? <VolumeX className="h-4 w-4 mr-2" /> : <Volume2 className="h-4 w-4 mr-2" />}
-                <span className="text-xs">{isMuted ? 'Unmute' : 'Mute'}</span>
+                {isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => {
+                  setIsOpen(false);
+                  setIsMinimized(false);
+                }}
+                className="h-8 w-8 text-white hover:bg-white/20"
+                aria-label="Close chat"
+              >
+                <X className="h-4 w-4" />
               </Button>
             </div>
-          )}
+          </div>
 
-          {/* Main Chat Area */}
-          <div className="flex-1 flex flex-col">
-            {/* Header */}
-            <div className="flex items-center justify-between p-3 md:p-4 border-b bg-background">
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full border-2 border-primary/20 overflow-hidden md:hidden">
-                  <img 
-                    src={chatAvatar} 
-                    alt="Support Agent" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-sm">Somnath Mondal</h3>
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                    <p className="text-xs text-muted-foreground">Available Now</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex gap-1">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setIsMinimized(!isMinimized)}
-                  className="h-8 w-8"
-                  aria-label="Minimize chat"
-                >
-                  <Minimize2 className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => {
-                    if (conversationId) {
-                      endConversation();
-                    } else {
-                      setIsOpen(false);
-                    }
-                  }}
-                  className="h-8 w-8"
-                  aria-label="Close chat"
-                >
-                  <X className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-
-            {!isMinimized && (
-              <>
-                {/* Messages Area */}
-                <div className="flex-1 overflow-y-auto p-3 md:p-4 space-y-3 bg-muted/30">
-                  {!hasProvidedInfo ? (
-                    <div className="space-y-3">
-                      <div className="bg-background rounded-lg p-4 shadow-sm">
-                        <p className="text-sm text-muted-foreground mb-3">Welcome! Please provide your information to start chatting:</p>
-                        <Input
-                          placeholder="Your name (optional)"
-                          value={visitorName}
-                          onChange={(e) => setVisitorName(e.target.value)}
-                          className="mb-2"
-                        />
-                        <Input
-                          placeholder="Your email (optional)"
-                          type="email"
-                          value={visitorEmail}
-                          onChange={(e) => setVisitorEmail(e.target.value)}
-                          className="mb-3"
-                        />
-                        <Button onClick={startConversation} className="w-full">
-                          Start Chat
-                        </Button>
-                      </div>
-                    </div>
-                  ) : (
-                    <>
-                      {messages.map((msg) => (
-                        <div
-                          key={msg.id}
-                          className={`flex ${msg.sender_type === 'visitor' ? 'justify-end' : 'justify-start'}`}
-                        >
-                          <div
-                            className={`max-w-[85%] md:max-w-[80%] p-3 rounded-lg shadow-sm ${
-                              msg.sender_type === 'visitor'
-                                ? 'bg-primary text-primary-foreground rounded-br-none'
-                                : 'bg-background border rounded-bl-none'
-                            }`}
-                          >
-                            <p className="text-sm whitespace-pre-line">{msg.message}</p>
-                            <span className="text-xs opacity-70 mt-1 block">
-                              {new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                            </span>
-                          </div>
-                        </div>
-                      ))}
-                      {isLoading && (
-                        <div className="flex justify-start">
-                          <div className="bg-background border p-3 rounded-lg shadow-sm">
-                            <div className="flex gap-1">
-                              <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                              <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                              <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                      <div ref={messagesEndRef} />
-                    </>
-                  )}
-                </div>
-
-                {/* Input Area */}
-                {hasProvidedInfo && (
-                  <div className="p-3 md:p-4 border-t bg-background">
-                    <div className="flex gap-2">
+          {!isMinimized && (
+            <>
+              {/* Messages Area */}
+              <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-background">
+                {!hasProvidedInfo ? (
+                  <div className="space-y-3">
+                    <div className="bg-card rounded-lg p-4 border shadow-sm">
+                      <p className="text-sm text-foreground mb-3 font-medium">Welcome! Let's get started:</p>
                       <Input
-                        placeholder="Type your message..."
-                        value={inputMessage}
-                        onChange={(e) => setInputMessage(e.target.value)}
-                        onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && sendMessage()}
-                        disabled={isLoading}
-                        className="flex-1"
+                        placeholder="Your name (optional)"
+                        value={visitorName}
+                        onChange={(e) => setVisitorName(e.target.value)}
+                        className="mb-2"
                       />
-                      <Button onClick={sendMessage} size="icon" disabled={isLoading || !inputMessage.trim()}>
-                        <Send className="h-4 w-4" />
+                      <Input
+                        placeholder="Your email (optional)"
+                        type="email"
+                        value={visitorEmail}
+                        onChange={(e) => setVisitorEmail(e.target.value)}
+                        className="mb-3"
+                      />
+                      <Button onClick={startConversation} className="w-full bg-primary hover:bg-primary/90">
+                        Start Chat
                       </Button>
                     </div>
-                    <p className="text-xs text-muted-foreground mt-2 text-center">
-                      By using this chat, you agree to our Privacy Policy
-                    </p>
                   </div>
+                ) : showOptionsMenu ? (
+                  <div className="space-y-3 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    <div className="bg-card rounded-2xl p-4 border shadow-sm">
+                      <p className="text-sm font-medium text-foreground mb-4">I can provide insights on:</p>
+                      <div className="space-y-2">
+                        <Button 
+                          onClick={() => handleOptionSelect("✓ Lead generation strategies & ROI expectations")}
+                          variant="outline"
+                          className="w-full justify-start text-left h-auto py-3 hover:bg-primary/10 hover:border-primary"
+                        >
+                          <span className="text-sm">✓ Lead generation strategies & ROI expectations</span>
+                        </Button>
+                        <Button 
+                          onClick={() => handleOptionSelect("✓ Digital marketing solutions for franchises")}
+                          variant="outline"
+                          className="w-full justify-start text-left h-auto py-3 hover:bg-primary/10 hover:border-primary"
+                        >
+                          <span className="text-sm">✓ Digital marketing solutions for franchises</span>
+                        </Button>
+                        <Button 
+                          onClick={() => handleOptionSelect("✓ SEO & paid advertising approaches")}
+                          variant="outline"
+                          className="w-full justify-start text-left h-auto py-3 hover:bg-primary/10 hover:border-primary"
+                        >
+                          <span className="text-sm">✓ SEO & paid advertising approaches</span>
+                        </Button>
+                        <Button 
+                          onClick={() => handleOptionSelect("✓ Pricing & custom package options")}
+                          variant="outline"
+                          className="w-full justify-start text-left h-auto py-3 hover:bg-primary/10 hover:border-primary"
+                        >
+                          <span className="text-sm">✓ Pricing & custom package options</span>
+                        </Button>
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-4 text-center">Or feel free to ask me anything!</p>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    {messages.map((msg) => (
+                      <div
+                        key={msg.id}
+                        className={`flex ${msg.sender_type === 'visitor' ? 'justify-end' : 'justify-start'} animate-in slide-in-from-bottom-2 duration-300`}
+                      >
+                        {msg.sender_type === 'bot' && (
+                          <div className="w-8 h-8 rounded-full border-2 border-primary/20 overflow-hidden mr-2 flex-shrink-0">
+                            <img 
+                              src={chatAvatar} 
+                              alt="Bot" 
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        )}
+                        <div
+                          className={`max-w-[75%] p-3 rounded-2xl shadow-sm ${
+                            msg.sender_type === 'visitor'
+                              ? 'bg-primary text-primary-foreground rounded-br-sm'
+                              : 'bg-card border rounded-bl-sm'
+                          }`}
+                        >
+                          <p className="text-sm whitespace-pre-line">{msg.message}</p>
+                          <span className="text-xs opacity-70 mt-1 block">
+                            {new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                    {isLoading && (
+                      <div className="flex justify-start items-center">
+                        <div className="w-8 h-8 rounded-full border-2 border-primary/20 overflow-hidden mr-2 flex-shrink-0">
+                          <img 
+                            src={chatAvatar} 
+                            alt="Bot" 
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div className="bg-card border p-3 rounded-2xl shadow-sm">
+                          <div className="flex gap-1">
+                            <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                            <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                            <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    <div ref={messagesEndRef} />
+                  </>
                 )}
-              </>
-            )}
-          </div>
+              </div>
+
+              {/* Input Area */}
+              {hasProvidedInfo && (
+                <div className="p-4 border-t bg-card">
+                  <div className="flex gap-2">
+                    <Input
+                      placeholder="Type your message..."
+                      value={inputMessage}
+                      onChange={(e) => setInputMessage(e.target.value)}
+                      onKeyPress={(e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                          e.preventDefault();
+                          sendMessage();
+                          setShowOptionsMenu(false);
+                        }
+                      }}
+                      disabled={isLoading}
+                      className="flex-1"
+                    />
+                    <Button 
+                      onClick={() => {
+                        sendMessage();
+                        setShowOptionsMenu(false);
+                      }} 
+                      size="icon" 
+                      disabled={isLoading || !inputMessage.trim()}
+                      className="bg-primary hover:bg-primary/90"
+                    >
+                      <Send className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-2 text-center">
+                    Powered by FranchiseLeads HQ
+                  </p>
+                </div>
+              )}
+            </>
+          )}
         </Card>
       )}
     </>
