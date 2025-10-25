@@ -36,6 +36,8 @@ const ChatWidget = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inactivityTimerRef = useRef<NodeJS.Timeout | null>(null);
   const originalFaviconRef = useRef<string>('');
+  const faviconBlinkIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const botMessageCountRef = useRef(0); // Track bot response count for speed control
   const { toast } = useToast();
 
   const scrollToBottom = () => {
@@ -46,13 +48,32 @@ const ChatWidget = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Update favicon and title when chat starts or has unread messages
+  // Blink favicon every 3 seconds when chat is open
   useEffect(() => {
-    if (isOpen || unreadCount > 0) {
+    if (isOpen) {
+      // Set initial state
+      updateFaviconWithNotification();
+      
+      // Blink every 3 seconds
+      faviconBlinkIntervalRef.current = setInterval(() => {
+        updateFaviconWithNotification();
+      }, 3000);
+    } else if (unreadCount > 0) {
       updateFaviconWithNotification();
     } else {
       resetFavicon();
+      // Clear interval when closed
+      if (faviconBlinkIntervalRef.current) {
+        clearInterval(faviconBlinkIntervalRef.current);
+        faviconBlinkIntervalRef.current = null;
+      }
     }
+    
+    return () => {
+      if (faviconBlinkIntervalRef.current) {
+        clearInterval(faviconBlinkIntervalRef.current);
+      }
+    };
   }, [unreadCount, isOpen]);
 
   // Store original favicon on mount
@@ -215,9 +236,10 @@ const ChatWidget = () => {
 
       for (let i = 0; i < proactiveMessages.length; i++) {
         playNotificationSound();
-        await simulateTyping(data.id, proactiveMessages[i]);
+        // First 3 messages are fast
+        await simulateTyping(data.id, proactiveMessages[i], true);
         if (i < proactiveMessages.length - 1) {
-          await new Promise(resolve => setTimeout(resolve, 3000)); // 3 second pause between messages
+          await new Promise(resolve => setTimeout(resolve, 2000)); // 2 second pause between fast messages
         }
       }
     } catch (error) {
@@ -226,21 +248,26 @@ const ChatWidget = () => {
   };
 
   // Simulate realistic typing with character-by-character delay
-  const simulateTyping = async (convId: string, message: string): Promise<void> => {
-    // More human-like delays
-    const thinkingDelay = 1500 + Math.random() * 2000; // 1.5-3.5 seconds thinking time
+  const simulateTyping = async (convId: string, message: string, isFast: boolean = false): Promise<void> => {
+    // First 3 responses are fast, rest are slower
+    const thinkingDelay = isFast 
+      ? 800 + Math.random() * 500  // Fast: 0.8-1.3 seconds
+      : 1500 + Math.random() * 2000; // Slow: 1.5-3.5 seconds
     
     setIsTyping(true);
     await new Promise(resolve => setTimeout(resolve, thinkingDelay));
     
     // Simulate reading the user's message based on length
-    const readingDelay = Math.min(3000, message.length * 30);
+    const readingDelay = isFast 
+      ? Math.min(1000, message.length * 15)  // Fast reading
+      : Math.min(3000, message.length * 30);  // Slower reading
     await new Promise(resolve => setTimeout(resolve, readingDelay));
     
     setIsTyping(false);
     
     // Add message to database and UI
     await addMessage(convId, message, 'bot');
+    botMessageCountRef.current += 1; // Increment bot message count
   };
 
   // Send AI-generated response
@@ -270,7 +297,23 @@ const ChatWidget = () => {
 
       if (data?.response) {
         playNotificationSound();
+        // Check if this is within the first 3 bot messages (use fast typing)
+        const isFastResponse = botMessageCountRef.current < 3;
+        
+        // Use simulateTyping to show typing indicator and add delay
+        const tempIsTyping = isTyping;
+        setIsTyping(true);
+        
+        const thinkingDelay = isFastResponse 
+          ? 800 + Math.random() * 500  // Fast: 0.8-1.3 seconds
+          : 1500 + Math.random() * 2000; // Slow: 1.5-3.5 seconds
+        
+        await new Promise(resolve => setTimeout(resolve, thinkingDelay));
+        setIsTyping(tempIsTyping);
+        
         await addMessage(conversationId, data.response, 'bot');
+        botMessageCountRef.current += 1; // Increment count
+        
         if (!isOpen) {
           setUnreadCount(prev => prev + 1);
         }
@@ -304,13 +347,13 @@ const ChatWidget = () => {
       setConversationId(data.id);
       setHasProvidedInfo(true);
 
-      // Send welcome message
+      // Send welcome message - fast since it's initial
       const welcomeMessage = visitorName 
         ? `Hi ${visitorName}! I'm ${currentAgent.name}, ${currentAgent.role} at FranchiseLeads HQ. Thanks for connecting with me today.`
         : `Hi! I'm ${currentAgent.name}, ${currentAgent.role} at FranchiseLeads HQ. Thanks for connecting with me today.`;
       
       playNotificationSound();
-      await addMessage(data.id, welcomeMessage, 'bot');
+      await simulateTyping(data.id, welcomeMessage, true);
     } catch (error) {
       console.error('Error starting conversation:', error);
       toast({
@@ -525,19 +568,21 @@ const ChatWidget = () => {
 
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-primary to-primary/90">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full border-3 border-white overflow-hidden">
+          <div className="flex items-center gap-3">
+              <div className="relative w-12 h-12 rounded-full border-3 border-white overflow-hidden">
                 <img 
                   src={currentAgent.avatar} 
                   alt={currentAgent.name} 
                   className="w-full h-full object-cover"
                 />
+                {/* Active green dot on avatar */}
+                <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
               </div>
               <div>
                 <h3 className="font-semibold text-white">{currentAgent.name}</h3>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-                  <p className="text-xs text-white/90">Available Now</p>
+                <div className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-500 rounded-full">
+                  <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+                  <p className="text-xs text-white font-medium">Online Agent</p>
                 </div>
               </div>
             </div>
