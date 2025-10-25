@@ -438,7 +438,7 @@ const ChatWidget = () => {
     <>
       {/* Proactive Popup - Small notification */}
       {showProactivePopup && !isOpen && (
-        <div className="fixed bottom-36 right-6 w-80 bg-card border-2 border-primary shadow-2xl rounded-2xl z-50 animate-in slide-in-from-bottom-4">
+        <div className="fixed bottom-36 left-6 w-80 bg-card border-2 border-primary shadow-2xl rounded-2xl z-50 animate-in slide-in-from-bottom-4">
           <div className="relative p-5">
             <Button
               variant="ghost"
@@ -492,7 +492,7 @@ const ChatWidget = () => {
 
       {/* Chat Button with Green Dot and Unread Badge */}
       {!isOpen && !showProactivePopup && (
-        <div className="fixed bottom-6 right-6 z-40">
+        <div className="fixed bottom-6 left-6 z-40">
           <div className="relative">
             <Button
               onClick={() => {
@@ -525,7 +525,7 @@ const ChatWidget = () => {
 
       {/* Chat Window - Full screen on mobile, card on desktop */}
       {isOpen && (
-        <Card className={`fixed inset-0 md:bottom-6 md:right-6 md:inset-auto w-full md:w-[420px] shadow-2xl z-50 flex flex-col transition-all overflow-hidden ${isMinimized ? 'h-16' : 'h-full md:h-[650px]'}`}>
+        <Card className={`fixed inset-0 md:bottom-6 md:left-6 md:inset-auto w-full md:w-[420px] shadow-2xl z-50 flex flex-col transition-all overflow-hidden ${isMinimized ? 'h-16' : 'h-full md:h-[650px]'}`}>
 
           {/* Header with Somnath Available */}
           <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-primary to-primary/90">
