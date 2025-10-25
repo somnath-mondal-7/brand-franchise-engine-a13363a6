@@ -44,12 +44,25 @@ const ChatWidget = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Play notification sound
+  // Play notification sound - LinkedIn-style
   const playNotificationSound = () => {
     if (!isMuted) {
-      const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIGGi78OScTgwNUKjj8LVkHAU5kdXzzn0xBSl+zPLaizsIHGq78eOWTQ0PU6vk7rhsIgYug9D03Z1MDBhru+3mnU0MDlGn5O+6byMGLX/O8tyNOQcYaLrt6KFODBBTqOPwuW0iBC1+zPLaizsIG2m68OScTgwOUajk77lvIgYsf87y3I4+');
-      audio.volume = 0.3;
-      audio.play().catch(() => {});
+      // Create a simple pleasant notification sound
+      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+      oscillator.frequency.setValueAtTime(600, audioContext.currentTime + 0.1);
+      
+      gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 0.3);
     }
   };
 
@@ -130,14 +143,14 @@ const ChatWidget = () => {
 
   // Simulate realistic typing with character-by-character delay
   const simulateTyping = async (convId: string, message: string): Promise<void> => {
-    const typingSpeed = 30 + Math.random() * 40; // 30-70ms per character
-    const thinkingDelay = 800 + Math.random() * 1200; // 800-2000ms thinking time
+    // More human-like delays
+    const thinkingDelay = 1500 + Math.random() * 2000; // 1.5-3.5 seconds thinking time
     
     setIsTyping(true);
     await new Promise(resolve => setTimeout(resolve, thinkingDelay));
     
-    // Simulate reading/thinking
-    const readingDelay = Math.min(2000, message.length * 20);
+    // Simulate reading the user's message based on length
+    const readingDelay = Math.min(3000, message.length * 30);
     await new Promise(resolve => setTimeout(resolve, readingDelay));
     
     setIsTyping(false);
@@ -423,7 +436,7 @@ const ChatWidget = () => {
       {/* Chat Window - Centered on desktop */}
       {isOpen && (
         <>
-          <div className="fixed inset-0 z-40 bg-background/70 backdrop-blur-sm" />
+          <div className="fixed inset-0 z-40 bg-background/50" />
           <Card className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[94vw] max-w-[480px] shadow-2xl z-50 flex flex-col transition-all overflow-hidden border-2 border-border ${isMinimized ? 'h-16' : 'h-[70vh] md:h-[650px]'}`}>
 
           {/* Header */}
