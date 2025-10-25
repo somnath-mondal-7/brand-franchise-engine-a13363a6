@@ -1,17 +1,19 @@
 import { useState, useEffect, useRef } from 'react';
-import { MessageCircle, X, Send, Minimize2, Phone, Volume2, VolumeX } from 'lucide-react';
+import { MessageCircle, X, Send, Minimize2, Phone, Volume2, VolumeX, Loader2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Card } from './ui/card';
 import { useToast } from './ui/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import chatAvatar from '@/assets/chat-avatar.png';
+import { getRandomAgent, type AgentProfile } from '@/utils/agentProfiles';
 
 interface Message {
   id: string;
   message: string;
   sender_type: 'visitor' | 'bot';
   created_at: string;
+  agentName?: string;
+  agentAvatar?: string;
 }
 
 // Notification sound data URL
@@ -28,9 +30,11 @@ const ChatWidget = () => {
   const [visitorEmail, setVisitorEmail] = useState('');
   const [hasProvidedInfo, setHasProvidedInfo] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [showOptionsMenu, setShowOptionsMenu] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
+  const [currentAgent, setCurrentAgent] = useState<AgentProfile>(getRandomAgent());
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const originalTitleRef = useRef<string>(document.title);
@@ -135,19 +139,68 @@ const ChatWidget = () => {
     }
   };
 
-  // Send messages one by one naturally
-  const sendSequentialMessages = async (conversationId: string, messageTexts: string[], delayMs: number = 1500) => {
-    for (let i = 0; i < messageTexts.length; i++) {
-      await new Promise(resolve => setTimeout(resolve, i * delayMs));
-      await addMessage(conversationId, messageTexts[i], 'bot');
-      if (!isOpen) {
-        setUnreadCount(prev => prev + 1);
-        playNotificationSound();
+  // Simulate realistic typing with character-by-character delay
+  const simulateTyping = async (message: string): Promise<void> => {
+    const typingSpeed = 30 + Math.random() * 40; // 30-70ms per character
+    const thinkingDelay = 800 + Math.random() * 1200; // 800-2000ms thinking time
+    
+    setIsTyping(true);
+    await new Promise(resolve => setTimeout(resolve, thinkingDelay));
+    
+    // Simulate reading the user's message (longer delay for longer messages)
+    const readingDelay = Math.min(2000, message.length * 20);
+    await new Promise(resolve => setTimeout(resolve, readingDelay));
+    
+    setIsTyping(false);
+  };
+
+  // Send AI-generated response
+  const sendAIResponse = async (conversationId: string, userMessage: string) => {
+    try {
+      await simulateTyping(userMessage);
+      setIsTyping(true);
+
+      const conversationHistory = messages
+        .filter(m => m.sender_type === 'visitor' || m.sender_type === 'bot')
+        .map(m => ({
+          role: m.sender_type === 'visitor' ? 'user' : 'assistant',
+          content: m.message
+        }));
+
+      conversationHistory.push({ role: 'user', content: userMessage });
+
+      const { data, error } = await supabase.functions.invoke('chat-ai', {
+        body: { 
+          messages: conversationHistory,
+          agentName: currentAgent.name
+        }
+      });
+
+      setIsTyping(false);
+
+      if (error) throw error;
+
+      if (data?.response) {
+        await addMessage(conversationId, data.response, 'bot');
+        if (!isOpen) {
+          setUnreadCount(prev => prev + 1);
+          playNotificationSound();
+        }
       }
+    } catch (error: any) {
+      console.error('AI response error:', error);
+      setIsTyping(false);
+      
+      const fallbackMessage = error.message?.includes('rate limit') || error.message?.includes('429')
+        ? "I'm experiencing high demand right now. Please try again in a moment, or book a call directly: https://calendly.com/franchiseleadshq/consultation"
+        : "I apologize for the technical issue. Please email us at contact@franchiseleadshq.com or book a consultation: https://calendly.com/franchiseleadshq/consultation";
+      
+      await addMessage(conversationId, fallbackMessage, 'bot');
     }
   };
 
-  const getBotResponse = (userMessage: string): string => {
+  // Legacy fallback function - now replaced by AI
+  const getLegacyBotResponse = (userMessage: string): string => {
     const lowerMessage = userMessage.toLowerCase();
     const calendlyLink = "https://calendly.com/franchiseleadshq/consultation";
 
@@ -264,8 +317,8 @@ const ChatWidget = () => {
 
       // Send welcome message
       const welcomeMessage = visitorName 
-        ? `Hi ${visitorName}! I'm Somnath Mondal, Lead Generation Specialist at FranchiseLeads HQ. Thanks for connecting with me today.`
-        : "Hi! I'm Somnath Mondal, Lead Generation Specialist at FranchiseLeads HQ. Thanks for connecting with me today.";
+        ? `Hi ${visitorName}! I'm ${currentAgent.name}, ${currentAgent.role} at FranchiseLeads HQ. Thanks for connecting with me today.`
+        : `Hi! I'm ${currentAgent.name}, ${currentAgent.role} at FranchiseLeads HQ. Thanks for connecting with me today.`;
       
       await addMessage(data.id, welcomeMessage, 'bot');
     } catch (error) {
@@ -296,7 +349,9 @@ const ChatWidget = () => {
         id: data.id,
         message: data.message,
         sender_type: data.sender_type as 'visitor' | 'bot',
-        created_at: data.created_at
+        created_at: data.created_at,
+        agentName: senderType === 'bot' ? currentAgent.name : undefined,
+        agentAvatar: senderType === 'bot' ? currentAgent.avatar : undefined
       }]);
     } catch (error) {
       console.error('Error adding message:', error);
@@ -308,17 +363,12 @@ const ChatWidget = () => {
 
     const userMessage = inputMessage.trim();
     setInputMessage('');
-    setIsLoading(true);
 
     // Add user message
     await addMessage(conversationId, userMessage, 'visitor');
 
-    // Generate bot response
-    setTimeout(async () => {
-      const botResponse = getBotResponse(userMessage);
-      await addMessage(conversationId, botResponse, 'bot');
-      setIsLoading(false);
-    }, 500);
+    // Generate AI response
+    await sendAIResponse(conversationId, userMessage);
   };
 
   const endConversation = async () => {
@@ -380,21 +430,8 @@ const ChatWidget = () => {
     // User selects an option
     await addMessage(conversationId, option, 'visitor');
     
-    // Bot responds naturally
-    setTimeout(async () => {
-      let response = '';
-      if (option.includes('lead generation')) {
-        response = "Great choice! Lead generation is our specialty. Can you tell me a bit more about your business? What industry are you in?";
-      } else if (option.includes('Digital marketing')) {
-        response = "Excellent! We offer comprehensive digital marketing solutions. What's your main goal - increasing brand awareness, driving traffic, or generating qualified leads?";
-      } else if (option.includes('SEO')) {
-        response = "Perfect! SEO is crucial for franchise growth. Are you looking to improve local SEO for specific locations or overall brand visibility?";
-      } else if (option.includes('Pricing')) {
-        response = "Happy to discuss pricing! Our packages are customized based on your specific needs and goals. What's your franchise size - are you just starting out or do you have multiple locations?";
-      }
-      
-      await addMessage(conversationId, response, 'bot');
-    }, 1000);
+    // Generate AI response based on selection
+    await sendAIResponse(conversationId, option);
   };
 
   return (
@@ -418,7 +455,7 @@ const ChatWidget = () => {
                 Hello! Welcome to FranchiseLeads HQ
               </p>
               <p className="text-xs text-muted-foreground">
-                I'm Somnath, here to help you grow your franchise
+                I'm {currentAgent.name}, here to help you grow your franchise
               </p>
             </div>
             
@@ -469,8 +506,8 @@ const ChatWidget = () => {
               aria-label="Open chat"
             >
               <img 
-                src={chatAvatar} 
-                alt="Chat with Somnath" 
+                src={currentAgent.avatar} 
+                alt={`Chat with ${currentAgent.name}`} 
                 className="w-full h-full object-cover"
               />
             </Button>
@@ -495,13 +532,13 @@ const ChatWidget = () => {
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-full border-3 border-white overflow-hidden">
                 <img 
-                  src={chatAvatar} 
-                  alt="Somnath Mondal" 
+                  src={currentAgent.avatar} 
+                  alt={currentAgent.name} 
                   className="w-full h-full object-cover"
                 />
               </div>
               <div>
-                <h3 className="font-semibold text-white">Somnath Mondal</h3>
+                <h3 className="font-semibold text-white">{currentAgent.name}</h3>
                 <div className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
                   <p className="text-xs text-white/90">Available Now</p>
@@ -606,8 +643,8 @@ const ChatWidget = () => {
                         {msg.sender_type === 'bot' && (
                           <div className="w-8 h-8 rounded-full border-2 border-primary/20 overflow-hidden mr-2 flex-shrink-0">
                             <img 
-                              src={chatAvatar} 
-                              alt="Bot" 
+                              src={msg.agentAvatar || currentAgent.avatar} 
+                              alt={msg.agentName || currentAgent.name} 
                               className="w-full h-full object-cover"
                             />
                           </div>
@@ -626,12 +663,12 @@ const ChatWidget = () => {
                         </div>
                       </div>
                     ))}
-                    {isLoading && (
+                    {isTyping && (
                       <div className="flex justify-start items-center">
                         <div className="w-8 h-8 rounded-full border-2 border-primary/20 overflow-hidden mr-2 flex-shrink-0">
                           <img 
-                            src={chatAvatar} 
-                            alt="Bot" 
+                            src={currentAgent.avatar} 
+                            alt={currentAgent.name} 
                             className="w-full h-full object-cover"
                           />
                         </div>
@@ -673,7 +710,7 @@ const ChatWidget = () => {
                         setShowOptionsMenu(false);
                       }} 
                       size="icon" 
-                      disabled={isLoading || !inputMessage.trim()}
+                      disabled={isTyping || !inputMessage.trim()}
                       className="bg-primary hover:bg-primary/90"
                     >
                       <Send className="h-4 w-4" />
