@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircle, X, Send, Minimize2, Phone, Volume2, VolumeX, Loader2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -30,12 +30,8 @@ const ChatWidget = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [showOptionsMenu, setShowOptionsMenu] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
-  // Use consistent agent - Somnath Mondal
-  const [currentAgent] = useState<AgentProfile>({
-    name: "Somnath Mondal",
-    role: "Lead Generation Specialist",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=faces"
-  });
+  // Randomly select an agent for each conversation
+  const currentAgent = React.useMemo(() => getRandomAgent(), []);
   const [hasShownProactivePopup, setHasShownProactivePopup] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inactivityTimerRef = useRef<NodeJS.Timeout | null>(null);
