@@ -199,6 +199,12 @@ export const generateSitemapXml = (): string => {
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.franchiseleadshq.com/buy-franchise-leads</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://www.franchiseleadshq.com/legal-terms/privacy-policy</loc>
     <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
     <changefreq>monthly</changefreq>

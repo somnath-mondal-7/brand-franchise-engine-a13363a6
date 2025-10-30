@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import YouTubeFacade from "@/components/YouTubeFacade";
 import heroThumbnail from "@/assets/hero-video-thumbnail.png";
 import logo1 from "@/assets/clients/logo1.svg";
@@ -26,17 +27,25 @@ const Hero = () => {
 
           {/* Subheadline */}
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Transform your franchise business with our proven lead generation system. We've generated <strong>50,000+ qualified leads</strong> for franchise consultants and franchisors worldwide.
+            Transform your franchise business with our proven lead generation system. We've generated <strong>50,000+ qualified leads</strong> for franchise consultants and franchisors worldwide. <Link to="/buy-franchise-leads" className="text-primary hover:underline font-semibold">Buy exclusive franchise leads</Link> with 100% exclusive rights.
           </p>
 
           {/* CTA Button */}
-          <div className="pt-2 md:pt-4">
+          <div className="pt-2 md:pt-4 flex flex-col sm:flex-row gap-3 justify-center">
             <Button 
               size="lg"
               className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-lg"
               onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
             >
               Get Your Free Strategy Call
+            </Button>
+            <Button 
+              size="lg"
+              variant="outline"
+              className="border-2 border-primary text-primary hover:bg-primary/10 px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-lg"
+              onClick={() => window.location.href = '/buy-franchise-leads'}
+            >
+              Buy Franchise Leads →
             </Button>
           </div>
 

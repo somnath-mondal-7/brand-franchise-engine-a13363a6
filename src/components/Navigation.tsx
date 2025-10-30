@@ -74,6 +74,9 @@ const Navigation = () => {
                     <ChevronDown className="ml-1 w-4 h-4" />
                   </button>
                   <div className={`absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg transition-all duration-200 min-w-48 z-50 ${isDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+                    <Link to="/buy-franchise-leads" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary font-semibold border-b border-gray-100">
+                      🔥 Buy Franchise Leads
+                    </Link>
                     <Link to="/franchise-leads-usa" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary">
                       USA Franchise Leads
                     </Link>
@@ -213,6 +216,13 @@ const Navigation = () => {
                     <div className="px-3 py-2 text-base font-medium text-gray-600 border-b border-gray-100">
                       Franchise Leads:
                     </div>
+                    <Link
+                      to="/buy-franchise-leads"
+                      className="block px-6 py-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors duration-200"
+                      onClick={toggleMenu}
+                    >
+                      🔥 Buy Franchise Leads
+                    </Link>
                     <Link
                       to="/franchise-leads-usa"
                       className="block px-6 py-2 text-sm text-gray-700 hover:text-primary transition-colors duration-200"
