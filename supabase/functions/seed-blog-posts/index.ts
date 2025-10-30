@@ -113,15 +113,13 @@ serve(async (req) => {
 
 <p>Ready to buy high-quality franchise leads? Contact Franchise Leads HQ for exclusive USA leads with 15-25% average conversion rates.</p>`,
         author_name: "Michael Ross",
-        author_title: "Franchise Growth Strategist",
         category_id: null,
         tags: ["franchise leads", "buy franchise leads", "USA franchise", "lead generation", "franchise marketing"],
         featured_image_url: "/src/assets/blog/buying-franchise-leads-guide.jpg",
         is_published: true,
         read_time_minutes: 8,
-        meta_title: "Buy Franchise Leads USA 2025: Ultimate Guide & Strategies",
-        meta_description: "Learn how to buy high-quality franchise leads in USA. Expert strategies, cost analysis, ROI optimization & top lead providers for 2025.",
-        meta_keywords: "buy franchise leads, franchise leads USA, buying franchise leads, best franchise leads, franchise lead generation"
+        seo_title: "Buy Franchise Leads USA 2025: Ultimate Guide & Strategies",
+        seo_description: "Learn how to buy high-quality franchise leads in USA. Expert strategies, cost analysis, ROI optimization & top lead providers for 2025."
       },
       {
         title: "Franchise Lead Generation Strategies That Dominate USA Markets in 2025",
@@ -248,15 +246,13 @@ serve(async (req) => {
 
 <p>Ready to dominate USA franchise lead generation? Partner with Franchise Leads HQ for proven strategies and exclusive lead access.</p>`,
         author_name: "Sarah Chen",
-        author_title: "Digital Marketing Director",
         category_id: null,
         tags: ["franchise lead generation", "digital marketing", "USA franchise marketing", "lead generation strategies", "franchise growth"],
         featured_image_url: "/src/assets/blog/franchise-lead-generation-2025.jpg",
         is_published: true,
         read_time_minutes: 10,
-        meta_title: "Franchise Lead Generation Strategies USA 2025 | Expert Guide",
-        meta_description: "Master franchise lead generation with proven USA strategies. Multi-channel tactics, ROI optimization, and scaling frameworks for 2025.",
-        meta_keywords: "franchise lead generation, franchise marketing, USA lead generation, digital marketing franchise, franchise growth strategies"
+        seo_title: "Franchise Lead Generation Strategies USA 2025 | Expert Guide",
+        seo_description: "Master franchise lead generation with proven USA strategies. Multi-channel tactics, ROI optimization, and scaling frameworks for 2025."
       },
       {
         title: "How to Identify High-Quality Franchise Leads in USA Markets",
@@ -473,15 +469,13 @@ serve(async (req) => {
 
 <p>Partner with Franchise Leads HQ to access pre-qualified, high-intent franchise leads across all USA markets. Our 7-point verification process delivers 3x higher close rates.</p>`,
         author_name: "David Martinez",
-        author_title: "Franchise Sales Specialist",
         category_id: null,
         tags: ["franchise leads", "lead qualification", "franchise sales", "USA franchise", "lead quality"],
         featured_image_url: "/src/assets/blog/quality-franchise-leads.jpg",
         is_published: true,
         read_time_minutes: 9,
-        meta_title: "How to Identify High-Quality Franchise Leads USA | Expert Guide",
-        meta_description: "Learn proven methods to qualify franchise leads. Increase close rates by 3x with expert lead qualification frameworks for USA markets.",
-        meta_keywords: "franchise leads, lead qualification, quality franchise leads, USA franchise sales, franchise lead scoring"
+        seo_title: "How to Identify High-Quality Franchise Leads USA | Expert Guide",
+        seo_description: "Learn proven methods to qualify franchise leads. Increase close rates by 3x with expert lead qualification frameworks for USA markets."
       },
       {
         title: "USA Franchise Marketing Strategies: From Zero to 50 Leads Per Month",
@@ -762,15 +756,13 @@ serve(async (req) => {
 
 <p>Ready to implement this framework? Partner with Franchise Leads HQ for done-for-you franchise marketing and guaranteed lead flow.</p>`,
         author_name: "Emily Thompson",
-        author_title: "Franchise Marketing Strategist",
         category_id: null,
         tags: ["franchise marketing", "lead generation", "USA franchise growth", "marketing strategy", "franchise development"],
         featured_image_url: "/src/assets/blog/franchise-marketing-strategies.jpg",
         is_published: true,
         read_time_minutes: 12,
-        meta_title: "USA Franchise Marketing: Zero to 50 Leads/Month Playbook 2025",
-        meta_description: "Complete franchise marketing guide to scale from 0 to 50+ monthly leads. Step-by-step strategies, budgets, and ROI timelines for USA franchises.",
-        meta_keywords: "franchise marketing, USA franchise leads, franchise growth, lead generation strategies, franchise development"
+        seo_title: "USA Franchise Marketing: Zero to 50 Leads/Month Playbook 2025",
+        seo_description: "Complete franchise marketing guide to scale from 0 to 50+ monthly leads. Step-by-step strategies, budgets, and ROI timelines for USA franchises."
       },
       {
         title: "The True Cost of Buying Franchise Leads in USA: Complete ROI Analysis",
@@ -1134,15 +1126,13 @@ serve(async (req) => {
 
 <p>Ready to optimize your franchise lead investment? Partner with Franchise Leads HQ for transparent pricing, quality guarantees, and proven ROI.</p>`,
         author_name: "Michael Ross",
-        author_title: "CEO & Franchise Development Expert",
         category_id: null,
         tags: ["franchise leads cost", "franchise ROI", "buying franchise leads", "USA franchise investment", "lead acquisition cost"],
         featured_image_url: "/src/assets/blog/cost-buying-franchise-leads.jpg",
         is_published: true,
         read_time_minutes: 11,
-        meta_title: "True Cost of Buying Franchise Leads USA: Complete ROI Analysis 2025",
-        meta_description: "Comprehensive breakdown of franchise lead costs in USA. Hidden expenses, ROI analysis, optimization strategies, and profitability benchmarks.",
-        meta_keywords: "franchise leads cost, buying franchise leads, franchise ROI, USA franchise investment, cost per franchisee"
+        seo_title: "True Cost of Buying Franchise Leads USA: Complete ROI Analysis 2025",
+        seo_description: "Comprehensive breakdown of franchise lead costs in USA. Hidden expenses, ROI analysis, optimization strategies, and profitability benchmarks."
       }
     ];
 

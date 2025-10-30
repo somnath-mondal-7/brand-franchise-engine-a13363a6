@@ -35,3 +35,6 @@ verify_jwt = false
 
 [functions.chat-ai]
 verify_jwt = false
+
+[functions.seed-blog-posts]
+verify_jwt = false
