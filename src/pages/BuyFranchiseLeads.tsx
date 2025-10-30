@@ -397,6 +397,146 @@ const BuyFranchiseLeads = () => {
           </div>
         </section>
 
+        {/* Expert Resources Section */}
+        <section className="py-16 bg-gradient-to-br from-primary/5 to-primary/10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Expert Resources on Buying Franchise Leads
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Learn from industry experts with our comprehensive guides on franchise lead generation and purchasing strategies
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+              {/* Blog Post 1 */}
+              <a 
+                href="/blog/ultimate-guide-buying-franchise-leads-usa-2025"
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              >
+                <div className="h-48 bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center">
+                  <TrendingUp className="h-20 w-20 text-white opacity-80" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    The Ultimate Guide to Buying Franchise Leads in USA 2025
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Discover proven strategies to buy high-quality franchise leads. Learn cost-effective methods, ROI optimization, and lead qualification techniques.
+                  </p>
+                  <span className="text-primary font-semibold inline-flex items-center">
+                    Read Full Guide →
+                  </span>
+                </div>
+              </a>
+
+              {/* Blog Post 2 */}
+              <a 
+                href="/blog/franchise-lead-generation-strategies-usa-2025"
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              >
+                <div className="h-48 bg-gradient-to-br from-secondary to-accent flex items-center justify-center">
+                  <Zap className="h-20 w-20 text-white opacity-80" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    Franchise Lead Generation Strategies That Dominate USA Markets
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Master the latest franchise lead generation tactics. Data-driven strategies, conversion optimization, and scaling techniques revealed.
+                  </p>
+                  <span className="text-primary font-semibold inline-flex items-center">
+                    Learn Strategies →
+                  </span>
+                </div>
+              </a>
+
+              {/* Blog Post 3 */}
+              <a 
+                href="/blog/identify-high-quality-franchise-leads-usa"
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              >
+                <div className="h-48 bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center">
+                  <Shield className="h-20 w-20 text-white opacity-80" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    How to Identify High-Quality Franchise Leads in USA Markets
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Learn the exact criteria top USA franchises use to qualify leads. Increase conversion rates by 3x with these proven frameworks.
+                  </p>
+                  <span className="text-primary font-semibold inline-flex items-center">
+                    Discover Criteria →
+                  </span>
+                </div>
+              </a>
+
+              {/* Blog Post 4 */}
+              <a 
+                href="/blog/usa-franchise-marketing-strategies-zero-to-50-leads"
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              >
+                <div className="h-48 bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center">
+                  <Users className="h-20 w-20 text-white opacity-80" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    USA Franchise Marketing: From Zero to 50 Leads Per Month
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Complete blueprint to scale from 0 to 50+ qualified franchise leads monthly. Multi-channel tactics and proven growth frameworks.
+                  </p>
+                  <span className="text-primary font-semibold inline-flex items-center">
+                    Get Blueprint →
+                  </span>
+                </div>
+              </a>
+
+              {/* Blog Post 5 */}
+              <a 
+                href="/blog/true-cost-buying-franchise-leads-usa-roi-analysis"
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              >
+                <div className="h-48 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+                  <DollarSign className="h-20 w-20 text-white opacity-80" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    The True Cost of Buying Franchise Leads: Complete ROI Analysis
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Comprehensive breakdown of franchise lead costs, pricing models, and ROI calculations. Make data-driven investment decisions.
+                  </p>
+                  <span className="text-primary font-semibold inline-flex items-center">
+                    View Analysis →
+                  </span>
+                </div>
+              </a>
+
+              {/* View All Posts */}
+              <a 
+                href="/blog"
+                className="bg-gradient-primary text-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center p-12"
+              >
+                <div className="text-center">
+                  <Star className="h-16 w-16 mx-auto mb-4 opacity-90" />
+                  <h3 className="text-2xl font-bold mb-2">
+                    View All Resources
+                  </h3>
+                  <p className="text-white/90 mb-4">
+                    Explore our complete library of franchise lead generation content
+                  </p>
+                  <span className="text-white font-semibold inline-flex items-center">
+                    Browse All Articles →
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">

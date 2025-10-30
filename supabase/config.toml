@@ -38,3 +38,6 @@ verify_jwt = false
 
 [functions.seed-blog-posts]
 verify_jwt = false
+
+[functions.update-blog-dates]
+verify_jwt = false
