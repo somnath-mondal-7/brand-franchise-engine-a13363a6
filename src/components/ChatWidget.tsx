@@ -462,12 +462,15 @@ const ChatWidget = () => {
     <>
       {/* Proactive Popup - Floating above agent button */}
       {showProactivePopup && !isOpen && (
-        <div className="fixed bottom-28 right-4 sm:right-6 w-[calc(100vw-2rem)] max-w-[340px] bg-white dark:bg-card shadow-2xl rounded-3xl z-50 animate-in slide-in-from-bottom-4">
+        <div className="fixed bottom-40 right-4 sm:right-6 w-[calc(100vw-2rem)] max-w-[340px] bg-white dark:bg-card shadow-2xl rounded-3xl z-50 animate-in slide-in-from-bottom-4">
           <div className="relative p-6">
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setShowProactivePopup(false)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowProactivePopup(false);
+              }}
               className="absolute top-3 right-3 h-8 w-8 rounded-full hover:bg-muted"
               aria-label="Close popup"
             >
@@ -476,7 +479,7 @@ const ChatWidget = () => {
             
             {/* Message */}
             <div className="mb-5 pr-6">
-              <p className="text-lg font-semibold text-foreground mb-2 text-center" style={{ color: '#d61f69' }}>
+              <p className="text-lg font-semibold text-foreground mb-2 text-center" style={{ color: '#FF6B35' }}>
                 Live Person here to help.
               </p>
             </div>
@@ -485,22 +488,32 @@ const ChatWidget = () => {
             <div className="space-y-3">
               <Button
                 onClick={() => handleProactivePopupAction("I'd like a free consultation")}
-                className="w-full rounded-full h-12 text-base font-semibold"
+                className="w-full rounded-full h-12 text-base font-semibold transition-colors"
                 style={{ 
-                  backgroundColor: '#d61f69',
+                  backgroundColor: '#FF6B35',
                   color: 'white'
                 }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#60A5FA'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF6B35'}
               >
                 Free Consultation
               </Button>
               <Button
                 onClick={() => handleProactivePopupAction("I have a question")}
                 variant="outline"
-                className="w-full rounded-full h-12 text-base font-semibold"
+                className="w-full rounded-full h-12 text-base font-semibold transition-colors"
                 style={{ 
-                  borderColor: '#d61f69',
-                  color: '#d61f69',
+                  borderColor: '#FF6B35',
+                  color: '#FF6B35',
                   borderWidth: '2px'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#60A5FA';
+                  e.currentTarget.style.color = '#60A5FA';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '#FF6B35';
+                  e.currentTarget.style.color = '#FF6B35';
                 }}
               >
                 I have a question
@@ -541,7 +554,10 @@ const ChatWidget = () => {
             </Button>
             
             {/* Online Agent Badge */}
-            <div className="mt-2 px-3 py-1.5 rounded-full shadow-lg" style={{ backgroundColor: '#d61f69' }}>
+            <div className="mt-2 px-3 py-1.5 rounded-full shadow-lg transition-colors" style={{ backgroundColor: '#FF6B35' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#60A5FA'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF6B35'}
+            >
               <p className="text-xs text-white font-semibold whitespace-nowrap">Online Agent</p>
             </div>
             
