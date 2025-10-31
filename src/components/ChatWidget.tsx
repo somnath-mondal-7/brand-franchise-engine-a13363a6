@@ -187,14 +187,14 @@ const ChatWidget = () => {
     };
   }, [isOpen, conversationId, messages]);
 
-  // Show proactive popup after 5 seconds
+  // Show proactive popup after 18 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!hasShownProactivePopup && !isOpen) {
         setShowProactivePopup(true);
         setHasShownProactivePopup(true);
       }
-    }, 5000); // 5 seconds
+    }, 18000); // 18 seconds
 
     return () => clearTimeout(timer);
   }, [hasShownProactivePopup, isOpen]);
@@ -460,88 +460,72 @@ const ChatWidget = () => {
 
   return (
     <>
-      {/* Proactive Popup - Simple welcome with action buttons */}
+      {/* Proactive Popup - Floating above agent button */}
       {showProactivePopup && !isOpen && (
-        <div className="fixed bottom-36 right-6 w-80 bg-card border-2 border-primary shadow-2xl rounded-2xl z-50 animate-in slide-in-from-bottom-4">
-          <div className="relative p-5">
+        <div className="fixed bottom-28 right-4 sm:right-6 w-[calc(100vw-2rem)] max-w-[340px] bg-white dark:bg-card shadow-2xl rounded-3xl z-50 animate-in slide-in-from-bottom-4">
+          <div className="relative p-6">
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => handleProactivePopupAction('close')}
-              className="absolute top-2 right-2 h-6 w-6 rounded-full"
+              onClick={() => setShowProactivePopup(false)}
+              className="absolute top-3 right-3 h-8 w-8 rounded-full hover:bg-muted"
               aria-label="Close popup"
             >
               <X className="h-4 w-4" />
             </Button>
             
-            <div className="flex items-start gap-3 mb-4">
-              {/* Agent Photo with Active Status */}
-              <div className="relative flex-shrink-0">
-                <img 
-                  src={currentAgent.avatar} 
-                  alt={currentAgent.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-primary"
-                />
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-card"></div>
-              </div>
-              
-              {/* Message Content */}
-              <div className="flex-1 pt-1">
-                <p className="text-sm font-semibold text-foreground mb-1">
-                  Hello! Welcome to FranchiseLeads HQ
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  I'm {currentAgent.name}, here to help you grow your franchise
-                </p>
-              </div>
+            {/* Message */}
+            <div className="mb-5 pr-6">
+              <p className="text-lg font-semibold text-foreground mb-2 text-center" style={{ color: '#d61f69' }}>
+                Live Person here to help.
+              </p>
             </div>
             
-            {/* Action buttons */}
-            <div className="space-y-2">
+            {/* Action buttons - Stacked vertically */}
+            <div className="space-y-3">
               <Button
                 onClick={() => handleProactivePopupAction("I'd like a free consultation")}
-                className="w-full"
-                size="sm"
+                className="w-full rounded-full h-12 text-base font-semibold"
+                style={{ 
+                  backgroundColor: '#d61f69',
+                  color: 'white'
+                }}
               >
                 Free Consultation
               </Button>
-              <div className="flex gap-2">
-                <Button
-                  onClick={() => handleProactivePopupAction("I have a question")}
-                  variant="outline"
-                  className="flex-1"
-                  size="sm"
-                >
-                  I have a question
-                </Button>
-                <Button
-                  onClick={() => handleProactivePopupAction("Other")}
-                  variant="outline"
-                  className="flex-1"
-                  size="sm"
-                >
-                  Other
-                </Button>
-              </div>
+              <Button
+                onClick={() => handleProactivePopupAction("I have a question")}
+                variant="outline"
+                className="w-full rounded-full h-12 text-base font-semibold"
+                style={{ 
+                  borderColor: '#d61f69',
+                  color: '#d61f69',
+                  borderWidth: '2px'
+                }}
+              >
+                I have a question
+              </Button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Chat Button with Green Dot and Unread Badge */}
-      {!isOpen && !showProactivePopup && (
-        <div className="fixed bottom-6 right-6 z-40">
-          <div className="relative">
-              <Button
+      {/* Chat Button with Agent Avatar - Always visible (except when chat is open) */}
+      {!isOpen && (
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40">
+          <div className="relative flex flex-col items-center">
+            {/* Main Agent Button */}
+            <Button
               onClick={async () => {
                 setIsOpen(true);
+                setShowProactivePopup(false);
                 setUnreadCount(0);
                 resetInactivityTimer();
                 if (!conversationId) {
                   await handleProactiveMessages();
                 }
               }}
-              className="h-16 w-16 rounded-full shadow-2xl border-4 border-white hover:scale-110 transition-transform p-0 overflow-hidden"
+              className="h-20 w-20 rounded-full shadow-2xl border-4 border-white hover:scale-105 transition-transform p-0 overflow-hidden relative"
               size="icon"
               aria-label="Open chat"
             >
@@ -550,12 +534,20 @@ const ChatWidget = () => {
                 alt={`Chat with ${currentAgent.name}`} 
                 className="w-full h-full object-cover"
               />
+              {/* Green availability dot */}
+              <div className="absolute bottom-1 right-1 w-5 h-5 bg-green-500 rounded-full border-3 border-white shadow-lg">
+                <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
+              </div>
             </Button>
-            {/* Green availability dot */}
-            <div className="absolute bottom-0 right-0 w-5 h-5 bg-green-500 rounded-full border-2 border-white animate-pulse shadow-lg"></div>
+            
+            {/* Online Agent Badge */}
+            <div className="mt-2 px-3 py-1.5 rounded-full shadow-lg" style={{ backgroundColor: '#d61f69' }}>
+              <p className="text-xs text-white font-semibold whitespace-nowrap">Online Agent</p>
+            </div>
+            
             {/* Unread count badge */}
             {unreadCount > 0 && (
-              <div className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-xs font-bold border-2 border-white animate-bounce">
+              <div className="absolute -top-2 -right-2 min-w-[28px] h-7 px-2 bg-red-500 text-white rounded-full flex items-center justify-center text-sm font-bold border-3 border-white shadow-lg animate-bounce">
                 {unreadCount}
               </div>
             )}
