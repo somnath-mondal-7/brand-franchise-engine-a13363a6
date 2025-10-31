@@ -110,6 +110,55 @@ const TestimonialsSection = () => {
             Join hundreds of satisfied franchise professionals
           </p>
         </div>
+
+        {/* Case Study Section */}
+        <div className="mt-20 max-w-4xl mx-auto animate-fade-in" style={{ animationDelay: '750ms' }}>
+          <div className="relative group">
+            {/* Glow effect */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-primary/50 to-primary rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+            
+            <div className="relative bg-gradient-to-br from-card via-card to-muted/20 border-2 border-primary/20 rounded-2xl p-8 md:p-10 shadow-xl hover:shadow-2xl transition-all duration-500">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                {/* Icon/Badge */}
+                <div className="flex-shrink-0">
+                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                    <svg className="w-10 h-10 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 text-center md:text-left">
+                  <div className="inline-block mb-3">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+                      Real Results
+                    </span>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                    Client Success Case Study
+                  </h3>
+                  <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-6">
+                    Discover how our client achieved exceptional results with our lead generation services. 
+                    <span className="block mt-1 font-semibold text-foreground">See the complete transformation story.</span>
+                  </p>
+                  
+                  <a 
+                    href="https://drive.google.com/file/d/1_JRKkfBcrrGtK6Xgl8H0iufsLhZnsEqq/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group/btn"
+                  >
+                    <span>View Case Study</span>
+                    <svg className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
