@@ -123,7 +123,7 @@ const Navigation = () => {
           <div className="hidden lg:flex items-center space-x-4">
             <Button variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-50">
               <Phone className="w-4 h-4 mr-2" />
-              (+1) 3215159932
+              +1 (424)-445-53-34
             </Button>
             <Button 
               className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg"
@@ -313,7 +313,7 @@ const Navigation = () => {
               <div className="px-3 py-2 space-y-2 border-t border-gray-100 mt-2">
                 <Button variant="outline" className="w-full border-gray-300 text-gray-700">
                   <Phone className="w-4 h-4 mr-2" />
-                  (+1) 3215159932
+                  +1 (424)-445-53-34
                 </Button>
                 <Button 
                   className="w-full bg-primary hover:bg-primary/90 text-white"
