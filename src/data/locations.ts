@@ -1321,7 +1321,7 @@ export const serviceKeywords = [
 // OPTIMIZED: Only generic service keywords (NO location terms) for proper URL structure
 // These will be combined with actual locations to avoid duplicate/thin content
 export const broadMarketingKeywords = [
-  // Core high-value services only (reduces from 50+ to 10 keywords)
+  // Core high-value services only
   "franchise marketing",
   "franchise lead generation",
   "franchise consulting",
@@ -1332,4 +1332,7 @@ export const broadMarketingKeywords = [
   "franchise SEO",
   "franchise social media marketing",
   "franchise content marketing",
+  "franchise recruitment",
+  "franchise matchmaking",
+  "franchise expansion",
 ];
