@@ -73,35 +73,50 @@ export const generateServiceLocationUrls = (): SitemapUrl[] => {
 
   // OPTIMIZED: Generate only high-quality service + location combinations
   // Reduced from 22K+ pages to ~2K pages for better indexing
+  
+  // Special emphasis keywords for India market
+  const indiaEmphasisKeywords = [
+    'franchise recruitment',
+    'franchise matchmaking', 
+    'franchise expansion'
+  ];
+
   broadMarketingKeywords.forEach(service => {
     const serviceSlug = service.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     
     locationData.forEach(country => {
-      // Only include major countries (USA, UK, Canada, Australia)
+      // Include India for emphasis keywords, or major countries for all services
       const majorCountries = ['USA', 'UK', 'CA', 'AU'];
-      if (!majorCountries.includes(country.countryCode.toUpperCase())) {
-        return; // Skip minor countries to reduce thin content
+      const isIndiaEmphasis = country.countryCode.toUpperCase() === 'IN' && 
+                              indiaEmphasisKeywords.includes(service.toLowerCase());
+      
+      if (!majorCountries.includes(country.countryCode.toUpperCase()) && !isIndiaEmphasis) {
+        return; // Skip countries except major ones and India for emphasis keywords
       }
 
       country.states.forEach(state => {
-        // Service + State pages (high priority)
+        // Higher priority for India emphasis keywords
+        const isIndiaEmphasis = country.countryCode.toUpperCase() === 'IN' && 
+                                indiaEmphasisKeywords.includes(service.toLowerCase());
+        
+        // Service + State pages (higher priority for India emphasis)
         const stateUrl = `https://www.franchiseleadshq.com/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}`;
         urls.push({
           loc: stateUrl,
           lastmod: currentDate,
-          changefreq: 'weekly',
-          priority: '0.8'
+          changefreq: isIndiaEmphasis ? 'daily' : 'weekly',
+          priority: isIndiaEmphasis ? '0.9' : '0.8'
         });
 
-        // Service + City pages (TOP 3 cities per state only to reduce thin content)
-        const topCities = state.cities.slice(0, 3);
-        topCities.forEach(city => {
+        // Service + City pages (ALL cities for India emphasis, TOP 3 for others)
+        const citiesToInclude = isIndiaEmphasis ? state.cities : state.cities.slice(0, 3);
+        citiesToInclude.forEach(city => {
           const cityUrl = `https://www.franchiseleadshq.com/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}/${city.slug}`;
           urls.push({
             loc: cityUrl,
             lastmod: currentDate,
-            changefreq: 'weekly',
-            priority: '0.7'
+            changefreq: isIndiaEmphasis ? 'daily' : 'weekly',
+            priority: isIndiaEmphasis ? '0.85' : '0.7'
           });
         });
       });
