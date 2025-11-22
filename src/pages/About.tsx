@@ -5,20 +5,12 @@ import { Users, Target, Award, TrendingUp } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 
 // Team member imports
-import ceoFounder from "@/assets/team/ceo-founder.jpg";
 import marketingDirectorSarahChen from "@/assets/team/marketing-director-sarah-chen.jpg";
 import leadSpecialistDavidMartinez from "@/assets/team/lead-specialist-david-martinez.jpg";  
 import brandStrategistEmilyThompson from "@/assets/team/brand-strategist-emily-thompson.jpg";
 
 const About = () => {
   const teamMembers = [
-    {
-      name: "Somnath Mondal",
-      position: "CEO & Founder",
-      image: ceoFounder,
-      bio: "A decade of experience in the franchise industry. Built and scaled multiple franchise consulting firms, helping over 1,000 franchisors expand nationwide.",
-      expertise: ["Franchise Strategy", "Business Development", "Market Expansion"]
-    },
     {
       name: "Sarah Chen",
       position: "Marketing Director",
