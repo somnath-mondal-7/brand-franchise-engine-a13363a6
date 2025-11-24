@@ -13,55 +13,55 @@ const About = () => {
   const teamMembers = [
     {
       name: "Sarah Chen",
-      position: "Marketing Director",
+      position: "Franchise Development Director",
       image: marketingDirectorSarahChen,
-      bio: "Digital marketing expert specializing in franchise lead generation. Led campaigns generating $50M+ in franchise sales revenue.",
-      expertise: ["Digital Marketing", "Lead Generation", "Campaign Strategy"]
+      bio: "15+ years in franchise consulting. Led 300+ franchise development projects across retail, F&B, and service industries in India and USA markets.",
+      expertise: ["Franchise Development", "Legal Compliance", "Operations Manuals"]
     },
     {
       name: "David Martinez",
-      position: "Lead Generation Specialist",
+      position: "Franchisee Recruitment Specialist",
       image: leadSpecialistDavidMartinez,
-      bio: "Data-driven marketer with expertise in converting prospects into qualified franchise leads. Developed our proprietary lead scoring system.",
-      expertise: ["Lead Qualification", "Data Analytics", "Conversion Optimization"] 
+      bio: "Expert in franchise matchmaking and investor relations. Successfully matched 500+ franchisees with ideal opportunities, achieving 95% retention rate.",
+      expertise: ["Franchisee Recruitment", "Investor Relations", "Due Diligence"] 
     },
     {
       name: "Emily Thompson",
-      position: "Brand Strategist",
+      position: "Expansion Strategy Consultant",
       image: brandStrategistEmilyThompson,
-      bio: "Brand positioning expert who has helped 200+ franchise brands establish market dominance through strategic brand development.",
-      expertise: ["Brand Strategy", "Market Positioning", "Creative Direction"]
+      bio: "International franchising expert specializing in USA and India expansion. Helped 100+ brands scale their franchise networks across multiple markets.",
+      expertise: ["Expansion Strategy", "Market Research", "International Franchising"]
     }
   ];
 
   const values = [
     {
       icon: <Target className="w-8 h-8 text-primary" />,
-      title: "Results-Driven",
-      description: "Every strategy we implement is designed to deliver measurable results for your franchise business."
+      title: "Comprehensive Solutions",
+      description: "End-to-end franchise consulting from development to expansion, covering every aspect of franchising success."
     },
     {
       icon: <Users className="w-8 h-8 text-primary" />,
-      title: "Client-Focused",
-      description: "Your success is our success. We work closely with each client to understand their unique needs."
+      title: "Client Partnership",
+      description: "We build long-term relationships, guiding you through every stage of your franchise journey with dedicated support."
     },
     {
       icon: <Award className="w-8 h-8 text-primary" />,
-      title: "Industry Expertise",
-      description: "Deep knowledge of the franchise industry helps us create strategies that actually work."
+      title: "Proven Expertise",
+      description: "18+ years of franchise consulting experience across India and USA markets with 850+ successful projects."
     },
     {
       icon: <TrendingUp className="w-8 h-8 text-primary" />,
-      title: "Continuous Growth",
-      description: "We constantly evolve our methods to stay ahead of market trends and deliver better results."
+      title: "Results-Driven",
+      description: "We focus on measurable outcomes - successful franchise launches, qualified franchisee matches, and profitable expansion."
     }
   ];
 
   return (
       <div className="min-h-screen bg-background">
         <Helmet>
-          <title>About FranchiseLeadsHQ | Franchise Marketing & Lead Generation</title>
-          <meta name="description" content="Learn about FranchiseLeadsHQ — franchise marketing and lead generation experts serving USA, UK, Canada, India and worldwide." />
+          <title>About FranchiseLeadsHQ - Leading Franchise Consulting Firm | India & USA</title>
+          <meta name="description" content="FranchiseLeadsHQ is a premier franchise consulting company with 18+ years of experience in franchise development, recruitment, matchmaking, and expansion across India and USA." />
           <link rel="canonical" href="https://www.franchiseleadshq.com/about" />
         </Helmet>
         <script type="application/ld+json">
@@ -113,8 +113,8 @@ const About = () => {
               About FranchiseLeads HQ
             </h1>
             <p className="text-xl text-brand-gray leading-relaxed">
-              We're the franchise industry's most trusted partner for lead generation and brand building, 
-              helping consultants and franchisors achieve extraordinary growth.
+              Your trusted franchise consulting partner with 18+ years of experience helping businesses franchise successfully 
+              and connecting investors with profitable franchise opportunities across India & USA.
             </p>
           </div>
         </div>
@@ -128,36 +128,35 @@ const About = () => {
               <div className="space-y-6">
                 <h2 className="text-4xl font-bold text-brand-navy">Our Mission</h2>
                 <p className="text-lg text-brand-gray leading-relaxed">
-                  We believe every franchise professional deserves access to high-quality leads and powerful 
-                  brand positioning. Our mission is to eliminate the guesswork from franchise marketing 
-                  and deliver predictable, scalable growth.
+                  To empower businesses to franchise successfully and help entrepreneurs find the perfect franchise opportunity 
+                  through expert consulting, strategic guidance, and proven methodologies that work in both Indian and American markets.
                 </p>
                 <p className="text-lg text-brand-gray leading-relaxed">
-                  Since our founding, we've helped over 640 franchise professionals generate 297,000+ 
-                  qualified leads while building brands that command attention in their markets.
+                  Founded in 2007, we've helped 850+ brands develop and expand their franchise systems, matched thousands of investors 
+                  with their ideal franchise opportunities, and facilitated franchise growth across 60+ industries.
                 </p>
                 <p className="text-lg text-brand-gray leading-relaxed">
-                  We're not just another marketing agency. We're franchise industry specialists who understand 
-                  the unique challenges of franchise development, the importance of qualified lead generation, 
-                  and the power of strategic brand positioning in competitive markets.
+                  We're not just another consulting agency. We're franchise development specialists who understand 
+                  every aspect of franchising - from legal documentation and operations manuals to recruitment strategies 
+                  and international expansion. Our bilingual team brings deep expertise in both Indian and USA markets.
                 </p>
               </div>
               <div className="bg-gradient-secondary p-8 rounded-3xl shadow-card">
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-primary mb-2">640+</div>
-                    <div className="text-sm text-brand-gray">Clients Served</div>
+                    <div className="text-3xl font-bold text-primary mb-2">850+</div>
+                    <div className="text-sm text-brand-gray">Franchise Projects</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-primary mb-2">297K+</div>
-                    <div className="text-sm text-brand-gray">Leads Generated</div>
+                    <div className="text-3xl font-bold text-primary mb-2">60+</div>
+                    <div className="text-sm text-brand-gray">Industries Covered</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-primary mb-2">95%</div>
+                    <div className="text-3xl font-bold text-primary mb-2">97%</div>
                     <div className="text-sm text-brand-gray">Success Rate</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-primary mb-2">5+</div>
+                    <div className="text-3xl font-bold text-primary mb-2">18+</div>
                     <div className="text-sm text-brand-gray">Years Experience</div>
                   </div>
                 </div>
@@ -268,38 +267,38 @@ const About = () => {
 
           <div className="max-w-4xl mx-auto space-y-8">
             <div className="bg-card p-8 rounded-2xl shadow-card">
-              <h3 className="text-2xl font-bold text-brand-navy mb-4">Franchise Industry Expertise</h3>
+              <h3 className="text-2xl font-bold text-brand-navy mb-4">Complete Franchise Development</h3>
               <p className="text-brand-gray leading-relaxed">
-                We understand the unique challenges franchise consultants and franchisors face. 
-                Our strategies are built specifically for the franchise industry, not adapted from generic marketing playbooks. 
-                With deep knowledge of FTC regulations, franchise documentation, and buyer psychology, we deliver compliant and effective results.
+                We transform successful businesses into franchise systems with comprehensive development services including FDD preparation, 
+                operations manuals, training programs, and legal compliance. Our expertise spans both Indian and USA franchise laws, 
+                ensuring your franchise model meets all regulatory requirements while being attractive to potential franchisees.
               </p>
             </div>
 
             <div className="bg-card p-8 rounded-2xl shadow-card">
-              <h3 className="text-2xl font-bold text-brand-navy mb-4">Proven Track Record</h3>
+              <h3 className="text-2xl font-bold text-brand-navy mb-4">Expert Franchise Matchmaking</h3>
               <p className="text-brand-gray leading-relaxed">
-                With 640+ satisfied clients and 297,000+ qualified leads generated, our results speak for themselves. 
-                We don't just promise growth—we deliver it consistently. Our clients see an average 300% ROI within the first 6 months, 
-                with many achieving franchise awards and national recognition for their growth achievements.
+                With 850+ franchise projects completed, we excel at connecting the right investors with the right opportunities. 
+                Our matchmaking process includes detailed investor profiling, financial capability assessment, and brand compatibility analysis 
+                to ensure mutually beneficial partnerships that lead to long-term success for both franchisors and franchisees.
               </p>
             </div>
 
             <div className="bg-card p-8 rounded-2xl shadow-card">
-              <h3 className="text-2xl font-bold text-brand-navy mb-4">Comprehensive Approach</h3>
+              <h3 className="text-2xl font-bold text-brand-navy mb-4">Strategic Expansion Planning</h3>
               <p className="text-brand-gray leading-relaxed">
-                We don't just generate leads—we build brands that attract quality prospects organically. Our holistic approach 
-                includes strategic brand positioning, targeted lead generation, automated nurture sequences, and conversion optimization 
-                to ensure your franchise business grows sustainably with a strong market presence.
+                Whether you're expanding within India, entering the USA market, or going international, we provide data-driven expansion 
+                strategies. Our services include market research, site selection, territory planning, and master franchise development 
+                to help you scale your franchise network efficiently while maintaining brand consistency and quality standards.
               </p>
             </div>
 
             <div className="bg-card p-8 rounded-2xl shadow-card">
-              <h3 className="text-2xl font-bold text-brand-navy mb-4">Technology-Driven Results</h3>
+              <h3 className="text-2xl font-bold text-brand-navy mb-4">Ongoing Support & Training</h3>
               <p className="text-brand-gray leading-relaxed">
-                Our proprietary lead scoring system and advanced analytics platform help you identify the most qualified prospects 
-                before your competitors do. We leverage cutting-edge marketing automation, AI-powered targeting, and real-time 
-                performance tracking to maximize your marketing investment and accelerate franchise development.
+                Franchising success requires continuous support. We provide comprehensive training programs, operational guidance, 
+                quality assurance systems, and performance monitoring to ensure every franchise location operates at peak efficiency. 
+                Our dedicated support team helps franchisors and franchisees navigate challenges and capitalize on growth opportunities.
               </p>
             </div>
           </div>
