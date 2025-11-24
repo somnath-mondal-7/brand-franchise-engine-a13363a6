@@ -21,13 +21,13 @@ const Hero = () => {
           {/* Main Headline */}
           <div className="space-y-2 md:space-y-4">
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-foreground leading-tight">
-              #1 <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Franchise Lead Generation</span> Agency — We Build Brands
+              Your Complete <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Franchise Consulting</span> Partner
             </h1>
           </div>
 
           {/* Subheadline */}
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Transform your franchise business with our proven lead generation system. We've generated <strong>50,000+ qualified leads</strong> for franchise consultants and franchisors worldwide. <Link to="/buy-franchise-leads" className="text-primary hover:underline font-semibold">Buy exclusive franchise leads</Link> with 100% exclusive rights.
+            From <strong>franchise development to expansion strategy</strong> - we help businesses franchise successfully and connect franchisors with qualified investors across <strong>India & USA</strong>. Complete end-to-end franchise consulting solutions.
           </p>
 
           {/* CTA Button */}
@@ -37,15 +37,15 @@ const Hero = () => {
               className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-lg"
               onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
             >
-              Get Your Free Strategy Call
+              Get Free Consultation
             </Button>
             <Button 
               size="lg"
               variant="outline"
               className="border-2 border-primary text-primary hover:bg-primary/10 px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-lg"
-              onClick={() => window.location.href = '/buy-franchise-leads'}
+              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Buy Franchise Leads →
+              Explore Our Solutions →
             </Button>
           </div>
 

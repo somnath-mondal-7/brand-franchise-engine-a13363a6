@@ -15,14 +15,13 @@ import SEOInternalLinks from "@/components/SEOInternalLinks";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      {/* Homepage Schema Markup */}
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",
           "name": "FranchiseLeadsHQ",
           "url": "https://www.franchiseleadshq.com",
-          "description": "Leading franchise marketing agency specializing in lead generation and brand building for franchise consultants and franchisors.",
+          "description": "Premier franchise consulting firm providing complete franchise development, recruitment, matchmaking, expansion, and support services across India & USA.",
           "potentialAction": {
             "@type": "SearchAction",
             "target": {
@@ -34,26 +33,42 @@ const Index = () => {
           "mainEntity": {
             "@type": "Organization",
             "name": "FranchiseLeadsHQ",
-            "description": "We don't just generate leads, we build brands. Transform your franchise business with our proven lead generation system.",
-            "serviceArea": "Worldwide",
+            "description": "Complete franchise consulting solutions - from development to expansion. We help businesses franchise successfully and connect investors with profitable opportunities.",
+            "serviceArea": ["India", "United States", "International"],
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
-              "name": "Franchise Marketing Services",
+              "name": "Franchise Consulting Services",
               "itemListElement": [
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Franchise Lead Generation",
-                    "description": "Proven system to generate qualified franchise leads"
+                    "name": "Franchise Development",
+                    "description": "Complete franchise system development including FDD, operations manuals, and legal documentation"
                   }
                 },
                 {
                   "@type": "Offer", 
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Brand Building",
-                    "description": "Complete brand development for franchise businesses"
+                    "name": "Franchisee Recruitment",
+                    "description": "Connect with qualified franchisees through strategic recruitment and lead generation"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Franchise Matchmaking",
+                    "description": "Expert matchmaking services connecting investors with ideal franchise opportunities"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Franchise Expansion",
+                    "description": "Strategic expansion planning for regional and international franchise growth"
                   }
                 }
               ]
