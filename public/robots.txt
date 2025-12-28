@@ -8,14 +8,84 @@ Sitemap: https://www.franchiseleadshq.com/sitemap-blog.xml
 # Crawl-delay for better server performance
 Crawl-delay: 1
 
-# CRITICAL: Block programmatic/thin content pages to fix indexing issues
-# These were causing "Discovered - currently not indexed" and duplicate content
+# ========================================
+# STRATEGIC SEO PAGES - ALLOW THESE
+# ========================================
+
+# Core pages
+Allow: /services$
+Allow: /about
+Allow: /contact
+Allow: /testimonials
+Allow: /blog
+Allow: /buy-franchise-leads
+
+# Country landing pages
+Allow: /franchise-leads-usa
+Allow: /franchise-leads-india
+Allow: /franchise-leads-uk
+Allow: /franchise-leads-canada
+Allow: /franchise-leads-australia
+Allow: /franchise-leads-dubai
+Allow: /franchise-leads-kuwait
+
+# Strategic Market Pages (15 key cities)
+Allow: /franchise-consulting/new-york-city
+Allow: /franchise-consulting/los-angeles
+Allow: /franchise-consulting/chicago
+Allow: /franchise-consulting/houston
+Allow: /franchise-consulting/miami
+Allow: /franchise-consulting/dallas
+Allow: /franchise-consulting/atlanta
+Allow: /franchise-consulting/san-francisco
+Allow: /franchise-consulting/phoenix
+Allow: /franchise-consulting/denver
+Allow: /franchise-consulting/mumbai
+Allow: /franchise-consulting/delhi
+Allow: /franchise-consulting/bangalore
+Allow: /franchise-consulting/hyderabad
+Allow: /franchise-consulting/chennai
+
+# Service + Location combo pages (top 5 services × top 5 markets)
+Allow: /franchise-development/new-york-city
+Allow: /franchise-development/los-angeles
+Allow: /franchise-development/chicago
+Allow: /franchise-development/houston
+Allow: /franchise-development/miami
+Allow: /franchise-consulting/new-york-city
+Allow: /franchise-consulting/los-angeles
+Allow: /franchise-consulting/chicago
+Allow: /franchise-consulting/houston
+Allow: /franchise-consulting/miami
+Allow: /franchise-opportunities/new-york-city
+Allow: /franchise-opportunities/los-angeles
+Allow: /franchise-opportunities/chicago
+Allow: /franchise-opportunities/houston
+Allow: /franchise-opportunities/miami
+Allow: /franchise-matchmaking/new-york-city
+Allow: /franchise-matchmaking/los-angeles
+Allow: /franchise-matchmaking/chicago
+Allow: /franchise-matchmaking/houston
+Allow: /franchise-matchmaking/miami
+Allow: /buy-a-franchise/new-york-city
+Allow: /buy-a-franchise/los-angeles
+Allow: /buy-a-franchise/chicago
+Allow: /buy-a-franchise/houston
+Allow: /buy-a-franchise/miami
+
+# ========================================
+# BLOCK THIN/PROGRAMMATIC CONTENT
+# ========================================
+
+# Block old location routes (thin content)
 Disallow: /locations/
-Disallow: /services/*
+
+# Block old service keyword routes
+Disallow: /services/*/
+
+# Block old programmatic combinations
 Disallow: /franchise-marketing/
 Disallow: /franchise-lead-generation/
-Disallow: /franchise-consulting/
-Disallow: /franchise-development/
 Disallow: /franchise-advertising/
 Disallow: /franchise-branding/
 Disallow: /franchise-digital-marketing/
@@ -23,7 +93,6 @@ Disallow: /franchise-seo/
 Disallow: /franchise-social-media-marketing/
 Disallow: /franchise-content-marketing/
 Disallow: /franchise-recruitment/
-Disallow: /franchise-matchmaking/
 Disallow: /franchise-expansion/
 
 # Block admin and internal pages
@@ -45,22 +114,7 @@ Allow: /logo-hq.png
 Allow: /og-image.png
 Allow: /apple-touch-icon.png
 
-# Allow specific high-value pages (these are in sitemap)
-Allow: /franchise-leads-usa
-Allow: /franchise-leads-uk
-Allow: /franchise-leads-canada
-Allow: /franchise-leads-australia
-Allow: /franchise-leads-dubai
-Allow: /franchise-leads-india
-Allow: /franchise-leads-kuwait
-Allow: /buy-franchise-leads
-Allow: /about
-Allow: /services$
-Allow: /blog
-Allow: /testimonials
-Allow: /contact
-
-# Allow important bots full access to allowed paths
+# Allow important bots full access
 User-agent: Googlebot
 Allow: /
 
