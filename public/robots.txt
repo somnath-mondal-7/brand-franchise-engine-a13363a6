@@ -1,24 +1,66 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
+# Main Sitemap
 Sitemap: https://www.franchiseleadshq.com/sitemap.xml
 Sitemap: https://www.franchiseleadshq.com/sitemap-blog.xml
 
 # Crawl-delay for better server performance
 Crawl-delay: 1
 
-# Disallow crawling of admin areas, temp files, and duplicate content
+# CRITICAL: Block programmatic/thin content pages to fix indexing issues
+# These were causing "Discovered - currently not indexed" and duplicate content
+Disallow: /locations/
+Disallow: /services/*
+Disallow: /franchise-marketing/
+Disallow: /franchise-lead-generation/
+Disallow: /franchise-consulting/
+Disallow: /franchise-development/
+Disallow: /franchise-advertising/
+Disallow: /franchise-branding/
+Disallow: /franchise-digital-marketing/
+Disallow: /franchise-seo/
+Disallow: /franchise-social-media-marketing/
+Disallow: /franchise-content-marketing/
+Disallow: /franchise-recruitment/
+Disallow: /franchise-matchmaking/
+Disallow: /franchise-expansion/
+
+# Block admin and internal pages
 Disallow: /admin/
 Disallow: /private/
-Disallow: /*.json$
+Disallow: /session-demo
+Disallow: /search
+Disallow: /sitemap-generator
+
+# Block query parameters causing duplicates
 Disallow: /*?*utm_
 Disallow: /*?*sort=
 Disallow: /*?*filter=
-Disallow: /session-demo
-Disallow: /search
+Disallow: /*.json$
 
-# Allow important bot access
+# Allow important static assets
+Allow: /favicon.png
+Allow: /logo-hq.png
+Allow: /og-image.png
+Allow: /apple-touch-icon.png
+
+# Allow specific high-value pages (these are in sitemap)
+Allow: /franchise-leads-usa
+Allow: /franchise-leads-uk
+Allow: /franchise-leads-canada
+Allow: /franchise-leads-australia
+Allow: /franchise-leads-dubai
+Allow: /franchise-leads-india
+Allow: /franchise-leads-kuwait
+Allow: /buy-franchise-leads
+Allow: /about
+Allow: /services$
+Allow: /blog
+Allow: /testimonials
+Allow: /contact
+
+# Allow important bots full access to allowed paths
 User-agent: Googlebot
 Allow: /
 
@@ -30,13 +72,3 @@ Allow: /
 
 User-agent: Twitterbot
 Allow: /
-
-# Location-specific pages optimization
-Allow: /franchise-leads-usa
-Allow: /franchise-leads-uk  
-Allow: /franchise-leads-canada
-Allow: /franchise-leads-australia
-Allow: /franchise-leads-dubai
-Allow: /franchise-leads-india
-Allow: /franchise-leads-kuwait
-Allow: /buy-franchise-leads
