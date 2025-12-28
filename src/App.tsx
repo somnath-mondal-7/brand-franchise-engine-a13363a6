@@ -22,10 +22,8 @@ import FranchiseLeadsDubai from "./pages/FranchiseLeadsDubai";
 import FranchiseLeadsIndia from "./pages/FranchiseLeadsIndia";
 import FranchiseLeadsKuwait from "./pages/FranchiseLeadsKuwait";
 import BuyFranchiseLeads from "./pages/BuyFranchiseLeads";
-import LocationPage from "./pages/LocationPage";
-import KeywordPage from "./pages/KeywordPage";
-import ServiceLocationPage from "./pages/ServiceLocationPage";
-import CountryLocationPage from "./pages/CountryLocationPage";
+import StrategicMarketPage from "./pages/StrategicMarketPage";
+import StrategicServiceLocationPage from "./pages/StrategicServiceLocationPage";
 import SitemapGenerator from "./pages/SitemapGenerator";
 import Sitemap from "./pages/Sitemap";
 import BlogSitemap from "./pages/BlogSitemap";
@@ -54,23 +52,21 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/digital-marketing" element={<DigitalMarketing />} />
-          <Route path="/franchise-leads-usa" element={<FranchiseLeadsUSA />} />
-          <Route path="/franchise-leads-uk" element={<FranchiseLeadsUK />} />
-          <Route path="/franchise-leads-canada" element={<FranchiseLeadsCanada />} />
-          <Route path="/franchise-leads-australia" element={<FranchiseLeadsAustralia />} />
-          <Route path="/franchise-leads-dubai" element={<FranchiseLeadsDubai />} />
-          <Route path="/franchise-leads-india" element={<FranchiseLeadsIndia />} />
-          <Route path="/franchise-leads-kuwait" element={<FranchiseLeadsKuwait />} />
-          <Route path="/buy-franchise-leads" element={<BuyFranchiseLeads />} />
-            {/* Dynamic Location Routes */}
-            <Route path="/locations/:country" element={<CountryLocationPage />} />
-            <Route path="/locations/:country/:location" element={<LocationPage />} />
-            <Route path="/locations/:country/:location/:city" element={<LocationPage />} />
-            {/* Dynamic Service + Location Routes */}
-            <Route path="/:service/:country/:location" element={<ServiceLocationPage />} />
-            <Route path="/:service/:country/:location/:city" element={<ServiceLocationPage />} />
-            {/* Dynamic Keyword Routes */}
-            <Route path="/services/:keyword" element={<KeywordPage />} />
+            <Route path="/franchise-leads-usa" element={<FranchiseLeadsUSA />} />
+            <Route path="/franchise-leads-uk" element={<FranchiseLeadsUK />} />
+            <Route path="/franchise-leads-canada" element={<FranchiseLeadsCanada />} />
+            <Route path="/franchise-leads-australia" element={<FranchiseLeadsAustralia />} />
+            <Route path="/franchise-leads-dubai" element={<FranchiseLeadsDubai />} />
+            <Route path="/franchise-leads-india" element={<FranchiseLeadsIndia />} />
+            <Route path="/franchise-leads-kuwait" element={<FranchiseLeadsKuwait />} />
+            <Route path="/buy-franchise-leads" element={<BuyFranchiseLeads />} />
+            
+            {/* Strategic SEO Pages - Key Markets */}
+            <Route path="/franchise-consulting/:market" element={<StrategicMarketPage />} />
+            
+            {/* Strategic SEO Pages - Service + Location */}
+            <Route path="/:service/:market" element={<StrategicServiceLocationPage />} />
+            
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/admin/blog" element={

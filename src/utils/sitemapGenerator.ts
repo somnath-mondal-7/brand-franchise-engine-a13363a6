@@ -1,5 +1,7 @@
-// OPTIMIZED SITEMAP GENERATOR - Reduced to ~50 high-quality pages only
-// This fixes Google Search Console indexing issues by eliminating thin/duplicate content
+// STRATEGIC SITEMAP GENERATOR - ~60-70 high-quality, indexable pages
+// Key Markets (15) + Service-Location Combos (25) + Core Pages (16) = ~56 pages
+
+import { keyMarkets, serviceKeywords } from "@/data/strategicSEOPages";
 
 export interface SitemapUrl {
   loc: string;
@@ -8,20 +10,15 @@ export interface SitemapUrl {
   priority: string;
 }
 
-// REMOVED: generateLocationUrls - Too many thin pages causing indexing issues
-// REMOVED: generateKeywordUrls - Too many thin pages causing indexing issues  
-// REMOVED: generateServiceLocationUrls - Too many thin pages causing indexing issues
-
 export const generateSitemapXml = (): string => {
   const currentDate = new Date().toISOString().split('T')[0];
-
-  // ONLY include high-quality, unique content pages
-  // This reduces from 28K+ pages to ~50 quality pages
-  return `<?xml version="1.0" encoding="UTF-8"?>
+  const baseUrl = "https://www.franchiseleadshq.com";
+  
+  let urls = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Homepage - Highest priority -->
   <url>
-    <loc>https://www.franchiseleadshq.com/</loc>
+    <loc>${baseUrl}/</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -29,79 +26,97 @@ export const generateSitemapXml = (): string => {
   
   <!-- Core Service Pages -->
   <url>
-    <loc>https://www.franchiseleadshq.com/services</loc>
+    <loc>${baseUrl}/services</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/buy-franchise-leads</loc>
+    <loc>${baseUrl}/buy-franchise-leads</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
-  <!-- Country-specific landing pages (unique content) -->
+  <!-- Country-specific landing pages -->
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-usa</loc>
+    <loc>${baseUrl}/franchise-leads-usa</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-india</loc>
+    <loc>${baseUrl}/franchise-leads-india</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-uk</loc>
+    <loc>${baseUrl}/franchise-leads-uk</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-canada</loc>
+    <loc>${baseUrl}/franchise-leads-canada</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-australia</loc>
+    <loc>${baseUrl}/franchise-leads-australia</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-dubai</loc>
+    <loc>${baseUrl}/franchise-leads-dubai</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-kuwait</loc>
+    <loc>${baseUrl}/franchise-leads-kuwait</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  
+  <!-- Strategic Market Pages (15 key cities) -->
+${keyMarkets.map(market => `  <url>
+    <loc>${baseUrl}/franchise-consulting/${market.slug}</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`).join('\n')}
+  
+  <!-- Service + Location Pages (Top 5 keywords × Top 5 markets = 25 pages) -->
+${serviceKeywords.flatMap(service => 
+  keyMarkets.slice(0, 5).map(market => `  <url>
+    <loc>${baseUrl}/${service.slug}/${market.slug}</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>`)
+).join('\n')}
   
   <!-- About & Trust Pages -->
   <url>
-    <loc>https://www.franchiseleadshq.com/about</loc>
+    <loc>${baseUrl}/about</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/testimonials</loc>
+    <loc>${baseUrl}/testimonials</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
-  <!-- Blog (dynamic content) -->
+  <!-- Blog -->
   <url>
-    <loc>https://www.franchiseleadshq.com/blog</loc>
+    <loc>${baseUrl}/blog</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
@@ -109,7 +124,7 @@ export const generateSitemapXml = (): string => {
   
   <!-- Contact -->
   <url>
-    <loc>https://www.franchiseleadshq.com/contact</loc>
+    <loc>${baseUrl}/contact</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -117,18 +132,20 @@ export const generateSitemapXml = (): string => {
   
   <!-- Legal Pages -->
   <url>
-    <loc>https://www.franchiseleadshq.com/legal-terms/privacy-policy</loc>
+    <loc>${baseUrl}/legal-terms/privacy-policy</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/legal-terms/refund-satisfaction-guarantee-policy</loc>
+    <loc>${baseUrl}/legal-terms/refund-satisfaction-guarantee-policy</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
 </urlset>`;
+
+  return urls;
 };
 
 // Export empty arrays for backward compatibility
