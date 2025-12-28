@@ -45,8 +45,9 @@ export const ServiceLocationTemplate = ({
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        <meta name="keywords" content={`${service} ${location}, ${service} ${state || country}, ${service} agency ${location}, best ${service} ${location}, top ${service} ${location}, ${service} company ${location}, ${service} services ${location}`} />
+        {/* NOINDEX: Programmatic page - prevents duplicate/thin content issues in Google Search Console */}
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="googlebot" content="noindex, nofollow" />
         <link rel="canonical" href={canonicalUrl} />
         
         <meta property="og:title" content={title} />

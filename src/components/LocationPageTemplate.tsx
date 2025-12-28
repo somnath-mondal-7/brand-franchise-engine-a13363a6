@@ -42,8 +42,9 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <meta name="keywords" content={`franchise leads ${location.toLowerCase()}, franchise marketing ${location.toLowerCase()}, franchise development ${location.toLowerCase()}, franchise lead generation ${location.toLowerCase()}, franchise services ${location.toLowerCase()}`} />
+        {/* NOINDEX: Programmatic page - prevents duplicate/thin content issues in Google Search Console */}
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="googlebot" content="noindex, nofollow" />
         <link rel="canonical" href={canonicalUrl} />
         
         {/* Open Graph */}
