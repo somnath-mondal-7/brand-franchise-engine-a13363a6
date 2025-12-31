@@ -29,7 +29,8 @@ Allow: /franchise-leads-australia
 Allow: /franchise-leads-dubai
 Allow: /franchise-leads-kuwait
 
-# Strategic Market Pages (15 key cities)
+# Strategic Market Pages (26 key cities across 5 countries)
+# USA
 Allow: /franchise-consulting/new-york-city
 Allow: /franchise-consulting/los-angeles
 Allow: /franchise-consulting/chicago
@@ -38,8 +39,23 @@ Allow: /franchise-consulting/miami
 Allow: /franchise-consulting/dallas
 Allow: /franchise-consulting/atlanta
 Allow: /franchise-consulting/san-francisco
-Allow: /franchise-consulting/phoenix
-Allow: /franchise-consulting/denver
+# UK
+Allow: /franchise-consulting/london
+Allow: /franchise-consulting/manchester
+Allow: /franchise-consulting/birmingham
+Allow: /franchise-consulting/leeds
+Allow: /franchise-consulting/glasgow
+# Canada
+Allow: /franchise-consulting/toronto
+Allow: /franchise-consulting/vancouver
+Allow: /franchise-consulting/montreal
+Allow: /franchise-consulting/calgary
+# Australia
+Allow: /franchise-consulting/sydney
+Allow: /franchise-consulting/melbourne
+Allow: /franchise-consulting/brisbane
+Allow: /franchise-consulting/perth
+# India
 Allow: /franchise-consulting/mumbai
 Allow: /franchise-consulting/delhi
 Allow: /franchise-consulting/bangalore
