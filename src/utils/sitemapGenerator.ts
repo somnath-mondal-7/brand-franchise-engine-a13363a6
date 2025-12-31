@@ -1,7 +1,7 @@
-// STRATEGIC SITEMAP GENERATOR - ~60-70 high-quality, indexable pages
-// Key Markets (15) + Service-Location Combos (25) + Core Pages (16) = ~56 pages
+// STRATEGIC SITEMAP GENERATOR - High-quality, indexable pages for 5 countries
+// USA + UK + Canada + Australia + India = ~80 strategic pages
 
-import { keyMarkets, serviceKeywords } from "@/data/strategicSEOPages";
+import { keyMarkets, serviceKeywords, getPrimaryMarkets } from "@/data/strategicSEOPages";
 
 export interface SitemapUrl {
   loc: string;
@@ -14,9 +14,12 @@ export const generateSitemapXml = (): string => {
   const currentDate = new Date().toISOString().split('T')[0];
   const baseUrl = "https://www.franchiseleadshq.com";
   
+  // Get primary markets (5 per country = 25 markets)
+  const primaryMarkets = getPrimaryMarkets();
+  
   let urls = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Homepage - Highest priority -->
+  <!-- Homepage - Highest priority (Global) -->
   <url>
     <loc>${baseUrl}/</loc>
     <lastmod>${currentDate}</lastmod>
@@ -38,9 +41,27 @@ export const generateSitemapXml = (): string => {
     <priority>0.9</priority>
   </url>
   
-  <!-- Country-specific landing pages -->
+  <!-- Country Landing Pages (5 countries) -->
   <url>
     <loc>${baseUrl}/franchise-leads-usa</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/franchise-leads-uk</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/franchise-leads-canada</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/franchise-leads-australia</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -51,46 +72,16 @@ export const generateSitemapXml = (): string => {
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  <url>
-    <loc>${baseUrl}/franchise-leads-uk</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/franchise-leads-canada</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/franchise-leads-australia</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/franchise-leads-dubai</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/franchise-leads-kuwait</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
   
-  <!-- Strategic Market Pages (15 key cities) -->
-${keyMarkets.map(market => `  <url>
+  <!-- Strategic Market Pages (25 key cities across 5 countries) -->
+${primaryMarkets.map(market => `  <url>
     <loc>${baseUrl}/franchise-consulting/${market.slug}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>`).join('\n')}
   
-  <!-- Service + Location Pages (Top 5 keywords × Top 5 markets = 25 pages) -->
+  <!-- Service + Top 5 Markets Combinations (8 services × 5 top markets = 40 pages) -->
 ${serviceKeywords.flatMap(service => 
   keyMarkets.slice(0, 5).map(market => `  <url>
     <loc>${baseUrl}/${service.slug}/${market.slug}</loc>
