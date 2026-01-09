@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -47,8 +48,15 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <>
+      <Helmet>
+        <title>Franchise Consulting Services | Development, Recruitment & Expansion</title>
+        <meta name="description" content="Complete franchise consulting services including franchise development, franchisee recruitment, matchmaking, and expansion planning. Serving India & USA. 850+ brands served." />
+        <link rel="canonical" href="https://www.franchiseleadshq.com/services" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+      <div className="min-h-screen bg-background">
+        <Navigation />
       
       {/* Hero Section */}
       <section className="pt-24 pb-20 bg-gradient-to-br from-background via-accent/30 to-primary/5">
@@ -193,7 +201,8 @@ const Services = () => {
       </section>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 
