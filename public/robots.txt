@@ -1,136 +1,24 @@
 User-agent: *
 Allow: /
 
-# Main Sitemap
+# Sitemaps
 Sitemap: https://www.franchiseleadshq.com/sitemap.xml
 Sitemap: https://www.franchiseleadshq.com/sitemap-blog.xml
 
 # Crawl-delay for better server performance
 Crawl-delay: 1
 
-# ========================================
-# STRATEGIC SEO PAGES - ALLOW THESE
-# ========================================
-
-# Core pages
-Allow: /services$
-Allow: /about
-Allow: /contact
-Allow: /testimonials
-Allow: /blog
-Allow: /buy-franchise-leads
-
-# Country landing pages
-Allow: /franchise-leads-usa
-Allow: /franchise-leads-india
-Allow: /franchise-leads-uk
-Allow: /franchise-leads-canada
-Allow: /franchise-leads-australia
-Allow: /franchise-leads-dubai
-Allow: /franchise-leads-kuwait
-
-# Strategic Market Pages (26 key cities across 5 countries)
-# USA
-Allow: /franchise-consulting/new-york-city
-Allow: /franchise-consulting/los-angeles
-Allow: /franchise-consulting/chicago
-Allow: /franchise-consulting/houston
-Allow: /franchise-consulting/miami
-Allow: /franchise-consulting/dallas
-Allow: /franchise-consulting/atlanta
-Allow: /franchise-consulting/san-francisco
-# UK
-Allow: /franchise-consulting/london
-Allow: /franchise-consulting/manchester
-Allow: /franchise-consulting/birmingham
-Allow: /franchise-consulting/leeds
-Allow: /franchise-consulting/glasgow
-# Canada
-Allow: /franchise-consulting/toronto
-Allow: /franchise-consulting/vancouver
-Allow: /franchise-consulting/montreal
-Allow: /franchise-consulting/calgary
-# Australia
-Allow: /franchise-consulting/sydney
-Allow: /franchise-consulting/melbourne
-Allow: /franchise-consulting/brisbane
-Allow: /franchise-consulting/perth
-# India
-Allow: /franchise-consulting/mumbai
-Allow: /franchise-consulting/delhi
-Allow: /franchise-consulting/bangalore
-Allow: /franchise-consulting/hyderabad
-Allow: /franchise-consulting/chennai
-
-# Service + Location combo pages (top 5 services × top 5 markets)
-Allow: /franchise-development/new-york-city
-Allow: /franchise-development/los-angeles
-Allow: /franchise-development/chicago
-Allow: /franchise-development/houston
-Allow: /franchise-development/miami
-Allow: /franchise-consulting/new-york-city
-Allow: /franchise-consulting/los-angeles
-Allow: /franchise-consulting/chicago
-Allow: /franchise-consulting/houston
-Allow: /franchise-consulting/miami
-Allow: /franchise-opportunities/new-york-city
-Allow: /franchise-opportunities/los-angeles
-Allow: /franchise-opportunities/chicago
-Allow: /franchise-opportunities/houston
-Allow: /franchise-opportunities/miami
-Allow: /franchise-matchmaking/new-york-city
-Allow: /franchise-matchmaking/los-angeles
-Allow: /franchise-matchmaking/chicago
-Allow: /franchise-matchmaking/houston
-Allow: /franchise-matchmaking/miami
-Allow: /buy-a-franchise/new-york-city
-Allow: /buy-a-franchise/los-angeles
-Allow: /buy-a-franchise/chicago
-Allow: /buy-a-franchise/houston
-Allow: /buy-a-franchise/miami
-
-# ========================================
-# BLOCK THIN/PROGRAMMATIC CONTENT
-# ========================================
-
-# Block old location routes (thin content)
-Disallow: /locations/
-
-# Block old service keyword routes
-Disallow: /services/*/
-
-# Block old programmatic combinations
-Disallow: /franchise-marketing/
-Disallow: /franchise-lead-generation/
-Disallow: /franchise-advertising/
-Disallow: /franchise-branding/
-Disallow: /franchise-digital-marketing/
-Disallow: /franchise-seo/
-Disallow: /franchise-social-media-marketing/
-Disallow: /franchise-content-marketing/
-Disallow: /franchise-recruitment/
-Disallow: /franchise-expansion/
-
-# Block admin and internal pages
+# Disallow crawling of admin areas, temp files, and duplicate content
 Disallow: /admin/
 Disallow: /private/
-Disallow: /session-demo
-Disallow: /search
-Disallow: /sitemap-generator
-
-# Block query parameters causing duplicates
+Disallow: /*.json$
 Disallow: /*?*utm_
 Disallow: /*?*sort=
 Disallow: /*?*filter=
-Disallow: /*.json$
+Disallow: /session-demo
+Disallow: /search
 
-# Allow important static assets
-Allow: /favicon.png
-Allow: /logo-hq.png
-Allow: /og-image.png
-Allow: /apple-touch-icon.png
-
-# Allow important bots full access
+# Allow important bot access
 User-agent: Googlebot
 Allow: /
 
@@ -142,3 +30,13 @@ Allow: /
 
 User-agent: Twitterbot
 Allow: /
+
+# Location-specific pages optimization
+Allow: /franchise-leads-usa
+Allow: /franchise-leads-uk  
+Allow: /franchise-leads-canada
+Allow: /franchise-leads-australia
+Allow: /franchise-leads-dubai
+Allow: /franchise-leads-india
+Allow: /franchise-leads-kuwait
+Allow: /buy-franchise-leads

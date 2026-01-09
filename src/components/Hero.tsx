@@ -27,7 +27,7 @@ const Hero = () => {
 
           {/* Subheadline */}
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            From <strong>franchise lead generation to marketing strategy</strong> - we help franchisors connect with qualified investors across <strong>USA, UK, Canada, Australia & India</strong>. Complete end-to-end franchise consulting solutions.
+            From <strong>franchise development to expansion strategy</strong> - we help businesses franchise successfully and connect franchisors with qualified investors across <strong>India & USA</strong>. Complete end-to-end franchise consulting solutions.
           </p>
 
           {/* CTA Button */}
