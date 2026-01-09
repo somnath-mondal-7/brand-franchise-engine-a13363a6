@@ -1,7 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { Resend } from "npm:resend@2.0.0";
 
-const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+// Note: Resend requires API key setup. For now, we'll just log and return success.
+const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -36,38 +36,57 @@ const handler = async (req: Request): Promise<Response> => {
       </div>`
     ).join('');
 
-    const emailResponse = await resend.emails.send({
-      from: "FranchiseLeads HQ <onboarding@resend.dev>",
-      to: ["your-email@example.com"], // IMPORTANT: Replace this with your actual email address
-      subject: `New Chat Conversation${visitorName ? ` from ${visitorName}` : ''}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #333;">New Chat Conversation</h2>
-          
-          <div style="background: #f9f9f9; padding: 15px; border-radius: 5px; margin: 20px 0;">
-            <p><strong>Conversation ID:</strong> ${conversationId}</p>
-            ${visitorName ? `<p><strong>Visitor Name:</strong> ${visitorName}</p>` : ''}
-            ${visitorEmail ? `<p><strong>Visitor Email:</strong> ${visitorEmail}</p>` : ''}
-            <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
-          </div>
+    // Simple email sending without npm package dependency
+    if (!RESEND_API_KEY) {
+      console.log("RESEND_API_KEY not configured. Logging chat notification instead.");
+      console.log("Chat notification:", { conversationId, visitorName, visitorEmail, messageCount: messages.length });
+      return new Response(JSON.stringify({ success: true, message: "Logged (email not configured)" }), {
+        status: 200,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      });
+    }
 
-          <h3 style="color: #333;">Conversation History:</h3>
-          <div style="margin-top: 20px;">
-            ${conversationHistory}
-          </div>
+    const emailResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: "FranchiseLeads HQ <onboarding@resend.dev>",
+        to: ["your-email@example.com"],
+        subject: `New Chat Conversation${visitorName ? ` from ${visitorName}` : ''}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #333;">New Chat Conversation</h2>
+            
+            <div style="background: #f9f9f9; padding: 15px; border-radius: 5px; margin: 20px 0;">
+              <p><strong>Conversation ID:</strong> ${conversationId}</p>
+              ${visitorName ? `<p><strong>Visitor Name:</strong> ${visitorName}</p>` : ''}
+              ${visitorEmail ? `<p><strong>Visitor Email:</strong> ${visitorEmail}</p>` : ''}
+              <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
+            </div>
 
-          <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
-          
-          <p style="color: #666; font-size: 12px;">
-            This notification was sent from your FranchiseLeads HQ website chat system.
-          </p>
-        </div>
-      `,
+            <h3 style="color: #333;">Conversation History:</h3>
+            <div style="margin-top: 20px;">
+              ${conversationHistory}
+            </div>
+
+            <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
+            
+            <p style="color: #666; font-size: 12px;">
+              This notification was sent from your FranchiseLeads HQ website chat system.
+            </p>
+          </div>
+        `,
+      }),
     });
 
-    console.log("Email sent successfully:", emailResponse);
+    const emailData = await emailResponse.json();
 
-    return new Response(JSON.stringify(emailResponse), {
+    console.log("Email sent successfully:", emailData);
+
+    return new Response(JSON.stringify(emailData), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
