@@ -1,4 +1,4 @@
-import { locationData, broadMarketingKeywords } from '@/data/locations';
+import { locationData, broadMarketingKeywords, seoKeywords } from '@/data/locations';
 
 export interface SitemapUrl {
   loc: string;
@@ -7,13 +7,13 @@ export interface SitemapUrl {
   priority: string;
 }
 
-// Generate ONLY high-value location pages (countries only, no duplicate city pages)
+// Generate ALL location pages (country + state + city levels)
 export const generateLocationUrls = (): SitemapUrl[] => {
   const urls: SitemapUrl[] = [];
   const currentDate = new Date().toISOString().split('T')[0];
 
   locationData.forEach(country => {
-    // Only country level pages to avoid thin content
+    // Country level page
     const countryUrl = `https://www.franchiseleadshq.com/locations/${country.countryCode.toLowerCase()}`;
     urls.push({
       loc: countryUrl,
@@ -21,64 +21,98 @@ export const generateLocationUrls = (): SitemapUrl[] => {
       changefreq: 'weekly',
       priority: '0.8'
     });
+
+    // State/region level pages
+    country.states.forEach(state => {
+      const stateUrl = `https://www.franchiseleadshq.com/locations/${country.countryCode.toLowerCase()}/${state.slug}`;
+      urls.push({
+        loc: stateUrl,
+        lastmod: currentDate,
+        changefreq: 'weekly',
+        priority: '0.75'
+      });
+
+      // City level pages
+      state.cities.forEach(city => {
+        const cityUrl = `https://www.franchiseleadshq.com/locations/${country.countryCode.toLowerCase()}/${state.slug}/${city.slug}`;
+        urls.push({
+          loc: cityUrl,
+          lastmod: currentDate,
+          changefreq: 'weekly',
+          priority: '0.7'
+        });
+      });
+    });
   });
 
   return urls;
 };
 
-// REMOVED: No separate keyword URLs - these create thin/duplicate content
+// Generate keyword/service pages
 export const generateKeywordUrls = (): SitemapUrl[] => {
-  return [];
+  const urls: SitemapUrl[] = [];
+  const currentDate = new Date().toISOString().split('T')[0];
+
+  seoKeywords.forEach(keyword => {
+    const keywordSlug = keyword.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    const keywordUrl = `https://www.franchiseleadshq.com/services/${keywordSlug}`;
+    urls.push({
+      loc: keywordUrl,
+      lastmod: currentDate,
+      changefreq: 'weekly',
+      priority: '0.7'
+    });
+  });
+
+  return urls;
 };
 
-// Generate ONLY essential service + location combinations (~100 pages max)
+// Generate ALL service + location combinations
 export const generateServiceLocationUrls = (): SitemapUrl[] => {
   const urls: SitemapUrl[] = [];
   const currentDate = new Date().toISOString().split('T')[0];
 
-  // Only use the 5 core service keywords
   broadMarketingKeywords.forEach(service => {
     const serviceSlug = service.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     
     locationData.forEach(country => {
-      // Only generate state-level pages for USA and India (primary markets)
+      // Determine priority based on market
       const isPrimaryMarket = ['USA', 'IN'].includes(country.countryCode.toUpperCase());
-      
-      if (isPrimaryMarket) {
-        country.states.forEach(state => {
-          // Service + State pages only
-          const stateUrl = `https://www.franchiseleadshq.com/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}`;
+      const basePriority = isPrimaryMarket ? 0.85 : 0.75;
+
+      country.states.forEach(state => {
+        // Service + State pages
+        const stateUrl = `https://www.franchiseleadshq.com/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}`;
+        urls.push({
+          loc: stateUrl,
+          lastmod: currentDate,
+          changefreq: 'weekly',
+          priority: basePriority.toString()
+        });
+
+        // Service + City pages (ALL cities)
+        state.cities.forEach(city => {
+          const cityUrl = `https://www.franchiseleadshq.com/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}/${city.slug}`;
           urls.push({
-            loc: stateUrl,
+            loc: cityUrl,
             lastmod: currentDate,
             changefreq: 'weekly',
-            priority: country.countryCode === 'IN' ? '0.9' : '0.8'
+            priority: (basePriority - 0.05).toString()
           });
-
-          // Only top 1 city per state for primary services
-          if (state.cities.length > 0) {
-            const topCity = state.cities[0];
-            const cityUrl = `https://www.franchiseleadshq.com/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}/${topCity.slug}`;
-            urls.push({
-              loc: cityUrl,
-              lastmod: currentDate,
-              changefreq: 'weekly',
-              priority: country.countryCode === 'IN' ? '0.85' : '0.75'
-            });
-          }
         });
-      }
+      });
     });
   });
 
-  console.log(`✅ Generated ${urls.length} optimized service+location URLs`);
+  console.log(`✅ Generated ${urls.length} service+location URLs`);
   return urls;
 };
 
 export const generateSitemapXml = (): string => {
   const locationUrls = generateLocationUrls();
+  const keywordUrls = generateKeywordUrls();
   const serviceLocationUrls = generateServiceLocationUrls();
-  const allUrls = [...locationUrls, ...serviceLocationUrls];
+  const allUrls = [...locationUrls, ...keywordUrls, ...serviceLocationUrls];
   const currentDate = new Date().toISOString().split('T')[0];
 
   const urlsXml = allUrls.map(url => `
