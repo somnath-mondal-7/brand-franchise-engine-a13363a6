@@ -11,6 +11,7 @@ import DigitalMarketing from "./pages/DigitalMarketing";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import BlogAdmin from "./pages/BlogAdmin";
+import AutoBlogAdmin from "./pages/AutoBlogAdmin";
 import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
 import Testimonials from "./pages/Testimonials";
 import Contact from "./pages/Contact";
@@ -76,6 +77,11 @@ const App = () => (
             <Route path="/admin/blog" element={
               <ProtectedAdminRoute>
                 <BlogAdmin />
+              </ProtectedAdminRoute>
+            } />
+            <Route path="/admin/auto-blog" element={
+              <ProtectedAdminRoute>
+                <AutoBlogAdmin />
               </ProtectedAdminRoute>
             } />
             <Route path="/admin/sitemap-generator" element={
