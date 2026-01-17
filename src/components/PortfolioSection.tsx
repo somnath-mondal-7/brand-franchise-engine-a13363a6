@@ -43,12 +43,12 @@ const portfolioItems = [
   {
     id: 1,
     category: "websites",
-    title: "Subway India Franchise Portal",
-    client: "Subway India",
+    title: "QuickBite India Franchise Portal",
+    client: "QuickBite Sandwiches",
     clientLogo: "https://images.unsplash.com/photo-1619461672456-c4d2a51cd0e1?w=100&q=80",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
     description: "Complete franchise recruitment website with lead capture, territory mapping, and investor qualification system.",
-    liveUrl: "https://subway-franchise-india.demo.franchiseleadshq.com",
+    liveUrl: "https://quickbite-franchise.demo.franchiseleadshq.com",
     results: [
       { label: "Conversion Rate", value: "8.7%", icon: Target },
       { label: "Monthly Leads", value: "340+", icon: Users },
@@ -59,7 +59,7 @@ const portfolioItems = [
     duration: "6 weeks",
     teamSize: "4 specialists",
     fullCaseStudy: {
-      challenge: "Subway India needed a modern franchise recruitment platform that could handle high-volume traffic during expansion campaigns while qualifying leads effectively before sales team engagement.",
+      challenge: "This leading QSR brand needed a modern franchise recruitment platform that could handle high-volume traffic during expansion campaigns while qualifying leads effectively before sales team engagement.",
       solution: "We built a custom WordPress + React hybrid platform with intelligent lead scoring, interactive territory maps showing available locations, investment calculators, and a 3-step qualification funnel.",
       results: [
         "Increased lead quality by 45% through smart qualification",
@@ -69,8 +69,8 @@ const portfolioItems = [
       ],
       testimonial: {
         quote: "The portal transformed our franchise recruitment. We now get pre-qualified leads that our sales team loves working with.",
-        author: "Rajesh Kumar",
-        role: "Franchise Development Director, Subway India"
+        author: "Rajesh K.",
+        role: "Franchise Development Director"
       },
       techStack: ["React", "WordPress", "Salesforce", "Google Maps API", "HubSpot"],
       screenshots: [
@@ -83,11 +83,11 @@ const portfolioItems = [
     id: 2,
     category: "paid-ads",
     title: "Google Ads Campaign - Pizza Franchise",
-    client: "La Pino'z Pizza",
+    client: "Italiano Pizza Co.",
     clientLogo: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=100&q=80",
     image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80",
     description: "Multi-location Google Ads campaign targeting franchise investors across 15 Indian states with geo-targeted landing pages.",
-    liveUrl: "https://lapinoz-franchise.demo.franchiseleadshq.com",
+    liveUrl: "https://italiano-pizza-franchise.demo.franchiseleadshq.com",
     results: [
       { label: "ROAS", value: "847%", icon: DollarSign },
       { label: "Cost Per Lead", value: "₹285", icon: Target },
@@ -98,7 +98,7 @@ const portfolioItems = [
     duration: "Ongoing (8 months)",
     teamSize: "3 specialists",
     fullCaseStudy: {
-      challenge: "La Pino'z wanted to expand rapidly into Tier 2 and Tier 3 cities but struggled with reaching the right investor demographics through traditional advertising.",
+      challenge: "This pizza chain wanted to expand rapidly into Tier 2 and Tier 3 cities but struggled with reaching the right investor demographics through traditional advertising.",
       solution: "We created a comprehensive Google Ads strategy with 47 location-specific campaigns, custom landing pages for each major city, and a sophisticated retargeting funnel for warm leads.",
       results: [
         "Generated 1,240 qualified franchise leads in 8 months",
@@ -107,9 +107,9 @@ const portfolioItems = [
         "Signed 34 new franchise agreements worth ₹12 Cr"
       ],
       testimonial: {
-        quote: "FranchiseLeadsHQ's Google Ads strategy helped us sign more franchisees in 6 months than we did all of last year.",
-        author: "Aman Verma",
-        role: "Marketing Head, La Pino'z Pizza"
+        quote: "The Google Ads strategy helped us sign more franchisees in 6 months than we did all of last year.",
+        author: "Aman V.",
+        role: "Marketing Head"
       },
       techStack: ["Google Ads", "Google Analytics", "Unbounce", "CallRail", "Zapier"],
       screenshots: [
@@ -122,11 +122,11 @@ const portfolioItems = [
     id: 3,
     category: "linkedin",
     title: "LinkedIn Franchise Investor Outreach",
-    client: "Lenskart Franchise",
+    client: "VisionCare Optics",
     clientLogo: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=100&q=80",
     image: "https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=800&q=80",
     description: "B2B LinkedIn campaign targeting HNIs and business owners for franchise investment opportunities with automated sequences.",
-    liveUrl: "https://lenskart-franchise.demo.franchiseleadshq.com",
+    liveUrl: "https://visioncare-franchise.demo.franchiseleadshq.com",
     results: [
       { label: "Connection Rate", value: "42%", icon: Users },
       { label: "Response Rate", value: "18.5%", icon: MousePointer },
@@ -137,7 +137,7 @@ const portfolioItems = [
     duration: "4 months",
     teamSize: "2 specialists",
     fullCaseStudy: {
-      challenge: "Lenskart wanted to attract high-net-worth individuals and existing business owners as franchisees, but traditional lead generation wasn't reaching this exclusive audience.",
+      challenge: "This eyewear brand wanted to attract high-net-worth individuals and existing business owners as franchisees, but traditional lead generation wasn't reaching this exclusive audience.",
       solution: "We designed a sophisticated LinkedIn outreach campaign with Sales Navigator, targeting entrepreneurs with specific revenue thresholds, industry experience, and investment capacity.",
       results: [
         "Connected with 2,800+ qualified prospects",
@@ -147,8 +147,8 @@ const portfolioItems = [
       ],
       testimonial: {
         quote: "The quality of leads from LinkedIn outreach exceeded our expectations. These are serious investors who move fast.",
-        author: "Priya Sharma",
-        role: "Business Development, Lenskart"
+        author: "Priya S.",
+        role: "Business Development Manager"
       },
       techStack: ["LinkedIn Sales Navigator", "Dux-Soup", "HubSpot", "Calendly", "Loom"],
       screenshots: [
@@ -161,11 +161,11 @@ const portfolioItems = [
     id: 4,
     category: "lead-gen",
     title: "Franchise Lead Generation System",
-    client: "Haldiram's Franchise",
+    client: "Swadeshi Snacks",
     clientLogo: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=100&q=80",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
     description: "End-to-end lead generation funnel with qualification scoring, automated nurturing, and CRM integration for franchise sales.",
-    liveUrl: "https://haldirams-leads.demo.franchiseleadshq.com",
+    liveUrl: "https://swadeshi-leads.demo.franchiseleadshq.com",
     results: [
       { label: "Monthly Leads", value: "520+", icon: Users },
       { label: "Qualification Rate", value: "34%", icon: Target },
@@ -176,7 +176,7 @@ const portfolioItems = [
     duration: "12 months",
     teamSize: "5 specialists",
     fullCaseStudy: {
-      challenge: "Haldiram's received thousands of franchise inquiries monthly but their sales team was overwhelmed with unqualified leads, wasting time and resources.",
+      challenge: "This traditional Indian snacks brand received thousands of franchise inquiries monthly but their sales team was overwhelmed with unqualified leads, wasting time and resources.",
       solution: "We implemented a complete lead management system with automated qualification scoring, email nurturing sequences, WhatsApp follow-ups, and a custom CRM dashboard.",
       results: [
         "Processed 6,200+ leads with 34% qualification rate",
@@ -186,8 +186,8 @@ const portfolioItems = [
       ],
       testimonial: {
         quote: "Our franchise sales team now focuses only on the most promising leads. The system pays for itself every month.",
-        author: "Vikram Agarwal",
-        role: "Franchise Sales Director, Haldiram's"
+        author: "Vikram A.",
+        role: "Franchise Sales Director"
       },
       techStack: ["Zoho CRM", "ActiveCampaign", "WhatsApp Business API", "Typeform", "Power BI"],
       screenshots: [
@@ -199,12 +199,12 @@ const portfolioItems = [
   {
     id: 5,
     category: "case-studies",
-    title: "Chai Sutta Bar - National Expansion",
-    client: "Chai Sutta Bar",
+    title: "Desi Chai House - National Expansion",
+    client: "Desi Chai House",
     clientLogo: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=100&q=80",
     image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80",
     description: "Complete franchise development and recruitment strategy that helped expand from 50 to 450+ outlets in 18 months.",
-    liveUrl: "https://chaisuttabar-expansion.demo.franchiseleadshq.com",
+    liveUrl: "https://desichaihouse-expansion.demo.franchiseleadshq.com",
     results: [
       { label: "New Franchisees", value: "400+", icon: Users },
       { label: "Revenue Growth", value: "780%", icon: TrendingUp },
@@ -215,7 +215,7 @@ const portfolioItems = [
     duration: "18 months",
     teamSize: "8 specialists",
     fullCaseStudy: {
-      challenge: "Chai Sutta Bar was popular in Indore but struggled to replicate success in other cities. They needed a systematic approach to national franchise expansion.",
+      challenge: "This chai brand was popular in Central India but struggled to replicate success in other cities. They needed a systematic approach to national franchise expansion.",
       solution: "We developed a complete franchise expansion playbook including territory analysis, franchisee profiling, multi-channel lead generation, and a franchise discovery day program.",
       results: [
         "Expanded from 50 to 450+ outlets in 18 months",
@@ -225,8 +225,8 @@ const portfolioItems = [
       ],
       testimonial: {
         quote: "FranchiseLeadsHQ didn't just generate leads - they helped us build a franchise empire. Their strategy was game-changing.",
-        author: "Anubhav Dubey",
-        role: "Founder, Chai Sutta Bar"
+        author: "Anubhav D.",
+        role: "Founder & CEO"
       },
       techStack: ["Custom CRM", "Facebook Ads", "Google Ads", "WhatsApp Business", "Franchise Cloud"],
       screenshots: [
@@ -239,11 +239,11 @@ const portfolioItems = [
     id: 6,
     category: "websites",
     title: "Franchise Discovery Platform",
-    client: "FranchiseIndia.com",
+    client: "FranchiseConnect Pro",
     clientLogo: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=100&q=80",
     image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80",
     description: "Marketplace platform connecting franchise brands with investors, featuring advanced search, comparison tools, and inquiry management.",
-    liveUrl: "https://franchiseindia-marketplace.demo.franchiseleadshq.com",
+    liveUrl: "https://franchiseconnect-marketplace.demo.franchiseleadshq.com",
     results: [
       { label: "Monthly Visitors", value: "2.1M", icon: Eye },
       { label: "Brand Listings", value: "850+", icon: Globe },
@@ -254,7 +254,7 @@ const portfolioItems = [
     duration: "10 months",
     teamSize: "12 specialists",
     fullCaseStudy: {
-      challenge: "FranchiseIndia needed to modernize their legacy platform to compete with new-age competitors while handling massive traffic and lead volume.",
+      challenge: "This franchise marketplace needed to modernize their legacy platform to compete with new-age competitors while handling massive traffic and lead volume.",
       solution: "We rebuilt the platform with React/Node.js, implemented AI-powered franchise matching, created a brand dashboard for lead management, and added comparison tools.",
       results: [
         "Increased monthly visitors from 800K to 2.1M",
@@ -264,8 +264,8 @@ const portfolioItems = [
       ],
       testimonial: {
         quote: "The new platform is leagues ahead of what we had. Our brands love the lead management dashboard.",
-        author: "Gaurav Marya",
-        role: "Chairman, FranchiseIndia"
+        author: "Gaurav M.",
+        role: "Chairman & CEO"
       },
       techStack: ["React", "Node.js", "PostgreSQL", "Redis", "AWS", "Elasticsearch"],
       screenshots: [
@@ -278,11 +278,11 @@ const portfolioItems = [
     id: 7,
     category: "paid-ads",
     title: "Meta Ads - Quick Service Restaurant",
-    client: "WOW! Momo",
+    client: "MoMo Express",
     clientLogo: "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=100&q=80",
     image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80",
     description: "Facebook & Instagram campaign with lookalike audiences targeting potential franchisees in Tier 2 & 3 cities.",
-    liveUrl: "https://wowmomo-ads.demo.franchiseleadshq.com",
+    liveUrl: "https://momoexpress-ads.demo.franchiseleadshq.com",
     results: [
       { label: "ROAS", value: "624%", icon: DollarSign },
       { label: "Lead Cost", value: "₹195", icon: Target },
@@ -293,7 +293,7 @@ const portfolioItems = [
     duration: "6 months",
     teamSize: "3 specialists",
     fullCaseStudy: {
-      challenge: "WOW! Momo wanted to expand into smaller cities but found it difficult to reach qualified investors through traditional digital channels.",
+      challenge: "This momos QSR chain wanted to expand into smaller cities but found it difficult to reach qualified investors through traditional digital channels.",
       solution: "We created lookalike audiences from their existing top-performing franchisees, combined with interest-based targeting and video-first creative strategy.",
       results: [
         "Generated 890 qualified leads at ₹195 CPL",
@@ -303,8 +303,8 @@ const portfolioItems = [
       ],
       testimonial: {
         quote: "Meta ads opened up markets we thought were impossible to reach. The ROI speaks for itself.",
-        author: "Sagar Daryani",
-        role: "CEO, WOW! Momo"
+        author: "Sagar D.",
+        role: "CEO & Founder"
       },
       techStack: ["Meta Ads Manager", "Hootsuite", "Canva Pro", "Leadpages", "HubSpot"],
       screenshots: [
@@ -317,11 +317,11 @@ const portfolioItems = [
     id: 8,
     category: "linkedin",
     title: "Franchise Owner Thought Leadership",
-    client: "Barbeque Nation",
+    client: "Grill Masters BBQ",
     clientLogo: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=100&q=80",
     image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&q=80",
     description: "Executive thought leadership campaign positioning the founder as industry expert, driving inbound franchise inquiries.",
-    liveUrl: "https://bbq-nation-linkedin.demo.franchiseleadshq.com",
+    liveUrl: "https://grillmasters-linkedin.demo.franchiseleadshq.com",
     results: [
       { label: "Followers Growth", value: "12.4K", icon: Users },
       { label: "Engagement Rate", value: "8.2%", icon: TrendingUp },
@@ -332,7 +332,7 @@ const portfolioItems = [
     duration: "8 months",
     teamSize: "2 specialists",
     fullCaseStudy: {
-      challenge: "Barbeque Nation wanted to attract sophisticated investors and multi-unit franchisees who typically don't respond to traditional advertising.",
+      challenge: "This BBQ restaurant chain wanted to attract sophisticated investors and multi-unit franchisees who typically don't respond to traditional advertising.",
       solution: "We positioned the founder as a hospitality industry thought leader through consistent LinkedIn content, industry insights, and strategic engagement with key accounts.",
       results: [
         "Grew founder's LinkedIn following from 3K to 15.4K",
@@ -342,8 +342,8 @@ const portfolioItems = [
       ],
       testimonial: {
         quote: "The thought leadership strategy brought us a completely different caliber of franchisee prospects.",
-        author: "Kayum Dhanani",
-        role: "Managing Director, Barbeque Nation"
+        author: "Kayum D.",
+        role: "Managing Director"
       },
       techStack: ["LinkedIn", "Shield Analytics", "Canva", "Notion", "Calendly"],
       screenshots: [
@@ -356,11 +356,11 @@ const portfolioItems = [
     id: 9,
     category: "lead-gen",
     title: "Multi-Channel Franchise Recruitment",
-    client: "Jockey India",
+    client: "Urban Apparel Co.",
     clientLogo: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=100&q=80",
     image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80",
     description: "Integrated lead generation across Google, Meta, LinkedIn, and content marketing with unified tracking and attribution.",
-    liveUrl: "https://jockey-franchise.demo.franchiseleadshq.com",
+    liveUrl: "https://urbanapparel-franchise.demo.franchiseleadshq.com",
     results: [
       { label: "Total Leads", value: "3,200+", icon: Users },
       { label: "Avg. CPL", value: "₹340", icon: DollarSign },
@@ -371,7 +371,7 @@ const portfolioItems = [
     duration: "12 months",
     teamSize: "6 specialists",
     fullCaseStudy: {
-      challenge: "Jockey India was running siloed campaigns across different channels with no unified attribution, making it impossible to optimize spend effectively.",
+      challenge: "This premium apparel brand was running siloed campaigns across different channels with no unified attribution, making it impossible to optimize spend effectively.",
       solution: "We implemented a unified marketing stack with cross-channel attribution, created a consistent brand message across all touchpoints, and built a lead scoring system.",
       results: [
         "Generated 3,200+ qualified leads across all channels",
@@ -381,8 +381,8 @@ const portfolioItems = [
       ],
       testimonial: {
         quote: "Finally, we can see exactly which channels drive results. The unified approach transformed our franchise marketing.",
-        author: "Rahul Bhalla",
-        role: "Head of Franchise, Jockey India"
+        author: "Rahul B.",
+        role: "Head of Franchise Development"
       },
       techStack: ["Google Ads", "Meta Ads", "LinkedIn Ads", "HubSpot", "Segment", "Tableau"],
       screenshots: [
@@ -395,11 +395,11 @@ const portfolioItems = [
     id: 10,
     category: "case-studies",
     title: "US Market Entry - Indian QSR Brand",
-    client: "Biryani By Kilo",
+    client: "Royal Biryani Kitchen",
     clientLogo: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=100&q=80",
     image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
     description: "Complete market entry strategy for expanding to the US market, including regulatory compliance, territory mapping, and franchisee recruitment.",
-    liveUrl: "https://bbk-usa-expansion.demo.franchiseleadshq.com",
+    liveUrl: "https://royalbiryani-usa-expansion.demo.franchiseleadshq.com",
     results: [
       { label: "US Outlets", value: "18", icon: Globe },
       { label: "Investment", value: "$4.2M", icon: DollarSign },
@@ -410,7 +410,7 @@ const portfolioItems = [
     duration: "24 months",
     teamSize: "10 specialists",
     fullCaseStudy: {
-      challenge: "Biryani By Kilo wanted to enter the US market but lacked knowledge of American franchise regulations, territory selection, and investor preferences.",
+      challenge: "This biryani brand wanted to enter the US market but lacked knowledge of American franchise regulations, territory selection, and investor preferences.",
       solution: "We provided end-to-end US market entry support including FDD preparation, territory analysis, franchisee recruitment targeting NRIs and experienced operators.",
       results: [
         "Launched 18 outlets across 8 US states",
@@ -420,8 +420,8 @@ const portfolioItems = [
       ],
       testimonial: {
         quote: "Entering the US market seemed impossible until FranchiseLeadsHQ showed us the way. Their expertise is unmatched.",
-        author: "Vishal Jindal",
-        role: "Co-Founder, Biryani By Kilo"
+        author: "Vishal J.",
+        role: "Co-Founder"
       },
       techStack: ["FranConnect", "Salesforce", "DocuSign", "Google Ads US", "LinkedIn Ads"],
       screenshots: [
@@ -434,11 +434,11 @@ const portfolioItems = [
     id: 11,
     category: "websites",
     title: "Franchise Investor CRM Dashboard",
-    client: "Amul Franchise",
+    client: "DairyFresh Co-op",
     clientLogo: "https://images.unsplash.com/photo-1523473827533-2a64d0d36748?w=100&q=80",
     image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
     description: "Custom CRM and dashboard for managing 5000+ franchise inquiries with automated scoring, follow-up sequences, and analytics.",
-    liveUrl: "https://amul-crm.demo.franchiseleadshq.com",
+    liveUrl: "https://dairyfresh-crm.demo.franchiseleadshq.com",
     results: [
       { label: "Lead Response", value: "<2 hrs", icon: Target },
       { label: "Conversion Lift", value: "+45%", icon: TrendingUp },
@@ -449,7 +449,7 @@ const portfolioItems = [
     duration: "5 months",
     teamSize: "7 specialists",
     fullCaseStudy: {
-      challenge: "Amul's franchise team was managing 5000+ monthly inquiries through spreadsheets, leading to missed follow-ups and lost opportunities.",
+      challenge: "This dairy cooperative's franchise team was managing 5000+ monthly inquiries through spreadsheets, leading to missed follow-ups and lost opportunities.",
       solution: "We built a custom CRM with AI-powered lead scoring, automated follow-up sequences, territory-based assignment, and real-time performance dashboards.",
       results: [
         "Reduced average lead response time to under 2 hours",
@@ -459,8 +459,8 @@ const portfolioItems = [
       ],
       testimonial: {
         quote: "The CRM transformed how we manage franchise inquiries. No lead falls through the cracks anymore.",
-        author: "RS Sodhi",
-        role: "Managing Director, Amul"
+        author: "R.S. Singh",
+        role: "Managing Director"
       },
       techStack: ["React", "Node.js", "MongoDB", "Redis", "AWS", "Twilio"],
       screenshots: [
@@ -473,11 +473,11 @@ const portfolioItems = [
     id: 12,
     category: "paid-ads",
     title: "YouTube Pre-Roll Franchise Campaign",
-    client: "VLCC Franchise",
+    client: "GlowUp Wellness",
     clientLogo: "https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=100&q=80",
     image: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&q=80",
     description: "Video advertising campaign on YouTube targeting aspiring entrepreneurs and investors interested in wellness franchise opportunities.",
-    liveUrl: "https://vlcc-youtube.demo.franchiseleadshq.com",
+    liveUrl: "https://glowup-youtube.demo.franchiseleadshq.com",
     results: [
       { label: "Views", value: "4.2M", icon: Eye },
       { label: "VTR", value: "68%", icon: Play },
@@ -488,8 +488,8 @@ const portfolioItems = [
     duration: "6 months",
     teamSize: "4 specialists",
     fullCaseStudy: {
-      challenge: "VLCC wanted to reach aspiring beauty and wellness entrepreneurs but found static ads less effective for communicating their brand story.",
-      solution: "We produced a series of video ads featuring successful VLCC franchisees, combined with strategic YouTube targeting to reach potential investors.",
+      challenge: "This beauty and wellness brand wanted to reach aspiring entrepreneurs but found static ads less effective for communicating their brand story.",
+      solution: "We produced a series of video ads featuring successful franchisees, combined with strategic YouTube targeting to reach potential investors.",
       results: [
         "Achieved 4.2M video views across campaigns",
         "Generated 1,850 qualified franchise leads",
@@ -498,8 +498,8 @@ const portfolioItems = [
       ],
       testimonial: {
         quote: "Video ads helped us tell our franchise story in a way that static ads never could. The results exceeded expectations.",
-        author: "Vandana Luthra",
-        role: "Founder, VLCC"
+        author: "Vandana L.",
+        role: "Founder & Chairperson"
       },
       techStack: ["YouTube Ads", "Google Ads", "Final Cut Pro", "Bitly", "HubSpot"],
       screenshots: [
@@ -513,14 +513,14 @@ const portfolioItems = [
 // ROI Case Studies with detailed metrics
 const roiCaseStudies = [
   {
-    brand: "Chai Point",
+    brand: "Chai Junction",
     logo: "https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?w=100&q=80",
     industry: "F&B - Beverages",
     investment: "₹18.5L",
     period: "8 months",
     location: "Pan India",
-    website: "https://chaipoint-franchise.demo.franchiseleadshq.com",
-    reportUrl: "https://drive.google.com/franchise-roi-chaipoint-2024",
+    website: "https://chaijunction-franchise.demo.franchiseleadshq.com",
+    reportUrl: "https://drive.google.com/franchise-roi-report-2024",
     metrics: {
       leadsGenerated: 1240,
       qualifiedLeads: 421,
@@ -536,14 +536,14 @@ const roiCaseStudies = [
     }
   },
   {
-    brand: "The Belgian Waffle Co.",
+    brand: "Sweet Delights Bakery",
     logo: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100&q=80",
     industry: "F&B - Desserts",
     investment: "₹12L",
     period: "6 months",
     location: "North & West India",
-    website: "https://belgianwaffle-franchise.demo.franchiseleadshq.com",
-    reportUrl: "https://drive.google.com/franchise-roi-belgian-2024",
+    website: "https://sweetdelights-franchise.demo.franchiseleadshq.com",
+    reportUrl: "https://drive.google.com/franchise-roi-report-2024",
     metrics: {
       leadsGenerated: 890,
       qualifiedLeads: 312,
@@ -559,14 +559,14 @@ const roiCaseStudies = [
     }
   },
   {
-    brand: "Tumbledry",
+    brand: "CleanPress Laundry",
     logo: "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=100&q=80",
     industry: "Services - Laundry",
     investment: "₹8.5L",
     period: "12 months",
     location: "Metro Cities",
-    website: "https://tumbledry-franchise.demo.franchiseleadshq.com",
-    reportUrl: "https://drive.google.com/franchise-roi-tumbledry-2024",
+    website: "https://cleanpress-franchise.demo.franchiseleadshq.com",
+    reportUrl: "https://drive.google.com/franchise-roi-report-2024",
     metrics: {
       leadsGenerated: 2100,
       qualifiedLeads: 735,
