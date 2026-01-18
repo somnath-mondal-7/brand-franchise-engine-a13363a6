@@ -18,26 +18,53 @@ const Hero = () => {
     <section className="pt-16 pb-12 md:pb-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-20">
         <div className="max-w-4xl mx-auto text-center space-y-4 md:space-y-8">
+          {/* Trust Badge */}
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            50,000+ Qualified Leads Generated
+          </div>
+
           {/* Main Headline */}
           <div className="space-y-2 md:space-y-4">
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-foreground leading-tight">
-              Your Complete <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Franchise Consulting</span> Partner
+              Stop Chasing Cold Leads.<br />
+              <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Start Closing Deals.</span>
             </h1>
           </div>
 
-          {/* Subheadline */}
+          {/* Subheadline - More human and specific */}
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            From <strong>franchise development to expansion strategy</strong> - we help businesses franchise successfully and connect franchisors with qualified investors across <strong>India & USA</strong>. Complete end-to-end franchise consulting solutions.
+            We bring you <strong>investors who are ready to sign</strong> — not tire-kickers or time-wasters. 
+            Our franchise leads have <strong>$50K–$500K</strong> to invest and are actively searching for opportunities in <strong>India & USA</strong>.
           </p>
 
+          {/* Social Proof Mini Stats */}
+          <div className="flex flex-wrap justify-center gap-6 md:gap-10 pt-2">
+            <div className="text-center">
+              <div className="text-2xl md:text-3xl font-bold text-foreground">30 Days</div>
+              <div className="text-sm text-muted-foreground">to First Lead</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl md:text-3xl font-bold text-foreground">3-5x</div>
+              <div className="text-sm text-muted-foreground">Avg. ROI</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl md:text-3xl font-bold text-foreground">500+</div>
+              <div className="text-sm text-muted-foreground">Brands Served</div>
+            </div>
+          </div>
+
           {/* CTA Button */}
-          <div className="pt-2 md:pt-4 flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="pt-4 md:pt-6 flex flex-col sm:flex-row gap-3 justify-center">
             <Button 
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-lg"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-lg shadow-lg hover:shadow-xl transition-all"
               onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
             >
-              Get Free Consultation
+              Get Your Free Strategy Call →
             </Button>
             <Button 
               size="lg"
@@ -45,9 +72,14 @@ const Hero = () => {
               className="border-2 border-primary text-primary hover:bg-primary/10 px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-lg"
               onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Explore Our Solutions →
+              See How It Works
             </Button>
           </div>
+
+          {/* Risk-Free Promise */}
+          <p className="text-sm text-muted-foreground">
+            ✓ No upfront fees &nbsp;&nbsp; ✓ 7-day money-back guarantee &nbsp;&nbsp; ✓ Cancel anytime
+          </p>
 
           {/* Video Section - Optimized YouTube facade for performance */}
           <div className="pt-6 md:pt-12">

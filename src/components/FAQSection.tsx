@@ -6,36 +6,36 @@ const FAQSection = () => {
 
   const faqs = [
     {
-      question: "How quickly can I start generating franchise leads?",
-      answer: "Most clients see qualified leads within 30 days of launching their campaign. Our proven system includes immediate setup of targeted advertising, lead magnets, and follow-up sequences to accelerate results."
+      question: "How fast will I see my first leads?",
+      answer: "Most clients receive their first qualified leads within 30 days of launch. We set up your campaigns, landing pages, and follow-up systems immediately—so you're not waiting months to see traction."
     },
     {
-      question: "What makes your franchise lead generation different?",
-      answer: "We specialize exclusively in franchise marketing with a proven system that has generated 50,000+ leads. Our approach combines targeted advertising, brand building, and conversion optimization specifically for franchise consultants and franchisors."
+      question: "What makes your leads different from other agencies?",
+      answer: "We pre-qualify every lead before you see them. That means verified investment capacity ($50K–$500K), confirmed timeline (ready within 90 days), and genuine interest in franchising. You're not buying a list—you're getting warm introductions to serious investors."
     },
     {
       question: "Do you work with franchise consultants or franchisors?",
-      answer: "We work with both! Our lead generation strategies are tailored for franchise consultants seeking qualified prospects and franchisors looking to expand their franchise network with the right partners."
+      answer: "Both. If you're a franchisor looking for qualified investors, we fill your pipeline. If you're a franchise consultant matching investors to brands, we bring you the buyers. Either way, you get pre-qualified leads ready to move."
     },
     {
-      question: "What's included in your franchise lead generation service?",
-      answer: "Our comprehensive service includes targeted digital advertising, landing page optimization, lead nurturing sequences, CRM setup, conversion tracking, and ongoing optimization to maximize your ROI."
+      question: "What's included in the service?",
+      answer: "Everything you need to close deals: targeted ad campaigns, landing page optimization, lead nurturing emails, CRM setup with automated follow-ups, conversion tracking, and ongoing optimization. You focus on closing—we handle the rest."
     },
     {
-      question: "How do you ensure lead quality for franchise opportunities?",
-      answer: "We use advanced targeting criteria including financial qualifications, business experience, location preferences, and industry interest. Our lead scoring system prioritizes the most qualified prospects for your franchise opportunities."
+      question: "How do you ensure lead quality?",
+      answer: "Three-stage qualification: First, we target based on financial capacity, industry interest, and location. Second, every inquiry goes through a screening questionnaire. Third, our team verifies key details before passing leads to you. Only 12% of inquiries make the cut."
     },
     {
-      question: "What kind of ROI can I expect from franchise lead generation?",
-      answer: "Our clients typically see 3-5x ROI within 90 days. With an average franchise fee of $45,000 and our cost-effective lead generation, even one conversion per month delivers significant returns."
+      question: "What kind of ROI can I expect?",
+      answer: "Our clients typically see 3–5x ROI within 90 days. With average franchise fees of $45,000+, even one closed deal per month covers your investment many times over. And most clients close multiple deals."
     },
     {
-      question: "Do you provide ongoing support and optimization?",
-      answer: "Yes! We provide continuous campaign optimization, monthly performance reports, A/B testing of creatives, and strategic consulting to improve results over time. Your success is our priority."
+      question: "What if it doesn't work for me?",
+      answer: "We offer a 7-day money-back guarantee and 1-month satisfaction promise. If you're not seeing results, we'll either fix it or refund you. We've worked with 500+ brands—this isn't our first rodeo."
     },
     {
-      question: "How do you handle lead nurturing for franchise prospects?",
-      answer: "Our multi-touch nurturing system includes automated email sequences, retargeting campaigns, educational content delivery, and timely follow-up to keep prospects engaged throughout their decision-making process."
+      question: "How do you nurture leads who aren't ready to buy today?",
+      answer: "Our multi-touch system keeps prospects warm: automated email sequences, retargeting ads, educational content, and timely check-ins. When they're ready to move (and 60% eventually are), you're the first call they make."
     }
   ];
 
@@ -63,11 +63,12 @@ const FAQSection = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">
-            Frequently Asked Questions
+          <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-4">Got Questions?</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Everything You Need to Know
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Get answers to common questions about franchise lead generation and our proven marketing strategies.
+            Real answers to the questions franchisors ask before working with us.
           </p>
         </div>
 
