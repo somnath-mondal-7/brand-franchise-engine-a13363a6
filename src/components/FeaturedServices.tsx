@@ -1,22 +1,36 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Megaphone, ArrowRight } from "lucide-react";
+import { Target, Megaphone, Search, Mail, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const FeaturedServices = () => {
   const services = [
     {
-      icon: <Users className="w-12 h-12 text-primary" />,
+      icon: <Target className="w-12 h-12 text-primary" />,
       title: "Lead Generation",
-      description: "High-quality, pre-qualified leads that convert into real franchise opportunities.",
-      features: ["Target Market Analysis", "Multi-Channel Outreach", "Lead Qualification", "CRM Integration"],
+      description: "Get exclusive, pre-qualified franchise leads delivered daily. Investors who are ready to buy, not just browse.",
+      features: ["Exclusive leads", "Pre-qualified investors", "Real-time delivery", "3x higher close rate"],
       link: "/services"
     },
     {
       icon: <Megaphone className="w-12 h-12 text-primary" />,
-      title: "Brand Building",
-      description: "Strategic brand positioning that makes your franchise stand out in the market.",
-      features: ["Brand Strategy", "Content Creation", "Digital Presence", "Market Positioning"],
+      title: "PPC & Paid Ads",
+      description: "High-ROI Google and Meta campaigns that bring franchise buyers to your door at $45-85 per qualified lead.",
+      features: ["Google Ads mastery", "Facebook/Instagram ads", "Landing page optimization", "Full-funnel tracking"],
+      link: "/digital-marketing"
+    },
+    {
+      icon: <Search className="w-12 h-12 text-primary" />,
+      title: "SEO & Content",
+      description: "Rank #1 for franchise keywords in your market. Organic traffic that converts serious investors.",
+      features: ["Local SEO domination", "Blog & content strategy", "Keyword targeting", "Link building"],
+      link: "/services"
+    },
+    {
+      icon: <Mail className="w-12 h-12 text-primary" />,
+      title: "Email Marketing",
+      description: "Automated sequences that nurture leads from first click to signed agreement. 3x better conversion.",
+      features: ["Drip campaigns", "Lead nurturing", "Discovery invites", "Performance tracking"],
       link: "/services"
     }
   ];
@@ -26,44 +40,49 @@ const FeaturedServices = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6">
-            What We Do Best
+          <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+            Core Marketing Services
+          </span>
+          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
+            Marketing That Fills Your Pipeline
           </h2>
-          <p className="text-xl text-brand-gray max-w-3xl mx-auto">
-            We specialize in two core areas that transform franchise businesses into market leaders.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Four proven channels that bring qualified franchise investors to your doorstep. No fluff, just results.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {services.map((service, index) => (
             <Card 
               key={index} 
-              className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 border-border/50"
-              style={{ animationDelay: `${index * 0.2}s` }}
+              className="group hover:shadow-hover transition-all duration-300 hover:-translate-y-2 border-border bg-card"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <CardHeader className="text-center pb-4">
-                <div className="mb-4 flex justify-center group-hover:scale-110 transition-transform">
-                  {service.icon}
+              <CardHeader className="pb-4">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 rounded-xl bg-primary/10 group-hover:scale-110 transition-transform">
+                    {service.icon}
+                  </div>
+                  <CardTitle className="text-2xl text-card-foreground group-hover:text-primary transition-colors">
+                    {service.title}
+                  </CardTitle>
                 </div>
-                <CardTitle className="text-2xl text-brand-navy group-hover:text-primary transition-colors">
-                  {service.title}
-                </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
-                <p className="text-brand-gray leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   {service.description}
                 </p>
                 <div className="grid grid-cols-2 gap-3">
                   {service.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-primary rounded-full" />
-                      <span className="text-sm text-brand-gray">{feature}</span>
+                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0" />
+                      <span className="text-sm text-card-foreground">{feature}</span>
                     </div>
                   ))}
                 </div>
                 <Link to={service.link}>
-                  <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-white transition-all">
+                  <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all border-primary text-primary">
                     Learn More <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
@@ -75,8 +94,8 @@ const FeaturedServices = () => {
         {/* CTA */}
         <div className="text-center">
           <Link to="/services">
-            <Button size="lg" className="bg-gradient-primary hover:shadow-elegant px-8 py-6 text-lg">
-              View All Services <ArrowRight className="ml-2 h-5 w-5" />
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg shadow-elegant hover:shadow-hover transition-all">
+              View All Marketing Services <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
         </div>
