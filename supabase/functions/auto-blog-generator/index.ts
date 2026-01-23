@@ -6,81 +6,130 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-// Multiple news sources for comprehensive research
+// Comprehensive news sources covering franchise industry
 const FRANCHISE_NEWS_SOURCES = [
   "https://www.franchising.com/rss/news.xml",
   "https://www.franchisedirect.com/blog/feed/",
   "https://www.entrepreneur.com/topic/franchises/feed",
+  "https://www.forbes.com/franchise/feed/",
 ];
 
-// Research-backed trending topics with real industry data
+// Combined research topics: Marketing Tips + Industry News + Case Studies
 const RESEARCH_TOPICS = [
+  // MARKETING TIPS CATEGORY
   {
-    topic: "franchise investment ROI",
-    stats: "Average franchise ROI is 15-25% annually, with top performers reaching 30%+",
-    angle: "financial analysis"
+    category: "marketing-tips",
+    topic: "franchise lead generation strategies that actually work in 2025",
+    stats: "Top franchises generate 40% more leads using targeted digital campaigns vs broad marketing",
+    angle: "actionable marketing tactics",
+    hook: "Most franchises waste 60% of their marketing budget. Here's how to stop the bleeding."
   },
   {
-    topic: "franchise marketing costs",
-    stats: "Franchises spend 2-5% of gross revenue on marketing, with digital now comprising 60%+",
-    angle: "budget planning"
+    category: "marketing-tips",
+    topic: "social media marketing secrets for franchise growth",
+    stats: "Franchises with consistent social presence see 35% higher lead quality and 28% better engagement",
+    angle: "platform-specific strategies",
+    hook: "Your competitors are dominating Instagram while you're still figuring out hashtags."
   },
   {
-    topic: "franchise lead conversion rates",
-    stats: "Industry average conversion is 2-5%, top franchises achieve 8-12% with proper nurturing",
-    angle: "sales optimization"
+    category: "marketing-tips",
+    topic: "email marketing automation for franchise sales",
+    stats: "Automated email sequences convert 3x better than manual outreach with 67% time savings",
+    angle: "conversion optimization",
+    hook: "That lead you ignored yesterday? Your competitor just closed them with one email."
   },
   {
-    topic: "multi-unit franchise ownership trends",
-    stats: "53% of franchise units are now owned by multi-unit operators, up from 40% in 2015",
-    angle: "growth strategy"
+    category: "marketing-tips",
+    topic: "local SEO strategies for multi-location franchises",
+    stats: "Optimized Google Business profiles drive 70% more foot traffic and 50% more calls",
+    angle: "local visibility tactics",
+    hook: "You're invisible on Google Maps. Here's how to fix it in 30 days."
   },
   {
-    topic: "franchise discovery day strategies",
-    stats: "80% of franchise agreements are signed within 30 days of Discovery Day",
-    angle: "closing techniques"
+    category: "marketing-tips",
+    topic: "PPC advertising optimization for franchise leads",
+    stats: "Well-optimized Google Ads campaigns achieve $45-85 cost per qualified lead vs $200+ industry average",
+    angle: "ad spend efficiency",
+    hook: "Stop burning cash on clicks that never convert. Here's the exact formula."
+  },
+  // INDUSTRY NEWS & TRENDS CATEGORY
+  {
+    category: "industry-news",
+    topic: "franchise industry growth trends and market shifts 2025",
+    stats: "Franchise industry projected to reach $860B by 2025, with 3.5% annual growth",
+    angle: "market analysis and predictions",
+    hook: "The franchise landscape just shifted. Are you positioned for what's coming?"
   },
   {
-    topic: "franchise social media marketing",
-    stats: "Franchises with active social presence see 35% higher lead generation",
-    angle: "digital presence"
+    category: "industry-news",
+    topic: "emerging franchise sectors and investment opportunities",
+    stats: "Health tech, senior care, and sustainable franchises growing 18-25% annually",
+    angle: "sector analysis",
+    hook: "The next billion-dollar franchise category is hiding in plain sight."
   },
   {
-    topic: "franchise territory rights",
-    stats: "Exclusive territories command 15-20% higher franchise fees but improve retention by 40%",
-    angle: "expansion planning"
+    category: "industry-news",
+    topic: "franchise technology adoption and digital transformation",
+    stats: "AI-powered franchises report 40% efficiency gains and 25% higher customer satisfaction",
+    angle: "technology impact",
+    hook: "Franchises stuck in 2019 are dying. Here's what the survivors are doing differently."
   },
   {
-    topic: "franchise buyer demographics",
-    stats: "45% of new franchisees are 35-54, with corporate refugees comprising 30%+",
-    angle: "target audience"
+    category: "industry-news",
+    topic: "franchise buyer demographics and investment patterns",
+    stats: "Millennials now represent 35% of new franchisees, up from 18% in 2018",
+    angle: "demographic shifts",
+    hook: "The profile of your ideal franchisee just changed dramatically. Did you notice?"
   },
   {
-    topic: "franchise lead qualification",
-    stats: "Pre-qualified leads close 3x faster with 60% less sales effort",
-    angle: "pipeline efficiency"
+    category: "industry-news",
+    topic: "franchise regulation changes and compliance updates",
+    stats: "FTC disclosure requirements and state regulations affecting 23% of franchise agreements",
+    angle: "regulatory landscape",
+    hook: "New franchise regulations could cost you $50,000 in fines. Here's what changed."
+  },
+  // CASE STUDIES & SUCCESS STORIES CATEGORY
+  {
+    category: "case-studies",
+    topic: "franchise lead conversion strategies that doubled sales",
+    stats: "Real case: Regional franchise went from 2% to 8% conversion rate in 90 days",
+    angle: "conversion success story",
+    hook: "They were drowning in leads but closing nothing. Then everything changed."
   },
   {
-    topic: "franchise brand recognition",
-    stats: "Strong brand franchises achieve 25% faster unit growth and 15% lower franchisee turnover",
-    angle: "brand building"
+    category: "case-studies",
+    topic: "multi-unit franchise expansion blueprint",
+    stats: "Case study: Single-unit owner scaled to 12 locations in 4 years with strategic growth",
+    angle: "expansion journey",
+    hook: "He started with one location and a mountain of debt. Now he owns 12."
   },
   {
-    topic: "emerging franchise industries 2025",
-    stats: "Health & wellness, pet services, and senior care growing at 15-20% annually",
-    angle: "market opportunity"
+    category: "case-studies",
+    topic: "franchise turnaround stories and recovery strategies",
+    stats: "Struggling franchises that implemented proper marketing saw 180% revenue recovery",
+    angle: "business recovery",
+    hook: "This franchise was 30 days from closing. Here's how they became top performers."
   },
   {
-    topic: "franchise digital transformation",
-    stats: "Digital-first franchises report 40% higher customer acquisition efficiency",
-    angle: "technology adoption"
+    category: "case-studies",
+    topic: "digital marketing transformation in traditional franchises",
+    stats: "Legacy franchise doubled qualified leads by embracing digital-first approach",
+    angle: "digital success story",
+    hook: "They hadn't updated their marketing since 2015. Then they tried something radical."
+  },
+  {
+    category: "case-studies",
+    topic: "franchise discovery day optimization success",
+    stats: "Optimized discovery process increased signing rate from 15% to 62%",
+    angle: "sales process improvement",
+    hook: "Their discovery days were a disaster. One change fixed everything."
   },
 ];
 
 async function fetchRSSFeed(url: string): Promise<string[]> {
   try {
     const response = await fetch(url, {
-      headers: { "User-Agent": "FranchiseLeadsHQ Blog Bot/1.0" },
+      headers: { "User-Agent": "FranchiseLeadsHQ Research Bot/2.0" },
     });
     if (!response.ok) return [];
     
@@ -90,7 +139,7 @@ async function fetchRSSFeed(url: string): Promise<string[]> {
     for (const match of itemMatches) {
       if (match[1]) titles.push(match[1].trim());
     }
-    return titles.slice(0, 8);
+    return titles.slice(0, 10);
   } catch (e) {
     console.log(`Failed to fetch ${url}:`, e);
     return [];
@@ -100,22 +149,31 @@ async function fetchRSSFeed(url: string): Promise<string[]> {
 async function getResearchContext(): Promise<{ context: string; topicData: typeof RESEARCH_TOPICS[0] }> {
   const allHeadlines: string[] = [];
   
+  // Fetch real-time news
   const feedPromises = FRANCHISE_NEWS_SOURCES.map(fetchRSSFeed);
   const results = await Promise.all(feedPromises);
   results.forEach(headlines => allHeadlines.push(...headlines));
   
-  // Pick a research topic with real data
+  // Pick a random topic from our combined categories
   const topicData = RESEARCH_TOPICS[Math.floor(Math.random() * RESEARCH_TOPICS.length)];
   
+  const currentDate = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  
   const context = `
-CURRENT FRANCHISE INDUSTRY NEWS (Use these for timely relevance):
-${allHeadlines.slice(0, 12).map((h, i) => `${i + 1}. ${h}`).join('\n')}
+CURRENT DATE: ${currentDate}
 
-TODAY'S FOCUS TOPIC: ${topicData.topic}
-INDUSTRY DATA: ${topicData.stats}
+LIVE FRANCHISE INDUSTRY NEWS (Reference these for timely relevance):
+${allHeadlines.slice(0, 15).map((h, i) => `${i + 1}. ${h}`).join('\n')}
+
+=== TODAY'S CONTENT ASSIGNMENT ===
+CATEGORY: ${topicData.category.toUpperCase().replace('-', ' ')}
+MAIN TOPIC: ${topicData.topic}
+KEY DATA POINT: ${topicData.stats}
 CONTENT ANGLE: ${topicData.angle}
+OPENING HOOK: ${topicData.hook}
 
-Write a blog post that connects current news to the focus topic with actionable insights.
+Write a blog post that combines current industry news with the assigned topic.
+Make it feel like breaking insights that readers can't get anywhere else.
   `.trim();
 
   return { context, topicData };
@@ -125,59 +183,85 @@ async function generateBlogWithAI(researchContext: string, topicData: typeof RES
   const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
   if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
 
-  const systemPrompt = `You are a senior franchise industry journalist and marketing strategist writing for FranchiseLeads HQ, the premier franchise lead generation platform.
+  const systemPrompt = `You are a TOP-TIER franchise industry writer for FranchiseLeads HQ. You write like the best business journalists—clear, punchy, insightful.
 
-YOUR WRITING STYLE:
-- Write like you're having a coffee chat with a smart franchise executive
-- Use SHORT paragraphs (2-3 sentences max)
-- Include real numbers, percentages, and data points
-- Tell mini-stories and use relatable examples
-- Be direct and actionable—no fluff or filler
-- Sound confident but not salesy
+=== YOUR VOICE ===
+- Write like you're explaining to a smart friend over coffee
+- Be direct. No corporate fluff. Every word earns its place.
+- Sound like an insider sharing secrets, not a marketer selling
+- Confident but never arrogant. Helpful, never preachy.
 
-STRICT FORMATTING RULES:
-1. HOOK: Start with a bold statement, surprising stat, or provocative question (NO generic intros)
-2. STRUCTURE: Use clear H2 (##) and H3 (###) headings every 150-200 words
-3. PARAGRAPHS: Never more than 3 sentences. White space is your friend.
-4. BULLETS: Use bullet points for lists, tips, and key takeaways
-5. DATA: Include at least 3 specific statistics or percentages
-6. EXAMPLES: Include at least 2 real-world scenarios or case studies
-7. QUOTES: Add 1-2 fictional but realistic industry quotes
-8. CTA: End with a clear, value-focused call-to-action
+=== STRICT WRITING RULES ===
 
-CONTENT REQUIREMENTS:
-- Length: 900-1,200 words
-- Include a "Key Takeaways" or "Action Steps" section
-- Add a "The Bottom Line" conclusion section
-- Reference current trends and timely insights
-- Naturally mention lead generation challenges and solutions
+PARAGRAPHS:
+- Maximum 2-3 sentences per paragraph
+- One idea per paragraph
+- White space is your friend—use it generously
 
-FORBIDDEN:
-- Generic openings like "In today's competitive market..."
-- Vague statements without specifics
-- Long-winded explanations
+STRUCTURE (MUST FOLLOW):
+1. HOOK (First sentence): Bold claim, surprising stat, or provocative question
+   - Never start with "In today's..." or "As businesses..."
+   - Jump straight into the insight
+   
+2. THE PROBLEM (100-150 words): What's broken and why it matters
+   - Use specific numbers
+   - Make the reader feel the pain
+   
+3. THE INSIGHT (200-300 words): Your main value—what they don't know
+   - Include 2-3 subheadings (## or ###)
+   - Use bullet points for lists
+   - Include at least 2 real statistics
+   
+4. ACTION STEPS (150-200 words): Exactly what to do
+   - Numbered list of 3-5 specific actions
+   - Each step must be concrete, not vague
+   
+5. REAL EXAMPLE (100-150 words): Mini case study or scenario
+   - Make it feel real with specific details
+   - Show before/after or results
+   
+6. THE BOTTOM LINE (75-100 words): Key takeaway + soft CTA
+   - Summarize in 2-3 sentences
+   - Natural mention of lead generation/marketing help
+
+=== FORMATTING RULES ===
+- Use ## for main sections, ### for subsections
+- Use **bold** for emphasis (sparingly)
+- Use bullet points (•) for lists of 3+ items
+- Include 1-2 relevant quotes (can be hypothetical industry expert)
+- Total length: 1,000-1,400 words
+
+=== FORBIDDEN ===
+- "In today's competitive market..."
+- "As we all know..."
+- "It goes without saying..."
 - Passive voice
-- Corporate jargon without explanation
+- Long sentences (max 20 words)
+- Paragraphs over 4 lines
+- Generic advice without specifics
+- Salesy language or hard pitches
 
-IMPORTANT: Return ONLY valid JSON in this exact format:
+=== OUTPUT FORMAT ===
+Return ONLY valid JSON:
 {
-  "title": "Compelling, Specific Title (Under 60 chars)",
-  "excerpt": "Punchy 1-sentence summary that makes people want to read more (140 chars max)",
-  "content": "Full blog post in markdown with proper ## and ### headings, bullet points, and formatting",
-  "tags": ["tag1", "tag2", "tag3", "tag4"],
-  "slug": "url-friendly-slug-with-keywords"
+  "title": "Compelling, specific title under 60 characters",
+  "excerpt": "Punchy 1-sentence hook that creates curiosity (max 140 chars)",
+  "content": "Full markdown blog post following exact structure above",
+  "tags": ["tag1", "tag2", "tag3", "tag4", "tag5"],
+  "slug": "seo-friendly-url-slug"
 }`;
 
-  const userPrompt = `Write a high-impact blog post based on this research:
+  const userPrompt = `Write a ${topicData.category.replace('-', ' ')} blog post based on this research:
 
 ${researchContext}
 
-Remember:
-- This is about ${topicData.topic}
-- Key stat to build around: ${topicData.stats}
-- Angle to take: ${topicData.angle}
+IMPORTANT:
+- Start with this hook (adapt it): "${topicData.hook}"
+- Build around this stat: "${topicData.stats}"
+- Take this angle: "${topicData.angle}"
+- Reference current news when relevant
 
-Make it scannable, insightful, and impossible to stop reading. Every sentence must earn its place.`;
+Make every sentence count. This should be the kind of article people screenshot and share.`;
 
   const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
     method: "POST",
@@ -191,8 +275,8 @@ Make it scannable, insightful, and impossible to stop reading. Every sentence mu
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt },
       ],
-      temperature: 0.7,
-      max_tokens: 3000,
+      temperature: 0.8,
+      max_tokens: 4000,
     }),
   });
 
@@ -210,32 +294,39 @@ Make it scannable, insightful, and impossible to stop reading. Every sentence mu
     if (jsonMatch) {
       content = jsonMatch[1];
     }
-    // Clean up any leading/trailing whitespace
     content = content.trim();
-    return JSON.parse(content);
-  } catch (e) {
-    console.error("JSON parse error, attempting extraction:", e);
-    // Try to extract JSON object from the content
-    const jsonObjectMatch = content.match(/\{[\s\S]*"title"[\s\S]*"content"[\s\S]*\}/);
-    if (jsonObjectMatch) {
-      try {
-        return JSON.parse(jsonObjectMatch[0]);
-      } catch (e2) {
-        console.error("Second parse attempt failed:", e2);
-      }
+    
+    // Try to find JSON object boundaries
+    const startIdx = content.indexOf('{');
+    const endIdx = content.lastIndexOf('}');
+    if (startIdx !== -1 && endIdx > startIdx) {
+      content = content.substring(startIdx, endIdx + 1);
     }
     
-    // Final fallback
-    const lines = content.split('\n');
-    const title = lines[0].replace(/^#\s*/, '').replace(/["\*]/g, '').trim() || `Franchise ${topicData.topic} Insights`;
-    const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 50);
+    return JSON.parse(content);
+  } catch (e) {
+    console.error("JSON parse error, creating fallback:", e);
+    
+    // Create a structured fallback
+    const titleMatch = content.match(/"title"\s*:\s*"([^"]+)"/);
+    const excerptMatch = content.match(/"excerpt"\s*:\s*"([^"]+)"/);
+    const contentMatch = content.match(/"content"\s*:\s*"([\s\S]*?)(?:"\s*,\s*"tags"|"\s*})/);
+    
+    const title = titleMatch?.[1] || `${topicData.topic.charAt(0).toUpperCase() + topicData.topic.slice(1)} - Expert Guide`;
+    const excerpt = excerptMatch?.[1] || topicData.hook;
+    const mainContent = contentMatch?.[1]?.replace(/\\n/g, '\n').replace(/\\"/g, '"') || content;
+    
+    const slug = title.toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .slice(0, 50);
     
     return {
       title,
-      content,
-      excerpt: `Expert insights on ${topicData.topic} with actionable strategies for franchise growth.`,
-      slug: `${slug}-${Date.now()}`,
-      tags: ["franchise", "lead generation", topicData.angle.replace(' ', '-'), "marketing"],
+      content: mainContent,
+      excerpt,
+      slug: `${slug}-${Date.now().toString().slice(-6)}`,
+      tags: [topicData.category, "franchise", "marketing", "lead-generation", topicData.angle.split(' ')[0]],
     };
   }
 }
@@ -272,15 +363,14 @@ serve(async (req) => {
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // Parse request body with flexible options
     const body = await req.json().catch(() => ({}));
     const { 
       force = false, 
-      intervalHours = 24,  // Default 24 hours, can be 12, 24, 48, etc.
+      intervalHours = 24,
       publishAsDraft = false 
     } = body;
 
-    console.log(`Auto-blog request: force=${force}, interval=${intervalHours}h, draft=${publishAsDraft}`);
+    console.log(`Auto-blog v2: force=${force}, interval=${intervalHours}h, draft=${publishAsDraft}`);
 
     if (!force) {
       const canPublish = await shouldPublish(supabase, intervalHours);
@@ -291,7 +381,7 @@ serve(async (req) => {
         return new Response(
           JSON.stringify({ 
             success: false, 
-            message: `Next post scheduled for ${nextTime.toISOString()}. Use force=true to override.`,
+            message: `Next post in ${Math.ceil((nextTime.getTime() - Date.now()) / (1000 * 60 * 60))} hours. Use force=true to override.`,
             nextScheduled: nextTime.toISOString(),
             intervalHours
           }),
@@ -300,17 +390,17 @@ serve(async (req) => {
       }
     }
 
-    console.log("Starting research and content generation...");
-
-    // Step 1: Research current trends
+    console.log("Researching current franchise news and trends...");
     const { context: researchContext, topicData } = await getResearchContext();
-    console.log("Research gathered for topic:", topicData.topic);
+    console.log(`Topic selected: [${topicData.category}] ${topicData.topic}`);
 
-    // Step 2: Generate high-quality blog post
+    console.log("Generating human-centric blog content...");
     const blogPost = await generateBlogWithAI(researchContext, topicData);
-    console.log("Generated:", blogPost.title);
+    console.log(`Generated: "${blogPost.title}"`);
 
-    // Step 3: Save to database
+    const wordCount = blogPost.content.split(/\s+/).length;
+    const readTime = Math.ceil(wordCount / 200);
+
     const { data: savedPost, error: saveError } = await supabase
       .from('blog_posts')
       .insert({
@@ -322,7 +412,7 @@ serve(async (req) => {
         tags: blogPost.tags,
         is_published: !publishAsDraft,
         published_at: publishAsDraft ? null : new Date().toISOString(),
-        read_time_minutes: Math.ceil(blogPost.content.split(/\s+/).length / 200),
+        read_time_minutes: readTime,
         seo_title: blogPost.title,
         seo_description: blogPost.excerpt,
       })
@@ -330,21 +420,24 @@ serve(async (req) => {
       .single();
 
     if (saveError) {
-      throw new Error(`Failed to save: ${saveError.message}`);
+      throw new Error(`Database save failed: ${saveError.message}`);
     }
 
-    console.log("Saved successfully:", savedPost.id);
+    console.log(`✅ Saved: ${savedPost.id} (${wordCount} words, ${readTime} min read)`);
 
     return new Response(
       JSON.stringify({ 
         success: true, 
-        message: publishAsDraft ? "Blog post saved as draft!" : "Blog post published!",
+        message: publishAsDraft ? "Draft saved!" : "Blog published!",
         post: {
           id: savedPost.id,
           title: savedPost.title,
           slug: savedPost.slug,
+          wordCount,
+          readTime,
           isDraft: publishAsDraft
         },
+        category: topicData.category,
         topic: topicData.topic,
         intervalHours
       }),

@@ -2,128 +2,128 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { 
-  Building2, 
-  Users, 
-  TrendingUp, 
-  FileCheck, 
-  Search, 
-  Briefcase,
   Target,
-  BookOpen,
-  DollarSign,
-  Globe
+  Megaphone,
+  TrendingUp,
+  Search,
+  Share2,
+  Mail,
+  BarChart3,
+  Globe,
+  Zap,
+  Users
 } from "lucide-react";
 
 const ServicesSection = () => {
   const services = [
     {
-      icon: <Building2 className="w-12 h-12 text-primary" />,
-      title: "Franchise Development",
-      description: "Transform your successful business into a scalable franchise model with complete documentation, legal frameworks, and operational systems.",
-      features: [
-        "Franchise Business Model Design",
-        "Operations Manual Development",
-        "Legal Documentation & FDD",
-        "Territory & Fee Structure Planning"
-      ]
-    },
-    {
-      icon: <Users className="w-12 h-12 text-primary" />,
-      title: "Franchisee Recruitment",
-      description: "Connect with qualified, motivated franchisees who align with your brand values and have the investment capacity to succeed.",
-      features: [
-        "Qualified Lead Generation",
-        "Investor Profiling & Screening",
-        "Discovery Day Coordination",
-        "Award & Onboarding Support"
-      ]
-    },
-    {
       icon: <Target className="w-12 h-12 text-primary" />,
-      title: "Franchise Matchmaking",
-      description: "Expert matchmaking services connecting aspiring entrepreneurs with the right franchise opportunities for their goals and budget.",
+      title: "Lead Generation",
+      description: "Get exclusive, pre-qualified franchise leads that actually close. We target investors actively looking to buy franchises in your industry.",
       features: [
-        "Personalized Franchise Recommendations",
-        "Investment Analysis & Due Diligence",
-        "Brand-Investor Compatibility Assessment",
-        "Negotiation & Deal Structuring"
+        "Exclusive, non-shared leads",
+        "Pre-qualification screening",
+        "Real-time lead delivery",
+        "Investment-verified prospects"
       ]
     },
     {
-      icon: <TrendingUp className="w-12 h-12 text-primary" />,
-      title: "Franchise Expansion",
-      description: "Strategic expansion planning and execution to grow your franchise network across regions, states, and international markets.",
+      icon: <Megaphone className="w-12 h-12 text-primary" />,
+      title: "PPC Advertising",
+      description: "High-converting Google & Meta ads that bring franchise buyers to your door. Average $45-85 cost per qualified lead.",
       features: [
-        "Market Research & Site Selection",
-        "Regional Expansion Strategy",
-        "International Franchise Development",
-        "Multi-Unit Development Programs"
-      ]
-    },
-    {
-      icon: <Briefcase className="w-12 h-12 text-primary" />,
-      title: "Franchise Marketing",
-      description: "Comprehensive marketing strategies to build brand awareness, attract qualified franchisees, and drive franchise sales.",
-      features: [
-        "Digital Marketing Campaigns",
-        "Franchise Portal Development",
-        "Lead Generation Systems",
-        "Brand Positioning & Advertising"
-      ]
-    },
-    {
-      icon: <FileCheck className="w-12 h-12 text-primary" />,
-      title: "Operations Support",
-      description: "Ongoing operational guidance to ensure franchise consistency, quality control, and continuous improvement across your network.",
-      features: [
-        "Standard Operating Procedures",
-        "Quality Assurance Programs",
-        "Supply Chain Management",
-        "Performance Monitoring Systems"
-      ]
-    },
-    {
-      icon: <BookOpen className="w-12 h-12 text-primary" />,
-      title: "Training Programs",
-      description: "Comprehensive training solutions for franchisors and franchisees covering operations, sales, management, and customer service.",
-      features: [
-        "Initial Franchisee Training",
-        "Ongoing Education Programs",
-        "Staff Training Systems",
-        "Leadership Development"
-      ]
-    },
-    {
-      icon: <DollarSign className="w-12 h-12 text-primary" />,
-      title: "Financial Planning",
-      description: "Financial modeling, investment analysis, and funding guidance to ensure franchise profitability and sustainable growth.",
-      features: [
-        "Financial Projections & Modeling",
-        "Investment Analysis",
-        "Funding & Financing Solutions",
-        "ROI Optimization Strategies"
+        "Google Ads management",
+        "Facebook & Instagram ads",
+        "Retargeting campaigns",
+        "Landing page optimization"
       ]
     },
     {
       icon: <Search className="w-12 h-12 text-primary" />,
-      title: "Due Diligence Services",
-      description: "Thorough investigation and analysis for investors evaluating franchise opportunities to make informed decisions.",
+      title: "SEO & Content Marketing",
+      description: "Rank #1 for franchise keywords in your market. We create content that attracts and converts serious investors.",
       features: [
-        "Franchisor Background Verification",
-        "Financial Health Assessment",
-        "Market Viability Analysis",
-        "Legal Document Review"
+        "Local SEO domination",
+        "Franchise keyword targeting",
+        "Blog & content creation",
+        "Link building campaigns"
+      ]
+    },
+    {
+      icon: <Share2 className="w-12 h-12 text-primary" />,
+      title: "Social Media Marketing",
+      description: "Build brand awareness and generate leads through strategic social media presence. 35% higher lead quality from social.",
+      features: [
+        "LinkedIn franchise targeting",
+        "Instagram brand building",
+        "Facebook community growth",
+        "Social lead generation"
+      ]
+    },
+    {
+      icon: <Mail className="w-12 h-12 text-primary" />,
+      title: "Email Marketing",
+      description: "Automated email sequences that nurture leads from interest to signed franchise agreement. 3x better conversion than manual outreach.",
+      features: [
+        "Drip campaign automation",
+        "Lead nurturing sequences",
+        "Discovery day invites",
+        "Franchisee newsletters"
+      ]
+    },
+    {
+      icon: <BarChart3 className="w-12 h-12 text-primary" />,
+      title: "Marketing Analytics",
+      description: "Know exactly which channels bring the best leads. Full-funnel tracking from ad click to franchise signing.",
+      features: [
+        "Lead source tracking",
+        "ROI measurement",
+        "Conversion analytics",
+        "Monthly performance reports"
       ]
     },
     {
       icon: <Globe className="w-12 h-12 text-primary" />,
-      title: "International Franchising",
-      description: "Navigate the complexities of international franchise expansion with localized strategies for different markets.",
+      title: "Website & Landing Pages",
+      description: "Franchise-focused websites that convert visitors into leads. Optimized for both search engines and investor psychology.",
       features: [
-        "Market Entry Strategy",
-        "Cultural Adaptation Guidance",
-        "International Legal Compliance",
-        "Master Franchise Development"
+        "Franchise portal development",
+        "High-converting landing pages",
+        "Mobile-first design",
+        "Inquiry form optimization"
+      ]
+    },
+    {
+      icon: <TrendingUp className="w-12 h-12 text-primary" />,
+      title: "Brand Positioning",
+      description: "Stand out in a crowded franchise market. Strategic positioning that makes investors choose you over competitors.",
+      features: [
+        "Competitive analysis",
+        "Brand messaging",
+        "Value proposition development",
+        "Market differentiation"
+      ]
+    },
+    {
+      icon: <Zap className="w-12 h-12 text-primary" />,
+      title: "Lead Qualification",
+      description: "Stop wasting time on tire-kickers. We pre-screen every lead for financial capacity and genuine investment interest.",
+      features: [
+        "Financial pre-qualification",
+        "Investment intent verification",
+        "Background screening",
+        "Hot lead prioritization"
+      ]
+    },
+    {
+      icon: <Users className="w-12 h-12 text-primary" />,
+      title: "Franchise Marketing Strategy",
+      description: "Complete marketing roadmap tailored to your franchise model. From brand awareness to franchise agreement signing.",
+      features: [
+        "Go-to-market planning",
+        "Channel strategy",
+        "Budget allocation",
+        "Growth milestone tracking"
       ]
     }
   ];
@@ -132,9 +132,12 @@ const ServicesSection = () => {
     <section id="services" className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 text-foreground">Complete Franchise Consulting Solutions</h2>
+          <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+            Full-Service Marketing
+          </span>
+          <h2 className="text-4xl font-bold mb-4 text-foreground">Marketing Services That Fill Your Pipeline</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            From concept to expansion - we provide end-to-end franchise consulting services for businesses and investors across India & USA
+            Everything you need to attract, qualify, and convert franchise buyers—from first click to signed agreement.
           </p>
         </div>
 
@@ -171,7 +174,7 @@ const ServicesSection = () => {
               size="lg"
               className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg rounded-xl font-semibold shadow-elegant hover:shadow-hover transition-all duration-300"
             >
-              Schedule Your Free Consultation
+              Get Your Free Marketing Audit
             </Button>
           </Link>
         </div>
