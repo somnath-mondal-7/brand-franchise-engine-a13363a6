@@ -1,9 +1,8 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
+# Sitemap Index (contains all sitemaps)
 Sitemap: https://www.franchiseleadshq.com/sitemap.xml
-Sitemap: https://www.franchiseleadshq.com/sitemap-blog.xml
 
 # Crawl-delay for better server performance
 Crawl-delay: 1
@@ -21,6 +20,7 @@ Disallow: /search
 # Allow important bot access
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
 User-agent: Bingbot
 Allow: /
@@ -31,7 +31,7 @@ Allow: /
 User-agent: Twitterbot
 Allow: /
 
-# Location-specific pages optimization
+# High-priority pages
 Allow: /franchise-leads-usa
 Allow: /franchise-leads-uk  
 Allow: /franchise-leads-canada
@@ -40,3 +40,5 @@ Allow: /franchise-leads-dubai
 Allow: /franchise-leads-india
 Allow: /franchise-leads-kuwait
 Allow: /buy-franchise-leads
+Allow: /blog
+Allow: /services
