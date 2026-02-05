@@ -7,6 +7,11 @@ export interface SitemapUrl {
   priority: string;
 }
 
+// Get today's date in YYYY-MM-DD format
+export const getTodayDate = (): string => {
+  return new Date().toISOString().split('T')[0];
+};
+
 // Generate ALL location pages (country + state + city levels)
 export const generateLocationUrls = (): SitemapUrl[] => {
   const urls: SitemapUrl[] = [];

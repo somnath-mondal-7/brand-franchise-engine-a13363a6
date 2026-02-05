@@ -1,0 +1,190 @@
+import { locationData, broadMarketingKeywords, seoKeywords } from '@/data/locations';
+
+export interface SitemapUrl {
+  loc: string;
+  lastmod: string;
+  changefreq: string;
+  priority: string;
+}
+
+// Get today's date in YYYY-MM-DD format
+export const getTodayDate = (): string => {
+  return new Date().toISOString().split('T')[0];
+};
+
+// Generate core static pages
+export const generateCorePages = (): SitemapUrl[] => {
+  const currentDate = getTodayDate();
+  return [
+    { loc: 'https://www.franchiseleadshq.com/', lastmod: currentDate, changefreq: 'weekly', priority: '1.0' },
+    { loc: 'https://www.franchiseleadshq.com/about', lastmod: currentDate, changefreq: 'monthly', priority: '0.9' },
+    { loc: 'https://www.franchiseleadshq.com/services', lastmod: currentDate, changefreq: 'weekly', priority: '0.95' },
+    { loc: 'https://www.franchiseleadshq.com/contact', lastmod: currentDate, changefreq: 'monthly', priority: '0.8' },
+    { loc: 'https://www.franchiseleadshq.com/blog', lastmod: currentDate, changefreq: 'daily', priority: '0.85' },
+    { loc: 'https://www.franchiseleadshq.com/testimonials', lastmod: currentDate, changefreq: 'weekly', priority: '0.8' },
+    { loc: 'https://www.franchiseleadshq.com/franchise-leads-india', lastmod: currentDate, changefreq: 'weekly', priority: '0.95' },
+    { loc: 'https://www.franchiseleadshq.com/franchise-leads-usa', lastmod: currentDate, changefreq: 'weekly', priority: '0.95' },
+    { loc: 'https://www.franchiseleadshq.com/franchise-leads-uk', lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
+    { loc: 'https://www.franchiseleadshq.com/franchise-leads-canada', lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
+    { loc: 'https://www.franchiseleadshq.com/franchise-leads-australia', lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
+    { loc: 'https://www.franchiseleadshq.com/franchise-leads-dubai', lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
+    { loc: 'https://www.franchiseleadshq.com/franchise-leads-kuwait', lastmod: currentDate, changefreq: 'weekly', priority: '0.85' },
+    { loc: 'https://www.franchiseleadshq.com/buy-franchise-leads', lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
+    { loc: 'https://www.franchiseleadshq.com/digital-marketing', lastmod: currentDate, changefreq: 'weekly', priority: '0.85' },
+    { loc: 'https://www.franchiseleadshq.com/legal-terms/privacy-policy', lastmod: currentDate, changefreq: 'monthly', priority: '0.4' },
+    { loc: 'https://www.franchiseleadshq.com/legal-terms/refund-satisfaction-guarantee-policy', lastmod: currentDate, changefreq: 'monthly', priority: '0.4' },
+  ];
+};
+
+// Generate location pages (country/state/city)
+export const generateLocationUrls = (): SitemapUrl[] => {
+  const urls: SitemapUrl[] = [];
+  const currentDate = getTodayDate();
+
+  locationData.forEach(country => {
+    // Country level
+    urls.push({
+      loc: `https://www.franchiseleadshq.com/locations/${country.countryCode.toLowerCase()}`,
+      lastmod: currentDate,
+      changefreq: 'weekly',
+      priority: '0.8'
+    });
+
+    country.states.forEach(state => {
+      // State level
+      urls.push({
+        loc: `https://www.franchiseleadshq.com/locations/${country.countryCode.toLowerCase()}/${state.slug}`,
+        lastmod: currentDate,
+        changefreq: 'weekly',
+        priority: '0.75'
+      });
+
+      // City level
+      state.cities.forEach(city => {
+        urls.push({
+          loc: `https://www.franchiseleadshq.com/locations/${country.countryCode.toLowerCase()}/${state.slug}/${city.slug}`,
+          lastmod: currentDate,
+          changefreq: 'weekly',
+          priority: '0.7'
+        });
+      });
+    });
+  });
+
+  return urls;
+};
+
+// Generate keyword/service pages
+export const generateKeywordUrls = (): SitemapUrl[] => {
+  const urls: SitemapUrl[] = [];
+  const currentDate = getTodayDate();
+
+  seoKeywords.forEach(keyword => {
+    const keywordSlug = keyword.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    urls.push({
+      loc: `https://www.franchiseleadshq.com/services/${keywordSlug}`,
+      lastmod: currentDate,
+      changefreq: 'weekly',
+      priority: '0.7'
+    });
+  });
+
+  return urls;
+};
+
+// Generate service + location pages (limited to high-value combinations)
+export const generateServiceLocationUrls = (): SitemapUrl[] => {
+  const urls: SitemapUrl[] = [];
+  const currentDate = getTodayDate();
+
+  broadMarketingKeywords.forEach(service => {
+    const serviceSlug = service.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    
+    locationData.forEach(country => {
+      const isPrimaryMarket = ['USA', 'IN'].includes(country.countryCode.toUpperCase());
+      const basePriority = isPrimaryMarket ? 0.85 : 0.75;
+
+      country.states.forEach(state => {
+        // State level
+        urls.push({
+          loc: `https://www.franchiseleadshq.com/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}`,
+          lastmod: currentDate,
+          changefreq: 'weekly',
+          priority: basePriority.toString()
+        });
+
+        // City level
+        state.cities.forEach(city => {
+          urls.push({
+            loc: `https://www.franchiseleadshq.com/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}/${city.slug}`,
+            lastmod: currentDate,
+            changefreq: 'weekly',
+            priority: (basePriority - 0.05).toString()
+          });
+        });
+      });
+    });
+  });
+
+  return urls;
+};
+
+// Get all URLs combined
+export const getAllUrls = (): SitemapUrl[] => {
+  return [
+    ...generateCorePages(),
+    ...generateLocationUrls(),
+    ...generateKeywordUrls(),
+    ...generateServiceLocationUrls(),
+  ];
+};
+
+// Split array into chunks
+export const chunkArray = <T>(arr: T[], size: number): T[][] => {
+  const chunks: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) {
+    chunks.push(arr.slice(i, i + size));
+  }
+  return chunks;
+};
+
+// Build single sitemap XML
+export const buildSitemapXml = (urls: SitemapUrl[]): string => {
+  const urlEntries = urls.map(u => 
+    `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${u.lastmod}</lastmod>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`
+  ).join('\n');
+  
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urlEntries}\n</urlset>`;
+};
+
+// Build sitemap index XML
+export const buildSitemapIndexXml = (sitemapCount: number): string => {
+  const currentDate = getTodayDate();
+  const entries: string[] = [];
+  
+  for (let i = 1; i <= sitemapCount; i++) {
+    entries.push(`  <sitemap>\n    <loc>https://www.franchiseleadshq.com/sitemaps/sitemap-${i}.xml</loc>\n    <lastmod>${currentDate}</lastmod>\n  </sitemap>`);
+  }
+  
+  // Add blog sitemap
+  entries.push(`  <sitemap>\n    <loc>https://www.franchiseleadshq.com/sitemap-blog.xml</loc>\n    <lastmod>${currentDate}</lastmod>\n  </sitemap>`);
+  
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join('\n')}\n</sitemapindex>`;
+};
+
+// Calculate sitemap stats
+export const getSitemapStats = () => {
+  const allUrls = getAllUrls();
+  const chunkSize = 10000; // Stay well under Google's 50k limit
+  const chunks = chunkArray(allUrls, chunkSize);
+  
+  return {
+    totalUrls: allUrls.length,
+    sitemapCount: chunks.length,
+    chunkSize,
+    corePages: generateCorePages().length,
+    locationPages: generateLocationUrls().length,
+    keywordPages: generateKeywordUrls().length,
+    serviceLocationPages: generateServiceLocationUrls().length,
+  };
+};
