@@ -8,7 +8,9 @@ import { Link } from "react-router-dom";
 interface ServiceLocationTemplateProps {
   service: string;
   location: string;
+  locationSlug: string;
   state?: string;
+  stateSlug?: string;
   country: string;
   countryCode: string;
   population?: number;
@@ -173,7 +175,9 @@ const serviceContent: Record<string, {
 export const ServiceLocationTemplate = ({
   service,
   location,
+  locationSlug,
   state,
+  stateSlug,
   country,
   countryCode,
   population
@@ -185,17 +189,15 @@ export const ServiceLocationTemplate = ({
   const locationName = state ? `${location}, ${state}` : location;
   const fullLocation = `${locationName}, ${country}`;
   
-  const serviceSlug = service.toLowerCase().replace(/\s+/g, '-');
-  const locationSlug = location.toLowerCase().replace(/\s+/g, '-');
-  const stateSlug = state?.toLowerCase().replace(/\s+/g, '-');
-  
-  const rawCanonical = state 
+  const serviceSlug = service.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
+  const rawCanonical = state && stateSlug
     ? `https://www.franchiseleadshq.com/${serviceSlug}/${countryCode.toLowerCase()}/${stateSlug}/${locationSlug}`
     : `https://www.franchiseleadshq.com/${serviceSlug}/${countryCode.toLowerCase()}/${locationSlug}`;
   const canonicalUrl = encodeURI(rawCanonical);
 
-  const title = `${capitalizedService} in ${location} | Expert Franchise Consultants`;
-  const description = `Professional ${service} services in ${fullLocation}. Connect with qualified franchise consultants who understand your local market. 850+ brands served. Get free consultation.`;
+  const title = `${capitalizedService} in ${location} | Franchise Lead Generation Agency`;
+  const description = `Professional ${service} services in ${fullLocation}. Get qualified franchise leads with SEO, PPC, and conversion-focused campaigns. Book a free strategy call today.`;
 
   // Get service-specific content or default
   const content = serviceContent[service.toLowerCase()] || serviceContent["franchise consulting"];
@@ -283,7 +285,7 @@ export const ServiceLocationTemplate = ({
             <div className="max-w-4xl mx-auto text-center">
               <div className="flex items-center justify-center gap-2 mb-4">
                 <Building2 className="h-6 w-6" />
-                <span className="text-lg opacity-90">Premier Franchise Consulting Firm</span>
+                <span className="text-lg opacity-90">Franchise Marketing & Lead Gen Agency</span>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
                 {content.heroText} in {location}

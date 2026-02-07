@@ -40,12 +40,17 @@ const LocationPage = () => {
     return (
       <LocationPageTemplate
         location={cityData.name}
+        locationSlug={cityData.slug}
         state={stateData.name}
+        stateSlug={stateData.slug}
         country={countryData.country}
         countryCode={countryData.countryCode}
         population={cityData.population}
         isCity={true}
-        nearbyLocations={stateData.cities.filter(c => c.slug !== city).map(c => c.name).slice(0, 3)}
+        nearbyLocations={stateData.cities
+          .filter(c => c.slug !== city)
+          .slice(0, 3)
+          .map(c => ({ name: c.name, slug: c.slug }))}
       />
     );
   }
@@ -59,10 +64,13 @@ const LocationPage = () => {
   return (
     <LocationPageTemplate
       location={stateData.name}
+      locationSlug={stateData.slug}
       country={countryData.country}
       countryCode={countryData.countryCode}
       isCity={false}
-      nearbyLocations={stateData.cities.map(c => c.name).slice(0, 5)}
+      nearbyLocations={stateData.cities
+        .slice(0, 5)
+        .map(c => ({ name: c.name, slug: c.slug }))}
     />
   );
 };

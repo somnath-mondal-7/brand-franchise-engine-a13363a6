@@ -30,6 +30,7 @@ const Hero = () => {
           {/* Main Headline */}
           <div className="space-y-2 md:space-y-4">
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-foreground leading-tight">
+              Franchise Lead Generation Agency<br />
               Stop Chasing Cold Leads.<br />
               <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Start Closing Deals.</span>
             </h1>

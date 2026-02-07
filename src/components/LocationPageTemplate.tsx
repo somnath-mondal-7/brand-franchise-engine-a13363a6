@@ -5,19 +5,28 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Check, Users, TrendingUp, MapPin, Phone, Mail } from 'lucide-react';
 
+interface NearbyLocation {
+  name: string;
+  slug: string;
+}
+
 interface LocationPageProps {
   location: string;
+  locationSlug: string;
   state?: string;
+  stateSlug?: string;
   country: string;
   countryCode: string;
   population?: number;
   isCity?: boolean;
-  nearbyLocations?: string[];
+  nearbyLocations?: NearbyLocation[];
 }
 
 export const LocationPageTemplate: React.FC<LocationPageProps> = ({
   location,
+  locationSlug,
   state,
+  stateSlug,
   country,
   countryCode,
   population,
@@ -30,12 +39,10 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
   const pageTitle = `#1 Franchise Lead Generation Agency in ${locationTitle} | FranchiseLeads HQ`;
   const pageDescription = `Top-rated franchise lead generation services in ${locationTitle}. We help franchise businesses generate qualified leads and grow their presence in ${location}. Get results fast!`;
   
-  // Generate proper URL structure
-  const stateSlug = state ? state.toLowerCase().replace(/\s+/g, '-') : '';
-  const locationSlugOnly = location.toLowerCase().replace(/\s+/g, '-');
-  const canonicalUrl = isCity 
-    ? `https://www.franchiseleadshq.com/locations/${countryCode.toLowerCase()}/${stateSlug}/${locationSlugOnly}`
-    : `https://www.franchiseleadshq.com/locations/${countryCode.toLowerCase()}/${locationSlugOnly}`;
+  // Canonical must use the REAL route slugs (not name-derived slugs) to avoid Google indexing 404s
+  const canonicalUrl = isCity && stateSlug
+    ? `https://www.franchiseleadshq.com/locations/${countryCode.toLowerCase()}/${stateSlug}/${locationSlug}`
+    : `https://www.franchiseleadshq.com/locations/${countryCode.toLowerCase()}/${locationSlug}`;
 
   return (
     <>
@@ -275,10 +282,10 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
                 {nearbyLocations.slice(0, 3).map((nearby, idx) => (
                   <a 
                     key={idx}
-                    href={`/locations/${countryCode.toLowerCase()}/${state?.toLowerCase().replace(/\s+/g, '-')}/${nearby.toLowerCase().replace(/\s+/g, '-')}`}
+                    href={`/locations/${countryCode.toLowerCase()}/${isCity ? stateSlug : locationSlug}/${nearby.slug}`}
                     className="text-primary hover:underline"
                   >
-                    Franchise Leads {nearby}
+                    Franchise Leads {nearby.name}
                   </a>
                 ))}
               </div>
