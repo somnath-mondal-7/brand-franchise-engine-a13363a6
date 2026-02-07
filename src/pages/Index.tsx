@@ -22,7 +22,7 @@ const Index = () => {
           "@type": "WebSite",
           "name": "FranchiseLeadsHQ",
           "url": "https://www.franchiseleadshq.com",
-          "description": "Premier franchise consulting firm providing complete franchise development, recruitment, matchmaking, expansion, and support services across India & USA.",
+          "description": "Franchise lead generation agency providing SEO, PPC, and digital marketing for franchisors and franchise consultants across the USA, UK, and worldwide.",
           "potentialAction": {
             "@type": "SearchAction",
             "target": {
@@ -34,42 +34,42 @@ const Index = () => {
           "mainEntity": {
             "@type": "Organization",
             "name": "FranchiseLeadsHQ",
-            "description": "Complete franchise consulting solutions - from development to expansion. We help businesses franchise successfully and connect investors with profitable opportunities.",
-            "serviceArea": ["India", "United States", "International"],
+            "description": "We generate qualified franchise buyer leads with performance marketing, franchise SEO, paid ads, and conversion optimization.",
+            "serviceArea": ["United States", "United Kingdom", "International"],
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
-              "name": "Franchise Consulting Services",
+              "name": "Franchise Marketing Services",
               "itemListElement": [
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Franchise Development",
-                    "description": "Complete franchise system development including FDD, operations manuals, and legal documentation"
-                  }
-                },
-                {
-                  "@type": "Offer", 
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Franchisee Recruitment",
-                    "description": "Connect with qualified franchisees through strategic recruitment and lead generation"
+                    "name": "Franchise Lead Generation",
+                    "description": "High-intent franchise buyer leads through targeted campaigns and qualification"
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Franchise Matchmaking",
-                    "description": "Expert matchmaking services connecting investors with ideal franchise opportunities"
+                    "name": "Franchise SEO",
+                    "description": "Topical authority + location SEO to rank for franchise lead generation keywords"
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Franchise Expansion",
-                    "description": "Strategic expansion planning for regional and international franchise growth"
+                    "name": "Franchise PPC Advertising",
+                    "description": "Conversion-focused paid media to scale leads profitably"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Landing Pages & Funnels",
+                    "description": "High-converting funnels that turn clicks into booked calls"
                   }
                 }
               ]

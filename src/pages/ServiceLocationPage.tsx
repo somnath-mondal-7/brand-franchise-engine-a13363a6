@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { ServiceLocationTemplate } from '@/components/ServiceLocationTemplate';
 import { locationData, broadMarketingKeywords } from '@/data/locations';
+import { slugify } from '@/utils/slugify';
 import NotFound from './NotFound';
 
 const ServiceLocationPage = () => {
@@ -10,20 +11,25 @@ const ServiceLocationPage = () => {
     return <NotFound />;
   }
 
-  // Convert slug back to service name
-  const decodedService = service.replace(/-/g, ' ');
-  
-  // Check if service exists in our data
-  const foundService = broadMarketingKeywords.find(k => 
-    k.toLowerCase() === decodedService.toLowerCase()
-  );
+  const serviceSlug = service.toLowerCase();
+
+  // Check if service exists in our data (slug-safe, matches sitemap generation)
+  const foundService = broadMarketingKeywords.find(k => slugify(k) === serviceSlug);
 
   if (!foundService) {
     return <NotFound />;
   }
 
-  // Find the country data
-  const countryData = locationData.find(c => c.countryCode.toLowerCase() === country.toLowerCase());
+  // Find the country data (normalize common variants)
+  const normalizeCountry = (c: string) => {
+    const v = c.toLowerCase();
+    if (v === 'us' || v === 'united-states' || v === 'united-states-of-america') return 'usa';
+    return v;
+  };
+
+  const normalizedCountry = normalizeCountry(country);
+
+  const countryData = locationData.find(c => c.countryCode.toLowerCase() === normalizedCountry);
   if (!countryData) {
     return <NotFound />;
   }
@@ -44,7 +50,9 @@ const ServiceLocationPage = () => {
       <ServiceLocationTemplate
         service={foundService}
         location={cityData.name}
+        locationSlug={cityData.slug}
         state={stateData.name}
+        stateSlug={stateData.slug}
         country={countryData.country}
         countryCode={countryData.countryCode}
         population={cityData.population}
@@ -62,6 +70,7 @@ const ServiceLocationPage = () => {
     <ServiceLocationTemplate
       service={foundService}
       location={stateData.name}
+      locationSlug={stateData.slug}
       country={countryData.country}
       countryCode={countryData.countryCode}
     />
