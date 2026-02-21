@@ -11,12 +11,12 @@ const FranchiseLeadsAustralia = () => {
         <title>Franchise Leads Australia - #1 Franchise Lead Generation Service in Australia</title>
         <meta name="description" content="Get qualified franchise leads in Australia. We've generated 15,000+ franchise consultant leads across Sydney, Melbourne, Brisbane, Perth, Adelaide. Expert Australian franchise marketing agency." />
         <meta name="keywords" content="franchise leads Australia, franchise lead generation Australia, franchise consultant leads Sydney, Melbourne franchise opportunities, Brisbane franchise leads, Perth franchise marketing, Adelaide franchise consultants, Australian franchise leads, franchise opportunities Australia, franchise business Australia" />
-        <link rel="canonical" href="https://www.franchiseleadshq.com/franchise-leads-australia" />
+        <link rel="canonical" href="https://www.franchiseleadspro.com/franchise-leads-australia" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Franchise Leads Australia - #1 Lead Generation Service" />
         <meta property="og:description" content="Get qualified franchise leads in Australia. 15,000+ leads generated for Australian franchise consultants across all major cities." />
-        <meta property="og:url" content="https://www.franchiseleadshq.com/franchise-leads-australia" />
+        <meta property="og:url" content="https://www.franchiseleadspro.com/franchise-leads-australia" />
         
         {/* Twitter */}
         <meta name="twitter:title" content="Franchise Leads Australia - #1 Lead Generation Service" />
@@ -31,8 +31,8 @@ const FranchiseLeadsAustralia = () => {
           "description": "Professional franchise lead generation services for consultants and franchisors across Australia including Sydney, Melbourne, Brisbane, Perth, Adelaide",
           "provider": {
             "@type": "Organization",
-            "name": "FranchiseLeadsHQ",
-            "url": "https://www.franchiseleadshq.com"
+            "name": "FranchiseLeadsPro",
+            "url": "https://www.franchiseleadspro.com"
           },
           "areaServed": {
             "@type": "Country",
@@ -243,7 +243,7 @@ const FranchiseLeadsAustralia = () => {
             
             <div className="bg-blue-50 p-8 rounded-xl">
               <blockquote className="text-lg text-gray-700 italic mb-4">
-                "FranchiseLeadsHQ generated 32 qualified leads for me in Melbourne and Sydney combined. I closed 2 deals worth $150,000 AUD in commission from their Australian franchise lead generation system."
+                "FranchiseLeadsPro generated 32 qualified leads for me in Melbourne and Sydney combined. I closed 2 deals worth $150,000 AUD in commission from their Australian franchise lead generation system."
               </blockquote>
               <cite className="text-sm font-semibold text-gray-900">
                 - Sarah Mitchell, Franchise Consultant, Melbourne, VIC

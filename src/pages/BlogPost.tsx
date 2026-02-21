@@ -132,16 +132,16 @@ const BlogPost = () => {
     <div className="min-h-screen bg-background">
       {/* SEO Meta Tags */}
       <Helmet>
-        <title>{post.seo_title || post.title} | FranchiseLeads HQ</title>
+        <title>{post.seo_title || post.title} | FranchiseLeads Pro</title>
         <meta name="description" content={post.seo_description || post.excerpt} />
         <meta name="keywords" content={post.tags?.join(', ')} />
-        <link rel="canonical" href={`https://www.franchiseleadshq.com/blog/${post.slug}`} />
+        <link rel="canonical" href={`https://www.franchiseleadspro.com/blog/${post.slug}`} />
         
         {/* Open Graph Tags */}
         <meta property="og:title" content={post.seo_title || post.title} />
         <meta property="og:description" content={post.seo_description || post.excerpt} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://www.franchiseleadshq.com/blog/${post.slug}`} />
+        <meta property="og:url" content={`https://www.franchiseleadspro.com/blog/${post.slug}`} />
         {post.featured_image_url && <meta property="og:image" content={post.featured_image_url} />}
         <meta property="article:published_time" content={post.published_at} />
         <meta property="article:author" content={post.author_name} />
@@ -166,17 +166,17 @@ const BlogPost = () => {
             },
             "publisher": {
               "@type": "Organization",
-              "name": "FranchiseLeads HQ",
+              "name": "FranchiseLeads Pro",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.franchiseleadshq.com/logo-hq.png"
+                "url": "https://www.franchiseleadspro.com/logo-hq.png"
               }
             },
             "datePublished": post.published_at,
             "dateModified": post.published_at,
             "mainEntityOfPage": {
               "@type": "WebPage",
-              "@id": `https://www.franchiseleadshq.com/blog/${post.slug}`
+              "@id": `https://www.franchiseleadspro.com/blog/${post.slug}`
             },
             "keywords": post.tags?.join(", ")
           })}

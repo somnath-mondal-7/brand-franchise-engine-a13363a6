@@ -11,12 +11,12 @@ const FranchiseLeadsIndia = () => {
         <title>Franchise Leads India - #1 Franchise Lead Generation Service in India</title>
         <meta name="description" content="Get qualified franchise leads in India. We've generated 20,000+ franchise consultant leads across Mumbai, Delhi, Bangalore, Chennai, Hyderabad, Pune, Kolkata. Expert Indian franchise marketing agency." />
         <meta name="keywords" content="franchise leads India, franchise lead generation India, franchise consultant leads Mumbai, Delhi franchise opportunities, Bangalore franchise leads, Chennai franchise marketing, Hyderabad franchise consultants, Indian franchise leads, franchise opportunities India, franchise business India" />
-        <link rel="canonical" href="https://www.franchiseleadshq.com/franchise-leads-india" />
+        <link rel="canonical" href="https://www.franchiseleadspro.com/franchise-leads-india" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Franchise Leads India - #1 Lead Generation Service" />
         <meta property="og:description" content="Get qualified franchise leads in India. 20,000+ leads generated for Indian franchise consultants across all major cities." />
-        <meta property="og:url" content="https://www.franchiseleadshq.com/franchise-leads-india" />
+        <meta property="og:url" content="https://www.franchiseleadspro.com/franchise-leads-india" />
         
         {/* Twitter */}
         <meta name="twitter:title" content="Franchise Leads India - #1 Lead Generation Service" />
@@ -31,8 +31,8 @@ const FranchiseLeadsIndia = () => {
           "description": "Professional franchise lead generation services for consultants and franchisors across India including Mumbai, Delhi, Bangalore, Chennai, Hyderabad",
           "provider": {
             "@type": "Organization",
-            "name": "FranchiseLeadsHQ",
-            "url": "https://www.franchiseleadshq.com"
+            "name": "FranchiseLeadsPro",
+            "url": "https://www.franchiseleadspro.com"
           },
           "areaServed": {
             "@type": "Country",
@@ -243,7 +243,7 @@ const FranchiseLeadsIndia = () => {
             
             <div className="bg-blue-50 p-8 rounded-xl">
               <blockquote className="text-lg text-gray-700 italic mb-4">
-                "FranchiseLeadsHQ generated 45 qualified leads for me across Mumbai and Pune. I closed 3 deals worth ₹25 lakhs in commission from their Indian franchise lead generation system."
+                "FranchiseLeadsPro generated 45 qualified leads for me across Mumbai and Pune. I closed 3 deals worth ₹25 lakhs in commission from their Indian franchise lead generation system."
               </blockquote>
               <cite className="text-sm font-semibold text-gray-900">
                 - Rajesh Sharma, Franchise Consultant, Mumbai, Maharashtra

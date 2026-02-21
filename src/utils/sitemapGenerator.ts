@@ -7,6 +7,8 @@ export interface SitemapUrl {
   priority: string;
 }
 
+const DOMAIN = 'https://www.franchiseleadspro.com';
+
 // Get today's date in YYYY-MM-DD format
 export const getTodayDate = (): string => {
   return new Date().toISOString().split('T')[0];
@@ -18,34 +20,13 @@ export const generateLocationUrls = (): SitemapUrl[] => {
   const currentDate = new Date().toISOString().split('T')[0];
 
   locationData.forEach(country => {
-    // Country level page
-    const countryUrl = `https://www.franchiseleadshq.com/locations/${country.countryCode.toLowerCase()}`;
-    urls.push({
-      loc: countryUrl,
-      lastmod: currentDate,
-      changefreq: 'weekly',
-      priority: '0.8'
-    });
+    urls.push({ loc: `${DOMAIN}/locations/${country.countryCode.toLowerCase()}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.8' });
 
-    // State/region level pages
     country.states.forEach(state => {
-      const stateUrl = `https://www.franchiseleadshq.com/locations/${country.countryCode.toLowerCase()}/${state.slug}`;
-      urls.push({
-        loc: stateUrl,
-        lastmod: currentDate,
-        changefreq: 'weekly',
-        priority: '0.75'
-      });
+      urls.push({ loc: `${DOMAIN}/locations/${country.countryCode.toLowerCase()}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.75' });
 
-      // City level pages
       state.cities.forEach(city => {
-        const cityUrl = `https://www.franchiseleadshq.com/locations/${country.countryCode.toLowerCase()}/${state.slug}/${city.slug}`;
-        urls.push({
-          loc: cityUrl,
-          lastmod: currentDate,
-          changefreq: 'weekly',
-          priority: '0.7'
-        });
+        urls.push({ loc: `${DOMAIN}/locations/${country.countryCode.toLowerCase()}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.7' });
       });
     });
   });
@@ -60,13 +41,7 @@ export const generateKeywordUrls = (): SitemapUrl[] => {
 
   seoKeywords.forEach(keyword => {
     const keywordSlug = keyword.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-    const keywordUrl = `https://www.franchiseleadshq.com/services/${keywordSlug}`;
-    urls.push({
-      loc: keywordUrl,
-      lastmod: currentDate,
-      changefreq: 'weekly',
-      priority: '0.7'
-    });
+    urls.push({ loc: `${DOMAIN}/services/${keywordSlug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.7' });
   });
 
   return urls;
@@ -81,29 +56,14 @@ export const generateServiceLocationUrls = (): SitemapUrl[] => {
     const serviceSlug = service.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     
     locationData.forEach(country => {
-      // Determine priority based on market
       const isPrimaryMarket = ['USA', 'IN'].includes(country.countryCode.toUpperCase());
       const basePriority = isPrimaryMarket ? 0.85 : 0.75;
 
       country.states.forEach(state => {
-        // Service + State pages
-        const stateUrl = `https://www.franchiseleadshq.com/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}`;
-        urls.push({
-          loc: stateUrl,
-          lastmod: currentDate,
-          changefreq: 'weekly',
-          priority: basePriority.toString()
-        });
+        urls.push({ loc: `${DOMAIN}/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: basePriority.toString() });
 
-        // Service + City pages (ALL cities)
         state.cities.forEach(city => {
-          const cityUrl = `https://www.franchiseleadshq.com/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}/${city.slug}`;
-          urls.push({
-            loc: cityUrl,
-            lastmod: currentDate,
-            changefreq: 'weekly',
-            priority: (basePriority - 0.05).toString()
-          });
+          urls.push({ loc: `${DOMAIN}/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: (basePriority - 0.05).toString() });
         });
       });
     });
@@ -132,37 +92,37 @@ export const generateSitemapXml = (): string => {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Core Pages -->
   <url>
-    <loc>https://www.franchiseleadshq.com/</loc>
+    <loc>${DOMAIN}/</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/about</loc>
+    <loc>${DOMAIN}/about</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/services</loc>
+    <loc>${DOMAIN}/services</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/contact</loc>
+    <loc>${DOMAIN}/contact</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/blog</loc>
+    <loc>${DOMAIN}/blog</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/testimonials</loc>
+    <loc>${DOMAIN}/testimonials</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -170,55 +130,55 @@ export const generateSitemapXml = (): string => {
   
   <!-- Country-Specific Landing Pages -->
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-india</loc>
+    <loc>${DOMAIN}/franchise-leads-india</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-usa</loc>
+    <loc>${DOMAIN}/franchise-leads-usa</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-uk</loc>
+    <loc>${DOMAIN}/franchise-leads-uk</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-canada</loc>
+    <loc>${DOMAIN}/franchise-leads-canada</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-australia</loc>
+    <loc>${DOMAIN}/franchise-leads-australia</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-dubai</loc>
+    <loc>${DOMAIN}/franchise-leads-dubai</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-kuwait</loc>
+    <loc>${DOMAIN}/franchise-leads-kuwait</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/buy-franchise-leads</loc>
+    <loc>${DOMAIN}/buy-franchise-leads</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/digital-marketing</loc>
+    <loc>${DOMAIN}/digital-marketing</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -226,13 +186,13 @@ export const generateSitemapXml = (): string => {
   
   <!-- Legal Pages -->
   <url>
-    <loc>https://www.franchiseleadshq.com/legal-terms/privacy-policy</loc>
+    <loc>${DOMAIN}/legal-terms/privacy-policy</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/legal-terms/refund-satisfaction-guarantee-policy</loc>
+    <loc>${DOMAIN}/legal-terms/refund-satisfaction-guarantee-policy</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>

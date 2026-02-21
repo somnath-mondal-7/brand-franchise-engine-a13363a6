@@ -11,12 +11,12 @@ const FranchiseLeadsCanada = () => {
         <title>Franchise Leads Canada - #1 Canadian Franchise Lead Generation Service</title>
         <meta name="description" content="Get qualified franchise leads in Canada. Leading Canadian franchise marketing agency generating high-quality leads for franchise consultants across all provinces and territories." />
         <meta name="keywords" content="franchise leads Canada, franchise lead generation Canada, Canadian franchise leads, Canada franchise opportunities, franchise marketing agency Canada, franchise consultant leads Canadian" />
-        <link rel="canonical" href="https://www.franchiseleadshq.com/franchise-leads-canada" />
+        <link rel="canonical" href="https://www.franchiseleadspro.com/franchise-leads-canada" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Franchise Leads Canada - #1 Canadian Lead Generation Service" />
         <meta property="og:description" content="Get qualified franchise leads in Canada. Leading Canadian franchise marketing agency." />
-        <meta property="og:url" content="https://www.franchiseleadshq.com/franchise-leads-canada" />
+        <meta property="og:url" content="https://www.franchiseleadspro.com/franchise-leads-canada" />
         
         {/* Twitter */}
         <meta name="twitter:title" content="Franchise Leads Canada - #1 Canadian Lead Generation Service" />
@@ -31,8 +31,8 @@ const FranchiseLeadsCanada = () => {
           "description": "Professional franchise lead generation services for consultants and franchisors across Canada",
           "provider": {
             "@type": "Organization",
-            "name": "FranchiseLeadsHQ",
-            "url": "https://www.franchiseleadshq.com"
+            "name": "FranchiseLeadsPro",
+            "url": "https://www.franchiseleadspro.com"
           },
           "areaServed": {
             "@type": "Country",
@@ -187,7 +187,7 @@ const FranchiseLeadsCanada = () => {
             
             <div className="bg-blue-50 p-8 rounded-xl">
               <blockquote className="text-lg text-gray-700 italic mb-4">
-                "FranchiseLeadsHQ's Canadian-focused approach generated 28 qualified leads for me in Ontario and Quebec. I closed 2 major deals worth $120,000 CAD in commission from their Canadian franchise lead system."
+                "FranchiseLeadsPro's Canadian-focused approach generated 28 qualified leads for me in Ontario and Quebec. I closed 2 major deals worth $120,000 CAD in commission from their Canadian franchise lead system."
               </blockquote>
               <cite className="text-sm font-semibold text-gray-900">
                 - Sarah Mitchell, Franchise Consultant, Toronto, ON

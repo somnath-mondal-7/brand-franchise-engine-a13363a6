@@ -16,7 +16,7 @@ const AboutSection = () => {
             </h2>
             
             <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              FranchiseLeads HQ is a marketing agency built specifically for franchise growth. 
+              FranchiseLeads Pro is a marketing agency built specifically for franchise growth. 
               While other agencies treat you like another client, we obsess over one thing: 
               <span className="text-foreground font-semibold"> getting qualified investors in your pipeline.</span>
             </p>

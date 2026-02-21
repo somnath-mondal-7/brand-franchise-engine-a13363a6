@@ -20,11 +20,11 @@ export const KeywordPageTemplate: React.FC<KeywordPageProps> = ({
     word.charAt(0).toUpperCase() + word.slice(1)
   ).join(' ');
   
-  const pageTitle = `${capitalizeKeyword} | FranchiseLeads HQ - Expert Services`;
-  const pageDescription = `Looking for ${keyword}? FranchiseLeads HQ provides expert ${service} services. Get qualified leads, proven strategies, and measurable results. Start growing today!`;
+  const pageTitle = `${capitalizeKeyword} | FranchiseLeads Pro - Expert Services`;
+  const pageDescription = `Looking for ${keyword}? FranchiseLeads Pro provides expert ${service} services. Get qualified leads, proven strategies, and measurable results. Start growing today!`;
   
   const keywordSlug = keyword.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-  const canonicalUrl = `https://www.franchiseleadshq.com/services/${keywordSlug}`;
+  const canonicalUrl = `https://www.franchiseleadspro.com/services/${keywordSlug}`;
 
   const isNearMeKeyword = keyword.includes('near me') || keyword.includes('nearby');
   const isLocalKeyword = keyword.includes('local');
@@ -58,8 +58,8 @@ export const KeywordPageTemplate: React.FC<KeywordPageProps> = ({
             "description": pageDescription,
             "provider": {
               "@type": "Organization",
-              "name": "FranchiseLeads HQ",
-              "url": "https://www.franchiseleadshq.com"
+              "name": "FranchiseLeads Pro",
+              "url": "https://www.franchiseleadspro.com"
             },
             "areaServed": isNearMeKeyword || isLocalKeyword ? "Global" : "United States",
             "hasOfferCatalog": {

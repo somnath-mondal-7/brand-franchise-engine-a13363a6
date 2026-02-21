@@ -60,9 +60,9 @@ const About = () => {
   return (
       <div className="min-h-screen bg-background">
         <Helmet>
-          <title>About FranchiseLeadsHQ - Leading Franchise Consulting Firm | India & USA</title>
-          <meta name="description" content="FranchiseLeadsHQ is a premier franchise consulting company with 18+ years of experience in franchise development, recruitment, matchmaking, and expansion across India and USA." />
-          <link rel="canonical" href="https://www.franchiseleadshq.com/about" />
+          <title>About FranchiseLeadsPro - Leading Franchise Consulting Firm | India & USA</title>
+          <meta name="description" content="FranchiseLeadsPro is a premier franchise consulting company with 18+ years of experience in franchise development, recruitment, matchmaking, and expansion across India and USA." />
+          <link rel="canonical" href="https://www.franchiseleadspro.com/about" />
         </Helmet>
         <script type="application/ld+json">
           {JSON.stringify({
@@ -71,10 +71,10 @@ const About = () => {
             "mainEntity": [
               {
                 "@type": "Question",
-                "name": "What is FranchiseLeadsHQ?",
+                "name": "What is FranchiseLeadsPro?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "FranchiseLeadsHQ is a specialized franchise marketing and lead generation agency helping consultants and franchisors grow with qualified leads and strong brand positioning."
+                  "text": "FranchiseLeadsPro is a specialized franchise marketing and lead generation agency helping consultants and franchisors grow with qualified leads and strong brand positioning."
                 }
               },
               {
@@ -110,7 +110,7 @@ const About = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
             <h1 className="text-5xl lg:text-6xl font-bold text-brand-navy leading-tight">
-              About FranchiseLeads HQ
+              About FranchiseLeads Pro
             </h1>
             <p className="text-xl text-brand-gray leading-relaxed">
               Your trusted franchise consulting partner with 18+ years of experience helping businesses franchise successfully 
@@ -259,7 +259,7 @@ const About = () => {
       <section className="py-20 bg-gradient-secondary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-brand-navy mb-6">Why Choose FranchiseLeads HQ?</h2>
+            <h2 className="text-4xl font-bold text-brand-navy mb-6">Why Choose FranchiseLeads Pro?</h2>
             <p className="text-xl text-brand-gray max-w-3xl mx-auto">
               We're not just another marketing agency. Here's what sets us apart in the franchise industry.
             </p>

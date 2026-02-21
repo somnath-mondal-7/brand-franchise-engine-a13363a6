@@ -192,8 +192,8 @@ export const ServiceLocationTemplate = ({
   const serviceSlug = service.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
   const rawCanonical = state && stateSlug
-    ? `https://www.franchiseleadshq.com/${serviceSlug}/${countryCode.toLowerCase()}/${stateSlug}/${locationSlug}`
-    : `https://www.franchiseleadshq.com/${serviceSlug}/${countryCode.toLowerCase()}/${locationSlug}`;
+    ? `https://www.franchiseleadspro.com/${serviceSlug}/${countryCode.toLowerCase()}/${stateSlug}/${locationSlug}`
+    : `https://www.franchiseleadspro.com/${serviceSlug}/${countryCode.toLowerCase()}/${locationSlug}`;
   const canonicalUrl = encodeURI(rawCanonical);
 
   const title = `${capitalizedService} in ${location} | Franchise Lead Generation Agency`;
@@ -235,13 +235,13 @@ export const ServiceLocationTemplate = ({
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
-            "name": `FranchiseLeadsHQ - ${capitalizedService}`,
+            "name": `FranchiseLeadsPro - ${capitalizedService}`,
             "description": description,
             "serviceType": capitalizedService,
             "provider": {
               "@type": "Organization",
-              "name": "FranchiseLeadsHQ",
-              "url": "https://www.franchiseleadshq.com"
+              "name": "FranchiseLeadsPro",
+              "url": "https://www.franchiseleadspro.com"
             },
             "areaServed": {
               "@type": "City",
@@ -424,7 +424,7 @@ export const ServiceLocationTemplate = ({
                 <Link to="/testimonials" className="text-primary hover:underline">Success Stories</Link>
                 <Link to="/blog" className="text-primary hover:underline">Franchise Resources</Link>
                 <Link to="/contact" className="text-primary hover:underline">Contact Us</Link>
-                <Link to="/about" className="text-primary hover:underline">About FranchiseLeadsHQ</Link>
+                <Link to="/about" className="text-primary hover:underline">About FranchiseLeadsPro</Link>
                 <Link to="/digital-marketing" className="text-primary hover:underline">Digital Marketing</Link>
               </div>
             </div>
@@ -440,7 +440,7 @@ export const ServiceLocationTemplate = ({
                 Ready to Grow Your Franchise in {location}?
               </h2>
               <p className="text-xl mb-8 opacity-90">
-                Join 850+ successful brands who trust FranchiseLeadsHQ for their {service} needs.
+                Join 850+ successful brands who trust FranchiseLeadsPro for their {service} needs.
               </p>
               <Button 
                 size="lg"

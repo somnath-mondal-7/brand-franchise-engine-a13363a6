@@ -7,9 +7,9 @@ const PrivacyPolicy = () => {
   return (
     <>
       <Helmet>
-        <title>Privacy Policy | FranchiseLeadsHQ</title>
-        <meta name="description" content="Privacy Policy for FranchiseLeadsHQ - Learn how we collect, use, and protect your personal information." />
-        <link rel="canonical" href="https://www.franchiseleadshq.com/legal-terms/privacy-policy" />
+        <title>Privacy Policy | FranchiseLeadsPro</title>
+        <meta name="description" content="Privacy Policy for FranchiseLeadsPro - Learn how we collect, use, and protect your personal information." />
+        <link rel="canonical" href="https://www.franchiseleadspro.com/legal-terms/privacy-policy" />
       </Helmet>
 
       <Navigation />
@@ -61,7 +61,7 @@ const PrivacyPolicy = () => {
             <p className="mb-4">
               If you have any questions about this Privacy Policy, please contact us at:
             </p>
-            <p>Email: privacy@franchiseleadshq.com</p>
+            <p>Email: privacy@franchiseleadspro.com</p>
           </section>
         </div>
       </main>

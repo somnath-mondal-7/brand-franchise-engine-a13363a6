@@ -247,8 +247,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-medium text-brand-navy">Email Us</p>
-                    <a href="mailto:support@franchiseleadshq.com" className="text-brand-gray hover:text-brand-blue">
-                      support@franchiseleadshq.com
+                    <a href="mailto:support@franchiseleadspro.com" className="text-brand-gray hover:text-brand-blue">
+                      support@franchiseleadspro.com
                     </a>
                   </div>
                 </div>
@@ -283,7 +283,7 @@ const Contact = () => {
             {/* Quick Stats */}
             <Card className="bg-brand-navy text-white shadow-elegant">
               <CardContent className="p-6">
-                <h4 className="text-lg font-bold mb-4">Why Choose FranchiseLeadsHQ?</h4>
+                <h4 className="text-lg font-bold mb-4">Why Choose FranchiseLeadsPro?</h4>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span>Response Time</span>

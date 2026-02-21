@@ -11,12 +11,12 @@ const FranchiseLeadsUSA = () => {
         <title>Franchise Leads USA - #1 Franchise Lead Generation Service in America</title>
         <meta name="description" content="Get qualified franchise leads in USA. We've generated 50,000+ franchise consultant leads across America. Expert franchise marketing agency specializing in US franchise opportunities." />
         <meta name="keywords" content="franchise leads USA, franchise lead generation USA, franchise consultant leads America, US franchise opportunities, franchise marketing agency USA, American franchise leads" />
-        <link rel="canonical" href="https://www.franchiseleadshq.com/franchise-leads-usa" />
+        <link rel="canonical" href="https://www.franchiseleadspro.com/franchise-leads-usa" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Franchise Leads USA - #1 Lead Generation Service in America" />
         <meta property="og:description" content="Get qualified franchise leads in USA. 50,000+ leads generated for American franchise consultants." />
-        <meta property="og:url" content="https://www.franchiseleadshq.com/franchise-leads-usa" />
+        <meta property="og:url" content="https://www.franchiseleadspro.com/franchise-leads-usa" />
         
         {/* Twitter */}
         <meta name="twitter:title" content="Franchise Leads USA - #1 Lead Generation Service in America" />
@@ -31,8 +31,8 @@ const FranchiseLeadsUSA = () => {
           "description": "Professional franchise lead generation services for consultants and franchisors across the United States",
           "provider": {
             "@type": "Organization",
-            "name": "FranchiseLeadsHQ",
-            "url": "https://www.franchiseleadshq.com"
+            "name": "FranchiseLeadsPro",
+            "url": "https://www.franchiseleadspro.com"
           },
           "areaServed": {
             "@type": "Country",
@@ -187,7 +187,7 @@ const FranchiseLeadsUSA = () => {
             
             <div className="bg-blue-50 p-8 rounded-xl">
               <blockquote className="text-lg text-gray-700 italic mb-4">
-                "FranchiseLeadsHQ generated 47 qualified leads for me in Texas alone. I closed 3 deals worth $180,000 in commission from their US franchise lead generation system."
+                "FranchiseLeadsPro generated 47 qualified leads for me in Texas alone. I closed 3 deals worth $180,000 in commission from their US franchise lead generation system."
               </blockquote>
               <cite className="text-sm font-semibold text-gray-900">
                 - Michael Rodriguez, Franchise Consultant, Dallas, TX
