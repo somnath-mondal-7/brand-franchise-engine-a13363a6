@@ -7,9 +7,9 @@ const RefundPolicy = () => {
   return (
     <>
       <Helmet>
-        <title>Refund & Satisfaction Guarantee Policy | FranchiseLeadsHQ</title>
-        <meta name="description" content="Refund and Satisfaction Guarantee Policy for FranchiseLeadsHQ - Learn about our refund terms and conditions." />
-        <link rel="canonical" href="https://www.franchiseleadshq.com/legal-terms/refund-satisfaction-guarantee-policy" />
+        <title>Refund & Satisfaction Guarantee Policy | FranchiseLeadsPro</title>
+        <meta name="description" content="Refund and Satisfaction Guarantee Policy for FranchiseLeadsPro - Learn about our refund terms and conditions." />
+        <link rel="canonical" href="https://www.franchiseleadspro.com/legal-terms/refund-satisfaction-guarantee-policy" />
       </Helmet>
 
       <Navigation />
@@ -26,7 +26,7 @@ const RefundPolicy = () => {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">Our Satisfaction Guarantee</h2>
             <p className="mb-4">
-              At FranchiseLeadsHQ, we are committed to delivering high-quality franchise leads 
+              At FranchiseLeadsPro, we are committed to delivering high-quality franchise leads 
               and exceptional service. We stand behind our work with a satisfaction guarantee.
             </p>
           </section>
@@ -61,7 +61,7 @@ const RefundPolicy = () => {
             <p className="mb-4">
               For refund requests or questions about this policy, please contact us at:
             </p>
-            <p>Email: support@franchiseleadshq.com</p>
+            <p>Email: support@franchiseleadspro.com</p>
             <p>Phone: 1-800-FRANCHISE</p>
           </section>
         </div>

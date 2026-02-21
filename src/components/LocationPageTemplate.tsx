@@ -36,13 +36,12 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
   const locationTitle = isCity ? `${location}, ${state}` : location;
   const fullLocation = state ? `${location}, ${state}, ${country}` : `${location}, ${country}`;
   
-  const pageTitle = `#1 Franchise Lead Generation Agency in ${locationTitle} | FranchiseLeads HQ`;
+  const pageTitle = `#1 Franchise Lead Generation Agency in ${locationTitle} | FranchiseLeads Pro`;
   const pageDescription = `Top-rated franchise lead generation services in ${locationTitle}. We help franchise businesses generate qualified leads and grow their presence in ${location}. Get results fast!`;
   
-  // Canonical must use the REAL route slugs (not name-derived slugs) to avoid Google indexing 404s
   const canonicalUrl = isCity && stateSlug
-    ? `https://www.franchiseleadshq.com/locations/${countryCode.toLowerCase()}/${stateSlug}/${locationSlug}`
-    : `https://www.franchiseleadshq.com/locations/${countryCode.toLowerCase()}/${locationSlug}`;
+    ? `https://www.franchiseleadspro.com/locations/${countryCode.toLowerCase()}/${stateSlug}/${locationSlug}`
+    : `https://www.franchiseleadspro.com/locations/${countryCode.toLowerCase()}/${locationSlug}`;
 
   return (
     <>
@@ -70,7 +69,7 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": `FranchiseLeads HQ - ${location}`,
+            "name": `FranchiseLeads Pro - ${location}`,
             "description": `Professional franchise lead generation services in ${fullLocation}`,
             "address": {
               "@type": "PostalAddress",

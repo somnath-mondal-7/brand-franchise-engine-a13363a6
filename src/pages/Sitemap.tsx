@@ -17,10 +17,10 @@ const Sitemap = () => {
   return (
     <>
       <Helmet>
-        <title>Sitemap | FranchiseLeadsHQ - All Pages</title>
-        <meta name="description" content="Complete sitemap of FranchiseLeadsHQ services, locations, and resources. Find all our franchise lead generation services across different countries and cities." />
+        <title>Sitemap | FranchiseLeadsPro - All Pages</title>
+        <meta name="description" content="Complete sitemap of FranchiseLeadsPro services, locations, and resources. Find all our franchise lead generation services across different countries and cities." />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://www.franchiseleadshq.com/sitemap" />
+        <link rel="canonical" href="https://www.franchiseleadspro.com/sitemap" />
       </Helmet>
 
       <Navigation />

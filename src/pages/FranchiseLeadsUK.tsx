@@ -11,12 +11,12 @@ const FranchiseLeadsUK = () => {
         <title>Franchise Leads UK - #1 British Franchise Lead Generation Service</title>
         <meta name="description" content="Get qualified franchise leads in UK. Leading British franchise marketing agency generating high-quality leads for franchise consultants across England, Scotland, Wales, and Northern Ireland." />
         <meta name="keywords" content="franchise leads UK, franchise lead generation UK, British franchise leads, UK franchise opportunities, franchise marketing agency UK, franchise consultant leads Britain" />
-        <link rel="canonical" href="https://www.franchiseleadshq.com/franchise-leads-uk" />
+        <link rel="canonical" href="https://www.franchiseleadspro.com/franchise-leads-uk" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Franchise Leads UK - #1 British Lead Generation Service" />
         <meta property="og:description" content="Get qualified franchise leads in UK. Leading British franchise marketing agency." />
-        <meta property="og:url" content="https://www.franchiseleadshq.com/franchise-leads-uk" />
+        <meta property="og:url" content="https://www.franchiseleadspro.com/franchise-leads-uk" />
         
         {/* Twitter */}
         <meta name="twitter:title" content="Franchise Leads UK - #1 British Lead Generation Service" />
@@ -31,8 +31,8 @@ const FranchiseLeadsUK = () => {
           "description": "Professional franchise lead generation services for consultants and franchisors across the United Kingdom",
           "provider": {
             "@type": "Organization",
-            "name": "FranchiseLeadsHQ",
-            "url": "https://www.franchiseleadshq.com"
+            "name": "FranchiseLeadsPro",
+            "url": "https://www.franchiseleadspro.com"
           },
           "areaServed": {
             "@type": "Country",
@@ -187,7 +187,7 @@ const FranchiseLeadsUK = () => {
             
             <div className="bg-blue-50 p-8 rounded-xl">
               <blockquote className="text-lg text-gray-700 italic mb-4">
-                "FranchiseLeadsHQ's UK-focused approach generated 32 qualified leads for me in Greater London. I closed 2 significant deals worth £95,000 in commission from their British franchise lead system."
+                "FranchiseLeadsPro's UK-focused approach generated 32 qualified leads for me in Greater London. I closed 2 significant deals worth £95,000 in commission from their British franchise lead system."
               </blockquote>
               <cite className="text-sm font-semibold text-gray-900">
                 - James Thompson, Franchise Consultant, London, UK

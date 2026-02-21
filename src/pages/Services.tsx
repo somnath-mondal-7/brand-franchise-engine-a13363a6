@@ -52,7 +52,7 @@ const Services = () => {
       <Helmet>
         <title>Franchise Consulting Services | Development, Recruitment & Expansion</title>
         <meta name="description" content="Complete franchise consulting services including franchise development, franchisee recruitment, matchmaking, and expansion planning. Serving India & USA. 850+ brands served." />
-        <link rel="canonical" href="https://www.franchiseleadshq.com/services" />
+        <link rel="canonical" href="https://www.franchiseleadspro.com/services" />
         <meta name="robots" content="index, follow" />
       </Helmet>
       <div className="min-h-screen bg-background">

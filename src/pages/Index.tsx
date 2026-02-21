@@ -20,20 +20,20 @@ const Index = () => {
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",
-          "name": "FranchiseLeadsHQ",
-          "url": "https://www.franchiseleadshq.com",
+          "name": "FranchiseLeadsPro",
+          "url": "https://www.franchiseleadspro.com",
           "description": "Franchise lead generation agency providing SEO, PPC, and digital marketing for franchisors and franchise consultants across the USA, UK, and worldwide.",
           "potentialAction": {
             "@type": "SearchAction",
             "target": {
               "@type": "EntryPoint",
-              "urlTemplate": "https://www.franchiseleadshq.com/search?q={search_term_string}"
+              "urlTemplate": "https://www.franchiseleadspro.com/search?q={search_term_string}"
             },
             "query-input": "required name=search_term_string"
           },
           "mainEntity": {
             "@type": "Organization",
-            "name": "FranchiseLeadsHQ",
+            "name": "FranchiseLeadsPro",
             "description": "We generate qualified franchise buyer leads with performance marketing, franchise SEO, paid ads, and conversion optimization.",
             "serviceArea": ["United States", "United Kingdom", "International"],
             "hasOfferCatalog": {

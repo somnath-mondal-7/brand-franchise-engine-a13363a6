@@ -11,12 +11,12 @@ const FranchiseLeadsDubai = () => {
         <title>Franchise Leads Dubai UAE - #1 Franchise Lead Generation Service in Middle East</title>
         <meta name="description" content="Get qualified franchise leads in Dubai, UAE, Abu Dhabi, Sharjah. We've generated 8,000+ franchise consultant leads across UAE and Middle East. Expert Dubai franchise marketing agency." />
         <meta name="keywords" content="franchise leads Dubai, franchise lead generation UAE, franchise consultant leads Dubai, Abu Dhabi franchise opportunities, Sharjah franchise leads, UAE franchise marketing, Dubai franchise consultants, Middle East franchise leads, franchise opportunities UAE, franchise business Dubai" />
-        <link rel="canonical" href="https://www.franchiseleadshq.com/franchise-leads-dubai" />
+        <link rel="canonical" href="https://www.franchiseleadspro.com/franchise-leads-dubai" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Franchise Leads Dubai UAE - #1 Lead Generation Service" />
         <meta property="og:description" content="Get qualified franchise leads in Dubai, UAE. 8,000+ leads generated for Middle East franchise consultants." />
-        <meta property="og:url" content="https://www.franchiseleadshq.com/franchise-leads-dubai" />
+        <meta property="og:url" content="https://www.franchiseleadspro.com/franchise-leads-dubai" />
         
         {/* Twitter */}
         <meta name="twitter:title" content="Franchise Leads Dubai UAE - #1 Lead Generation Service" />
@@ -31,8 +31,8 @@ const FranchiseLeadsDubai = () => {
           "description": "Professional franchise lead generation services for consultants and franchisors across Dubai, UAE, Abu Dhabi, Sharjah and Middle East",
           "provider": {
             "@type": "Organization",
-            "name": "FranchiseLeadsHQ",
-            "url": "https://www.franchiseleadshq.com"
+            "name": "FranchiseLeadsPro",
+            "url": "https://www.franchiseleadspro.com"
           },
           "areaServed": {
             "@type": "Country",
@@ -243,7 +243,7 @@ const FranchiseLeadsDubai = () => {
             
             <div className="bg-blue-50 p-8 rounded-xl">
               <blockquote className="text-lg text-gray-700 italic mb-4">
-                "FranchiseLeadsHQ generated 28 qualified leads for me in Dubai and Abu Dhabi. I closed 2 major deals worth $200,000 USD in commission from their UAE franchise lead generation system."
+                "FranchiseLeadsPro generated 28 qualified leads for me in Dubai and Abu Dhabi. I closed 2 major deals worth $200,000 USD in commission from their UAE franchise lead generation system."
               </blockquote>
               <cite className="text-sm font-semibold text-gray-900">
                 - Ahmed Al-Mansouri, Franchise Consultant, Dubai, UAE

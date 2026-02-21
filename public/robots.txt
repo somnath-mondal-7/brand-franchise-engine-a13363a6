@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap Index (contains all 5 sitemaps + blog sitemap = ~49,900 pages)
-Sitemap: https://www.franchiseleadshq.com/sitemap.xml
+Sitemap: https://www.franchiseleadspro.com/sitemap.xml
 
 # Crawl-delay for better server performance
 Crawl-delay: 1

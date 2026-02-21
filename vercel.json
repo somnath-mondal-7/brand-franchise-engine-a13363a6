@@ -13,7 +13,7 @@
           "value": "http"
         }
       ],
-      "destination": "https://www.franchiseleadshq.com/$1",
+      "destination": "https://www.franchiseleadspro.com/$1",
       "permanent": true
     },
     {
@@ -21,10 +21,10 @@
       "has": [
         {
           "type": "host",
-          "value": "franchiseleadshq.com"
+          "value": "franchiseleadspro.com"
         }
       ],
-      "destination": "https://www.franchiseleadshq.com/$1",
+      "destination": "https://www.franchiseleadspro.com/$1",
       "permanent": true
     },
     {

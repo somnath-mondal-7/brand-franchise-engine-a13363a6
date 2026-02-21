@@ -9,19 +9,19 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <img src={logo} alt="FranchiseLeadsHQ Logo - Franchise Lead Generation Experts" width="40" height="40" className="w-10 h-10 object-contain" />
-              <span className="text-xl font-semibold text-white" aria-label="FranchiseLeadsHQ">
-                franchiseleads<span className="text-primary font-bold">HQ</span>
+              <img src={logo} alt="FranchiseLeadsPro Logo - Franchise Lead Generation Experts" width="40" height="40" className="w-10 h-10 object-contain" />
+              <span className="text-xl font-semibold text-white" aria-label="FranchiseLeadsPro">
+                franchiseleads<span className="text-primary font-bold">Pro</span>
               </span>
             </div>
             <p className="text-gray-400">
               We don't just generate leads, we build brands that dominate the franchise market.
             </p>
             <div className="flex space-x-4">
-              <a href="https://www.linkedin.com/company/franchiseleadshq/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/company/franchiseleadspro/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
               </a>
-              <a href="https://www.facebook.com/people/Franchiseleadshq/61579709174263/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.facebook.com/people/Franchiseleadspro/61579709174263/" target="_blank" rel="noopener noreferrer">
                 <Facebook className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
               </a>
               <a href="https://www.instagram.com/iamsomnath_mondal?" target="_blank" rel="noopener noreferrer">
@@ -77,7 +77,7 @@ const Footer = () => {
             <div className="space-y-3 text-gray-400">
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4" />
-                <span>support@franchiseleadshq.com</span>
+                <span>support@franchiseleadspro.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4" />
@@ -105,7 +105,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400">
-              <p>© 2026 FranchiseLeadsHQ. All rights reserved.</p>
+              <p>© 2026 FranchiseLeadsPro. All rights reserved.</p>
             </div>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="/legal-terms/privacy-policy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>

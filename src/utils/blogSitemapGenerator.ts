@@ -1,5 +1,7 @@
 import { supabase } from '@/integrations/supabase/client';
 
+const DOMAIN = 'https://www.franchiseleadspro.com';
+
 export interface BlogSitemapUrl {
   loc: string;
   lastmod: string;
@@ -11,7 +13,6 @@ export const generateBlogSitemapUrls = async (): Promise<BlogSitemapUrl[]> => {
   const urls: BlogSitemapUrl[] = [];
 
   try {
-    // Fetch all published blog posts from database
     const { data: posts, error } = await supabase
       .from('blog_posts')
       .select('slug, published_at, updated_at')
@@ -25,12 +26,11 @@ export const generateBlogSitemapUrls = async (): Promise<BlogSitemapUrl[]> => {
 
     if (posts) {
       posts.forEach(post => {
-        // Use updated_at if available, otherwise use published_at
         const lastmod = post.updated_at || post.published_at;
         const formattedDate = new Date(lastmod).toISOString().split('T')[0];
 
         urls.push({
-          loc: `https://www.franchiseleadshq.com/blog/${post.slug}`,
+          loc: `${DOMAIN}/blog/${post.slug}`,
           lastmod: formattedDate,
           changefreq: 'weekly',
           priority: '0.8'
@@ -61,7 +61,7 @@ export const generateBlogSitemapXml = async (): Promise<string> => {
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://www.franchiseleadshq.com/blog</loc>
+    <loc>${DOMAIN}/blog</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>

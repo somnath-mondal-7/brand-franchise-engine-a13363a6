@@ -11,12 +11,12 @@ const FranchiseLeadsKuwait = () => {
         <title>Franchise Leads Kuwait - #1 Franchise Lead Generation Service in Kuwait</title>
         <meta name="description" content="Get qualified franchise leads in Kuwait. We've generated 3,500+ franchise consultant leads across Kuwait City, Hawalli, Ahmadi, Jahra. Expert Kuwait franchise marketing agency." />
         <meta name="keywords" content="franchise leads Kuwait, franchise lead generation Kuwait, franchise consultant leads Kuwait City, Hawalli franchise opportunities, Ahmadi franchise leads, Kuwait franchise marketing, Kuwait franchise consultants, Gulf franchise leads, franchise opportunities Kuwait, franchise business Kuwait" />
-        <link rel="canonical" href="https://www.franchiseleadshq.com/franchise-leads-kuwait" />
+        <link rel="canonical" href="https://www.franchiseleadspro.com/franchise-leads-kuwait" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Franchise Leads Kuwait - #1 Lead Generation Service" />
         <meta property="og:description" content="Get qualified franchise leads in Kuwait. 3,500+ leads generated for Kuwait franchise consultants." />
-        <meta property="og:url" content="https://www.franchiseleadshq.com/franchise-leads-kuwait" />
+        <meta property="og:url" content="https://www.franchiseleadspro.com/franchise-leads-kuwait" />
         
         {/* Twitter */}
         <meta name="twitter:title" content="Franchise Leads Kuwait - #1 Lead Generation Service" />
@@ -31,8 +31,8 @@ const FranchiseLeadsKuwait = () => {
           "description": "Professional franchise lead generation services for consultants and franchisors across Kuwait including Kuwait City, Hawalli, Ahmadi, Jahra",
           "provider": {
             "@type": "Organization",
-            "name": "FranchiseLeadsHQ",
-            "url": "https://www.franchiseleadshq.com"
+            "name": "FranchiseLeadsPro",
+            "url": "https://www.franchiseleadspro.com"
           },
           "areaServed": {
             "@type": "Country",
@@ -233,7 +233,7 @@ const FranchiseLeadsKuwait = () => {
             
             <div className="bg-blue-50 p-8 rounded-xl">
               <blockquote className="text-lg text-gray-700 italic mb-4">
-                "FranchiseLeadsHQ generated 18 qualified leads for me in Kuwait City and Hawalli. I closed 2 deals worth $120,000 USD in commission from their Kuwait franchise lead generation system."
+                "FranchiseLeadsPro generated 18 qualified leads for me in Kuwait City and Hawalli. I closed 2 deals worth $120,000 USD in commission from their Kuwait franchise lead generation system."
               </blockquote>
               <cite className="text-sm font-semibold text-gray-900">
                 - Omar Al-Rashid, Franchise Consultant, Kuwait City, Kuwait

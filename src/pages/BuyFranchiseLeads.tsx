@@ -11,12 +11,12 @@ const BuyFranchiseLeads = () => {
         <title>Buy Franchise Leads | Exclusive Qualified Franchise Buyer Leads USA</title>
         <meta name="description" content="Buy exclusive franchise leads USA - Get qualified franchise buyer leads that convert. 25,000+ hot franchise leads delivered to American consultants. Real-time lead delivery, exclusive rights." />
         <meta name="keywords" content="buy franchise leads, buying franchise leads, franchise leads for sale, exclusive franchise leads, qualified franchise buyer leads, franchise lead generation, hot franchise leads, franchise consultant leads, purchase franchise leads USA" />
-        <link rel="canonical" href="https://www.franchiseleadshq.com/buy-franchise-leads" />
+        <link rel="canonical" href="https://www.franchiseleadspro.com/buy-franchise-leads" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Buy Franchise Leads - Exclusive Qualified Buyer Leads USA" />
         <meta property="og:description" content="Buy exclusive franchise leads USA. Get qualified franchise buyer leads that convert. Real-time delivery, exclusive rights to leads." />
-        <meta property="og:url" content="https://www.franchiseleadshq.com/buy-franchise-leads" />
+        <meta property="og:url" content="https://www.franchiseleadspro.com/buy-franchise-leads" />
         <meta property="og:type" content="product" />
         
         {/* Twitter */}
@@ -32,7 +32,7 @@ const BuyFranchiseLeads = () => {
           "description": "Premium qualified franchise buyer leads with exclusive rights. Real-time delivery of hot franchise leads across all 50 US states.",
           "brand": {
             "@type": "Brand",
-            "name": "FranchiseLeadsHQ"
+            "name": "FranchiseLeadsPro"
           },
           "offers": {
             "@type": "AggregateOffer",
@@ -62,7 +62,7 @@ const BuyFranchiseLeads = () => {
               "name": "Where can I buy franchise leads?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "You can buy exclusive franchise leads from FranchiseLeadsHQ. We provide qualified franchise buyer leads across all 50 US states with real-time delivery and exclusive rights to each lead."
+                "text": "You can buy exclusive franchise leads from FranchiseLeadsPro. We provide qualified franchise buyer leads across all 50 US states with real-time delivery and exclusive rights to each lead."
               }
             },
             {
@@ -78,7 +78,7 @@ const BuyFranchiseLeads = () => {
               "name": "Are your franchise leads exclusive?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Yes, all franchise leads from FranchiseLeadsHQ are 100% exclusive. Each lead is sold to only one franchise consultant, ensuring you have exclusive rights to contact and close the prospect."
+                "text": "Yes, all franchise leads from FranchiseLeadsPro are 100% exclusive. Each lead is sold to only one franchise consultant, ensuring you have exclusive rights to contact and close the prospect."
               }
             },
             {
@@ -138,7 +138,7 @@ const BuyFranchiseLeads = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Why Buy Franchise Leads From FranchiseLeadsHQ?
+                Why Buy Franchise Leads From FranchiseLeadsPro?
               </h2>
               <p className="text-xl text-gray-600">
                 Not all franchise leads are created equal. Here's why top consultants choose us.
