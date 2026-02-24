@@ -367,7 +367,7 @@ const BuyFranchiseLeads = () => {
                   </div>
                 </div>
                 <blockquote className="text-lg text-gray-700 mb-4">
-                  "I've been buying franchise leads from FranchiseLeadsHQ for 2 years. The exclusivity makes all the difference - 
+                  "I've been buying franchise leads from FranchiseLeadsPro for 2 years. The exclusivity makes all the difference - 
                   I closed 8 deals last year from their leads, generating $320K in commissions. Worth every penny."
                 </blockquote>
                 <cite className="text-sm font-semibold text-gray-900 not-italic">
@@ -387,7 +387,7 @@ const BuyFranchiseLeads = () => {
                 </div>
                 <blockquote className="text-lg text-gray-700 mb-4">
                   "Before buying leads here, I wasted money on shared leads from other sources. The exclusive rights and 
-                  real-time delivery at FranchiseLeadsHQ changed my business. My close rate went from 5% to 18%."
+                  real-time delivery at FranchiseLeadsPro changed my business. My close rate went from 5% to 18%."
                 </blockquote>
                 <cite className="text-sm font-semibold text-gray-900 not-italic">
                   - James Thompson, Senior Franchise Broker, Phoenix, AZ
@@ -550,7 +550,7 @@ const BuyFranchiseLeads = () => {
               <div className="bg-gray-50 p-6 rounded-xl">
                 <h3 className="text-xl font-bold mb-3">Where can I buy franchise leads?</h3>
                 <p className="text-gray-700">
-                  You can buy exclusive franchise leads from FranchiseLeadsHQ. We provide qualified franchise buyer leads 
+                  You can buy exclusive franchise leads from FranchiseLeadsPro. We provide qualified franchise buyer leads 
                   across all 50 US states with real-time delivery and exclusive rights to each lead. Simply schedule a 
                   consultation to discuss your target criteria and investment preferences.
                 </p>
@@ -568,7 +568,7 @@ const BuyFranchiseLeads = () => {
               <div className="bg-gray-50 p-6 rounded-xl">
                 <h3 className="text-xl font-bold mb-3">Are your franchise leads exclusive?</h3>
                 <p className="text-gray-700">
-                  Yes, 100% exclusive. All franchise leads from FranchiseLeadsHQ are sold to only ONE franchise consultant. 
+                  Yes, 100% exclusive. All franchise leads from FranchiseLeadsPro are sold to only ONE franchise consultant. 
                   You have exclusive rights to contact and close the prospect. We never resell or share leads, ensuring you 
                   have no competition for each opportunity.
                 </p>

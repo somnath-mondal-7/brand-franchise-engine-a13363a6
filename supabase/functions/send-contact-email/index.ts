@@ -1,6 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 
-// Using fetch directly instead of Resend package to avoid version issues
 const RESEND_API_URL = "https://api.resend.com/emails";
 
 const corsHeaders = {
@@ -19,7 +18,6 @@ interface ContactEmailRequest {
 }
 
 const handler = async (req: Request): Promise<Response> => {
-  // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
@@ -29,7 +27,6 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Sending contact form email", { firstName, lastName, email });
 
-    // Helper function to send emails via Resend API
     const sendEmail = async (emailData: any) => {
       const response = await fetch(RESEND_API_URL, {
         method: 'POST',
@@ -48,11 +45,10 @@ const handler = async (req: Request): Promise<Response> => {
       return response.json();
     };
 
-    // Send notification email to your team
     const notificationResponse = await sendEmail({
-      from: "FranchiseLeads HQ <support@franchiseleadshq.com>",
-      to: ["iamsomnath@franchiseleadshq.com"], // Your team email
-      reply_to: "support@franchiseleadshq.com",
+      from: "FranchiseLeadsPro <support@franchiseleadspro.com>",
+      to: ["iamsomnath@franchiseleadspro.com"],
+      reply_to: "support@franchiseleadspro.com",
       subject: `New Contact Form Submission from ${firstName} ${lastName}`,
       html: `
         <h2>New Contact Form Submission</h2>
@@ -64,16 +60,15 @@ const handler = async (req: Request): Promise<Response> => {
         <p>${message.replace(/\n/g, '<br>')}</p>
         
         <hr>
-        <p><em>This email was sent from the FranchiseLeads HQ contact form.</em></p>
+        <p><em>This email was sent from the FranchiseLeadsPro contact form.</em></p>
       `,
     });
 
-    // Send confirmation email to the user
     const confirmationResponse = await sendEmail({
-      from: "FranchiseLeads HQ <support@franchiseleadshq.com>",
+      from: "FranchiseLeadsPro <support@franchiseleadspro.com>",
       to: [email],
-      reply_to: "support@franchiseleadshq.com",
-      subject: "Thank you for contacting FranchiseLeads HQ",
+      reply_to: "support@franchiseleadspro.com",
+      subject: "Thank you for contacting FranchiseLeadsPro",
       html: `
         <h1>Thank you for reaching out, ${firstName}!</h1>
         <p>We have received your message and will get back to you within 24 hours to discuss how we can help you generate high-quality franchise leads.</p>
@@ -85,11 +80,11 @@ const handler = async (req: Request): Promise<Response> => {
           <li>One of our lead generation specialists will contact you</li>
         </ul>
         
-        <p>In the meantime, feel free to explore our <a href="https://franchiseleadshq.com/services">services</a> and learn more about how we've helped other franchises grow.</p>
+        <p>In the meantime, feel free to explore our <a href="https://franchiseleadspro.com/services">services</a> and learn more about how we've helped other franchises grow.</p>
         
         <p>Best regards,<br>
-        <strong>The FranchiseLeads HQ Team</strong><br>
-        📧 support@franchiseleadshq.com<br>
+        <strong>The FranchiseLeadsPro Team</strong><br>
+        📧 support@franchiseleadspro.com<br>
         📞 +1 (555) 123-4567</p>
         
         <hr>

@@ -48,7 +48,7 @@ const portfolioItems = [
     clientLogo: "https://images.unsplash.com/photo-1619461672456-c4d2a51cd0e1?w=100&q=80",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
     description: "Complete franchise recruitment website with lead capture, territory mapping, and investor qualification system.",
-    liveUrl: "https://quickbite-franchise.demo.franchiseleadshq.com",
+    liveUrl: "https://quickbite-franchise.demo.franchiseleadspro.com",
     results: [
       { label: "Conversion Rate", value: "8.7%", icon: Target },
       { label: "Monthly Leads", value: "340+", icon: Users },
@@ -87,7 +87,7 @@ const portfolioItems = [
     clientLogo: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=100&q=80",
     image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80",
     description: "Multi-location Google Ads campaign targeting franchise investors across 15 Indian states with geo-targeted landing pages.",
-    liveUrl: "https://italiano-pizza-franchise.demo.franchiseleadshq.com",
+    liveUrl: "https://italiano-pizza-franchise.demo.franchiseleadspro.com",
     results: [
       { label: "ROAS", value: "847%", icon: DollarSign },
       { label: "Cost Per Lead", value: "₹285", icon: Target },
@@ -126,7 +126,7 @@ const portfolioItems = [
     clientLogo: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=100&q=80",
     image: "https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=800&q=80",
     description: "B2B LinkedIn campaign targeting HNIs and business owners for franchise investment opportunities with automated sequences.",
-    liveUrl: "https://visioncare-franchise.demo.franchiseleadshq.com",
+    liveUrl: "https://visioncare-franchise.demo.franchiseleadspro.com",
     results: [
       { label: "Connection Rate", value: "42%", icon: Users },
       { label: "Response Rate", value: "18.5%", icon: MousePointer },
@@ -165,7 +165,7 @@ const portfolioItems = [
     clientLogo: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=100&q=80",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
     description: "End-to-end lead generation funnel with qualification scoring, automated nurturing, and CRM integration for franchise sales.",
-    liveUrl: "https://swadeshi-leads.demo.franchiseleadshq.com",
+    liveUrl: "https://swadeshi-leads.demo.franchiseleadspro.com",
     results: [
       { label: "Monthly Leads", value: "520+", icon: Users },
       { label: "Qualification Rate", value: "34%", icon: Target },
@@ -204,7 +204,7 @@ const portfolioItems = [
     clientLogo: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=100&q=80",
     image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80",
     description: "Complete franchise development and recruitment strategy that helped expand from 50 to 450+ outlets in 18 months.",
-    liveUrl: "https://desichaihouse-expansion.demo.franchiseleadshq.com",
+    liveUrl: "https://desichaihouse-expansion.demo.franchiseleadspro.com",
     results: [
       { label: "New Franchisees", value: "400+", icon: Users },
       { label: "Revenue Growth", value: "780%", icon: TrendingUp },
@@ -224,7 +224,7 @@ const portfolioItems = [
         "Achieved 780% revenue growth"
       ],
       testimonial: {
-        quote: "FranchiseLeadsHQ didn't just generate leads - they helped us build a franchise empire. Their strategy was game-changing.",
+        quote: "FranchiseLeadsPro didn't just generate leads - they helped us build a franchise empire. Their strategy was game-changing.",
         author: "Anubhav D.",
         role: "Founder & CEO"
       },
@@ -243,7 +243,7 @@ const portfolioItems = [
     clientLogo: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=100&q=80",
     image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80",
     description: "Marketplace platform connecting franchise brands with investors, featuring advanced search, comparison tools, and inquiry management.",
-    liveUrl: "https://franchiseconnect-marketplace.demo.franchiseleadshq.com",
+    liveUrl: "https://franchiseconnect-marketplace.demo.franchiseleadspro.com",
     results: [
       { label: "Monthly Visitors", value: "2.1M", icon: Eye },
       { label: "Brand Listings", value: "850+", icon: Globe },
@@ -282,7 +282,7 @@ const portfolioItems = [
     clientLogo: "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=100&q=80",
     image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80",
     description: "Facebook & Instagram campaign with lookalike audiences targeting potential franchisees in Tier 2 & 3 cities.",
-    liveUrl: "https://momoexpress-ads.demo.franchiseleadshq.com",
+    liveUrl: "https://momoexpress-ads.demo.franchiseleadspro.com",
     results: [
       { label: "ROAS", value: "624%", icon: DollarSign },
       { label: "Lead Cost", value: "₹195", icon: Target },
@@ -321,7 +321,7 @@ const portfolioItems = [
     clientLogo: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=100&q=80",
     image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&q=80",
     description: "Executive thought leadership campaign positioning the founder as industry expert, driving inbound franchise inquiries.",
-    liveUrl: "https://grillmasters-linkedin.demo.franchiseleadshq.com",
+    liveUrl: "https://grillmasters-linkedin.demo.franchiseleadspro.com",
     results: [
       { label: "Followers Growth", value: "12.4K", icon: Users },
       { label: "Engagement Rate", value: "8.2%", icon: TrendingUp },
@@ -360,7 +360,7 @@ const portfolioItems = [
     clientLogo: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=100&q=80",
     image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80",
     description: "Integrated lead generation across Google, Meta, LinkedIn, and content marketing with unified tracking and attribution.",
-    liveUrl: "https://urbanapparel-franchise.demo.franchiseleadshq.com",
+    liveUrl: "https://urbanapparel-franchise.demo.franchiseleadspro.com",
     results: [
       { label: "Total Leads", value: "3,200+", icon: Users },
       { label: "Avg. CPL", value: "₹340", icon: DollarSign },
@@ -399,7 +399,7 @@ const portfolioItems = [
     clientLogo: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=100&q=80",
     image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
     description: "Complete market entry strategy for expanding to the US market, including regulatory compliance, territory mapping, and franchisee recruitment.",
-    liveUrl: "https://royalbiryani-usa-expansion.demo.franchiseleadshq.com",
+    liveUrl: "https://royalbiryani-usa-expansion.demo.franchiseleadspro.com",
     results: [
       { label: "US Outlets", value: "18", icon: Globe },
       { label: "Investment", value: "$4.2M", icon: DollarSign },
@@ -419,7 +419,7 @@ const portfolioItems = [
         "Built pipeline of 40+ interested investors"
       ],
       testimonial: {
-        quote: "Entering the US market seemed impossible until FranchiseLeadsHQ showed us the way. Their expertise is unmatched.",
+        quote: "Entering the US market seemed impossible until FranchiseLeadsPro showed us the way. Their expertise is unmatched.",
         author: "Vishal J.",
         role: "Co-Founder"
       },
@@ -438,7 +438,7 @@ const portfolioItems = [
     clientLogo: "https://images.unsplash.com/photo-1523473827533-2a64d0d36748?w=100&q=80",
     image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
     description: "Custom CRM and dashboard for managing 5000+ franchise inquiries with automated scoring, follow-up sequences, and analytics.",
-    liveUrl: "https://dairyfresh-crm.demo.franchiseleadshq.com",
+    liveUrl: "https://dairyfresh-crm.demo.franchiseleadspro.com",
     results: [
       { label: "Lead Response", value: "<2 hrs", icon: Target },
       { label: "Conversion Lift", value: "+45%", icon: TrendingUp },
@@ -477,7 +477,7 @@ const portfolioItems = [
     clientLogo: "https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=100&q=80",
     image: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&q=80",
     description: "Video advertising campaign on YouTube targeting aspiring entrepreneurs and investors interested in wellness franchise opportunities.",
-    liveUrl: "https://glowup-youtube.demo.franchiseleadshq.com",
+    liveUrl: "https://glowup-youtube.demo.franchiseleadspro.com",
     results: [
       { label: "Views", value: "4.2M", icon: Eye },
       { label: "VTR", value: "68%", icon: Play },
@@ -519,7 +519,7 @@ const roiCaseStudies = [
     investment: "₹18.5L",
     period: "8 months",
     location: "Pan India",
-    website: "https://chaijunction-franchise.demo.franchiseleadshq.com",
+    website: "https://chaijunction-franchise.demo.franchiseleadspro.com",
     reportUrl: "https://drive.google.com/franchise-roi-report-2024",
     metrics: {
       leadsGenerated: 1240,
@@ -542,7 +542,7 @@ const roiCaseStudies = [
     investment: "₹12L",
     period: "6 months",
     location: "North & West India",
-    website: "https://sweetdelights-franchise.demo.franchiseleadshq.com",
+    website: "https://sweetdelights-franchise.demo.franchiseleadspro.com",
     reportUrl: "https://drive.google.com/franchise-roi-report-2024",
     metrics: {
       leadsGenerated: 890,
@@ -565,7 +565,7 @@ const roiCaseStudies = [
     investment: "₹8.5L",
     period: "12 months",
     location: "Metro Cities",
-    website: "https://cleanpress-franchise.demo.franchiseleadshq.com",
+    website: "https://cleanpress-franchise.demo.franchiseleadspro.com",
     reportUrl: "https://drive.google.com/franchise-roi-report-2024",
     metrics: {
       leadsGenerated: 2100,

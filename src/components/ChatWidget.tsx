@@ -313,8 +313,8 @@ const ChatWidget = () => {
       setIsTyping(false);
       
       const fallbackMessage = error.message?.includes('rate limit') || error.message?.includes('429')
-        ? "I'm experiencing high demand right now. Please try again in a moment, or book a call directly: https://calendly.com/franchiseleadshq/consultation"
-        : "I apologize for the technical issue. Please email us at contact@franchiseleadshq.com or book a consultation: https://calendly.com/franchiseleadshq/consultation";
+        ? "I'm experiencing high demand right now. Please try again in a moment, or book a call directly: https://calendly.com/franchiseleadspro/consultation"
+        : "I apologize for the technical issue. Please email us at contact@franchiseleadspro.com or book a consultation: https://calendly.com/franchiseleadspro/consultation";
       
       await addMessage(conversationId, fallbackMessage, 'bot');
     }

@@ -129,7 +129,7 @@ const RESEARCH_TOPICS = [
 async function fetchRSSFeed(url: string): Promise<string[]> {
   try {
     const response = await fetch(url, {
-      headers: { "User-Agent": "FranchiseLeadsHQ Research Bot/2.0" },
+      headers: { "User-Agent": "FranchiseLeadsPro Research Bot/2.0" },
     });
     if (!response.ok) return [];
     

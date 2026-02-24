@@ -49,7 +49,7 @@ Already properly implemented with Schema.org markup
 2. **Submit to Google Search Console**
    - Go to: https://search.google.com/search-console
    - Navigate to "Sitemaps"
-   - Resubmit: `https://www.franchiseleadshq.com/sitemap.xml`
+   - Resubmit: `https://www.franchiseleadspro.com/sitemap.xml`
    - Google will start recrawling within 24-48 hours
 
 3. **Request URL Removal** (Optional but recommended)

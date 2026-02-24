@@ -59,5 +59,5 @@ console.log(`📁 Sitemaps: ${sitemapsDir}/`);
 console.log(`\n📝 Next Steps:`);
 console.log(`   1. Publish your site`);
 console.log(`   2. Go to Google Search Console`);
-console.log(`   3. Submit sitemap: https://www.franchiseleadshq.com/sitemap.xml`);
+console.log(`   3. Submit sitemap: https://www.franchiseleadspro.com/sitemap.xml`);
 console.log(`   4. Google will discover all ${stats.totalUrls.toLocaleString()} pages`);
