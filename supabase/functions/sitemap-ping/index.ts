@@ -15,8 +15,8 @@ serve(async (req) => {
     const { slug } = await req.json().catch(() => ({ slug: null }));
 
     const sitemapUrls = [
-      'https://www.franchiseleadshq.com/sitemap.xml',
-      'https://www.franchiseleadshq.com/sitemap-blog.xml',
+      'https://www.franchiseleadspro.com/sitemap.xml',
+      'https://www.franchiseleadspro.com/sitemap-blog.xml',
     ];
 
     const pingEndpoints = (sitemapUrl: string) => ([
@@ -33,7 +33,7 @@ serve(async (req) => {
 
     // Optionally: also hit the post URL to warm caches
     if (slug) {
-      requests.push(fetch(`https://www.franchiseleadshq.com/blog/${slug}`, { method: 'GET' }));
+      requests.push(fetch(`https://www.franchiseleadspro.com/blog/${slug}`, { method: 'GET' }));
     }
 
     const results = await Promise.allSettled(requests);
