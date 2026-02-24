@@ -86,7 +86,7 @@ const Hero = () => {
           <div className="pt-6 md:pt-12">
             <YouTubeFacade 
               videoId="IVhegXG0Ngk" 
-              title="FranchiseLeadsHQ Introduction - Franchise Lead Generation Services"
+              title="FranchiseLeadsPro Introduction - Franchise Lead Generation Services"
               customThumbnail={heroThumbnail}
             />
           </div>

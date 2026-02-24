@@ -102,7 +102,7 @@ const SitemapGenerator = () => {
               <li>Upload the downloaded sitemap.xml to your <code className="px-1 py-0.5 bg-background rounded text-xs">/public</code> folder</li>
               <li>Click "Publish" to deploy your site</li>
               <li>Go to Google Search Console → Sitemaps</li>
-              <li>The sitemap will auto-update (same URL: https://www.franchiseleadshq.com/sitemap.xml)</li>
+              <li>The sitemap will auto-update (same URL: https://www.franchiseleadspro.com/sitemap.xml)</li>
               <li>Google will discover all new pages within 24-48 hours</li>
             </ol>
           </div>

@@ -120,7 +120,7 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="support@franchiseleadshq.com"
+                placeholder="support@franchiseleadspro.com"
                 required
                 disabled={isLoading}
               />
@@ -159,7 +159,7 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
             
             <div className="text-xs text-muted-foreground text-center space-y-1">
               <p>🔒 Secure email/password authentication</p>
-              <p>Contact: support@franchiseleadshq.com</p>
+              <p>Contact: support@franchiseleadspro.com</p>
             </div>
           </form>
         </CardContent>

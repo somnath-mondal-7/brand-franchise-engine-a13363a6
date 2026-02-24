@@ -29,13 +29,13 @@ serve(async (req) => {
     
     // Prepare request payload
     const payload = {
-      host: "www.franchiseleadshq.com",
+      host: "www.franchiseleadspro.com",
       key: INDEXNOW_KEY,
-      keyLocation: `https://www.franchiseleadshq.com/${INDEXNOW_KEY}.txt`,
+      keyLocation: `https://www.franchiseleadspro.com/${INDEXNOW_KEY}.txt`,
       urlList: urls.map(url => {
         // Ensure full URLs
         if (!url.startsWith('http')) {
-          return `https://www.franchiseleadshq.com${url.startsWith('/') ? url : '/' + url}`;
+          return `https://www.franchiseleadspro.com${url.startsWith('/') ? url : '/' + url}`;
         }
         return url;
       })

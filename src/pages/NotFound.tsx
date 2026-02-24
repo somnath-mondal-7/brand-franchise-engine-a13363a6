@@ -15,7 +15,7 @@ const NotFound = () => {
   return (
     <>
       <Helmet>
-        <title>404 Not Found | FranchiseLeadsHQ</title>
+        <title>404 Not Found | FranchiseLeadsPro</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <div className="min-h-screen flex items-center justify-center bg-gray-100">

@@ -10,9 +10,9 @@ const Search = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Search{q ? `: ${q}` : ""} | FranchiseLeads HQ</title>
+        <title>Search{q ? `: ${q}` : ""} | FranchiseLeadsPro</title>
         <meta name="robots" content="noindex, nofollow" />
-        <link rel="canonical" href={`https://www.franchiseleadshq.com/search${q ? `?q=${encodeURIComponent(q)}` : ""}`} />
+        <link rel="canonical" href={`https://www.franchiseleadspro.com/search${q ? `?q=${encodeURIComponent(q)}` : ""}`} />
       </Helmet>
       <Navigation />
       <main className="py-24">

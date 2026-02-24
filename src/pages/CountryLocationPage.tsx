@@ -25,9 +25,9 @@ const CountryLocationPage: React.FC = () => {
 
   if (!countryData) return <NotFound />;
 
-  const pageTitle = `Franchise Lead Generation in ${countryData.country} | FranchiseLeads HQ`;
+  const pageTitle = `Franchise Lead Generation in ${countryData.country} | FranchiseLeadsPro`;
   const pageDescription = `Top franchise lead generation agency serving ${countryData.country}. Explore state and city pages for tailored franchise marketing and development.`;
-  const canonicalUrl = `https://www.franchiseleadshq.com/locations/${countryData.countryCode.toLowerCase()}`;
+  const canonicalUrl = `https://www.franchiseleadspro.com/locations/${countryData.countryCode.toLowerCase()}`;
 
   return (
     <>
@@ -53,7 +53,7 @@ const CountryLocationPage: React.FC = () => {
             hasPart: countryData.states.map((s) => ({
               '@type': 'WebPage',
               name: `${s.name} Franchise Leads`,
-              url: `https://www.franchiseleadshq.com/locations/${countryData.countryCode.toLowerCase()}/${s.slug}`,
+              url: `https://www.franchiseleadspro.com/locations/${countryData.countryCode.toLowerCase()}/${s.slug}`,
             })),
           })}
         </script>

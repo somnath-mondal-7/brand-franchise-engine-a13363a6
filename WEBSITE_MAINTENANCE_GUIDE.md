@@ -1,4 +1,4 @@
-# FranchiseLeadsHQ Website Maintenance Guide
+# FranchiseLeadsPro Website Maintenance Guide
 
 ## Table of Contents
 1. [Traffic Management](#traffic-management)
@@ -382,8 +382,8 @@ OR
 ## Contact Information
 
 ### Website Details
-- **Website URL**: franchiseleadshq.com
-- **Email**: support@franchiseleadshq.com
+- **Website URL**: franchiseleadspro.com
+- **Email**: support@franchiseleadspro.com
 - **Phone**: (+1) 3215159932
 
 ### Technical Support
@@ -393,7 +393,7 @@ OR
 ### Emergency Contacts
 - **Project Owner**: Somnath Mondal
 - **Instagram**: @iamsomnath_mondal
-- **LinkedIn**: https://www.linkedin.com/company/franchiseleadshq/
+- **LinkedIn**: https://www.linkedin.com/company/franchiseleadspro/
 
 ---
 
@@ -402,10 +402,10 @@ OR
 ### Checking Website Status
 ```bash
 # Check if website is up
-curl -I https://franchiseleadshq.com
+curl -I https://franchiseleadspro.com
 
 # Check response time
-curl -w "@-" -o /dev/null -s https://franchiseleadshq.com
+curl -w "@-" -o /dev/null -s https://franchiseleadspro.com
 ```
 
 ### Database Quick Checks

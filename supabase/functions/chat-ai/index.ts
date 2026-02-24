@@ -14,7 +14,7 @@ serve(async (req) => {
     
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
 
-    const systemPrompt = `You are ${agentName}, a real person working at FranchiseLeads HQ. Chat naturally like you're texting a colleague.
+    const systemPrompt = `You are ${agentName}, a real person working at FranchiseLeadsPro. Chat naturally like you're texting a colleague.
 
 YOUR PERSONALITY:
 - Friendly, warm, and genuinely interested in helping
@@ -44,7 +44,7 @@ WHAT WE OFFER:
 - Marketing automation
 - ROI: 300-500% within 90 days
 - Investment: $2,500-$15,000/month
-- Email: contact@franchiseleadshq.com
+- Email: contact@franchiseleadspro.com
 
 RULES:
 - Keep responses under 20 words when possible
@@ -83,7 +83,7 @@ RULES:
       }
       if (response.status === 402) {
         return new Response(
-          JSON.stringify({ error: "Service temporarily unavailable. Please email us at contact@franchiseleadshq.com" }),
+          JSON.stringify({ error: "Service temporarily unavailable. Please email us at contact@franchiseleadspro.com" }),
           { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
@@ -102,7 +102,7 @@ RULES:
     console.error("chat-ai error:", e);
     return new Response(
       JSON.stringify({ 
-        error: "I apologize, I'm having a technical issue. Please email us directly at contact@franchiseleadshq.com or book a call: https://calendly.com/franchiseleadshq/consultation" 
+        error: "I apologize, I'm having a technical issue. Please email us directly at contact@franchiseleadspro.com or book a call: https://calendly.com/franchiseleadspro/consultation" 
       }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
