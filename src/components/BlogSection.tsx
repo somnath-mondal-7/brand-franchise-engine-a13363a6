@@ -33,7 +33,7 @@ const BlogSection = () => {
       try {
         // Fetch categories
         const { data: categoriesData } = await supabase
-          .from('blog_categories' as any)
+          .from('categories')
           .select('*');
         
         if (categoriesData) {

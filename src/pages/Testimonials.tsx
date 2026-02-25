@@ -13,7 +13,7 @@ const Testimonials = () => {
       title: "Franchise Consultant",
       company: "Mitchell Franchise Group",
       rating: 5,
-      text: "FranchiseLeads HQ transformed our lead generation completely. We went from 15 leads per month to over 100 qualified prospects. The quality is exceptional and our conversion rate doubled.",
+      text: "FranchiseLeadsPro transformed our lead generation completely. We went from 15 leads per month to over 100 qualified prospects. The quality is exceptional and our conversion rate doubled.",
       results: "100+ leads/month",
       industry: "Multi-Unit Development"
     },
@@ -31,7 +31,7 @@ const Testimonials = () => {
       title: "Franchise Development Director",
       company: "Elite Franchise Solutions",
       rating: 5,
-      text: "Working with FranchiseLeads HQ has been the best business decision we made. Their systematic approach to lead qualification saves us hours each week, and we close more deals than ever.",
+      text: "Working with FranchiseLeadsPro has been the best business decision we made. Their systematic approach to lead qualification saves us hours each week, and we close more deals than ever.",
       results: "3x more closures",
       industry: "Business Services"
     },
@@ -58,7 +58,7 @@ const Testimonials = () => {
       title: "Franchise Broker",
       company: "Johnson Business Brokers",
       rating: 5,
-      text: "FranchiseLeads HQ doesn't just deliver leads - they deliver results. Our pipeline is consistently full of qualified prospects, and our team can focus on what we do best: closing deals.",
+      text: "FranchiseLeadsPro doesn't just deliver leads - they deliver results. Our pipeline is consistently full of qualified prospects, and our team can focus on what we do best: closing deals.",
       results: "Consistent pipeline",
       industry: "Business Brokerage"
     }

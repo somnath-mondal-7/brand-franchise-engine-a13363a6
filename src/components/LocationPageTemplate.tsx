@@ -224,7 +224,7 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Why Choose FranchiseLeads HQ in {locationTitle}?
+              Why Choose FranchiseLeadsPro in {locationTitle}?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
@@ -335,7 +335,7 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
               Ready to Grow Your Franchise in {locationTitle}?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Join the hundreds of successful franchise businesses that trust FranchiseLeads HQ 
+              Join the hundreds of successful franchise businesses that trust FranchiseLeadsPro 
               for their lead generation needs in {location}.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

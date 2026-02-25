@@ -287,7 +287,7 @@ export const KeywordPageTemplate: React.FC<KeywordPageProps> = ({
               Ready to Get Started with {capitalizeKeyword}?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Join the hundreds of successful franchise businesses that trust FranchiseLeads HQ 
+              Join the hundreds of successful franchise businesses that trust FranchiseLeadsPro 
               for their marketing and lead generation needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -1,97 +1,97 @@
 // Simple sitemap generator - run this in browser console or Node.js
 console.log("=== COMPLETE SITEMAP XML ===");
 
-// Your complete sitemap XML (copy everything below this line)
 const currentDate = new Date().toISOString().split('T')[0];
+const DOMAIN = 'https://www.franchiseleadspro.com';
 
 let sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.franchiseleadshq.com/</loc>
+    <loc>${DOMAIN}/</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/about</loc>
+    <loc>${DOMAIN}/about</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/services</loc>
+    <loc>${DOMAIN}/services</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/blog</loc>
+    <loc>${DOMAIN}/blog</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/testimonials</loc>
+    <loc>${DOMAIN}/testimonials</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/contact</loc>
+    <loc>${DOMAIN}/contact</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-usa</loc>
+    <loc>${DOMAIN}/franchise-leads-usa</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-uk</loc>
+    <loc>${DOMAIN}/franchise-leads-uk</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-canada</loc>
+    <loc>${DOMAIN}/franchise-leads-canada</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-australia</loc>
+    <loc>${DOMAIN}/franchise-leads-australia</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-dubai</loc>
+    <loc>${DOMAIN}/franchise-leads-dubai</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-india</loc>
+    <loc>${DOMAIN}/franchise-leads-india</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/franchise-leads-kuwait</loc>
+    <loc>${DOMAIN}/franchise-leads-kuwait</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/legal-terms/privacy-policy</loc>
+    <loc>${DOMAIN}/legal-terms/privacy-policy</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.franchiseleadshq.com/legal-terms/refund-satisfaction-guarantee-policy</loc>
+    <loc>${DOMAIN}/legal-terms/refund-satisfaction-guarantee-policy</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -112,20 +112,17 @@ const usaStates = [
 ];
 
 usaStates.forEach(state => {
-  // State page
   sitemapXml += `
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/usa/${state.slug}</loc>
+    <loc>${DOMAIN}/locations/usa/${state.slug}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>`;
-  
-  // City pages
   state.cities.forEach(city => {
     sitemapXml += `
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/usa/${state.slug}/${city}</loc>
+    <loc>${DOMAIN}/locations/usa/${state.slug}/${city}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -142,20 +139,17 @@ const ukRegions = [
 ];
 
 ukRegions.forEach(region => {
-  // Region page
   sitemapXml += `
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/uk/${region.slug}</loc>
+    <loc>${DOMAIN}/locations/uk/${region.slug}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>`;
-  
-  // City pages
   region.cities.forEach(city => {
     sitemapXml += `
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/uk/${region.slug}/${city}</loc>
+    <loc>${DOMAIN}/locations/uk/${region.slug}/${city}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -174,20 +168,17 @@ const canadaProvinces = [
 ];
 
 canadaProvinces.forEach(province => {
-  // Province page
   sitemapXml += `
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/canada/${province.slug}</loc>
+    <loc>${DOMAIN}/locations/canada/${province.slug}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>`;
-  
-  // City pages
   province.cities.forEach(city => {
     sitemapXml += `
   <url>
-    <loc>https://www.franchiseleadshq.com/locations/canada/${province.slug}/${city}</loc>
+    <loc>${DOMAIN}/locations/canada/${province.slug}/${city}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -213,7 +204,7 @@ const keywords = [
 keywords.forEach(keyword => {
   sitemapXml += `
   <url>
-    <loc>https://www.franchiseleadshq.com/services/${keyword}</loc>
+    <loc>${DOMAIN}/services/${keyword}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -226,11 +217,10 @@ sitemapXml += `
 console.log(sitemapXml);
 console.log("=== END SITEMAP ===");
 
-// Count total URLs
 const urlCount = (sitemapXml.match(/<url>/g) || []).length;
 console.log(`\nTotal URLs in sitemap: ${urlCount}`);
 console.log("\n📋 INSTRUCTIONS:");
 console.log("1. Copy the sitemap XML above");
 console.log("2. Save it as 'sitemap.xml' in your public folder");
 console.log("3. Upload to your website root");
-console.log("4. Submit to Google Search Console: https://www.franchiseleadshq.com/sitemap.xml");
+console.log(`4. Submit to Google Search Console: ${DOMAIN}/sitemap.xml`);
