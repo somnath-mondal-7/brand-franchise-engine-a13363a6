@@ -49,7 +49,7 @@ groups.forEach((urls, i) => {
   fs.writeFileSync(gzipAbs, compressed);
   
   // Add both to index (Google prefers gzip)
-  const gzipLoc = `https://www.franchiseleadshq.com/sitemaps/${gzipFile}`;
+  const gzipLoc = `https://www.franchiseleadspro.com/sitemaps/${gzipFile}`;
   indexEntries.push(`  <sitemap>\n    <loc>${gzipLoc}</loc>\n    <lastmod>${today}</lastmod>\n  </sitemap>`);
 });
 

@@ -110,7 +110,7 @@ const ChatWidget = () => {
     }
 
     // Update title with "(New Message)" text
-    document.title = `(New Message) FranchiseLeads HQ`;
+    document.title = `(New Message) FranchiseLeadsPro`;
   };
 
   const resetFavicon = () => {
@@ -118,7 +118,7 @@ const ChatWidget = () => {
     if (favicon && originalFaviconRef.current) {
       favicon.href = originalFaviconRef.current;
     }
-    document.title = 'FranchiseLeads HQ - Franchise Lead Generation Experts';
+    document.title = 'FranchiseLeadsPro - Franchise Lead Generation Experts';
   };
 
   // Play clear, professional notification sound
@@ -339,8 +339,8 @@ const ChatWidget = () => {
 
       // Send welcome message - fast since it's initial
       const welcomeMessage = visitorName 
-        ? `Hi ${visitorName}! I'm ${currentAgent.name}, ${currentAgent.role} at FranchiseLeads HQ. Thanks for connecting with me today.`
-        : `Hi! I'm ${currentAgent.name}, ${currentAgent.role} at FranchiseLeads HQ. Thanks for connecting with me today.`;
+        ? `Hi ${visitorName}! I'm ${currentAgent.name}, ${currentAgent.role} at FranchiseLeadsPro. Thanks for connecting with me today.`
+        : `Hi! I'm ${currentAgent.name}, ${currentAgent.role} at FranchiseLeadsPro. Thanks for connecting with me today.`;
       
       playNotificationSound();
       await simulateTyping(data.id, welcomeMessage, true);

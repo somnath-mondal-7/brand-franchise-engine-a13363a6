@@ -55,7 +55,7 @@ const AutoBlogAdmin = () => {
     const { data, error } = await supabase
       .from('blog_posts')
       .select('id, title, slug, created_at, is_published, author_name, excerpt')
-      .eq('author_name', 'FranchiseLeads HQ Research Team')
+      .eq('author_name', 'FranchiseLeadsPro Research Team')
       .order('created_at', { ascending: false })
       .limit(10);
 
@@ -136,7 +136,7 @@ const AutoBlogAdmin = () => {
   return (
     <>
       <Helmet>
-        <title>Auto Blog Generator | FranchiseLeads HQ Admin</title>
+        <title>Auto Blog Generator | FranchiseLeadsPro Admin</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
