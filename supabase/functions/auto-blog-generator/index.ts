@@ -183,7 +183,7 @@ async function generateBlogWithAI(researchContext: string, topicData: typeof RES
   const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
   if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
 
-  const systemPrompt = `You are a TOP-TIER franchise industry writer for FranchiseLeads HQ. You write like the best business journalists—clear, punchy, insightful.
+  const systemPrompt = `You are a TOP-TIER franchise industry writer for FranchiseLeadsPro. You write like the best business journalists—clear, punchy, insightful.
 
 === YOUR VOICE ===
 - Write like you're explaining to a smart friend over coffee
@@ -335,7 +335,7 @@ async function getLastPostTime(supabase: any): Promise<Date | null> {
   const { data: lastPost } = await supabase
     .from('blog_posts')
     .select('created_at')
-    .eq('author_name', 'FranchiseLeads HQ Research Team')
+    .eq('author_name', 'FranchiseLeadsPro Research Team')
     .order('created_at', { ascending: false })
     .limit(1)
     .single();
@@ -408,7 +408,7 @@ serve(async (req) => {
         slug: blogPost.slug,
         content: blogPost.content,
         excerpt: blogPost.excerpt,
-        author_name: 'FranchiseLeads HQ Research Team',
+        author_name: 'FranchiseLeadsPro Research Team',
         tags: blogPost.tags,
         is_published: !publishAsDraft,
         published_at: publishAsDraft ? null : new Date().toISOString(),
