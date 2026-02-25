@@ -1,4 +1,4 @@
-# 🚀 SEO DOMINATION PLAN - FRANCHISE LEADS HQ
+# 🚀 SEO DOMINATION PLAN - FRANCHISELEADSPRO
 ## Complete Strategy to Become #1 in Franchise Marketing
 
 ---
@@ -95,7 +95,7 @@ gantt
 
 ```mermaid
 graph TD
-    A[FranchiseLeadsHQ.com] --> B[Pillar 1: Lead Generation]
+    A[FranchiseLeadsPro.com] --> B[Pillar 1: Lead Generation]
     A --> C[Pillar 2: Franchise Marketing]
     A --> D[Pillar 3: Franchise Development]
     A --> E[Pillar 4: Industry Insights]
@@ -195,7 +195,7 @@ flowchart TD
 - Informational: "What is franchise marketing?"
 - Commercial: "Best franchise lead generation services"
 - Transactional: "Hire franchise marketing agency"
-- Navigational: "FranchiseLeadsHQ services"
+- Navigational: "FranchiseLeadsPro services"
 
 ### 2. Content Structure (The Winning Formula)
 
@@ -274,7 +274,7 @@ H2: Primary Subtopic 3
 - 55-60 characters
 - Include target keyword near beginning
 - Add brand name at end
-- Example: "Franchise Lead Generation: 15 Proven Strategies (2025 Guide) | FranchiseLeadsHQ"
+- Example: "Franchise Lead Generation: 15 Proven Strategies (2025 Guide) | FranchiseLeadsPro"
 
 ✅ **URL Structure:**
 - Short and descriptive
@@ -475,7 +475,7 @@ Subject: Guest Post Idea: [Specific Topic] for [Publication Name]
 
 Hi [Editor Name],
 
-I'm [Your Name], founder of FranchiseLeadsHQ, and I've been following 
+I'm [Your Name], founder of FranchiseLeadsPro, and I've been following 
 [Publication Name] for [specific reason - mention recent article].
 
 I noticed you recently published [specific article]. I'd love to contribute 
@@ -612,8 +612,8 @@ Subject: Expert Source: [Their Query Topic]
 
 [CREDENTIALS]
 Name: [Your Name]
-Title: Founder & CEO, FranchiseLeadsHQ
-Website: FranchiseLeadsHQ.com
+Title: Founder & CEO, FranchiseLeadsPro
+Website: FranchiseLeadsPro.com
 Background: [Specific relevant experience - 1 sentence]
 Previous Features: [Publications you've been in]
 
@@ -1384,7 +1384,7 @@ Your competitors are NOT doing all of this. If you execute consistently for 12 m
 
 **Document Version:** 1.0
 **Last Updated:** [Current Date]
-**Created By:** FranchiseLeadsHQ SEO Strategy Team
+**Created By:** FranchiseLeadsPro SEO Strategy Team
 
 ---
 
@@ -1433,7 +1433,7 @@ Subject: Guest Post Contribution for [Website Name]
 
 Hi [Editor Name],
 
-I'm [Your Name], and I lead marketing strategy at FranchiseLeadsHQ, 
+I'm [Your Name], and I lead marketing strategy at FranchiseLeadsPro, 
 where we've helped [specific achievement].
 
 I've been following [Website Name] for some time, and I really enjoyed 
@@ -1457,7 +1457,7 @@ Would any of these topics interest your readers?
 Best regards,
 [Your Name]
 [Title]
-FranchiseLeadsHQ.com
+FranchiseLeadsPro.com
 ```
 
 ---

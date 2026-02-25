@@ -1,8 +1,6 @@
-import { mkdirSync, writeFileSync } from 'fs';
+import { mkdirSync, writeFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
-// Inline the location data import to avoid path alias issues in build scripts
-// We dynamically import the actual data
 const DOMAIN = 'https://www.franchiseleadspro.com';
 
 interface SitemapUrl {
@@ -12,7 +10,6 @@ interface SitemapUrl {
   priority: string;
 }
 
-// Split an array into chunks
 const chunk = <T,>(arr: T[], size: number): T[][] => {
   const chunks: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
@@ -21,18 +18,16 @@ const chunk = <T,>(arr: T[], size: number): T[][] => {
   return chunks;
 };
 
-// Build a single sitemap XML string from urls
 const buildSitemap = (urls: SitemapUrl[]) => {
   const items = urls.map(u => `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${u.lastmod}</lastmod>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`).join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items}\n</urlset>`;
 };
 
-// Main builder
 (async () => {
-  // Dynamic import with path resolution
+  console.log('🗺️  Generating sitemaps...');
+
+  // Dynamic import using relative path (tsx handles TS resolution)
   const locationsPath = join(process.cwd(), 'src', 'data', 'locations.ts');
-  
-  // Use tsx to handle TS imports - import directly since tsx handles it
   const { locationData, broadMarketingKeywords, seoKeywords } = await import(locationsPath);
 
   const currentDate = new Date().toISOString().split('T')[0];
@@ -97,27 +92,38 @@ const buildSitemap = (urls: SitemapUrl[]) => {
 
   console.log(`📊 Total URLs: ${all.length}`);
 
-  // Write chunked sitemaps
-  const outDir = join(process.cwd(), 'public');
-  const sitemapsDir = join(outDir, 'sitemaps');
-  mkdirSync(sitemapsDir, { recursive: true });
+  // Write to BOTH public/ (for git) and dist/ (for deployment)
+  const publicDir = join(process.cwd(), 'public');
+  const distDir = join(process.cwd(), 'dist');
 
-  const CHUNK_SIZE = 10000;
-  const groups = chunk(all, CHUNK_SIZE);
+  const outputDirs = [publicDir];
+  // Also write to dist/ if it exists (post-build scenario)
+  if (existsSync(distDir)) {
+    outputDirs.push(distDir);
+  }
 
-  const indexEntries: string[] = [];
+  for (const outDir of outputDirs) {
+    const sitemapsDir = join(outDir, 'sitemaps');
+    mkdirSync(sitemapsDir, { recursive: true });
 
-  groups.forEach((urls, i) => {
-    const fileName = `sitemap-${i + 1}.xml`;
-    writeFileSync(join(sitemapsDir, fileName), buildSitemap(urls), 'utf-8');
-    indexEntries.push(`  <sitemap>\n    <loc>${DOMAIN}/sitemaps/${fileName}</loc>\n    <lastmod>${currentDate}</lastmod>\n  </sitemap>`);
-  });
+    const CHUNK_SIZE = 10000;
+    const groups = chunk(all, CHUNK_SIZE);
+    const indexEntries: string[] = [];
 
-  // Add blog sitemap entry
-  indexEntries.push(`  <sitemap>\n    <loc>${DOMAIN}/sitemap-blog.xml</loc>\n    <lastmod>${currentDate}</lastmod>\n  </sitemap>`);
+    groups.forEach((urls, i) => {
+      const fileName = `sitemap-${i + 1}.xml`;
+      writeFileSync(join(sitemapsDir, fileName), buildSitemap(urls), 'utf-8');
+      indexEntries.push(`  <sitemap>\n    <loc>${DOMAIN}/sitemaps/${fileName}</loc>\n    <lastmod>${currentDate}</lastmod>\n  </sitemap>`);
+      console.log(`  ✅ ${fileName}: ${urls.length} URLs → ${outDir}`);
+    });
 
-  const indexXml = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexEntries.join('\n')}\n</sitemapindex>`;
-  writeFileSync(join(outDir, 'sitemap.xml'), indexXml, 'utf-8');
+    // Add blog sitemap entry
+    indexEntries.push(`  <sitemap>\n    <loc>${DOMAIN}/sitemap-blog.xml</loc>\n    <lastmod>${currentDate}</lastmod>\n  </sitemap>`);
 
-  console.log(`✅ Generated sitemap index with ${groups.length} chunk files (${CHUNK_SIZE} URLs each)`);
+    const indexXml = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexEntries.join('\n')}\n</sitemapindex>`;
+    writeFileSync(join(outDir, 'sitemap.xml'), indexXml, 'utf-8');
+    console.log(`  ✅ sitemap.xml (index) → ${outDir}`);
+  }
+
+  console.log(`\n✅ Generated sitemap index with chunked files (10,000 URLs each)`);
 })();
