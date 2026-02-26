@@ -41,3 +41,15 @@ verify_jwt = false
 
 [functions.update-blog-dates]
 verify_jwt = false
+
+[functions.blog-sitemap]
+verify_jwt = false
+
+[functions.auto-blog-generator]
+verify_jwt = false
+
+[functions.sitemap-ping]
+verify_jwt = false
+
+[functions.indexnow-ping]
+verify_jwt = false
