@@ -82,9 +82,9 @@ const buildSitemap = (urls: SitemapUrl[]) => {
       const isPrimary = ['USA', 'IN'].includes(country.countryCode.toUpperCase());
       const basePriority = isPrimary ? 0.85 : 0.75;
       country.states.forEach((state: any) => {
-        all.push({ loc: `${DOMAIN}/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: basePriority.toString() });
+        all.push({ loc: `${DOMAIN}/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: basePriority.toFixed(2) });
         state.cities.forEach((city: any) => {
-          all.push({ loc: `${DOMAIN}/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: (basePriority - 0.05).toString() });
+          all.push({ loc: `${DOMAIN}/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: (basePriority - 0.05).toFixed(2) });
         });
       });
     });
