@@ -1,188 +1,260 @@
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import YouTubeFacade from "@/components/YouTubeFacade";
-import heroThumbnail from "@/assets/hero-video-thumbnail.png";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import heroSlide1 from "@/assets/hero-slide-1.png";
+import heroSlide2 from "@/assets/hero-slide-2.png";
+import heroSlide3 from "@/assets/hero-slide-3.png";
 import logo1 from "@/assets/clients/logo1.svg";
 import logo2 from "@/assets/clients/logo2.png";
 import logo3 from "@/assets/clients/logo3.png";
 import logo4 from "@/assets/clients/logo4.png";
 import logo5 from "@/assets/clients/logo5.png";
-
 import avatar1 from "@/assets/clients/avatars/avatar1.jpg";
 import avatar2 from "@/assets/clients/avatars/avatar2.jpg";
 import avatar3 from "@/assets/clients/avatars/avatar3.jpg";
 import avatar4 from "@/assets/clients/avatars/avatar4.jpg";
 
+const slides = [
+  {
+    title: "Generate High-Quality Franchise Leads with Precision",
+    description:
+      "We connect you with the right prospects using proven digital strategies. Scale your business faster with targeted lead generation.",
+    cta: "Start Generating Leads",
+    ctaLink: "https://calendly.com/lets-build-your-brand",
+    image: heroSlide1,
+    imageAlt: "Franchise lead generation - attracting qualified investors",
+  },
+  {
+    title: "Professional Websites That Build Trust & Drive Results",
+    description:
+      "We design and develop modern, user-focused websites tailored for franchise consultants — built to convert visitors into leads and grow your business.",
+    cta: "Let's Build Your Site",
+    ctaLink: "https://calendly.com/lets-build-your-brand",
+    image: heroSlide2,
+    imageAlt: "Professional franchise website development team",
+  },
+  {
+    title: "Data-Driven SEO & PPC That Delivers Real ROI",
+    description:
+      "From search engine domination to high-converting paid campaigns, we help franchise brands attract qualified buyers and close more deals.",
+    cta: "Grow Your Franchise",
+    ctaLink: "https://calendly.com/lets-build-your-brand",
+    image: heroSlide3,
+    imageAlt: "SEO analytics and franchise marketing performance dashboard",
+  },
+];
+
+const logos = [
+  { src: logo1, alt: "Trusted franchise client logo" },
+  { src: logo2, alt: "Trusted franchise client logo" },
+  { src: logo3, alt: "Trusted franchise client logo" },
+  { src: logo4, alt: "Trusted franchise client logo" },
+  { src: logo5, alt: "Trusted franchise client logo" },
+];
+
 const Hero = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const goToSlide = useCallback(
+    (index: number) => {
+      if (isAnimating) return;
+      setIsAnimating(true);
+      setCurrentSlide(index);
+      setTimeout(() => setIsAnimating(false), 600);
+    },
+    [isAnimating]
+  );
+
+  const nextSlide = useCallback(() => {
+    goToSlide((currentSlide + 1) % slides.length);
+  }, [currentSlide, goToSlide]);
+
+  const prevSlide = useCallback(() => {
+    goToSlide((currentSlide - 1 + slides.length) % slides.length);
+  }, [currentSlide, goToSlide]);
+
+  // Auto-play
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 6000);
+    return () => clearInterval(timer);
+  }, [nextSlide]);
+
   return (
-    <section className="pt-16 pb-12 md:pb-20 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-20">
-        <div className="max-w-4xl mx-auto text-center space-y-4 md:space-y-8">
-          {/* Trust Badge */}
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-            </span>
-            50,000+ Qualified Leads Generated
-          </div>
+    <section className="pt-16 bg-background">
+      {/* Hero Slider */}
+      <div className="relative min-h-[85vh] md:min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-muted/30 to-background">
+        {/* Slides */}
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 flex items-center transition-all duration-700 ease-in-out ${
+              index === currentSlide
+                ? "opacity-100 translate-x-0 z-10"
+                : index < currentSlide
+                ? "opacity-0 -translate-x-full z-0"
+                : "opacity-0 translate-x-full z-0"
+            }`}
+          >
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                {/* Text Content */}
+                <div className="space-y-6 md:space-y-8">
+                  <h1
+                    className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight transition-all duration-700 delay-100 ${
+                      index === currentSlide
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-8"
+                    }`}
+                  >
+                    {slide.title}
+                  </h1>
+                  <p
+                    className={`text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl transition-all duration-700 delay-200 ${
+                      index === currentSlide
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-8"
+                    }`}
+                  >
+                    {slide.description}
+                  </p>
+                  <div
+                    className={`transition-all duration-700 delay-300 ${
+                      index === currentSlide
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-8"
+                    }`}
+                  >
+                    <Button
+                      size="lg"
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg rounded-lg shadow-elegant hover:shadow-hover transition-all"
+                      onClick={() => window.open(slide.ctaLink, "_blank")}
+                    >
+                      {slide.cta}
+                    </Button>
+                  </div>
+                </div>
 
-          {/* Main Headline */}
-          <div className="space-y-2 md:space-y-4">
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-foreground leading-tight">
-              Franchise Lead Generation Agency<br />
-              Stop Chasing Cold Leads.<br />
-              <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Start Closing Deals.</span>
-            </h1>
-          </div>
-
-          {/* Subheadline - More human and specific */}
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            We bring you <strong>investors who are ready to sign</strong> — not tire-kickers or time-wasters. 
-            Our franchise leads have <strong>$50K–$500K</strong> to invest and are actively searching for opportunities in <strong>India & USA</strong>.
-          </p>
-
-          {/* Social Proof Mini Stats */}
-          <div className="flex flex-wrap justify-center gap-6 md:gap-10 pt-2">
-            <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-foreground">30 Days</div>
-              <div className="text-sm text-muted-foreground">to First Lead</div>
+                {/* Image */}
+                <div
+                  className={`hidden md:flex justify-center items-center transition-all duration-700 delay-200 ${
+                    index === currentSlide
+                      ? "opacity-100 scale-100"
+                      : "opacity-0 scale-90"
+                  }`}
+                >
+                  <img
+                    src={slide.image}
+                    alt={slide.imageAlt}
+                    width="500"
+                    height="500"
+                    className="w-full max-w-md lg:max-w-lg xl:max-w-xl h-auto object-contain drop-shadow-lg"
+                    loading={index === 0 ? "eager" : "lazy"}
+                  />
+                </div>
+              </div>
             </div>
-            <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-foreground">3-5x</div>
-              <div className="text-sm text-muted-foreground">Avg. ROI</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-foreground">500+</div>
-              <div className="text-sm text-muted-foreground">Brands Served</div>
-            </div>
           </div>
+        ))}
 
-          {/* CTA Button */}
-          <div className="pt-4 md:pt-6 flex flex-col sm:flex-row gap-3 justify-center">
-            <Button 
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-lg shadow-lg hover:shadow-xl transition-all"
-              onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
-            >
-              Get Your Free Strategy Call →
-            </Button>
-            <Button 
-              size="lg"
-              variant="outline"
-              className="border-2 border-primary text-primary hover:bg-primary/10 px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-lg"
-              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              See How It Works
-            </Button>
-          </div>
+        {/* Navigation Arrows */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-card flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-card flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
 
-          {/* Risk-Free Promise */}
-          <p className="text-sm text-muted-foreground">
-            ✓ No upfront fees &nbsp;&nbsp; ✓ 7-day money-back guarantee &nbsp;&nbsp; ✓ Cancel anytime
-          </p>
-
-          {/* Video Section - Optimized YouTube facade for performance */}
-          <div className="pt-6 md:pt-12">
-            <YouTubeFacade 
-              videoId="IVhegXG0Ngk" 
-              title="FranchiseLeadsPro Introduction - Franchise Lead Generation Services"
-              customThumbnail={heroThumbnail}
+        {/* Slide Indicators */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`h-3 rounded-full transition-all duration-500 ${
+                index === currentSlide
+                  ? "w-10 bg-primary"
+                  : "w-3 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
             />
-          </div>
+          ))}
+        </div>
+      </div>
 
-          {/* Client Photos, Rating and Logos */}
-          <div className="pt-16">
-            <div className="mb-8">
-              <div className="flex items-center justify-center -space-x-2">
-                <img src={avatar1} alt="Franchise consultant success story - generated $2M in leads" width="40" height="40" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" loading="eager" fetchPriority="high" />
-                <img src={avatar2} alt="Franchisor testimonial - 300% ROI increase" width="40" height="40" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" loading="eager" />
-                <img src={avatar3} alt="Marketing director review - best lead quality" width="40" height="40" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" loading="eager" />
-                <img src={avatar4} alt="Business owner testimonial - 50+ leads monthly" width="40" height="40" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" loading="eager" />
+      {/* Social Proof Strip */}
+      <div className="bg-background border-t border-border py-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Stats + Avatars */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 mb-8">
+            <div className="flex items-center gap-3">
+              <div className="flex -space-x-2">
+                <img src={avatar1} alt="Client" width="36" height="36" className="h-9 w-9 rounded-full ring-2 ring-background object-cover" loading="lazy" />
+                <img src={avatar2} alt="Client" width="36" height="36" className="h-9 w-9 rounded-full ring-2 ring-background object-cover" loading="lazy" />
+                <img src={avatar3} alt="Client" width="36" height="36" className="h-9 w-9 rounded-full ring-2 ring-background object-cover" loading="lazy" />
+                <img src={avatar4} alt="Client" width="36" height="36" className="h-9 w-9 rounded-full ring-2 ring-background object-cover" loading="lazy" />
               </div>
-              <div className="flex items-center justify-center gap-2">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-primary fill-current" viewBox="0 0 20 20" aria-hidden="true">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-                <span className="text-muted-foreground text-lg font-medium">Loved by 5000+ people</span>
+              <div className="flex items-center gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-4 h-4 text-primary fill-current" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+                <span className="text-muted-foreground text-sm font-medium ml-1">5,000+ happy clients</span>
               </div>
             </div>
+            <div className="flex gap-8 md:gap-12">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-foreground">50K+</div>
+                <div className="text-xs text-muted-foreground uppercase tracking-wider">Leads Generated</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-foreground">3-5x</div>
+                <div className="text-xs text-muted-foreground uppercase tracking-wider">Avg. ROI</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-foreground">500+</div>
+                <div className="text-xs text-muted-foreground uppercase tracking-wider">Brands Served</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Client Logos */}
+          <div className="border-t border-border pt-8">
+            <p className="text-center text-xs font-semibold text-muted-foreground mb-6 tracking-widest uppercase">
+              Trusted by Leading Franchise Brands
+            </p>
             
-            {/* Trusted By Section */}
-            <div className="bg-white py-16 -mx-4 sm:-mx-6 lg:-mx-8 mt-16 border-t border-gray-100">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <p className="text-center text-sm font-semibold text-gray-600 mb-12 tracking-wider uppercase">
-                  Trusted by Leading Franchise Brands
-                </p>
-                
-                {/* Desktop: Static logos */}
-                <div className="hidden md:flex items-center justify-center gap-16 flex-wrap">
-                  <div className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-                    <img src={logo1} alt="Client logo 1" width="100" height="48" loading="lazy" className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0" />
-                  </div>
-                  <div className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-                    <img src={logo2} alt="Client logo 2" width="100" height="48" loading="lazy" className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0" />
-                  </div>
-                  <div className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-                    <img src={logo3} alt="Client logo 3" width="100" height="48" loading="lazy" className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0" />
-                  </div>
-                  <div className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-                    <img src={logo4} alt="Client logo 4" width="100" height="48" loading="lazy" className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0" />
-                  </div>
-                  <div className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-                    <img src={logo5} alt="Client logo 5" width="100" height="48" loading="lazy" className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0" />
-                  </div>
+            {/* Desktop logos */}
+            <div className="hidden md:flex items-center justify-center gap-12 flex-wrap">
+              {logos.map((logo, i) => (
+                <div key={i} className="flex items-center justify-center p-3 rounded-lg hover:shadow-card transition-all duration-300">
+                  <img src={logo.src} alt={logo.alt} width="100" height="48" loading="lazy" className="h-10 w-auto opacity-50 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0" />
                 </div>
-                
-                {/* Mobile: Scrolling logos */}
-                <div className="md:hidden relative overflow-hidden py-4">
-                  <div className="flex animate-marquee gap-8">
-                    <div className="flex items-center justify-center gap-8 flex-shrink-0">
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo1} alt="Client logo 1" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
-                      </div>
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo2} alt="Client logo 2" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
-                      </div>
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo3} alt="Client logo 3" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
-                      </div>
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo4} alt="Client logo 4" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
-                      </div>
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo5} alt="Client logo 5" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-center gap-8 flex-shrink-0" aria-hidden="true">
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo1} alt="" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
-                      </div>
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo2} alt="" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
-                      </div>
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo3} alt="" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
-                      </div>
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo4} alt="" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
-                      </div>
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
-                        <img src={logo5} alt="" width="60" height="32" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
-                      </div>
-                    </div>
+              ))}
+            </div>
+
+            {/* Mobile marquee */}
+            <div className="md:hidden relative overflow-hidden py-2">
+              <div className="flex animate-marquee gap-8">
+                {[...logos, ...logos].map((logo, i) => (
+                  <div key={i} className="flex items-center justify-center p-2 min-w-[80px] flex-shrink-0">
+                    <img src={logo.src} alt={i >= logos.length ? "" : logo.alt} width="60" height="32" loading="lazy" className="h-8 w-auto opacity-60 grayscale max-w-[60px]" />
                   </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </div>
-      
     </section>
   );
 };
