@@ -11,10 +11,9 @@ const TestimonialsSection = () => {
       videoSrc: "/videos/jonathan-morgan-review.mp4"
     },
     {
-      name: "Bob Vearling",
-      title: "Franchise Broker, iFranchise LLC",
-      videoSrc: "https://www.youtube.com/embed/ZkphNmLkrcU?si=VcIzJ_zeMDA__vKD",
-      isYouTube: true
+      name: "Dion Garnett",
+      title: "Franchise Consultant, LeadGen Partners",
+      videoSrc: "/videos/dion-garnett-review.mp4"
     }
   ];
 
