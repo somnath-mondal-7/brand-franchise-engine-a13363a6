@@ -4,9 +4,6 @@ Allow: /
 # Sitemap Index (contains all chunked sitemaps + blog sitemap = ~49,900+ pages)
 Sitemap: https://www.franchiseleadspro.com/sitemap.xml
 
-# Crawl-delay for better server performance
-Crawl-delay: 1
-
 # Disallow crawling of admin areas, temp files, and duplicate content
 Disallow: /admin/
 Disallow: /private/
@@ -20,7 +17,6 @@ Disallow: /search
 # Allow important bot access
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 0
 
 User-agent: Bingbot
 Allow: /
