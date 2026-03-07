@@ -11,10 +11,9 @@ const TestimonialsSection = () => {
       videoSrc: "/videos/jonathan-morgan-review.mp4"
     },
     {
-      name: "Bob Vearling",
-      title: "Franchise Broker, iFranchise LLC",
-      videoSrc: "https://www.youtube.com/embed/ZkphNmLkrcU?si=VcIzJ_zeMDA__vKD",
-      isYouTube: true
+      name: "Dion Garnett",
+      title: "Franchise Consultant, LeadGen Partners",
+      videoSrc: "/videos/dion-garnett-review.mp4"
     }
   ];
 
@@ -56,7 +55,7 @@ const TestimonialsSection = () => {
                     {/* Play button overlay hint */}
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10"></div>
                     
-                    {testimonial.isYouTube || testimonial.videoSrc.includes('youtube.com') || testimonial.videoSrc.includes('youtu.be') ? (
+                    {testimonial.videoSrc.includes('youtube.com') || testimonial.videoSrc.includes('youtu.be') ? (
                       <iframe
                         className="w-full h-full object-cover"
                         src={testimonial.videoSrc}
