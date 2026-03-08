@@ -6,36 +6,36 @@ const FAQSection = () => {
 
   const faqs = [
     {
-      question: "How fast will I see my first leads?",
-      answer: "Most clients receive their first qualified leads within 30 days of launch. We set up your campaigns, landing pages, and follow-up systems immediately—so you're not waiting months to see traction."
+      question: "What services do you offer for franchise lead generation?",
+      answer: "We offer three core services: LinkedIn marketing (targeted outreach, Sales Navigator campaigns, thought leadership), social media marketing (paid ads + organic content on Facebook, Instagram, LinkedIn), and franchise website development & design (high-converting, SEO-optimized franchise portals with lead capture)."
     },
     {
-      question: "What makes your leads different from other agencies?",
-      answer: "We pre-qualify every lead before you see them. That means verified investment capacity ($50K–$500K), confirmed timeline (ready within 90 days), and genuine interest in franchising. You're not buying a list—you're getting warm introductions to serious investors."
+      question: "How does LinkedIn marketing work for franchise lead generation?",
+      answer: "We use LinkedIn Sales Navigator to identify high-net-worth individuals and business owners who match your ideal franchisee profile. We then run targeted connection campaigns, personalized messaging sequences, and thought leadership content to build trust and book discovery calls with serious investors."
     },
     {
       question: "Do you work with franchise consultants or franchisors?",
-      answer: "Both. If you're a franchisor looking for qualified investors, we fill your pipeline. If you're a franchise consultant matching investors to brands, we bring you the buyers. Either way, you get pre-qualified leads ready to move."
+      answer: "Both. If you're a franchisor looking for qualified investors to grow your franchise network, we fill your pipeline. If you're a franchise consultant matching investors to brands, we bring you the buyers. Either way, you get pre-qualified leads ready to move."
     },
     {
-      question: "What's included in the service?",
-      answer: "Everything you need to close deals: targeted ad campaigns, landing page optimization, lead nurturing emails, CRM setup with automated follow-ups, conversion tracking, and ongoing optimization. You focus on closing—we handle the rest."
+      question: "How fast will I see my first franchise leads?",
+      answer: "Most clients receive their first qualified leads within 30 days. We launch LinkedIn campaigns, social media ads, and your franchise website within the first week — so you're generating momentum immediately, not waiting months."
     },
     {
-      question: "How do you ensure lead quality?",
-      answer: "Three-stage qualification: First, we target based on financial capacity, industry interest, and location. Second, every inquiry goes through a screening questionnaire. Third, our team verifies key details before passing leads to you. Only 12% of inquiries make the cut."
+      question: "What's included in your social media marketing service?",
+      answer: "We handle everything: paid ad campaigns on Facebook, Instagram, and LinkedIn with targeted franchise buyer audiences, organic content creation and posting, retargeting campaigns, A/B testing, and full performance reporting. Both paid and organic working together to maximize your lead flow."
+    },
+    {
+      question: "Do you build franchise websites?",
+      answer: "Yes. We design and develop professional franchise websites built to convert visitors into investor inquiries. Every site is mobile-first, SEO-optimized, and includes lead capture forms, territory information, investment details, and trust-building elements that serious investors look for."
     },
     {
       question: "What kind of ROI can I expect?",
-      answer: "Our clients typically see 3–5x ROI within 90 days. With average franchise fees of $45,000+, even one closed deal per month covers your investment many times over. And most clients close multiple deals."
+      answer: "Our clients typically see 3-5x ROI within 90 days. With average franchise fees of $25,000-$50,000+, even one closed deal per month covers your marketing investment many times over. We track every lead from first touch to signed agreement."
     },
     {
       question: "What if it doesn't work for me?",
-      answer: "We offer a 7-day money-back guarantee and 1-month satisfaction promise. If you're not seeing results, we'll either fix it or refund you. We've worked with 500+ brands—this isn't our first rodeo."
-    },
-    {
-      question: "How do you nurture leads who aren't ready to buy today?",
-      answer: "Our multi-touch system keeps prospects warm: automated email sequences, retargeting ads, educational content, and timely check-ins. When they're ready to move (and 60% eventually are), you're the first call they make."
+      answer: "We offer a 7-day money-back guarantee and 1-month satisfaction promise. If you're not seeing qualified franchise leads, we'll either fix it or refund you. We've worked with 500+ franchise brands — we know what works."
     }
   ];
 
@@ -45,7 +45,6 @@ const FAQSection = () => {
 
   return (
     <section id="faq" className="py-20 bg-muted/30">
-      {/* FAQ Schema Markup */}
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
@@ -68,7 +67,7 @@ const FAQSection = () => {
             Everything You Need to Know
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Real answers to the questions franchisors ask before working with us.
+            Common questions about our LinkedIn marketing, social media, and franchise web development services.
           </p>
         </div>
 
@@ -88,9 +87,9 @@ const FAQSection = () => {
                     {faq.question}
                   </span>
                   {openFAQ === index ? (
-                    <ChevronUp className="w-5 h-5 text-muted-foreground" />
+                    <ChevronUp className="w-5 h-5 text-muted-foreground flex-shrink-0" />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-muted-foreground" />
+                    <ChevronDown className="w-5 h-5 text-muted-foreground flex-shrink-0" />
                   )}
                 </button>
                 
