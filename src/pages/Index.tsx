@@ -44,32 +44,24 @@ const Index = () => {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Franchise Lead Generation",
-                    "description": "High-intent franchise buyer leads through targeted campaigns and qualification"
+                    "name": "LinkedIn Marketing for Franchises",
+                    "description": "Targeted LinkedIn outreach and thought leadership campaigns to connect franchise brands with qualified investors"
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Franchise SEO",
-                    "description": "Topical authority + location SEO to rank for franchise lead generation keywords"
+                    "name": "Social Media Marketing",
+                    "description": "Paid and organic social media campaigns on Facebook, Instagram, and LinkedIn for franchise lead generation"
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Franchise PPC Advertising",
-                    "description": "Conversion-focused paid media to scale leads profitably"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Landing Pages & Funnels",
-                    "description": "High-converting funnels that turn clicks into booked calls"
+                    "name": "Franchise Website Development & Design",
+                    "description": "High-converting franchise websites with lead capture, SEO optimization, and mobile-first design"
                   }
                 }
               ]
