@@ -34,7 +34,7 @@ const Index = () => {
           "mainEntity": {
             "@type": "Organization",
             "name": "FranchiseLeadsPro",
-            "description": "We generate qualified franchise buyer leads with performance marketing, franchise SEO, paid ads, and conversion optimization.",
+            "description": "We generate qualified franchise buyer leads through LinkedIn marketing, social media campaigns, and high-converting franchise website development.",
             "serviceArea": ["United States", "United Kingdom", "International"],
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
