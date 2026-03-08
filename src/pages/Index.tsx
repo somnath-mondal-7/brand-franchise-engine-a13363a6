@@ -22,7 +22,7 @@ const Index = () => {
           "@type": "WebSite",
           "name": "FranchiseLeadsPro",
           "url": "https://www.franchiseleadspro.com",
-          "description": "Franchise lead generation agency providing SEO, PPC, and digital marketing for franchisors and franchise consultants across the USA, UK, and worldwide.",
+          "description": "We help franchise consultants and franchisors generate qualified investor leads through LinkedIn marketing, social media campaigns, and franchise website development.",
           "potentialAction": {
             "@type": "SearchAction",
             "target": {
