@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Hero from "@/components/Hero";
 import Navigation from "@/components/Navigation";
 import ProcessSection from "@/components/ProcessSection";
@@ -16,6 +17,11 @@ import SEOInternalLinks from "@/components/SEOInternalLinks";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Franchise Lead Generation | LinkedIn Marketing, Social Media & Web Development</title>
+        <meta name="description" content="We help franchise consultants and franchisors generate qualified investor leads through LinkedIn marketing, social media campaigns (paid + organic), and high-converting franchise website development." />
+        <link rel="canonical" href="https://www.franchiseleadspro.com/" />
+      </Helmet>
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
