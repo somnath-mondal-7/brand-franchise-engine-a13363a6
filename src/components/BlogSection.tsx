@@ -31,7 +31,6 @@ const BlogSection = () => {
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {
-        // Fetch categories
         const { data: categoriesData } = await supabase
           .from('categories')
           .select('*');
@@ -40,7 +39,6 @@ const BlogSection = () => {
           setCategories(categoriesData as unknown as Category[]);
         }
 
-        // Fetch latest 3 published blog posts
         const { data: postsData } = await supabase
           .from('blog_posts' as any)
           .select('*')
@@ -75,29 +73,29 @@ const BlogSection = () => {
   };
 
   if (isLoading) {
-    return null; // or a loading skeleton
+    return null;
   }
 
   if (blogPosts.length === 0) {
-    return null; // Don't show section if no posts
+    return null;
   }
 
   return (
-    <section id="blog" className="py-24 bg-gradient-to-b from-muted/30 to-white">
+    <section id="blog" className="py-16 sm:py-24 bg-gradient-to-b from-muted/30 to-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <Badge className="mb-4 bg-primary/10 text-primary px-4 py-2">
             Latest Insights
           </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6">
             From Our Blog
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Stay updated with the latest trends, strategies, and insights in franchise marketing and lead generation.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12">
           {blogPosts.map((post) => (
             <Card key={post.id} className="group bg-card border-border/50 hover:border-primary/20 transition-all duration-300 hover:shadow-hover overflow-hidden">
               <div className="aspect-video bg-gradient-to-br from-primary/10 to-primary/5 relative overflow-hidden">
@@ -109,41 +107,42 @@ const BlogSection = () => {
                   />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />
-                <div className="absolute bottom-4 left-4">
-                  <Badge variant="secondary" className="bg-primary text-primary-foreground">
+                <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
+                  <Badge variant="secondary" className="bg-primary text-primary-foreground text-xs">
                     {getCategoryName(post.category_id)}
                   </Badge>
                 </div>
               </div>
               
-              <CardHeader className="pb-4">
-                <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
+              <CardHeader className="pb-3 sm:pb-4">
+                {/* Stack meta info on mobile */}
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3">
                   <div className="flex items-center gap-1">
-                    <User className="w-4 h-4" />
+                    <User className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     {post.author_name}
                   </div>
                   <div className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
+                    <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     {formatDate(post.published_at)}
                   </div>
                   <div className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
+                    <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     {post.read_time_minutes} min read
                   </div>
                 </div>
                 
-                <CardTitle className="group-hover:text-primary transition-colors duration-300 line-clamp-2">
+                <CardTitle className="text-base sm:text-lg group-hover:text-primary transition-colors duration-300 line-clamp-2">
                   {post.title}
                 </CardTitle>
               </CardHeader>
               
               <CardContent className="pt-0">
-                <CardDescription className="text-base leading-relaxed mb-4 line-clamp-3">
+                <CardDescription className="text-sm sm:text-base leading-relaxed mb-4 line-clamp-3">
                   {post.excerpt}
                 </CardDescription>
                 
                 <Link to={`/blog/${post.slug}`}>
-                  <Button variant="ghost" className="p-0 h-auto text-primary hover:text-primary/80 group/btn">
+                  <Button variant="ghost" className="p-0 h-auto text-primary hover:text-primary/80 group/btn min-h-[44px]">
                     Read More
                     <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
                   </Button>
@@ -155,7 +154,7 @@ const BlogSection = () => {
 
         <div className="text-center">
           <Link to="/blog">
-            <Button size="lg" variant="outline" className="border-primary/20 text-primary hover:bg-primary/5">
+            <Button size="lg" variant="outline" className="border-primary/20 text-primary hover:bg-primary/5 min-h-[44px]">
               View All Posts
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>

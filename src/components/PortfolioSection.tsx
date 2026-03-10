@@ -614,7 +614,7 @@ const PortfolioSection = () => {
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
+        <div className="flex flex-wrap justify-center gap-2 mb-8 sm:mb-10">
           {categories.map((cat) => (
             <Button
               key={cat.id}
@@ -624,7 +624,7 @@ const PortfolioSection = () => {
                 setActiveCategory(cat.id);
                 setShowAll(false);
               }}
-              className="rounded-full"
+              className="rounded-full min-h-[44px] text-xs sm:text-sm"
             >
               {cat.label}
             </Button>
