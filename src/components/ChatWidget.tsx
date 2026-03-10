@@ -525,7 +525,7 @@ const ChatWidget = () => {
 
       {/* Chat Button with Agent Avatar - Always visible (except when chat is open) */}
       {!isOpen && (
-        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40">
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40" style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
           <div className="relative flex flex-col items-center">
             {/* Main Agent Button */}
             <Button
