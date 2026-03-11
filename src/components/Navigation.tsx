@@ -39,7 +39,7 @@ const Navigation = () => {
               <>
                 <a href="#process" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">Process</a>
                 <a href="#services" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">Services</a>
-                <a href="#portfolio" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">Portfolio</a>
+                <a href="#portfolio" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">Solutions</a>
                 <a href="#benefits" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">Benefits</a>
                 <a href="#about" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">About</a>
                 <a href="#blog" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">Blog</a>
