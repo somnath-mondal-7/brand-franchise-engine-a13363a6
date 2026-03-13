@@ -81,13 +81,8 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
             "telephone": "+1-800-FRANCHISE",
             "priceRange": "$$",
             "serviceArea": {
-              "@type": "GeoCircle",
-              "geoMidpoint": {
-                "@type": "GeoCoordinates",
-                "latitude": "0",
-                "longitude": "0"
-              },
-              "geoRadius": "50000"
+              "@type": "Place",
+              "name": fullLocation
             },
             "areaServed": fullLocation,
             "hasOfferCatalog": {

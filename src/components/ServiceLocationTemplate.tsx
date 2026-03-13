@@ -436,7 +436,7 @@ export const ServiceLocationTemplate = ({
                 Ready to Grow Your Franchise in {location}?
               </h2>
               <p className="text-xl mb-8 opacity-90">
-                Join 850+ successful brands who trust FranchiseLeadsPro for their {service} needs.
+                Partner with FranchiseLeadsPro for your {service} needs and start growing today.
               </p>
               <Button 
                 size="lg"

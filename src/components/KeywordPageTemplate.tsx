@@ -211,7 +211,7 @@ export const KeywordPageTemplate: React.FC<KeywordPageProps> = ({
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
-                "Proven track record with 297K+ leads generated",
+                "Proven track record with measurable lead generation results",
                 "Expert team with years of franchise marketing experience",
                 "Customized strategies tailored to your business needs",
                 "Advanced targeting and optimization techniques",
