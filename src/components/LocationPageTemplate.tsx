@@ -147,7 +147,7 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
               <span className="text-lg font-medium">{fullLocation}</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              #1 Franchise Lead Generation Agency in <span className="text-accent">{locationTitle}</span>
+              Franchise Lead Generation in <span className="text-accent">{locationTitle}</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 leading-relaxed opacity-90">
               Generate high-quality franchise leads in {location} with our proven marketing strategies. 
