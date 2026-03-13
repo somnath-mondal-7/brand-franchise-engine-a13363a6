@@ -104,7 +104,7 @@ export const KeywordPageTemplate: React.FC<KeywordPageProps> = ({
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 mb-8 inline-block">
               <div className="flex items-center gap-2">
                 <Award className="h-5 w-5" />
-                <span>Trusted by 150+ Franchise Businesses</span>
+                <span>Trusted by Franchise Businesses Worldwide</span>
               </div>
             </div>
             <Button 
