@@ -130,10 +130,10 @@ const serviceContent: Record<string, {
       { title: "Acquire", desc: "Support negotiation and franchise acquisition" }
     ],
     stats: [
-      { value: "1,200+", label: "Successful Matches" },
-      { value: "850+", label: "Brand Partners" },
-      { value: "92%", label: "Match Success" },
-      { value: "₹100Cr+", label: "Investment Matched" }
+      { value: "200+", label: "Successful Matches" },
+      { value: "150+", label: "Brand Partners" },
+      { value: "12", label: "Countries Served" },
+      { value: "24/7", label: "Consultation Available" }
     ],
     faq: [
       { q: "How do you select franchise brands?", a: "We verify brand credibility, unit economics, support systems, and franchisee satisfaction." },
