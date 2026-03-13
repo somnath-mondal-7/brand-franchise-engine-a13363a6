@@ -252,8 +252,9 @@ export const ServiceLocationTemplate = ({
   const title = `${capitalizedService} in ${location} | Franchise Lead Generation Agency`;
   const description = `Professional ${service} services in ${fullLocation}. Get qualified franchise leads with SEO, PPC, and conversion-focused campaigns. Book a free strategy call today.`;
 
-  // Get service-specific content or default
-  const content = serviceContent[service.toLowerCase()] || serviceContent["franchise consulting"];
+  // Get service-specific content or generate service-relevant content for long-tail pages
+  const normalizedService = service.toLowerCase();
+  const content = serviceContent[normalizedService] ?? buildDynamicServiceContent(normalizedService, location, country);
 
   // Location-specific market insights
   const getMarketInsight = () => {
