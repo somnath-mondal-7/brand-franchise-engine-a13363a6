@@ -36,8 +36,8 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
   const locationTitle = isCity ? `${location}, ${state}` : location;
   const fullLocation = state ? `${location}, ${state}, ${country}` : `${location}, ${country}`;
   
-  const pageTitle = `#1 Franchise Lead Generation Agency in ${locationTitle} | FranchiseLeads Pro`;
-  const pageDescription = `Top-rated franchise lead generation services in ${locationTitle}. We help franchise businesses generate qualified leads and grow their presence in ${location}. Get results fast!`;
+  const pageTitle = `Franchise Lead Generation in ${locationTitle} | FranchiseLeadsPro`;
+  const pageDescription = `Professional franchise lead generation services in ${locationTitle}. We help franchise businesses generate qualified leads and grow their presence in ${location}. Contact us for a free strategy consultation.`;
   
   const canonicalUrl = isCity && stateSlug
     ? `https://www.franchiseleadspro.com/locations/${countryCode.toLowerCase()}/${stateSlug}/${locationSlug}`
