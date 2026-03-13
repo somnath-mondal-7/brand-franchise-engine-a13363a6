@@ -61,13 +61,21 @@
     {
       "source": "/",
       "headers": [
-        { "key": "Cache-Control", "value": "no-store, max-age=0, must-revalidate" }
+        { "key": "Cache-Control", "value": "no-store, max-age=0, must-revalidate" },
+        { "key": "X-Robots-Tag", "value": "index, follow" }
       ]
     },
     {
       "source": "/index.html",
       "headers": [
         { "key": "Cache-Control", "value": "no-store, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/(locations|services|franchise-leads|buy-franchise-leads|blog|about|contact|digital-marketing|testimonials)(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow, max-snippet:-1, max-image-preview:large" },
+        { "key": "Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=604800" }
       ]
     }
   ]
