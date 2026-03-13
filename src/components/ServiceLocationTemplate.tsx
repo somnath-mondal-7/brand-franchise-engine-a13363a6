@@ -159,10 +159,10 @@ const serviceContent: Record<string, {
       { title: "Execute", desc: "Launch and support market entry" }
     ],
     stats: [
-      { value: "300+", label: "Expansions Planned" },
+      { value: "100+", label: "Expansions Planned" },
       { value: "12", label: "Countries" },
-      { value: "5,000+", label: "New Units Opened" },
-      { value: "40%", label: "Avg. Network Growth" }
+      { value: "500+", label: "New Units Supported" },
+      { value: "5+", label: "Years Experience" }
     ],
     faq: [
       { q: "When is the right time to expand?", a: "When you have proven unit economics, strong support systems, and available capital." },
