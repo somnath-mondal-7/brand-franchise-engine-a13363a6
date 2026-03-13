@@ -253,7 +253,7 @@ const Contact = () => {
                         <div className="text-sm text-brand-gray">Franchise Professionals Served</div>
                       </div>
                       <div>
-                        <div className="text-2xl font-bold text-primary">297K+</div>
+                       <div className="text-2xl font-bold text-primary">15K+</div>
                         <div className="text-sm text-brand-gray">Qualified Leads Generated</div>
                       </div>
                       <div>
