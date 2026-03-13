@@ -43,10 +43,10 @@ const serviceContent: Record<string, {
       { title: "Launch", desc: "Support franchise launch and ongoing growth" }
     ],
     stats: [
-      { value: "850+", label: "Brands Consulted" },
-      { value: "18+", label: "Years Experience" },
-      { value: "95%", label: "Success Rate" },
-      { value: "12", label: "Countries Served" }
+      { value: "150+", label: "Brands Consulted" },
+      { value: "5+", label: "Years Experience" },
+      { value: "12", label: "Countries Served" },
+      { value: "24/7", label: "Support Available" }
     ],
     faq: [
       { q: "How long does franchise development take?", a: "Typically 4-6 months for complete franchise system development, depending on business complexity." },
@@ -72,10 +72,10 @@ const serviceContent: Record<string, {
       { title: "Launch", desc: "Pilot testing and franchise program launch" }
     ],
     stats: [
-      { value: "500+", label: "Franchises Developed" },
-      { value: "98%", label: "Client Satisfaction" },
+      { value: "100+", label: "Franchises Developed" },
       { value: "4-6", label: "Months Timeline" },
-      { value: "3x", label: "Avg. Growth Rate" }
+      { value: "12", label: "Countries Covered" },
+      { value: "24/7", label: "Dedicated Support" }
     ],
     faq: [
       { q: "Is my business ready for franchising?", a: "We conduct a thorough feasibility assessment to determine franchise readiness and identify gaps." },
@@ -101,10 +101,10 @@ const serviceContent: Record<string, {
       { title: "Convert", desc: "Guide through discovery and closing process" }
     ],
     stats: [
-      { value: "2,500+", label: "Franchisees Placed" },
-      { value: "85%", label: "Retention Rate" },
-      { value: "45", label: "Days Avg. Time" },
-      { value: "₹50Cr+", label: "Investment Facilitated" }
+      { value: "500+", label: "Franchisees Connected" },
+      { value: "30-60", label: "Days Avg. Timeline" },
+      { value: "12", label: "Markets Covered" },
+      { value: "24/7", label: "Support Available" }
     ],
     faq: [
       { q: "What makes a good franchisee?", a: "Capital availability, business acumen, local market knowledge, and alignment with brand values." },
@@ -130,10 +130,10 @@ const serviceContent: Record<string, {
       { title: "Acquire", desc: "Support negotiation and franchise acquisition" }
     ],
     stats: [
-      { value: "1,200+", label: "Successful Matches" },
-      { value: "850+", label: "Brand Partners" },
-      { value: "92%", label: "Match Success" },
-      { value: "₹100Cr+", label: "Investment Matched" }
+      { value: "200+", label: "Successful Matches" },
+      { value: "150+", label: "Brand Partners" },
+      { value: "12", label: "Countries Served" },
+      { value: "24/7", label: "Consultation Available" }
     ],
     faq: [
       { q: "How do you select franchise brands?", a: "We verify brand credibility, unit economics, support systems, and franchisee satisfaction." },
@@ -159,10 +159,10 @@ const serviceContent: Record<string, {
       { title: "Execute", desc: "Launch and support market entry" }
     ],
     stats: [
-      { value: "300+", label: "Expansions Planned" },
+      { value: "100+", label: "Expansions Planned" },
       { value: "12", label: "Countries" },
-      { value: "5,000+", label: "New Units Opened" },
-      { value: "40%", label: "Avg. Network Growth" }
+      { value: "500+", label: "New Units Supported" },
+      { value: "5+", label: "Years Experience" }
     ],
     faq: [
       { q: "When is the right time to expand?", a: "When you have proven unit economics, strong support systems, and available capital." },
@@ -204,14 +204,23 @@ export const ServiceLocationTemplate = ({
 
   // Location-specific market insights
   const getMarketInsight = () => {
+    const populationText = population ? ` With a population of ${population.toLocaleString()}, the city` : ` The region`;
     if (countryCode === "IN") {
-      return `The Indian franchise market is experiencing rapid growth with over ₹70,000 crore annual industry size. ${location} presents significant opportunities across retail, F&B, education, and service sectors.`;
+      return `India's franchise industry is one of the fastest-growing globally, valued at over ₹70,000 crore annually.${populationText} of ${location} presents significant opportunities across retail, F&B, education, healthcare, and service sectors. Our local expertise helps businesses navigate ${state ? `${state}'s` : "India's"} unique regulatory landscape and consumer preferences for effective ${service} campaigns.`;
     } else if (countryCode === "USA") {
-      return `The US franchise industry generates over $800 billion annually. ${location} offers a mature market with strong consumer spending and established franchise infrastructure.`;
+      return `The US franchise industry generates over $800 billion annually, making it the world's largest franchise market.${populationText} of ${location} offers a mature ecosystem with strong consumer spending and established franchise infrastructure. We leverage deep ${state ? `${state}` : "US"} market data to deliver targeted ${service} strategies that connect you with qualified investors.`;
     } else if (countryCode === "UK") {
-      return `The UK franchise sector contributes over £17 billion to the economy. ${location} provides access to a sophisticated market with high franchise success rates.`;
+      return `The UK franchise sector contributes over £17 billion to the national economy with high franchise success rates.${populationText} of ${location} provides access to a sophisticated, regulation-friendly market. Our ${service} strategies are tailored to UK consumer behavior, BFA compliance requirements, and local competitive dynamics.`;
+    } else if (countryCode === "CA") {
+      return `Canada's franchise sector is one of the most stable in North America, with over 1,300 franchise brands operating nationwide.${populationText} of ${location} offers a bilingual, diverse consumer base with strong purchasing power. Our ${service} approach considers ${state ? `${state}'s` : "Canada's"} provincial franchise legislation and market nuances.`;
+    } else if (countryCode === "AU") {
+      return `Australia's franchise industry is well-regulated under the Franchising Code of Conduct, providing a stable environment for franchise growth.${populationText} of ${location} offers access to a high-spending consumer market. Our ${service} campaigns are designed for Australian market dynamics and ACCC compliance.`;
+    } else if (countryCode === "AE") {
+      return `The UAE franchise market is rapidly expanding, driven by a cosmopolitan population and business-friendly free zones.${populationText} of ${location} offers premium positioning in the Middle Eastern market. Our ${service} strategies account for cultural nuances, RERA regulations, and the region's unique investor profiles.`;
+    } else if (countryCode === "KW") {
+      return `Kuwait's growing economy and young population create strong demand for franchise concepts.${populationText} of ${location} offers access to a high-income consumer base in the GCC region. Our ${service} approach is tailored to Kuwaiti business culture, MOC requirements, and regional market trends.`;
     }
-    return `${location} offers growing opportunities in the franchise sector with increasing investor interest and consumer demand.`;
+    return `${location} offers growing opportunities in the franchise sector with increasing investor interest and consumer demand.${populationText} provides a strong base for ${service} campaigns. Our data-driven approach ensures your franchise reaches the right prospects in this market.`;
   };
 
   return (
@@ -251,11 +260,7 @@ export const ServiceLocationTemplate = ({
                 "name": state || country
               }
             },
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "reviewCount": "850"
-            }
+            "knowsAbout": [capitalizedService, "franchise marketing", "lead generation"]
           })}
         </script>
 
@@ -440,7 +445,7 @@ export const ServiceLocationTemplate = ({
                 Ready to Grow Your Franchise in {location}?
               </h2>
               <p className="text-xl mb-8 opacity-90">
-                Join 850+ successful brands who trust FranchiseLeadsPro for their {service} needs.
+                Partner with FranchiseLeadsPro for your {service} needs and start growing today.
               </p>
               <Button 
                 size="lg"

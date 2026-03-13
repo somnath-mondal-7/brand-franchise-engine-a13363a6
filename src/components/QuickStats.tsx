@@ -4,27 +4,27 @@ const QuickStats = () => {
   const stats = [
     {
       icon: <Users className="w-8 h-8 text-primary" />,
-      number: "640+",
-      label: "Franchise Professionals",
+      number: "150+",
+      label: "Franchise Clients",
       description: "Trust our expertise"
     },
     {
       icon: <Target className="w-8 h-8 text-primary" />,
-      number: "297K+",
-      label: "Qualified Leads",
-      description: "Generated successfully"
+      number: "12",
+      label: "Countries Served",
+      description: "Global coverage"
     },
     {
       icon: <TrendingUp className="w-8 h-8 text-primary" />,
-      number: "95%",
-      label: "Success Rate",
-      description: "Client satisfaction"
+      number: "5+",
+      label: "Years Experience",
+      description: "Industry expertise"
     },
     {
       icon: <Award className="w-8 h-8 text-primary" />,
-      number: "3x",
-      label: "ROI Average",
-      description: "Return on investment"
+      number: "24/7",
+      label: "Support",
+      description: "Always available"
     }
   ];
 

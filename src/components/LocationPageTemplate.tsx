@@ -36,8 +36,8 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
   const locationTitle = isCity ? `${location}, ${state}` : location;
   const fullLocation = state ? `${location}, ${state}, ${country}` : `${location}, ${country}`;
   
-  const pageTitle = `#1 Franchise Lead Generation Agency in ${locationTitle} | FranchiseLeads Pro`;
-  const pageDescription = `Top-rated franchise lead generation services in ${locationTitle}. We help franchise businesses generate qualified leads and grow their presence in ${location}. Get results fast!`;
+  const pageTitle = `Franchise Lead Generation in ${locationTitle} | FranchiseLeadsPro`;
+  const pageDescription = `Professional franchise lead generation services in ${locationTitle}. We help franchise businesses generate qualified leads and grow their presence in ${location}. Contact us for a free strategy consultation.`;
   
   const canonicalUrl = isCity && stateSlug
     ? `https://www.franchiseleadspro.com/locations/${countryCode.toLowerCase()}/${stateSlug}/${locationSlug}`
@@ -64,11 +64,11 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         
-        {/* Structured Data */}
+        {/* Structured Data - ProfessionalService */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "LocalBusiness",
+            "@type": "ProfessionalService",
             "name": `FranchiseLeads Pro - ${location}`,
             "description": `Professional franchise lead generation services in ${fullLocation}`,
             "address": {
@@ -77,22 +77,10 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
               ...(state && { "addressRegion": state }),
               "addressCountry": countryCode
             },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": "0",
-              "longitude": "0"
-            },
             "url": canonicalUrl,
-            "telephone": "+1-800-FRANCHISE",
-            "priceRange": "$$",
             "serviceArea": {
-              "@type": "GeoCircle",
-              "geoMidpoint": {
-                "@type": "GeoCoordinates",
-                "latitude": "0",
-                "longitude": "0"
-              },
-              "geoRadius": "50000"
+              "@type": "Place",
+              "name": fullLocation
             },
             "areaServed": fullLocation,
             "hasOfferCatalog": {
@@ -111,6 +99,40 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
             }
           })}
         </script>
+
+        {/* FAQ Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": `How quickly can I get franchise leads in ${location}?`,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": `Most clients start receiving qualified franchise inquiries within 7-14 days of launching campaigns in ${locationTitle}.`
+                }
+              },
+              {
+                "@type": "Question",
+                "name": `What types of franchises do you work with in ${locationTitle}?`,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": `We work with food service, retail, health & fitness, home services, education, and automotive franchises in ${location}.`
+                }
+              },
+              {
+                "@type": "Question",
+                "name": `How much do franchise leads cost in ${location}?`,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": `Lead costs vary by industry, competition level, and target demographic. We offer flexible packages with guaranteed minimum lead volumes.`
+                }
+              }
+            ]
+          })}
+        </script>
       </Helmet>
 
       <Navigation />
@@ -125,7 +147,7 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
               <span className="text-lg font-medium">{fullLocation}</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              #1 Franchise Lead Generation Agency in <span className="text-accent">{locationTitle}</span>
+              Franchise Lead Generation in <span className="text-accent">{locationTitle}</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 leading-relaxed opacity-90">
               Generate high-quality franchise leads in {location} with our proven marketing strategies. 
@@ -156,16 +178,16 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">297K+</div>
-                <div className="text-muted-foreground">Qualified Leads Generated</div>
+              <div className="text-4xl font-bold text-primary mb-2">150+</div>
+                <div className="text-muted-foreground">Franchise Clients Served</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">150+</div>
-                <div className="text-muted-foreground">Franchise Clients</div>
+                <div className="text-4xl font-bold text-primary mb-2">12</div>
+                <div className="text-muted-foreground">Countries Covered</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">95%</div>
-                <div className="text-muted-foreground">Client Satisfaction</div>
+                <div className="text-4xl font-bold text-primary mb-2">5+</div>
+                <div className="text-muted-foreground">Years Experience</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary mb-2">24/7</div>
