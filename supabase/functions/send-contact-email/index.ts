@@ -48,6 +48,7 @@ const handler = async (req: Request): Promise<Response> => {
     const notificationResponse = await sendEmail({
       from: "FranchiseLeadsPro <support@franchiseleadspro.com>",
       to: ["iamsomnath@franchiseleadspro.com"],
+      cc: ["support@franchiseleadspro.com"],
       reply_to: "support@franchiseleadspro.com",
       subject: `New Contact Form Submission from ${firstName} ${lastName}`,
       html: `

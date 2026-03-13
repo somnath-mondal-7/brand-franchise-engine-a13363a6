@@ -66,8 +66,8 @@ const Testimonials = () => {
 
   const stats = [
     { number: "640+", label: "Happy Clients" },
-    { number: "297K+", label: "Leads Generated" },
-    { number: "95%", label: "Success Rate" },
+    { number: "15K+", label: "Leads Generated" },
+    { number: "92%", label: "Success Rate" },
     { number: "3x", label: "Average ROI" }
   ];
 

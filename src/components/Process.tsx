@@ -119,7 +119,7 @@ const Process = () => {
                 <div className="text-brand-gray">Satisfied Clients</div>
               </div>
               <div className="bg-white rounded-lg p-6 shadow-card">
-                <div className="text-3xl font-bold text-brand-blue mb-2">297K+</div>
+                <div className="text-3xl font-bold text-brand-blue mb-2">15K+</div>
                 <div className="text-brand-gray">Qualified Leads</div>
               </div>
               <div className="bg-white rounded-lg p-6 shadow-card">

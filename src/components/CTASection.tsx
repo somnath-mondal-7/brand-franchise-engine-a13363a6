@@ -46,7 +46,7 @@ const CTASection = () => {
             </div>
             <div className="hidden sm:block w-px h-12 bg-white/30" />
             <div className="text-center">
-              <div className="text-2xl font-bold">297K+</div>
+              <div className="text-2xl font-bold">15K+</div>
               <div className="text-sm">Leads Generated</div>
             </div>
             <div className="hidden sm:block w-px h-12 bg-white/30" />
