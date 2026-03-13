@@ -156,16 +156,16 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">297K+</div>
-                <div className="text-muted-foreground">Qualified Leads Generated</div>
+              <div className="text-4xl font-bold text-primary mb-2">150+</div>
+                <div className="text-muted-foreground">Franchise Clients Served</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">150+</div>
-                <div className="text-muted-foreground">Franchise Clients</div>
+                <div className="text-4xl font-bold text-primary mb-2">12</div>
+                <div className="text-muted-foreground">Countries Covered</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">95%</div>
-                <div className="text-muted-foreground">Client Satisfaction</div>
+                <div className="text-4xl font-bold text-primary mb-2">5+</div>
+                <div className="text-muted-foreground">Years Experience</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary mb-2">24/7</div>
