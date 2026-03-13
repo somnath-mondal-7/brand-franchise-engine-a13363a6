@@ -77,11 +77,6 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
               ...(state && { "addressRegion": state }),
               "addressCountry": countryCode
             },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": "0",
-              "longitude": "0"
-            },
             "url": canonicalUrl,
             "telephone": "+1-800-FRANCHISE",
             "priceRange": "$$",
