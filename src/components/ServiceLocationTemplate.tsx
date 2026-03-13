@@ -101,10 +101,10 @@ const serviceContent: Record<string, {
       { title: "Convert", desc: "Guide through discovery and closing process" }
     ],
     stats: [
-      { value: "2,500+", label: "Franchisees Placed" },
-      { value: "85%", label: "Retention Rate" },
-      { value: "45", label: "Days Avg. Time" },
-      { value: "₹50Cr+", label: "Investment Facilitated" }
+      { value: "500+", label: "Franchisees Connected" },
+      { value: "30-60", label: "Days Avg. Timeline" },
+      { value: "12", label: "Markets Covered" },
+      { value: "24/7", label: "Support Available" }
     ],
     faq: [
       { q: "What makes a good franchisee?", a: "Capital availability, business acumen, local market knowledge, and alignment with brand values." },
