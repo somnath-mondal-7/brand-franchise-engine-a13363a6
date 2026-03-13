@@ -251,11 +251,7 @@ export const ServiceLocationTemplate = ({
                 "name": state || country
               }
             },
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "reviewCount": "850"
-            }
+            "knowsAbout": [capitalizedService, "franchise marketing", "lead generation"]
           })}
         </script>
 
