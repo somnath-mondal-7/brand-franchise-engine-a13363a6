@@ -78,7 +78,6 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
               "addressCountry": countryCode
             },
             "url": canonicalUrl,
-            "telephone": "+1-800-FRANCHISE",
             "priceRange": "$$",
             "serviceArea": {
               "@type": "Place",
