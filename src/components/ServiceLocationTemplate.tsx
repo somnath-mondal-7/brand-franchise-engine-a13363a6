@@ -72,10 +72,10 @@ const serviceContent: Record<string, {
       { title: "Launch", desc: "Pilot testing and franchise program launch" }
     ],
     stats: [
-      { value: "500+", label: "Franchises Developed" },
-      { value: "98%", label: "Client Satisfaction" },
+      { value: "100+", label: "Franchises Developed" },
       { value: "4-6", label: "Months Timeline" },
-      { value: "3x", label: "Avg. Growth Rate" }
+      { value: "12", label: "Countries Covered" },
+      { value: "24/7", label: "Dedicated Support" }
     ],
     faq: [
       { q: "Is my business ready for franchising?", a: "We conduct a thorough feasibility assessment to determine franchise readiness and identify gaps." },
