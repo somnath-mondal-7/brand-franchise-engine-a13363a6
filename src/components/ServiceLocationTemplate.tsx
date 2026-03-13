@@ -172,6 +172,59 @@ const serviceContent: Record<string, {
   }
 };
 
+const toTitleCase = (value: string) =>
+  value
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+
+const buildDynamicServiceContent = (
+  serviceName: string,
+  locationName: string,
+  countryName: string
+): (typeof serviceContent)[string] => {
+  const prettyService = toTitleCase(serviceName);
+
+  return {
+    heroText: `${prettyService} Specialists`,
+    description: `Our team builds and manages ${serviceName} campaigns for businesses in ${locationName}, ${countryName}, focused on qualified franchise investor demand and measurable pipeline growth.`,
+    benefits: [
+      `Localized ${serviceName} strategy tailored for ${locationName}`,
+      `Audience targeting frameworks built around franchise investor intent`,
+      `Offer and landing-page alignment for stronger lead qualification`,
+      `Weekly optimization cycles with transparent quality reporting`,
+      `Conversion tracking setup to connect spend with meetings booked`,
+      `Continuous testing to reduce cost per qualified lead over time`
+    ],
+    process: [
+      { title: "Research", desc: `Map demand signals, competitor positioning, and audience behavior in ${locationName}` },
+      { title: "Build", desc: `Launch a ${serviceName} campaign structure with clear conversion goals` },
+      { title: "Optimize", desc: "Improve targeting, creatives, and landing flow using weekly performance data" },
+      { title: "Scale", desc: "Increase qualified lead volume while maintaining lead-quality thresholds" }
+    ],
+    stats: [
+      { value: "90-day", label: "Optimization Cycles" },
+      { value: "Weekly", label: "Reporting Cadence" },
+      { value: "Multi-Channel", label: "Execution Stack" },
+      { value: "1:1", label: "Strategy Support" }
+    ],
+    faq: [
+      {
+        q: `How is ${serviceName} customized for ${locationName}?`,
+        a: `We adapt targeting, messaging, and channel mix to ${locationName}'s market behavior, competitor density, and investor search patterns.`
+      },
+      {
+        q: `When can we expect qualified franchise inquiries?`,
+        a: "Most campaigns produce the first qualified conversations within 2-4 weeks once tracking, targeting, and landing pages are fully aligned."
+      },
+      {
+        q: `How do you measure campaign quality?`,
+        a: "We track lead-to-meeting rate, qualification score, cost per qualified lead, and channel-level conversion performance each week."
+      }
+    ]
+  };
+};
+
 export const ServiceLocationTemplate = ({
   service,
   location,
@@ -199,8 +252,9 @@ export const ServiceLocationTemplate = ({
   const title = `${capitalizedService} in ${location} | Franchise Lead Generation Agency`;
   const description = `Professional ${service} services in ${fullLocation}. Get qualified franchise leads with SEO, PPC, and conversion-focused campaigns. Book a free strategy call today.`;
 
-  // Get service-specific content or default
-  const content = serviceContent[service.toLowerCase()] || serviceContent["franchise consulting"];
+  // Get service-specific content or generate service-relevant content for long-tail pages
+  const normalizedService = service.toLowerCase();
+  const content = serviceContent[normalizedService] ?? buildDynamicServiceContent(normalizedService, location, country);
 
   // Location-specific market insights
   const getMarketInsight = () => {

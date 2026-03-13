@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -24,6 +24,11 @@ const CountryLocationPage: React.FC = () => {
   );
 
   if (!countryData) return <NotFound />;
+
+  const canonicalCountryCode = countryData.countryCode.toLowerCase();
+  if (country.toLowerCase() !== canonicalCountryCode) {
+    return <Navigate to={`/locations/${canonicalCountryCode}`} replace />;
+  }
 
   const pageTitle = `Franchise Lead Generation in ${countryData.country} | FranchiseLeadsPro`;
   const pageDescription = `Top franchise lead generation agency serving ${countryData.country}. Explore state and city pages for tailored franchise marketing and development.`;

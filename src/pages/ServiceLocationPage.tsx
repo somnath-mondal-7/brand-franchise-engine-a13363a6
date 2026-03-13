@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { ServiceLocationTemplate } from '@/components/ServiceLocationTemplate';
 import { locationData, broadMarketingKeywords } from '@/data/locations';
 import { slugify } from '@/utils/slugify';
@@ -32,6 +32,14 @@ const ServiceLocationPage = () => {
   const countryData = locationData.find(c => c.countryCode.toLowerCase() === normalizedCountry);
   if (!countryData) {
     return <NotFound />;
+  }
+
+  const canonicalCountryCode = countryData.countryCode.toLowerCase();
+  if (country.toLowerCase() !== canonicalCountryCode) {
+    const redirectPath = city
+      ? `/${service}/${canonicalCountryCode}/${location}/${city}`
+      : `/${service}/${canonicalCountryCode}/${location}`;
+    return <Navigate to={redirectPath} replace />;
   }
 
   // If city is provided, find the city data
