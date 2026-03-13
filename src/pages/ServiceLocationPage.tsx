@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { ServiceLocationTemplate } from '@/components/ServiceLocationTemplate';
 import { locationData, broadMarketingKeywords } from '@/data/locations';
 import { slugify } from '@/utils/slugify';

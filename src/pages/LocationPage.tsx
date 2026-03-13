@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { LocationPageTemplate } from '@/components/LocationPageTemplate';
 import { locationData } from '@/data/locations';
 import NotFound from './NotFound';
