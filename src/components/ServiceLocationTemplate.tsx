@@ -204,14 +204,23 @@ export const ServiceLocationTemplate = ({
 
   // Location-specific market insights
   const getMarketInsight = () => {
+    const populationText = population ? ` With a population of ${population.toLocaleString()}, the city` : ` The region`;
     if (countryCode === "IN") {
-      return `The Indian franchise market is experiencing rapid growth with over ₹70,000 crore annual industry size. ${location} presents significant opportunities across retail, F&B, education, and service sectors.`;
+      return `India's franchise industry is one of the fastest-growing globally, valued at over ₹70,000 crore annually.${populationText} of ${location} presents significant opportunities across retail, F&B, education, healthcare, and service sectors. Our local expertise helps businesses navigate ${state ? `${state}'s` : "India's"} unique regulatory landscape and consumer preferences for effective ${service} campaigns.`;
     } else if (countryCode === "USA") {
-      return `The US franchise industry generates over $800 billion annually. ${location} offers a mature market with strong consumer spending and established franchise infrastructure.`;
+      return `The US franchise industry generates over $800 billion annually, making it the world's largest franchise market.${populationText} of ${location} offers a mature ecosystem with strong consumer spending and established franchise infrastructure. We leverage deep ${state ? `${state}` : "US"} market data to deliver targeted ${service} strategies that connect you with qualified investors.`;
     } else if (countryCode === "UK") {
-      return `The UK franchise sector contributes over £17 billion to the economy. ${location} provides access to a sophisticated market with high franchise success rates.`;
+      return `The UK franchise sector contributes over £17 billion to the national economy with high franchise success rates.${populationText} of ${location} provides access to a sophisticated, regulation-friendly market. Our ${service} strategies are tailored to UK consumer behavior, BFA compliance requirements, and local competitive dynamics.`;
+    } else if (countryCode === "CA") {
+      return `Canada's franchise sector is one of the most stable in North America, with over 1,300 franchise brands operating nationwide.${populationText} of ${location} offers a bilingual, diverse consumer base with strong purchasing power. Our ${service} approach considers ${state ? `${state}'s` : "Canada's"} provincial franchise legislation and market nuances.`;
+    } else if (countryCode === "AU") {
+      return `Australia's franchise industry is well-regulated under the Franchising Code of Conduct, providing a stable environment for franchise growth.${populationText} of ${location} offers access to a high-spending consumer market. Our ${service} campaigns are designed for Australian market dynamics and ACCC compliance.`;
+    } else if (countryCode === "AE") {
+      return `The UAE franchise market is rapidly expanding, driven by a cosmopolitan population and business-friendly free zones.${populationText} of ${location} offers premium positioning in the Middle Eastern market. Our ${service} strategies account for cultural nuances, RERA regulations, and the region's unique investor profiles.`;
+    } else if (countryCode === "KW") {
+      return `Kuwait's growing economy and young population create strong demand for franchise concepts.${populationText} of ${location} offers access to a high-income consumer base in the GCC region. Our ${service} approach is tailored to Kuwaiti business culture, MOC requirements, and regional market trends.`;
     }
-    return `${location} offers growing opportunities in the franchise sector with increasing investor interest and consumer demand.`;
+    return `${location} offers growing opportunities in the franchise sector with increasing investor interest and consumer demand.${populationText} provides a strong base for ${service} campaigns. Our data-driven approach ensures your franchise reaches the right prospects in this market.`;
   };
 
   return (
