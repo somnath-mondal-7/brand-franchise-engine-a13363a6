@@ -299,7 +299,7 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <a href="/services/franchise-marketing" className="text-primary hover:underline">Franchise Marketing</a>
                 <a href="/services/franchise-consulting" className="text-primary hover:underline">Franchise Consulting</a>
-                <a href="/services/digital-marketing-franchise" className="text-primary hover:underline">Digital Marketing</a>
+                <a href="/digital-marketing" className="text-primary hover:underline">Digital Marketing</a>
                 {nearbyLocations.slice(0, 3).map((nearby, idx) => (
                   <a 
                     key={idx}
