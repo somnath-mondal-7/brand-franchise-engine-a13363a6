@@ -43,6 +43,17 @@
     { "source": "/sitemaps/:path*", "destination": "/sitemaps/:path*" },
     { "source": "/sitemap-blog.xml", "destination": "https://yquuidpajigvecyonqir.supabase.co/functions/v1/blog-sitemap" },
     { "source": "/robots.txt", "destination": "/robots.txt" },
+    {
+      "source": "/((?!api|_next|static|favicon|robots|sitemap|og-image|logo|apple-touch|assets|src).*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(Googlebot|bingbot|Baiduspider|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|rogerbot|Screaming Frog|SemrushBot|AhrefsBot|YandexBot|Applebot|MJ12bot|Bytespider|PetalBot|DataForSeoBot|GPTBot).*"
+        }
+      ],
+      "destination": "/api/render?path=$1"
+    },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
