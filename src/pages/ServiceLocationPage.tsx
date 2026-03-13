@@ -34,6 +34,14 @@ const ServiceLocationPage = () => {
     return <NotFound />;
   }
 
+  const canonicalCountryCode = countryData.countryCode.toLowerCase();
+  if (country.toLowerCase() !== canonicalCountryCode) {
+    const redirectPath = city
+      ? `/${service}/${canonicalCountryCode}/${location}/${city}`
+      : `/${service}/${canonicalCountryCode}/${location}`;
+    return <Navigate to={redirectPath} replace />;
+  }
+
   // If city is provided, find the city data
   if (city) {
     const stateData = countryData.states.find(s => s.slug === location);

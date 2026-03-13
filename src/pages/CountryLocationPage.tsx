@@ -25,6 +25,11 @@ const CountryLocationPage: React.FC = () => {
 
   if (!countryData) return <NotFound />;
 
+  const canonicalCountryCode = countryData.countryCode.toLowerCase();
+  if (country.toLowerCase() !== canonicalCountryCode) {
+    return <Navigate to={`/locations/${canonicalCountryCode}`} replace />;
+  }
+
   const pageTitle = `Franchise Lead Generation in ${countryData.country} | FranchiseLeadsPro`;
   const pageDescription = `Top franchise lead generation agency serving ${countryData.country}. Explore state and city pages for tailored franchise marketing and development.`;
   const canonicalUrl = `https://www.franchiseleadspro.com/locations/${countryData.countryCode.toLowerCase()}`;
