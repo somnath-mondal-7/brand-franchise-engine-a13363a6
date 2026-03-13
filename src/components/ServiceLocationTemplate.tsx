@@ -43,10 +43,10 @@ const serviceContent: Record<string, {
       { title: "Launch", desc: "Support franchise launch and ongoing growth" }
     ],
     stats: [
-      { value: "850+", label: "Brands Consulted" },
-      { value: "18+", label: "Years Experience" },
-      { value: "95%", label: "Success Rate" },
-      { value: "12", label: "Countries Served" }
+      { value: "150+", label: "Brands Consulted" },
+      { value: "5+", label: "Years Experience" },
+      { value: "12", label: "Countries Served" },
+      { value: "24/7", label: "Support Available" }
     ],
     faq: [
       { q: "How long does franchise development take?", a: "Typically 4-6 months for complete franchise system development, depending on business complexity." },
