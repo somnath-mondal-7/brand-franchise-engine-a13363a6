@@ -88,8 +88,9 @@ const Footer = () => {
                 <div className="space-y-2">
                   <div>
                     <p className="font-medium text-gray-300">USA Office</p>
-                    <p>432 Park Avenue, Suite 1502</p>
-                    <p>New York, NY 10016</p>
+                    <p>111 Town Square Place</p>
+                    <p>Jersey City, NJ 07310</p>
+                    <p>United States</p>
                   </div>
                   <div>
                     <p className="font-medium text-gray-300">India Office</p>
