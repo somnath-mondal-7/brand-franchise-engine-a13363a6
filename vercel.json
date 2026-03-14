@@ -40,7 +40,6 @@
   ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap-index" },
-    { "source": "/sitemaps/sitemap-:id.xml", "destination": "/api/sitemap/:id" },
     { "source": "/sitemap-blog.xml", "destination": "https://yquuidpajigvecyonqir.supabase.co/functions/v1/blog-sitemap" },
     { "source": "/robots.txt", "destination": "/robots.txt" },
     {
