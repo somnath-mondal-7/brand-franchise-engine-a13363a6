@@ -557,12 +557,7 @@ function generateAllUrls() {
   return urls;
 }
 
-// Cache the generated XML
-let cachedXml = null;
-
 function buildFullSitemap() {
-  if (cachedXml) return cachedXml;
-  
   const urls = generateAllUrls();
   console.log(`Sitemap: ${urls.length} total URLs`);
   
@@ -570,15 +565,14 @@ function buildFullSitemap() {
     `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${u.lastmod}</lastmod>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`
   ).join('\n');
   
-  cachedXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items}\n</urlset>`;
-  return cachedXml;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items}\n</urlset>`;
 }
 
 export default function handler(req, res) {
   try {
     const xml = buildFullSitemap();
     res.setHeader('Content-Type', 'application/xml; charset=utf-8');
-    res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=604800');
+    res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
     res.status(200).send(xml);
   } catch (err) {
     console.error('Sitemap generation error:', err);
