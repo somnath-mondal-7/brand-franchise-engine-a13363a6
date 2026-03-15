@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync, existsSync } from 'fs';
+import { writeFileSync, existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
 
 const DOMAIN = 'https://www.franchiseleadspro.com';
@@ -10,120 +10,107 @@ interface SitemapUrl {
   priority: string;
 }
 
-const chunk = <T,>(arr: T[], size: number): T[][] => {
-  const chunks: T[][] = [];
-  for (let i = 0; i < arr.length; i += size) {
-    chunks.push(arr.slice(i, i + size));
-  }
-  return chunks;
-};
-
 const buildSitemap = (urls: SitemapUrl[]) => {
-  const items = urls.map(u => `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${u.lastmod}</lastmod>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`).join('\n');
+  const items = urls
+    .map(
+      (u) =>
+        `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${u.lastmod}</lastmod>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`,
+    )
+    .join('\n');
+
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items}\n</urlset>`;
 };
 
-(async () => {
-  console.log('🗺️  Generating sitemaps...');
+const slugify = (value: string) => value.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
-  // Dynamic import using relative path (tsx handles TS resolution)
+(async () => {
+  console.log('🗺️ Generating single unified sitemap.xml...');
+
   const locationsPath = join(process.cwd(), 'src', 'data', 'locations.ts');
   const { locationData, broadMarketingKeywords, seoKeywords } = await import(locationsPath);
 
   const currentDate = new Date().toISOString().split('T')[0];
   const all: SitemapUrl[] = [];
 
-  // Core pages
   const corePages = [
-    { path: '/', priority: '1.0', freq: 'weekly' },
-    { path: '/about', priority: '0.9', freq: 'monthly' },
+    { path: '/', priority: '1.00', freq: 'weekly' },
+    { path: '/about', priority: '0.90', freq: 'monthly' },
     { path: '/services', priority: '0.95', freq: 'weekly' },
-    { path: '/contact', priority: '0.8', freq: 'monthly' },
+    { path: '/contact', priority: '0.80', freq: 'monthly' },
     { path: '/blog', priority: '0.85', freq: 'daily' },
-    { path: '/testimonials', priority: '0.8', freq: 'weekly' },
+    { path: '/testimonials', priority: '0.80', freq: 'weekly' },
     { path: '/franchise-leads-india', priority: '0.95', freq: 'weekly' },
     { path: '/franchise-leads-usa', priority: '0.95', freq: 'weekly' },
-    { path: '/franchise-leads-uk', priority: '0.9', freq: 'weekly' },
-    { path: '/franchise-leads-canada', priority: '0.9', freq: 'weekly' },
-    { path: '/franchise-leads-australia', priority: '0.9', freq: 'weekly' },
-    { path: '/franchise-leads-dubai', priority: '0.9', freq: 'weekly' },
+    { path: '/franchise-leads-uk', priority: '0.90', freq: 'weekly' },
+    { path: '/franchise-leads-canada', priority: '0.90', freq: 'weekly' },
+    { path: '/franchise-leads-australia', priority: '0.90', freq: 'weekly' },
+    { path: '/franchise-leads-dubai', priority: '0.90', freq: 'weekly' },
     { path: '/franchise-leads-kuwait', priority: '0.85', freq: 'weekly' },
-    { path: '/buy-franchise-leads', priority: '0.9', freq: 'weekly' },
+    { path: '/buy-franchise-leads', priority: '0.90', freq: 'weekly' },
     { path: '/digital-marketing', priority: '0.85', freq: 'weekly' },
-    { path: '/legal-terms/privacy-policy', priority: '0.4', freq: 'monthly' },
-    { path: '/legal-terms/refund-satisfaction-guarantee-policy', priority: '0.4', freq: 'monthly' },
+    { path: '/legal-terms/privacy-policy', priority: '0.40', freq: 'monthly' },
+    { path: '/legal-terms/refund-satisfaction-guarantee-policy', priority: '0.40', freq: 'monthly' },
   ];
 
-  corePages.forEach(p => {
-    all.push({ loc: `${DOMAIN}${p.path}`, lastmod: currentDate, changefreq: p.freq, priority: p.priority });
+  corePages.forEach((page) => {
+    all.push({ loc: `${DOMAIN}${page.path}`, lastmod: currentDate, changefreq: page.freq, priority: page.priority });
   });
 
-  // Location pages
   locationData.forEach((country: any) => {
-    all.push({ loc: `${DOMAIN}/locations/${country.countryCode.toLowerCase()}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.8' });
+    const countryCode = country.countryCode.toLowerCase();
+    all.push({ loc: `${DOMAIN}/locations/${countryCode}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.80' });
+
     country.states.forEach((state: any) => {
-      all.push({ loc: `${DOMAIN}/locations/${country.countryCode.toLowerCase()}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.75' });
+      all.push({ loc: `${DOMAIN}/locations/${countryCode}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.75' });
+
       state.cities.forEach((city: any) => {
-        all.push({ loc: `${DOMAIN}/locations/${country.countryCode.toLowerCase()}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.7' });
+        all.push({ loc: `${DOMAIN}/locations/${countryCode}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.70' });
       });
     });
   });
 
-  // Keyword pages
   seoKeywords.forEach((keyword: string) => {
-    const slug = keyword.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-    all.push({ loc: `${DOMAIN}/services/${slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.7' });
+    all.push({ loc: `${DOMAIN}/services/${slugify(keyword)}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.70' });
   });
 
-  // Service + location pages
   broadMarketingKeywords.forEach((service: string) => {
-    const serviceSlug = service.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    const serviceSlug = slugify(service);
+
     locationData.forEach((country: any) => {
-      const isPrimary = ['USA', 'IN'].includes(country.countryCode.toUpperCase());
+      const countryCode = country.countryCode.toLowerCase();
+      const isPrimary = ['usa', 'in'].includes(countryCode);
       const basePriority = isPrimary ? 0.85 : 0.75;
+
       country.states.forEach((state: any) => {
-        all.push({ loc: `${DOMAIN}/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: basePriority.toFixed(2) });
+        all.push({
+          loc: `${DOMAIN}/${serviceSlug}/${countryCode}/${state.slug}`,
+          lastmod: currentDate,
+          changefreq: 'weekly',
+          priority: basePriority.toFixed(2),
+        });
+
         state.cities.forEach((city: any) => {
-          all.push({ loc: `${DOMAIN}/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: (basePriority - 0.05).toFixed(2) });
+          all.push({
+            loc: `${DOMAIN}/${serviceSlug}/${countryCode}/${state.slug}/${city.slug}`,
+            lastmod: currentDate,
+            changefreq: 'weekly',
+            priority: (basePriority - 0.05).toFixed(2),
+          });
         });
       });
     });
   });
 
-  console.log(`📊 Total URLs: ${all.length}`);
+  const sitemapXml = buildSitemap(all);
 
-  // Write to BOTH public/ (for git) and dist/ (for deployment)
   const publicDir = join(process.cwd(), 'public');
+  mkdirSync(publicDir, { recursive: true });
+  writeFileSync(join(publicDir, 'sitemap.xml'), sitemapXml, 'utf-8');
+
   const distDir = join(process.cwd(), 'dist');
-
-  const outputDirs = [publicDir];
-  // Also write to dist/ if it exists (post-build scenario)
   if (existsSync(distDir)) {
-    outputDirs.push(distDir);
+    writeFileSync(join(distDir, 'sitemap.xml'), sitemapXml, 'utf-8');
   }
 
-  for (const outDir of outputDirs) {
-    const sitemapsDir = join(outDir, 'sitemaps');
-    mkdirSync(sitemapsDir, { recursive: true });
-
-    const CHUNK_SIZE = 10000;
-    const groups = chunk(all, CHUNK_SIZE);
-    const indexEntries: string[] = [];
-
-    groups.forEach((urls, i) => {
-      const fileName = `sitemap-${i + 1}.xml`;
-      writeFileSync(join(sitemapsDir, fileName), buildSitemap(urls), 'utf-8');
-      indexEntries.push(`  <sitemap>\n    <loc>${DOMAIN}/sitemaps/${fileName}</loc>\n    <lastmod>${currentDate}</lastmod>\n  </sitemap>`);
-      console.log(`  ✅ ${fileName}: ${urls.length} URLs → ${outDir}`);
-    });
-
-    // Add blog sitemap entry
-    indexEntries.push(`  <sitemap>\n    <loc>${DOMAIN}/sitemap-blog.xml</loc>\n    <lastmod>${currentDate}</lastmod>\n  </sitemap>`);
-
-    const indexXml = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexEntries.join('\n')}\n</sitemapindex>`;
-    writeFileSync(join(outDir, 'sitemap.xml'), indexXml, 'utf-8');
-    console.log(`  ✅ sitemap.xml (index) → ${outDir}`);
-  }
-
-  console.log(`\n✅ Generated sitemap index with chunked files (10,000 URLs each)`);
+  console.log(`✅ Unified sitemap.xml generated with ${all.length.toLocaleString()} URLs`);
 })();
