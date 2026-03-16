@@ -83,9 +83,7 @@ const Index = () => {
       <PortfolioSection />
       <PricingSection />
       <BenefitsSection />
-      <AboutSection />
       <TestimonialsSection />
-      <BlogSection />
       {/* SEO Internal Links to improve discoverability */}
       <SEOInternalLinks />
       <FAQSection />
