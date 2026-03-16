@@ -169,43 +169,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Social Proof */}
-      <div className="bg-background border-t border-border py-6 sm:py-8">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-12">
-            <div className="flex items-center gap-3">
-              <div className="flex -space-x-2">
-                <img src={avatar1} alt="Client" width="36" height="36" className="h-8 w-8 sm:h-9 sm:w-9 rounded-full ring-2 ring-background object-cover" loading="lazy" />
-                <img src={avatar2} alt="Client" width="36" height="36" className="h-8 w-8 sm:h-9 sm:w-9 rounded-full ring-2 ring-background object-cover" loading="lazy" />
-                <img src={avatar3} alt="Client" width="36" height="36" className="h-8 w-8 sm:h-9 sm:w-9 rounded-full ring-2 ring-background object-cover" loading="lazy" />
-                <img src={avatar4} alt="Client" width="36" height="36" className="h-8 w-8 sm:h-9 sm:w-9 rounded-full ring-2 ring-background object-cover" loading="lazy" />
-              </div>
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary fill-current" viewBox="0 0 20 20" aria-hidden="true">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-                <span className="text-muted-foreground text-xs sm:text-sm font-medium ml-1">Trusted by 500+ franchise brands</span>
-              </div>
-            </div>
-            <div className="flex gap-6 sm:gap-8 md:gap-12">
-              <div className="text-center">
-                <div className="text-xl sm:text-2xl font-bold text-foreground">3-5x</div>
-                <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider">Avg. ROI</div>
-              </div>
-              <div className="text-center">
-                <div className="text-xl sm:text-2xl font-bold text-foreground">30 Days</div>
-                <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider">First Leads</div>
-              </div>
-              <div className="text-center">
-                <div className="text-xl sm:text-2xl font-bold text-foreground">85%</div>
-                <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider">Lead Quality</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
   );
 };

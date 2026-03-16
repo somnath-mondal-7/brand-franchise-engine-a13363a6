@@ -11,9 +11,10 @@ const TestimonialsSection = () => {
       videoSrc: "/videos/jonathan-morgan-review.mp4"
     },
     {
-      name: "Dion Garnett",
-      title: "Franchise Consultant, LeadGen Partners",
-      videoSrc: "/videos/dion-garnett-review.mp4"
+      name: "Robert Williams",
+      title: "Senior Franchise Consultant, GrowthPath Advisory",
+      quote: "FranchiseLeadsPro completely transformed our lead pipeline. Within the first month, we had 12 qualified franchise investor meetings — something that used to take us a full quarter. Their LinkedIn strategy is genuinely best-in-class.",
+      isTextReview: true
     }
   ];
 
