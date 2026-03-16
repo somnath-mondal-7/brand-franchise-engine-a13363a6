@@ -8,6 +8,8 @@ import { Card } from "@/components/ui/card";
 import { Calendar, User, ArrowLeft, Share2, FileText, Download } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Helmet } from "react-helmet-async";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface BlogPostData {
   id: string;
@@ -246,10 +248,11 @@ const BlogPost = () => {
             )}
 
             {/* Content */}
-            <div 
-              className="blog-content prose prose-lg max-w-none"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
+            <div className="blog-content prose prose-lg max-w-none">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {post.content}
+              </ReactMarkdown>
+            </div>
 
             {/* Attachments */}
             {post.attachments && post.attachments.length > 0 && (
