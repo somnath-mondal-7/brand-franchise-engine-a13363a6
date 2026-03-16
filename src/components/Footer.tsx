@@ -59,11 +59,8 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">Company</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#about" className="hover:text-white transition-colors py-1 inline-block">About Us</a></li>
-              <li><a href="#process" className="hover:text-white transition-colors py-1 inline-block">Our Process</a></li>
-              <li><a href="#benefits" className="hover:text-white transition-colors py-1 inline-block">Benefits</a></li>
-              <li><a href="#faq" className="hover:text-white transition-colors py-1 inline-block">FAQ</a></li>
               <li><a href="/blog" className="hover:text-white transition-colors py-1 inline-block">Blog</a></li>
+              <li><a href="/contact" className="hover:text-white transition-colors py-1 inline-block">Contact Us</a></li>
               <li><a href="/sitemap" className="hover:text-white transition-colors py-1 inline-block">Sitemap</a></li>
             </ul>
           </div>
@@ -107,7 +104,6 @@ const Footer = () => {
             </div>
             <div className="flex space-x-6">
               <a href="/legal-terms/privacy-policy" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">Privacy Policy</a>
-              <a href="/legal-terms/refund-satisfaction-guarantee-policy" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">Refund Policy</a>
             </div>
           </div>
         </div>
