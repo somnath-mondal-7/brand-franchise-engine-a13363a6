@@ -34,7 +34,6 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import NotFound from "./pages/NotFound";
 import Search from "./pages/Search";
-import BackToTop from "./components/BackToTop";
 import ScrollToTop from "./components/ScrollToTop";
 import ChatWidget from "./components/ChatWidget";
 
@@ -48,7 +47,6 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <ScrollToTop />
-          <BackToTop />
           <ChatWidget />
           <Routes>
             <Route path="/" element={<Index />} />

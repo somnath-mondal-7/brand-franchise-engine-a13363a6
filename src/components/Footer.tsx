@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Linkedin, Instagram, Facebook } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Facebook } from "lucide-react";
 import logo from "@/assets/logo-hq.png";
 
 const Footer = () => {
@@ -21,11 +21,8 @@ const Footer = () => {
               <a href="https://www.linkedin.com/company/franchiseleadspro/" target="_blank" rel="noopener noreferrer" className="min-h-[44px] min-w-[44px] flex items-center justify-center">
                 <Linkedin className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
               </a>
-              <a href="https://www.facebook.com/people/Franchiseleadspro/61579709174263/" target="_blank" rel="noopener noreferrer" className="min-h-[44px] min-w-[44px] flex items-center justify-center">
+              <a href="https://www.facebook.com/profile.php?id=61579709174263" target="_blank" rel="noopener noreferrer" className="min-h-[44px] min-w-[44px] flex items-center justify-center">
                 <Facebook className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
-              </a>
-              <a href="https://www.instagram.com/iamsomnath_mondal?" target="_blank" rel="noopener noreferrer" className="min-h-[44px] min-w-[44px] flex items-center justify-center">
-                <Instagram className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
               </a>
             </div>
           </div>
