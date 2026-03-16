@@ -75,11 +75,11 @@ const Index = () => {
       <Navigation />
       <SEOBreadcrumbs />
       <Hero />
-      <FAQSection />
       <PortfolioSection />
       <TestimonialsSection />
       <PricingSection />
       <SEOInternalLinks />
+      <FAQSection />
       <FinalCTASection />
       <Footer />
     </div>
