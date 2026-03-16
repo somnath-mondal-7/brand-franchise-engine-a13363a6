@@ -491,6 +491,15 @@ const seoKeywords = [
   "franchise influencer marketing", "franchise trade show marketing",
   "franchise content strategy", "franchise blog writing services",
   "franchise press release distribution",
+  // IT & Development keyword pages
+  "franchise website development company", "franchise app development company",
+  "it services for franchise businesses", "web development for franchisors",
+  "franchise technology partner", "franchise digital transformation",
+  "franchise software development", "franchise portal development",
+  "best franchise website design company", "franchise mobile app agency",
+  "franchise it consulting", "franchise automation solutions",
+  "marketing agency for franchise consultants", "lead generation for franchisors",
+  "digital marketing for franchise industry", "website development for franchise brands",
 ];
 
 // ─── URL Generation ───
