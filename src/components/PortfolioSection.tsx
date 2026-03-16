@@ -136,7 +136,8 @@ const industryBenchmarks = [
 ];
 
 const PortfolioSection = () => {
-  return (
+  const [showAll, setShowAll] = useState(false);
+  const visibleServices = showAll ? serviceCapabilities : serviceCapabilities.slice(0, 3);
     <section id="portfolio" className="py-20 bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto px-4">
         {/* Section Header */}
