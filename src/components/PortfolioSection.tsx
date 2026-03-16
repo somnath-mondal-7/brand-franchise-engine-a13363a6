@@ -166,9 +166,8 @@ const PortfolioSection = () => {
           ))}
         </div>
 
-        {/* Service Capabilities Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {serviceCapabilities.map((service, idx) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          {visibleServices.map((service, idx) => (
             <Card 
               key={idx} 
               className="group border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-xl overflow-hidden"
@@ -181,7 +180,6 @@ const PortfolioSection = () => {
                 <h3 className="text-xl font-bold text-foreground mb-2">{service.title}</h3>
                 <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{service.description}</p>
                 
-                {/* Deliverables */}
                 <div className="space-y-2 mb-4">
                   {service.deliverables.map((item, i) => (
                     <div key={i} className="flex items-start gap-2">
@@ -191,7 +189,6 @@ const PortfolioSection = () => {
                   ))}
                 </div>
 
-                {/* Metric Badge */}
                 <div className="pt-3 border-t border-border/50">
                   <Badge variant="outline" className="text-xs bg-muted/50">
                     <BarChart3 className="h-3 w-3 mr-1" />
@@ -202,6 +199,20 @@ const PortfolioSection = () => {
             </Card>
           ))}
         </div>
+
+        {!showAll && (
+          <div className="text-center mb-16">
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => setShowAll(true)}
+              className="border-primary text-primary hover:bg-primary/10 gap-2"
+            >
+              More Solutions
+              <ArrowUpRight className="h-4 w-4" />
+            </Button>
+          </div>
+        )}
 
         {/* Why Choose Us */}
         <div className="mb-16">
