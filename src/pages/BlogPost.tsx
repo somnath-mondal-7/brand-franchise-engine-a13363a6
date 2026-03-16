@@ -248,10 +248,11 @@ const BlogPost = () => {
             )}
 
             {/* Content */}
-            <div 
-              className="blog-content prose prose-lg max-w-none"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
+            <div className="blog-content prose prose-lg max-w-none">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {post.content}
+              </ReactMarkdown>
+            </div>
 
             {/* Attachments */}
             {post.attachments && post.attachments.length > 0 && (
