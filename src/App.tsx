@@ -47,7 +47,6 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <ScrollToTop />
-          <BackToTop />
           <ChatWidget />
           <Routes>
             <Route path="/" element={<Index />} />

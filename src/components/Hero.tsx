@@ -129,21 +129,6 @@ const Hero = () => {
                   </div>
                 </div>
 
-                {/* Show image on all screens, smaller on mobile */}
-                <div
-                  className={`flex justify-center items-center transition-all duration-700 delay-200 ${
-                    index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-90"
-                  }`}
-                >
-                  <img
-                    src={slide.image}
-                    alt={slide.imageAlt}
-                    width="500"
-                    height="500"
-                    className="w-48 sm:w-64 md:w-80 lg:max-w-lg xl:max-w-xl h-auto object-contain drop-shadow-lg"
-                    loading={index === 0 ? "eager" : "lazy"}
-                  />
-                </div>
               </div>
             </div>
           </div>
