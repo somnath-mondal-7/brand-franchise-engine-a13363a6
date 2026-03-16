@@ -75,15 +75,9 @@ const Index = () => {
       <Navigation />
       <SEOBreadcrumbs />
       <Hero />
-      <ProcessSection />
-      <ServicesSection />
       <PortfolioSection />
-      <PricingSection />
-      <BenefitsSection />
-      <AboutSection />
       <TestimonialsSection />
-      <BlogSection />
-      {/* SEO Internal Links to improve discoverability */}
+      <PricingSection />
       <SEOInternalLinks />
       <FAQSection />
       <FinalCTASection />
