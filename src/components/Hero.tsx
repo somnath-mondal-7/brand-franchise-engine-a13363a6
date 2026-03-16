@@ -82,7 +82,24 @@ const Hero = () => {
           >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center">
-                <div className="space-y-4 sm:space-y-6 md:space-y-8">
+                {/* Image first on mobile (order-1 mobile, order-2 desktop) */}
+                <div
+                  className={`flex justify-center items-center order-1 lg:order-2 transition-all duration-700 delay-200 ${
+                    index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-90"
+                  }`}
+                >
+                  <img
+                    src={slide.image}
+                    alt={slide.imageAlt}
+                    width="500"
+                    height="500"
+                    className="w-48 sm:w-64 md:w-80 lg:max-w-lg xl:max-w-xl h-auto object-contain drop-shadow-lg"
+                    loading={index === 0 ? "eager" : "lazy"}
+                  />
+                </div>
+
+                {/* Text below image on mobile (order-2 mobile, order-1 desktop) */}
+                <div className="space-y-4 sm:space-y-6 md:space-y-8 order-2 lg:order-1">
                   <h1
                     className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight transition-all duration-700 delay-100 ${
                       index === currentSlide ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
