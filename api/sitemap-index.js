@@ -445,6 +445,12 @@ const broadMarketingKeywords = [
   "franchise resale services", "franchise broker services",
   "international franchise consulting", "franchise conversion consulting",
   "franchise turnaround consulting",
+  // IT & Website Development keywords
+  "franchise website development", "franchise app development",
+  "franchise it services", "franchise it outsourcing",
+  "franchise web design", "franchise mobile app development",
+  "franchise crm implementation", "franchise technology solutions",
+  "franchise custom software", "franchise ecommerce development",
 ];
 
 const seoKeywords = [
