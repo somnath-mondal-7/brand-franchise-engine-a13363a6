@@ -57,17 +57,12 @@ const Contact = () => {
       }
       console.log("Database save successful");
 
-      // Send email
-      console.log("Attempting to send email");
-      const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
-        body: formData
-      });
-
-      if (emailError) {
-        console.error("Email error:", emailError);
-        throw emailError;
+      // Send email notification (non-blocking)
+      try {
+        await supabase.functions.invoke('send-contact-email', { body: formData });
+      } catch (emailErr) {
+        console.warn('Email notification failed (form was still saved):', emailErr);
       }
-      console.log("Email sent successfully");
 
       toast.success("Thank you! We'll contact you within 24 hours.");
       setFormData({

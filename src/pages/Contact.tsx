@@ -45,10 +45,14 @@ const Contact = () => {
       });
       if (dbError) throw dbError;
 
-      const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
-        body: { firstName, lastName, email, phone, company, message },
-      });
-      if (emailError) throw emailError;
+      // Send email notification (non-blocking - don't fail the form if email fails)
+      try {
+        await supabase.functions.invoke('send-contact-email', {
+          body: { firstName, lastName, email, phone, company, message },
+        });
+      } catch (emailErr) {
+        console.warn('Email notification failed (form was still saved):', emailErr);
+      }
 
       toast.success("Thank you! We'll contact you within 24 hours.");
       form.reset();
