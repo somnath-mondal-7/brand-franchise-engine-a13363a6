@@ -8,6 +8,8 @@ import { Card } from "@/components/ui/card";
 import { Calendar, User, ArrowLeft, Share2, FileText, Download } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Helmet } from "react-helmet-async";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface BlogPostData {
   id: string;
