@@ -31,7 +31,6 @@ import SitemapGenerator from "./pages/SitemapGenerator";
 import Sitemap from "./pages/Sitemap";
 import BlogSitemap from "./pages/BlogSitemap";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-
 import NotFound from "./pages/NotFound";
 import Search from "./pages/Search";
 import ScrollToTop from "./components/ScrollToTop";
