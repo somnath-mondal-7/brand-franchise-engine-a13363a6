@@ -216,6 +216,37 @@ const PortfolioSection = () => {
           </div>
         )}
 
+        {/* How We Work - Simple Process */}
+        <div className="mb-16 p-8 md:p-12 bg-gradient-to-br from-primary/5 via-background to-accent/5 rounded-3xl border border-border/50">
+          <div className="text-center mb-10">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+              How We Work With Franchise Brands
+            </h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              A simple, transparent process from strategy to results.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { step: "01", title: "Discovery Call", desc: "We learn about your franchise model, target investor profile, and growth goals.", icon: <MessageSquare className="w-6 h-6" /> },
+              { step: "02", title: "Custom Strategy", desc: "We build a tailored marketing plan combining the channels that fit your brand best.", icon: <Target className="w-6 h-6" /> },
+              { step: "03", title: "Launch & Optimize", desc: "Campaigns go live. We monitor, test, and optimize weekly for maximum lead quality.", icon: <Zap className="w-6 h-6" /> },
+              { step: "04", title: "Report & Scale", desc: "Transparent monthly reports. When something works, we scale it. When it doesn't, we pivot.", icon: <TrendingUp className="w-6 h-6" /> }
+            ].map((item, idx) => (
+              <div key={idx} className="text-center">
+                <div className="relative w-16 h-16 mx-auto mb-4">
+                  <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-bold">
+                    {item.step}
+                  </div>
+                </div>
+                <h4 className="font-bold text-foreground mb-2">{item.title}</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Why Choose Us */}
         <div className="mb-16">
           <div className="text-center mb-10">
@@ -243,37 +274,6 @@ const PortfolioSection = () => {
                 </div>
                 <h4 className="font-bold text-foreground mb-2">{item.title}</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* How We Work - Simple Process */}
-        <div className="mb-16 p-8 md:p-12 bg-gradient-to-br from-primary/5 via-background to-accent/5 rounded-3xl border border-border/50">
-          <div className="text-center mb-10">
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-              How We Work With Franchise Brands
-            </h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              A simple, transparent process from strategy to results.
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { step: "01", title: "Discovery Call", desc: "We learn about your franchise model, target investor profile, and growth goals.", icon: <MessageSquare className="w-6 h-6" /> },
-              { step: "02", title: "Custom Strategy", desc: "We build a tailored marketing plan combining the channels that fit your brand best.", icon: <Target className="w-6 h-6" /> },
-              { step: "03", title: "Launch & Optimize", desc: "Campaigns go live. We monitor, test, and optimize weekly for maximum lead quality.", icon: <Zap className="w-6 h-6" /> },
-              { step: "04", title: "Report & Scale", desc: "Transparent monthly reports. When something works, we scale it. When it doesn't, we pivot.", icon: <TrendingUp className="w-6 h-6" /> }
-            ].map((item, idx) => (
-              <div key={idx} className="text-center">
-                <div className="relative w-16 h-16 mx-auto mb-4">
-                  <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-bold">
-                    {item.step}
-                  </div>
-                </div>
-                <h4 className="font-bold text-foreground mb-2">{item.title}</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
