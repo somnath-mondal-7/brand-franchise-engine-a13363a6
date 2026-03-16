@@ -68,7 +68,7 @@ const Hero = () => {
 
   return (
     <section className="pt-16 bg-background">
-      <div className="relative min-h-[65vh] sm:min-h-[70vh] md:min-h-[85vh] lg:min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-muted/30 to-background">
+      <div className="relative min-h-[calc(100vh-4rem)] sm:min-h-[70vh] md:min-h-[85vh] lg:min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-muted/30 to-background">
         {slides.map((slide, index) => (
           <div
             key={index}
