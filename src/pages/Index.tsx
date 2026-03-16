@@ -4,7 +4,7 @@ import Navigation from "@/components/Navigation";
 import PricingSection from "@/components/PricingSection";
 import PortfolioSection from "@/components/PortfolioSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import FAQSection from "@/components/FAQSection";
+
 import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
 import SEOBreadcrumbs from "@/components/SEOBreadcrumbs";
