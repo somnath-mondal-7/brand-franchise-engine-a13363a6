@@ -1,7 +1,11 @@
 User-agent: *
 Allow: /
 
-# Sitemap Index (contains all chunked sitemaps + blog sitemap = ~49,900+ pages)
+# LLM/AI Discovery Files
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+# Sitemap
 Sitemap: https://www.franchiseleadspro.com/sitemap.xml
 
 # Disallow crawling of admin areas, temp files, and duplicate content
@@ -25,6 +29,30 @@ User-agent: facebookexternalhit
 Allow: /
 
 User-agent: Twitterbot
+Allow: /
+
+# AI/LLM Bots - Allow full access
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Cohere-ai
 Allow: /
 
 # High-priority pages
