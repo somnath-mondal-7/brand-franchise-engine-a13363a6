@@ -5,8 +5,10 @@ import ProcessSection from "@/components/ProcessSection";
 import ServicesSection from "@/components/ServicesSection";
 import PricingSection from "@/components/PricingSection";
 import BenefitsSection from "@/components/BenefitsSection";
+import AboutSection from "@/components/AboutSection";
 import PortfolioSection from "@/components/PortfolioSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import BlogSection from "@/components/BlogSection";
 import FAQSection from "@/components/FAQSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
@@ -83,7 +85,9 @@ const Index = () => {
       <PortfolioSection />
       <PricingSection />
       <BenefitsSection />
+      <AboutSection />
       <TestimonialsSection />
+      <BlogSection />
       {/* SEO Internal Links to improve discoverability */}
       <SEOInternalLinks />
       <FAQSection />

@@ -1,22 +1,26 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
+  TrendingUp, 
   Users, 
+  Target,
   Globe,
   Linkedin,
   BarChart3,
   ArrowUpRight,
   CheckCircle2,
+  Shield,
+  Zap,
+  MessageSquare,
+  Search,
+  PenTool,
   Monitor,
   Megaphone,
   LineChart,
   Award,
   Clock,
-  Search,
-  PenTool,
-  ChevronDown
+  HeartHandshake
 } from "lucide-react";
 
 const serviceCapabilities = [
@@ -100,6 +104,29 @@ const serviceCapabilities = [
   }
 ];
 
+const whyChooseUs = [
+  {
+    icon: <Shield className="w-8 h-8" />,
+    title: "Franchise-Only Focus",
+    description: "We exclusively serve franchise consultants and franchisors — not restaurants, not retail. This specialization means deeper expertise and better results for your franchise brand."
+  },
+  {
+    icon: <Zap className="w-8 h-8" />,
+    title: "Speed to First Leads",
+    description: "Most clients see their first qualified franchise investor leads within 2-4 weeks of campaign launch. We move fast because your pipeline can't wait."
+  },
+  {
+    icon: <HeartHandshake className="w-8 h-8" />,
+    title: "Transparent Reporting",
+    description: "No vanity metrics. We report on leads generated, lead quality scores, cost per qualified lead, and meetings booked — the numbers that actually matter."
+  },
+  {
+    icon: <Globe className="w-8 h-8" />,
+    title: "Global Reach, Local Expertise",
+    description: "Whether you're expanding in the US, UK, India, Canada, or the Middle East, we understand local investor behavior and franchise market dynamics."
+  }
+];
+
 const industryBenchmarks = [
   { label: "Franchise Brands Worked With", value: "640+", icon: <Users className="w-6 h-6 text-primary" /> },
   { label: "Avg. Time to First Leads", value: "2-4 Weeks", icon: <Clock className="w-6 h-6 text-primary" /> },
@@ -108,10 +135,6 @@ const industryBenchmarks = [
 ];
 
 const PortfolioSection = () => {
-  const [showAll, setShowAll] = useState(false);
-
-  const visibleServices = showAll ? serviceCapabilities : serviceCapabilities.slice(0, 3);
-
   return (
     <section id="portfolio" className="py-20 bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto px-4">
@@ -142,8 +165,8 @@ const PortfolioSection = () => {
         </div>
 
         {/* Service Capabilities Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {visibleServices.map((service, idx) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {serviceCapabilities.map((service, idx) => (
             <Card 
               key={idx} 
               className="group border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-xl overflow-hidden"
@@ -156,6 +179,7 @@ const PortfolioSection = () => {
                 <h3 className="text-xl font-bold text-foreground mb-2">{service.title}</h3>
                 <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{service.description}</p>
                 
+                {/* Deliverables */}
                 <div className="space-y-2 mb-4">
                   {service.deliverables.map((item, i) => (
                     <div key={i} className="flex items-start gap-2">
@@ -165,6 +189,7 @@ const PortfolioSection = () => {
                   ))}
                 </div>
 
+                {/* Metric Badge */}
                 <div className="pt-3 border-t border-border/50">
                   <Badge variant="outline" className="text-xs bg-muted/50">
                     <BarChart3 className="h-3 w-3 mr-1" />
@@ -176,20 +201,68 @@ const PortfolioSection = () => {
           ))}
         </div>
 
-        {/* More Solutions Toggle */}
-        {!showAll && (
-          <div className="text-center mb-16">
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => setShowAll(true)}
-              className="gap-2 border-primary/30 text-primary hover:bg-primary/10"
-            >
-              More Solutions
-              <ChevronDown className="h-4 w-4" />
-            </Button>
+        {/* Why Choose Us */}
+        <div className="mb-16">
+          <div className="text-center mb-10">
+            <Badge className="mb-4 bg-accent/10 text-accent-foreground border-accent/20">
+              <Target className="h-3 w-3 mr-1" />
+              Why Franchise Brands Choose Us
+            </Badge>
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+              Built Exclusively for Franchise Growth
+            </h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              We don't do generic digital marketing. Every strategy, campaign, and website we build 
+              is designed specifically for franchise investor recruitment.
+            </p>
           </div>
-        )}
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {whyChooseUs.map((item, idx) => (
+              <div 
+                key={idx} 
+                className="text-center p-6 rounded-2xl bg-card border border-border/50 hover:border-primary/30 hover:shadow-lg transition-all group"
+              >
+                <div className="w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  {item.icon}
+                </div>
+                <h4 className="font-bold text-foreground mb-2">{item.title}</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* How We Work - Simple Process */}
+        <div className="mb-16 p-8 md:p-12 bg-gradient-to-br from-primary/5 via-background to-accent/5 rounded-3xl border border-border/50">
+          <div className="text-center mb-10">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+              How We Work With Franchise Brands
+            </h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              A simple, transparent process from strategy to results.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { step: "01", title: "Discovery Call", desc: "We learn about your franchise model, target investor profile, and growth goals.", icon: <MessageSquare className="w-6 h-6" /> },
+              { step: "02", title: "Custom Strategy", desc: "We build a tailored marketing plan combining the channels that fit your brand best.", icon: <Target className="w-6 h-6" /> },
+              { step: "03", title: "Launch & Optimize", desc: "Campaigns go live. We monitor, test, and optimize weekly for maximum lead quality.", icon: <Zap className="w-6 h-6" /> },
+              { step: "04", title: "Report & Scale", desc: "Transparent monthly reports. When something works, we scale it. When it doesn't, we pivot.", icon: <TrendingUp className="w-6 h-6" /> }
+            ].map((item, idx) => (
+              <div key={idx} className="text-center">
+                <div className="relative w-16 h-16 mx-auto mb-4">
+                  <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-bold">
+                    {item.step}
+                  </div>
+                </div>
+                <h4 className="font-bold text-foreground mb-2">{item.title}</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* CTA */}
         <div className="text-center">
