@@ -6,11 +6,6 @@ export interface AgentProfile {
 
 export const agentProfiles: AgentProfile[] = [
   {
-    name: "Somnath Mondal",
-    role: "Lead Generation Specialist",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=faces"
-  },
-  {
     name: "Sarah Chen",
     role: "Digital Marketing Director",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=faces"
