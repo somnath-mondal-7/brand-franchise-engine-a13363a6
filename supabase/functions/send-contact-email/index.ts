@@ -85,11 +85,10 @@ const handler = async (req: Request): Promise<Response> => {
         
         <p>Best regards,<br>
         <strong>The FranchiseLeadsPro Team</strong><br>
-        📧 support@franchiseleadspro.com<br>
-        📞 +1 (555) 123-4567</p>
+        📧 support@franchiseleadspro.com</p>
         
         <hr>
-        <p><em>This is an automated response. Please reply to this email if you have any questions.</em></p>
+        <p><em>This is an automated message — please do not reply directly to this email. If you have any questions, reach out to us at <a href="mailto:support@franchiseleadspro.com">support@franchiseleadspro.com</a>.</em></p>
       `,
     });
 
