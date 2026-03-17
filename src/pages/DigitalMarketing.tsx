@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOBreadcrumbs from "@/components/SEOBreadcrumbs";
+import { Helmet } from "react-helmet-async";
 
 const DigitalMarketing = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
