@@ -66,6 +66,12 @@ const Contact = () => {
   };
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Contact Us | Get a Free Franchise Marketing Consultation | FranchiseLeadsPro</title>
+        <meta name="description" content="Contact FranchiseLeadsPro for a free franchise marketing consultation. Get qualified franchise leads, website development, and IT services. Call +1 (551)-201-23-77." />
+        <link rel="canonical" href="https://www.franchiseleadspro.com/contact" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
       <Navigation />
       
       {/* Hero Section */}
