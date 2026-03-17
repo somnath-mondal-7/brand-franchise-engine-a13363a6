@@ -1,4 +1,4 @@
-// Single unified sitemap with ALL URLs (under 49,000) served at /sitemap.xml
+// Sitemap Index — returns a <sitemapindex> pointing to chunked child sitemaps + blog sitemap
 const DOMAIN = 'https://www.franchiseleadspro.com';
 
 // ─── Location Data (inline for serverless context) ───
@@ -332,12 +332,12 @@ const locationData = [
   { country: "Canada", countryCode: "CA", states: [
     { name: "Ontario", slug: "ontario", cities: [
       { name: "Toronto", slug: "toronto" }, { name: "Ottawa", slug: "ottawa" },
-      { name: "Mississauga", slug: "mississauga" }, { name: "Brampton", slug: "brampton" },
-      { name: "Hamilton", slug: "hamilton" }, { name: "London", slug: "london-ca" },
+      { name: "Mississauga", slug: "mississauga" }, { name: "Hamilton", slug: "hamilton" },
+      { name: "Brampton", slug: "brampton" }, { name: "London", slug: "london-ca" },
     ]},
     { name: "British Columbia", slug: "british-columbia", cities: [
-      { name: "Vancouver", slug: "vancouver" }, { name: "Surrey", slug: "surrey" },
-      { name: "Victoria", slug: "victoria" }, { name: "Burnaby", slug: "burnaby" },
+      { name: "Vancouver", slug: "vancouver" }, { name: "Victoria", slug: "victoria" },
+      { name: "Surrey", slug: "surrey" }, { name: "Burnaby", slug: "burnaby" },
     ]},
     { name: "Quebec", slug: "quebec", cities: [
       { name: "Montreal", slug: "montreal" }, { name: "Quebec City", slug: "quebec-city" },
@@ -348,16 +348,13 @@ const locationData = [
       { name: "Red Deer", slug: "red-deer" },
     ]},
     { name: "Manitoba", slug: "manitoba", cities: [
-      { name: "Winnipeg", slug: "winnipeg" }, { name: "Brandon", slug: "brandon" },
+      { name: "Winnipeg", slug: "winnipeg" },
     ]},
     { name: "Saskatchewan", slug: "saskatchewan", cities: [
       { name: "Saskatoon", slug: "saskatoon" }, { name: "Regina", slug: "regina" },
     ]},
     { name: "Nova Scotia", slug: "nova-scotia", cities: [
       { name: "Halifax", slug: "halifax" },
-    ]},
-    { name: "New Brunswick", slug: "new-brunswick", cities: [
-      { name: "Moncton", slug: "moncton" }, { name: "Saint John", slug: "saint-john" },
     ]},
   ]},
   { country: "Australia", countryCode: "AU", states: [
@@ -367,11 +364,10 @@ const locationData = [
     ]},
     { name: "Victoria", slug: "victoria", cities: [
       { name: "Melbourne", slug: "melbourne" }, { name: "Geelong", slug: "geelong" },
-      { name: "Ballarat", slug: "ballarat" },
     ]},
     { name: "Queensland", slug: "queensland", cities: [
       { name: "Brisbane", slug: "brisbane" }, { name: "Gold Coast", slug: "gold-coast" },
-      { name: "Sunshine Coast", slug: "sunshine-coast" }, { name: "Cairns", slug: "cairns" },
+      { name: "Cairns", slug: "cairns" }, { name: "Townsville", slug: "townsville" },
     ]},
     { name: "Western Australia", slug: "western-australia", cities: [
       { name: "Perth", slug: "perth" }, { name: "Fremantle", slug: "fremantle" },
@@ -382,15 +378,11 @@ const locationData = [
     { name: "Tasmania", slug: "tasmania", cities: [
       { name: "Hobart", slug: "hobart" },
     ]},
-    { name: "Australian Capital Territory", slug: "act", cities: [
-      { name: "Canberra", slug: "canberra" },
-    ]},
   ]},
-  { country: "UAE", countryCode: "AE", states: [
+  { country: "United Arab Emirates", countryCode: "AE", states: [
     { name: "Dubai", slug: "dubai", cities: [
-      { name: "Dubai Marina", slug: "dubai-marina" }, { name: "Downtown Dubai", slug: "downtown-dubai" },
-      { name: "Business Bay", slug: "business-bay" }, { name: "Jumeirah", slug: "jumeirah" },
-      { name: "Deira", slug: "deira" },
+      { name: "Dubai City", slug: "dubai-city" }, { name: "Deira", slug: "deira" },
+      { name: "Jumeirah", slug: "jumeirah" }, { name: "Business Bay", slug: "business-bay" },
     ]},
     { name: "Abu Dhabi", slug: "abu-dhabi", cities: [
       { name: "Abu Dhabi City", slug: "abu-dhabi-city" }, { name: "Al Ain", slug: "al-ain" },
@@ -398,145 +390,79 @@ const locationData = [
     { name: "Sharjah", slug: "sharjah", cities: [
       { name: "Sharjah City", slug: "sharjah-city" },
     ]},
-    { name: "Ajman", slug: "ajman", cities: [
-      { name: "Ajman City", slug: "ajman-city" },
-    ]},
   ]},
   { country: "Kuwait", countryCode: "KW", states: [
     { name: "Kuwait City", slug: "kuwait-city", cities: [
-      { name: "Kuwait City", slug: "kuwait-city" }, { name: "Salmiya", slug: "salmiya" },
-      { name: "Hawalli", slug: "hawalli" }, { name: "Farwaniya", slug: "farwaniya" },
-    ]},
-    { name: "Ahmadi", slug: "ahmadi", cities: [
-      { name: "Ahmadi", slug: "ahmadi" }, { name: "Fahaheel", slug: "fahaheel" },
-    ]},
-    { name: "Jahra", slug: "jahra", cities: [
-      { name: "Jahra", slug: "jahra-city" },
+      { name: "Kuwait City", slug: "kuwait-city-metro" },
+      { name: "Hawalli", slug: "hawalli" },
+      { name: "Salmiya", slug: "salmiya" },
     ]},
   ]},
 ];
 
 const broadMarketingKeywords = [
-  "franchise consulting", "franchise development", "franchisee recruitment",
-  "franchise matchmaking", "franchise expansion", "franchise marketing",
-  "franchise lead generation", "franchise lead generation agency", "franchise leads",
-  "buy franchise leads", "qualified franchise leads", "franchise buyer leads",
-  "franchise investor leads", "exclusive franchise leads", "verified franchise leads",
-  "premium franchise leads", "franchise prospect generation",
-  "franchise marketing agency", "franchise digital marketing agency",
-  "franchise advertising agency", "franchise branding agency", "franchise growth agency",
-  "franchise seo agency", "franchise ppc agency", "franchise social media agency",
-  "franchise digital marketing", "franchise seo", "franchise ppc management",
-  "franchise social media marketing", "franchise email marketing",
-  "franchise content marketing", "franchise video marketing",
-  "franchise online advertising", "franchise google ads", "franchise facebook ads",
-  "franchise business development", "franchise sales consulting",
-  "franchise growth strategy", "franchise expansion planning",
-  "franchise territory development", "franchise market research",
-  "franchise competitive analysis", "franchise feasibility study",
-  "franchise operations consulting", "franchise training programs",
-  "franchise support services", "franchise management consulting",
-  "franchise performance optimization",
-  "franchise legal services", "franchise funding solutions", "franchise financing help",
-  "franchise business plan", "franchise roi analysis",
-  "franchise branding services", "franchise website design",
-  "franchise reputation management", "franchise public relations",
-  "master franchise development", "multi unit franchise consulting",
-  "franchise resale services", "franchise broker services",
-  "international franchise consulting", "franchise conversion consulting",
-  "franchise turnaround consulting",
-  // IT & Website Development keywords
-  "franchise website development", "franchise app development",
-  "franchise it services", "franchise it outsourcing",
-  "franchise web design", "franchise mobile app development",
-  "franchise crm implementation", "franchise technology solutions",
-  "franchise custom software", "franchise ecommerce development",
+  "Franchise Lead Generation", "Franchise Marketing", "Franchise Digital Marketing",
+  "Franchise SEO Services", "Franchise Social Media Marketing", "Franchise PPC Advertising",
+  "Franchise Brand Development", "Franchise Content Marketing", "Franchise Email Marketing",
+  "Franchise Website Development", "Franchise Consulting Services", "Franchise Sales Funnel",
+  "Franchise Advertising Agency", "Franchise Growth Strategy", "LinkedIn Franchise Marketing",
+  "Buy Franchise Leads", "Franchise Buyer Leads", "Qualified Franchise Leads",
+  "Franchise Lead Nurturing", "Franchise Conversion Optimization", "Franchise App Development",
+  "IT Services for Franchises", "Franchise CRM Solutions", "Franchise Technology Consulting",
 ];
 
 const seoKeywords = [
-  "best franchise consultant", "franchise business consultant",
-  "franchise consultant near me", "franchise development company",
-  "franchise startup consultant", "how to franchise my business",
-  "franchise your business", "franchise opportunity", "buy a franchise",
-  "franchise investment", "franchise cost", "franchise fee", "franchise roi",
-  "franchise success rate", "franchise business model", "franchise agreement",
-  "franchise disclosure document", "franchise territory", "master franchise",
-  "area developer franchise", "multi unit franchise", "franchise resale",
-  "franchise broker", "franchise attorney", "franchise funding", "franchise loans",
-  "SBA franchise loan", "franchise financing", "franchise marketing agency",
-  "franchise digital marketing", "franchise seo", "franchise ppc",
-  "franchise social media", "franchise advertising", "franchise branding",
-  "franchise lead generation company", "qualified franchise leads",
-  "franchise buyer leads", "franchise investor leads", "franchise prospect",
-  "franchise inquiry", "franchise sales", "franchise development services",
-  "franchise growth strategy", "franchise expansion planning",
-  "best franchise lead generation agency", "top franchise marketing company",
-  "franchise lead generation services", "franchise marketing experts",
-  "franchise marketing consultants", "best franchise marketing agency in usa",
-  "franchise marketing agency usa", "franchise marketing agency uk",
-  "best franchise digital marketing agency", "franchise lead generation usa",
-  "franchise lead generation uk", "franchise lead generation india",
-  "franchise lead generation australia", "franchise lead generation canada",
-  "franchise lead generation dubai", "how to get franchise leads",
-  "how to generate franchise leads", "franchise lead generation strategies",
-  "franchise lead generation tips", "franchise marketing strategies",
-  "franchise online marketing", "franchise brand development",
-  "franchise sales funnel", "franchise conversion optimization",
-  "franchise appointment setting", "franchise discovery day marketing",
-  "franchise recruitment marketing", "franchise awareness campaigns",
-  "franchise local seo", "franchise google my business",
-  "franchise review management", "franchise email campaigns",
-  "franchise landing pages", "franchise website optimization",
-  "franchise pay per click", "franchise retargeting ads",
-  "franchise influencer marketing", "franchise trade show marketing",
-  "franchise content strategy", "franchise blog writing services",
-  "franchise press release distribution",
-  // IT & Development keyword pages
-  "franchise website development company", "franchise app development company",
-  "it services for franchise businesses", "web development for franchisors",
-  "franchise technology partner", "franchise digital transformation",
-  "franchise software development", "franchise portal development",
-  "best franchise website design company", "franchise mobile app agency",
-  "franchise it consulting", "franchise automation solutions",
-  "marketing agency for franchise consultants", "lead generation for franchisors",
-  "digital marketing for franchise industry", "website development for franchise brands",
+  "franchise lead generation", "franchise leads", "buy franchise leads",
+  "franchise marketing", "franchise advertising", "franchise development",
+  "franchise consulting", "franchise SEO", "franchise digital marketing",
+  "franchise social media", "franchise PPC", "franchise branding",
+  "franchise buyer leads", "franchise investor leads", "franchise sales",
+  "franchise growth", "franchise expansion", "franchise recruitment",
+  "franchise website design", "franchise online marketing",
+  "franchise lead generation company", "franchise marketing agency",
+  "franchise advertising agency", "best franchise leads",
+  "qualified franchise leads", "exclusive franchise leads",
+  "franchise lead generation services", "franchise marketing services",
+  "franchise consultant leads", "franchise opportunity leads",
+  "franchise app development", "franchise IT services",
+  "franchise website development", "franchise technology solutions",
+  "IT outsourcing for franchises", "franchise CRM implementation",
 ];
 
-// ─── URL Generation ───
-
 function slugify(str) {
-  return str.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  return str.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 }
 
+// ─── Generate ALL URLs ───
 function generateAllUrls() {
   const currentDate = new Date().toISOString().split('T')[0];
   const urls = [];
 
   // Core pages
   const corePages = [
-    { path: '/', priority: '1.00', freq: 'weekly' },
-    { path: '/about', priority: '0.90', freq: 'monthly' },
-    { path: '/services', priority: '0.95', freq: 'weekly' },
-    { path: '/contact', priority: '0.80', freq: 'monthly' },
-    { path: '/blog', priority: '0.85', freq: 'daily' },
-    { path: '/testimonials', priority: '0.80', freq: 'weekly' },
-    { path: '/franchise-leads-india', priority: '0.95', freq: 'weekly' },
-    { path: '/franchise-leads-usa', priority: '0.95', freq: 'weekly' },
-    { path: '/franchise-leads-uk', priority: '0.90', freq: 'weekly' },
-    { path: '/franchise-leads-canada', priority: '0.90', freq: 'weekly' },
-    { path: '/franchise-leads-australia', priority: '0.90', freq: 'weekly' },
-    { path: '/franchise-leads-dubai', priority: '0.90', freq: 'weekly' },
-    { path: '/franchise-leads-kuwait', priority: '0.85', freq: 'weekly' },
-    { path: '/buy-franchise-leads', priority: '0.90', freq: 'weekly' },
-    { path: '/digital-marketing', priority: '0.85', freq: 'weekly' },
-    { path: '/legal-terms/privacy-policy', priority: '0.40', freq: 'monthly' },
-    { path: '/legal-terms/refund-satisfaction-guarantee-policy', priority: '0.40', freq: 'monthly' },
+    { path: '/', priority: '1.00', changefreq: 'weekly' },
+    { path: '/about', priority: '0.90', changefreq: 'monthly' },
+    { path: '/services', priority: '0.95', changefreq: 'weekly' },
+    { path: '/contact', priority: '0.80', changefreq: 'monthly' },
+    { path: '/blog', priority: '0.85', changefreq: 'daily' },
+    { path: '/testimonials', priority: '0.80', changefreq: 'weekly' },
+    { path: '/franchise-leads-india', priority: '0.95', changefreq: 'weekly' },
+    { path: '/franchise-leads-usa', priority: '0.95', changefreq: 'weekly' },
+    { path: '/franchise-leads-uk', priority: '0.90', changefreq: 'weekly' },
+    { path: '/franchise-leads-canada', priority: '0.90', changefreq: 'weekly' },
+    { path: '/franchise-leads-australia', priority: '0.90', changefreq: 'weekly' },
+    { path: '/franchise-leads-dubai', priority: '0.90', changefreq: 'weekly' },
+    { path: '/franchise-leads-kuwait', priority: '0.85', changefreq: 'weekly' },
+    { path: '/buy-franchise-leads', priority: '0.90', changefreq: 'weekly' },
+    { path: '/digital-marketing', priority: '0.85', changefreq: 'weekly' },
+    { path: '/legal-terms/privacy-policy', priority: '0.40', changefreq: 'monthly' },
+    { path: '/legal-terms/refund-satisfaction-guarantee-policy', priority: '0.40', changefreq: 'monthly' },
   ];
   corePages.forEach(p => {
-    urls.push({ loc: `${DOMAIN}${p.path}`, lastmod: currentDate, changefreq: p.freq, priority: p.priority });
+    urls.push({ loc: `${DOMAIN}${p.path}`, lastmod: currentDate, changefreq: p.changefreq, priority: p.priority });
   });
 
-  // Location pages
+  // Location pages (country/state/city)
   locationData.forEach(country => {
     const cc = country.countryCode.toLowerCase();
     urls.push({ loc: `${DOMAIN}/locations/${cc}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.80' });
@@ -572,20 +498,71 @@ function generateAllUrls() {
   return urls;
 }
 
-function buildFullSitemap() {
-  const urls = generateAllUrls();
-  console.log(`Sitemap: ${urls.length} total URLs`);
+// ─── Chunk helper ───
+function chunkArray(arr, size) {
+  const chunks = [];
+  for (let i = 0; i < arr.length; i += size) {
+    chunks.push(arr.slice(i, i + size));
+  }
+  return chunks;
+}
+
+const CHUNK_SIZE = 10000;
+
+// ─── Build sitemap index XML ───
+function buildSitemapIndex() {
+  const allUrls = generateAllUrls();
+  const chunks = chunkArray(allUrls, CHUNK_SIZE);
+  const currentDate = new Date().toISOString().split('T')[0];
   
+  const entries = [];
+  for (let i = 1; i <= chunks.length; i++) {
+    entries.push(`  <sitemap>\n    <loc>${DOMAIN}/sitemaps/sitemap-${i}.xml</loc>\n    <lastmod>${currentDate}</lastmod>\n  </sitemap>`);
+  }
+  // Blog sitemap
+  entries.push(`  <sitemap>\n    <loc>${DOMAIN}/sitemap-blog.xml</loc>\n    <lastmod>${currentDate}</lastmod>\n  </sitemap>`);
+
+  console.log(`Sitemap index: ${chunks.length} chunks, ${allUrls.length} total URLs`);
+
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join('\n')}\n</sitemapindex>`;
+}
+
+// ─── Build a single chunk sitemap ───
+function buildChunkSitemap(chunkIndex) {
+  const allUrls = generateAllUrls();
+  const chunks = chunkArray(allUrls, CHUNK_SIZE);
+  
+  if (chunkIndex < 1 || chunkIndex > chunks.length) {
+    return null;
+  }
+
+  const urls = chunks[chunkIndex - 1];
   const items = urls.map(u =>
     `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${u.lastmod}</lastmod>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`
   ).join('\n');
-  
+
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items}\n</urlset>`;
 }
 
 export default function handler(req, res) {
   try {
-    const xml = buildFullSitemap();
+    // Check if a chunk is requested via query param
+    const chunk = parseInt(req.query.chunk, 10);
+    
+    if (chunk && !isNaN(chunk)) {
+      const xml = buildChunkSitemap(chunk);
+      if (!xml) {
+        res.status(404).send('Sitemap chunk not found');
+        return;
+      }
+      res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+      res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=604800');
+      res.status(200).send(xml);
+      return;
+    }
+
+    // Default: return sitemap index
+    const xml = buildSitemapIndex();
     res.setHeader('Content-Type', 'application/xml; charset=utf-8');
     res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
     res.status(200).send(xml);
