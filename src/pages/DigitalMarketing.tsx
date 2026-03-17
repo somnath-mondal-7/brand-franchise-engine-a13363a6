@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOBreadcrumbs from "@/components/SEOBreadcrumbs";
+import { Helmet } from "react-helmet-async";
 
 const DigitalMarketing = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
@@ -67,6 +68,12 @@ const DigitalMarketing = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Digital Marketing Services for Franchises | PPC, SEO, Social Media | FranchiseLeadsPro</title>
+        <meta name="description" content="Full-service digital marketing for franchise brands. PPC advertising, SEO, social media marketing, content marketing, and AI-powered automation. Drive franchise growth with data-driven strategies." />
+        <link rel="canonical" href="https://www.franchiseleadspro.com/digital-marketing" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
       <Navigation />
       <div className="min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-sky-100">
         <SEOBreadcrumbs />

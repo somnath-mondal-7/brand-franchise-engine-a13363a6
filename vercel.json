@@ -40,6 +40,7 @@
   ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap-index" },
+    { "source": "/sitemaps/sitemap-:id.xml", "destination": "/api/sitemap-index?chunk=:id" },
     { "source": "/sitemap-blog.xml", "destination": "https://yquuidpajigvecyonqir.supabase.co/functions/v1/blog-sitemap" },
     { "source": "/llms.txt", "destination": "/llms.txt" },
     { "source": "/llms-full.txt", "destination": "/llms-full.txt" },
