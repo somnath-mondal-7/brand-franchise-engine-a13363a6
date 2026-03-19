@@ -402,50 +402,107 @@ function buildHtml({ title, description, h1, content, canonicalPath }) {
 </html>`;
 }
 
-module.exports = (req, res) => {
-  const rawPath = (req.query.path || '').replace(/^\/+|\/+$/g, '');
-  const segments = rawPath.split('/').filter(Boolean);
-  
-  let pageData;
-  const canonicalPath = rawPath ? `/${rawPath}` : '/';
+function blogPostPage(slug) {
+  const title = slugToTitle(slug);
+  return {
+    title: `${title} | Franchise Marketing Blog | FranchiseLeadsPro`,
+    description: `Read "${title}" on the FranchiseLeadsPro blog. Expert insights on franchise lead generation, marketing strategies, website development, and IT solutions for franchisors and franchise consultants.`,
+    h1: title,
+    content: `
+      <section>
+        <p>Read the full article on our website. This blog post covers expert insights related to ${title.toLowerCase()} in the franchise industry.</p>
+        <p><a href="/blog">← Back to all blog posts</a></p>
+      </section>
+      <section>
+        <h2>Related Resources</h2>
+        <ul>
+          <li><a href="/blog">Franchise Marketing Blog</a></li>
+          <li><a href="/services">Our Services</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="/buy-franchise-leads">Buy Franchise Leads</a></li>
+        </ul>
+      </section>
+    `
+  };
+}
 
-  // Route matching
-  if (!rawPath || rawPath === 'index.html') {
-    pageData = homePage();
-  }
-  // /locations/:country/:state?/:city?
-  else if (segments[0] === 'locations') {
-    const [, country, state, city] = segments;
-    if (country) {
-      pageData = locationPage(country, state, city);
+function legalPage(path) {
+  const pages = {
+    'legal-terms/privacy-policy': {
+      title: 'Privacy Policy | FranchiseLeadsPro',
+      description: 'FranchiseLeadsPro privacy policy. Learn how we collect, use, and protect your personal information.',
+      h1: 'Privacy Policy'
+    },
+    'legal-terms/refund-satisfaction-guarantee-policy': {
+      title: 'Refund & Satisfaction Guarantee Policy | FranchiseLeadsPro',
+      description: 'FranchiseLeadsPro refund and satisfaction guarantee policy for our franchise lead generation and marketing services.',
+      h1: 'Refund & Satisfaction Guarantee Policy'
     }
-  }
-  // /services/:keyword
-  else if (segments[0] === 'services' && segments[1]) {
-    pageData = keywordPage(segments[1]);
-  }
-  // /:service/:country/:state/:city? (service-location pages)
-  else if (segments.length >= 3 && segments[0] !== 'locations' && segments[0] !== 'blog' && segments[0] !== 'legal-terms' && segments[0] !== 'admin') {
-    pageData = serviceLocationPage(segments[0], segments[1], segments[2], segments[3]);
-  }
-  // Static pages
-  else {
-    pageData = staticPage(rawPath);
-  }
+  };
+  return pages[path] || null;
+}
 
-  if (!pageData) {
-    res.status(404);
-    pageData = {
-      title: 'Page Not Found | FranchiseLeadsPro',
-      description: 'The page you are looking for could not be found.',
-      h1: 'Page Not Found',
-      content: '<p>Sorry, this page does not exist. <a href="/">Return to FranchiseLeadsPro homepage</a>.</p>'
-    };
-  }
+module.exports = (req, res) => {
+  try {
+    const rawPath = (req.query.path || '').replace(/^\/+|\/+$/g, '');
+    const segments = rawPath.split('/').filter(Boolean);
+    
+    let pageData;
+    const canonicalPath = rawPath ? `/${rawPath}` : '/';
 
-  const html = buildHtml({ ...pageData, canonicalPath });
-  
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=604800');
-  res.status(pageData.title.includes('Not Found') ? 404 : 200).send(html);
+    // Route matching
+    if (!rawPath || rawPath === 'index.html') {
+      pageData = homePage();
+    }
+    // /blog/:slug
+    else if (segments[0] === 'blog' && segments[1]) {
+      pageData = blogPostPage(segments[1]);
+    }
+    // /locations/:country/:state?/:city?
+    else if (segments[0] === 'locations') {
+      const [, country, state, city] = segments;
+      if (country) {
+        pageData = locationPage(country, state, city);
+      }
+    }
+    // /services/:keyword
+    else if (segments[0] === 'services' && segments[1]) {
+      pageData = keywordPage(segments[1]);
+    }
+    // /legal-terms/*
+    else if (segments[0] === 'legal-terms') {
+      pageData = legalPage(rawPath);
+    }
+    // /:service/:country/:state/:city? (service-location pages)
+    else if (segments.length >= 3 && segments[0] !== 'locations' && segments[0] !== 'blog' && segments[0] !== 'legal-terms' && segments[0] !== 'admin') {
+      pageData = serviceLocationPage(segments[0], segments[1], segments[2], segments[3]);
+    }
+    // Static pages
+    else {
+      pageData = staticPage(rawPath);
+    }
+
+    if (!pageData) {
+      pageData = {
+        title: 'Page Not Found | FranchiseLeadsPro',
+        description: 'The page you are looking for could not be found.',
+        h1: 'Page Not Found',
+        content: '<p>Sorry, this page does not exist. <a href="/">Return to FranchiseLeadsPro homepage</a>.</p>'
+      };
+      const html = buildHtml({ ...pageData, canonicalPath });
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      return res.status(404).send(html);
+    }
+
+    const html = buildHtml({ ...pageData, canonicalPath });
+    
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=604800');
+    res.status(200).send(html);
+  } catch (err) {
+    // Catch any unexpected errors to prevent 5xx
+    const fallbackHtml = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>FranchiseLeadsPro</title><meta name="robots" content="index, follow"><link rel="canonical" href="${SITE}/${(req.query.path || '').replace(/^\/+|\/+$/g, '')}"></head><body><h1>FranchiseLeadsPro</h1><p>Visit <a href="${SITE}">FranchiseLeadsPro</a> for franchise lead generation, marketing, and IT services.</p></body></html>`;
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.status(200).send(fallbackHtml);
+  }
 };
