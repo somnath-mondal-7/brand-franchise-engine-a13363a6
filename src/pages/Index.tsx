@@ -14,8 +14,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Franchise Lead Generation Agency | LinkedIn Marketing, Social Media, Website Development & IT Services</title>
-        <meta name="description" content="FranchiseLeadsPro — #1 franchise marketing agency & IT solutions provider. We help franchisors, franchise consultants & franchise brands generate qualified investor leads through LinkedIn marketing, social media campaigns, website development, app development, SEO & IT outsourcing. Serving USA, India, UK & worldwide." />
+        <title>Franchise Lead Generation Agency | FranchiseLeadsPro</title>
+        <meta name="description" content="Generate qualified franchise buyer leads with LinkedIn marketing, social media & web development. Serving USA, India, UK & worldwide." />
         <link rel="canonical" href="https://www.franchiseleadspro.com/" />
       </Helmet>
       <script type="application/ld+json">
