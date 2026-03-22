@@ -442,7 +442,7 @@ function legalPage(path) {
   return pages[path] || null;
 }
 
-module.exports = (req, res) => {
+export default function handler(req, res) {
   try {
     const rawPath = (req.query.path || '').replace(/^\/+|\/+$/g, '');
     const segments = rawPath.split('/').filter(Boolean);
@@ -505,4 +505,4 @@ module.exports = (req, res) => {
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.status(200).send(fallbackHtml);
   }
-};
+}
