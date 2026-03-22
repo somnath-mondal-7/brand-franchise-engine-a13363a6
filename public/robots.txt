@@ -7,6 +7,7 @@ Allow: /llms-full.txt
 
 # Sitemap
 Sitemap: https://www.franchiseleadspro.com/sitemap.xml
+Sitemap: https://www.franchiseleadspro.com/sitemap-blog.xml
 
 # Disallow crawling of admin areas, temp files, and duplicate content
 Disallow: /admin/
@@ -16,7 +17,6 @@ Disallow: /*?*sort=
 Disallow: /*?*filter=
 Disallow: /session-demo
 Disallow: /search
-Disallow: /sitemap-blog.xml
 
 # Allow important bot access
 User-agent: Googlebot
