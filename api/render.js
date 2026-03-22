@@ -1,173 +1,147 @@
 // Free DIY Prerender — serves static HTML to search engine bots
-// No external services needed. Vercel routes bots here via vercel.json rewrites.
+// Matches LovableHTML quality: proper meta tags, single H1, rich content, structured data
 
 const SITE = 'https://www.franchiseleadspro.com';
+const BRAND = 'FranchiseLeadsPro';
 const PHONE = '+1 (551)-201-23-77';
 
 function slugToTitle(slug) {
-  return slug
-    .split('-')
-    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ');
+  return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+}
+
+// Truncate to max length, ending at last word boundary
+function truncate(str, max) {
+  if (str.length <= max) return str;
+  return str.substring(0, max).replace(/\s+\S*$/, '') + '…';
 }
 
 function buildNav() {
   return `<nav aria-label="Main Navigation">
     <a href="/">Home</a> |
     <a href="/services">Services</a> |
-    <a href="/about">About</a> |
     <a href="/blog">Blog</a> |
     <a href="/contact">Contact</a> |
-    <a href="/franchise-leads-usa">Franchise Leads USA</a> |
-    <a href="/franchise-leads-uk">Franchise Leads UK</a> |
-    <a href="/franchise-leads-india">Franchise Leads India</a> |
-    <a href="/franchise-leads-canada">Franchise Leads Canada</a> |
-    <a href="/franchise-leads-australia">Franchise Leads Australia</a> |
-    <a href="/franchise-leads-dubai">Franchise Leads Dubai</a> |
-    <a href="/buy-franchise-leads">Buy Franchise Leads</a> |
-    <a href="/testimonials">Client Testimonials</a> |
-    <a href="/digital-marketing">Digital Marketing</a> |
-    <a href="/sitemap">Sitemap</a>
+    <a href="/franchise-leads-usa">USA</a> |
+    <a href="/franchise-leads-india">India</a> |
+    <a href="/franchise-leads-uk">UK</a> |
+    <a href="/franchise-leads-canada">Canada</a> |
+    <a href="/franchise-leads-australia">Australia</a> |
+    <a href="/franchise-leads-dubai">Dubai</a> |
+    <a href="/buy-franchise-leads">Buy Leads</a> |
+    <a href="/testimonials">Testimonials</a>
   </nav>`;
 }
 
 function buildFooter() {
   return `<footer>
-    <p>&copy; ${new Date().getFullYear()} FranchiseLeadsPro — #1 Franchise Lead Generation Agency & IT Solutions Provider. All rights reserved.</p>
+    <p>&copy; ${new Date().getFullYear()} ${BRAND}. All rights reserved.</p>
     <p>Phone: ${PHONE} | Email: support@franchiseleadspro.com</p>
-    <nav aria-label="Footer Navigation">
-      <a href="/services">Franchise Marketing Services</a> |
-      <a href="/about">About FranchiseLeadsPro</a> |
-      <a href="/blog">Franchise Marketing Blog</a> |
-      <a href="/contact">Contact Us</a> |
-      <a href="/franchise-leads-usa">Franchise Leads USA</a> |
-      <a href="/franchise-leads-india">Franchise Leads India</a> |
-      <a href="/franchise-leads-uk">Franchise Leads UK</a> |
-      <a href="/franchise-leads-canada">Franchise Leads Canada</a> |
-      <a href="/franchise-leads-australia">Franchise Leads Australia</a> |
-      <a href="/franchise-leads-dubai">Franchise Leads Dubai & UAE</a> |
-      <a href="/buy-franchise-leads">Buy Franchise Leads</a> |
-      <a href="/legal-terms/privacy-policy">Privacy Policy</a> |
-      <a href="/legal-terms/refund-satisfaction-guarantee-policy">Refund Policy</a>
+    <nav aria-label="Footer">
+      <a href="/services">Services</a> |
+      <a href="/blog">Blog</a> |
+      <a href="/contact">Contact</a> |
+      <a href="/franchise-leads-usa">USA</a> |
+      <a href="/franchise-leads-india">India</a> |
+      <a href="/franchise-leads-uk">UK</a> |
+      <a href="/buy-franchise-leads">Buy Leads</a> |
+      <a href="/legal-terms/privacy-policy">Privacy Policy</a>
     </nav>
-    <p>FranchiseLeadsPro provides franchise lead generation, LinkedIn marketing, social media marketing, franchise website development, app development, SEO, IT outsourcing, and digital marketing services for franchisors, franchise consultants, and franchise brands worldwide.</p>
+    <p>${BRAND} provides franchise lead generation, LinkedIn marketing, social media marketing, website development, SEO, and IT services worldwide.</p>
   </footer>`;
 }
 
+// ──────────────────────────────────────
+// PAGE DATA GENERATORS
+// ──────────────────────────────────────
+
 function homePage() {
   return {
-    title: 'Franchise Lead Generation Agency | LinkedIn Marketing, Social Media, Website Development & IT Services | FranchiseLeadsPro',
-    description: 'FranchiseLeadsPro is the #1 franchise lead generation agency helping franchisors, franchise consultants, and franchise brands generate qualified investor leads through LinkedIn marketing, social media campaigns, website development, app development, SEO, and IT outsourcing. Serving USA, India, UK, Canada, Australia, Dubai & worldwide.',
-    h1: '#1 Franchise Lead Generation Agency — Marketing, Web Development & IT Services',
+    title: `${BRAND} — #1 Franchise Lead Generation Agency`,
+    description: 'Generate qualified franchise buyer leads with LinkedIn marketing, social media, website development & IT services. Serving USA, India, UK & worldwide.',
+    h1: '#1 Franchise Lead Generation Agency',
+    breadcrumbs: [{ name: 'Home', url: '/' }],
+    faq: [
+      { q: 'What services does FranchiseLeadsPro offer?', a: 'We offer LinkedIn marketing, social media marketing, franchise website development, app development, SEO, IT outsourcing, and comprehensive franchise lead generation services.' },
+      { q: 'How much do franchise leads cost?', a: 'Pricing varies based on quality, exclusivity, and market. Contact us for a free consultation and custom quote.' },
+      { q: 'How quickly can I start receiving leads?', a: 'Most clients receive their first qualified franchise leads within 30 days of campaign launch.' },
+      { q: 'Do you guarantee lead quality?', a: 'Yes. We pre-screen all leads for investment capacity, timeline, and genuine interest in franchise ownership.' },
+      { q: 'What countries do you serve?', a: 'We serve franchise brands in the USA, India, UK, Canada, Australia, UAE, Kuwait, and other markets worldwide.' },
+    ],
     content: `
       <section>
-        <h2>Generate Qualified Franchise Buyer Leads Worldwide</h2>
-        <p>FranchiseLeadsPro is the world's leading franchise-focused marketing and IT solutions agency. We specialize in helping franchisors, franchise consultants, and franchise brands connect with qualified investors through data-driven digital marketing, professional website development, and cutting-edge technology solutions.</p>
-        <p>Whether you're looking for a <strong>franchise lead generation agency</strong>, a <strong>franchise marketing company</strong>, a <strong>franchise website development company</strong>, or an <strong>IT outsourcing partner for your franchise business</strong> — FranchiseLeadsPro delivers measurable results.</p>
+        <h2>Generate Qualified Franchise Buyer Leads</h2>
+        <p>${BRAND} is the world's leading franchise-focused marketing and IT solutions agency. We help franchisors, franchise consultants, and franchise brands connect with qualified investors through data-driven digital marketing, professional website development, and cutting-edge technology.</p>
+        <p>Whether you need a <strong>franchise lead generation agency</strong>, <strong>franchise marketing company</strong>, <strong>franchise website development</strong>, or <strong>IT outsourcing partner</strong> — we deliver measurable results.</p>
       </section>
-
       <section>
         <h2>Our Franchise Marketing & IT Services</h2>
-        <h3>LinkedIn Marketing for Franchise Lead Generation</h3>
-        <p>We run targeted LinkedIn outreach campaigns using Sales Navigator to connect your franchise brand with high-net-worth investors and experienced business operators. Our LinkedIn marketing services include connection campaigns, personalized messaging sequences, thought leadership content, and meeting booking automation.</p>
-        
-        <h3>Social Media Marketing (Paid + Organic)</h3>
-        <p>Full-spectrum social media marketing across Facebook, Instagram, LinkedIn, and YouTube. We create and manage paid advertising campaigns, organic content strategies, retargeting campaigns, and lookalike audience targeting — all designed to generate qualified franchise buyer leads at scale.</p>
-        
-        <h3>Franchise Website Development & Design</h3>
-        <p>We design and develop high-converting franchise websites that establish credibility and capture investor inquiries. Every website is mobile-first, SEO-optimized, and includes lead capture forms, territory information, investment details, and trust-building elements. We also offer franchise portal development, e-commerce integration, and multi-language support.</p>
-        
-        <h3>IT Services & Technology Solutions</h3>
-        <p>End-to-end technology solutions for franchise brands: custom web application development, mobile app development (iOS & Android), CRM implementation, marketing automation, cloud infrastructure, API development, and IT outsourcing services.</p>
-        
+        <h3>LinkedIn Marketing for Franchise Leads</h3>
+        <p>Targeted LinkedIn outreach using Sales Navigator to connect your franchise brand with high-net-worth investors. Includes connection campaigns, personalized messaging, thought leadership content, and meeting booking automation.</p>
+        <h3>Social Media Marketing</h3>
+        <p>Full-spectrum social media across Facebook, Instagram, LinkedIn, and YouTube. Paid advertising, organic content, retargeting, and lookalike audience targeting to generate qualified franchise buyer leads at scale.</p>
+        <h3>Franchise Website Development</h3>
+        <p>High-converting, mobile-first franchise websites with lead capture forms, territory maps, investment details, and trust-building elements. SEO-optimized for maximum visibility.</p>
+        <h3>IT Services & App Development</h3>
+        <p>Custom web apps, mobile apps (iOS & Android), CRM implementation, marketing automation, cloud infrastructure, and IT outsourcing for franchise brands.</p>
         <h3>SEO & Digital Marketing</h3>
-        <p>Comprehensive search engine optimization and digital marketing services including technical SEO, local SEO, content marketing, PPC management (Google Ads, Bing Ads), and franchise-specific keyword optimization to dominate search results.</p>
-        
-        <h3>Franchise Brand Building</h3>
-        <p>Strategic branding services including brand identity design, franchise sales collateral, video production, public relations, reputation management, and trade show marketing.</p>
+        <p>Technical SEO, local SEO, content marketing, PPC management (Google & Bing Ads), and franchise-specific keyword optimization.</p>
       </section>
-
       <section>
-        <h2>Markets We Serve — Global Franchise Lead Generation</h2>
+        <h2>Markets We Serve</h2>
         <ul>
           <li><a href="/franchise-leads-usa">Franchise Leads USA</a> — All 50 states, 250+ cities</li>
           <li><a href="/franchise-leads-india">Franchise Leads India</a> — All major states and cities</li>
-          <li><a href="/franchise-leads-uk">Franchise Leads UK</a> — England, Scotland, Wales, Northern Ireland</li>
-          <li><a href="/franchise-leads-canada">Franchise Leads Canada</a> — Ontario, British Columbia, Quebec, Alberta & more</li>
-          <li><a href="/franchise-leads-australia">Franchise Leads Australia</a> — Sydney, Melbourne, Brisbane, Perth & more</li>
-          <li><a href="/franchise-leads-dubai">Franchise Leads Dubai & UAE</a> — Dubai, Abu Dhabi, Sharjah</li>
-          <li><a href="/franchise-leads-kuwait">Franchise Leads Kuwait</a> — Kuwait City and beyond</li>
+          <li><a href="/franchise-leads-uk">Franchise Leads UK</a> — England, Scotland, Wales</li>
+          <li><a href="/franchise-leads-canada">Franchise Leads Canada</a> — Ontario, BC, Quebec & more</li>
+          <li><a href="/franchise-leads-australia">Franchise Leads Australia</a> — Sydney, Melbourne & more</li>
+          <li><a href="/franchise-leads-dubai">Franchise Leads Dubai & UAE</a></li>
+          <li><a href="/franchise-leads-kuwait">Franchise Leads Kuwait</a></li>
         </ul>
       </section>
-
       <section>
         <h2>Who We Work With</h2>
         <ul>
-          <li><strong>Franchisors</strong> — Food, retail, fitness, education, and service franchise brands looking for qualified franchisees</li>
-          <li><strong>Franchise Consultants & Brokers</strong> — Independent consultants who need a steady flow of franchise buyer leads</li>
-          <li><strong>Franchise Development Companies</strong> — Organizations focused on growing franchise systems</li>
-          <li><strong>Multi-Unit Franchise Operators</strong> — Experienced operators expanding their portfolio</li>
-          <li><strong>International Franchise Brands</strong> — Brands expanding into new global markets</li>
+          <li><strong>Franchisors</strong> — Food, retail, fitness, education, and service brands</li>
+          <li><strong>Franchise Consultants & Brokers</strong> — Independent consultants needing steady lead flow</li>
+          <li><strong>Franchise Development Companies</strong> — Growing franchise systems</li>
+          <li><strong>Multi-Unit Operators</strong> — Expanding franchise portfolios</li>
+          <li><strong>International Brands</strong> — Expanding into new global markets</li>
         </ul>
       </section>
-
       <section>
-        <h2>Why Choose FranchiseLeadsPro?</h2>
+        <h2>Why Choose ${BRAND}?</h2>
         <ul>
-          <li>100% franchise-industry focused — we understand FDD compliance, territory mapping, and investor psychology</li>
+          <li>100% franchise-industry focused</li>
           <li>15,000+ qualified franchise leads generated</li>
           <li>500+ franchise brands served globally</li>
           <li>3-5x average ROI within 90 days</li>
-          <li>First qualified leads within 30 days</li>
-          <li>7-day money-back guarantee</li>
-          <li>Full-service: marketing + website development + IT solutions under one roof</li>
+          <li>First leads within 30 days</li>
+          <li>Full-service: marketing + web dev + IT</li>
         </ul>
       </section>
-
       <section>
-        <h2>Our 4-Step Franchise Lead Generation Process</h2>
+        <h2>Our 4-Step Process</h2>
         <ol>
-          <li><strong>Discovery & Strategy</strong> — We analyze your franchise model, target market, ideal franchisee profile, and competition</li>
-          <li><strong>Campaign Development</strong> — Custom marketing campaigns, website optimization, and technology setup tailored to your franchise brand</li>
-          <li><strong>Lead Generation & Outreach</strong> — Multi-channel campaigns across LinkedIn, social media, search, and direct outreach</li>
-          <li><strong>Qualification & Delivery</strong> — Every lead is pre-screened for investment capacity, timeline, and genuine interest</li>
+          <li><strong>Discovery & Strategy</strong> — Analyze your franchise model, target market, and competition</li>
+          <li><strong>Campaign Development</strong> — Custom marketing campaigns and technology setup</li>
+          <li><strong>Lead Generation</strong> — Multi-channel campaigns across LinkedIn, social media, and search</li>
+          <li><strong>Qualification & Delivery</strong> — Every lead pre-screened for investment capacity and interest</li>
         </ol>
       </section>
-
       <section>
-        <h2>Frequently Asked Questions</h2>
-        <h3>What services does FranchiseLeadsPro offer?</h3>
-        <p>We offer LinkedIn marketing, social media marketing (paid + organic), franchise website development, mobile app development, SEO, IT outsourcing, CRM implementation, franchise brand building, PPC advertising, and comprehensive franchise lead generation services.</p>
-        <h3>How much do franchise leads cost?</h3>
-        <p>Franchise lead costs vary based on quality, exclusivity, and market. We offer custom pricing. <a href="/contact">Contact us</a> for a free consultation.</p>
-        <h3>How quickly can I start receiving franchise leads?</h3>
-        <p>Most clients receive their first qualified franchise leads within 30 days of campaign launch.</p>
-        <h3>Do you guarantee lead quality?</h3>
-        <p>Yes. We pre-screen all leads for investment capacity, timeline, and genuine interest in franchise ownership.</p>
-        <h3>Do you offer website development and IT services for franchise businesses?</h3>
-        <p>Absolutely. We provide custom franchise website development, mobile app development, CRM implementation, IT outsourcing, and full technology consulting for franchise brands.</p>
-        <h3>What countries do you serve?</h3>
-        <p>We serve franchise brands in the USA, India, UK, Canada, Australia, UAE, Kuwait, and other markets worldwide.</p>
-      </section>
-
-      <section>
-        <h2>Popular Franchise Services</h2>
+        <h2>Popular Services</h2>
         <ul>
           <li><a href="/services/franchise-lead-generation">Franchise Lead Generation</a></li>
           <li><a href="/services/franchise-marketing">Franchise Marketing</a></li>
           <li><a href="/services/franchise-website-design">Franchise Website Design</a></li>
           <li><a href="/services/franchise-seo">Franchise SEO</a></li>
           <li><a href="/services/franchise-digital-marketing">Franchise Digital Marketing</a></li>
-          <li><a href="/services/franchise-consulting">Franchise Consulting</a></li>
-          <li><a href="/services/franchise-advertising">Franchise Advertising</a></li>
-          <li><a href="/services/franchise-development">Franchise Development</a></li>
           <li><a href="/buy-franchise-leads">Buy Franchise Leads</a></li>
         </ul>
       </section>
-
       <section>
-        <h2>Get Started — Book a Free Consultation</h2>
-        <p>Ready to generate more franchise leads? <a href="/contact">Contact FranchiseLeadsPro today</a> or call us at ${PHONE}. We'll create a custom strategy to fill your franchise pipeline with qualified investors.</p>
+        <h2>Get Started — Free Consultation</h2>
+        <p>Ready to generate more franchise leads? <a href="/contact">Contact us today</a> or call ${PHONE}.</p>
       </section>
     `
   };
@@ -177,48 +151,48 @@ function locationPage(country, state, city) {
   const countryName = slugToTitle(country === 'usa' ? 'united-states' : country);
   const stateName = state ? slugToTitle(state) : '';
   const cityName = city ? slugToTitle(city) : '';
-  
-  const locationStr = cityName 
-    ? `${cityName}, ${stateName}, ${countryName}`
-    : stateName 
-      ? `${stateName}, ${countryName}` 
-      : countryName;
+  const locationStr = cityName ? `${cityName}, ${stateName}` : stateName || countryName;
+  const fullLocation = cityName ? `${cityName}, ${stateName}, ${countryName}` : stateName ? `${stateName}, ${countryName}` : countryName;
+
+  const crumbs = [{ name: 'Home', url: '/' }, { name: 'Locations', url: '/locations' }];
+  if (country) crumbs.push({ name: countryName, url: `/locations/${country}` });
+  if (state) crumbs.push({ name: stateName, url: `/locations/${country}/${state}` });
+  if (city) crumbs.push({ name: cityName, url: `/locations/${country}/${state}/${city}` });
 
   return {
-    title: `Franchise Lead Generation in ${locationStr} | Marketing, Web Development & IT Services | FranchiseLeadsPro`,
-    description: `Looking for franchise leads in ${locationStr}? FranchiseLeadsPro is the #1 franchise marketing agency and IT solutions provider in ${locationStr}. We generate qualified franchise buyer leads through LinkedIn marketing, social media campaigns, website development, and technology solutions.`,
-    h1: `Franchise Lead Generation & Marketing Agency in ${locationStr}`,
+    title: truncate(`Franchise Leads ${locationStr} | ${BRAND}`, 60),
+    description: truncate(`Get qualified franchise leads in ${fullLocation}. LinkedIn marketing, social media, website development & IT services for franchise brands.`, 160),
+    h1: `Franchise Leads in ${locationStr}`,
+    breadcrumbs: crumbs,
+    faq: [
+      { q: `How can I generate franchise leads in ${locationStr}?`, a: `${BRAND} uses LinkedIn outreach, social media ads, SEO, and targeted campaigns to generate qualified franchise investor leads in ${locationStr}.` },
+      { q: `What franchise marketing services are available in ${locationStr}?`, a: `We offer LinkedIn marketing, social media campaigns, website development, SEO, PPC, and IT services in ${locationStr}.` },
+    ],
     content: `
       <section>
-        <h2>Franchise Marketing & IT Services in ${locationStr}</h2>
-        <p>FranchiseLeadsPro delivers comprehensive franchise marketing and technology services in ${locationStr}. Whether you're a franchisor, franchise consultant, or franchise brand looking for qualified investor leads, professional website development, or IT solutions — we have you covered.</p>
+        <h2>Franchise Marketing in ${locationStr}</h2>
+        <p>${BRAND} delivers comprehensive franchise marketing and technology services in ${fullLocation}. We help franchisors, consultants, and brands find qualified investors in this market.</p>
       </section>
-      
       <section>
         <h2>Our Services in ${locationStr}</h2>
         <ul>
-          <li><strong>Franchise Lead Generation</strong> — Targeted campaigns to find qualified franchise investors in ${locationStr}</li>
-          <li><strong>LinkedIn Marketing</strong> — Sales Navigator outreach targeting franchise buyers in ${locationStr}</li>
-          <li><strong>Social Media Marketing</strong> — Paid + organic campaigns on Facebook, Instagram, LinkedIn for the ${locationStr} market</li>
-          <li><strong>Franchise Website Development</strong> — High-converting websites optimized for ${locationStr} franchise market</li>
-          <li><strong>SEO & Local SEO</strong> — Dominate search results for franchise-related queries in ${locationStr}</li>
-          <li><strong>IT Services & App Development</strong> — Custom technology solutions for franchise businesses in ${locationStr}</li>
+          <li><strong>Franchise Lead Generation</strong> — Targeted campaigns for ${locationStr}</li>
+          <li><strong>LinkedIn Marketing</strong> — Sales Navigator outreach in ${locationStr}</li>
+          <li><strong>Social Media Marketing</strong> — Facebook, Instagram, LinkedIn campaigns</li>
+          <li><strong>Website Development</strong> — High-converting franchise websites</li>
+          <li><strong>SEO & Local SEO</strong> — Dominate search results in ${locationStr}</li>
+          <li><strong>IT & App Development</strong> — Custom technology solutions</li>
         </ul>
       </section>
-
       <section>
         <h2>Why ${locationStr} for Franchising?</h2>
-        <p>${locationStr} represents a dynamic franchise market with strong consumer demand and a growing pool of franchise investors. FranchiseLeadsPro's deep understanding of the local market helps your franchise brand stand out and attract the right candidates in ${locationStr}.</p>
+        <p>${locationStr} is a dynamic franchise market with strong demand and a growing pool of investors. Our local expertise helps your brand stand out.</p>
       </section>
-
       <section>
-        <h2>Get Started with Franchise Leads in ${locationStr}</h2>
-        <p>Ready to grow your franchise in ${locationStr}? <a href="/contact">Contact FranchiseLeadsPro today</a> to discuss your franchise lead generation, marketing, and technology strategy. Call us at ${PHONE}.</p>
+        <h2>Get Started in ${locationStr}</h2>
+        <p><a href="/contact">Contact us</a> to discuss your franchise strategy in ${locationStr}. Call ${PHONE}.</p>
       </section>
-      
-      <nav aria-label="Related Pages">
-        <p><a href="/locations/${country}">View all locations in ${countryName}</a> | <a href="/services">Our Services</a> | <a href="/">Back to Home</a></p>
-      </nav>
+      <nav aria-label="Related"><a href="/locations/${country}">All ${countryName} locations</a> | <a href="/services">Services</a> | <a href="/">Home</a></nav>
     `
   };
 }
@@ -228,191 +202,98 @@ function serviceLocationPage(service, country, state, city) {
   const countryName = slugToTitle(country === 'usa' ? 'united-states' : country);
   const stateName = state ? slugToTitle(state) : '';
   const cityName = city ? slugToTitle(city) : '';
-  
-  const locationStr = cityName 
-    ? `${cityName}, ${stateName}` 
-    : stateName;
+  const locationStr = cityName ? `${cityName}, ${stateName}` : stateName;
+
+  const crumbs = [
+    { name: 'Home', url: '/' },
+    { name: serviceName, url: `/services` },
+    { name: locationStr, url: `/${service}/${country}/${state}${city ? '/' + city : ''}` },
+  ];
 
   return {
-    title: `${serviceName} in ${locationStr}, ${countryName} | FranchiseLeadsPro — Franchise Marketing & IT Agency`,
-    description: `Professional ${serviceName.toLowerCase()} services in ${locationStr}, ${countryName}. FranchiseLeadsPro is the leading franchise marketing agency and IT solutions provider. We help franchise brands, franchisors, and franchise consultants grow with expert ${serviceName.toLowerCase()} strategies, website development, and technology solutions.`,
-    h1: `${serviceName} in ${locationStr}, ${countryName}`,
+    title: truncate(`${serviceName} in ${locationStr} | ${BRAND}`, 60),
+    description: truncate(`Professional ${serviceName.toLowerCase()} in ${locationStr}, ${countryName}. ${BRAND} helps franchise brands grow with expert strategies & technology.`, 160),
+    h1: `${serviceName} in ${locationStr}`,
+    breadcrumbs: crumbs,
+    faq: [
+      { q: `What does ${serviceName.toLowerCase()} in ${locationStr} include?`, a: `Our ${serviceName.toLowerCase()} services in ${locationStr} include strategy development, targeted campaigns, performance tracking, and ROI optimization for franchise brands.` },
+    ],
     content: `
       <section>
         <h2>${serviceName} Services in ${locationStr}</h2>
-        <p>Looking for ${serviceName.toLowerCase()} in ${locationStr}, ${countryName}? FranchiseLeadsPro provides expert ${serviceName.toLowerCase()} services along with comprehensive franchise marketing, website development, and IT solutions to help franchise brands succeed in the ${locationStr} market.</p>
+        <p>Looking for ${serviceName.toLowerCase()} in ${locationStr}, ${countryName}? ${BRAND} provides expert services to help franchise brands succeed in the ${locationStr} market.</p>
       </section>
-      
       <section>
-        <h2>What We Offer for ${serviceName} in ${locationStr}</h2>
+        <h2>What We Offer</h2>
         <ul>
           <li>Customized ${serviceName.toLowerCase()} strategies for ${locationStr}</li>
           <li>Data-driven campaigns targeting qualified franchise investors</li>
-          <li>Local market expertise and competitive analysis for ${locationStr}</li>
-          <li>Franchise website development and optimization</li>
-          <li>IT solutions and technology consulting</li>
+          <li>Local market expertise and competitive analysis</li>
+          <li>Website development and optimization</li>
           <li>Measurable ROI and transparent reporting</li>
         </ul>
       </section>
-
       <section>
-        <h2>Complete Franchise Solutions in ${locationStr}</h2>
-        <p>Beyond ${serviceName.toLowerCase()}, FranchiseLeadsPro offers the full spectrum of franchise marketing and IT services in ${locationStr}: LinkedIn marketing, social media campaigns, franchise website development, mobile app development, SEO, IT outsourcing, and franchise brand building.</p>
+        <h2>Complete Franchise Solutions</h2>
+        <p>Beyond ${serviceName.toLowerCase()}, we offer full-spectrum franchise services: LinkedIn marketing, social media, website development, app development, SEO, and IT outsourcing.</p>
       </section>
-
-      <nav aria-label="Related Pages">
-        <p><a href="/contact">Get a free consultation</a> | <a href="/locations/${country}/${state}">More services in ${stateName}</a> | <a href="/services">All Services</a> | <a href="/">Home</a></p>
-      </nav>
+      <nav aria-label="Related"><a href="/contact">Get a consultation</a> | <a href="/locations/${country}/${state}">More in ${stateName}</a> | <a href="/services">Services</a></nav>
     `
   };
 }
 
 function keywordPage(keyword) {
-  const keywordName = slugToTitle(keyword);
+  const name = slugToTitle(keyword);
   return {
-    title: `${keywordName} | Expert Franchise Marketing & IT Services | FranchiseLeadsPro`,
-    description: `Professional ${keywordName.toLowerCase()} services from FranchiseLeadsPro — the #1 franchise marketing agency and IT solutions provider. We help franchisors, franchise consultants, and franchise brands grow with expert strategies, website development, and proven lead generation results.`,
-    h1: keywordName,
+    title: truncate(`${name} | ${BRAND}`, 60),
+    description: truncate(`Professional ${name.toLowerCase()} services from ${BRAND}. We help franchisors and franchise brands grow with proven strategies and technology.`, 160),
+    h1: name,
+    breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Services', url: '/services' }, { name: name, url: `/services/${keyword}` }],
     content: `
       <section>
-        <h2>${keywordName} Services by FranchiseLeadsPro</h2>
-        <p>FranchiseLeadsPro offers professional ${keywordName.toLowerCase()} services designed specifically for the franchise industry. Whether you're a franchisor, franchise consultant, or franchise brand, our data-driven approach ensures measurable results, qualified franchise leads, and sustainable growth.</p>
+        <h2>${name} by ${BRAND}</h2>
+        <p>${BRAND} offers professional ${name.toLowerCase()} designed for the franchise industry. Data-driven strategies that deliver qualified leads and sustainable growth.</p>
       </section>
-      
       <section>
-        <h2>How Our ${keywordName} Works</h2>
+        <h2>How It Works</h2>
         <ul>
-          <li>Strategic planning and franchise market analysis</li>
-          <li>Targeted campaign development and execution</li>
-          <li>LinkedIn marketing and social media outreach</li>
-          <li>Franchise website optimization and development</li>
-          <li>Performance tracking, reporting, and ROI analysis</li>
-          <li>Ongoing optimization and scaling</li>
+          <li>Strategic planning and market analysis</li>
+          <li>Targeted campaign development</li>
+          <li>LinkedIn and social media outreach</li>
+          <li>Website optimization and development</li>
+          <li>Performance tracking and ROI analysis</li>
         </ul>
       </section>
-
       <section>
-        <h2>Why Choose FranchiseLeadsPro for ${keywordName}?</h2>
-        <p>As the leading franchise-focused marketing and IT agency, we bring deep industry expertise to every ${keywordName.toLowerCase()} project. Our team understands franchise development, FDD compliance, territory mapping, and investor psychology — giving you a significant advantage over generic marketing agencies.</p>
+        <h2>Why Choose Us for ${name}?</h2>
+        <p>Deep franchise industry expertise — we understand FDD compliance, territory mapping, and investor psychology. This gives you a significant edge over generic agencies.</p>
       </section>
-
       <section>
-        <h2>Additional Franchise Services</h2>
+        <h2>Related Services</h2>
         <ul>
           <li><a href="/services/franchise-lead-generation">Franchise Lead Generation</a></li>
           <li><a href="/services/franchise-marketing">Franchise Marketing</a></li>
           <li><a href="/services/franchise-website-design">Franchise Website Design</a></li>
-          <li><a href="/services/franchise-digital-marketing">Franchise Digital Marketing</a></li>
           <li><a href="/buy-franchise-leads">Buy Franchise Leads</a></li>
         </ul>
       </section>
-
-      <nav aria-label="Related Pages">
-        <p><a href="/contact">Contact us for ${keywordName.toLowerCase()}</a> | <a href="/services">All Services</a> | <a href="/">Home</a></p>
-      </nav>
+      <nav aria-label="Related"><a href="/contact">Contact us</a> | <a href="/services">All Services</a> | <a href="/">Home</a></nav>
     `
   };
-}
-
-function staticPage(path) {
-  const pages = {
-    'about': { title: 'About FranchiseLeadsPro | #1 Franchise Marketing Agency & IT Solutions Provider', description: 'Learn about FranchiseLeadsPro — the world\'s leading franchise lead generation agency, marketing company, and IT solutions provider. We help franchisors, franchise consultants, and franchise brands generate qualified leads through LinkedIn marketing, social media, website development, and technology solutions.', h1: 'About FranchiseLeadsPro — Franchise Marketing & IT Agency' },
-    'services': { title: 'Franchise Marketing Services | LinkedIn, Social Media, Website Development, IT & Lead Generation | FranchiseLeadsPro', description: 'Comprehensive franchise marketing and IT services: LinkedIn marketing, social media campaigns, franchise website development, app development, SEO, IT outsourcing, and lead generation for franchisors and franchise consultants.', h1: 'Franchise Marketing & IT Services' },
-    'digital-marketing': { title: 'Franchise Digital Marketing Services | SEO, PPC, Social Media & Content Marketing | FranchiseLeadsPro', description: 'Full-service franchise digital marketing: SEO, PPC, social media marketing, content marketing, email campaigns, and franchise brand building for franchisors and franchise consultants.', h1: 'Franchise Digital Marketing Services' },
-    'contact': { title: 'Contact FranchiseLeadsPro | Get a Free Consultation | Franchise Marketing & IT Agency', description: 'Contact FranchiseLeadsPro for franchise lead generation, marketing services, website development, and IT solutions. Call +1 (551)-201-23-77 or fill out our form for a free consultation.', h1: 'Contact FranchiseLeadsPro' },
-    'blog': { title: 'Franchise Marketing Blog | Lead Generation Tips, Strategies & Industry Insights | FranchiseLeadsPro', description: 'Expert insights on franchise lead generation, marketing strategies, website development, IT solutions, and franchise industry trends from FranchiseLeadsPro.', h1: 'Franchise Marketing Blog' },
-    'testimonials': { title: 'Client Testimonials & Reviews | FranchiseLeadsPro — Franchise Marketing & IT Agency', description: 'See what franchise brands, franchisors, and franchise consultants say about FranchiseLeadsPro\'s lead generation, marketing, website development, and IT services.', h1: 'Client Testimonials & Success Stories' },
-    'buy-franchise-leads': { title: 'Buy Franchise Leads | Pre-Qualified Franchise Investor Leads | FranchiseLeadsPro', description: 'Buy high-quality, pre-qualified franchise buyer leads from FranchiseLeadsPro. Exclusive, verified franchise investor leads for franchisors and franchise consultants.', h1: 'Buy Pre-Qualified Franchise Leads' },
-    'franchise-leads-usa': { title: 'Franchise Leads USA | American Franchise Lead Generation, Marketing & IT | FranchiseLeadsPro', description: 'Generate qualified franchise leads across all 50 US states with FranchiseLeadsPro. LinkedIn marketing, social media campaigns, franchise website development, and IT services for American franchise brands.', h1: 'Franchise Lead Generation & Marketing in the USA' },
-    'franchise-leads-uk': { title: 'Franchise Leads UK | British Franchise Lead Generation, Marketing & IT | FranchiseLeadsPro', description: 'Generate qualified franchise leads across the United Kingdom with FranchiseLeadsPro. London, Manchester, Birmingham, Edinburgh & more.', h1: 'Franchise Lead Generation & Marketing in the UK' },
-    'franchise-leads-india': { title: 'Franchise Leads India | Indian Franchise Lead Generation, Marketing & IT | FranchiseLeadsPro', description: 'Generate qualified franchise leads across India with FranchiseLeadsPro. Mumbai, Delhi, Bangalore, Chennai, Hyderabad & more. LinkedIn marketing, website development, and IT services.', h1: 'Franchise Lead Generation & Marketing in India' },
-    'franchise-leads-canada': { title: 'Franchise Leads Canada | Canadian Franchise Lead Generation & Marketing | FranchiseLeadsPro', description: 'Generate qualified franchise leads across Canada with FranchiseLeadsPro. Toronto, Vancouver, Montreal, Calgary & more.', h1: 'Franchise Lead Generation & Marketing in Canada' },
-    'franchise-leads-australia': { title: 'Franchise Leads Australia | Australian Franchise Lead Generation & Marketing | FranchiseLeadsPro', description: 'Generate qualified franchise leads across Australia with FranchiseLeadsPro. Sydney, Melbourne, Brisbane, Perth & more.', h1: 'Franchise Lead Generation & Marketing in Australia' },
-    'franchise-leads-dubai': { title: 'Franchise Leads Dubai & UAE | Middle East Franchise Lead Generation & Marketing | FranchiseLeadsPro', description: 'Generate qualified franchise leads in Dubai, Abu Dhabi, and the UAE with FranchiseLeadsPro. LinkedIn marketing, website development, and IT services for Middle East franchise brands.', h1: 'Franchise Lead Generation & Marketing in Dubai & UAE' },
-    'franchise-leads-kuwait': { title: 'Franchise Leads Kuwait | Kuwait Franchise Lead Generation & Marketing | FranchiseLeadsPro', description: 'Generate qualified franchise leads in Kuwait with FranchiseLeadsPro. LinkedIn marketing, social media, and franchise website development.', h1: 'Franchise Lead Generation & Marketing in Kuwait' },
-  };
-  return pages[path] || null;
-}
-
-function buildHtml({ title, description, h1, content, canonicalPath }) {
-  const canonical = `${SITE}${canonicalPath}`;
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${title}</title>
-  <meta name="description" content="${description}">
-  <link rel="canonical" href="${canonical}">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-  <meta name="keywords" content="franchise lead generation, franchise marketing agency, franchise leads, buy franchise leads, franchise website development, franchise IT services, franchise consulting, franchisor marketing, franchise digital marketing, franchise SEO, franchise LinkedIn marketing, franchise social media marketing">
-  <meta property="og:title" content="${title}">
-  <meta property="og:description" content="${description}">
-  <meta property="og:url" content="${canonical}">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="FranchiseLeadsPro">
-  <meta property="og:image" content="${SITE}/og-image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${title}">
-  <meta name="twitter:description" content="${description}">
-  <meta name="twitter:image" content="${SITE}/og-image.png">
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <script type="application/ld+json">
-  ${JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": title,
-    "description": description,
-    "url": canonical,
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "FranchiseLeadsPro",
-      "url": SITE
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "FranchiseLeadsPro",
-      "url": SITE,
-      "logo": `${SITE}/logo-hq.png`,
-      "description": "FranchiseLeadsPro is the #1 franchise lead generation agency, marketing company, and IT solutions provider for franchisors, franchise consultants, and franchise brands worldwide.",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+1-551-201-2377",
-        "contactType": "Sales",
-        "areaServed": ["US", "IN", "GB", "CA", "AU", "AE", "KW"],
-        "availableLanguage": "English"
-      },
-      "sameAs": [
-        "https://linkedin.com/company/franchiseleadspro",
-        "https://twitter.com/franchiseleadspro",
-        "https://facebook.com/franchiseleadspro"
-      ]
-    }
-  })}
-  </script>
-</head>
-<body>
-  ${buildNav()}
-  <main>
-    <h1>${h1}</h1>
-    ${content || `<p>${description}</p>`}
-  </main>
-  ${buildFooter()}
-</body>
-</html>`;
 }
 
 function blogPostPage(slug) {
   const title = slugToTitle(slug);
   return {
-    title: `${title} | Franchise Marketing Blog | FranchiseLeadsPro`,
-    description: `Read "${title}" on the FranchiseLeadsPro blog. Expert insights on franchise lead generation, marketing strategies, website development, and IT solutions for franchisors and franchise consultants.`,
+    title: truncate(`${title} | ${BRAND} Blog`, 60),
+    description: truncate(`Read "${title}" — expert franchise marketing insights, lead generation strategies, and industry tips from ${BRAND}.`, 160),
     h1: title,
+    breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Blog', url: '/blog' }, { name: title, url: `/blog/${slug}` }],
     content: `
-      <section>
-        <p>Read the full article on our website. This blog post covers expert insights related to ${title.toLowerCase()} in the franchise industry.</p>
+      <article>
+        <p>Read the full article about ${title.toLowerCase()} in the franchise industry on our website.</p>
         <p><a href="/blog">← Back to all blog posts</a></p>
-      </section>
+      </article>
       <section>
         <h2>Related Resources</h2>
         <ul>
@@ -426,68 +307,266 @@ function blogPostPage(slug) {
   };
 }
 
-function legalPage(path) {
+function staticPage(path) {
   const pages = {
-    'legal-terms/privacy-policy': {
-      title: 'Privacy Policy | FranchiseLeadsPro',
-      description: 'FranchiseLeadsPro privacy policy. Learn how we collect, use, and protect your personal information.',
-      h1: 'Privacy Policy'
+    'about': {
+      title: `About ${BRAND} | Franchise Marketing Agency`,
+      description: `${BRAND} is the leading franchise lead generation agency and IT solutions provider for franchisors and franchise brands worldwide.`,
+      h1: `About ${BRAND}`,
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'About', url: '/about' }],
     },
-    'legal-terms/refund-satisfaction-guarantee-policy': {
-      title: 'Refund & Satisfaction Guarantee Policy | FranchiseLeadsPro',
-      description: 'FranchiseLeadsPro refund and satisfaction guarantee policy for our franchise lead generation and marketing services.',
-      h1: 'Refund & Satisfaction Guarantee Policy'
-    }
+    'services': {
+      title: `Franchise Marketing & IT Services | ${BRAND}`,
+      description: 'LinkedIn marketing, social media, website development, SEO, IT outsourcing & lead generation for franchisors and franchise brands.',
+      h1: 'Franchise Marketing & IT Services',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Services', url: '/services' }],
+    },
+    'digital-marketing': {
+      title: `Franchise Digital Marketing | ${BRAND}`,
+      description: 'SEO, PPC, social media, content marketing & franchise brand building for franchisors and franchise consultants.',
+      h1: 'Franchise Digital Marketing Services',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Digital Marketing', url: '/digital-marketing' }],
+    },
+    'contact': {
+      title: `Contact Us | ${BRAND}`,
+      description: `Contact ${BRAND} for franchise lead generation, marketing, website development & IT services. Free consultation available.`,
+      h1: `Contact ${BRAND}`,
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Contact', url: '/contact' }],
+    },
+    'blog': {
+      title: `Franchise Marketing Blog | ${BRAND}`,
+      description: 'Expert insights on franchise lead generation, marketing strategies, website development & industry trends.',
+      h1: 'Franchise Marketing Blog',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Blog', url: '/blog' }],
+    },
+    'testimonials': {
+      title: `Client Testimonials | ${BRAND}`,
+      description: 'See what franchise brands and consultants say about our lead generation, marketing & IT services.',
+      h1: 'Client Testimonials & Success Stories',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Testimonials', url: '/testimonials' }],
+    },
+    'buy-franchise-leads': {
+      title: `Buy Franchise Leads | ${BRAND}`,
+      description: 'Buy pre-qualified franchise buyer leads. Exclusive, verified franchise investor leads for franchisors and consultants.',
+      h1: 'Buy Pre-Qualified Franchise Leads',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Buy Leads', url: '/buy-franchise-leads' }],
+    },
+    'franchise-leads-usa': {
+      title: `Franchise Leads USA | ${BRAND}`,
+      description: 'Generate qualified franchise leads across all 50 US states. LinkedIn marketing, website development & IT for American franchise brands.',
+      h1: 'Franchise Lead Generation in the USA',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'USA', url: '/franchise-leads-usa' }],
+    },
+    'franchise-leads-uk': {
+      title: `Franchise Leads UK | ${BRAND}`,
+      description: 'Generate qualified franchise leads across the United Kingdom. London, Manchester, Birmingham & more.',
+      h1: 'Franchise Lead Generation in the UK',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'UK', url: '/franchise-leads-uk' }],
+    },
+    'franchise-leads-india': {
+      title: `Franchise Leads India | ${BRAND}`,
+      description: 'Generate qualified franchise leads across India. Mumbai, Delhi, Bangalore, Chennai & more. LinkedIn marketing & IT services.',
+      h1: 'Franchise Lead Generation in India',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'India', url: '/franchise-leads-india' }],
+    },
+    'franchise-leads-canada': {
+      title: `Franchise Leads Canada | ${BRAND}`,
+      description: 'Generate qualified franchise leads across Canada. Toronto, Vancouver, Montreal, Calgary & more.',
+      h1: 'Franchise Lead Generation in Canada',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Canada', url: '/franchise-leads-canada' }],
+    },
+    'franchise-leads-australia': {
+      title: `Franchise Leads Australia | ${BRAND}`,
+      description: 'Generate qualified franchise leads across Australia. Sydney, Melbourne, Brisbane, Perth & more.',
+      h1: 'Franchise Lead Generation in Australia',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Australia', url: '/franchise-leads-australia' }],
+    },
+    'franchise-leads-dubai': {
+      title: `Franchise Leads Dubai & UAE | ${BRAND}`,
+      description: 'Generate qualified franchise leads in Dubai, Abu Dhabi & UAE. LinkedIn marketing & IT services for Middle East brands.',
+      h1: 'Franchise Lead Generation in Dubai & UAE',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Dubai', url: '/franchise-leads-dubai' }],
+    },
+    'franchise-leads-kuwait': {
+      title: `Franchise Leads Kuwait | ${BRAND}`,
+      description: 'Generate qualified franchise leads in Kuwait. LinkedIn marketing, social media & website development.',
+      h1: 'Franchise Lead Generation in Kuwait',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Kuwait', url: '/franchise-leads-kuwait' }],
+    },
   };
   return pages[path] || null;
 }
+
+function legalPage(path) {
+  const pages = {
+    'legal-terms/privacy-policy': {
+      title: `Privacy Policy | ${BRAND}`,
+      description: `${BRAND} privacy policy. How we collect, use, and protect your personal information.`,
+      h1: 'Privacy Policy',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Privacy Policy', url: '/legal-terms/privacy-policy' }],
+    },
+  };
+  return pages[path] || null;
+}
+
+// ──────────────────────────────────────
+// STRUCTURED DATA BUILDERS
+// ──────────────────────────────────────
+
+function buildBreadcrumbSchema(breadcrumbs) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((b, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": b.name,
+      "item": `${SITE}${b.url}`
+    }))
+  };
+}
+
+function buildFAQSchema(faq) {
+  if (!faq || !faq.length) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a }
+    }))
+  };
+}
+
+function buildWebPageSchema(title, description, canonical) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": title,
+    "description": description,
+    "url": canonical,
+    "isPartOf": { "@type": "WebSite", "name": BRAND, "url": SITE },
+    "publisher": {
+      "@type": "Organization",
+      "name": BRAND,
+      "url": SITE,
+      "logo": `${SITE}/logo-hq.png`,
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-551-201-2377",
+        "contactType": "Sales",
+        "areaServed": ["US", "IN", "GB", "CA", "AU", "AE", "KW"],
+        "availableLanguage": "English"
+      },
+      "sameAs": [
+        "https://linkedin.com/company/franchiseleadspro",
+        "https://twitter.com/franchiseleadspro",
+        "https://facebook.com/franchiseleadspro"
+      ]
+    }
+  };
+}
+
+function buildFAQContent(faq) {
+  if (!faq || !faq.length) return '';
+  const items = faq.map(f => `
+    <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <h3 itemprop="name">${f.q}</h3>
+      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <p itemprop="text">${f.a}</p>
+      </div>
+    </div>`).join('');
+  return `<section><h2>Frequently Asked Questions</h2>${items}</section>`;
+}
+
+// ──────────────────────────────────────
+// HTML BUILDER — Single H1, proper meta
+// ──────────────────────────────────────
+
+function buildHtml({ title, description, h1, content, canonicalPath, breadcrumbs, faq }) {
+  // Enforce limits
+  const safeTitle = truncate(title, 60);
+  const safeDesc = truncate(description, 160);
+  const canonical = `${SITE}${canonicalPath}`;
+
+  const schemas = [buildWebPageSchema(safeTitle, safeDesc, canonical)];
+  if (breadcrumbs && breadcrumbs.length > 1) schemas.push(buildBreadcrumbSchema(breadcrumbs));
+  const faqSchema = buildFAQSchema(faq);
+  if (faqSchema) schemas.push(faqSchema);
+
+  const schemaScripts = schemas.map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n  ');
+  const faqHtml = buildFAQContent(faq);
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${safeTitle}</title>
+  <meta name="description" content="${safeDesc}">
+  <link rel="canonical" href="${canonical}">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta property="og:title" content="${safeTitle}">
+  <meta property="og:description" content="${safeDesc}">
+  <meta property="og:url" content="${canonical}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="${BRAND}">
+  <meta property="og:image" content="${SITE}/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${safeTitle}">
+  <meta name="twitter:description" content="${safeDesc}">
+  <meta name="twitter:image" content="${SITE}/og-image.png">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png">
+  ${schemaScripts}
+</head>
+<body>
+  ${buildNav()}
+  <main>
+    <h1>${h1}</h1>
+    ${content || `<p>${safeDesc}</p>`}
+    ${faqHtml}
+  </main>
+  ${buildFooter()}
+</body>
+</html>`;
+}
+
+// ──────────────────────────────────────
+// HANDLER
+// ──────────────────────────────────────
 
 export default function handler(req, res) {
   try {
     const rawPath = (req.query.path || '').replace(/^\/+|\/+$/g, '');
     const segments = rawPath.split('/').filter(Boolean);
-    
     let pageData;
     const canonicalPath = rawPath ? `/${rawPath}` : '/';
 
-    // Route matching
     if (!rawPath || rawPath === 'index.html') {
       pageData = homePage();
-    }
-    // /blog/:slug
-    else if (segments[0] === 'blog' && segments[1]) {
+    } else if (segments[0] === 'blog' && segments[1]) {
       pageData = blogPostPage(segments[1]);
-    }
-    // /locations/:country/:state?/:city?
-    else if (segments[0] === 'locations') {
+    } else if (segments[0] === 'locations') {
       const [, country, state, city] = segments;
-      if (country) {
-        pageData = locationPage(country, state, city);
-      }
-    }
-    // /services/:keyword
-    else if (segments[0] === 'services' && segments[1]) {
+      if (country) pageData = locationPage(country, state, city);
+    } else if (segments[0] === 'services' && segments[1]) {
       pageData = keywordPage(segments[1]);
-    }
-    // /legal-terms/*
-    else if (segments[0] === 'legal-terms') {
+    } else if (segments[0] === 'legal-terms') {
       pageData = legalPage(rawPath);
-    }
-    // /:service/:country/:state/:city? (service-location pages)
-    else if (segments.length >= 3 && segments[0] !== 'locations' && segments[0] !== 'blog' && segments[0] !== 'legal-terms' && segments[0] !== 'admin') {
+    } else if (segments.length >= 3 && !['locations','blog','legal-terms','admin','sitemap'].includes(segments[0])) {
       pageData = serviceLocationPage(segments[0], segments[1], segments[2], segments[3]);
-    }
-    // Static pages
-    else {
+    } else {
       pageData = staticPage(rawPath);
     }
 
     if (!pageData) {
       pageData = {
-        title: 'Page Not Found | FranchiseLeadsPro',
+        title: `Page Not Found | ${BRAND}`,
         description: 'The page you are looking for could not be found.',
         h1: 'Page Not Found',
-        content: '<p>Sorry, this page does not exist. <a href="/">Return to FranchiseLeadsPro homepage</a>.</p>'
+        content: `<p>Sorry, this page does not exist. <a href="/">Return to homepage</a>.</p>`,
+        breadcrumbs: [{ name: 'Home', url: '/' }],
       };
       const html = buildHtml({ ...pageData, canonicalPath });
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
@@ -495,13 +574,11 @@ export default function handler(req, res) {
     }
 
     const html = buildHtml({ ...pageData, canonicalPath });
-    
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=604800');
     res.status(200).send(html);
   } catch (err) {
-    // Catch any unexpected errors to prevent 5xx
-    const fallbackHtml = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>FranchiseLeadsPro</title><meta name="robots" content="index, follow"><link rel="canonical" href="${SITE}/${(req.query.path || '').replace(/^\/+|\/+$/g, '')}"></head><body><h1>FranchiseLeadsPro</h1><p>Visit <a href="${SITE}">FranchiseLeadsPro</a> for franchise lead generation, marketing, and IT services.</p></body></html>`;
+    const fallbackHtml = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>${BRAND}</title><meta name="robots" content="index, follow"><link rel="canonical" href="${SITE}/${(req.query.path || '').replace(/^\/+|\/+$/g, '')}"></head><body><h1>${BRAND}</h1><p>Visit <a href="${SITE}">${BRAND}</a> for franchise lead generation, marketing, and IT services.</p></body></html>`;
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.status(200).send(fallbackHtml);
   }
