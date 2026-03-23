@@ -490,11 +490,12 @@ function buildFAQContent(faq) {
 // HTML BUILDER — Single H1, proper meta
 // ──────────────────────────────────────
 
-function buildHtml({ title, description, h1, content, canonicalPath, breadcrumbs, faq }) {
+function buildHtml({ title, description, h1, content, canonicalPath, breadcrumbs, faq, noindex }) {
   // Enforce limits
   const safeTitle = truncate(title, 60);
   const safeDesc = truncate(description, 160);
   const canonical = `${SITE}${canonicalPath}`;
+  const robotsContent = noindex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large';
 
   const schemas = [buildWebPageSchema(safeTitle, safeDesc, canonical)];
   if (breadcrumbs && breadcrumbs.length > 1) schemas.push(buildBreadcrumbSchema(breadcrumbs));
@@ -512,7 +513,7 @@ function buildHtml({ title, description, h1, content, canonicalPath, breadcrumbs
   <title>${safeTitle}</title>
   <meta name="description" content="${safeDesc}">
   <link rel="canonical" href="${canonical}">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="robots" content="${robotsContent}">
   <meta property="og:title" content="${safeTitle}">
   <meta property="og:description" content="${safeDesc}">
   <meta property="og:url" content="${canonical}">
