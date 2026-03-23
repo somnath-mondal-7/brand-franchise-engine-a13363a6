@@ -425,6 +425,49 @@ serve(async (req) => {
 
     console.log(`✅ Saved: ${savedPost.id} (${wordCount} words, ${readTime} min read)`);
 
+    // Auto-ping search engines after publishing
+    if (!publishAsDraft) {
+      try {
+        const postUrl = `https://www.franchiseleadspro.com/blog/${blogPost.slug}`;
+        const sitemapUrls = [
+          'https://www.franchiseleadspro.com/sitemap.xml',
+          'https://www.franchiseleadspro.com/sitemap-blog.xml',
+        ];
+
+        const pingRequests: Promise<Response>[] = [];
+
+        // Ping Google & Bing for sitemap re-crawl
+        for (const sm of sitemapUrls) {
+          pingRequests.push(fetch(`https://www.google.com/ping?sitemap=${encodeURIComponent(sm)}`));
+          pingRequests.push(fetch(`https://www.bing.com/ping?sitemap=${encodeURIComponent(sm)}`));
+        }
+
+        // IndexNow ping to Bing/Yandex for instant discovery
+        const indexNowKey = '8c9d4e5f6a7b8c9d0e1f2a3b4c5d6e7f';
+        pingRequests.push(
+          fetch('https://api.indexnow.org/indexnow', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              host: 'www.franchiseleadspro.com',
+              key: indexNowKey,
+              keyLocation: `https://www.franchiseleadspro.com/${indexNowKey}.txt`,
+              urlList: [postUrl],
+            }),
+          })
+        );
+
+        // Warm the post URL cache
+        pingRequests.push(fetch(postUrl, { method: 'GET' }));
+
+        const results = await Promise.allSettled(pingRequests);
+        const ok = results.filter(r => r.status === 'fulfilled').length;
+        console.log(`🔔 Search engine ping: ${ok}/${results.length} successful`);
+      } catch (pingErr) {
+        console.error('Ping failed (non-fatal):', pingErr);
+      }
+    }
+
     return new Response(
       JSON.stringify({ 
         success: true, 
