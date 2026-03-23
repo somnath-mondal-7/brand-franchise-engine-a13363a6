@@ -560,6 +560,15 @@ export default function handler(req, res) {
       pageData = keywordPage(segments[1]);
     } else if (segments[0] === 'legal-terms') {
       pageData = legalPage(rawPath);
+    } else if (['search', 'session-demo', 'admin', 'blog-admin', 'auto-blog-admin', 'sitemap-generator'].includes(segments[0])) {
+      // Non-indexable pages — return noindex
+      pageData = {
+        title: `${slugToTitle(segments[0])} | ${BRAND}`,
+        description: `${BRAND} ${slugToTitle(segments[0]).toLowerCase()} page.`,
+        h1: slugToTitle(segments[0]),
+        breadcrumbs: [{ name: 'Home', url: '/' }],
+        noindex: true,
+      };
     } else if (segments.length >= 3 && !['locations','blog','legal-terms','admin','sitemap'].includes(segments[0])) {
       pageData = serviceLocationPage(segments[0], segments[1], segments[2], segments[3]);
     } else {
