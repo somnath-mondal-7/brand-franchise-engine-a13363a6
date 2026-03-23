@@ -405,6 +405,12 @@ function legalPage(path) {
       h1: 'Privacy Policy',
       breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Privacy Policy', url: '/legal-terms/privacy-policy' }],
     },
+    'legal-terms/refund-satisfaction-guarantee-policy': {
+      title: `Refund & Guarantee Policy | ${BRAND}`,
+      description: `${BRAND} refund and satisfaction guarantee policy. Our commitment to client satisfaction.`,
+      h1: 'Refund & Satisfaction Guarantee Policy',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Refund Policy', url: '/legal-terms/refund-satisfaction-guarantee-policy' }],
+    },
   };
   return pages[path] || null;
 }
@@ -484,11 +490,12 @@ function buildFAQContent(faq) {
 // HTML BUILDER — Single H1, proper meta
 // ──────────────────────────────────────
 
-function buildHtml({ title, description, h1, content, canonicalPath, breadcrumbs, faq }) {
+function buildHtml({ title, description, h1, content, canonicalPath, breadcrumbs, faq, noindex }) {
   // Enforce limits
   const safeTitle = truncate(title, 60);
   const safeDesc = truncate(description, 160);
   const canonical = `${SITE}${canonicalPath}`;
+  const robotsContent = noindex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large';
 
   const schemas = [buildWebPageSchema(safeTitle, safeDesc, canonical)];
   if (breadcrumbs && breadcrumbs.length > 1) schemas.push(buildBreadcrumbSchema(breadcrumbs));
@@ -506,7 +513,7 @@ function buildHtml({ title, description, h1, content, canonicalPath, breadcrumbs
   <title>${safeTitle}</title>
   <meta name="description" content="${safeDesc}">
   <link rel="canonical" href="${canonical}">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="robots" content="${robotsContent}">
   <meta property="og:title" content="${safeTitle}">
   <meta property="og:description" content="${safeDesc}">
   <meta property="og:url" content="${canonical}">
@@ -554,6 +561,15 @@ export default function handler(req, res) {
       pageData = keywordPage(segments[1]);
     } else if (segments[0] === 'legal-terms') {
       pageData = legalPage(rawPath);
+    } else if (['search', 'session-demo', 'admin', 'blog-admin', 'auto-blog-admin', 'sitemap-generator'].includes(segments[0])) {
+      // Non-indexable pages — return noindex
+      pageData = {
+        title: `${slugToTitle(segments[0])} | ${BRAND}`,
+        description: `${BRAND} ${slugToTitle(segments[0]).toLowerCase()} page.`,
+        h1: slugToTitle(segments[0]),
+        breadcrumbs: [{ name: 'Home', url: '/' }],
+        noindex: true,
+      };
     } else if (segments.length >= 3 && !['locations','blog','legal-terms','admin','sitemap'].includes(segments[0])) {
       pageData = serviceLocationPage(segments[0], segments[1], segments[2], segments[3]);
     } else {

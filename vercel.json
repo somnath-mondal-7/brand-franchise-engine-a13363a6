@@ -39,12 +39,19 @@
     }
   ],
   "rewrites": [
+    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+    { "source": "/sitemaps/:path*", "destination": "/sitemaps/:path*" },
     { "source": "/sitemap-blog.xml", "destination": "https://yquuidpajigvecyonqir.supabase.co/functions/v1/blog-sitemap" },
+    { "source": "/robots.txt", "destination": "/robots.txt" },
     { "source": "/llms.txt", "destination": "/llms.txt" },
     { "source": "/llms-full.txt", "destination": "/llms-full.txt" },
-    { "source": "/robots.txt", "destination": "/robots.txt" },
+    { "source": "/favicon.ico", "destination": "/favicon.ico" },
+    { "source": "/favicon-:size.png", "destination": "/favicon-:size.png" },
+    { "source": "/og-image.png", "destination": "/og-image.png" },
+    { "source": "/logo-hq.png", "destination": "/logo-hq.png" },
+    { "source": "/apple-touch-icon.png", "destination": "/apple-touch-icon.png" },
     {
-      "source": "/((?!api|_next|static|favicon|robots|sitemap|og-image|logo|apple-touch|assets|src).*)",
+      "source": "/((?!api|_next|static|favicon|robots|sitemap|og-image|logo|apple-touch|assets|src|site\\.webmanifest).*)",
       "has": [
         {
           "type": "header",
@@ -58,15 +65,40 @@
   ],
   "headers": [
     {
-      "source": "/(.*)\\.xml",
+      "source": "/sitemap.xml",
       "headers": [
-        { "key": "Content-Type", "value": "application/xml; charset=utf-8" }
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=86400" },
+        { "key": "X-Robots-Tag", "value": "noindex" }
+      ]
+    },
+    {
+      "source": "/sitemaps/(.*)\\.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=86400" },
+        { "key": "X-Robots-Tag", "value": "noindex" }
+      ]
+    },
+    {
+      "source": "/sitemap-blog.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=86400" },
+        { "key": "X-Robots-Tag", "value": "noindex" }
       ]
     },
     {
       "source": "/robots\\.txt",
       "headers": [
-        { "key": "Content-Type", "value": "text/plain; charset=utf-8" }
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/favicon(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800, immutable" }
       ]
     },
     {
