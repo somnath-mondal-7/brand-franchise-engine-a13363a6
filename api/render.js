@@ -405,6 +405,12 @@ function legalPage(path) {
       h1: 'Privacy Policy',
       breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Privacy Policy', url: '/legal-terms/privacy-policy' }],
     },
+    'legal-terms/refund-satisfaction-guarantee-policy': {
+      title: `Refund & Guarantee Policy | ${BRAND}`,
+      description: `${BRAND} refund and satisfaction guarantee policy. Our commitment to client satisfaction.`,
+      h1: 'Refund & Satisfaction Guarantee Policy',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Refund Policy', url: '/legal-terms/refund-satisfaction-guarantee-policy' }],
+    },
   };
   return pages[path] || null;
 }
