@@ -14,6 +14,7 @@ import BlogAdmin from "./pages/BlogAdmin";
 import AutoBlogAdmin from "./pages/AutoBlogAdmin";
 import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
 import Testimonials from "./pages/Testimonials";
+import CaseStudies from "./pages/CaseStudies";
 import Contact from "./pages/Contact";
 import FranchiseLeadsUSA from "./pages/FranchiseLeadsUSA";
 import FranchiseLeadsUK from "./pages/FranchiseLeadsUK";
