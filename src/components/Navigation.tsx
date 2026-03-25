@@ -33,6 +33,7 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-6 ml-6">
             <Link to="/" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">Home</Link>
+            <Link to="/case-studies" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">Case Studies</Link>
             <Link to="/blog" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">Blog</Link>
             <Link to="/contact" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">Contact Us</Link>
           </div>
