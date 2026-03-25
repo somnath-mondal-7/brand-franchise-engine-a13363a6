@@ -393,6 +393,38 @@ function staticPage(path) {
       h1: 'Franchise Lead Generation in Kuwait',
       breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Kuwait', url: '/franchise-leads-kuwait' }],
     },
+    'case-studies': {
+      title: `Case Studies | Franchise Lead Generation Success Stories | ${BRAND}`,
+      description: 'See how franchise consultants like Jesica Thompson generated 847+ qualified leads with paid advertising, CRM management, and inbound lead strategies.',
+      h1: 'Real Results. Real Clients.',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Case Studies', url: '/case-studies' }],
+      content: `
+        <section>
+          <h2>Featured Case Study — Franchise Solutions Inc.</h2>
+          <p>Jesica Thompson, a veteran franchise consultant at Franchise Solutions Inc., partnered with ${BRAND} to scale her digital presence and generate a consistent flow of qualified inbound leads.</p>
+          <h3>Services Delivered</h3>
+          <ul>
+            <li>Paid Advertising (Google Ads + Meta Ads)</li>
+            <li>CRM Setup & Automation</li>
+            <li>Website Inbound Lead Optimization</li>
+            <li>Franchise Inquiry Management</li>
+            <li>Weekly Performance Reporting</li>
+          </ul>
+          <h3>Results</h3>
+          <ul>
+            <li>847 Inbound Leads Generated</li>
+            <li>213 Qualified Investor Meetings</li>
+            <li>27 Franchise Deals Closed</li>
+            <li>6.2x Ad Spend ROI</li>
+          </ul>
+          <blockquote>"${BRAND} didn't just bring us leads — they brought us the right leads. Our pipeline went from sporadic referrals to a predictable stream of serious franchise investors."<br>— Jesica Thompson, Franchise Consultant, Franchise Solutions Inc.</blockquote>
+        </section>
+        <section>
+          <h2>Want Results Like These?</h2>
+          <p>Book a free strategy call and let us show you how we can fill your pipeline with qualified franchise investors. <a href="/contact">Get started</a> or call ${PHONE}.</p>
+        </section>
+      `,
+    },
   };
   return pages[path] || null;
 }
