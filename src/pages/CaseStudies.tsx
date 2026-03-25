@@ -37,7 +37,7 @@ const caseStudies = [
       "Weekly Performance Reporting",
     ],
     quote:
-      "FranchiseLeadsPro didn't just bring us leads — they brought us the right leads. Our pipeline went from sporadic referrals to a predictable stream of serious franchise investors. The CRM automation alone saved my team 15+ hours a week. This partnership has been a game-changer for Franchise Solutions Inc.",
+      "FranchiseLeadsPro didn't just bring us leads — they brought us the right leads. Our pipeline went from sporadic referrals to a predictable stream of serious franchise investors. The CRM automation alone saved my team 15+ hours a week. In just 5 months, we closed 8 deals — that's a game-changer for Franchise Solutions Inc.",
   },
 ];
 
