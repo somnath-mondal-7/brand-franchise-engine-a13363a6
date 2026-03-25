@@ -26,7 +26,7 @@ const caseStudies = [
     stats: [
       { label: "Inbound Leads Generated", value: "847" },
       { label: "Qualified Investor Meetings", value: "213" },
-      { label: "Franchise Deals Closed", value: "38" },
+      { label: "Franchise Deals Closed", value: "27" },
       { label: "Ad Spend ROI", value: "6.2x" },
     ],
     services: [
