@@ -26,7 +26,7 @@ const caseStudies = [
     stats: [
       { label: "Inbound Leads Generated", value: "847" },
       { label: "Qualified Investor Meetings", value: "213" },
-      { label: "Franchise Deals Closed", value: "38" },
+      { label: "Franchise Deals Closed", value: "27" },
       { label: "Ad Spend ROI", value: "6.2x" },
     ],
     services: [
@@ -54,6 +54,16 @@ const CaseStudies = () => {
         />
         <link rel="canonical" href="https://www.franchiseleadspro.com/case-studies" />
         <meta name="robots" content="index, follow" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.franchiseleadspro.com/case-studies" />
+        <meta property="og:title" content="Case Studies | Franchise Lead Generation Success Stories" />
+        <meta property="og:description" content="See how Jesica Thompson generated 847+ qualified leads and 27 franchise deals with FranchiseLeadsPro's paid advertising and CRM strategies." />
+        <meta property="og:image" content="https://www.franchiseleadspro.com/og-image.png" />
+        <meta property="og:site_name" content="FranchiseLeadsPro" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Case Studies | Franchise Lead Generation Success Stories" />
+        <meta name="twitter:description" content="See how Jesica Thompson generated 847+ qualified leads and 27 franchise deals with FranchiseLeadsPro." />
+        <meta name="twitter:image" content="https://www.franchiseleadspro.com/og-image.png" />
       </Helmet>
       <Navigation />
 
