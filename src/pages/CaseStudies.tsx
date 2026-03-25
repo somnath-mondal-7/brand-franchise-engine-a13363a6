@@ -19,10 +19,11 @@ const caseStudies = [
       "Franchise Solutions Inc., led by veteran franchise consultant Jesica Thompson, specializes in connecting aspiring entrepreneurs with high-performing franchise opportunities across the United States. With a reputation for personalized guidance and deep industry expertise, Jesica needed a partner to amplify her digital presence, generate a consistent flow of qualified inbound leads, and streamline her client management process.",
     narrative:
       "Jesica had built an impressive roster of franchise brands but was relying heavily on word-of-mouth referrals and networking events. She knew the digital landscape held untapped potential — but lacked the bandwidth to execute paid campaigns, manage a CRM pipeline, and optimize her website for lead capture simultaneously.\n\nPartnering with FranchiseLeadsPro, we deployed a full-stack growth engine: high-converting paid advertising campaigns across Google and Meta, a custom CRM integration to automate lead nurturing, and a website inbound strategy that turned her site into a 24/7 lead generation machine. Franchise inquiries started pouring in — qualified investors actively searching for opportunities landed on her site and converted at rates she hadn't seen before.",
-    timeline: {
-      launched: "November 12, 2024",
-      duration: "5 months with FranchiseLeadsPro",
-    },
+    engagement: [
+      { label: "Partnership Started", value: "Q4 2024" },
+      { label: "Services Duration", value: "Ongoing (5+ months)" },
+      { label: "Results Measured Over", value: "First 5 months" },
+    ],
     stats: [
       { label: "Inbound Leads Generated", value: "312" },
       { label: "Qualified Investor Meetings", value: "47" },
@@ -142,14 +143,18 @@ const CaseStudies = () => {
                   ))}
                 </div>
 
-                {/* Timeline */}
+                {/* Engagement Summary */}
                 <div>
-                  <h3 className="text-lg font-bold text-foreground mb-3">Timeline</h3>
+                  <h3 className="text-lg font-bold text-foreground mb-3">Engagement Summary</h3>
                   <hr className="border-border mb-4" />
-                  <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                    <li>Launched service on {study.timeline.launched}</li>
-                    <li>{study.timeline.duration}</li>
-                  </ul>
+                  <div className="space-y-3">
+                    {study.engagement.map((item) => (
+                      <div key={item.label} className="flex justify-between items-center">
+                        <span className="text-muted-foreground">{item.label}</span>
+                        <span className="font-semibold text-foreground">{item.value}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Stats */}
