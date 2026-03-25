@@ -60,6 +60,7 @@ const Navigation = () => {
         <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0'}`}>
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-100 overflow-y-auto max-h-[75vh]">
             <Link to="/" className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors duration-200" onClick={toggleMenu}>Home</Link>
+            <Link to="/case-studies" className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors duration-200" onClick={toggleMenu}>Case Studies</Link>
             <Link to="/blog" className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors duration-200" onClick={toggleMenu}>Blog</Link>
             <Link to="/contact" className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors duration-200" onClick={toggleMenu}>Contact Us</Link>
             <div className="px-3 py-3 space-y-2 border-t border-gray-100 mt-2">
