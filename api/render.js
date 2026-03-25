@@ -412,10 +412,10 @@ function staticPage(path) {
           </ul>
           <h3>Results</h3>
           <ul>
-            <li>847 Inbound Leads Generated</li>
-            <li>213 Qualified Investor Meetings</li>
-            <li>27 Franchise Deals Closed</li>
-            <li>6.2x Ad Spend ROI</li>
+            <li>312 Inbound Leads Generated</li>
+            <li>47 Qualified Investor Meetings</li>
+            <li>8 Franchise Deals Closed</li>
+            <li>4.1x Ad Spend ROI</li>
           </ul>
           <blockquote>"${BRAND} didn't just bring us leads — they brought us the right leads. Our pipeline went from sporadic referrals to a predictable stream of serious franchise investors."<br>— Jesica Thompson, Franchise Consultant, Franchise Solutions Inc.</blockquote>
         </section>
