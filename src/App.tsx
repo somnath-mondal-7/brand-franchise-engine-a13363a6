@@ -88,6 +88,7 @@ const App = () => (
               </ProtectedAdminRoute>
             } />
             <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/sitemap" element={<Sitemap />} />
             <Route path="/sitemap-blog.xml" element={<BlogSitemap />} />
