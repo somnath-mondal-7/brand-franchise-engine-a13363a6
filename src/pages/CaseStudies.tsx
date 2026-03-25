@@ -143,14 +143,18 @@ const CaseStudies = () => {
                   ))}
                 </div>
 
-                {/* Timeline */}
+                {/* Engagement Summary */}
                 <div>
-                  <h3 className="text-lg font-bold text-foreground mb-3">Timeline</h3>
+                  <h3 className="text-lg font-bold text-foreground mb-3">Engagement Summary</h3>
                   <hr className="border-border mb-4" />
-                  <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                    <li>Launched service on {study.timeline.launched}</li>
-                    <li>{study.timeline.duration}</li>
-                  </ul>
+                  <div className="space-y-3">
+                    {study.engagement.map((item) => (
+                      <div key={item.label} className="flex justify-between items-center">
+                        <span className="text-muted-foreground">{item.label}</span>
+                        <span className="font-semibold text-foreground">{item.value}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Stats */}
