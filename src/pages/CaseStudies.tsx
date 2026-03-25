@@ -24,10 +24,10 @@ const caseStudies = [
       duration: "5 months with FranchiseLeadsPro",
     },
     stats: [
-      { label: "Inbound Leads Generated", value: "847" },
-      { label: "Qualified Investor Meetings", value: "213" },
-      { label: "Franchise Deals Closed", value: "27" },
-      { label: "Ad Spend ROI", value: "6.2x" },
+      { label: "Inbound Leads Generated", value: "312" },
+      { label: "Qualified Investor Meetings", value: "47" },
+      { label: "Franchise Deals Closed", value: "8" },
+      { label: "Ad Spend ROI", value: "4.1x" },
     ],
     services: [
       "Paid Advertising (Google Ads + Meta Ads)",
