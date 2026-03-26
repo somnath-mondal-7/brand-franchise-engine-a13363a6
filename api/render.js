@@ -147,6 +147,87 @@ function homePage() {
   };
 }
 
+function getCountryInsight(code) {
+  const data = {
+    usa: {
+      economy: "The United States has a $25.5 trillion GDP and hosts the world's largest franchise industry with over 790,000 franchise establishments generating $827 billion in economic output annually.",
+      climate: "The US franchise sector employs 8.4 million people and accounts for approximately 3% of GDP. The FTC Franchise Rule governs franchise sales nationally, with 15 states requiring additional registration.",
+      industries: ["Quick-service restaurants", "Business services", "Personal services", "Home services", "Fitness", "Education"],
+      investment: "$50K – $5M+ across all concepts",
+      regulation: "Federal FTC Rule requires a Franchise Disclosure Document (FDD) with 23 mandatory items. State laws vary from non-registration to full registration requirements.",
+      demographics: "331 million residents with strong entrepreneurial culture — 32% of Americans express interest in business ownership, with franchising as a preferred entry path.",
+      growth: "US franchise output is projected to grow 4.2% annually through 2028, with technology-enabled services and health/wellness concepts leading growth.",
+    },
+    uk: {
+      economy: "The UK's $3.1 trillion economy supports a mature franchise sector contributing £17.2 billion annually, with over 48,000 franchise businesses operating nationwide.",
+      climate: "The British Franchise Association (BFA) provides voluntary self-regulation. General contract law, competition law, and consumer protection regulations apply to franchise relationships.",
+      industries: ["Hotel & catering", "Personal services", "Business services", "Property services", "Health & fitness", "Cleaning services"],
+      investment: "£10K – £1M+ depending on concept",
+      regulation: "No mandatory franchise registration in the UK. The BFA provides an ethical framework and accreditation system. EU-derived competition law and block exemption regulations influence franchise agreements.",
+      demographics: "67 million residents with high franchise awareness — the BFA reports franchise sector employment of 710,000 people with a failure rate below 5%.",
+      growth: "UK franchise sector grew 2.8% in the latest survey. Home-based and low-investment franchises are the fastest-growing segment.",
+    },
+    india: {
+      economy: "India's $3.7 trillion economy is the world's fifth-largest and fastest-growing major economy. The franchise industry is valued at ₹70,000 crore ($50B) with 4,600+ franchise systems.",
+      climate: "India has no specific franchise legislation, operating under the Indian Contract Act. The market is growing at 30-35% annually, making it the fastest-growing franchise market globally.",
+      industries: ["Food & beverage", "Education & coaching", "Health & beauty", "Retail", "IT services", "Apparel"],
+      investment: "₹5 lakhs – ₹5 crores ($6K – $600K) depending on concept",
+      regulation: "No franchise-specific legislation exists. Franchise agreements are governed by the Indian Contract Act 1872, with FDI norms applicable for international franchisors.",
+      demographics: "1.4 billion people with median age of 28.4 years — the youngest major economy. Rising middle class (500M+) drives demand across tier-1, tier-2, and tier-3 cities.",
+      growth: "India adds 1,200+ new franchise outlets monthly. Tier-2 and tier-3 cities now account for 55% of new franchise growth.",
+    },
+    canada: {
+      economy: "Canada's $2.1 trillion economy is supported by strong resource, technology, and financial sectors. The franchise industry contributes $100 billion annually with 76,000+ franchise units.",
+      climate: "Canada has province-specific franchise legislation, with Alberta, Ontario, Manitoba, New Brunswick, PEI, and British Columbia having enacted franchise-specific statutes.",
+      industries: ["Food service", "Retail", "Automotive services", "Business services", "Health & wellness", "Education"],
+      investment: "CAD $100K – $2M depending on concept and province",
+      regulation: "Six provinces have franchise-specific legislation requiring disclosure documents 14 days before signing. Ontario's Arthur Wishart Act is the most comprehensive.",
+      demographics: "39 million residents with strong immigration driving population growth of 2.7%. Multicultural demographics create opportunities for diverse franchise concepts.",
+      growth: "Canadian franchise sector is growing at 3.5% annually with strong demand in suburban markets around Toronto, Vancouver, and Calgary.",
+    },
+    australia: {
+      economy: "Australia's $1.7 trillion economy supports approximately 97,000 franchise units across 1,200+ franchise systems, making it one of the most franchised economies per capita.",
+      climate: "Australia's franchise sector is regulated by the Franchising Code of Conduct under the Competition and Consumer Act 2010, enforced by the ACCC.",
+      industries: ["Food & beverage", "Retail", "Home services", "Fitness", "Education", "Cleaning services"],
+      investment: "AUD $50K – $2M+ depending on concept",
+      regulation: "The Franchising Code of Conduct is mandatory, covering disclosure, cooling-off periods, dispute resolution, and end-of-term arrangements. ACCC actively enforces compliance.",
+      demographics: "26 million residents concentrated in major coastal cities. High median household income ($AUD 95,000) supports premium franchise concepts.",
+      growth: "Australian franchising grew 2.1% in the latest census. Home services and health/wellness franchises are outperforming traditional retail.",
+    },
+    dubai: {
+      economy: "The UAE's $500 billion economy is driven by oil, tourism, real estate, and a rapidly diversifying service sector. Dubai and Abu Dhabi serve as franchise hubs for the entire Middle East.",
+      climate: "The UAE franchise market is valued at $27 billion with approximately 1,000 franchise brands. Free zones offer 100% foreign ownership for international franchise entry.",
+      industries: ["Food & beverage", "Retail", "Education", "Health & beauty", "Fitness", "Business services"],
+      investment: "AED 200K – 10M ($55K – $2.7M) depending on concept and free zone",
+      regulation: "No specific franchise law exists, but the UAE Commercial Agencies Law and individual emirate regulations apply. Free zones like DMCC and DIFC offer favorable setups.",
+      demographics: "9.9 million residents with 88% expatriate population. High disposable income and cosmopolitan consumer base drive demand for international brands.",
+      growth: "UAE franchise sector is growing at 27% annually. Expo legacy zones and new residential communities create continuous expansion opportunities.",
+    },
+    kuwait: {
+      economy: "Kuwait's $180 billion economy is oil-driven but actively diversifying. The government's New Kuwait 2035 vision emphasizes private sector growth and SME development.",
+      climate: "Kuwait's franchise market is growing with approximately 300 franchise brands. The government actively supports franchise investment as part of economic diversification.",
+      industries: ["Food & beverage", "Retail", "Education", "Health & fitness", "Automotive", "Personal services"],
+      investment: "KWD 20K – 500K ($65K – $1.6M) depending on concept",
+      regulation: "Kuwait's Commercial Law governs franchise relationships. Foreign franchisors typically need a local Kuwaiti partner or agent, though free trade zone exceptions exist.",
+      demographics: "4.3 million residents with 70% under age 40. High GDP per capita ($33,000) and strong consumer spending drive premium franchise demand.",
+      growth: "Kuwait's franchise market is projected to grow 15% annually through 2030 as Vision 2035 creates new commercial zones.",
+    },
+  };
+  const key = code.toLowerCase().replace('ae','dubai').replace('ca','canada').replace('au','australia').replace('in','india');
+  return data[key] || data['usa'];
+}
+
+const usaStateData = {
+  california: { economy: "California's $3.6 trillion GDP makes it the world's fifth-largest economy, leading in tech, entertainment, agriculture, and professional services.", industries: "quick-service restaurants, fitness & wellness, home services, tech-enabled services, education, and senior care", regulation: "California requires franchise registration with the Department of Financial Protection and Innovation. Annual filing and a CA-specific FDD addendum are mandatory.", demographics: "39.5 million residents, median household income $84,907. Diverse, health-conscious population drives wellness, organic food, and education franchise demand.", growth: "Franchise employment grew 3.2% YoY. Emerging markets in the Inland Empire and Central Valley offer lower entry costs.", investment: "$150K – $2M+" },
+  texas: { economy: "Texas boasts a $2.0 trillion economy driven by energy, tech, healthcare, and manufacturing. No state income tax attracts franchisors and franchisees.", industries: "fast-casual dining, home improvement, automotive services, healthcare, commercial cleaning, and pet services", regulation: "Texas is a non-registration state — only federal FTC compliance required. The Deceptive Trade Practices Act provides additional franchisee protections.", demographics: "30+ million residents with 1.5% annual population growth. Young median age (34.8) and strong household formation drive demand.", growth: "Texas added more franchise jobs than any state recently. DFW, Houston, Austin, and San Antonio all rank in the top 20 US franchise markets.", investment: "$100K – $1.5M" },
+  "new-york": { economy: "New York's $1.9 trillion economy is anchored by financial services, media, technology, healthcare, and tourism. NYC alone has a GDP larger than most countries.", industries: "quick-service & fast-casual dining, fitness studios, personal services, real estate services, education, and business services", regulation: "New York is a franchise registration state. Franchisors must register with the NY Attorney General and comply with the state's Franchise Sales Act.", demographics: "19.8 million residents with the highest density of high-net-worth individuals in the US. Strong demand for premium, convenience-oriented franchises.", growth: "Post-pandemic recovery accelerated franchise growth in suburban areas like Westchester, Long Island, and the Hudson Valley.", investment: "$200K – $3M+ in NYC metro; $100K – $1M upstate" },
+  florida: { economy: "Florida's $1.4 trillion economy is driven by tourism, real estate, agriculture, aerospace, and a growing tech sector. No state income tax boosts franchise investment.", industries: "hospitality & food service, senior care, pool & outdoor services, real estate, fitness & wellness, and insurance", regulation: "Florida's Franchise Relationship Act governs terminations and non-renewals. FDD filing with the Division of Consumer Services is required.", demographics: "22.2 million residents with the fastest-growing 65+ population in the US, creating exceptional opportunities in senior care and healthcare franchises.", growth: "Franchise sector grew 4.1% YoY, driven by continued population influx from northern states and expanding suburban corridors.", investment: "$100K – $1.5M" },
+  illinois: { economy: "Illinois' $950B economy is anchored by Chicago's financial, manufacturing, and transportation sectors. Major Midwest hub for franchise headquarters.", industries: "restaurant & food service, business consulting, staffing, automotive care, education, and commercial cleaning", regulation: "Illinois is a franchise registration state with the Franchise Disclosure Act. Annual registration and relationship law protections apply.", demographics: "12.8 million residents. Chicago metro accounts for 75% of economic output. Diverse workforce supports franchise operations.", growth: "Suburban Chicago markets like Naperville, Schaumburg, and Aurora see strong franchise expansion as remote work shifts consumer spending.", investment: "$100K – $1.5M" },
+  georgia: { economy: "Georgia's $730B economy benefits from its position as the Southeast logistics hub with the world's busiest airport and a major deep-water port.", industries: "quick-service restaurants, home services, fitness, childcare, commercial cleaning, and logistics", regulation: "Georgia is a non-registration state. Only federal FTC compliance required. The Fair Business Practices Act provides general consumer protections.", demographics: "10.9 million residents. Atlanta metro growing at 1.2% annually. Young, educated workforce with median age 36.9.", growth: "Metro Atlanta suburbs — Gwinnett, Forsyth, Cherokee — are among the fastest-growing franchise markets in the Southeast.", investment: "$80K – $1.2M" },
+  ohio: { economy: "Ohio's $700B economy is driven by manufacturing, healthcare, financial services, and a growing tech sector centered around Columbus.", industries: "food service, healthcare services, automotive, home improvement, education, and business services", regulation: "Ohio is a franchise registration state through the Department of Commerce. Franchisors must file annually.", demographics: "11.8 million residents. Columbus metro is one of the fastest-growing in the Midwest with a young, educated workforce.", growth: "Columbus and Cincinnati suburbs are seeing increased franchise investment, particularly in home services and healthcare.", investment: "$80K – $1.2M" },
+  pennsylvania: { economy: "Pennsylvania's $850B economy is anchored by healthcare, pharmaceuticals, manufacturing, and financial services across the Philadelphia and Pittsburgh metros.", industries: "food service, healthcare, education, home services, fitness, and business services", regulation: "Pennsylvania does not require franchise registration beyond federal FTC compliance, but general business registration applies.", demographics: "13 million residents across diverse urban and suburban markets. Philadelphia and Pittsburgh metros offer different demographic profiles.", growth: "Suburban growth corridors around Philadelphia's Main Line and Pittsburgh's northern suburbs are attracting franchise investment.", investment: "$100K – $1.5M" },
+};
+
 function locationPage(country, state, city) {
   const countryName = slugToTitle(country === 'usa' ? 'united-states' : country);
   const stateName = state ? slugToTitle(state) : '';
@@ -159,40 +240,96 @@ function locationPage(country, state, city) {
   if (state) crumbs.push({ name: stateName, url: `/locations/${country}/${state}` });
   if (city) crumbs.push({ name: cityName, url: `/locations/${country}/${state}/${city}` });
 
+  // Get country-level insight
+  const ci = getCountryInsight(country);
+  // Get state-level insight if USA
+  const si = (country === 'usa' && state) ? (usaStateData[state] || null) : null;
+  const industries = si ? si.industries : ci.industries.join(', ');
+  const economy = si ? si.economy : ci.economy;
+  const regulation = si ? si.regulation : ci.regulation;
+  const demographics = si ? si.demographics : ci.demographics;
+  const growth = si ? si.growth : ci.growth;
+  const investment = si ? si.investment : ci.investment;
+
+  // Build rich, unique FAQ
+  const faq = [
+    { q: `What franchise opportunities are strongest in ${locationStr}?`, a: `The top-performing franchise sectors in ${locationStr} include ${industries}. ${growth} Our market analysis identifies specific sub-sectors with the highest ROI potential based on local demographics and competitive landscape.` },
+    { q: `How much capital is needed to invest in a franchise in ${locationStr}?`, a: `Investment requirements in ${locationStr} typically range from ${investment}. This varies based on franchise concept, territory size, and build-out requirements. We match investors with opportunities aligned to their capital and financial goals.` },
+    { q: `What franchise regulations apply in ${locationStr}?`, a: regulation },
+    { q: `How quickly can I get franchise leads in ${locationStr}?`, a: `Most clients begin receiving qualified franchise inquiries within 14–21 days of campaign launch in ${locationStr}. We use LinkedIn outreach, targeted social media, SEO, and paid search to build a multi-channel pipeline. Results improve as we optimize targeting based on response data.` },
+    { q: `Why is ${locationStr} a good market for franchise expansion?`, a: `${demographics} ${growth} These factors combine to make ${locationStr} an attractive market for franchise brands expanding their footprint.` },
+    { q: `Are franchise leads exclusive or shared?`, a: `All franchise leads generated for ${locationStr} campaigns are exclusive to your brand. We never resell or share leads. Each prospect is pre-qualified for investment capacity, location preference, industry interest, and timeline.` },
+  ];
+
   return {
     title: truncate(`Franchise Leads ${locationStr} | ${BRAND}`, 60),
     description: truncate(`Get qualified franchise leads in ${fullLocation}. LinkedIn marketing, social media, website development & IT services for franchise brands.`, 160),
     h1: `Franchise Leads in ${locationStr}`,
     breadcrumbs: crumbs,
-    faq: [
-      { q: `How can I generate franchise leads in ${locationStr}?`, a: `${BRAND} uses LinkedIn outreach, social media ads, SEO, and targeted campaigns to generate qualified franchise investor leads in ${locationStr}.` },
-      { q: `What franchise marketing services are available in ${locationStr}?`, a: `We offer LinkedIn marketing, social media campaigns, website development, SEO, PPC, and IT services in ${locationStr}.` },
-    ],
+    faq,
     content: `
       <section>
-        <h2>Franchise Marketing in ${locationStr}</h2>
-        <p>${BRAND} delivers comprehensive franchise marketing and technology services in ${fullLocation}. We help franchisors, consultants, and brands find qualified investors in this market.</p>
+        <h2>Franchise Lead Generation in ${locationStr}</h2>
+        <p>${BRAND} provides comprehensive franchise lead generation, marketing, and technology services in ${fullLocation}. We help franchisors, franchise consultants, and development companies connect with qualified investors who are ready to explore franchise ownership in this market.</p>
+        <p>${economy}</p>
       </section>
       <section>
-        <h2>Our Services in ${locationStr}</h2>
+        <h2>${locationStr} Franchise Market Overview</h2>
+        <p>${demographics}</p>
+        <p>The leading franchise sectors in ${locationStr} include ${industries}. ${growth}</p>
+        <p>Typical franchise investment in ${locationStr} ranges from ${investment}, depending on the concept, territory size, and build-out requirements.</p>
+      </section>
+      <section>
+        <h2>Our Franchise Marketing & IT Services in ${locationStr}</h2>
         <ul>
-          <li><strong>Franchise Lead Generation</strong> — Targeted campaigns for ${locationStr}</li>
-          <li><strong>LinkedIn Marketing</strong> — Sales Navigator outreach in ${locationStr}</li>
-          <li><strong>Social Media Marketing</strong> — Facebook, Instagram, LinkedIn campaigns</li>
-          <li><strong>Website Development</strong> — High-converting franchise websites</li>
-          <li><strong>SEO & Local SEO</strong> — Dominate search results in ${locationStr}</li>
-          <li><strong>IT & App Development</strong> — Custom technology solutions</li>
+          <li><strong>LinkedIn Marketing & Sales Navigator Outreach</strong> — We use advanced LinkedIn targeting to connect your franchise brand with high-net-worth investors and qualified prospects in ${locationStr}. Our campaigns include personalized connection requests, multi-touch messaging sequences, and meeting booking automation.</li>
+          <li><strong>Social Media Advertising</strong> — Full-spectrum paid and organic campaigns across Facebook, Instagram, LinkedIn, and YouTube targeting franchise investors in the ${locationStr} market. Includes lookalike audiences, retargeting, and conversion-optimized landing pages.</li>
+          <li><strong>Franchise Website Development</strong> — Mobile-first, SEO-optimized franchise websites with lead capture forms, territory maps, investment calculators, and trust-building elements designed to convert ${locationStr} visitors into qualified inquiries.</li>
+          <li><strong>SEO & Local SEO</strong> — Technical SEO, local business optimization, content marketing, and franchise-specific keyword strategies to dominate search results in ${locationStr}.</li>
+          <li><strong>PPC & Google Ads Management</strong> — High-intent search campaigns targeting franchise buyers actively searching for opportunities in ${locationStr}. We manage bid strategy, ad copy testing, and landing page optimization.</li>
+          <li><strong>IT Services & App Development</strong> — Custom web applications, mobile apps (iOS & Android), CRM implementation, marketing automation, and cloud infrastructure for franchise brands operating in ${locationStr}.</li>
         </ul>
       </section>
       <section>
-        <h2>Why ${locationStr} for Franchising?</h2>
-        <p>${locationStr} is a dynamic franchise market with strong demand and a growing pool of investors. Our local expertise helps your brand stand out.</p>
+        <h2>Franchise Regulations in ${locationStr}</h2>
+        <p>${regulation}</p>
+        <p>Our team ensures your franchise marketing campaigns and lead generation strategies comply with all applicable regulations while maximizing your reach to qualified investors in ${locationStr}.</p>
+      </section>
+      <section>
+        <h2>Our 4-Step Process for ${locationStr} Franchise Leads</h2>
+        <ol>
+          <li><strong>Market Research & Strategy</strong> — We analyze the ${locationStr} franchise landscape, identify target demographics, assess competitor positioning, and develop a custom lead generation strategy aligned with your brand's growth goals.</li>
+          <li><strong>Campaign Development & Launch</strong> — Our team builds and launches multi-channel marketing campaigns including LinkedIn outreach, social media ads, SEO content, and PPC campaigns specifically targeting franchise investors in ${locationStr}.</li>
+          <li><strong>Lead Qualification & Delivery</strong> — Every lead is pre-screened for investment capacity, timeline, location preference, and genuine interest in franchise ownership. You receive only qualified, exclusive leads.</li>
+          <li><strong>Optimization & Scaling</strong> — We continuously analyze campaign performance, optimize targeting and messaging, and scale what works to increase your qualified lead volume while maintaining quality standards.</li>
+        </ol>
+      </section>
+      <section>
+        <h2>Why Choose ${BRAND} for ${locationStr}?</h2>
+        <ul>
+          <li>100% franchise-industry focused — we understand FDD compliance, territory mapping, and investor psychology</li>
+          <li>Deep expertise in ${locationStr} market dynamics and consumer behavior</li>
+          <li>Multi-channel approach: LinkedIn + Social + SEO + PPC + Website</li>
+          <li>Exclusive leads — never shared between competing franchisors</li>
+          <li>Transparent reporting with weekly performance dashboards</li>
+          <li>Dedicated account management with direct access to your strategist</li>
+          <li>First qualified leads typically within 14–21 days of launch</li>
+        </ul>
       </section>
       <section>
         <h2>Get Started in ${locationStr}</h2>
-        <p><a href="/contact">Contact us</a> to discuss your franchise strategy in ${locationStr}. Call ${PHONE}.</p>
+        <p>Ready to generate qualified franchise leads in ${locationStr}? <a href="/contact">Schedule a free strategy consultation</a> and our team will analyze your market opportunity, recommend the optimal channel mix, and provide a custom lead generation proposal. Call ${PHONE} or <a href="https://calendly.com/lets-build-your-brand">book online</a>.</p>
       </section>
-      <nav aria-label="Related"><a href="/locations/${country}">All ${countryName} locations</a> | <a href="/services">Services</a> | <a href="/">Home</a></nav>
+      <nav aria-label="Related locations and services">
+        <a href="/locations/${country}">All ${countryName} locations</a> |
+        <a href="/services">All Services</a> |
+        <a href="/franchise-leads-usa">USA Franchise Leads</a> |
+        <a href="/franchise-leads-uk">UK Franchise Leads</a> |
+        <a href="/franchise-leads-india">India Franchise Leads</a> |
+        <a href="/buy-franchise-leads">Buy Franchise Leads</a> |
+        <a href="/blog">Franchise Marketing Blog</a> |
+        <a href="/">Home</a>
+      </nav>
     `
   };
 }
