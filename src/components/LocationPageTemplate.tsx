@@ -111,32 +111,14 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": `How quickly can I get franchise leads in ${location}?`,
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": `Most clients start receiving qualified franchise inquiries within 7-14 days of launching campaigns in ${locationTitle}.`
-                }
-              },
-              {
-                "@type": "Question",
-                "name": `What types of franchises do you work with in ${locationTitle}?`,
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": `We work with food service, retail, health & fitness, home services, education, and automotive franchises in ${location}.`
-                }
-              },
-              {
-                "@type": "Question",
-                "name": `How much do franchise leads cost in ${location}?`,
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": `Lead costs vary by industry, competition level, and target demographic. We offer flexible packages with guaranteed minimum lead volumes.`
-                }
+            "mainEntity": locationFAQs.map(faq => ({
+              "@type": "Question",
+              "name": faq.q,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.a
               }
-            ]
+            }))
           })}
         </script>
       </Helmet>
