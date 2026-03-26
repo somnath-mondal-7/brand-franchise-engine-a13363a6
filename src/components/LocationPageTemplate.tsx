@@ -273,7 +273,7 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
         </div>
       </section>
 
-      {/* FAQ Section - Unique Content */}
+      {/* FAQ Section - Data-Driven Unique Content */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
@@ -281,22 +281,12 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
               Frequently Asked Questions About Franchise Leads in {locationTitle}
             </h2>
             <div className="space-y-6">
-              <div className="bg-card rounded-lg p-6 shadow-sm">
-                <h3 className="text-xl font-semibold mb-3">How quickly can I get franchise leads in {location}?</h3>
-                <p className="text-muted-foreground">Most clients start receiving qualified franchise inquiries within 7-14 days of launching campaigns in {locationTitle}. Our local expertise in {location} allows us to target the right prospects faster than generic lead generation agencies.</p>
-              </div>
-              <div className="bg-card rounded-lg p-6 shadow-sm">
-                <h3 className="text-xl font-semibold mb-3">What types of franchises do you work with in {locationTitle}?</h3>
-                <p className="text-muted-foreground">We've successfully generated leads for food service, retail, health & fitness, home services, education, and automotive franchises in {location}. Our strategies are customized for each industry and the unique {location} market dynamics.</p>
-              </div>
-              <div className="bg-card rounded-lg p-6 shadow-sm">
-                <h3 className="text-xl font-semibold mb-3">How much do franchise leads cost in {location}?</h3>
-                <p className="text-muted-foreground">Lead costs vary by industry, competition level, and target demographic in {locationTitle}. We offer flexible packages starting from $2,500/month with guaranteed minimum lead volumes. Schedule a consultation to get a custom quote for your {location} franchise.</p>
-              </div>
-              <div className="bg-card rounded-lg p-6 shadow-sm">
-                <h3 className="text-xl font-semibold mb-3">Do you guarantee lead quality in {location}?</h3>
-                <p className="text-muted-foreground">Yes! All leads from {locationTitle} campaigns are pre-qualified based on your specific criteria including investment capacity, location preferences, and industry interest. We offer 100% satisfaction guarantee - if you're not happy with lead quality, we'll work until you are.</p>
-              </div>
+              {locationFAQs.map((faq, idx) => (
+                <div key={idx} className="bg-card rounded-lg p-6 shadow-sm">
+                  <h3 className="text-xl font-semibold mb-3">{faq.q}</h3>
+                  <p className="text-muted-foreground">{faq.a}</p>
+                </div>
+              ))}
             </div>
             
             {/* Internal Links for SEO */}
@@ -321,35 +311,63 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
         </div>
       </section>
 
-      {/* Local Market Insights Section */}
+      {/* Market Overview - Unique Data-Driven Content */}
       <section className="py-20 bg-muted">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              {locationTitle} Franchise Market Insights
+              {locationTitle} Franchise Market Overview
             </h2>
             <div className="prose prose-lg mx-auto">
               <p className="text-lg text-muted-foreground mb-6">
-                The franchise market in {locationTitle} presents unique opportunities for growth. With {population ? `a population of ${population.toLocaleString()} and` : 'its'} strong economic foundation, {location} is an ideal market for franchise expansion. Our data-driven approach helps you tap into {isCity ? 'local consumer behaviors' : 'regional trends'} that drive franchise success.
+                {marketNarrative}
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                <div className="bg-card rounded-lg p-6">
-                  <h3 className="text-xl font-semibold mb-3">Market Demographics</h3>
-                  <p className="text-muted-foreground">We analyze {location} demographics including age distribution, income levels, household composition, and consumer spending patterns to identify your ideal franchise candidates.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+              <div className="bg-card rounded-lg p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <BarChart3 className="h-6 w-6 text-primary" />
+                  <h3 className="text-xl font-semibold">Economy & Market Size</h3>
                 </div>
-                <div className="bg-card rounded-lg p-6">
-                  <h3 className="text-xl font-semibold mb-3">Competitive Landscape</h3>
-                  <p className="text-muted-foreground">Our {location} market research identifies competitor positioning, saturation levels, and untapped opportunities specific to your franchise category.</p>
-                </div>
-                <div className="bg-card rounded-lg p-6">
-                  <h3 className="text-xl font-semibold mb-3">Local Regulations</h3>
-                  <p className="text-muted-foreground">We stay updated on {country} and {location} franchise regulations, ensuring your campaigns comply with all local requirements and disclosure obligations.</p>
-                </div>
-                <div className="bg-card rounded-lg p-6">
-                  <h3 className="text-xl font-semibold mb-3">Growth Projections</h3>
-                  <p className="text-muted-foreground">Based on economic indicators and industry trends, we provide realistic growth forecasts for your franchise in the {locationTitle} market.</p>
-                </div>
+                <p className="text-muted-foreground">{regionInsight.economyDescription}</p>
               </div>
+              <div className="bg-card rounded-lg p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <Building2 className="h-6 w-6 text-primary" />
+                  <h3 className="text-xl font-semibold">Franchise Climate</h3>
+                </div>
+                <p className="text-muted-foreground">{regionInsight.franchiseClimate}</p>
+              </div>
+              <div className="bg-card rounded-lg p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <Scale className="h-6 w-6 text-primary" />
+                  <h3 className="text-xl font-semibold">Regulatory Environment</h3>
+                </div>
+                <p className="text-muted-foreground">{regionInsight.regulatoryNote}</p>
+              </div>
+              <div className="bg-card rounded-lg p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <TrendingUp className="h-6 w-6 text-primary" />
+                  <h3 className="text-xl font-semibold">Growth Trends</h3>
+                </div>
+                <p className="text-muted-foreground">{regionInsight.growthTrend}</p>
+              </div>
+            </div>
+
+            {/* Top Industries */}
+            <div className="mt-8 bg-card rounded-lg p-6">
+              <h3 className="text-xl font-semibold mb-4">Top Franchise Industries in {locationTitle}</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {regionInsight.topIndustries.map((industry, idx) => (
+                  <div key={idx} className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                    <span className="text-muted-foreground">{industry}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-4 text-muted-foreground">
+                Typical investment range: <strong className="text-foreground">{regionInsight.investmentRange}</strong>
+              </p>
             </div>
           </div>
         </div>
