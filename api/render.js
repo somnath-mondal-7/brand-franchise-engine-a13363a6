@@ -347,34 +347,88 @@ function serviceLocationPage(service, country, state, city) {
     { name: locationStr, url: `/${service}/${country}/${state}${city ? '/' + city : ''}` },
   ];
 
+  const ci = getCountryInsight(country);
+  const si = (country === 'usa' && state) ? (usaStateData[state] || null) : null;
+  const industries = si ? si.industries : ci.industries.join(', ');
+  const economy = si ? si.economy : ci.economy;
+  const regulation = si ? si.regulation : ci.regulation;
+  const demographics = si ? si.demographics : ci.demographics;
+  const growth = si ? si.growth : ci.growth;
+  const investment = si ? si.investment : ci.investment;
+
+  const faq = [
+    { q: `What does ${serviceName.toLowerCase()} in ${locationStr} include?`, a: `Our ${serviceName.toLowerCase()} services in ${locationStr} include strategy development, multi-channel campaign execution, lead qualification, performance tracking, and ROI optimization specifically tailored for franchise brands in the ${locationStr} market.` },
+    { q: `How is ${serviceName.toLowerCase()} customized for ${locationStr}?`, a: `We adapt targeting, messaging, and channel mix to ${locationStr}'s market behavior, competitive density, and investor search patterns. ${demographics}` },
+    { q: `What investment is required for ${serviceName.toLowerCase()} in ${locationStr}?`, a: `Franchise investment in ${locationStr} typically ranges from ${investment}. Our ${serviceName.toLowerCase()} services are designed to connect you with investors at appropriate capital levels for your concept.` },
+    { q: `How quickly can we expect results?`, a: `Most campaigns produce the first qualified franchise conversations within 14–28 days once targeting, messaging, and landing pages are fully aligned. We optimize continuously for improved lead quality and volume.` },
+  ];
+
   return {
     title: truncate(`${serviceName} in ${locationStr} | ${BRAND}`, 60),
     description: truncate(`Professional ${serviceName.toLowerCase()} in ${locationStr}, ${countryName}. ${BRAND} helps franchise brands grow with expert strategies & technology.`, 160),
     h1: `${serviceName} in ${locationStr}`,
     breadcrumbs: crumbs,
-    faq: [
-      { q: `What does ${serviceName.toLowerCase()} in ${locationStr} include?`, a: `Our ${serviceName.toLowerCase()} services in ${locationStr} include strategy development, targeted campaigns, performance tracking, and ROI optimization for franchise brands.` },
-    ],
+    faq,
     content: `
       <section>
         <h2>${serviceName} Services in ${locationStr}</h2>
-        <p>Looking for ${serviceName.toLowerCase()} in ${locationStr}, ${countryName}? ${BRAND} provides expert services to help franchise brands succeed in the ${locationStr} market.</p>
+        <p>${BRAND} provides professional ${serviceName.toLowerCase()} services in ${locationStr}, ${countryName}. Our franchise-focused team helps brands attract qualified investors, build sustainable lead pipelines, and grow their franchise networks in this market.</p>
+        <p>${economy}</p>
       </section>
       <section>
-        <h2>What We Offer</h2>
+        <h2>${locationStr} Market Opportunity</h2>
+        <p>${demographics}</p>
+        <p>Key franchise sectors in ${locationStr} include ${industries}. ${growth}</p>
+        <p>Typical franchise investment ranges from ${investment}, making ${locationStr} accessible to a wide range of investor profiles.</p>
+      </section>
+      <section>
+        <h2>What Our ${serviceName} Service Includes</h2>
         <ul>
-          <li>Customized ${serviceName.toLowerCase()} strategies for ${locationStr}</li>
-          <li>Data-driven campaigns targeting qualified franchise investors</li>
-          <li>Local market expertise and competitive analysis</li>
-          <li>Website development and optimization</li>
-          <li>Measurable ROI and transparent reporting</li>
+          <li><strong>Strategy & Market Research</strong> — In-depth analysis of the ${locationStr} franchise landscape including competitor mapping, demand signals, and investor behavior patterns.</li>
+          <li><strong>Multi-Channel Campaign Execution</strong> — LinkedIn outreach, social media advertising, SEO content, PPC campaigns, and email marketing targeting franchise investors in ${locationStr}.</li>
+          <li><strong>Lead Qualification & Screening</strong> — Every lead is pre-qualified for investment capacity, timeline, industry interest, and genuine intent to explore franchise ownership.</li>
+          <li><strong>Franchise Website & Landing Pages</strong> — Conversion-optimized web assets with territory maps, investment details, and trust signals designed for the ${locationStr} audience.</li>
+          <li><strong>Performance Reporting</strong> — Weekly dashboards tracking lead volume, qualification rates, cost per lead, and channel-level performance metrics.</li>
+          <li><strong>CRM & Automation Setup</strong> — Technology stack configuration including CRM, lead scoring, automated follow-ups, and pipeline management tools.</li>
         </ul>
       </section>
       <section>
-        <h2>Complete Franchise Solutions</h2>
-        <p>Beyond ${serviceName.toLowerCase()}, we offer full-spectrum franchise services: LinkedIn marketing, social media, website development, app development, SEO, and IT outsourcing.</p>
+        <h2>Franchise Compliance in ${locationStr}</h2>
+        <p>${regulation}</p>
+        <p>Our team ensures all ${serviceName.toLowerCase()} campaigns comply with applicable franchise regulations while maximizing your reach to qualified investors.</p>
       </section>
-      <nav aria-label="Related"><a href="/contact">Get a consultation</a> | <a href="/locations/${country}/${state}">More in ${stateName}</a> | <a href="/services">Services</a></nav>
+      <section>
+        <h2>Our Process for ${serviceName} in ${locationStr}</h2>
+        <ol>
+          <li><strong>Research & Discovery</strong> — Map demand signals, competitor positioning, and audience behavior specific to ${locationStr}.</li>
+          <li><strong>Campaign Architecture</strong> — Build a ${serviceName.toLowerCase()} campaign structure with clear conversion goals and targeting parameters.</li>
+          <li><strong>Execution & Optimization</strong> — Launch campaigns and continuously improve targeting, creatives, and conversion flows using weekly performance data.</li>
+          <li><strong>Scale & Expand</strong> — Increase qualified lead volume while maintaining lead-quality thresholds and cost efficiency.</li>
+        </ol>
+      </section>
+      <section>
+        <h2>Why ${BRAND} for ${serviceName} in ${locationStr}?</h2>
+        <ul>
+          <li>100% franchise-industry focused with deep ${locationStr} market expertise</li>
+          <li>Exclusive leads — never shared between competing franchise brands</li>
+          <li>Full-service: strategy + execution + technology + reporting</li>
+          <li>Transparent pricing with measurable ROI</li>
+          <li>Dedicated account manager with weekly strategy calls</li>
+          <li>First qualified leads typically within 14–21 days</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Start ${serviceName} in ${locationStr} Today</h2>
+        <p>Ready to grow your franchise brand in ${locationStr}? <a href="/contact">Book a free strategy call</a> and we'll analyze your market opportunity and recommend the optimal approach. Call ${PHONE} or <a href="https://calendly.com/lets-build-your-brand">schedule online</a>.</p>
+      </section>
+      <nav aria-label="Related">
+        <a href="/contact">Get a consultation</a> |
+        <a href="/locations/${country}/${state}">More in ${stateName}</a> |
+        <a href="/services">All Services</a> |
+        <a href="/buy-franchise-leads">Buy Franchise Leads</a> |
+        <a href="/blog">Franchise Blog</a> |
+        <a href="/">Home</a>
+      </nav>
     `
   };
 }
