@@ -435,40 +435,91 @@ function serviceLocationPage(service, country, state, city) {
 
 function keywordPage(keyword) {
   const name = slugToTitle(keyword);
+  const lc = name.toLowerCase();
+
+  const faq = [
+    { q: `What is ${lc} and why does it matter?`, a: `${name} is a specialized discipline within franchise marketing that focuses on connecting franchise brands with qualified investors. It combines targeted digital marketing, lead qualification, and conversion optimization to build a predictable pipeline of franchise buyer prospects.` },
+    { q: `How does ${BRAND} approach ${lc}?`, a: `We use a multi-channel strategy combining LinkedIn Sales Navigator outreach, paid social media advertising, SEO content marketing, Google Ads, and conversion-optimized landing pages. Every campaign is specifically tailored to the franchise industry.` },
+    { q: `What results can I expect from ${lc}?`, a: `Most clients begin receiving qualified franchise inquiries within 14–21 days of campaign launch. Lead quality improves over time as we optimize targeting and messaging based on conversion data.` },
+    { q: `How much does ${lc} cost?`, a: `Investment varies based on scope, target markets, and campaign intensity. We offer flexible packages starting from $2,500/month with transparent reporting and measurable ROI. Contact us for a custom proposal.` },
+  ];
+
   return {
     title: truncate(`${name} | ${BRAND}`, 60),
-    description: truncate(`Professional ${name.toLowerCase()} services from ${BRAND}. We help franchisors and franchise brands grow with proven strategies and technology.`, 160),
+    description: truncate(`Professional ${lc} services from ${BRAND}. We help franchisors and franchise brands grow with proven strategies and technology.`, 160),
     h1: name,
     breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Services', url: '/services' }, { name: name, url: `/services/${keyword}` }],
+    faq,
     content: `
       <section>
         <h2>${name} by ${BRAND}</h2>
-        <p>${BRAND} offers professional ${name.toLowerCase()} designed for the franchise industry. Data-driven strategies that deliver qualified leads and sustainable growth.</p>
+        <p>${BRAND} provides professional ${lc} services designed exclusively for the franchise industry. Our data-driven approach combines proven digital marketing strategies with deep franchise expertise to deliver qualified leads and sustainable growth for franchisors, franchise consultants, and development companies.</p>
+        <p>Unlike generic marketing agencies, we understand the unique dynamics of franchise sales — from FDD compliance requirements to multi-unit development strategies, territory mapping, and investor qualification processes. This specialized knowledge translates into higher-quality leads and better conversion rates.</p>
       </section>
       <section>
-        <h2>How It Works</h2>
+        <h2>Our ${name} Process</h2>
+        <ol>
+          <li><strong>Strategic Planning & Market Analysis</strong> — We analyze your franchise model, competitive landscape, target investor profile, and market opportunity to develop a custom ${lc} strategy with clear KPIs and timelines.</li>
+          <li><strong>Multi-Channel Campaign Development</strong> — Our team builds campaigns across LinkedIn (Sales Navigator outreach + InMail), social media (Facebook, Instagram, YouTube), Google Ads (search + display), and SEO content marketing.</li>
+          <li><strong>Lead Qualification & Screening</strong> — Every prospect is pre-qualified for investment capacity, timeline, location preference, industry interest, and genuine intent. You receive only exclusive, verified leads.</li>
+          <li><strong>Performance Optimization</strong> — Weekly analysis of lead volume, qualification rates, cost per qualified lead, and channel-level performance. Continuous A/B testing of messaging, targeting, and conversion flows.</li>
+          <li><strong>Scaling & Expansion</strong> — As we identify winning channels and messages, we scale campaigns to increase volume while maintaining quality thresholds and cost efficiency.</li>
+        </ol>
+      </section>
+      <section>
+        <h2>What's Included in Our ${name} Services</h2>
         <ul>
-          <li>Strategic planning and market analysis</li>
-          <li>Targeted campaign development</li>
-          <li>LinkedIn and social media outreach</li>
-          <li>Website optimization and development</li>
-          <li>Performance tracking and ROI analysis</li>
+          <li><strong>LinkedIn Marketing</strong> — Sales Navigator prospecting, personalized connection campaigns, thought leadership content, and meeting booking automation targeting franchise investors.</li>
+          <li><strong>Social Media Advertising</strong> — Paid campaigns across Facebook, Instagram, LinkedIn, and YouTube with lookalike audiences, retargeting, and conversion tracking.</li>
+          <li><strong>SEO & Content Marketing</strong> — Franchise-specific keyword optimization, blog content, location pages, and technical SEO to build organic visibility.</li>
+          <li><strong>PPC Management</strong> — Google Ads and Bing Ads campaigns targeting high-intent franchise buyer search queries with optimized ad copy and landing pages.</li>
+          <li><strong>Website Development</strong> — High-converting franchise websites with lead capture, territory maps, investment details, and trust-building elements.</li>
+          <li><strong>CRM & Automation</strong> — Lead scoring, automated follow-up sequences, pipeline management, and reporting dashboards.</li>
         </ul>
       </section>
       <section>
-        <h2>Why Choose Us for ${name}?</h2>
-        <p>Deep franchise industry expertise — we understand FDD compliance, territory mapping, and investor psychology. This gives you a significant edge over generic agencies.</p>
-      </section>
-      <section>
-        <h2>Related Services</h2>
+        <h2>Why Choose ${BRAND} for ${name}?</h2>
         <ul>
-          <li><a href="/services/franchise-lead-generation">Franchise Lead Generation</a></li>
-          <li><a href="/services/franchise-marketing">Franchise Marketing</a></li>
-          <li><a href="/services/franchise-website-design">Franchise Website Design</a></li>
-          <li><a href="/buy-franchise-leads">Buy Franchise Leads</a></li>
+          <li>100% franchise-industry focus — deep understanding of FDD compliance, territory mapping, and investor psychology</li>
+          <li>Exclusive leads — never shared between competing franchise brands</li>
+          <li>Multi-channel approach — LinkedIn + Social + SEO + PPC + Website</li>
+          <li>Transparent pricing with weekly performance reporting</li>
+          <li>Dedicated account manager with direct strategy access</li>
+          <li>Global reach — serving franchise brands in USA, UK, India, Canada, Australia, UAE, and Kuwait</li>
         </ul>
       </section>
-      <nav aria-label="Related"><a href="/contact">Contact us</a> | <a href="/services">All Services</a> | <a href="/">Home</a></nav>
+      <section>
+        <h2>Industries We Serve</h2>
+        <p>Our ${lc} services cover all major franchise sectors including quick-service restaurants, fast-casual dining, fitness & wellness, home services, education & tutoring, senior care, automotive, business services, real estate, personal services, and technology-enabled concepts.</p>
+      </section>
+      <section>
+        <h2>Markets We Cover</h2>
+        <ul>
+          <li><a href="/franchise-leads-usa">United States</a> — All 50 states, 250+ cities</li>
+          <li><a href="/franchise-leads-uk">United Kingdom</a> — England, Scotland, Wales</li>
+          <li><a href="/franchise-leads-india">India</a> — All major states and cities</li>
+          <li><a href="/franchise-leads-canada">Canada</a> — Ontario, BC, Quebec & more</li>
+          <li><a href="/franchise-leads-australia">Australia</a> — Sydney, Melbourne & more</li>
+          <li><a href="/franchise-leads-dubai">Dubai & UAE</a></li>
+          <li><a href="/franchise-leads-kuwait">Kuwait</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2>Get Started with ${name}</h2>
+        <p>Ready to build a predictable pipeline of qualified franchise investors? <a href="/contact">Schedule a free strategy consultation</a> and our team will analyze your opportunity, recommend the optimal channel mix, and provide a custom proposal. Call ${PHONE} or <a href="https://calendly.com/lets-build-your-brand">book online</a>.</p>
+      </section>
+      <nav aria-label="Related Services">
+        <a href="/services/franchise-lead-generation">Franchise Lead Generation</a> |
+        <a href="/services/franchise-marketing">Franchise Marketing</a> |
+        <a href="/services/franchise-website-design">Franchise Website Design</a> |
+        <a href="/services/franchise-seo">Franchise SEO</a> |
+        <a href="/buy-franchise-leads">Buy Franchise Leads</a> |
+        <a href="/blog">Blog</a> |
+        <a href="/">Home</a>
+      </nav>
+    `
+  };
+}
     `
   };
 }
