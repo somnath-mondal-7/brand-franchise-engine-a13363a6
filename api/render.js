@@ -519,10 +519,6 @@ function keywordPage(keyword) {
       </nav>
     `
   };
-}
-    `
-  };
-}
 
 function blogPostPage(slug) {
   const title = slugToTitle(slug);
