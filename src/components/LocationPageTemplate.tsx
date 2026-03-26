@@ -3,7 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { Check, Users, TrendingUp, MapPin, Phone, Mail } from 'lucide-react';
+import { Check, Users, TrendingUp, MapPin, Phone, Mail, Building2, Scale, BarChart3 } from 'lucide-react';
+import { getRegionInsight, generateMarketNarrative, generateLocationFAQs } from '@/utils/locationContent';
 
 interface NearbyLocation {
   name: string;
