@@ -36,6 +36,11 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
 }) => {
   const locationTitle = isCity ? `${location}, ${state}` : location;
   const fullLocation = state ? `${location}, ${state}, ${country}` : `${location}, ${country}`;
+  const stateSlugNorm = state?.toLowerCase().replace(/\s+/g, '-');
+  
+  const regionInsight = getRegionInsight(countryCode, stateSlugNorm);
+  const marketNarrative = generateMarketNarrative(location, state, country, countryCode, population, isCity);
+  const locationFAQs = generateLocationFAQs(location, state, country, countryCode);
   
   const pageTitle = `Franchise Lead Generation in ${locationTitle} | FranchiseLeadsPro`;
   const pageDescription = `Professional franchise lead generation services in ${locationTitle}. We help franchise businesses generate qualified leads and grow their presence in ${location}. Contact us for a free strategy consultation.`;
