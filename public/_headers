@@ -1,0 +1,21 @@
+# Cache control for static HTML pages
+/locations/*
+  Cache-Control: public, max-age=86400, s-maxage=604800, stale-while-revalidate=604800
+  X-Robots-Tag: index, follow
+
+/services/*
+  Cache-Control: public, max-age=86400, s-maxage=604800, stale-while-revalidate=604800
+  X-Robots-Tag: index, follow
+
+# Sitemaps
+/sitemap.xml
+  Cache-Control: public, max-age=3600, s-maxage=86400
+  Content-Type: application/xml
+
+/sitemaps/*
+  Cache-Control: public, max-age=3600, s-maxage=86400
+  Content-Type: application/xml
+
+# Service+Location pages (wildcard for all service slugs)
+/*/*/*
+  Cache-Control: public, max-age=86400, s-maxage=604800, stale-while-revalidate=604800

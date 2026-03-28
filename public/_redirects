@@ -1,0 +1,7 @@
+# Cloudflare Pages _redirects
+# Static assets and pre-rendered HTML are served first automatically.
+# Blog sitemap proxied to Supabase Edge Function
+/sitemap-blog.xml  https://yquuidpajigvecyonqir.supabase.co/functions/v1/blog-sitemap  200
+
+# SPA fallback — only for routes not matched by static files
+/*  /index.html  200
