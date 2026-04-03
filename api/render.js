@@ -4,6 +4,8 @@
 const SITE = 'https://www.franchiseleadspro.com';
 const BRAND = 'FranchiseLeadsPro';
 const PHONE = '+1 (551)-201-23-77';
+const SUPABASE_URL = process.env.VITE_SUPABASE_URL || 'https://yquuidpajigvecyonqir.supabase.co';
+const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlxdXVpZHBhamlndmVjeW9ucWlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg3OTM1MDMsImV4cCI6MjA3NDM2OTUwM30.FIpWeiS_2B98HSE2Z2yxuOGp4gkO74rYIrAp-Aj2YTg';
 
 function slugToTitle(slug) {
   return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
@@ -13,6 +15,122 @@ function slugToTitle(slug) {
 function truncate(str, max) {
   if (str.length <= max) return str;
   return str.substring(0, max).replace(/\s+\S*$/, '') + '…';
+}
+
+function escapeHtml(str = '') {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function stripHtml(str = '') {
+  return String(str).replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function formatInlineMarkdown(text = '') {
+  return escapeHtml(text)
+    .replace(/\[([^\]]+)\]\(((?:https?:\/\/|\/)[^\s)]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>');
+}
+
+function renderBlogContent(content = '') {
+  const normalized = String(content).replace(/\r\n/g, '\n').trim();
+
+  if (!normalized) {
+    return '<p>Read the full article on our website.</p>';
+  }
+
+  if (/<\/?[a-z][\s\S]*>/i.test(normalized)) {
+    return normalized;
+  }
+
+  return normalized
+    .split(/\n{2,}/)
+    .map((block) => {
+      const lines = block.split('\n').map((line) => line.trim()).filter(Boolean);
+      if (!lines.length) return '';
+
+      if (lines.every((line) => /^[-*]\s+/.test(line))) {
+        return `<ul>${lines
+          .map((line) => `<li>${formatInlineMarkdown(line.replace(/^[-*]\s+/, ''))}</li>`)
+          .join('')}</ul>`;
+      }
+
+      const joined = lines.join(' ');
+
+      if (/^###\s+/.test(lines[0])) {
+        return `<h3>${formatInlineMarkdown(joined.replace(/^###\s+/, ''))}</h3>`;
+      }
+
+      if (/^##\s+/.test(lines[0])) {
+        return `<h2>${formatInlineMarkdown(joined.replace(/^##\s+/, ''))}</h2>`;
+      }
+
+      if (/^#\s+/.test(lines[0])) {
+        return `<h2>${formatInlineMarkdown(joined.replace(/^#\s+/, ''))}</h2>`;
+      }
+
+      return `<p>${lines.map((line) => formatInlineMarkdown(line)).join('<br>')}</p>`;
+    })
+    .join('\n');
+}
+
+function buildBlogPostingSchema(post, canonical) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.seo_title || post.title,
+    description: post.seo_description || post.excerpt || truncate(stripHtml(post.content), 160),
+    datePublished: post.published_at,
+    dateModified: post.updated_at || post.published_at,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonical,
+    },
+    author: {
+      '@type': 'Organization',
+      name: post.author_name || BRAND,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: BRAND,
+      url: SITE,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE}/logo-hq.png`,
+      },
+    },
+    image: post.featured_image_url || `${SITE}/og-image.png`,
+    keywords: Array.isArray(post.tags) ? post.tags.join(', ') : undefined,
+    articleBody: truncate(stripHtml(post.content), 5000),
+  };
+}
+
+async function fetchPublishedBlogPost(slug) {
+  const url = new URL(`${SUPABASE_URL}/rest/v1/blog_posts`);
+  url.searchParams.set('select', 'slug,title,content,excerpt,author_name,published_at,updated_at,seo_title,seo_description,featured_image_url,tags,read_time_minutes');
+  url.searchParams.set('slug', `eq.${slug}`);
+  url.searchParams.set('is_published', 'eq.true');
+  url.searchParams.set('limit', '1');
+
+  const response = await fetch(url.toString(), {
+    headers: {
+      apikey: SUPABASE_ANON_KEY,
+      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch blog post: ${response.status}`);
+  }
+
+  const posts = await response.json();
+  return Array.isArray(posts) && posts.length ? posts[0] : null;
 }
 
 function buildNav() {
@@ -563,29 +681,74 @@ function keywordPage(keyword) {
   };
 }
 
-function blogPostPage(slug) {
-  const title = slugToTitle(slug);
-  return {
-    title: truncate(`${title} | ${BRAND} Blog`, 60),
-    description: truncate(`Read "${title}" — expert franchise marketing insights, lead generation strategies, and industry tips from ${BRAND}.`, 160),
-    h1: title,
-    breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Blog', url: '/blog' }, { name: title, url: `/blog/${slug}` }],
-    content: `
-      <article>
-        <p>Read the full article about ${title.toLowerCase()} in the franchise industry on our website.</p>
-        <p><a href="/blog">← Back to all blog posts</a></p>
-      </article>
-      <section>
-        <h2>Related Resources</h2>
-        <ul>
-          <li><a href="/blog">Franchise Marketing Blog</a></li>
-          <li><a href="/services">Our Services</a></li>
-          <li><a href="/contact">Contact Us</a></li>
-          <li><a href="/buy-franchise-leads">Buy Franchise Leads</a></li>
-        </ul>
-      </section>
-    `
-  };
+async function blogPostPage(slug) {
+  const fallbackTitle = slugToTitle(slug);
+
+  try {
+    const post = await fetchPublishedBlogPost(slug);
+
+    if (!post) {
+      return {
+        title: truncate(`${fallbackTitle} | ${BRAND} Blog`, 60),
+        description: truncate(`Read "${fallbackTitle}" — expert franchise marketing insights, lead generation strategies, and industry tips from ${BRAND}.`, 160),
+        h1: fallbackTitle,
+        breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Blog', url: '/blog' }, { name: fallbackTitle, url: `/blog/${slug}` }],
+        content: `
+          <article>
+            <p>Read the full article about ${fallbackTitle.toLowerCase()} in the franchise industry on our website.</p>
+            <p><a href="/blog">← Back to all blog posts</a></p>
+          </article>
+        `,
+      };
+    }
+
+    const title = post.seo_title || post.title;
+    const description = post.seo_description || post.excerpt || truncate(stripHtml(post.content), 160);
+    const canonical = `${SITE}/blog/${post.slug}`;
+    const publishedDate = post.published_at ? new Date(post.published_at).toISOString() : undefined;
+    const modifiedDate = post.updated_at ? new Date(post.updated_at).toISOString() : publishedDate;
+    const tagMeta = Array.isArray(post.tags)
+      ? post.tags.map((tag) => `<meta property="article:tag" content="${escapeHtml(tag)}">`).join('\n  ')
+      : '';
+
+    return {
+      title: truncate(`${title} | ${BRAND}`, 60),
+      description,
+      h1: post.title,
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Blog', url: '/blog' }, { name: post.title, url: `/blog/${post.slug}` }],
+      ogType: 'article',
+      image: post.featured_image_url || `${SITE}/og-image.png`,
+      extraSchemas: [buildBlogPostingSchema(post, canonical)],
+      extraHead: `
+  <meta property="article:published_time" content="${escapeHtml(publishedDate || '')}">
+  <meta property="article:modified_time" content="${escapeHtml(modifiedDate || '')}">
+  <meta property="article:author" content="${escapeHtml(post.author_name || BRAND)}">
+  ${tagMeta}`,
+      content: `
+        <article>
+          ${post.featured_image_url ? `<img src="${escapeHtml(post.featured_image_url)}" alt="${escapeHtml(post.title)}" loading="eager">` : ''}
+          ${post.excerpt ? `<p><strong>${escapeHtml(post.excerpt)}</strong></p>` : ''}
+          <div>${renderBlogContent(post.content)}</div>
+          <hr>
+          <p>Published: ${escapeHtml(publishedDate ? new Date(publishedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '')}</p>
+          <p><a href="/blog">← Back to all blog posts</a></p>
+        </article>
+      `,
+    };
+  } catch (error) {
+    return {
+      title: truncate(`${fallbackTitle} | ${BRAND} Blog`, 60),
+      description: truncate(`Read "${fallbackTitle}" — expert franchise marketing insights, lead generation strategies, and industry tips from ${BRAND}.`, 160),
+      h1: fallbackTitle,
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Blog', url: '/blog' }, { name: fallbackTitle, url: `/blog/${slug}` }],
+      content: `
+        <article>
+          <p>Read the full article about ${fallbackTitle.toLowerCase()} in the franchise industry on our website.</p>
+          <p><a href="/blog">← Back to all blog posts</a></p>
+        </article>
+      `,
+    };
+  }
 }
 
 function staticPage(path) {
@@ -809,14 +972,14 @@ function buildFAQContent(faq) {
 // HTML BUILDER — Single H1, proper meta
 // ──────────────────────────────────────
 
-function buildHtml({ title, description, h1, content, canonicalPath, breadcrumbs, faq, noindex }) {
+function buildHtml({ title, description, h1, content, canonicalPath, breadcrumbs, faq, noindex, ogType = 'website', image = `${SITE}/og-image.png`, extraHead = '', extraSchemas = [] }) {
   // Enforce limits
   const safeTitle = truncate(title, 60);
   const safeDesc = truncate(description, 160);
   const canonical = `${SITE}${canonicalPath}`;
   const robotsContent = noindex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large';
 
-  const schemas = [buildWebPageSchema(safeTitle, safeDesc, canonical)];
+  const schemas = [buildWebPageSchema(safeTitle, safeDesc, canonical), ...extraSchemas.filter(Boolean)];
   if (breadcrumbs && breadcrumbs.length > 1) schemas.push(buildBreadcrumbSchema(breadcrumbs));
   const faqSchema = buildFAQSchema(faq);
   if (faqSchema) schemas.push(faqSchema);
@@ -829,21 +992,22 @@ function buildHtml({ title, description, h1, content, canonicalPath, breadcrumbs
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${safeTitle}</title>
-  <meta name="description" content="${safeDesc}">
+  <title>${escapeHtml(safeTitle)}</title>
+  <meta name="description" content="${escapeHtml(safeDesc)}">
   <link rel="canonical" href="${canonical}">
-  <meta name="robots" content="${robotsContent}">
-  <meta property="og:title" content="${safeTitle}">
-  <meta property="og:description" content="${safeDesc}">
+  <meta name="robots" content="${escapeHtml(robotsContent)}">
+  <meta property="og:title" content="${escapeHtml(safeTitle)}">
+  <meta property="og:description" content="${escapeHtml(safeDesc)}">
   <meta property="og:url" content="${canonical}">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="${BRAND}">
-  <meta property="og:image" content="${SITE}/og-image.png">
+  <meta property="og:type" content="${escapeHtml(ogType)}">
+  <meta property="og:site_name" content="${escapeHtml(BRAND)}">
+  <meta property="og:image" content="${escapeHtml(image)}">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${safeTitle}">
-  <meta name="twitter:description" content="${safeDesc}">
-  <meta name="twitter:image" content="${SITE}/og-image.png">
+  <meta name="twitter:title" content="${escapeHtml(safeTitle)}">
+  <meta name="twitter:description" content="${escapeHtml(safeDesc)}">
+  <meta name="twitter:image" content="${escapeHtml(image)}">
   <link rel="icon" type="image/png" href="/favicon-32x32.png">
+  ${extraHead}
   ${schemaScripts}
 </head>
 <body>
@@ -862,7 +1026,7 @@ function buildHtml({ title, description, h1, content, canonicalPath, breadcrumbs
 // HANDLER
 // ──────────────────────────────────────
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   try {
     const rawPath = (req.query.path || '').replace(/^\/+|\/+$/g, '');
     const segments = rawPath.split('/').filter(Boolean);
@@ -872,7 +1036,7 @@ export default function handler(req, res) {
     if (!rawPath || rawPath === 'index.html') {
       pageData = homePage();
     } else if (segments[0] === 'blog' && segments[1]) {
-      pageData = blogPostPage(segments[1]);
+      pageData = await blogPostPage(segments[1]);
     } else if (segments[0] === 'locations') {
       const [, country, state, city] = segments;
       if (country) pageData = locationPage(country, state, city);
