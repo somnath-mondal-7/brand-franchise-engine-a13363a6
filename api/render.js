@@ -1,3 +1,5 @@
+import { curatedKeywordSlugs, curatedServiceSlugs } from './programmaticSeoConfig.js';
+
 // Free DIY Prerender — serves static HTML to search engine bots
 // Matches LovableHTML quality: proper meta tags, single H1, rich content, structured data
 
@@ -1040,7 +1042,7 @@ export default async function handler(req, res) {
     } else if (segments[0] === 'locations') {
       const [, country, state, city] = segments;
       if (country) pageData = locationPage(country, state, city);
-    } else if (segments[0] === 'services' && segments[1]) {
+    } else if (segments[0] === 'services' && segments[1] && curatedKeywordSlugs.has(segments[1])) {
       pageData = keywordPage(segments[1]);
     } else if (segments[0] === 'legal-terms') {
       pageData = legalPage(rawPath);
@@ -1053,7 +1055,7 @@ export default async function handler(req, res) {
         breadcrumbs: [{ name: 'Home', url: '/' }],
         noindex: true,
       };
-    } else if (segments.length >= 3 && !['locations','blog','legal-terms','admin','sitemap'].includes(segments[0])) {
+    } else if (segments.length >= 3 && curatedServiceSlugs.has(segments[0]) && !['locations','blog','legal-terms','admin','sitemap'].includes(segments[0])) {
       pageData = serviceLocationPage(segments[0], segments[1], segments[2], segments[3]);
     } else {
       pageData = staticPage(rawPath);

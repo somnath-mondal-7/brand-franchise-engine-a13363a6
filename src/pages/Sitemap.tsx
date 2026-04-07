@@ -1,9 +1,10 @@
 import { Helmet } from 'react-helmet-async';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { locationData, broadMarketingKeywords, seoKeywords } from '@/data/locations';
+import { locationData } from '@/data/locations';
 import { MapPin, FileText, Briefcase, Globe } from 'lucide-react';
 import { slugify } from '@/utils/slugify';
+import { highValueKeywordPages, highValueServiceKeywords } from '@/utils/programmaticSeo';
 
 const Sitemap = () => {
   return (
@@ -84,7 +85,7 @@ const Sitemap = () => {
                 <h2 className="text-2xl font-bold text-foreground">Service Pages</h2>
               </div>
               <div className="grid md:grid-cols-3 gap-4">
-                {seoKeywords.slice(0, 30).map((keyword) => {
+                {highValueKeywordPages.map((keyword) => {
                   const slug = keyword.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
                   return (
                     <a 
@@ -159,7 +160,7 @@ const Sitemap = () => {
                 We offer specialized franchise services in major cities. Here's a sample — browse by service type and location:
               </p>
               
-              {broadMarketingKeywords.slice(0, 5).map((service) => {
+              {highValueServiceKeywords.slice(0, 5).map((service) => {
                 const serviceSlug = slugify(service);
                 return (
                   <div key={service} className="mb-8">
