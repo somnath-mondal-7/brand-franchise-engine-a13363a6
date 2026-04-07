@@ -63,6 +63,16 @@ export const locationData: LocationData[] = [
           { name: "Plano", slug: "plano", population: 287677 },
           { name: "Irving", slug: "irving", population: 256684 },
           { name: "Frisco", slug: "frisco", population: 200509 },
+          { name: "McKinney", slug: "mckinney", population: 199177 },
+          { name: "Corpus Christi", slug: "corpus-christi", population: 317863 },
+          { name: "Lubbock", slug: "lubbock", population: 263648 },
+          { name: "Amarillo", slug: "amarillo", population: 200393 },
+          { name: "Round Rock", slug: "round-rock", population: 133372 },
+          { name: "Denton", slug: "denton", population: 139869 },
+          { name: "Midland", slug: "midland", population: 132524 },
+          { name: "The Woodlands", slug: "the-woodlands", population: 114436 },
+          { name: "Sugar Land", slug: "sugar-land", population: 111026 },
+          { name: "Katy", slug: "katy", population: 21894 },
         ]
       },
       {
