@@ -1,4 +1,5 @@
-import { locationData, broadMarketingKeywords, seoKeywords } from '@/data/locations';
+import { locationData } from '@/data/locations';
+import { highValueKeywordPages, highValueServiceKeywords } from '@/utils/programmaticSeo';
 
 export interface SitemapUrl {
   loc: string;
@@ -63,7 +64,7 @@ export const generateKeywordUrls = (): SitemapUrl[] => {
   const urls: SitemapUrl[] = [];
   const currentDate = getTodayDate();
 
-  seoKeywords.forEach(keyword => {
+  highValueKeywordPages.forEach(keyword => {
     const keywordSlug = keyword.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     urls.push({ loc: `${DOMAIN}/services/${keywordSlug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.7' });
   });
@@ -76,7 +77,7 @@ export const generateServiceLocationUrls = (): SitemapUrl[] => {
   const urls: SitemapUrl[] = [];
   const currentDate = getTodayDate();
 
-  broadMarketingKeywords.forEach(service => {
+  highValueServiceKeywords.forEach(service => {
     const serviceSlug = service.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     
     locationData.forEach(country => {

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { KeywordPageTemplate } from '@/components/KeywordPageTemplate';
-import { seoKeywords, serviceKeywords } from '@/data/locations';
+import { highValueKeywordPages } from '@/utils/programmaticSeo';
 import NotFound from './NotFound';
 
 const KeywordPage = () => {
@@ -16,8 +16,7 @@ const KeywordPage = () => {
     .replace(/[^a-z0-9\s]/g, '');
 
   // Check if keyword exists in our data
-  const allKeywords = [...seoKeywords, ...serviceKeywords];
-  const foundKeyword = allKeywords.find(k => 
+  const foundKeyword = highValueKeywordPages.find(k => 
     k.toLowerCase().replace(/[^a-z0-9\s]/g, '') === decodedKeyword.toLowerCase()
   );
 
