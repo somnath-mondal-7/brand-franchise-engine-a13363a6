@@ -2,7 +2,7 @@
 /**
  * Static HTML Pre-renderer
  * Converts api/render.js serverless function into build-time static HTML files.
- * Generates ~49,000 HTML files in dist/ for full SEO visibility on Cloudflare Pages.
+ * Generates ~8,300 high-value HTML files using curated service/keyword lists.
  */
 
 import { writeFileSync, mkdirSync, existsSync } from 'fs';
@@ -410,9 +410,11 @@ function writeHtmlFile(routePath, html) {
 async function main() {
   console.log('🚀 Starting static HTML pre-rendering...\n');
   
-  // Dynamically import location data
+  // Dynamically import location data and curated SEO config
   const locationsModule = await import(join(ROOT, 'src', 'data', 'locations.ts'));
-  const { locationData, broadMarketingKeywords, seoKeywords } = locationsModule;
+  const { locationData } = locationsModule;
+  const seoModule = await import(join(ROOT, 'src', 'utils', 'programmaticSeo.ts'));
+  const { highValueServiceKeywords, highValueKeywordPages } = seoModule;
 
   const prerenderedDir = join(DIST, '__prerendered');
   if (!existsSync(prerenderedDir)) mkdirSync(prerenderedDir, { recursive: true });
@@ -465,7 +467,7 @@ async function main() {
   let keywordCount = 0;
   const slugify = (s) => s.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
   
-  for (const keyword of seoKeywords) {
+  for (const keyword of highValueKeywordPages) {
     const slug = slugify(keyword);
     const data = keywordPage(slug);
     writeHtmlFile(`services/${slug}`, buildHtml({ ...data, canonicalPath: `/services/${slug}` }));
@@ -474,9 +476,9 @@ async function main() {
   console.log(`  ✅ Keyword pages: ${keywordCount}`);
   count += keywordCount;
 
-  // 4. Service + Location pages (the bulk — ~40,000+)
+  // 4. Service + Location pages (curated high-value only)
   let serviceLocationCount = 0;
-  for (const service of broadMarketingKeywords) {
+  for (const service of highValueServiceKeywords) {
     const serviceSlug = slugify(service);
 
     for (const country of locationData) {
