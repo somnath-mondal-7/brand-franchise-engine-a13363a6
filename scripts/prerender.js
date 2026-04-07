@@ -476,9 +476,9 @@ async function main() {
   console.log(`  ✅ Keyword pages: ${keywordCount}`);
   count += keywordCount;
 
-  // 4. Service + Location pages (the bulk — ~40,000+)
+  // 4. Service + Location pages (curated high-value only)
   let serviceLocationCount = 0;
-  for (const service of broadMarketingKeywords) {
+  for (const service of highValueServiceKeywords) {
     const serviceSlug = slugify(service);
 
     for (const country of locationData) {
