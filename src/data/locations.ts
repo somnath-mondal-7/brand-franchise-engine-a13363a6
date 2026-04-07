@@ -39,6 +39,14 @@ export const locationData: LocationData[] = [
           { name: "Irvine", slug: "irvine", population: 307670 },
           { name: "Santa Ana", slug: "santa-ana", population: 309441 },
           { name: "Riverside", slug: "riverside", population: 314998 },
+          { name: "Bakersfield", slug: "bakersfield", population: 403455 },
+          { name: "Stockton", slug: "stockton", population: 320804 },
+          { name: "Modesto", slug: "modesto", population: 218464 },
+          { name: "Pasadena", slug: "pasadena", population: 138699 },
+          { name: "Santa Clarita", slug: "santa-clarita", population: 228673 },
+          { name: "Ontario", slug: "ontario-ca", population: 175265 },
+          { name: "Rancho Cucamonga", slug: "rancho-cucamonga", population: 177603 },
+          { name: "Fontana", slug: "fontana", population: 214547 },
         ]
       },
       {
@@ -55,6 +63,16 @@ export const locationData: LocationData[] = [
           { name: "Plano", slug: "plano", population: 287677 },
           { name: "Irving", slug: "irving", population: 256684 },
           { name: "Frisco", slug: "frisco", population: 200509 },
+          { name: "McKinney", slug: "mckinney", population: 199177 },
+          { name: "Corpus Christi", slug: "corpus-christi", population: 317863 },
+          { name: "Lubbock", slug: "lubbock", population: 263648 },
+          { name: "Amarillo", slug: "amarillo", population: 200393 },
+          { name: "Round Rock", slug: "round-rock", population: 133372 },
+          { name: "Denton", slug: "denton", population: 139869 },
+          { name: "Midland", slug: "midland", population: 132524 },
+          { name: "The Woodlands", slug: "the-woodlands", population: 114436 },
+          { name: "Sugar Land", slug: "sugar-land", population: 111026 },
+          { name: "Katy", slug: "katy", population: 21894 },
         ]
       },
       {
@@ -67,6 +85,13 @@ export const locationData: LocationData[] = [
           { name: "Albany", slug: "albany", population: 99224 },
           { name: "Syracuse", slug: "syracuse", population: 148620 },
           { name: "Yonkers", slug: "yonkers", population: 211569 },
+          { name: "White Plains", slug: "white-plains", population: 58461 },
+          { name: "New Rochelle", slug: "new-rochelle", population: 79726 },
+          { name: "Schenectady", slug: "schenectady", population: 67878 },
+          { name: "Utica", slug: "utica", population: 65284 },
+          { name: "Long Island", slug: "long-island", population: 7869820 },
+          { name: "Staten Island", slug: "staten-island", population: 495747 },
+          { name: "Westchester", slug: "westchester", population: 980244 },
         ]
       },
       {
@@ -83,6 +108,16 @@ export const locationData: LocationData[] = [
           { name: "Tallahassee", slug: "tallahassee", population: 196169 },
           { name: "Cape Coral", slug: "cape-coral", population: 194016 },
           { name: "Fort Myers", slug: "fort-myers", population: 92245 },
+          { name: "Boca Raton", slug: "boca-raton", population: 99805 },
+          { name: "Palm Beach", slug: "palm-beach", population: 44307 },
+          { name: "Naples", slug: "naples", population: 22088 },
+          { name: "Sarasota", slug: "sarasota", population: 57738 },
+          { name: "Clearwater", slug: "clearwater", population: 117292 },
+          { name: "Coral Springs", slug: "coral-springs", population: 134394 },
+          { name: "Pembroke Pines", slug: "pembroke-pines", population: 171178 },
+          { name: "Gainesville", slug: "gainesville", population: 141085 },
+          { name: "Lakeland", slug: "lakeland", population: 112641 },
+          { name: "Kissimmee", slug: "kissimmee", population: 77924 },
         ]
       },
       {
@@ -94,6 +129,11 @@ export const locationData: LocationData[] = [
           { name: "Naperville", slug: "naperville", population: 149540 },
           { name: "Rockford", slug: "rockford", population: 147051 },
           { name: "Springfield", slug: "springfield", population: 114394 },
+          { name: "Joliet", slug: "joliet", population: 150362 },
+          { name: "Elgin", slug: "elgin", population: 114797 },
+          { name: "Peoria", slug: "peoria", population: 113150 },
+          { name: "Champaign", slug: "champaign", population: 88302 },
+          { name: "Schaumburg", slug: "schaumburg", population: 78723 },
         ]
       },
       {
@@ -105,6 +145,11 @@ export const locationData: LocationData[] = [
           { name: "Augusta", slug: "augusta", population: 202081 },
           { name: "Columbus", slug: "columbus", population: 206922 },
           { name: "Macon", slug: "macon", population: 157346 },
+          { name: "Roswell", slug: "roswell-ga", population: 94034 },
+          { name: "Sandy Springs", slug: "sandy-springs", population: 108080 },
+          { name: "Johns Creek", slug: "johns-creek", population: 84551 },
+          { name: "Marietta", slug: "marietta", population: 60972 },
+          { name: "Alpharetta", slug: "alpharetta", population: 65818 },
         ]
       },
       {
@@ -1197,6 +1242,7 @@ export const serviceKeywords = [
   "franchise training",
   "franchise operations",
   "franchise legal services",
+  "linkedin lead generation for franchises",
 ];
 
 // Marketing keywords for programmatic pages
@@ -1229,6 +1275,10 @@ export const broadMarketingKeywords = [
   "franchise seo agency",
   "franchise ppc agency",
   "franchise social media agency",
+  // LinkedIn lead generation
+  "linkedin lead generation for franchises",
+  "linkedin lead generation for franchise brands",
+  "linkedin marketing for franchisors",
   // Digital marketing services
   "franchise digital marketing",
   "franchise seo",
@@ -1365,4 +1415,10 @@ export const seoKeywords = [
   "franchise content strategy",
   "franchise blog writing services",
   "franchise press release distribution",
+  // LinkedIn keywords
+  "linkedin lead generation for franchises",
+  "linkedin lead generation for franchise brands",
+  "linkedin marketing for franchisors",
+  "linkedin franchise recruitment",
+  "linkedin franchise broker marketing",
 ];

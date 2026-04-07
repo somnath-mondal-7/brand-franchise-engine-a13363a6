@@ -9,6 +9,7 @@ export const curatedServiceSlugs = new Set([
   'franchise-digital-marketing-agency',
   'franchise-advertising-agency',
   'franchise-seo',
+  'linkedin-lead-generation-for-franchises',
 ]);
 
 export const curatedKeywordSlugs = new Set([
@@ -36,4 +37,6 @@ export const curatedKeywordSlugs = new Set([
   'how-to-get-franchise-leads',
   'how-to-generate-franchise-leads',
   'franchise-lead-generation-strategies',
+  'linkedin-lead-generation-for-franchise-brands',
+  'linkedin-marketing-for-franchisors',
 ]);

@@ -12,6 +12,7 @@ const preferredServiceKeywords = [
   'franchise digital marketing agency',
   'franchise advertising agency',
   'franchise seo',
+  'linkedin lead generation for franchises',
 ];
 
 const preferredSeoKeywords = [
@@ -33,6 +34,8 @@ const preferredSeoKeywords = [
   'how to get franchise leads',
   'how to generate franchise leads',
   'franchise lead generation strategies',
+  'linkedin lead generation for franchise brands',
+  'linkedin marketing for franchisors',
 ];
 
 export const highValueServiceKeywords = preferredServiceKeywords.filter((keyword) =>
