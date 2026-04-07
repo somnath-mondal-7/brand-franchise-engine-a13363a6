@@ -124,6 +124,57 @@ const RESEARCH_TOPICS = [
     angle: "sales process improvement",
     hook: "Their discovery days were a disaster. One change fixed everything."
   },
+  // HIGH-PRIORITY TARGET KEYWORDS - Franchise Lead Generation USA
+  {
+    category: "marketing-tips",
+    topic: "franchise lead generation services in USA - how to buy qualified franchise leads",
+    stats: "US franchise lead gen market worth $2.1B, with top providers delivering 35% higher close rates",
+    angle: "franchise lead buying guide for US market",
+    hook: "You're paying $200 per lead. The smart franchisors pay $45. Here's their secret."
+  },
+  {
+    category: "marketing-tips",
+    topic: "buy franchise leads USA - complete guide to franchise lead providers and ROI",
+    stats: "Franchises using specialized lead gen services see 4.2x ROI vs DIY methods",
+    angle: "lead provider comparison and strategy",
+    hook: "Not all franchise leads are created equal. Here's how to separate gold from garbage."
+  },
+  {
+    category: "marketing-tips",
+    topic: "best franchise lead generation companies USA 2025 - honest comparison",
+    stats: "The top 5 franchise lead providers control 60% of qualified buyer traffic in the US",
+    angle: "provider comparison with ROI data",
+    hook: "We analyzed 15 franchise lead gen companies. Only 3 are worth your money."
+  },
+  // HIGH-PRIORITY TARGET KEYWORDS - LinkedIn Lead Generation
+  {
+    category: "marketing-tips",
+    topic: "LinkedIn lead generation for franchise sales - the untapped goldmine",
+    stats: "LinkedIn generates 3x more franchise buyer leads than Facebook with 80% lower cost per qualified lead",
+    angle: "LinkedIn franchise prospecting strategy",
+    hook: "Your next 10 franchisees are scrolling LinkedIn right now. Are you reaching them?"
+  },
+  {
+    category: "marketing-tips",
+    topic: "LinkedIn lead generation services for franchise development teams",
+    stats: "Franchise brands using LinkedIn Sales Navigator close 47% more deals with 2.3x faster sales cycles",
+    angle: "LinkedIn outreach automation and strategy",
+    hook: "Cold calls are dead. LinkedIn InMails convert 300% better for franchise sales."
+  },
+  {
+    category: "marketing-tips",
+    topic: "how to generate franchise leads on LinkedIn without paid ads",
+    stats: "Organic LinkedIn content strategy delivers 5-15 qualified franchise inquiries per month at zero ad cost",
+    angle: "organic LinkedIn growth for franchisors",
+    hook: "Zero ad budget. 12 qualified leads per month. All from LinkedIn. Here's the playbook."
+  },
+  {
+    category: "marketing-tips",
+    topic: "franchise development LinkedIn strategy - from connection to signed agreement",
+    stats: "Top franchise developers close 1 in 8 LinkedIn conversations vs 1 in 50 from cold outreach",
+    angle: "LinkedIn sales funnel for franchise development",
+    hook: "Stop selling franchises on LinkedIn. Start this conversation instead."
+  },
 ];
 
 async function fetchRSSFeed(url: string): Promise<string[]> {
@@ -452,7 +503,23 @@ serve(async (req) => {
               host: 'www.franchiseleadspro.com',
               key: indexNowKey,
               keyLocation: `https://www.franchiseleadspro.com/${indexNowKey}.txt`,
-              urlList: [postUrl],
+              urlList: [postUrl, 'https://www.franchiseleadspro.com/blog'],
+            }),
+          })
+        );
+
+        // Google Indexing API - submit for instant crawl
+        const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+        const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+        pingRequests.push(
+          fetch(`${supabaseUrl}/functions/v1/google-indexing`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${supabaseKey}`,
+            },
+            body: JSON.stringify({
+              urls: [postUrl, 'https://www.franchiseleadspro.com/blog'],
             }),
           })
         );
@@ -462,7 +529,7 @@ serve(async (req) => {
 
         const results = await Promise.allSettled(pingRequests);
         const ok = results.filter(r => r.status === 'fulfilled').length;
-        console.log(`🔔 Search engine ping: ${ok}/${results.length} successful`);
+        console.log(`🔔 Search engine ping: ${ok}/${results.length} successful (includes Google Indexing API)`);
       } catch (pingErr) {
         console.error('Ping failed (non-fatal):', pingErr);
       }
