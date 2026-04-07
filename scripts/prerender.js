@@ -410,9 +410,11 @@ function writeHtmlFile(routePath, html) {
 async function main() {
   console.log('🚀 Starting static HTML pre-rendering...\n');
   
-  // Dynamically import location data
+  // Dynamically import location data and curated SEO config
   const locationsModule = await import(join(ROOT, 'src', 'data', 'locations.ts'));
-  const { locationData, broadMarketingKeywords, seoKeywords } = locationsModule;
+  const { locationData } = locationsModule;
+  const seoModule = await import(join(ROOT, 'src', 'utils', 'programmaticSeo.ts'));
+  const { highValueServiceKeywords, highValueKeywordPages } = seoModule;
 
   const prerenderedDir = join(DIST, '__prerendered');
   if (!existsSync(prerenderedDir)) mkdirSync(prerenderedDir, { recursive: true });
