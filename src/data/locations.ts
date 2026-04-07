@@ -145,6 +145,11 @@ export const locationData: LocationData[] = [
           { name: "Augusta", slug: "augusta", population: 202081 },
           { name: "Columbus", slug: "columbus", population: 206922 },
           { name: "Macon", slug: "macon", population: 157346 },
+          { name: "Roswell", slug: "roswell-ga", population: 94034 },
+          { name: "Sandy Springs", slug: "sandy-springs", population: 108080 },
+          { name: "Johns Creek", slug: "johns-creek", population: 84551 },
+          { name: "Marietta", slug: "marietta", population: 60972 },
+          { name: "Alpharetta", slug: "alpharetta", population: 65818 },
         ]
       },
       {
