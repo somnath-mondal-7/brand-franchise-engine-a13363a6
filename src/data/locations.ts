@@ -129,6 +129,11 @@ export const locationData: LocationData[] = [
           { name: "Naperville", slug: "naperville", population: 149540 },
           { name: "Rockford", slug: "rockford", population: 147051 },
           { name: "Springfield", slug: "springfield", population: 114394 },
+          { name: "Joliet", slug: "joliet", population: 150362 },
+          { name: "Elgin", slug: "elgin", population: 114797 },
+          { name: "Peoria", slug: "peoria", population: 113150 },
+          { name: "Champaign", slug: "champaign", population: 88302 },
+          { name: "Schaumburg", slug: "schaumburg", population: 78723 },
         ]
       },
       {
