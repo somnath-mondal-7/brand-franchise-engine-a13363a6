@@ -1230,6 +1230,10 @@ export const broadMarketingKeywords = [
   "franchise seo agency",
   "franchise ppc agency",
   "franchise social media agency",
+  // LinkedIn lead generation
+  "linkedin lead generation for franchises",
+  "linkedin lead generation for franchise brands",
+  "linkedin marketing for franchisors",
   // Digital marketing services
   "franchise digital marketing",
   "franchise seo",
