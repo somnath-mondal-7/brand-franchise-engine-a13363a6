@@ -503,7 +503,23 @@ serve(async (req) => {
               host: 'www.franchiseleadspro.com',
               key: indexNowKey,
               keyLocation: `https://www.franchiseleadspro.com/${indexNowKey}.txt`,
-              urlList: [postUrl],
+              urlList: [postUrl, 'https://www.franchiseleadspro.com/blog'],
+            }),
+          })
+        );
+
+        // Google Indexing API - submit for instant crawl
+        const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+        const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+        pingRequests.push(
+          fetch(`${supabaseUrl}/functions/v1/google-indexing`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${supabaseKey}`,
+            },
+            body: JSON.stringify({
+              urls: [postUrl, 'https://www.franchiseleadspro.com/blog'],
             }),
           })
         );
@@ -513,7 +529,7 @@ serve(async (req) => {
 
         const results = await Promise.allSettled(pingRequests);
         const ok = results.filter(r => r.status === 'fulfilled').length;
-        console.log(`🔔 Search engine ping: ${ok}/${results.length} successful`);
+        console.log(`🔔 Search engine ping: ${ok}/${results.length} successful (includes Google Indexing API)`);
       } catch (pingErr) {
         console.error('Ping failed (non-fatal):', pingErr);
       }
