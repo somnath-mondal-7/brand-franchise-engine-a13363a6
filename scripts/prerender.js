@@ -467,7 +467,7 @@ async function main() {
   let keywordCount = 0;
   const slugify = (s) => s.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
   
-  for (const keyword of seoKeywords) {
+  for (const keyword of highValueKeywordPages) {
     const slug = slugify(keyword);
     const data = keywordPage(slug);
     writeHtmlFile(`services/${slug}`, buildHtml({ ...data, canonicalPath: `/services/${slug}` }));
