@@ -39,6 +39,14 @@ export const locationData: LocationData[] = [
           { name: "Irvine", slug: "irvine", population: 307670 },
           { name: "Santa Ana", slug: "santa-ana", population: 309441 },
           { name: "Riverside", slug: "riverside", population: 314998 },
+          { name: "Bakersfield", slug: "bakersfield", population: 403455 },
+          { name: "Stockton", slug: "stockton", population: 320804 },
+          { name: "Modesto", slug: "modesto", population: 218464 },
+          { name: "Pasadena", slug: "pasadena", population: 138699 },
+          { name: "Santa Clarita", slug: "santa-clarita", population: 228673 },
+          { name: "Ontario", slug: "ontario-ca", population: 175265 },
+          { name: "Rancho Cucamonga", slug: "rancho-cucamonga", population: 177603 },
+          { name: "Fontana", slug: "fontana", population: 214547 },
         ]
       },
       {
