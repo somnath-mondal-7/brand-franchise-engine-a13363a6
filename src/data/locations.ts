@@ -108,6 +108,16 @@ export const locationData: LocationData[] = [
           { name: "Tallahassee", slug: "tallahassee", population: 196169 },
           { name: "Cape Coral", slug: "cape-coral", population: 194016 },
           { name: "Fort Myers", slug: "fort-myers", population: 92245 },
+          { name: "Boca Raton", slug: "boca-raton", population: 99805 },
+          { name: "Palm Beach", slug: "palm-beach", population: 44307 },
+          { name: "Naples", slug: "naples", population: 22088 },
+          { name: "Sarasota", slug: "sarasota", population: 57738 },
+          { name: "Clearwater", slug: "clearwater", population: 117292 },
+          { name: "Coral Springs", slug: "coral-springs", population: 134394 },
+          { name: "Pembroke Pines", slug: "pembroke-pines", population: 171178 },
+          { name: "Gainesville", slug: "gainesville", population: 141085 },
+          { name: "Lakeland", slug: "lakeland", population: 112641 },
+          { name: "Kissimmee", slug: "kissimmee", population: 77924 },
         ]
       },
       {
