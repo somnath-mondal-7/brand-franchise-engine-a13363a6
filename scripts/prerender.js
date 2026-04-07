@@ -2,7 +2,7 @@
 /**
  * Static HTML Pre-renderer
  * Converts api/render.js serverless function into build-time static HTML files.
- * Generates ~49,000 HTML files in dist/ for full SEO visibility on Cloudflare Pages.
+ * Generates ~8,300 high-value HTML files using curated service/keyword lists.
  */
 
 import { writeFileSync, mkdirSync, existsSync } from 'fs';
