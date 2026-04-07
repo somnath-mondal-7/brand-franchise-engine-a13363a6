@@ -1370,4 +1370,10 @@ export const seoKeywords = [
   "franchise content strategy",
   "franchise blog writing services",
   "franchise press release distribution",
+  // LinkedIn keywords
+  "linkedin lead generation for franchises",
+  "linkedin lead generation for franchise brands",
+  "linkedin marketing for franchisors",
+  "linkedin franchise recruitment",
+  "linkedin franchise broker marketing",
 ];
