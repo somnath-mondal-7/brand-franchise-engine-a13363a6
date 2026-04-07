@@ -1197,6 +1197,7 @@ export const serviceKeywords = [
   "franchise training",
   "franchise operations",
   "franchise legal services",
+  "linkedin lead generation for franchises",
 ];
 
 // Marketing keywords for programmatic pages
