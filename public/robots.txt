@@ -5,13 +5,10 @@ Allow: /
 Allow: /llms.txt
 Allow: /llms-full.txt
 
-# Sitemaps — primary index + blog
+# Sitemaps — primary index + children + blog
 Sitemap: https://www.franchiseleadspro.com/sitemap.xml
 Sitemap: https://www.franchiseleadspro.com/sitemaps/sitemap-1.xml
 Sitemap: https://www.franchiseleadspro.com/sitemaps/sitemap-2.xml
-Sitemap: https://www.franchiseleadspro.com/sitemaps/sitemap-3.xml
-Sitemap: https://www.franchiseleadspro.com/sitemaps/sitemap-4.xml
-Sitemap: https://www.franchiseleadspro.com/sitemaps/sitemap-5.xml
 Sitemap: https://www.franchiseleadspro.com/sitemap-blog.xml
 
 # Disallow crawling of admin areas, temp files, and duplicate content
