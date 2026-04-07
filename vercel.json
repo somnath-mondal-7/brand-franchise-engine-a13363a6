@@ -41,7 +41,7 @@
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
     { "source": "/sitemaps/:path*", "destination": "/sitemaps/:path*" },
-    { "source": "/sitemap-blog.xml", "destination": "/sitemap-blog.xml" },
+    { "source": "/sitemap-blog.xml", "destination": "https://yquuidpajigvecyonqir.supabase.co/functions/v1/blog-sitemap" },
     { "source": "/robots.txt", "destination": "/robots.txt" },
     { "source": "/llms.txt", "destination": "/llms.txt" },
     { "source": "/llms-full.txt", "destination": "/llms-full.txt" },
