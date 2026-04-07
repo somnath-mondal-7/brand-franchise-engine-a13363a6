@@ -85,6 +85,13 @@ export const locationData: LocationData[] = [
           { name: "Albany", slug: "albany", population: 99224 },
           { name: "Syracuse", slug: "syracuse", population: 148620 },
           { name: "Yonkers", slug: "yonkers", population: 211569 },
+          { name: "White Plains", slug: "white-plains", population: 58461 },
+          { name: "New Rochelle", slug: "new-rochelle", population: 79726 },
+          { name: "Schenectady", slug: "schenectady", population: 67878 },
+          { name: "Utica", slug: "utica", population: 65284 },
+          { name: "Long Island", slug: "long-island", population: 7869820 },
+          { name: "Staten Island", slug: "staten-island", population: 495747 },
+          { name: "Westchester", slug: "westchester", population: 980244 },
         ]
       },
       {
