@@ -95,6 +95,7 @@ const App = () => (
             <Route path="/sitemap-blog.xml" element={<BlogSitemap />} />
             <Route path="/search" element={<Search />} />
             <Route path="/legal-terms/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/legal-terms/refund-satisfaction-guarantee-policy" element={<RefundPolicy />} />
             
             <Route path="*" element={<NotFound />} />
           </Routes>
