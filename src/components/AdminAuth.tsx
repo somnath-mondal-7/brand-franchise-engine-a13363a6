@@ -16,10 +16,10 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isResetMode, setIsResetMode] = useState(false);
+  const [isSignUpMode, setIsSignUpMode] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
-    // Check if user is already authenticated
     checkAuthStatus();
   }, []);
 
@@ -36,24 +36,20 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
     
     try {
       const { error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
+        email,
+        password,
       });
       
       if (error) {
-        if (error.message.includes('Invalid login credentials')) {
-          toast({
-            title: "Access Denied",
-            description: "Invalid email or password. Only authorized administrators can access this panel.",
-            variant: "destructive",
-          });
-        } else {
-          throw error;
-        }
+        toast({
+          title: "Access Denied",
+          description: error.message,
+          variant: "destructive",
+        });
       } else {
         toast({
           title: "Success",
-          description: "Authentication successful! Welcome to the admin panel.",
+          description: "Authentication successful!",
         });
         onAuthSuccess();
       }
@@ -61,6 +57,43 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
       toast({
         title: "Error",
         description: "Authentication failed. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSignUp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    try {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/admin/blog`,
+        },
+      });
+      
+      if (error) {
+        toast({
+          title: "Sign Up Failed",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Account Created",
+          description: "Check your email to confirm your account, then sign in.",
+        });
+        setIsSignUpMode(false);
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Sign up failed. Please try again.",
         variant: "destructive",
       });
     } finally {
