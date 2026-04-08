@@ -16,10 +16,10 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isResetMode, setIsResetMode] = useState(false);
+  const [isSignUpMode, setIsSignUpMode] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
-    // Check if user is already authenticated
     checkAuthStatus();
   }, []);
 
@@ -36,24 +36,20 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
     
     try {
       const { error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
+        email,
+        password,
       });
       
       if (error) {
-        if (error.message.includes('Invalid login credentials')) {
-          toast({
-            title: "Access Denied",
-            description: "Invalid email or password. Only authorized administrators can access this panel.",
-            variant: "destructive",
-          });
-        } else {
-          throw error;
-        }
+        toast({
+          title: "Access Denied",
+          description: error.message,
+          variant: "destructive",
+        });
       } else {
         toast({
           title: "Success",
-          description: "Authentication successful! Welcome to the admin panel.",
+          description: "Authentication successful!",
         });
         onAuthSuccess();
       }
@@ -61,6 +57,43 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
       toast({
         title: "Error",
         description: "Authentication failed. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSignUp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    try {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/admin/blog`,
+        },
+      });
+      
+      if (error) {
+        toast({
+          title: "Sign Up Failed",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Account Created",
+          description: "Check your email to confirm your account, then sign in.",
+        });
+        setIsSignUpMode(false);
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Sign up failed. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -109,7 +142,7 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
         </CardHeader>
         
         <CardContent className="space-y-4">
-          <form onSubmit={isResetMode ? handlePasswordReset : handleSignIn} className="space-y-4">
+          <form onSubmit={isResetMode ? handlePasswordReset : (isSignUpMode ? handleSignUp : handleSignIn)} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email" className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
@@ -120,7 +153,7 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="support@franchiseleadspro.com"
+                placeholder="iamsomnath@franchiseleadspro.com"
                 required
                 disabled={isLoading}
               />
@@ -139,28 +172,37 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password..."
                   required
+                  minLength={6}
                   disabled={isLoading}
                 />
               </div>
             )}
             
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? (isResetMode ? 'Sending Reset Link...' : 'Signing In...') : (isResetMode ? 'Send Reset Link' : 'Sign In to Admin Panel')}
+              {isLoading 
+                ? (isResetMode ? 'Sending Reset Link...' : (isSignUpMode ? 'Creating Account...' : 'Signing In...')) 
+                : (isResetMode ? 'Send Reset Link' : (isSignUpMode ? 'Create Admin Account' : 'Sign In to Admin Panel'))}
             </Button>
+            
+            {!isResetMode && (
+              <button
+                type="button"
+                onClick={() => setIsSignUpMode(!isSignUpMode)}
+                className="text-sm text-primary hover:underline w-full text-center"
+                disabled={isLoading}
+              >
+                {isSignUpMode ? '← Back to Sign In' : "Don't have an account? Sign Up"}
+              </button>
+            )}
             
             <button
               type="button"
-              onClick={() => setIsResetMode(!isResetMode)}
-              className="text-sm text-primary hover:underline w-full text-center"
+              onClick={() => { setIsResetMode(!isResetMode); setIsSignUpMode(false); }}
+              className="text-sm text-muted-foreground hover:underline w-full text-center"
               disabled={isLoading}
             >
               {isResetMode ? '← Back to Sign In' : 'Forgot Password?'}
             </button>
-            
-            <div className="text-xs text-muted-foreground text-center space-y-1">
-              <p>🔒 Secure email/password authentication</p>
-              <p>Contact: support@franchiseleadspro.com</p>
-            </div>
           </form>
         </CardContent>
       </Card>
