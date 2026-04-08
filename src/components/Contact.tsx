@@ -64,10 +64,8 @@ const Contact = () => {
         });
 
       if (dbError) {
-        console.error("Database error:", dbError);
         throw dbError;
       }
-      console.log("Database save successful");
 
       // Send email notification (non-blocking)
       try {
