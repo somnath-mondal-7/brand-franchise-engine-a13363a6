@@ -38,6 +38,12 @@ const preferredSeoKeywords = [
   'linkedin marketing for franchisors',
 ];
 
+const excludedKeywordPageSlugs = new Set([
+  // This term is valid for service+location pages, but the /services/:keyword route
+  // is not bot-whitelisted for it and currently returns a real 404 in production.
+  'linkedin-lead-generation-for-franchises',
+]);
+
 export const highValueServiceKeywords = preferredServiceKeywords.filter((keyword) =>
   broadMarketingKeywords.includes(keyword),
 );
@@ -47,7 +53,7 @@ export const highValueKeywordPages = Array.from(
     ...serviceKeywords.filter((keyword) => highValueServiceKeywords.includes(keyword)),
     ...preferredSeoKeywords.filter((keyword) => seoKeywords.includes(keyword)),
   ]),
-);
+).filter((keyword) => !excludedKeywordPageSlugs.has(slugify(keyword)));
 
 export const highValueServiceSlugs = new Set(highValueServiceKeywords.map((keyword) => slugify(keyword)));
 export const highValueKeywordSlugs = new Set(highValueKeywordPages.map((keyword) => slugify(keyword)));
