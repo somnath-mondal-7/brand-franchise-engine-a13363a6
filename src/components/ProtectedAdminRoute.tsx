@@ -9,22 +9,45 @@ interface ProtectedAdminRouteProps {
 
 export default function ProtectedAdminRoute({ children }: ProtectedAdminRouteProps) {
   const [user, setUser] = useState<User | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Get initial session
     const getSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      setUser(session?.user ?? null);
+      const currentUser = session?.user ?? null;
+      setUser(currentUser);
+      
+      if (currentUser) {
+        const { data } = await supabase
+          .from('admin_users')
+          .select('id')
+          .eq('user_id', currentUser.id)
+          .maybeSingle();
+        setIsAdmin(!!data);
+      }
+      
       setIsLoading(false);
     };
 
     getSession();
 
-    // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setUser(session?.user ?? null);
+      async (event, session) => {
+        const currentUser = session?.user ?? null;
+        setUser(currentUser);
+        
+        if (currentUser) {
+          const { data } = await supabase
+            .from('admin_users')
+            .select('id')
+            .eq('user_id', currentUser.id)
+            .maybeSingle();
+          setIsAdmin(!!data);
+        } else {
+          setIsAdmin(false);
+        }
+        
         setIsLoading(false);
       }
     );
@@ -32,9 +55,7 @@ export default function ProtectedAdminRoute({ children }: ProtectedAdminRoutePro
     return () => subscription.unsubscribe();
   }, []);
 
-  const handleAuthSuccess = () => {
-    // The auth state change listener will automatically update the user state
-  };
+  const handleAuthSuccess = () => {};
 
   if (isLoading) {
     return (
@@ -49,6 +70,17 @@ export default function ProtectedAdminRoute({ children }: ProtectedAdminRoutePro
 
   if (!user) {
     return <AdminAuth onAuthSuccess={handleAuthSuccess} />;
+  }
+
+  if (!isAdmin) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <h1 className="text-2xl font-bold text-foreground">Access Denied</h1>
+          <p className="text-muted-foreground">You don't have admin privileges.</p>
+        </div>
+      </div>
+    );
   }
 
   return <>{children}</>;

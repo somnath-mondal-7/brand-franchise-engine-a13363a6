@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const RESEND_API_URL = "https://api.resend.com/emails";
 
@@ -8,14 +9,23 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
-interface ContactEmailRequest {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  company?: string;
-  message: string;
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
+
+const ContactSchema = z.object({
+  firstName: z.string().trim().min(1).max(100),
+  lastName: z.string().trim().min(1).max(100),
+  email: z.string().trim().email().max(255),
+  phone: z.string().trim().min(1).max(30),
+  company: z.string().trim().max(200).optional().default(''),
+  message: z.string().trim().max(5000).optional().default(''),
+});
 
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
@@ -23,9 +33,19 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { firstName, lastName, email, phone, company, message }: ContactEmailRequest = await req.json();
+    const body = await req.json();
+    const parsed = ContactSchema.safeParse(body);
 
-    console.log("Sending contact form email", { firstName, lastName, email });
+    if (!parsed.success) {
+      return new Response(
+        JSON.stringify({ success: false, error: "Invalid input" }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    const { firstName, lastName, email, phone, company, message } = parsed.data;
+
+    console.log("Sending contact form email for submission");
 
     const sendEmail = async (emailData: any) => {
       const response = await fetch(RESEND_API_URL, {
@@ -39,26 +59,33 @@ const handler = async (req: Request): Promise<Response> => {
       
       if (!response.ok) {
         const error = await response.text();
-        throw new Error(`Resend API error: ${response.status} - ${error}`);
+        throw new Error(`Resend API error: ${response.status}`);
       }
       
       return response.json();
     };
+
+    const safeFirstName = escapeHtml(firstName);
+    const safeLastName = escapeHtml(lastName);
+    const safeEmail = escapeHtml(email);
+    const safePhone = escapeHtml(phone);
+    const safeCompany = escapeHtml(company);
+    const safeMessage = escapeHtml(message);
 
     const notificationResponse = await sendEmail({
       from: "FranchiseLeadsPro <support@franchiseleadspro.com>",
       to: ["iamsomnath@franchiseleadspro.com"],
       cc: ["support@franchiseleadspro.com"],
       reply_to: "support@franchiseleadspro.com",
-      subject: `New Contact Form Submission from ${firstName} ${lastName}`,
+      subject: `New Contact Form Submission from ${safeFirstName} ${safeLastName}`,
       html: `
         <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${firstName} ${lastName}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        ${company ? `<p><strong>Company:</strong> ${company}</p>` : ''}
+        <p><strong>Name:</strong> ${safeFirstName} ${safeLastName}</p>
+        <p><strong>Email:</strong> ${safeEmail}</p>
+        <p><strong>Phone:</strong> ${safePhone}</p>
+        ${safeCompany ? `<p><strong>Company:</strong> ${safeCompany}</p>` : ''}
         <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <p>${safeMessage.replace(/\n/g, '<br>')}</p>
         
         <hr>
         <p><em>This email was sent from the FranchiseLeadsPro contact form.</em></p>
@@ -71,7 +98,7 @@ const handler = async (req: Request): Promise<Response> => {
       reply_to: "support@franchiseleadspro.com",
       subject: "Thank you for contacting FranchiseLeadsPro",
       html: `
-        <h1>Thank you for reaching out, ${firstName}!</h1>
+        <h1>Thank you for reaching out, ${safeFirstName}!</h1>
         <p>We have received your message and will get back to you within 24 hours to discuss how we can help you generate high-quality franchise leads.</p>
         
         <h2>What happens next?</h2>
@@ -92,7 +119,7 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
-    console.log("Emails sent successfully:", { notificationResponse, confirmationResponse });
+    console.log("Emails sent successfully");
 
     return new Response(
       JSON.stringify({ 
@@ -110,11 +137,11 @@ const handler = async (req: Request): Promise<Response> => {
       }
     );
   } catch (error: any) {
-    console.error("Error in send-contact-email function:", error);
+    console.error("Error in send-contact-email function");
     return new Response(
       JSON.stringify({ 
         success: false, 
-        error: error.message 
+        error: "An error occurred processing your request" 
       }),
       {
         status: 500,

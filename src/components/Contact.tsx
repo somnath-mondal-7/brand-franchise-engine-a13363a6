@@ -25,37 +25,47 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submission started", formData);
     
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
       toast.error("Please fill in all required fields");
       return;
     }
 
+    if (formData.firstName.length > 100 || formData.lastName.length > 100) {
+      toast.error("Name fields must be under 100 characters");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    if (formData.message && formData.message.length > 5000) {
+      toast.error("Message must be under 5000 characters");
+      return;
+    }
+
     setIsSubmitting(true);
-    console.log("Starting form submission process");
 
     try {
-      // Save to database
-      console.log("Attempting to save to database");
       const { error: dbError } = await supabase
         .from('contact_submissions')
         .insert({
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company,
+          first_name: formData.firstName.slice(0, 100),
+          last_name: formData.lastName.slice(0, 100),
+          email: formData.email.slice(0, 255),
+          phone: formData.phone.slice(0, 30),
+          company: formData.company.slice(0, 200),
           role: 'prospect',
           service_interest: 'franchise-leads',
           message: formData.message || 'Strategy call request',
         });
 
       if (dbError) {
-        console.error("Database error:", dbError);
         throw dbError;
       }
-      console.log("Database save successful");
 
       // Send email notification (non-blocking)
       try {
@@ -74,7 +84,6 @@ const Contact = () => {
         message: ""
       });
     } catch (error) {
-      console.error('Contact form error:', error);
       toast.error("Something went wrong. Please try again or call us directly.");
     } finally {
       setIsSubmitting(false);
