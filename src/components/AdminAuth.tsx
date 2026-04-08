@@ -142,7 +142,7 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
         </CardHeader>
         
         <CardContent className="space-y-4">
-          <form onSubmit={isResetMode ? handlePasswordReset : handleSignIn} className="space-y-4">
+          <form onSubmit={isResetMode ? handlePasswordReset : (isSignUpMode ? handleSignUp : handleSignIn)} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email" className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
@@ -153,7 +153,7 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="support@franchiseleadspro.com"
+                placeholder="iamsomnath@franchiseleadspro.com"
                 required
                 disabled={isLoading}
               />
@@ -172,28 +172,37 @@ export default function AdminAuth({ onAuthSuccess }: AdminAuthProps) {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password..."
                   required
+                  minLength={6}
                   disabled={isLoading}
                 />
               </div>
             )}
             
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? (isResetMode ? 'Sending Reset Link...' : 'Signing In...') : (isResetMode ? 'Send Reset Link' : 'Sign In to Admin Panel')}
+              {isLoading 
+                ? (isResetMode ? 'Sending Reset Link...' : (isSignUpMode ? 'Creating Account...' : 'Signing In...')) 
+                : (isResetMode ? 'Send Reset Link' : (isSignUpMode ? 'Create Admin Account' : 'Sign In to Admin Panel'))}
             </Button>
+            
+            {!isResetMode && (
+              <button
+                type="button"
+                onClick={() => setIsSignUpMode(!isSignUpMode)}
+                className="text-sm text-primary hover:underline w-full text-center"
+                disabled={isLoading}
+              >
+                {isSignUpMode ? '← Back to Sign In' : "Don't have an account? Sign Up"}
+              </button>
+            )}
             
             <button
               type="button"
-              onClick={() => setIsResetMode(!isResetMode)}
-              className="text-sm text-primary hover:underline w-full text-center"
+              onClick={() => { setIsResetMode(!isResetMode); setIsSignUpMode(false); }}
+              className="text-sm text-muted-foreground hover:underline w-full text-center"
               disabled={isLoading}
             >
               {isResetMode ? '← Back to Sign In' : 'Forgot Password?'}
             </button>
-            
-            <div className="text-xs text-muted-foreground text-center space-y-1">
-              <p>🔒 Secure email/password authentication</p>
-              <p>Contact: support@franchiseleadspro.com</p>
-            </div>
           </form>
         </CardContent>
       </Card>
