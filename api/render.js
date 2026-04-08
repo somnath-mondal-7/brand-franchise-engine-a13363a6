@@ -1,4 +1,5 @@
 import { curatedKeywordSlugs, curatedServiceSlugs } from './programmaticSeoConfig.js';
+import { isValidLocation } from './validLocations.js';
 
 // Free DIY Prerender — serves static HTML to search engine bots
 // Matches LovableHTML quality: proper meta tags, single H1, rich content, structured data
@@ -1317,7 +1318,9 @@ export default async function handler(req, res) {
       pageData = await blogPostPage(segments[1]);
     } else if (segments[0] === 'locations') {
       const [, country, state, city] = segments;
-      if (country) pageData = locationPage(country, state, city);
+      if (country && isValidLocation(country, state, city)) {
+        pageData = locationPage(country, state, city);
+      }
     } else if (segments[0] === 'services' && segments[1] && curatedKeywordSlugs.has(segments[1])) {
       pageData = keywordPage(segments[1]);
     } else if (segments[0] === 'legal-terms') {
@@ -1332,7 +1335,9 @@ export default async function handler(req, res) {
         noindex: true,
       };
     } else if (segments.length >= 3 && curatedServiceSlugs.has(segments[0]) && !['locations','blog','legal-terms','admin','sitemap'].includes(segments[0])) {
-      pageData = serviceLocationPage(segments[0], segments[1], segments[2], segments[3]);
+      if (isValidLocation(segments[1], segments[2], segments[3])) {
+        pageData = serviceLocationPage(segments[0], segments[1], segments[2], segments[3]);
+      }
     } else {
       pageData = staticPage(rawPath);
     }
