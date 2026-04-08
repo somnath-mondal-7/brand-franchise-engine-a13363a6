@@ -84,7 +84,6 @@ const Contact = () => {
         message: ""
       });
     } catch (error) {
-      console.error('Contact form error:', error);
       toast.error("Something went wrong. Please try again or call us directly.");
     } finally {
       setIsSubmitting(false);
