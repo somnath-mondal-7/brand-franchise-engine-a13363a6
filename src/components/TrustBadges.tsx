@@ -1,54 +1,43 @@
-import { ShieldCheck, Award, BadgeCheck, Star, Handshake } from "lucide-react";
+import topRatedBadge from "@/assets/badges/top-rated-badge.png";
+import clutchBadge from "@/assets/badges/clutch-badge.png";
+import trustpilotBadge from "@/assets/badges/trustpilot-badge.png";
+import expertiseBadge from "@/assets/badges/expertise-badge.png";
+import digitalBadge from "@/assets/badges/digital-150-badge.png";
 
 interface TrustBadgesProps {
   variant?: "default" | "compact" | "footer";
 }
 
 const badges = [
-  { icon: ShieldCheck, label: "Verified Agency" },
-  { icon: Award, label: "Top Rated 2026" },
-  { icon: BadgeCheck, label: "Trusted Partner" },
-  { icon: Star, label: "5-Star Service" },
-  { icon: Handshake, label: "640+ Clients" },
+  { src: topRatedBadge, alt: "Top Rated Digital Marketing Agency 2026" },
+  { src: clutchBadge, alt: "Top 100 Companies - Sustained Growth 2026" },
+  { src: trustpilotBadge, alt: "Trustpilot 5-Star Excellent Rating" },
+  { src: expertiseBadge, alt: "Best Franchise Lead Generation Agency 2026" },
+  { src: digitalBadge, alt: "Digital Health 150 - 2026" },
 ];
 
 const TrustBadges = ({ variant = "default" }: TrustBadgesProps) => {
-  if (variant === "compact") {
-    return (
-      <div className="flex flex-wrap items-center justify-center gap-4 mt-4">
-        {badges.map((badge, i) => (
-          <div key={i} className="flex items-center gap-1.5 text-muted-foreground">
-            <badge.icon className="w-4 h-4 text-primary" />
-            <span className="text-xs font-medium">{badge.label}</span>
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  if (variant === "footer") {
-    return (
-      <div className="flex flex-wrap items-center justify-center gap-6 py-4">
-        {badges.map((badge, i) => (
-          <div key={i} className="flex items-center gap-2 text-gray-400">
-            <badge.icon className="w-5 h-5 text-primary" />
-            <span className="text-sm font-medium">{badge.label}</span>
-          </div>
-        ))}
-      </div>
-    );
-  }
+  const sizeClass =
+    variant === "compact"
+      ? "h-12 w-auto"
+      : variant === "footer"
+        ? "h-16 w-auto"
+        : "h-24 w-auto";
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-6 py-6">
+    <div
+      className={`flex flex-wrap items-center justify-center ${
+        variant === "compact" ? "gap-4 mt-4" : "gap-6 py-6"
+      }`}
+    >
       {badges.map((badge, i) => (
-        <div
+        <img
           key={i}
-          className="flex flex-col items-center gap-2 px-4 py-3 rounded-xl bg-muted/50 border border-border/50"
-        >
-          <badge.icon className="w-8 h-8 text-primary" />
-          <span className="text-sm font-semibold text-foreground">{badge.label}</span>
-        </div>
+          src={badge.src}
+          alt={badge.alt}
+          loading="lazy"
+          className={`${sizeClass} object-contain`}
+        />
       ))}
     </div>
   );
