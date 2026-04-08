@@ -1,30 +1,124 @@
 // Auto-generated from src/data/locations.ts
 export const validLocations = {
   "ae": {
+    "abu-dhabi": new Set(["abu-dhabi-city", "al-ain", "khalifa-city"]),
+    "ajman": new Set(["ajman-city"]),
+    "dubai": new Set(["business-bay", "deira", "dubai-city", "jebel-ali", "jumeirah"]),
+    "ras-al-khaimah": new Set(["rak-city"]),
+    "sharjah": new Set(["kalba", "khor-fakkan", "sharjah-city"]),
   },
   "au": {
+    "act": new Set(["canberra"]),
+    "new-south-wales": new Set(["central-coast", "newcastle-au", "parramatta", "sydney", "wollongong"]),
+    "northern-territory": new Set(["alice-springs", "darwin"]),
+    "queensland": new Set(["brisbane", "cairns", "gold-coast", "sunshine-coast", "toowoomba", "townsville"]),
+    "south-australia": new Set(["adelaide", "mount-gambier", "murray-bridge", "whyalla"]),
+    "tasmania": new Set(["devonport", "hobart", "launceston"]),
+    "victoria": new Set(["ballarat", "bendigo", "geelong", "melbourne", "shepparton"]),
+    "western-australia": new Set(["bunbury", "geraldton", "mandurah", "perth"]),
   },
   "ca": {
+    "alberta": new Set(["calgary", "edmonton", "fort-mcmurray", "lethbridge", "red-deer"]),
+    "british-columbia": new Set(["burnaby", "kelowna", "richmond-ca", "surrey", "vancouver", "victoria"]),
+    "manitoba": new Set(["brandon", "steinbach", "winnipeg"]),
+    "ontario": new Set(["brampton", "hamilton", "kitchener", "london-ca", "markham", "mississauga", "ottawa", "toronto", "vaughan", "windsor-ca"]),
+    "quebec": new Set(["gatineau", "laval", "longueuil", "montreal", "quebec-city"]),
+    "saskatchewan": new Set(["prince-albert", "regina", "saskatoon"]),
   },
   "in": {
+    "assam": new Set(["dibrugarh", "guwahati", "jorhat", "nagaon", "silchar", "tinsukia"]),
+    "bihar": new Set(["arrah", "begusarai", "bhagalpur", "bihar-sharif", "darbhanga", "gaya", "muzaffarpur", "patna"]),
+    "chandigarh": new Set(["chandigarh-city"]),
+    "chhattisgarh": new Set(["bhilai", "bilaspur", "durg", "korba", "raipur", "rajnandgaon"]),
+    "delhi-ncr": new Set(["faridabad", "ghaziabad", "greater-noida", "gurugram", "new-delhi", "noida"]),
+    "goa": new Set(["mapusa", "margao", "panaji", "ponda", "vasco-da-gama"]),
+    "gujarat": new Set(["ahmedabad", "anand", "bhavnagar", "gandhinagar", "jamnagar", "junagadh", "nadiad", "rajkot", "surat", "vadodara"]),
+    "haryana": new Set(["ambala", "faridabad-hr", "gurugram-hr", "hisar", "karnal", "panipat", "rohtak", "yamunanagar"]),
+    "himachal-pradesh": new Set(["dharamsala", "kullu", "manali", "mandi", "shimla", "solan"]),
+    "jharkhand": new Set(["bokaro", "deoghar", "dhanbad", "hazaribagh", "jamshedpur", "ranchi"]),
+    "karnataka": new Set(["bangalore", "belgaum", "bellary", "davangere", "gulbarga", "hubli-dharwad", "mangalore", "mysore", "shimoga", "tumkur"]),
+    "kerala": new Set(["alappuzha", "kannur", "kochi", "kollam", "kozhikode", "palakkad", "thiruvananthapuram", "thrissur"]),
+    "madhya-pradesh": new Set(["bhopal", "gwalior", "indore", "jabalpur", "rewa", "sagar", "satna", "ujjain"]),
+    "maharashtra": new Set(["amravati", "aurangabad", "kolhapur", "mumbai", "nagpur", "nashik", "navi-mumbai", "pune", "solapur", "thane"]),
+    "odisha": new Set(["berhampur", "bhubaneswar", "cuttack", "puri", "rourkela", "sambalpur"]),
+    "punjab": new Set(["amritsar", "bathinda", "hoshiarpur", "jalandhar", "ludhiana", "mohali", "pathankot", "patiala"]),
+    "rajasthan": new Set(["ajmer", "alwar", "bharatpur", "bhilwara", "bikaner", "jaipur", "jodhpur", "kota", "sikar", "udaipur"]),
+    "tamil-nadu": new Set(["chennai", "coimbatore", "erode", "madurai", "salem-tn", "thoothukudi", "tiruchirappalli", "tirunelveli", "tiruppur", "vellore"]),
+    "telangana": new Set(["hyderabad", "karimnagar", "khammam", "mahbubnagar", "nalgonda", "nizamabad", "ramagundam", "warangal"]),
+    "uttar-pradesh": new Set(["agra", "aligarh", "allahabad", "bareilly", "gorakhpur", "kanpur", "lucknow", "meerut", "moradabad", "varanasi"]),
+    "uttarakhand": new Set(["dehradun", "haldwani", "haridwar", "kashipur", "roorkee", "rudrapur"]),
+    "west-bengal": new Set(["asansol", "bardhaman", "durgapur", "howrah", "kharagpur", "kolkata", "malda", "siliguri"]),
   },
   "kw": {
+    "kuwait-city": new Set(["ahmadi", "farwaniya", "hawalli", "kuwait-city-main", "salmiya"]),
   },
   "uk": {
+    "england": new Set(["birmingham-uk", "brighton", "bristol", "cambridge-uk", "coventry", "leeds", "leicester", "liverpool", "london", "manchester", "milton-keynes", "newcastle", "nottingham", "oxford", "portsmouth", "reading-uk", "sheffield", "southampton"]),
+    "northern-ireland": new Set(["belfast", "derry-uk", "lisburn", "newry"]),
+    "scotland": new Set(["aberdeen-uk", "dundee", "edinburgh", "glasgow", "inverness"]),
+    "wales": new Set(["cardiff", "newport-uk", "swansea", "wrexham"]),
   },
   "usa": {
+    "alabama": new Set(["birmingham", "huntsville", "mobile", "montgomery", "tuscaloosa"]),
+    "alaska": new Set(["anchorage", "fairbanks", "juneau", "ketchikan", "sitka"]),
+    "arizona": new Set(["chandler", "gilbert", "mesa", "phoenix", "scottsdale", "tempe", "tucson"]),
+    "arkansas": new Set(["fayetteville", "fort-smith", "jonesboro", "little-rock", "springdale"]),
+    "california": new Set(["anaheim", "bakersfield", "fontana", "fresno", "irvine", "long-beach", "los-angeles", "modesto", "oakland", "ontario-ca", "pasadena", "rancho-cucamonga", "riverside", "sacramento", "san-diego", "san-francisco", "san-jose", "santa-ana", "santa-clarita", "stockton"]),
+    "colorado": new Set(["aurora-co", "boulder", "colorado-springs", "denver", "fort-collins"]),
+    "connecticut": new Set(["bridgeport", "hartford", "new-haven", "stamford", "waterbury"]),
+    "delaware": new Set(["bear", "dover", "middletown-de", "newark-de", "wilmington"]),
+    "florida": new Set(["boca-raton", "cape-coral", "clearwater", "coral-springs", "fort-lauderdale", "fort-myers", "gainesville", "hialeah", "jacksonville", "kissimmee", "lakeland", "miami", "naples", "orlando", "palm-beach", "pembroke-pines", "sarasota", "st-petersburg", "tallahassee", "tampa"]),
+    "georgia": new Set(["alpharetta", "atlanta", "augusta", "columbus", "johns-creek", "macon", "marietta", "roswell-ga", "sandy-springs", "savannah"]),
+    "hawaii": new Set(["hilo", "honolulu", "kailua", "pearl-city", "waipahu"]),
+    "idaho": new Set(["boise", "caldwell", "idaho-falls", "meridian", "nampa"]),
+    "illinois": new Set(["aurora", "champaign", "chicago", "elgin", "joliet", "naperville", "peoria", "rockford", "schaumburg", "springfield"]),
+    "indiana": new Set(["carmel", "evansville", "fort-wayne", "indianapolis", "south-bend"]),
+    "iowa": new Set(["cedar-rapids", "davenport", "des-moines", "iowa-city", "sioux-city"]),
+    "kansas": new Set(["kansas-city-ks", "olathe", "overland-park", "topeka", "wichita"]),
+    "kentucky": new Set(["bowling-green", "covington", "lexington", "louisville", "owensboro"]),
+    "louisiana": new Set(["baton-rouge", "lafayette", "lake-charles", "new-orleans", "shreveport"]),
+    "maine": new Set(["auburn-me", "bangor", "lewiston", "portland-me", "south-portland"]),
+    "maryland": new Set(["baltimore", "bowie", "frederick", "gaithersburg", "rockville"]),
+    "massachusetts": new Set(["boston", "cambridge", "lowell", "springfield-ma", "worcester"]),
+    "michigan": new Set(["ann-arbor", "detroit", "grand-rapids", "sterling-heights", "warren"]),
+    "minnesota": new Set(["bloomington-mn", "duluth", "minneapolis", "rochester-mn", "saint-paul"]),
+    "mississippi": new Set(["biloxi", "gulfport", "hattiesburg", "jackson-ms", "southaven"]),
+    "missouri": new Set(["columbia-mo", "independence", "kansas-city", "springfield-mo", "st-louis"]),
+    "montana": new Set(["billings", "bozeman", "great-falls", "helena", "missoula"]),
+    "nebraska": new Set(["bellevue-ne", "grand-island", "kearney", "lincoln", "omaha"]),
+    "nevada": new Set(["henderson", "las-vegas", "north-las-vegas", "reno", "sparks"]),
+    "new-hampshire": new Set(["concord-nh", "derry", "manchester-nh", "nashua", "rochester-nh"]),
+    "new-jersey": new Set(["elizabeth", "jersey-city", "newark", "paterson", "trenton"]),
+    "new-mexico": new Set(["albuquerque", "las-cruces", "rio-rancho", "roswell", "santa-fe"]),
+    "new-york": new Set(["albany", "buffalo", "long-island", "new-rochelle", "new-york-city", "rochester", "schenectady", "staten-island", "syracuse", "utica", "westchester", "white-plains", "yonkers"]),
+    "north-carolina": new Set(["charlotte", "durham", "greensboro", "raleigh", "winston-salem"]),
+    "north-dakota": new Set(["bismarck", "fargo", "grand-forks", "minot", "west-fargo"]),
+    "ohio": new Set(["akron", "cincinnati", "cleveland", "columbus-oh", "dayton", "toledo"]),
+    "oklahoma": new Set(["broken-arrow", "edmond", "norman", "oklahoma-city", "tulsa"]),
+    "oregon": new Set(["eugene", "gresham", "hillsboro", "portland", "salem"]),
+    "pennsylvania": new Set(["allentown", "erie", "philadelphia", "pittsburgh", "reading"]),
+    "rhode-island": new Set(["cranston", "east-providence", "pawtucket", "providence", "warwick"]),
+    "south-carolina": new Set(["charleston", "columbia-sc", "greenville", "north-charleston", "rock-hill"]),
+    "south-dakota": new Set(["aberdeen", "brookings", "rapid-city", "sioux-falls", "watertown-sd"]),
+    "tennessee": new Set(["chattanooga", "clarksville", "knoxville", "memphis", "nashville"]),
+    "texas": new Set(["amarillo", "arlington", "austin", "corpus-christi", "dallas", "denton", "el-paso", "fort-worth", "frisco", "houston", "irving", "katy", "lubbock", "mckinney", "midland", "plano", "round-rock", "san-antonio", "sugar-land", "the-woodlands"]),
+    "utah": new Set(["orem", "provo", "salt-lake-city", "west-jordan", "west-valley-city"]),
+    "vermont": new Set(["barre", "burlington", "montpelier", "rutland", "south-burlington"]),
+    "virginia": new Set(["arlington-va", "chesapeake", "norfolk", "richmond", "virginia-beach"]),
+    "washington": new Set(["bellevue", "seattle", "spokane", "tacoma", "vancouver-wa"]),
+    "west-virginia": new Set(["charleston-wv", "huntington", "morgantown", "parkersburg", "wheeling"]),
+    "wisconsin": new Set(["green-bay", "kenosha", "madison", "milwaukee", "racine"]),
+    "wyoming": new Set(["casper", "cheyenne", "gillette", "laramie", "rock-springs"]),
   },
 };
 
-export const validCountryCodes = new Set(Object.keys(validLocations));
-
 export function isValidLocation(country, state, city) {
-  const norm = country === "us" || country === "united-states" ? "usa" : country;
-  const countryData = validLocations[norm];
-  if (!countryData) return false;
+  const norm = (country === "us" || country === "united-states") ? "usa" : country;
+  const cd = validLocations[norm];
+  if (!cd) return false;
   if (!state) return true;
-  const stateData = countryData[state];
-  if (!stateData) return false;
+  const sd = cd[state];
+  if (!sd) return false;
   if (!city) return true;
-  return stateData.has(city);
+  return sd.has(city);
 }
