@@ -10,8 +10,9 @@ const FinalCTASection = () => {
             <img
               src={somnathPhoto}
               alt="Somnath Mondal - Founder"
-              className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover mx-auto mb-6 ring-4 ring-white/30 shadow-lg"
-            />
+               className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover mx-auto mb-2 ring-4 ring-white/30 shadow-lg"
+             />
+             <p className="text-sm font-medium opacity-90 mb-4">Somnath Mondal</p>
             <h2 className="text-4xl font-bold mb-4">Ready to Fill Your Franchise Pipeline?</h2>
             <p className="text-xl opacity-90 mb-8">
               Book a free strategy call — we'll show you exactly how LinkedIn marketing, social media, and a high-converting website can generate qualified franchise leads for your brand.
