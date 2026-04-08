@@ -32,6 +32,7 @@ import SitemapGenerator from "./pages/SitemapGenerator";
 import Sitemap from "./pages/Sitemap";
 import BlogSitemap from "./pages/BlogSitemap";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import RefundPolicy from "./pages/RefundPolicy";
 import NotFound from "./pages/NotFound";
 import Search from "./pages/Search";
 import ScrollToTop from "./components/ScrollToTop";
@@ -94,6 +95,7 @@ const App = () => (
             <Route path="/sitemap-blog.xml" element={<BlogSitemap />} />
             <Route path="/search" element={<Search />} />
             <Route path="/legal-terms/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/legal-terms/refund-satisfaction-guarantee-policy" element={<RefundPolicy />} />
             
             <Route path="*" element={<NotFound />} />
           </Routes>
