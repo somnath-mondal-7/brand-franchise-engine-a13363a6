@@ -21,8 +21,8 @@ const TrustBadges = ({ variant = "default" }: TrustBadgesProps) => {
     variant === "compact"
       ? "h-12 w-auto"
       : variant === "footer"
-        ? "h-16 w-auto"
-        : "h-24 w-auto";
+        ? "h-20 w-auto"
+        : "h-28 w-auto";
 
   return (
     <div
