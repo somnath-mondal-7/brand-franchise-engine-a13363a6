@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import TrustBadges from "@/components/TrustBadges";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Check, Linkedin, Users, Globe, Share2, Bot, Crown, ArrowRight } from "lucide-react";
@@ -110,6 +111,9 @@ const PricingSection = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* Trust Badges */}
+        <TrustBadges variant="compact" />
       </div>
     </section>
   );

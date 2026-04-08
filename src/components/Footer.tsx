@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Linkedin, Facebook } from "lucide-react";
 import logo from "@/assets/logo-hq.png";
+import TrustBadges from "@/components/TrustBadges";
 
 const Footer = () => {
   return (
@@ -97,7 +98,12 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Trust Badges */}
         <div className="border-t border-gray-800 mt-10 sm:mt-12 pt-6 sm:pt-8">
+          <TrustBadges variant="footer" />
+        </div>
+
+        <div className="border-t border-gray-800 mt-4 pt-6 sm:pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-gray-400 text-sm sm:text-base">
               <p>© 2026 FranchiseLeadsPro. All rights reserved.</p>
