@@ -11,6 +11,7 @@ import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Helmet } from "react-helmet-async";
+import TrustBadges from "@/components/TrustBadges";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
