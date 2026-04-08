@@ -111,6 +111,9 @@ const PricingSection = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* Trust Badges */}
+        <TrustBadges variant="compact" />
       </div>
     </section>
   );

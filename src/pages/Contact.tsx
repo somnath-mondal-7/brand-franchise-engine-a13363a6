@@ -293,6 +293,14 @@ const Contact = () => {
         </div>
       </section>
 
+      {/* Trust Badges */}
+      <section className="py-12 bg-muted/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h3 className="text-center text-lg font-semibold text-muted-foreground mb-6">Trusted by Franchise Brands Worldwide</h3>
+          <TrustBadges />
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="py-20 bg-gradient-secondary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">

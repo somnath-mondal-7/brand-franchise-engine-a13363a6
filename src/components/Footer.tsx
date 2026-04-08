@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Linkedin, Facebook } from "lucide-react";
 import logo from "@/assets/logo-hq.png";
+import TrustBadges from "@/components/TrustBadges";
 
 const Footer = () => {
   return (
