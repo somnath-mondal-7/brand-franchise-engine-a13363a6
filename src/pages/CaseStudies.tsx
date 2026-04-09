@@ -236,6 +236,62 @@ const CaseStudies = () => {
         </div>
       </section>
 
+      {/* HOF Case Study Card */}
+      <section className="py-16 bg-accent/20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            <p className="text-sm font-semibold text-primary mb-2">More Case Studies</p>
+            <Card className="border-primary/20 shadow-lg overflow-hidden">
+              <CardContent className="p-0">
+                <div className="grid grid-cols-1 md:grid-cols-2">
+                  <div className="bg-gradient-to-br from-primary/10 to-accent/20 p-8 flex flex-col justify-center">
+                    <Badge variant="outline" className="w-fit mb-4 bg-primary/10 text-primary border-primary/20 text-xs">
+                      Website Design & Development
+                    </Badge>
+                    <h3 className="text-2xl font-bold text-foreground mb-2">HOF Franchise Consulting</h3>
+                    <p className="text-muted-foreground text-sm mb-1">Shawn Gurn · Franchise Consultant · IFPG Member</p>
+                    <p className="text-muted-foreground text-sm leading-relaxed mt-3">
+                      Complete website transformation from a dated WordPress site to a modern React application with a 90+ searchable franchise directory, Calendly integration, and premium brand design.
+                    </p>
+                    <div className="grid grid-cols-2 gap-3 mt-5">
+                      <div className="text-center bg-background/80 rounded-lg p-3">
+                        <p className="text-xl font-bold text-primary">90+</p>
+                        <p className="text-xs text-muted-foreground">Franchise Brands</p>
+                      </div>
+                      <div className="text-center bg-background/80 rounded-lg p-3">
+                        <p className="text-xl font-bold text-primary">3x</p>
+                        <p className="text-xs text-muted-foreground">Faster Load Speed</p>
+                      </div>
+                    </div>
+                    <Link to="/case-studies/hof-franchise-consulting" className="mt-6">
+                      <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                        Read Full Case Study <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
+                  </div>
+                  <div className="p-8 flex flex-col justify-center space-y-3">
+                    <h4 className="font-semibold text-foreground mb-2">Services Delivered</h4>
+                    {[
+                      "Complete Website Redesign & Development",
+                      "90+ Franchise Brand Directory",
+                      "Calendly Booking Integration",
+                      "Video Content Optimization",
+                      "Mobile-First Responsive Design",
+                      "SEO Architecture",
+                    ].map((svc) => (
+                      <div key={svc} className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                        {svc}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-20 bg-gradient-to-r from-primary to-primary/80">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-primary-foreground space-y-6">
