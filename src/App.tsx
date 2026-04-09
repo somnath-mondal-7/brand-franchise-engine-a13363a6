@@ -15,6 +15,7 @@ import AutoBlogAdmin from "./pages/AutoBlogAdmin";
 import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
 import Testimonials from "./pages/Testimonials";
 import CaseStudies from "./pages/CaseStudies";
+import CaseStudyHOF from "./pages/CaseStudyHOF";
 import Contact from "./pages/Contact";
 import FranchiseLeadsUSA from "./pages/FranchiseLeadsUSA";
 import FranchiseLeadsUK from "./pages/FranchiseLeadsUK";
@@ -90,6 +91,7 @@ const App = () => (
             } />
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/case-studies" element={<CaseStudies />} />
+            <Route path="/case-studies/hof-franchise-consulting" element={<CaseStudyHOF />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/sitemap" element={<Sitemap />} />
             <Route path="/sitemap-blog.xml" element={<BlogSitemap />} />
