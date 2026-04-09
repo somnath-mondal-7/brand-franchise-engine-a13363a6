@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, CheckCircle2, ExternalLink, Globe, Linkedin, BarChart3 } from "lucide-react";
+import { ArrowRight, CheckCircle2, ExternalLink, Globe, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
