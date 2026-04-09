@@ -13,7 +13,7 @@ const CaseStudyHOF = () => {
     { feature: "Navigation", before: "Flat top nav with 7 links, no dropdown", after: "Smart sticky navbar with Franchise dropdown menu, top info bar with email/phone, mobile hamburger menu" },
     { feature: "Hero Section", before: "Simple image slider with basic text", after: "Full-width hero with animated text, dual CTAs, trust badges" },
     { feature: "Video Content", before: "No video on site", after: "Embedded intro video with custom thumbnail, optimized playback (52MB → 8.6MB)" },
-    { feature: "Franchise Directory", before: "Single franchise page with basic list", after: "Searchable directory with 90+ franchise brands, category filters, investment details" },
+    { feature: "Franchise Directory", before: "Single franchise page with basic list", after: "Searchable directory with 600+ franchise brands, category filters, investment details" },
     { feature: "Mobile Experience", before: "Basic responsive", after: "Fully responsive with dedicated mobile menu, optimized touch targets, mobile-first approach" },
     { feature: "Performance", before: "WordPress with multiple plugins (slow)", after: "Lightning-fast React SPA, no server-side rendering delays, optimized assets" },
     { feature: "CTAs & Lead Gen", before: "Single 'Free Consultation' button", after: "Multiple strategic CTAs — Calendly integration, 'LET'S TALK' footer bar, strategy session buttons" },
@@ -22,7 +22,7 @@ const CaseStudyHOF = () => {
   ];
 
   const newFeatures = [
-    "90+ Franchise Directory — Searchable, filterable database with investment ranges, highlights, and training details for each brand",
+    "600+ Franchise Directory — Searchable, filterable database with investment ranges, highlights, and training details for each brand",
     "Interactive Franchise Categories — Clickable category cards directing users to the franchise directory",
     "Shawn's Video Introduction — Embedded on both Home and About pages with custom thumbnail and optimized streaming",
     "Dedicated Lending Page — Complete business financing information as a standalone section",
@@ -35,7 +35,7 @@ const CaseStudyHOF = () => {
   const services = [
     "Complete Website Redesign & Development",
     "Custom React/TypeScript Build",
-    "90+ Franchise Brand Directory Integration",
+    "600+ Franchise Brand Directory Integration",
     "Calendly Booking System Integration",
     "Video Content Optimization & Embedding",
     "Mobile-First Responsive Design",
@@ -44,7 +44,7 @@ const CaseStudyHOF = () => {
   ];
 
   const stats = [
-    { label: "Franchise Brands Listed", value: "90+" },
+    { label: "Franchise Brands Listed", value: "600+" },
     { label: "Video Size Reduction", value: "83%" },
     { label: "Pages Built", value: "15+" },
     { label: "Load Speed Improvement", value: "3x" },
@@ -54,7 +54,7 @@ const CaseStudyHOF = () => {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>HOF Franchise Consulting Website Redesign Case Study | FranchiseLeadsPro</title>
-        <meta name="description" content="How FranchiseLeadsPro transformed HOF Franchise Consulting's outdated WordPress site into a modern, high-converting React application with 90+ franchise directory, Calendly integration, and premium brand design." />
+        <meta name="description" content="How FranchiseLeadsPro transformed HOF Franchise Consulting's outdated WordPress site into a modern, high-converting React application with 600+ franchise directory, Calendly integration, and premium brand design." />
         <link rel="canonical" href="https://www.franchiseleadspro.com/case-studies/hof-franchise-consulting" />
         <meta name="robots" content="index, follow" />
         <meta property="og:type" content="article" />
@@ -66,8 +66,12 @@ const CaseStudyHOF = () => {
       <Navigation />
 
       {/* Hero */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-background via-accent/30 to-primary/5">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="pt-24 pb-16 relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img src="/images/hof-hero-bg.png" alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-background/85 backdrop-blur-sm" />
+        </div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
             <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20 text-sm px-4 py-1">
               Case Study — Website Design & Development
@@ -76,7 +80,7 @@ const CaseStudyHOF = () => {
               HOF Franchise Consulting — Complete Website Transformation
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              How we rebuilt Shawn Gurn's franchise consulting website from a dated WordPress site into a modern, high-converting React application with a 90+ franchise directory.
+              How we rebuilt Shawn Gurn's franchise consulting website from a dated WordPress site into a modern, high-converting React application with a 600+ franchise directory.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
               <a href="https://www.linkedin.com/in/shawngurn/" target="_blank" rel="noopener noreferrer">
@@ -149,7 +153,7 @@ const CaseStudyHOF = () => {
                     We didn't just redesign Shawn's website — we engineered an entirely new digital platform from scratch. Built on <strong className="text-foreground">React 18, TypeScript, Tailwind CSS, and Framer Motion</strong>, the new site is a blazing-fast single-page application that loads instantly, looks stunning, and converts visitors into booked consultations.
                   </p>
                   <p className="text-muted-foreground leading-relaxed mb-4">
-                    The centerpiece of the new build is a <strong className="text-foreground">searchable franchise directory featuring 90+ brands</strong> — complete with investment ranges, category filters, training details, and highlights for each opportunity. This alone transformed the site from a static brochure into an interactive lead magnet that keeps visitors engaged.
+                    The centerpiece of the new build is a <strong className="text-foreground">searchable franchise directory featuring 600+ brands</strong> — complete with investment ranges, category filters, training details, and highlights for each opportunity. This alone transformed the site from a static brochure into an interactive lead magnet that keeps visitors engaged.
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
                     We also embedded Shawn's personal introduction video — compressed from 52MB down to just 8.6MB without quality loss — on both the Home and About pages. This personal touch lets prospects connect with Shawn before they ever pick up the phone, dramatically increasing trust and conversion rates. Combined with Calendly-integrated booking, multiple strategic CTAs, and IFPG trust badges, the new site is a complete lead generation machine.
@@ -183,17 +187,23 @@ const CaseStudyHOF = () => {
                 </div>
 
                 {/* New Features */}
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-3">New Pages & Features Added</h2>
-                  <hr className="border-border mb-4" />
-                  <ul className="space-y-3">
-                    {newFeatures.map((feature, i) => (
-                      <li key={i} className="flex items-start gap-2 text-muted-foreground">
-                        <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="relative overflow-hidden rounded-xl">
+                  <div className="absolute inset-0 z-0">
+                    <img src="/images/hof-features-bg.png" alt="" className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-background/90" />
+                  </div>
+                  <div className="relative z-10 p-6 lg:p-8">
+                    <h2 className="text-2xl font-bold text-foreground mb-3">New Pages & Features Added</h2>
+                    <hr className="border-border mb-4" />
+                    <ul className="space-y-3">
+                      {newFeatures.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-2 text-muted-foreground">
+                          <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
                 {/* Key Benefits */}
@@ -205,7 +215,7 @@ const CaseStudyHOF = () => {
                       { title: "Professional Brand Authority", desc: "Custom colors, typography, and animations position HOF as a premium consulting firm — not a generic WordPress site." },
                       { title: "Faster Performance", desc: "React-based SPA loads instantly vs. the old WordPress site with heavy plugins. Faster sites convert more leads." },
                       { title: "Better Lead Generation", desc: "Multiple strategic CTAs, Calendly integration, and a clear user journey guide visitors toward booking." },
-                      { title: "Franchise Directory as Lead Magnet", desc: "The 90+ brand searchable directory gives visitors a reason to explore and engage, increasing time on site." },
+                      { title: "Franchise Directory as Lead Magnet", desc: "The 600+ brand searchable directory gives visitors a reason to explore and engage, increasing time on site." },
                       { title: "Personal Connection via Video", desc: "Shawn's intro video builds trust before prospects even speak with him — a proven conversion booster." },
                       { title: "Mobile-First Experience", desc: "Fully responsive design ensures 60%+ of visitors on mobile get a flawless experience." },
                     ].map((item, i) => (
