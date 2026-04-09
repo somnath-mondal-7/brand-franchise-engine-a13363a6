@@ -67,14 +67,8 @@ const CaseStudyHOF = () => {
 
       {/* Hero */}
       <section className="pt-24 pb-16 relative overflow-hidden">
-        {/* Side-by-side background photos */}
-        <div className="absolute inset-0 z-0 flex">
-          <div className="w-1/2 h-full">
-            <img src="/images/hof-hero-bg.png" alt="" className="w-full h-full object-cover object-top" />
-          </div>
-          <div className="w-1/2 h-full">
-            <img src="/images/hof-features-bg.png" alt="" className="w-full h-full object-cover object-top" />
-          </div>
+        <div className="absolute inset-0 z-0">
+          <img src="/images/hof-hero-bg.png" alt="" className="w-full h-full object-cover object-top" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background/80" />
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
