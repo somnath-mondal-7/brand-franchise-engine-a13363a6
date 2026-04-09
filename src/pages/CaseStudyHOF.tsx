@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, CheckCircle2, ExternalLink, Globe, Linkedin, BarChart3 } from "lucide-react";
+import { ArrowRight, CheckCircle2, ExternalLink, Globe, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
@@ -43,12 +43,6 @@ const CaseStudyHOF = () => {
     "Brand Identity & Visual Design System",
   ];
 
-  const stats = [
-    { label: "Franchise Brands Listed", value: "600+" },
-    { label: "Video Size Reduction", value: "83%" },
-    { label: "Pages Built", value: "15+" },
-    { label: "Load Speed Improvement", value: "3x" },
-  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -270,20 +264,6 @@ const CaseStudyHOF = () => {
                     </CardContent>
                   </Card>
 
-                  {/* Stats Card */}
-                  <Card className="bg-gradient-to-br from-primary/5 to-accent/10 border-border/50">
-                    <CardContent className="p-6 space-y-4">
-                      <h4 className="font-bold text-foreground flex items-center gap-2">
-                        <BarChart3 className="w-5 h-5 text-primary" /> Key Metrics
-                      </h4>
-                      {stats.map((stat) => (
-                        <div key={stat.label} className="flex justify-between items-center">
-                          <span className="text-sm text-muted-foreground">{stat.label}</span>
-                          <span className="font-bold text-primary">{stat.value}</span>
-                        </div>
-                      ))}
-                    </CardContent>
-                  </Card>
 
                   {/* Client Info Card */}
                   <Card className="border-border/50">
