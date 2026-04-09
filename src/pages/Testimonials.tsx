@@ -118,8 +118,44 @@ const Testimonials = () => {
         </div>
       </section>
 
-      {/* Testimonials Grid */}
+      {/* Video Testimonials */}
       <section className="py-20 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-16">
+              <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20 mb-4">
+                Video Reviews
+              </Badge>
+              <h2 className="text-4xl font-bold text-brand-navy mb-6">Video Testimonials</h2>
+              <p className="text-xl text-brand-gray">
+                Hear directly from our clients about their experience working with us.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+              {[
+                { name: "Jesica Thompson", title: "Consultant, Franchise Solutions Inc.", videoSrc: "/videos/jesica-thompson-review.mp4" },
+                { name: "Jonathan Morgan", title: "CEO, NextFranch Corp", videoSrc: "/videos/jonathan-morgan-review.mp4" },
+              ].map((video, index) => (
+                <Card key={index} className="overflow-hidden border-border/50 hover:shadow-xl transition-all duration-300">
+                  <div className="aspect-[3/4] sm:aspect-[4/5] bg-muted relative overflow-hidden">
+                    <video className="w-full h-full object-cover" controls preload="metadata">
+                      <source src={video.videoSrc} type="video/mp4" />
+                    </video>
+                  </div>
+                  <CardContent className="p-5">
+                    <h4 className="text-base font-bold text-foreground">{video.name}</h4>
+                    <p className="text-xs text-muted-foreground mt-0.5">{video.title}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Text Testimonials Grid */}
+      <section className="py-20 bg-muted/20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
@@ -136,27 +172,20 @@ const Testimonials = () => {
                   className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 border-border/50 relative overflow-hidden"
                 >
                   <CardContent className="p-8 space-y-6">
-                    {/* Quote Icon */}
                     <div className="flex items-start justify-between">
                       <Quote className="w-8 h-8 text-primary/30" />
                       <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
                         {testimonial.results}
                       </Badge>
                     </div>
-
-                    {/* Rating */}
                     <div className="flex items-center space-x-1">
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                       ))}
                     </div>
-
-                    {/* Testimonial Text */}
                     <p className="text-brand-gray leading-relaxed italic">
                       "{testimonial.text}"
                     </p>
-
-                    {/* Client Info */}
                     <div className="border-t border-border pt-6">
                       <div className="flex items-start justify-between">
                         <div>
