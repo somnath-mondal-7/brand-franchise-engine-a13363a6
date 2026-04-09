@@ -187,23 +187,17 @@ const CaseStudyHOF = () => {
                 </div>
 
                 {/* New Features */}
-                <div className="relative overflow-hidden rounded-xl">
-                  <div className="absolute inset-0 z-0">
-                    <img src="/images/hof-features-bg.png" alt="" className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-background/90" />
-                  </div>
-                  <div className="relative z-10 p-6 lg:p-8">
-                    <h2 className="text-2xl font-bold text-foreground mb-3">New Pages & Features Added</h2>
-                    <hr className="border-border mb-4" />
-                    <ul className="space-y-3">
-                      {newFeatures.map((feature, i) => (
-                        <li key={i} className="flex items-start gap-2 text-muted-foreground">
-                          <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-3">New Pages & Features Added</h2>
+                  <hr className="border-border mb-4" />
+                  <ul className="space-y-3">
+                    {newFeatures.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-2 text-muted-foreground">
+                        <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
                 {/* Key Benefits */}
