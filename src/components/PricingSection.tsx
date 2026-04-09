@@ -60,7 +60,6 @@ const PricingSection = () => {
               <CardTitle className="text-2xl text-card-foreground">
                 Branding & Lead Gen
               </CardTitle>
-              </CardTitle>
               <div className="mt-4">
                 <span className="text-5xl font-extrabold text-foreground">$870</span>
                 <span className="text-muted-foreground text-lg">/month</span>
