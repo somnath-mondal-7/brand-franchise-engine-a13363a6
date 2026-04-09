@@ -67,16 +67,22 @@ const CaseStudyHOF = () => {
 
       {/* Hero */}
       <section className="pt-24 pb-16 relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img src="/images/hof-hero-bg.png" alt="" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-background/85 backdrop-blur-sm" />
+        {/* Side-by-side background photos */}
+        <div className="absolute inset-0 z-0 flex">
+          <div className="w-1/2 h-full">
+            <img src="/images/hof-hero-bg.png" alt="" className="w-full h-full object-cover object-top" />
+          </div>
+          <div className="w-1/2 h-full">
+            <img src="/images/hof-features-bg.png" alt="" className="w-full h-full object-cover object-top" />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background/80" />
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
-            <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20 text-sm px-4 py-1">
+            <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20 text-sm px-4 py-1 backdrop-blur-sm">
               Case Study — Website Design & Development
             </Badge>
-            <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
+            <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight drop-shadow-sm">
               HOF Franchise Consulting — Complete Website Transformation
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -84,12 +90,12 @@ const CaseStudyHOF = () => {
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
               <a href="https://www.linkedin.com/in/shawngurn/" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="border-border text-foreground hover:bg-muted">
+                <Button variant="outline" className="border-border text-foreground hover:bg-muted backdrop-blur-sm bg-background/50">
                   <Linkedin className="w-4 h-4 mr-2" /> Shawn Gurn on LinkedIn
                 </Button>
               </a>
               <a href="https://hoffranchiseconsulting.com" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="border-border text-foreground hover:bg-muted">
+                <Button variant="outline" className="border-border text-foreground hover:bg-muted backdrop-blur-sm bg-background/50">
                   <Globe className="w-4 h-4 mr-2" /> Visit HOF Website
                 </Button>
               </a>
