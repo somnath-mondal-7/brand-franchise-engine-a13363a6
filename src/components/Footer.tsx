@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Linkedin, Facebook } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Facebook, Instagram } from "lucide-react";
 import logo from "@/assets/logo-hq.png";
 import TrustBadges from "@/components/TrustBadges";
 
@@ -24,6 +24,9 @@ const Footer = () => {
               </a>
               <a href="https://www.facebook.com/profile.php?id=61579709174263" target="_blank" rel="noopener noreferrer" className="min-h-[44px] min-w-[44px] flex items-center justify-center">
                 <Facebook className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
+              </a>
+              <a href="https://www.instagram.com/franchiseleadspro_company/" target="_blank" rel="noopener noreferrer" className="min-h-[44px] min-w-[44px] flex items-center justify-center">
+                <Instagram className="w-5 h-5 hover:text-pink-400 cursor-pointer transition-colors" />
               </a>
             </div>
           </div>
