@@ -51,7 +51,7 @@ const Navigation = () => {
 
           {/* Mobile menu button */}
           <div className="lg:hidden">
-            <Button variant="outline" size="sm" onClick={toggleMenu} className="text-gray-900 border-gray-300 bg-white min-h-[44px] min-w-[44px]">
+            <Button variant="outline" size="sm" onClick={toggleMenu} className="text-foreground border-border bg-background min-h-[44px] min-w-[44px]">
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
