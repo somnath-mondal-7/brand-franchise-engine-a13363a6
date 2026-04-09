@@ -58,7 +58,8 @@ const PricingSection = () => {
                 Most Popular
               </span>
               <CardTitle className="text-2xl text-card-foreground">
-                LinkedIn Lead Engine
+                Branding & Lead Gen
+              </CardTitle>
               </CardTitle>
               <div className="mt-4">
                 <span className="text-5xl font-extrabold text-foreground">$870</span>
