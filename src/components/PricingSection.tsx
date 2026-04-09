@@ -86,47 +86,18 @@ const PricingSection = () => {
                   </li>
                 ))}
               </ul>
+              <div className="mt-8 pt-6 border-t border-border">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-card-foreground font-semibold">Additional Profiles</p>
+                    <p className="text-sm text-muted-foreground">Per extra LinkedIn profile</p>
+                  </div>
+                  <span className="text-2xl font-extrabold text-foreground">$699<span className="text-sm font-normal text-muted-foreground">/mo</span></span>
+                </div>
+              </div>
               <Link to="/contact" className="block mt-8">
                 <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-6 text-lg font-semibold rounded-xl shadow-elegant hover:shadow-hover transition-all duration-300">
                   Get Started Today <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
-
-          {/* Additional Profiles Plan */}
-          <Card className="relative border-2 border-accent shadow-card overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-accent to-accent/70" />
-            <CardHeader className="text-center pb-2">
-              <span className="inline-block px-3 py-1 bg-accent text-accent-foreground rounded-full text-xs font-bold uppercase tracking-wider mb-3 mx-auto">
-                Add-On
-              </span>
-              <CardTitle className="text-2xl text-card-foreground">
-                Additional Profiles
-              </CardTitle>
-              <div className="mt-4">
-                <span className="text-5xl font-extrabold text-foreground">$570</span>
-                <span className="text-muted-foreground text-lg">/month</span>
-              </div>
-              <p className="text-sm text-muted-foreground mt-2">
-                Per additional LinkedIn profile
-              </p>
-            </CardHeader>
-            <CardContent className="pt-6">
-              <ul className="space-y-4">
-                {additionalProfileServices.map((service, idx) => (
-                  <li key={idx} className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent flex-shrink-0">
-                      {service.icon}
-                    </div>
-                    <span className="text-card-foreground font-medium">{service.label}</span>
-                    <Check className="w-4 h-4 text-accent ml-auto flex-shrink-0" />
-                  </li>
-                ))}
-              </ul>
-              <Link to="/contact" className="block mt-8">
-                <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground py-6 text-lg font-semibold rounded-xl transition-all duration-300">
-                  Add Profile <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
             </CardContent>
