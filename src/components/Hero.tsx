@@ -100,13 +100,25 @@ const Hero = () => {
 
                 {/* Text below image on mobile (order-2 mobile, order-1 desktop) */}
                 <div className="space-y-4 sm:space-y-6 md:space-y-8 order-2 lg:order-1">
-                  <h1
-                    className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight transition-all duration-700 delay-100 ${
-                      index === currentSlide ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                    }`}
-                  >
-                    {slide.title}
-                  </h1>
+                  {index === 0 ? (
+                    <h1
+                      className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight transition-all duration-700 delay-100 ${
+                        index === currentSlide ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                      }`}
+                    >
+                      {slide.title}
+                    </h1>
+                  ) : (
+                    <p
+                      role="heading"
+                      aria-level={2}
+                      className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight transition-all duration-700 delay-100 m-0 ${
+                        index === currentSlide ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                      }`}
+                    >
+                      {slide.title}
+                    </p>
+                  )}
                   <p
                     className={`text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-xl transition-all duration-700 delay-200 ${
                       index === currentSlide ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
