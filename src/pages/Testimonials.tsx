@@ -65,12 +65,6 @@ const Testimonials = () => {
     }
   ];
 
-  const stats = [
-    { number: "640+", label: "Happy Clients" },
-    { number: "15K+", label: "Leads Generated" },
-    { number: "92%", label: "Success Rate" },
-    { number: "3x", label: "Average ROI" }
-  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -93,27 +87,6 @@ const Testimonials = () => {
               See how franchise consultants and franchisors are achieving extraordinary growth 
               with our lead generation and brand building services.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-20 bg-gradient-secondary">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
-            {stats.map((stat, index) => (
-              <div 
-                key={index}
-                className="text-center group hover:scale-105 transition-all duration-300"
-              >
-                <div className="text-4xl lg:text-5xl font-bold text-primary mb-2 group-hover:text-brand-navy transition-colors">
-                  {stat.number}
-                </div>
-                <div className="text-brand-gray font-medium">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -216,7 +189,7 @@ const Testimonials = () => {
               Ready to Write Your Success Story?
             </h2>
             <p className="text-xl text-brand-gray">
-              Join 640+ franchise professionals who have transformed their businesses with our services.
+              Join franchise professionals who have transformed their businesses with our services.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">

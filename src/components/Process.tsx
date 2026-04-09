@@ -111,22 +111,8 @@ const Process = () => {
               Ready to Transform Your Franchise Business?
             </h3>
             <p className="text-xl text-brand-gray mb-8 max-w-2xl mx-auto">
-              Our proven 3-step process has helped 640+ franchise professionals generate qualified leads and build powerful brands that dominate their markets.
+              Our proven 3-step process has helped franchise professionals generate qualified leads and build powerful brands that dominate their markets.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <div className="bg-white rounded-lg p-6 shadow-card">
-                <div className="text-3xl font-bold text-brand-blue mb-2">640+</div>
-                <div className="text-brand-gray">Satisfied Clients</div>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-card">
-                <div className="text-3xl font-bold text-brand-blue mb-2">15K+</div>
-                <div className="text-brand-gray">Qualified Leads</div>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-card">
-                <div className="text-3xl font-bold text-brand-blue mb-2">95%</div>
-                <div className="text-brand-gray">Success Rate</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

@@ -142,24 +142,6 @@ const About = () => {
                 </p>
               </div>
               <div className="bg-gradient-secondary p-8 rounded-3xl shadow-card">
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary mb-2">850+</div>
-                    <div className="text-sm text-brand-gray">Franchise Projects</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary mb-2">60+</div>
-                    <div className="text-sm text-brand-gray">Industries Covered</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary mb-2">97%</div>
-                    <div className="text-sm text-brand-gray">Success Rate</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary mb-2">18+</div>
-                    <div className="text-sm text-brand-gray">Years Experience</div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
