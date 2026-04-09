@@ -59,19 +59,20 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0'}`}>
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-100 overflow-y-auto max-h-[75vh]">
-            <Link to="/" className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors duration-200" onClick={toggleMenu}>Home</Link>
-            <Link to="/case-studies" className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors duration-200" onClick={toggleMenu}>Case Studies</Link>
-            <Link to="/blog" className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors duration-200" onClick={toggleMenu}>Blog</Link>
-            <Link to="/contact" className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors duration-200" onClick={toggleMenu}>Contact Us</Link>
-            <div className="px-3 py-3 space-y-2 border-t border-gray-100 mt-2">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background border-t border-border overflow-y-auto max-h-[75vh]">
+            <Link to="/" className="block px-3 py-3 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors duration-200" onClick={toggleMenu}>Home</Link>
+            <Link to="/services" className="block px-3 py-3 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors duration-200" onClick={toggleMenu}>Services</Link>
+            <Link to="/case-studies" className="block px-3 py-3 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors duration-200" onClick={toggleMenu}>Case Studies</Link>
+            <Link to="/blog" className="block px-3 py-3 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors duration-200" onClick={toggleMenu}>Blog</Link>
+            <Link to="/contact" className="block px-3 py-3 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors duration-200" onClick={toggleMenu}>Contact Us</Link>
+            <div className="px-3 py-3 space-y-2 border-t border-border mt-2">
               <a href="tel:+15512012377" className="block">
-                <Button variant="outline" className="w-full border-gray-300 text-gray-700 min-h-[44px]">
+                <Button variant="outline" className="w-full border-border text-foreground min-h-[44px]">
                   <Phone className="w-4 h-4 mr-2" />
                   <span className="text-sm">+1 (551)-201-23-77</span>
                 </Button>
               </a>
-              <Button className="w-full bg-primary hover:bg-primary/90 text-white min-h-[44px]" onClick={() => { window.open('https://calendly.com/lets-build-your-brand', '_blank'); toggleMenu(); }}>Let's talk</Button>
+              <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground min-h-[44px]" onClick={() => { window.open('https://calendly.com/lets-build-your-brand', '_blank'); toggleMenu(); }}>Let's talk</Button>
             </div>
           </div>
         </div>
