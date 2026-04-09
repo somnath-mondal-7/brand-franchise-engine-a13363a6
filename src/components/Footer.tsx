@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4 sm:col-span-2 md:col-span-1">
             <div className="flex items-center space-x-3">
-              <img src={logo} alt="FranchiseLeadsPro Logo - Franchise Lead Generation Experts" width="40" height="40" className="w-10 h-10 object-contain" />
+              <img src={logo} alt="FranchiseLeadsPro Logo - Franchise Lead Generation Experts" width="56" height="56" className="w-14 h-14 object-contain" />
               <span className="text-xl font-semibold text-white" aria-label="FranchiseLeadsPro">
                 franchiseleads<span className="text-primary font-bold">Pro</span>
               </span>

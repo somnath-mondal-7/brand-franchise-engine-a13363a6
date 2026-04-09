@@ -34,6 +34,7 @@ const Navigation = () => {
           <div className="hidden lg:flex items-center space-x-6 ml-6">
             <Link to="/" className="text-foreground/80 hover:text-primary transition-colors duration-200 font-medium">Home</Link>
             <Link to="/services" className="text-foreground/80 hover:text-primary transition-colors duration-200 font-medium">Services</Link>
+            <a href="/#pricing" className="text-foreground/80 hover:text-primary transition-colors duration-200 font-medium">Pricing</a>
             <Link to="/case-studies" className="text-foreground/80 hover:text-primary transition-colors duration-200 font-medium">Case Studies</Link>
             <Link to="/blog" className="text-foreground/80 hover:text-primary transition-colors duration-200 font-medium">Blog</Link>
             <Link to="/contact" className="text-foreground/80 hover:text-primary transition-colors duration-200 font-medium">Contact Us</Link>
@@ -62,6 +63,7 @@ const Navigation = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background border-t border-border overflow-y-auto max-h-[75vh]">
             <Link to="/" className="block px-3 py-3 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors duration-200" onClick={toggleMenu}>Home</Link>
             <Link to="/services" className="block px-3 py-3 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors duration-200" onClick={toggleMenu}>Services</Link>
+            <a href="/#pricing" className="block px-3 py-3 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors duration-200" onClick={toggleMenu}>Pricing</a>
             <Link to="/case-studies" className="block px-3 py-3 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors duration-200" onClick={toggleMenu}>Case Studies</Link>
             <Link to="/blog" className="block px-3 py-3 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors duration-200" onClick={toggleMenu}>Blog</Link>
             <Link to="/contact" className="block px-3 py-3 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors duration-200" onClick={toggleMenu}>Contact Us</Link>
