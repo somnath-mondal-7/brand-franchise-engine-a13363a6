@@ -24,7 +24,7 @@ const Navigation = () => {
                 loading="eager"
                 fetchPriority="high"
               />
-              <span className="hidden sm:inline text-xl font-semibold text-gray-900">
+              <span className="hidden sm:inline text-xl font-semibold text-foreground">
                 Franchiseleads<span className="text-primary">Pro</span>
               </span>
             </Link>
