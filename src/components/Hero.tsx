@@ -79,7 +79,7 @@ const Hero = () => {
                 : "opacity-0 translate-x-full z-0"
             }`}
           >
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="container mx-auto px-8 sm:px-10 md:px-12 lg:px-16">
               <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center">
                 {/* Image */}
                 <div
