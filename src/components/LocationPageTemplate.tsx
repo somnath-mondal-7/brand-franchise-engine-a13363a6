@@ -183,25 +183,6 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-12 bg-muted">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-6">
-            {[
-              { value: "150+", label: "Franchise Clients" },
-              { value: "15K+", label: "Leads Generated" },
-              { value: "42%", label: "Avg. Conversion Rate" },
-              { value: "12", label: "Countries Served" },
-              { value: "$2.1M+", label: "Client Revenue Generated" },
-            ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-1">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Who We Serve Section */}
       <section className="py-20 bg-background">
@@ -358,11 +339,11 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
                 { icon: <Shield className="h-5 w-5" />, text: `Deep expertise in the ${location} franchise market and local buyer demographics` },
                 { icon: <Target className="h-5 w-5" />, text: "Every lead pre-screened for liquid capital, timeline, and genuine franchise interest" },
                 { icon: <Clock className="h-5 w-5" />, text: "Real-time lead delivery to your CRM with complete investor profiles" },
-                { icon: <TrendingUp className="h-5 w-5" />, text: "Proven 42% average conversion rate from lead to discovery day attendance" },
+                { icon: <TrendingUp className="h-5 w-5" />, text: "Proven track record of converting leads to discovery day attendance" },
                 { icon: <Linkedin className="h-5 w-5" />, text: "Proprietary LinkedIn campaigns reaching C-suite franchise investors" },
                 { icon: <BarChart3 className="h-5 w-5" />, text: "Transparent weekly reporting with cost-per-lead and ROI metrics" },
                 { icon: <Zap className="h-5 w-5" />, text: "AI-powered lead scoring that prioritizes highest-value franchise prospects" },
-                { icon: <Award className="h-5 w-5" />, text: "150+ franchise brands served across 12 countries with $2.1M+ revenue generated" },
+                { icon: <Award className="h-5 w-5" />, text: "Franchise brands served across multiple countries with measurable revenue growth" },
               ].map((item, idx) => (
                 <div key={idx} className="flex items-start gap-3 bg-muted rounded-lg p-4">
                   <div className="text-primary mt-0.5 flex-shrink-0">{item.icon}</div>

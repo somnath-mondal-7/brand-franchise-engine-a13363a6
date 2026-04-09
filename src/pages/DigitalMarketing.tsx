@@ -59,12 +59,6 @@ const DigitalMarketing = () => {
     }
   ];
 
-  const stats = [
-    { label: "Campaign Success Rate", value: "95%", icon: <TrendingUp className="w-5 h-5" /> },
-    { label: "Average ROI Increase", value: "340%", icon: <Target className="w-5 h-5" /> },
-    { label: "Active Campaigns", value: "150+", icon: <Globe className="w-5 h-5" /> },
-    { label: "Clients Served", value: "500+", icon: <Users className="w-5 h-5" /> }
-  ];
 
   return (
     <>
@@ -106,24 +100,6 @@ const DigitalMarketing = () => {
           </div>
         </section>
 
-        {/* Stats Section */}
-        <section className="py-16">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {stats.map((stat, index) => (
-                <Card key={index} className="bg-white/80 backdrop-blur-sm border-blue-200 text-center hover:bg-white/90 hover:border-orange-200 transition-all duration-300 shadow-lg">
-                  <CardContent className="p-6">
-                    <div className="flex justify-center mb-3 text-orange-500">
-                      {stat.icon}
-                    </div>
-                    <div className="text-3xl font-bold text-gray-800 mb-2">{stat.value}</div>
-                    <div className="text-gray-600 text-sm">{stat.label}</div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* Services Section */}
         <section className="py-20">

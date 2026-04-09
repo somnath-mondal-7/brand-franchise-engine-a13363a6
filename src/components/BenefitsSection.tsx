@@ -3,7 +3,7 @@ const BenefitsSection = () => {
     {
       title: "Pre-Qualified Franchise Investors",
       description: "Every lead is screened for investment capacity and genuine interest. You only speak with investors who meet your franchise criteria — no time-wasters.",
-      stat: "85% qualification rate",
+      stat: "High qualification standards",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -13,7 +13,7 @@ const BenefitsSection = () => {
     {
       title: "LinkedIn-First Approach", 
       description: "We go where franchise investors already are. LinkedIn outreach and thought leadership campaigns put your brand in front of decision-makers who can write checks.",
-      stat: "42% connection rate",
+      stat: "Industry-leading connection rates",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -23,7 +23,7 @@ const BenefitsSection = () => {
     {
       title: "Results in 30 Days",
       description: "We don't make you wait months. LinkedIn campaigns, social ads, and your franchise website are live within a week — first qualified leads arrive within 30 days.",
-      stat: "7-day launch time",
+      stat: "Fast launch timeline",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -33,7 +33,7 @@ const BenefitsSection = () => {
     {
       title: "Paid + Organic Social Media",
       description: "Facebook, Instagram, and LinkedIn ads running alongside organic content. Dual approach that builds your brand while generating leads every single day.",
-      stat: "3-5x avg. ROI",
+      stat: "Strong ROI performance",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
@@ -43,7 +43,7 @@ const BenefitsSection = () => {
     {
       title: "Websites That Convert",
       description: "Your franchise website isn't a brochure — it's a lead machine. We build SEO-optimized, mobile-first sites with smart inquiry forms that capture serious investors.",
-      stat: "8%+ conversion rate",
+      stat: "High conversion rates",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
@@ -53,7 +53,7 @@ const BenefitsSection = () => {
     {
       title: "Zero Risk to Start", 
       description: "7-day refund policy and 1-month satisfaction guarantee. If we don't deliver qualified franchise leads, you don't pay. Simple.",
-      stat: "98% client retention",
+      stat: "Exceptional client retention",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />

@@ -157,36 +157,6 @@ const Services = () => {
           </div>
         </section>
 
-        {/* Results */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-foreground mb-6">Proven Results for Franchise Brands</h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Real outcomes from LinkedIn marketing, social media campaigns, and franchise website development.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">500+</div>
-                <div className="text-muted-foreground">Franchise Brands Served</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">42%</div>
-                <div className="text-muted-foreground">LinkedIn Connection Rate</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">3-5x</div>
-                <div className="text-muted-foreground">Average ROI</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">30 Days</div>
-                <div className="text-muted-foreground">To First Leads</div>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* CTA */}
         <section className="py-20 bg-primary">
