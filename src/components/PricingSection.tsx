@@ -6,12 +6,16 @@ import { Check, Linkedin, Users, Globe, Share2, Bot, Crown, ArrowRight, UserPlus
 
 const PricingSection = () => {
   const mainServices = [
-    { icon: <Linkedin className="w-5 h-5" />, label: "LinkedIn Handling" },
-    { icon: <Users className="w-5 h-5" />, label: "CRM Handling" },
-    { icon: <Globe className="w-5 h-5" />, label: "Inbound Franchise Leads" },
+    { icon: <Users className="w-5 h-5" />, label: "8-15 Pre-Qualified Leads (40% Conversion)" },
+    { icon: <Check className="w-5 h-5" />, label: "Scheduled Calendar Appointments" },
     { icon: <Share2 className="w-5 h-5" />, label: "Social Media Marketing" },
-    { icon: <Bot className="w-5 h-5" />, label: "AI Integration & Automation" },
-    { icon: <Crown className="w-5 h-5" />, label: "Personal Authority Building" },
+    { icon: <Linkedin className="w-5 h-5" />, label: "Facebook Cold Outreach" },
+    { icon: <Crown className="w-5 h-5" />, label: "Business Branding / Articles / Ads / Videos" },
+    { icon: <UserPlus className="w-5 h-5" />, label: "Dedicated US-Based Account Manager" },
+    { icon: <Globe className="w-5 h-5" />, label: "Free 5-Page Website" },
+    { icon: <Bot className="w-5 h-5" />, label: "100% Done For You" },
+    { icon: <Share2 className="w-5 h-5" />, label: "Leads Delivered to CRM" },
+    { icon: <Check className="w-5 h-5" />, label: "Weekly Reporting" },
   ];
 
   const additionalProfileServices = [
@@ -54,7 +58,7 @@ const PricingSection = () => {
                 Most Popular
               </span>
               <CardTitle className="text-2xl text-card-foreground">
-                LinkedIn Lead Engine
+                Branding & Lead Gen
               </CardTitle>
               <div className="mt-4">
                 <span className="text-5xl font-extrabold text-foreground">$870</span>
