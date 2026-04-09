@@ -12,6 +12,11 @@ const PricingSection = () => {
     { icon: <Share2 className="w-5 h-5" />, label: "Social Media Marketing" },
     { icon: <Bot className="w-5 h-5" />, label: "AI Integration & Automation" },
     { icon: <Crown className="w-5 h-5" />, label: "Personal Authority Building" },
+    { icon: <UserPlus className="w-5 h-5" />, label: "Management of a Single Profile" },
+    { icon: <Check className="w-5 h-5" />, label: "100% Done For You" },
+    { icon: <ArrowRight className="w-5 h-5" />, label: "Leads Delivered to CRM" },
+    { icon: <Globe className="w-5 h-5" />, label: "Weekly Reporting" },
+    { icon: <Users className="w-5 h-5" />, label: "Dedicated US-Based VA" },
   ];
 
   const additionalProfileServices = [
