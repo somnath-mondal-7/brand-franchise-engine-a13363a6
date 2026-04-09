@@ -374,25 +374,6 @@ export const ServiceLocationTemplate = ({
           </div>
         </section>
 
-        {/* Stats Section */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-4 gap-8">
-              {content.stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="bg-primary/5 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    {index === 0 && <Building2 className="h-8 w-8 text-primary" />}
-                    {index === 1 && <Award className="h-8 w-8 text-primary" />}
-                    {index === 2 && <TrendingUp className="h-8 w-8 text-primary" />}
-                    {index === 3 && <Users className="h-8 w-8 text-primary" />}
-                  </div>
-                  <h3 className="text-3xl font-bold text-foreground">{stat.value}</h3>
-                  <p className="text-muted-foreground">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* Market Insight Section */}
         <section className="py-12 bg-muted">

@@ -22,7 +22,7 @@ const About = () => {
       name: "David Martinez",
       position: "Franchisee Recruitment Specialist",
       image: leadSpecialistDavidMartinez,
-      bio: "Expert in franchise matchmaking and investor relations. Successfully matched 500+ franchisees with ideal opportunities, achieving 95% retention rate.",
+      bio: "Expert in franchise matchmaking and investor relations. Successfully matched franchisees with ideal opportunities, maintaining exceptional retention rates.",
       expertise: ["Franchisee Recruitment", "Investor Relations", "Due Diligence"] 
     },
     {

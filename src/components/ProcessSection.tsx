@@ -4,19 +4,19 @@ const ProcessSection = () => {
       number: "01",
       title: "We Learn Your Franchise",
       description: "We study your franchise model, ideal investor profile, and competitive landscape. No cookie-cutter strategies — everything is built around your specific growth goals.",
-      highlight: "Custom strategy in 48 hrs"
+      highlight: "Custom strategy, fast turnaround"
     },
     {
       number: "02", 
       title: "We Launch Campaigns",
       description: "LinkedIn outreach, social media ads, and your franchise website go live. We target investors by net worth, industry interest, and location — so every lead is relevant.",
-      highlight: "Live within 7 days"
+      highlight: "Quick campaign launch"
     },
     {
       number: "03",
       title: "You Get Qualified Leads", 
       description: "Pre-screened franchise investors land in your inbox. They already know your brand, meet your investment criteria, and are ready for a conversation.",
-      highlight: "First leads in 30 days"
+      highlight: "Qualified leads, fast"
     }
   ];
 
