@@ -1203,7 +1203,7 @@ function staticPage(path) {
     },
     'case-studies': {
       title: `Case Studies | Franchise Lead Generation Success Stories | ${BRAND}`,
-      description: 'See how franchise consultants like Jesica Thompson generated 847+ qualified leads with paid advertising, CRM management, and inbound lead strategies.',
+      description: 'See how franchise consultants partnered with FranchiseLeadsPro to scale their digital presence and generate qualified inbound leads.',
       h1: 'Real Results. Real Clients.',
       breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Case Studies', url: '/case-studies' }],
       content: `
@@ -1218,19 +1218,6 @@ function staticPage(path) {
             <li>Franchise Inquiry Management</li>
             <li>Weekly Performance Reporting</li>
           </ul>
-           <h3>Engagement Summary</h3>
-           <ul>
-             <li>Partnership Started: Q4 2024</li>
-             <li>Services Duration: Ongoing (5+ months)</li>
-             <li>Results Measured Over: First 5 months</li>
-           </ul>
-           <h3>Results</h3>
-           <ul>
-             <li>312 Inbound Leads Generated</li>
-             <li>47 Qualified Investor Meetings</li>
-             <li>8 Franchise Deals Closed</li>
-             <li>4.1x Ad Spend ROI</li>
-           </ul>
           <blockquote>"${BRAND} didn't just bring us leads — they brought us the right leads. Our pipeline went from sporadic referrals to a predictable stream of serious franchise investors."<br>— Jesica Thompson, Franchise Consultant, Franchise Solutions Inc.</blockquote>
         </section>
         <section>
