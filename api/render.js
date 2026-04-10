@@ -503,11 +503,9 @@ function homePage() {
         <h2>Why Choose ${BRAND}?</h2>
         <ul>
           <li>100% franchise-industry focused</li>
-          <li>15,000+ qualified franchise leads generated</li>
-          <li>500+ franchise brands served globally</li>
-          <li>3-5x average ROI within 90 days</li>
-          <li>First leads within 30 days</li>
           <li>Full-service: marketing + web dev + IT</li>
+          <li>Serving franchisors, consultants & brokers worldwide</li>
+          <li>First leads within 30 days of campaign launch</li>
         </ul>
       </section>
       <section>
