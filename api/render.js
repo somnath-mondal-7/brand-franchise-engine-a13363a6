@@ -1071,42 +1071,135 @@ function staticPage(path) {
       description: 'Generate qualified franchise leads across all 50 US states. LinkedIn marketing, website development & IT for American franchise brands.',
       h1: 'Franchise Lead Generation in the USA',
       breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'USA', url: '/franchise-leads-usa' }],
+      content: `
+        <section>
+          <h2>USA Franchise Lead Generation Services</h2>
+          <p>${BRAND} helps franchisors and franchise consultants generate qualified investor leads across all 50 US states. Our data-driven approach combines LinkedIn outreach, paid advertising, and SEO to connect your brand with serious franchise buyers.</p>
+          <h3>Services for US Franchise Brands</h3>
+          <ul>
+            <li><strong>LinkedIn Marketing</strong> — Targeted outreach to high-net-worth investors using Sales Navigator</li>
+            <li><strong>Paid Advertising</strong> — Google Ads and Meta campaigns optimized for franchise lead generation</li>
+            <li><strong>Franchise Website Development</strong> — High-converting, mobile-first websites with lead capture</li>
+            <li><strong>SEO & Content Marketing</strong> — Dominate franchise-related search terms in your target markets</li>
+          </ul>
+          <h3>Markets We Cover</h3>
+          <p>We serve franchise brands in every US state, with deep expertise in high-demand markets including <a href="/locations/usa/california">California</a>, <a href="/locations/usa/texas">Texas</a>, <a href="/locations/usa/florida">Florida</a>, <a href="/locations/usa/new-york">New York</a>, and <a href="/locations/usa/illinois">Illinois</a>.</p>
+        </section>
+        <section>
+          <h2>Get Started</h2>
+          <p>Ready to grow your franchise in the USA? <a href="/contact">Contact us</a> for a free strategy consultation or call ${PHONE}.</p>
+        </section>
+      `,
     },
     'franchise-leads-uk': {
       title: `Franchise Leads UK | ${BRAND}`,
       description: 'Generate qualified franchise leads across the United Kingdom. London, Manchester, Birmingham & more.',
       h1: 'Franchise Lead Generation in the UK',
       breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'UK', url: '/franchise-leads-uk' }],
+      content: `
+        <section>
+          <h2>UK Franchise Lead Generation</h2>
+          <p>${BRAND} provides franchise lead generation services across England, Scotland, and Wales. We help franchise brands connect with qualified investors through LinkedIn marketing, social media campaigns, and professional website development.</p>
+          <ul>
+            <li><strong>LinkedIn Outreach</strong> — Connect with UK-based franchise investors</li>
+            <li><strong>Paid Advertising</strong> — Google & Meta campaigns targeting UK franchise buyers</li>
+            <li><strong>Website Development</strong> — Franchise websites optimized for UK audiences</li>
+          </ul>
+        </section>
+        <section><h2>Get Started</h2><p><a href="/contact">Contact us</a> for a free consultation or call ${PHONE}.</p></section>
+      `,
     },
     'franchise-leads-india': {
       title: `Franchise Leads India | ${BRAND}`,
       description: 'Generate qualified franchise leads across India. Mumbai, Delhi, Bangalore, Chennai & more. LinkedIn marketing & IT services.',
       h1: 'Franchise Lead Generation in India',
       breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'India', url: '/franchise-leads-india' }],
+      content: `
+        <section>
+          <h2>India Franchise Lead Generation</h2>
+          <p>${BRAND} helps franchise brands tap into India's rapidly growing franchise market. With a rising middle class and strong entrepreneurial culture, India offers exceptional opportunities for franchise expansion.</p>
+          <ul>
+            <li><strong>LinkedIn Marketing</strong> — Targeted outreach to Indian franchise investors</li>
+            <li><strong>Social Media Campaigns</strong> — Facebook, Instagram & LinkedIn ads for the Indian market</li>
+            <li><strong>Franchise Website Development</strong> — Websites optimized for Indian audiences</li>
+            <li><strong>IT Services</strong> — Custom app development, CRM setup & automation</li>
+          </ul>
+          <p>We cover all major Indian cities including <a href="/locations/in/maharashtra/mumbai">Mumbai</a>, <a href="/locations/in/delhi-ncr/new-delhi">Delhi</a>, <a href="/locations/in/karnataka/bangalore">Bangalore</a>, and <a href="/locations/in/tamil-nadu/chennai">Chennai</a>.</p>
+        </section>
+        <section><h2>Get Started</h2><p><a href="/contact">Contact us</a> for a free consultation or call ${PHONE}.</p></section>
+      `,
     },
     'franchise-leads-canada': {
       title: `Franchise Leads Canada | ${BRAND}`,
       description: 'Generate qualified franchise leads across Canada. Toronto, Vancouver, Montreal, Calgary & more.',
       h1: 'Franchise Lead Generation in Canada',
       breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Canada', url: '/franchise-leads-canada' }],
+      content: `
+        <section>
+          <h2>Canada Franchise Lead Generation</h2>
+          <p>${BRAND} helps franchise brands generate qualified investor leads across Canada's key markets. From Toronto to Vancouver, we connect your brand with serious franchise buyers.</p>
+          <ul>
+            <li><strong>LinkedIn Marketing</strong> — Targeted outreach to Canadian franchise investors</li>
+            <li><strong>Paid Advertising</strong> — Google & Meta campaigns for Canadian audiences</li>
+            <li><strong>Website Development</strong> — High-converting franchise websites</li>
+          </ul>
+        </section>
+        <section><h2>Get Started</h2><p><a href="/contact">Contact us</a> for a free consultation or call ${PHONE}.</p></section>
+      `,
     },
     'franchise-leads-australia': {
       title: `Franchise Leads Australia | ${BRAND}`,
       description: 'Generate qualified franchise leads across Australia. Sydney, Melbourne, Brisbane, Perth & more.',
       h1: 'Franchise Lead Generation in Australia',
       breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Australia', url: '/franchise-leads-australia' }],
+      content: `
+        <section>
+          <h2>Australia Franchise Lead Generation</h2>
+          <p>${BRAND} provides franchise lead generation across Australia's major markets including Sydney, Melbourne, Brisbane, and Perth. Our digital marketing strategies are tailored for the Australian franchise sector.</p>
+          <ul>
+            <li><strong>LinkedIn Marketing</strong> — Connect with Australian franchise investors</li>
+            <li><strong>Paid Advertising</strong> — Google & Meta campaigns for Australian audiences</li>
+            <li><strong>Website Development</strong> — Franchise websites optimized for AU compliance</li>
+          </ul>
+        </section>
+        <section><h2>Get Started</h2><p><a href="/contact">Contact us</a> for a free consultation or call ${PHONE}.</p></section>
+      `,
     },
     'franchise-leads-dubai': {
       title: `Franchise Leads Dubai & UAE | ${BRAND}`,
       description: 'Generate qualified franchise leads in Dubai, Abu Dhabi & UAE. LinkedIn marketing & IT services for Middle East brands.',
       h1: 'Franchise Lead Generation in Dubai & UAE',
       breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Dubai', url: '/franchise-leads-dubai' }],
+      content: `
+        <section>
+          <h2>Dubai & UAE Franchise Lead Generation</h2>
+          <p>${BRAND} helps franchise brands enter and expand in the UAE market. Dubai and Abu Dhabi are premier franchise hubs for the entire Middle East region.</p>
+          <ul>
+            <li><strong>LinkedIn Marketing</strong> — Connect with UAE-based franchise investors</li>
+            <li><strong>Paid Advertising</strong> — Campaigns targeting UAE franchise buyers</li>
+            <li><strong>Website Development</strong> — Franchise websites for the Middle East market</li>
+          </ul>
+        </section>
+        <section><h2>Get Started</h2><p><a href="/contact">Contact us</a> for a free consultation or call ${PHONE}.</p></section>
+      `,
     },
     'franchise-leads-kuwait': {
       title: `Franchise Leads Kuwait | ${BRAND}`,
       description: 'Generate qualified franchise leads in Kuwait. LinkedIn marketing, social media & website development.',
       h1: 'Franchise Lead Generation in Kuwait',
       breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Kuwait', url: '/franchise-leads-kuwait' }],
+      content: `
+        <section>
+          <h2>Kuwait Franchise Lead Generation</h2>
+          <p>${BRAND} provides franchise lead generation in Kuwait, connecting your brand with qualified investors as the country diversifies its economy under Vision 2035.</p>
+          <ul>
+            <li><strong>LinkedIn Marketing</strong> — Targeted outreach to Kuwaiti franchise investors</li>
+            <li><strong>Social Media</strong> — Campaigns across Facebook, Instagram & LinkedIn</li>
+            <li><strong>Website Development</strong> — Professional franchise websites</li>
+          </ul>
+        </section>
+        <section><h2>Get Started</h2><p><a href="/contact">Contact us</a> for a free consultation or call ${PHONE}.</p></section>
+      `,
     },
     'case-studies': {
       title: `Case Studies | Franchise Lead Generation Success Stories | ${BRAND}`,
