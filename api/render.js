@@ -1389,6 +1389,12 @@ export default async function handler(req, res) {
     const segments = rawPath.split('/').filter(Boolean);
     let pageData;
     const canonicalPath = rawPath ? `/${rawPath}` : '/';
+    const isReservedRoot = ['locations', 'blog', 'legal-terms', 'admin', 'sitemap', 'services'].includes(segments[0]);
+    const looksLikeServiceLocationPath = segments.length >= 3 && !isReservedRoot;
+    const looksLikeProgrammaticPath =
+      segments[0] === 'locations' ||
+      segments[0] === 'services' ||
+      looksLikeServiceLocationPath;
 
     if (!rawPath || rawPath === 'index.html') {
       pageData = homePage();
@@ -1421,16 +1427,23 @@ export default async function handler(req, res) {
     }
 
     if (!pageData) {
+      const isRetiredProgrammaticPage = looksLikeProgrammaticPath;
       pageData = {
-        title: `Page Not Found | ${BRAND}`,
-        description: 'The page you are looking for could not be found.',
-        h1: 'Page Not Found',
-        content: `<p>Sorry, this page does not exist. <a href="/">Return to homepage</a>.</p>`,
+        title: isRetiredProgrammaticPage ? `Page Removed | ${BRAND}` : `Page Not Found | ${BRAND}`,
+        description: isRetiredProgrammaticPage
+          ? 'This old page has been permanently removed.'
+          : 'The page you are looking for could not be found.',
+        h1: isRetiredProgrammaticPage ? 'Page Removed' : 'Page Not Found',
+        content: isRetiredProgrammaticPage
+          ? `<p>This old page has been permanently removed. <a href="/">Return to homepage</a>.</p>`
+          : `<p>Sorry, this page does not exist. <a href="/">Return to homepage</a>.</p>`,
         breadcrumbs: [{ name: 'Home', url: '/' }],
+        noindex: true,
       };
       const html = buildHtml({ ...pageData, canonicalPath });
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
-      return res.status(404).send(html);
+      res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+      return res.status(isRetiredProgrammaticPage ? 410 : 404).send(html);
     }
 
     const html = buildHtml({ ...pageData, canonicalPath });
@@ -1439,8 +1452,9 @@ export default async function handler(req, res) {
     res.status(200).send(html);
   } catch (err) {
     const fallbackCanonical = `${SITE}/${(req.query.path || '').replace(/^\/+|\/+$/g, '')}`;
-    const fallbackHtml = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${BRAND}</title><meta name="robots" content="index, follow"><link rel="canonical" href="${fallbackCanonical}">${buildPrerenderStyles()}</head><body>${buildNav()}<main><div class="shell-inner"><article class="surface page-card"><p class="page-intro">FranchiseLeadsPro</p><h1>${BRAND}</h1><p>Visit <a href="${SITE}">${BRAND}</a> for franchise lead generation, marketing, and IT services.</p></article></div></main>${buildFooter()}</body></html>`;
+    const fallbackHtml = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${BRAND}</title><meta name="robots" content="noindex, nofollow"><link rel="canonical" href="${fallbackCanonical}">${buildPrerenderStyles()}</head><body>${buildNav()}<main><div class="shell-inner"><article class="surface page-card"><p class="page-intro">FranchiseLeadsPro</p><h1>${BRAND}</h1><p>Visit <a href="${SITE}">${BRAND}</a> for franchise lead generation, marketing, and IT services.</p></article></div></main>${buildFooter()}</body></html>`;
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    res.status(200).send(fallbackHtml);
+    res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+    res.status(500).send(fallbackHtml);
   }
 }
