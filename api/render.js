@@ -6,7 +6,7 @@ import { isValidLocation } from './validLocations.js';
 
 const SITE = 'https://www.franchiseleadspro.com';
 const BRAND = 'FranchiseLeadsPro';
-const PHONE = '+1 (551)-201-23-77';
+const PHONE = '+1 (551)-201-27-29';
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL || 'https://yquuidpajigvecyonqir.supabase.co';
 const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlxdXVpZHBhamlndmVjeW9ucWlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg3OTM1MDMsImV4cCI6MjA3NDM2OTUwM30.FIpWeiS_2B98HSE2Z2yxuOGp4gkO74rYIrAp-Aj2YTg';
 
