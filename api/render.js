@@ -6,7 +6,7 @@ import { isValidLocation } from './validLocations.js';
 
 const SITE = 'https://www.franchiseleadspro.com';
 const BRAND = 'FranchiseLeadsPro';
-const PHONE = '+1 (551)-201-23-77';
+const PHONE = '+1 (551)-201-27-29';
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL || 'https://yquuidpajigvecyonqir.supabase.co';
 const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlxdXVpZHBhamlndmVjeW9ucWlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg3OTM1MDMsImV4cCI6MjA3NDM2OTUwM30.FIpWeiS_2B98HSE2Z2yxuOGp4gkO74rYIrAp-Aj2YTg';
 
@@ -176,7 +176,7 @@ function buildFooter() {
         </div>
         <div>
           <p class="footer-title">Contact</p>
-          <p>Phone: <a href="tel:+15512012377">${PHONE}</a></p>
+          <p>Phone: <a href="tel:+15512012729">${PHONE}</a></p>
           <p>Email: <a href="mailto:support@franchiseleadspro.com">support@franchiseleadspro.com</a></p>
         </div>
         <div>
@@ -522,7 +522,7 @@ function homePage() {
         <ul>
           <li><a href="/services/franchise-lead-generation">Franchise Lead Generation</a></li>
           <li><a href="/services/franchise-marketing">Franchise Marketing</a></li>
-          <li><a href="/services/franchise-website-design">Franchise Website Design</a></li>
+          <li><a href="/services/franchise-consulting">Franchise Consulting</a></li>
           <li><a href="/services/franchise-seo">Franchise SEO</a></li>
           <li><a href="/services/franchise-digital-marketing">Franchise Digital Marketing</a></li>
           <li><a href="/buy-franchise-leads">Buy Franchise Leads</a></li>
@@ -942,7 +942,7 @@ function keywordPage(keyword) {
       <nav aria-label="Related Services">
         <a href="/services/franchise-lead-generation">Franchise Lead Generation</a> |
         <a href="/services/franchise-marketing">Franchise Marketing</a> |
-        <a href="/services/franchise-website-design">Franchise Website Design</a> |
+        <a href="/services/franchise-consulting">Franchise Consulting</a> |
         <a href="/services/franchise-seo">Franchise SEO</a> |
         <a href="/buy-franchise-leads">Buy Franchise Leads</a> |
         <a href="/blog">Blog</a> |
@@ -1293,7 +1293,7 @@ function buildWebPageSchema(title, description, canonical) {
       "logo": `${SITE}/logo-hq.png`,
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+1-551-201-2377",
+        "telephone": "+1-551-201-2729",
         "contactType": "Sales",
         "areaServed": ["US", "IN", "GB", "CA", "AU", "AE", "KW"],
         "availableLanguage": "English"
