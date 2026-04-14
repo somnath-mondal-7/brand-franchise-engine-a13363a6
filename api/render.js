@@ -176,7 +176,7 @@ function buildFooter() {
         </div>
         <div>
           <p class="footer-title">Contact</p>
-          <p>Phone: <a href="tel:+15512012377">${PHONE}</a></p>
+          <p>Phone: <a href="tel:+15512012729">${PHONE}</a></p>
           <p>Email: <a href="mailto:support@franchiseleadspro.com">support@franchiseleadspro.com</a></p>
         </div>
         <div>
