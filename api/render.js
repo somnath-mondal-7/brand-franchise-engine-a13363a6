@@ -522,7 +522,7 @@ function homePage() {
         <ul>
           <li><a href="/services/franchise-lead-generation">Franchise Lead Generation</a></li>
           <li><a href="/services/franchise-marketing">Franchise Marketing</a></li>
-          <li><a href="/services/franchise-website-design">Franchise Website Design</a></li>
+          <li><a href="/services/franchise-consulting">Franchise Consulting</a></li>
           <li><a href="/services/franchise-seo">Franchise SEO</a></li>
           <li><a href="/services/franchise-digital-marketing">Franchise Digital Marketing</a></li>
           <li><a href="/buy-franchise-leads">Buy Franchise Leads</a></li>
@@ -942,7 +942,7 @@ function keywordPage(keyword) {
       <nav aria-label="Related Services">
         <a href="/services/franchise-lead-generation">Franchise Lead Generation</a> |
         <a href="/services/franchise-marketing">Franchise Marketing</a> |
-        <a href="/services/franchise-website-design">Franchise Website Design</a> |
+        <a href="/services/franchise-consulting">Franchise Consulting</a> |
         <a href="/services/franchise-seo">Franchise SEO</a> |
         <a href="/buy-franchise-leads">Buy Franchise Leads</a> |
         <a href="/blog">Blog</a> |
