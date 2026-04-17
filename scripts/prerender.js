@@ -273,11 +273,22 @@ function buildFAQContent(faq) {
         <p itemprop="text">${f.a}</p>
       </div>
     </div>`).join('');
-  return `<section><h2>Frequently Asked Questions</h2>${items}</section>`;
+  return `<section itemscope itemtype="https://schema.org/FAQPage"><h2>Frequently Asked Questions</h2>${items}</section>`;
+}
+
+function buildCtaSection() {
+  return `<section>
+    <h2>Ready to grow your franchise?</h2>
+    <p>Book a free strategy call with our franchise marketing team. We'll map a lead-generation plan tailored to your brand, market, and investment range.</p>
+    <div class="cta-row">
+      <a class="btn" href="/contact">Book a free consultation</a>
+      <a class="btn ghost" href="tel:+15512012729">Call ${PHONE}</a>
+    </div>
+  </section>`;
 }
 
 // ─── HTML BUILDER ───
-function buildHtml({ title, description, h1, content, canonicalPath, breadcrumbs, faq, noindex }) {
+function buildHtml({ title, description, h1, content, canonicalPath, breadcrumbs, faq, noindex, eyebrow }) {
   const safeTitle = truncate(title, 60);
   const safeDesc = truncate(description, 160);
   const canonical = `${SITE}${canonicalPath}`;
@@ -290,6 +301,8 @@ function buildHtml({ title, description, h1, content, canonicalPath, breadcrumbs
 
   const schemaScripts = schemas.map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n  ');
   const faqHtml = buildFAQContent(faq);
+  const breadcrumbsHtml = buildBreadcrumbsHtml(breadcrumbs);
+  const eyebrowHtml = eyebrow ? `<p class="page-intro">${escapeHtml(eyebrow)}</p>` : '';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -311,14 +324,22 @@ function buildHtml({ title, description, h1, content, canonicalPath, breadcrumbs
   <meta name="twitter:description" content="${escapeHtml(safeDesc)}">
   <meta name="twitter:image" content="${SITE}/og-image.png">
   <link rel="icon" type="image/png" href="/favicon-32x32.png">
+  ${buildPrerenderStyles()}
   ${schemaScripts}
 </head>
 <body>
   ${buildNav()}
   <main>
-    <h1>${h1}</h1>
-    ${content || `<p>${safeDesc}</p>`}
-    ${faqHtml}
+    <div class="shell-inner">
+      <article class="surface page-card">
+        ${breadcrumbsHtml}
+        ${eyebrowHtml}
+        <h1>${h1}</h1>
+        ${content || `<p>${safeDesc}</p>`}
+        ${faqHtml}
+        ${noindex ? '' : buildCtaSection()}
+      </article>
+    </div>
   </main>
   ${buildFooter()}
 </body>
