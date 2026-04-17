@@ -315,43 +315,40 @@ function slugifyHeading(s: string): string {
     .slice(0, 60);
 }
 
-// Build a Table of Contents from H2 headings in markdown
-function buildTableOfContents(content: string): string {
-  const lines = content.split("\n");
-  const headings: { level: number; text: string; id: string }[] = [];
-
-  for (const line of lines) {
-    const m = line.match(/^(##|###)\s+(.+?)\s*$/);
-    if (m) {
-      headings.push({
-        level: m[1].length,
-        text: m[2].replace(/[*_`]/g, "").trim(),
-        id: slugifyHeading(m[2]),
-      });
-    }
+// Strip a leading H1 / duplicate title from the model's content (we render the title separately)
+function stripDuplicateTitle(content: string, title: string): string {
+  let c = content.trimStart();
+  // Remove leading "# Title" or "## Title"
+  c = c.replace(/^#{1,3}\s+.+\n+/, "");
+  // Remove a first line that's literally the title
+  const firstLine = c.split("\n")[0]?.replace(/[*_#`>\s]+/g, " ").trim().toLowerCase();
+  const t = title.replace(/[*_#`>\s]+/g, " ").trim().toLowerCase();
+  if (firstLine && t && (firstLine === t || firstLine.startsWith(t))) {
+    c = c.split("\n").slice(1).join("\n").trimStart();
   }
-
-  if (headings.length < 3) return "";
-
-  const items = headings
-    .filter((h) => h.level === 2)
-    .map((h) => `- [${h.text}](#${h.id})`)
-    .join("\n");
-
-  return `\n\n> 📋 **Table of Contents**\n\n${items}\n\n---\n`;
+  // Remove generic intro fluff lines
+  const fluffPatterns = [
+    /^in this (article|post|blog).*\n/i,
+    /^today,?\s+(we|i)('| wi)?ll.*\n/i,
+    /^let'?s (dive|jump|get).*\n/i,
+  ];
+  for (const re of fluffPatterns) c = c.replace(re, "");
+  return c.trimStart();
 }
 
-// Insert inline images into the markdown content at strategic positions
+// Insert inline images after specific H2 headings (skipping FAQ section)
 function injectInlineImages(content: string, imageUrls: string[]): string {
   if (imageUrls.length === 0) return content;
 
   const lines = content.split("\n");
   const h2Indices: number[] = [];
   lines.forEach((line, i) => {
-    if (/^##\s+/.test(line)) h2Indices.push(i);
+    if (/^##\s+/.test(line) && !/faq|frequently asked/i.test(line)) {
+      h2Indices.push(i);
+    }
   });
 
-  // Insert images after the 2nd and 4th H2 headings
+  // Insert images after the 2nd and 4th content H2 headings
   const insertAfter: number[] = [];
   if (h2Indices[1] !== undefined) insertAfter.push(h2Indices[1]);
   if (h2Indices[3] !== undefined) insertAfter.push(h2Indices[3]);
@@ -369,6 +366,22 @@ function injectInlineImages(content: string, imageUrls: string[]): string {
   }
 
   return result.join("\n");
+}
+
+// Append an internal-linking section pointing to other useful pages on the site
+function buildInternalLinksSection(): string {
+  return `
+
+## Want To Dig Deeper?
+
+If this got you thinking, here are a few more spots on the site that might help:
+
+- [Read more posts on the FranchiseLeadsPro blog](/blog) — fresh stuff on franchise growth weekly.
+- [See our franchise lead generation services](/services) — what we actually do for franchise brands.
+- [Buy qualified franchise leads](/buy-franchise-leads) — if you'd rather skip the DIY grind.
+- [Look at real client case studies](/case-studies) — the wins, the numbers, the stories.
+- [Get in touch directly](/contact) — happy to chat, no pitch deck required.
+`;
 }
 
 async function generateBlogWithAI(researchContext: string, topicData: typeof RESEARCH_TOPICS[0]): Promise<{ title: string; content: string; excerpt: string; slug: string; tags: string[]; coverImagePrompt?: string; inlineImagePrompts?: string[] }> {
