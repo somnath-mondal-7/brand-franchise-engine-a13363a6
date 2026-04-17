@@ -389,6 +389,7 @@ function locationPage(country, state, city) {
     title: truncate(`Franchise Leads ${locationStr} | ${BRAND}`, 60),
     description: truncate(`Get qualified franchise leads in ${fullLocation}. LinkedIn marketing, social media, website development & IT services.`, 160),
     h1: `Franchise Leads in ${locationStr}`,
+    eyebrow: `Franchise Lead Generation · ${countryName}`,
     breadcrumbs: crumbs,
     faq,
     content: `
@@ -436,6 +437,7 @@ function keywordPage(slug) {
     title: truncate(`${name} Services | ${BRAND}`, 60),
     description: truncate(`Professional ${lc} services by ${BRAND}. LinkedIn marketing, social media, SEO & website development for franchise brands.`, 160),
     h1: `${name} Services`,
+    eyebrow: `Service · Franchise Marketing`,
     breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Services', url: '/services' }, { name: name, url: `/services/${slug}` }],
     faq: [
       { q: `What does ${lc} include?`, a: `Our ${lc} services include LinkedIn outreach, social media campaigns, SEO, PPC, website development, and CRM automation for franchise brands.` },
@@ -504,31 +506,47 @@ function serviceLocationPage(serviceSlug, countryCode, stateSlug, citySlug) {
     title: truncate(`${serviceName} in ${locationStr} | ${BRAND}`, 60),
     description: truncate(`${serviceName} in ${locationStr}. Expert franchise marketing, lead generation & IT services by ${BRAND}.`, 160),
     h1: `${serviceName} in ${locationStr}`,
+    eyebrow: `${serviceName} · ${countryName}`,
     breadcrumbs: crumbs,
     faq,
     content: `
       <section>
         <h2>${serviceName} in ${locationStr}</h2>
-        <p>${BRAND} provides expert ${lc} services in ${locationStr}. ${ci.economy}</p>
-        <p>${ci.demographics}</p>
+        <p>${BRAND} delivers full-service ${lc} for franchise brands operating in ${locationStr}. From investor-grade messaging to multi-channel campaigns, we help franchisors, master franchisees, and area developers fill their pipeline with qualified buyers in ${countryName}.</p>
+        <p>${ci.economy} ${ci.demographics}</p>
       </section>
       <section>
-        <h2>Our ${serviceName} Services</h2>
+        <h2>What's included with our ${serviceName} program</h2>
         <ul>
-          <li>LinkedIn Marketing & Sales Navigator outreach</li>
-          <li>Social Media Advertising</li>
-          <li>SEO & Content Marketing</li>
-          <li>PPC & Google Ads Management</li>
-          <li>Franchise Website Development</li>
+          <li><strong>LinkedIn Sales Navigator outreach</strong> targeting investors, executives and high-net-worth prospects in ${locationStr}.</li>
+          <li><strong>Paid social campaigns</strong> on Meta and LinkedIn with locally optimized creative.</li>
+          <li><strong>SEO and content marketing</strong> tuned for ${locationStr} buyer-intent searches.</li>
+          <li><strong>Google &amp; Bing Ads</strong> with geo-targeted bidding and conversion tracking.</li>
+          <li><strong>Franchise landing pages and forms</strong> built to convert investor traffic.</li>
+          <li><strong>CRM integration</strong> so every lead lands in your sales workflow within minutes.</li>
         </ul>
       </section>
       <section>
-        <h2>Why ${locationStr}?</h2>
-        <p>${ci.growth} The top franchise sectors include: ${ci.industries.join(', ')}.</p>
+        <h2>Why ${locationStr} is a strong franchise market</h2>
+        <p>${ci.growth} ${ci.regulation}</p>
+        <p>The top franchise sectors in ${countryName} include: ${ci.industries.join(', ')}. Typical investment range: ${ci.investment}.</p>
       </section>
       <section>
-        <h2>Get Started</h2>
-        <p><a href="/contact">Contact us</a> for ${lc} in ${locationStr} or call ${PHONE}.</p>
+        <h2>How we work with franchisors in ${locationStr}</h2>
+        <ol>
+          <li><strong>Discovery call.</strong> We learn your brand, target investor profile, unit economics and growth goals.</li>
+          <li><strong>Strategy &amp; creative.</strong> We build messaging, audiences and assets tailored to ${locationStr}.</li>
+          <li><strong>Launch.</strong> Campaigns go live across LinkedIn, Meta, Google and our outreach channels.</li>
+          <li><strong>Optimization.</strong> Weekly reporting, A/B testing and pipeline review until you're closing units.</li>
+        </ol>
+      </section>
+      <section>
+        <h2>Related markets</h2>
+        <ul>
+          <li><a href="/franchise-leads-${countryCode}">All franchise leads in ${countryName}</a></li>
+          <li><a href="/services/${serviceSlug}">${serviceName} — global service overview</a></li>
+          <li><a href="/locations/${countryCode}/${stateSlug}">Locations in ${stateName}</a></li>
+        </ul>
       </section>
     `
   };
