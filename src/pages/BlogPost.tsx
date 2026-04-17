@@ -6,6 +6,7 @@ import SEOBreadcrumbs from "@/components/SEOBreadcrumbs";
 import TableOfContents from "@/components/blog/TableOfContents";
 import ReadingProgress from "@/components/blog/ReadingProgress";
 import RelatedPosts from "@/components/blog/RelatedPosts";
+import BlogInternalLinks from "@/components/blog/BlogInternalLinks";
 import FaqSchema from "@/components/blog/FaqSchema";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -287,7 +288,13 @@ const BlogPost = () => {
 
             {/* Content split: first part → TOC in the middle → rest */}
             {(() => {
-              const lines = post.content.split("\n");
+              // Strip the markdown "Want To Dig Deeper" section — rendered as a styled React component below
+              const stripped = post.content.replace(
+                /\n##\s+want to dig deeper\??[\s\S]*?(?=\n##\s+|$)/i,
+                ""
+              );
+
+              const lines = stripped.split("\n");
               const h2Indices: number[] = [];
               lines.forEach((line, i) => {
                 if (/^##\s+/.test(line) && !/faq|frequently asked/i.test(line)) {
@@ -296,7 +303,7 @@ const BlogPost = () => {
               });
               // Insert TOC right before the 2nd content H2 (so reader sees opener + first section first)
               const splitIdx = h2Indices[1] ?? -1;
-              const firstHalf = splitIdx > 0 ? lines.slice(0, splitIdx).join("\n") : post.content;
+              const firstHalf = splitIdx > 0 ? lines.slice(0, splitIdx).join("\n") : stripped;
               const secondHalf = splitIdx > 0 ? lines.slice(splitIdx).join("\n") : "";
 
               const mdProps = {
@@ -316,8 +323,9 @@ const BlogPost = () => {
               return (
                 <div className="blog-content prose prose-lg max-w-none scroll-smooth">
                   <ReactMarkdown {...mdProps}>{firstHalf}</ReactMarkdown>
-                  {secondHalf && <TableOfContents content={post.content} />}
+                  {secondHalf && <TableOfContents content={stripped} />}
                   {secondHalf && <ReactMarkdown {...mdProps}>{secondHalf}</ReactMarkdown>}
+                  <BlogInternalLinks />
                 </div>
               );
             })()}
