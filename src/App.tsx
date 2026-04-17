@@ -57,7 +57,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <ScrollToTop />
-          <ChatWidget />
+          <ConditionalChatWidget />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
