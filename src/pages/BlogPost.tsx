@@ -385,9 +385,12 @@ const BlogPost = () => {
                   Back to All Posts
                 </Button>
               </Link>
+            </div>
 
             {/* Related Posts — keeps readers on the site, boosts internal linking & SEO */}
             <RelatedPosts currentPostId={post.id} categoryId={post.category_id} />
+
+            {/* CTA Section */}
             <Card className="mt-12 bg-gradient-primary text-white p-8">
               <div className="text-center space-y-4">
                 <h3 className="text-2xl font-bold">Ready to Generate Quality Franchise Leads?</h3>
