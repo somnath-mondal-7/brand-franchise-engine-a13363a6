@@ -444,20 +444,6 @@ Casual 2-3 sentence answer.`,
   }
 }
 
-function buildInternalLinksSection(): string {
-  return `
-
-## Want To Dig Deeper?
-
-If this got you thinking, here are a few more spots on the site that might help:
-
-- [Read more posts on the FranchiseLeadsPro blog](/blog) — fresh stuff on franchise growth weekly.
-- [See our franchise lead generation services](/services) — what we actually do for franchise brands.
-- [Buy qualified franchise leads](/buy-franchise-leads) — if you'd rather skip the DIY grind.
-- [Look at real client case studies](/case-studies) — the wins, the numbers, the stories.
-- [Get in touch directly](/contact) — happy to chat, no pitch deck required.
-`;
-}
 
 async function generateBlogWithAI(researchContext: string, topicData: typeof RESEARCH_TOPICS[0]): Promise<{ title: string; content: string; excerpt: string; slug: string; tags: string[]; coverImagePrompt?: string; inlineImagePrompts?: string[] }> {
   const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
