@@ -656,7 +656,6 @@ serve(async (req) => {
     finalContent = finalContent.trimEnd() + "\n" + buildInternalLinksSection();
     // NOTE: Table of Contents is now rendered by the React TableOfContents component
     //       (positioned in the middle of the article in BlogPost.tsx) — no markdown TOC injection needed.
-    finalContent = injectInlineImages(finalContent, inlineUrls);
 
     const wordCount = finalContent.split(/\s+/).length;
     const readTime = Math.ceil(wordCount / 200);
