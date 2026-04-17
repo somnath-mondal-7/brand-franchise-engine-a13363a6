@@ -255,24 +255,51 @@ const BlogPost = () => {
                 <span>{formatDate(post.published_at)}</span>
               </div>
               <div className="flex items-center space-x-2">
+                <Clock className="w-5 h-5" />
                 <span className="text-sm">{post.read_time_minutes} min read</span>
               </div>
-              <Button variant="outline" size="sm" className="ml-auto">
-                <Share2 className="w-4 h-4 mr-2" />
-                Share
+              <Button variant="outline" size="sm" className="ml-auto" onClick={handleShare}>
+                {shared ? (
+                  <>
+                    <Check className="w-4 h-4 mr-2" />
+                    Copied
+                  </>
+                ) : (
+                  <>
+                    <Share2 className="w-4 h-4 mr-2" />
+                    Share
+                  </>
+                )}
               </Button>
             </div>
 
-            {/* Excerpt */}
+            {/* Excerpt — Key takeaway intro */}
             {post.excerpt && (
-              <p className="text-xl text-brand-gray leading-relaxed mb-8">
-                {post.excerpt}
-              </p>
+              <div className="mb-10 p-6 rounded-xl bg-primary/5 border-l-4 border-primary">
+                <p className="text-xl text-foreground leading-relaxed font-medium">
+                  {post.excerpt}
+                </p>
+              </div>
             )}
 
+            {/* Table of Contents */}
+            <TableOfContents content={post.content} />
+
             {/* Content */}
-            <div className="blog-content prose prose-lg max-w-none">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <div className="blog-content prose prose-lg max-w-none scroll-smooth">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[
+                  rehypeSlug,
+                  [
+                    rehypeAutolinkHeadings,
+                    {
+                      behavior: "wrap",
+                      properties: { className: "no-underline hover:text-primary transition-colors" },
+                    },
+                  ],
+                ]}
+              >
                 {post.content}
               </ReactMarkdown>
             </div>
