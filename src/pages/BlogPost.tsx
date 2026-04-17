@@ -5,6 +5,8 @@ import Footer from "@/components/Footer";
 import SEOBreadcrumbs from "@/components/SEOBreadcrumbs";
 import TableOfContents from "@/components/blog/TableOfContents";
 import ReadingProgress from "@/components/blog/ReadingProgress";
+import RelatedPosts from "@/components/blog/RelatedPosts";
+import FaqSchema from "@/components/blog/FaqSchema";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Calendar, User, ArrowLeft, Share2, FileText, Download, Check, Clock } from "lucide-react";
@@ -24,7 +26,7 @@ interface BlogPostData {
   excerpt: string;
   author_name: string;
   published_at: string;
-  category_id: string;
+  category_id: string | null;
   read_time_minutes: number;
   tags: string[];
   seo_title: string;
@@ -283,27 +285,45 @@ const BlogPost = () => {
               </div>
             )}
 
-            {/* Table of Contents */}
-            <TableOfContents content={post.content} />
+            {/* Content split: first part → TOC in the middle → rest */}
+            {(() => {
+              const lines = post.content.split("\n");
+              const h2Indices: number[] = [];
+              lines.forEach((line, i) => {
+                if (/^##\s+/.test(line) && !/faq|frequently asked/i.test(line)) {
+                  h2Indices.push(i);
+                }
+              });
+              // Insert TOC right before the 2nd content H2 (so reader sees opener + first section first)
+              const splitIdx = h2Indices[1] ?? -1;
+              const firstHalf = splitIdx > 0 ? lines.slice(0, splitIdx).join("\n") : post.content;
+              const secondHalf = splitIdx > 0 ? lines.slice(splitIdx).join("\n") : "";
 
-            {/* Content */}
-            <div className="blog-content prose prose-lg max-w-none scroll-smooth">
-              <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
-                rehypePlugins={[
+              const mdProps = {
+                remarkPlugins: [remarkGfm],
+                rehypePlugins: [
                   rehypeSlug,
                   [
                     rehypeAutolinkHeadings,
                     {
-                      behavior: "wrap",
+                      behavior: "wrap" as const,
                       properties: { className: "no-underline hover:text-primary transition-colors" },
                     },
                   ],
-                ]}
-              >
-                {post.content}
-              </ReactMarkdown>
-            </div>
+                ] as any,
+              };
+
+              return (
+                <div className="blog-content prose prose-lg max-w-none scroll-smooth">
+                  <ReactMarkdown {...mdProps}>{firstHalf}</ReactMarkdown>
+                  {secondHalf && <TableOfContents content={post.content} />}
+                  {secondHalf && <ReactMarkdown {...mdProps}>{secondHalf}</ReactMarkdown>}
+                </div>
+              );
+            })()}
+
+            {/* FAQ structured data for Google rich results */}
+            <FaqSchema content={post.content} />
 
             {/* Attachments */}
             {post.attachments && post.attachments.length > 0 && (
@@ -366,6 +386,9 @@ const BlogPost = () => {
                 </Button>
               </Link>
             </div>
+
+            {/* Related Posts — keeps readers on the site, boosts internal linking & SEO */}
+            <RelatedPosts currentPostId={post.id} categoryId={post.category_id} />
 
             {/* CTA Section */}
             <Card className="mt-12 bg-gradient-primary text-white p-8">

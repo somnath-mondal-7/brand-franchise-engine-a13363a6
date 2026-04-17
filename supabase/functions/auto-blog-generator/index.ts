@@ -315,43 +315,40 @@ function slugifyHeading(s: string): string {
     .slice(0, 60);
 }
 
-// Build a Table of Contents from H2 headings in markdown
-function buildTableOfContents(content: string): string {
-  const lines = content.split("\n");
-  const headings: { level: number; text: string; id: string }[] = [];
-
-  for (const line of lines) {
-    const m = line.match(/^(##|###)\s+(.+?)\s*$/);
-    if (m) {
-      headings.push({
-        level: m[1].length,
-        text: m[2].replace(/[*_`]/g, "").trim(),
-        id: slugifyHeading(m[2]),
-      });
-    }
+// Strip a leading H1 / duplicate title from the model's content (we render the title separately)
+function stripDuplicateTitle(content: string, title: string): string {
+  let c = content.trimStart();
+  // Remove leading "# Title" or "## Title"
+  c = c.replace(/^#{1,3}\s+.+\n+/, "");
+  // Remove a first line that's literally the title
+  const firstLine = c.split("\n")[0]?.replace(/[*_#`>\s]+/g, " ").trim().toLowerCase();
+  const t = title.replace(/[*_#`>\s]+/g, " ").trim().toLowerCase();
+  if (firstLine && t && (firstLine === t || firstLine.startsWith(t))) {
+    c = c.split("\n").slice(1).join("\n").trimStart();
   }
-
-  if (headings.length < 3) return "";
-
-  const items = headings
-    .filter((h) => h.level === 2)
-    .map((h) => `- [${h.text}](#${h.id})`)
-    .join("\n");
-
-  return `\n\n> 📋 **Table of Contents**\n\n${items}\n\n---\n`;
+  // Remove generic intro fluff lines
+  const fluffPatterns = [
+    /^in this (article|post|blog).*\n/i,
+    /^today,?\s+(we|i)('| wi)?ll.*\n/i,
+    /^let'?s (dive|jump|get).*\n/i,
+  ];
+  for (const re of fluffPatterns) c = c.replace(re, "");
+  return c.trimStart();
 }
 
-// Insert inline images into the markdown content at strategic positions
+// Insert inline images after specific H2 headings (skipping FAQ section)
 function injectInlineImages(content: string, imageUrls: string[]): string {
   if (imageUrls.length === 0) return content;
 
   const lines = content.split("\n");
   const h2Indices: number[] = [];
   lines.forEach((line, i) => {
-    if (/^##\s+/.test(line)) h2Indices.push(i);
+    if (/^##\s+/.test(line) && !/faq|frequently asked/i.test(line)) {
+      h2Indices.push(i);
+    }
   });
 
-  // Insert images after the 2nd and 4th H2 headings
+  // Insert images after the 2nd and 4th content H2 headings
   const insertAfter: number[] = [];
   if (h2Indices[1] !== undefined) insertAfter.push(h2Indices[1]);
   if (h2Indices[3] !== undefined) insertAfter.push(h2Indices[3]);
@@ -371,93 +368,113 @@ function injectInlineImages(content: string, imageUrls: string[]): string {
   return result.join("\n");
 }
 
+// Append an internal-linking section pointing to other useful pages on the site
+function buildInternalLinksSection(): string {
+  return `
+
+## Want To Dig Deeper?
+
+If this got you thinking, here are a few more spots on the site that might help:
+
+- [Read more posts on the FranchiseLeadsPro blog](/blog) — fresh stuff on franchise growth weekly.
+- [See our franchise lead generation services](/services) — what we actually do for franchise brands.
+- [Buy qualified franchise leads](/buy-franchise-leads) — if you'd rather skip the DIY grind.
+- [Look at real client case studies](/case-studies) — the wins, the numbers, the stories.
+- [Get in touch directly](/contact) — happy to chat, no pitch deck required.
+`;
+}
+
 async function generateBlogWithAI(researchContext: string, topicData: typeof RESEARCH_TOPICS[0]): Promise<{ title: string; content: string; excerpt: string; slug: string; tags: string[]; coverImagePrompt?: string; inlineImagePrompts?: string[] }> {
   const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
   if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
 
-  const systemPrompt = `You are a real human blogger for FranchiseLeadsPro. You write like a friend texting another friend who runs a franchise business — warm, casual, helpful, never corporate.
+  const systemPrompt = `You are a real human blogger for FranchiseLeadsPro who has been in franchise marketing for over a decade. You're writing like you're texting a friend who runs a franchise — warm, casual, helpful, never corporate.
 
-=== YOUR VOICE (CRITICAL) ===
+=== YOUR VOICE (NON-NEGOTIABLE) ===
 - Sound like a real human friend, NOT an AI bot
-- Use contractions everywhere (don't, you're, it's, that's, here's, can't)
+- Use contractions everywhere (don't, you're, it's, that's, here's, can't, gonna, wanna)
 - Use simple everyday words. If a 10-year-old wouldn't get it, rewrite it.
-- Throw in casual phrases: "Look,", "Honestly,", "Here's the thing,", "Real talk,", "No joke,"
+- Throw in casual openers: "Look,", "Honestly,", "Here's the thing,", "Real talk,", "No joke,", "Okay so,"
 - Ask the reader questions like you're chatting with them
-- Tell tiny personal-sounding stories ("I was talking to a franchise owner last week...")
-- It's okay to be a little messy. Real people don't talk in perfect bullet lists.
-- Mix short punchy sentences. With longer ones too. Like this.
+- Tell tiny personal-sounding stories ("Last month I was on a call with a franchise owner who...")
+- Be a little messy. Real people don't talk in perfect bullet lists.
+- Mix short punchy sentences. With longer flowing ones too. Like this.
+- Drop in a tiny opinion or hot take occasionally — that's what humans do
 
-=== HUMAN VS AI — DO THIS ===
+=== HUMAN VS AI EXAMPLES ===
 ✅ "Look, most franchise marketing is broken. Here's why."
 ❌ "In the contemporary franchise landscape, marketing strategies face significant challenges."
 
-✅ "I'll be honest — I almost gave up on LinkedIn last year."
+✅ "I almost gave up on LinkedIn last year. Glad I didn't."
 ❌ "LinkedIn presents both opportunities and challenges for franchise development teams."
 
-✅ "Their phone wouldn't stop ringing. And they hated it."
-❌ "The increased call volume created operational difficulties for the organization."
+=== CONTENT STRUCTURE (STRICT) ===
+DO NOT include the title or any heading at the top of the content. The title is rendered separately.
+DO NOT write "in this post" or "today we'll cover" intros — just dive in.
 
-=== STRUCTURE (FOLLOW LOOSELY, NOT ROBOTICALLY) ===
-1. **Opening hook** — 2-3 short paragraphs. Drop the reader straight into a story or surprising thought.
-2. **The real problem** — What's actually going wrong. Be specific. Tell a quick story if you can.
-3. **Main content** — 3-4 H2 sections (## headings). Mix paragraphs, short lists, and one quick story per section.
-4. **What to actually do** — A short numbered list of 3-5 steps. Make each one feel like advice from a friend.
-5. **A real-feeling example** — Tell a 4-5 sentence story about "a franchise owner I know" or "this brand we worked with"
-6. **Bottom line** — Wrap up casually. Soft mention of how franchise lead gen help works. Not pushy.
+Start the content with the opening hook (a short story or surprising thought, 2-3 short paragraphs). Then follow this structure:
+
+1. **The real problem** (no heading needed — flows from the hook)
+2. **## Section 1** — main point #1 with a quick story
+3. **## Section 2** — main point #2 with a tip
+4. **## Section 3** — main point #3 with an example
+5. **## Section 4** — actionable steps (numbered list of 3-5 steps)
+6. **## A Real-Life Win** — short case-study style story (4-6 sentences)
+7. **## FAQ** — exactly 5 H3 questions readers actually ask, each with a 2-3 sentence casual answer. Use ### for each question. CRITICAL: questions MUST end with a "?" and answers must sound like a friend explaining, not a textbook.
+8. **## The Bottom Line** — wrap up casually in 2-3 sentences. Soft mention that we help franchise brands with leads. Not pushy.
+
+=== INTERNAL LINKING (IMPORTANT) ===
+Sprinkle 2-3 of these contextual links naturally throughout the body where it actually makes sense:
+- [franchise lead generation services](/services)
+- [buy qualified franchise leads](/buy-franchise-leads)
+- [our blog](/blog)
+- [client case studies](/case-studies)
+- [contact us](/contact)
+- [LinkedIn lead generation](/services)
+Don't dump them all in one place. Weave them into sentences naturally.
 
 === FORMATTING RULES ===
-- Use ## for main sections (3-4 of them — they'll become Table of Contents items)
-- Headings should sound like real things people would say, not textbook chapters
+- ## for main sections, ### for FAQ questions only
+- Headings sound like things people would actually say:
   ✅ "Why Most Franchise Ads Flop"
   ❌ "Examination of Franchise Advertising Effectiveness"
 - Short paragraphs — 1 to 3 sentences max
-- Use **bold** to highlight one or two key phrases per section
+- Use **bold** for one or two key phrases per section
 - Bullet lists when you have 3+ quick items
-- Drop in 1 short blockquote (>) somewhere — like a tip, warning, or pull-quote
-- Total length: 1,100-1,500 words
-- DON'T over-format. Real blog posts breathe.
+- Drop in 1 short blockquote (>) somewhere — a tip or warning
+- Total length: 1,200-1,600 words
+- Real blog posts breathe. Don't over-format.
 
 === ABSOLUTELY FORBIDDEN ===
+- Repeating the title at the top of the content
 - "In today's competitive market..." / "In the ever-evolving..." / "In the modern landscape..."
 - "As we all know..." / "It goes without saying..." / "Needless to say..."
 - "Furthermore" / "Moreover" / "Additionally" / "In conclusion"
-- "Leverage" / "Utilize" / "Synergy" / "Robust solutions" / "Cutting-edge"
-- Em dashes used 5+ times (use them sparingly, max 2-3)
-- Listing benefits in a perfectly parallel structure (sounds like AI)
-- Using a stat without context — always explain WHY it matters
-- Generic phrases like "in this article we will explore"
+- "Leverage" / "Utilize" / "Synergy" / "Robust solutions" / "Cutting-edge" / "Game-changer"
+- Em dashes used 5+ times (max 2-3 in the whole post)
+- Listing benefits in perfectly parallel structure (screams AI)
 - Hard sales pitches — be helpful, not pushy
 
 === IMAGE PROMPTS ===
-You also need to suggest 3 images for this post:
-- coverImagePrompt: A wide hero image (16:9) describing the article topic — modern, clean, photographic style
-- inlineImagePrompts: 2 supporting images that visually support specific sections
-Each image prompt should be 1-2 sentences, vivid and specific. Style: "modern professional photography, soft natural lighting, business setting" or "clean flat illustration, minimalist, blue and white palette"
-
-=== OUTPUT FORMAT ===
-Return ONLY valid JSON. No prose outside the JSON. No markdown code fences.
-{
-  "title": "Casual, friendly title under 70 chars (no clickbait)",
-  "excerpt": "1 sentence hook that sounds human (max 160 chars)",
-  "content": "Full markdown blog post following the human voice rules above",
-  "tags": ["tag1", "tag2", "tag3", "tag4", "tag5"],
-  "slug": "seo-friendly-url-slug",
-  "coverImagePrompt": "Vivid description of the cover image",
-  "inlineImagePrompts": ["First inline image description", "Second inline image description"]
-}`;
+- coverImagePrompt: Wide hero photo (16:9), modern professional, photographic style
+- inlineImagePrompts: 2 supporting images for body sections
+Each prompt: 1-2 vivid sentences. Style examples: "modern professional photography, soft natural lighting, business setting" or "clean flat illustration, minimalist, orange and white palette"`;
 
   const userPrompt = `Write a ${topicData.category.replace('-', ' ')} blog post based on this research:
 
 ${researchContext}
 
 IMPORTANT:
-- Start with this hook (adapt it): "${topicData.hook}"
-- Build around this stat: "${topicData.stats}"
+- Start with this hook (adapt it naturally, don't quote it word-for-word): "${topicData.hook}"
+- Reference this insight if it fits: "${topicData.stats}"
 - Take this angle: "${topicData.angle}"
 - Reference current news when relevant
+- DO NOT put the title at the top of content — start with the hook directly
+- Include a ## FAQ section with exactly 5 ### questions
 
-Make every sentence count. This should be the kind of article people screenshot and share.`;
+Make every sentence sound human. This should feel like advice from a friend, not a corporate report.`;
 
+  // Use tool-calling for GUARANTEED valid JSON output (fixes prior parsing bugs)
   const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -470,8 +487,40 @@ Make every sentence count. This should be the kind of article people screenshot 
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt },
       ],
-      temperature: 0.8,
-      max_tokens: 4000,
+      temperature: 0.85,
+      max_tokens: 5000,
+      tools: [
+        {
+          type: "function",
+          function: {
+            name: "publish_blog_post",
+            description: "Publish a blog post with all required fields filled in.",
+            parameters: {
+              type: "object",
+              properties: {
+                title: { type: "string", description: "Casual, friendly title under 70 chars" },
+                excerpt: { type: "string", description: "1 sentence hook, max 160 chars" },
+                content: { type: "string", description: "Full markdown body. MUST NOT include the title or any H1. Start directly with the opening hook paragraph. Must include a ## FAQ section with 5 ### questions." },
+                slug: { type: "string", description: "SEO-friendly URL slug, lowercase, dashes only" },
+                tags: {
+                  type: "array",
+                  items: { type: "string" },
+                  description: "5 relevant tags",
+                },
+                coverImagePrompt: { type: "string", description: "Vivid 1-2 sentence description for the cover image" },
+                inlineImagePrompts: {
+                  type: "array",
+                  items: { type: "string" },
+                  description: "Exactly 2 vivid descriptions for inline images",
+                },
+              },
+              required: ["title", "excerpt", "content", "slug", "tags", "coverImagePrompt", "inlineImagePrompts"],
+              additionalProperties: false,
+            },
+          },
+        },
+      ],
+      tool_choice: { type: "function", function: { name: "publish_blog_post" } },
     }),
   });
 
@@ -481,48 +530,18 @@ Make every sentence count. This should be the kind of article people screenshot 
   }
 
   const data = await response.json();
-  let content = data.choices[0].message.content;
-  
+  const toolCall = data.choices?.[0]?.message?.tool_calls?.[0];
+  if (!toolCall?.function?.arguments) {
+    console.error("No tool call in response:", JSON.stringify(data).slice(0, 500));
+    throw new Error("AI did not return a structured blog post");
+  }
+
   try {
-    // Extract JSON from markdown code blocks if present
-    const jsonMatch = content.match(/```json?\s*([\s\S]*?)\s*```/);
-    if (jsonMatch) {
-      content = jsonMatch[1];
-    }
-    content = content.trim();
-    
-    // Try to find JSON object boundaries
-    const startIdx = content.indexOf('{');
-    const endIdx = content.lastIndexOf('}');
-    if (startIdx !== -1 && endIdx > startIdx) {
-      content = content.substring(startIdx, endIdx + 1);
-    }
-    
-    return JSON.parse(content);
+    const parsed = JSON.parse(toolCall.function.arguments);
+    return parsed;
   } catch (e) {
-    console.error("JSON parse error, creating fallback:", e);
-    
-    // Create a structured fallback
-    const titleMatch = content.match(/"title"\s*:\s*"([^"]+)"/);
-    const excerptMatch = content.match(/"excerpt"\s*:\s*"([^"]+)"/);
-    const contentMatch = content.match(/"content"\s*:\s*"([\s\S]*?)(?:"\s*,\s*"tags"|"\s*})/);
-    
-    const title = titleMatch?.[1] || `${topicData.topic.charAt(0).toUpperCase() + topicData.topic.slice(1)} - Expert Guide`;
-    const excerpt = excerptMatch?.[1] || topicData.hook;
-    const mainContent = contentMatch?.[1]?.replace(/\\n/g, '\n').replace(/\\"/g, '"') || content;
-    
-    const slug = title.toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .slice(0, 50);
-    
-    return {
-      title,
-      content: mainContent,
-      excerpt,
-      slug: `${slug}-${Date.now().toString().slice(-6)}`,
-      tags: [topicData.category, "franchise", "marketing", "lead-generation", topicData.angle.split(' ')[0]],
-    };
+    console.error("Tool args parse error:", e, toolCall.function.arguments?.slice(0, 500));
+    throw new Error("Failed to parse AI tool call arguments");
   }
 }
 
@@ -627,19 +646,16 @@ serve(async (req) => {
 
     console.log(`🖼️  Cover: ${coverUrl ? "✅" : "❌"}, Inline: ${inlineUrls.length}/2`);
 
-    // === Build TOC + inject inline images into content ===
-    const toc = buildTableOfContents(blogPost.content);
-    let finalContent = blogPost.content;
-    if (toc) {
-      // Insert TOC after first paragraph
-      const firstHeadingIdx = finalContent.search(/^##\s+/m);
-      if (firstHeadingIdx > 0) {
-        finalContent = finalContent.slice(0, firstHeadingIdx) + toc + finalContent.slice(firstHeadingIdx);
-      } else {
-        finalContent = toc + finalContent;
-      }
-    }
+    // === Assemble final content ===
+    // 1. Strip any duplicate title the model accidentally added at the top
+    let finalContent = stripDuplicateTitle(blogPost.content, blogPost.title);
+    // 2. Inject inline images at strategic H2 positions (skipping FAQ)
     finalContent = injectInlineImages(finalContent, inlineUrls);
+    // 3. Append internal-linking section before the bottom-line wrap-up
+    //    We add it as its own section at the end (above auto-rendered Related Posts)
+    finalContent = finalContent.trimEnd() + "\n" + buildInternalLinksSection();
+    // NOTE: Table of Contents is now rendered by the React TableOfContents component
+    //       (positioned in the middle of the article in BlogPost.tsx) — no markdown TOC injection needed.
 
     const wordCount = finalContent.split(/\s+/).length;
     const readTime = Math.ceil(wordCount / 200);
