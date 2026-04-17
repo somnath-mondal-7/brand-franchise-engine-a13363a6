@@ -230,11 +230,152 @@ Make it feel like breaking insights that readers can't get anywhere else.
   return { context, topicData };
 }
 
-async function generateBlogWithAI(researchContext: string, topicData: typeof RESEARCH_TOPICS[0]): Promise<{ title: string; content: string; excerpt: string; slug: string; tags: string[] }> {
+// ============================================================
+// IMAGE GENERATION + UPLOAD HELPERS
+// ============================================================
+
+async function generateImageBase64(prompt: string): Promise<string | null> {
+  const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+  if (!LOVABLE_API_KEY) return null;
+
+  try {
+    const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "google/gemini-2.5-flash-image",
+        messages: [{ role: "user", content: prompt }],
+        modalities: ["image", "text"],
+      }),
+    });
+
+    if (!res.ok) {
+      console.error("Image gen failed:", res.status, await res.text());
+      return null;
+    }
+
+    const data = await res.json();
+    const dataUrl = data.choices?.[0]?.message?.images?.[0]?.image_url?.url;
+    if (!dataUrl || !dataUrl.startsWith("data:image")) return null;
+    return dataUrl;
+  } catch (e) {
+    console.error("Image gen error:", e);
+    return null;
+  }
+}
+
+function dataUrlToBytes(dataUrl: string): { bytes: Uint8Array; contentType: string } {
+  const match = dataUrl.match(/^data:(image\/[a-z]+);base64,(.+)$/);
+  if (!match) throw new Error("Invalid data URL");
+  const contentType = match[1];
+  const b64 = match[2];
+  const binary = atob(b64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return { bytes, contentType };
+}
+
+async function uploadImageToStorage(
+  supabase: any,
+  dataUrl: string,
+  fileName: string,
+): Promise<string | null> {
+  try {
+    const { bytes, contentType } = dataUrlToBytes(dataUrl);
+    const ext = contentType.split("/")[1] || "png";
+    const path = `auto/${fileName}.${ext}`;
+
+    const { error } = await supabase.storage
+      .from("blog-images")
+      .upload(path, bytes, { contentType, upsert: true });
+
+    if (error) {
+      console.error("Upload error:", error);
+      return null;
+    }
+
+    const { data } = supabase.storage.from("blog-images").getPublicUrl(path);
+    return data.publicUrl;
+  } catch (e) {
+    console.error("Upload exception:", e);
+    return null;
+  }
+}
+
+function slugifyHeading(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 60);
+}
+
+// Build a Table of Contents from H2 headings in markdown
+function buildTableOfContents(content: string): string {
+  const lines = content.split("\n");
+  const headings: { level: number; text: string; id: string }[] = [];
+
+  for (const line of lines) {
+    const m = line.match(/^(##|###)\s+(.+?)\s*$/);
+    if (m) {
+      headings.push({
+        level: m[1].length,
+        text: m[2].replace(/[*_`]/g, "").trim(),
+        id: slugifyHeading(m[2]),
+      });
+    }
+  }
+
+  if (headings.length < 3) return "";
+
+  const items = headings
+    .filter((h) => h.level === 2)
+    .map((h) => `- [${h.text}](#${h.id})`)
+    .join("\n");
+
+  return `\n\n> 📋 **Table of Contents**\n\n${items}\n\n---\n`;
+}
+
+// Insert inline images into the markdown content at strategic positions
+function injectInlineImages(content: string, imageUrls: string[]): string {
+  if (imageUrls.length === 0) return content;
+
+  const lines = content.split("\n");
+  const h2Indices: number[] = [];
+  lines.forEach((line, i) => {
+    if (/^##\s+/.test(line)) h2Indices.push(i);
+  });
+
+  // Insert images after the 2nd and 4th H2 headings
+  const insertAfter: number[] = [];
+  if (h2Indices[1] !== undefined) insertAfter.push(h2Indices[1]);
+  if (h2Indices[3] !== undefined) insertAfter.push(h2Indices[3]);
+
+  let imgIdx = 0;
+  const result: string[] = [];
+  for (let i = 0; i < lines.length; i++) {
+    result.push(lines[i]);
+    if (insertAfter.includes(i) && imgIdx < imageUrls.length) {
+      result.push("");
+      result.push(`![Visual illustration](${imageUrls[imgIdx]})`);
+      result.push("");
+      imgIdx++;
+    }
+  }
+
+  return result.join("\n");
+}
+
+async function generateBlogWithAI(researchContext: string, topicData: typeof RESEARCH_TOPICS[0]): Promise<{ title: string; content: string; excerpt: string; slug: string; tags: string[]; coverImagePrompt?: string; inlineImagePrompts?: string[] }> {
   const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
   if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
 
-  const systemPrompt = `You are a TOP-TIER franchise industry writer for FranchiseLeadsPro. You write like the best business journalists—clear, punchy, insightful.
+  const systemPrompt = `You are a real human blogger for FranchiseLeadsPro. You write like a friend texting another friend who runs a franchise business — warm, casual, helpful, never corporate.
 
 === YOUR VOICE ===
 - Write like you're explaining to a smart friend over coffee
