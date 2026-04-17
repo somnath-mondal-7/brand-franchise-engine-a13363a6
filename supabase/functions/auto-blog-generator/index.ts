@@ -730,13 +730,14 @@ serve(async (req) => {
     // === Assemble final content ===
     // 1. Strip any duplicate title the model accidentally added at the top
     let finalContent = stripDuplicateTitle(blogPost.content, blogPost.title);
-    // 2. Inject inline images at strategic H2 positions (skipping FAQ)
+    // 2. Ensure a FAQ section exists (generate fallback if model skipped it)
+    finalContent = await ensureFaqSection(finalContent, blogPost.title);
+    // 3. Inject inline images at strategic H2 positions (skipping FAQ)
     finalContent = injectInlineImages(finalContent, inlineUrls);
-    // 3. Append internal-linking section before the bottom-line wrap-up
-    //    We add it as its own section at the end (above auto-rendered Related Posts)
+    // 4. Append internal-linking section at the end (above auto-rendered Related Posts)
     finalContent = finalContent.trimEnd() + "\n" + buildInternalLinksSection();
-    // NOTE: Table of Contents is now rendered by the React TableOfContents component
-    //       (positioned in the middle of the article in BlogPost.tsx) — no markdown TOC injection needed.
+    // NOTE: Table of Contents is rendered by the React TableOfContents component
+    //       (positioned in the middle of the article in BlogPost.tsx) — no markdown TOC needed.
 
     const wordCount = finalContent.split(/\s+/).length;
     const readTime = Math.ceil(wordCount / 200);
