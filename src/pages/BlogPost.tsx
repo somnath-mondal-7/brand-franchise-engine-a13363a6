@@ -49,6 +49,24 @@ const BlogPost = () => {
   const [post, setPost] = useState<BlogPostData | null>(null);
   const [category, setCategory] = useState<Category | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [shared, setShared] = useState(false);
+
+  const handleShare = async () => {
+    const url = typeof window !== "undefined" ? window.location.href : "";
+    const title = post?.title || "FranchiseLeadsPro Blog";
+    try {
+      if (navigator.share) {
+        await navigator.share({ title, url });
+        return;
+      }
+      await navigator.clipboard.writeText(url);
+      setShared(true);
+      toast({ title: "Link copied!", description: "Share it anywhere you like." });
+      setTimeout(() => setShared(false), 2000);
+    } catch (e) {
+      // user cancelled — silent
+    }
+  };
 
   useEffect(() => {
     const fetchPost = async () => {
