@@ -34,8 +34,6 @@ export const generateCorePages = (): SitemapUrl[] => {
     { loc: `${DOMAIN}/franchise-leads-kuwait`, lastmod: currentDate, changefreq: 'weekly', priority: '0.85' },
     { loc: `${DOMAIN}/buy-franchise-leads`, lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
     { loc: `${DOMAIN}/digital-marketing`, lastmod: currentDate, changefreq: 'weekly', priority: '0.85' },
-    { loc: `${DOMAIN}/legal-terms/privacy-policy`, lastmod: currentDate, changefreq: 'monthly', priority: '0.4' },
-    { loc: `${DOMAIN}/legal-terms/refund-satisfaction-guarantee-policy`, lastmod: currentDate, changefreq: 'monthly', priority: '0.4' },
   ];
 };
 
