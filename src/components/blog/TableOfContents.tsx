@@ -81,37 +81,32 @@ const TableOfContents = ({ content }: TableOfContentsProps) => {
   return (
     <nav
       aria-label="Table of contents"
-      className="my-12 rounded-2xl border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-accent/5 p-6 sm:p-8 shadow-sm"
+      className="not-prose my-8 rounded-xl border border-primary/20 bg-primary/5 p-5 sm:p-6"
     >
-      <div className="flex items-center gap-3 mb-5 pb-4 border-b border-border">
-        <div className="p-2 rounded-lg bg-primary/10">
-          <BookOpen className="w-5 h-5 text-primary" />
-        </div>
-        <h2 className="text-xl sm:text-2xl font-bold text-foreground m-0">
-          What's Inside This Post
-        </h2>
+      <div className="flex items-center gap-2 mb-3">
+        <BookOpen className="w-4 h-4 text-primary" />
+        <h3 className="text-sm font-semibold uppercase tracking-wide text-primary m-0">
+          What's inside
+        </h3>
       </div>
-      <ol className="space-y-3 list-none pl-0 m-0">
+      <ol className="space-y-1.5 list-none pl-0 m-0">
         {headings.map((h, i) => (
-          <li
-            key={h.id}
-            className={h.level === 3 ? "pl-6" : ""}
-          >
+          <li key={h.id} className={h.level === 3 ? "pl-5" : ""}>
             <a
               href={`#${h.id}`}
               onClick={(e) => handleClick(e, h.id)}
-              className={`group flex items-start gap-3 text-base sm:text-lg leading-snug transition-all py-1 ${
+              className={`group flex items-start gap-2.5 text-sm leading-snug transition-colors py-0.5 ${
                 activeId === h.id
                   ? "text-primary font-semibold"
-                  : "text-foreground/85 hover:text-primary"
+                  : "text-foreground/80 hover:text-primary"
               }`}
             >
               {h.level === 2 && (
-                <span className="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-full bg-primary/10 text-primary text-sm font-bold group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                <span className="flex-shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary/15 text-primary text-[11px] font-bold group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                   {i + 1}
                 </span>
               )}
-              <span className="flex-1 pt-0.5">{h.text}</span>
+              <span className="flex-1">{h.text}</span>
             </a>
           </li>
         ))}
