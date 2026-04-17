@@ -26,7 +26,7 @@ interface BlogPostData {
   excerpt: string;
   author_name: string;
   published_at: string;
-  category_id: string;
+  category_id: string | null;
   read_time_minutes: number;
   tags: string[];
   seo_title: string;
