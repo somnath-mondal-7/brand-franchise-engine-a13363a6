@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build:sitemaps": "tsx src/scripts/generateSitemapIndex.ts",
-    "build": "vite build",
+    "build": "npm run build:sitemaps && vite build && npm run build:prerender",
     "build:prerender": "tsx scripts/prerender.js && node scripts/copy-prerendered.js",
-    "build:full": "npm run build:sitemaps && npm run build && npm run build:prerender",
+    "build:full": "npm run build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"

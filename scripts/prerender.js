@@ -16,7 +16,7 @@ const DIST = join(ROOT, 'dist');
 // ─── CONFIG ───
 const SITE = 'https://www.franchiseleadspro.com';
 const BRAND = 'FranchiseLeadsPro';
-const PHONE = '+1 (551)-201-23-77';
+const PHONE = '+1 (551)-201-27-29';
 
 // ─── HELPERS ───
 function slugToTitle(slug) {
@@ -109,7 +109,7 @@ function buildWebPageSchema(title, description, canonical) {
       "logo": `${SITE}/logo-hq.png`,
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+1-551-201-2377",
+        "telephone": "+1-551-201-2729",
         "contactType": "Sales",
         "areaServed": ["US", "IN", "GB", "CA", "AU", "AE", "KW"],
         "availableLanguage": "English"
