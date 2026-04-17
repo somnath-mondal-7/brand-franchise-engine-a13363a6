@@ -384,6 +384,81 @@ If this got you thinking, here are a few more spots on the site that might help:
 `;
 }
 
+// Ensure a FAQ section exists. If the model skipped it, generate a topical fallback.
+async function ensureFaqSection(content: string, topic: string): Promise<string> {
+  if (/^##\s+(faq|frequently asked)/im.test(content)) {
+    return content;
+  }
+  console.log("⚠️  FAQ section missing — generating fallback");
+
+  const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+  if (!LOVABLE_API_KEY) return content;
+
+  try {
+    const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${LOVABLE_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "google/gemini-2.5-flash",
+        messages: [
+          {
+            role: "system",
+            content: "You write blog FAQs in a casual, friendly, human voice. Use contractions. Sound like a friend giving advice, not a corporate FAQ.",
+          },
+          {
+            role: "user",
+            content: `Generate a markdown FAQ section for a blog post about: "${topic}".
+
+Return EXACTLY this format (5 questions, no preamble, no closing):
+
+## FAQ
+
+### Question one ending in a question mark?
+Casual 2-3 sentence answer here. Use contractions and a friendly tone.
+
+### Question two ending in a question mark?
+Casual 2-3 sentence answer.
+
+### Question three ending in a question mark?
+Casual 2-3 sentence answer.
+
+### Question four ending in a question mark?
+Casual 2-3 sentence answer.
+
+### Question five ending in a question mark?
+Casual 2-3 sentence answer.`,
+          },
+        ],
+        temperature: 0.8,
+        max_tokens: 1200,
+      }),
+    });
+    if (!res.ok) return content;
+    const data = await res.json();
+    const faq = data.choices?.[0]?.message?.content?.trim();
+    if (!faq || !/^##\s+FAQ/im.test(faq)) return content;
+    return content.trimEnd() + "\n\n" + faq + "\n";
+  } catch (e) {
+    console.error("FAQ fallback failed:", e);
+    return content;
+  }
+}
+
+function buildInternalLinksSection(): string {
+  return `
+
+## Want To Dig Deeper?
+
+If this got you thinking, here are a few more spots on the site that might help:
+
+- [Read more posts on the FranchiseLeadsPro blog](/blog) — fresh stuff on franchise growth weekly.
+- [See our franchise lead generation services](/services) — what we actually do for franchise brands.
+- [Buy qualified franchise leads](/buy-franchise-leads) — if you'd rather skip the DIY grind.
+- [Look at real client case studies](/case-studies) — the wins, the numbers, the stories.
+- [Get in touch directly](/contact) — happy to chat, no pitch deck required.
+`;
+}
+
 async function generateBlogWithAI(researchContext: string, topicData: typeof RESEARCH_TOPICS[0]): Promise<{ title: string; content: string; excerpt: string; slug: string; tags: string[]; coverImagePrompt?: string; inlineImagePrompts?: string[] }> {
   const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
   if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
@@ -464,15 +539,21 @@ Each prompt: 1-2 vivid sentences. Style examples: "modern professional photograp
 
 ${researchContext}
 
-IMPORTANT:
-- Start with this hook (adapt it naturally, don't quote it word-for-word): "${topicData.hook}"
+CRITICAL REQUIREMENTS (your post will be REJECTED if any of these are missing):
+- Length: 1,200-1,600 words MINIMUM. Do not stop short.
+- Start with the hook (adapt it naturally): "${topicData.hook}"
 - Reference this insight if it fits: "${topicData.stats}"
-- Take this angle: "${topicData.angle}"
-- Reference current news when relevant
-- DO NOT put the title at the top of content — start with the hook directly
-- Include a ## FAQ section with exactly 5 ### questions
+- Angle: "${topicData.angle}"
+- DO NOT put the title at the top of content — start with the hook paragraph directly
+- Sprinkle 2-3 internal links naturally: [services](/services), [buy franchise leads](/buy-franchise-leads), [our blog](/blog), [case studies](/case-studies), [contact](/contact)
+- MANDATORY: Include a "## FAQ" section near the end with EXACTLY 5 ### questions. Each question must end with "?". Each answer 2-3 casual sentences. Example format:
+  ## FAQ
+  ### How much should I spend on franchise lead gen?
+  Honestly, it depends. But most brands see solid results...
+  ### What's the difference between MQLs and SQLs?
+  Okay so MQLs are basically warm. SQLs are ready to talk money...
 
-Make every sentence sound human. This should feel like advice from a friend, not a corporate report.`;
+Every sentence must sound human, like a friend giving advice — not a corporate report.`;
 
   // Use tool-calling for GUARANTEED valid JSON output (fixes prior parsing bugs)
   const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
@@ -649,13 +730,14 @@ serve(async (req) => {
     // === Assemble final content ===
     // 1. Strip any duplicate title the model accidentally added at the top
     let finalContent = stripDuplicateTitle(blogPost.content, blogPost.title);
-    // 2. Inject inline images at strategic H2 positions (skipping FAQ)
+    // 2. Ensure a FAQ section exists (generate fallback if model skipped it)
+    finalContent = await ensureFaqSection(finalContent, blogPost.title);
+    // 3. Inject inline images at strategic H2 positions (skipping FAQ)
     finalContent = injectInlineImages(finalContent, inlineUrls);
-    // 3. Append internal-linking section before the bottom-line wrap-up
-    //    We add it as its own section at the end (above auto-rendered Related Posts)
+    // 4. Append internal-linking section at the end (above auto-rendered Related Posts)
     finalContent = finalContent.trimEnd() + "\n" + buildInternalLinksSection();
-    // NOTE: Table of Contents is now rendered by the React TableOfContents component
-    //       (positioned in the middle of the article in BlogPost.tsx) — no markdown TOC injection needed.
+    // NOTE: Table of Contents is rendered by the React TableOfContents component
+    //       (positioned in the middle of the article in BlogPost.tsx) — no markdown TOC needed.
 
     const wordCount = finalContent.split(/\s+/).length;
     const readTime = Math.ceil(wordCount / 200);
