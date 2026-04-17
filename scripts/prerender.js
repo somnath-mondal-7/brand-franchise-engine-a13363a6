@@ -33,38 +33,184 @@ function escapeHtml(str) {
 }
 
 function buildNav() {
-  return `<nav aria-label="Main Navigation">
-    <a href="/">Home</a> |
-    <a href="/services">Services</a> |
-    <a href="/blog">Blog</a> |
-    <a href="/contact">Contact</a> |
-    <a href="/franchise-leads-usa">USA</a> |
-    <a href="/franchise-leads-india">India</a> |
-    <a href="/franchise-leads-uk">UK</a> |
-    <a href="/franchise-leads-canada">Canada</a> |
-    <a href="/franchise-leads-australia">Australia</a> |
-    <a href="/franchise-leads-dubai">Dubai</a> |
-    <a href="/buy-franchise-leads">Buy Leads</a> |
-    <a href="/testimonials">Testimonials</a>
-  </nav>`;
+  return `<header class="topbar">
+    <div class="shell-inner">
+      <div class="surface brandbar">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true">FLP</span>
+          <span class="brand-copy">
+            <strong>${BRAND}</strong>
+            <span>Franchise growth marketing</span>
+          </span>
+        </a>
+        <nav aria-label="Main Navigation" class="nav-links">
+          <a href="/">Home</a>
+          <a href="/services">Services</a>
+          <a href="/blog">Blog</a>
+          <a href="/contact">Contact</a>
+          <a href="/franchise-leads-usa">USA</a>
+          <a href="/franchise-leads-india">India</a>
+          <a href="/franchise-leads-uk">UK</a>
+          <a href="/franchise-leads-canada">Canada</a>
+          <a href="/franchise-leads-australia">Australia</a>
+          <a href="/franchise-leads-dubai">Dubai</a>
+          <a href="/buy-franchise-leads">Buy Leads</a>
+          <a href="/testimonials">Testimonials</a>
+        </nav>
+      </div>
+    </div>
+  </header>`;
 }
 
 function buildFooter() {
-  return `<footer>
-    <p>&copy; ${new Date().getFullYear()} ${BRAND}. All rights reserved.</p>
-    <p>Phone: ${PHONE} | Email: support@franchiseleadspro.com</p>
-    <nav aria-label="Footer">
-      <a href="/services">Services</a> |
-      <a href="/blog">Blog</a> |
-      <a href="/contact">Contact</a> |
-      <a href="/franchise-leads-usa">USA</a> |
-      <a href="/franchise-leads-india">India</a> |
-      <a href="/franchise-leads-uk">UK</a> |
-      <a href="/buy-franchise-leads">Buy Leads</a> |
-      <a href="/legal-terms/privacy-policy">Privacy Policy</a>
-    </nav>
-    <p>${BRAND} provides franchise lead generation, LinkedIn marketing, social media marketing, website development, SEO, and IT services worldwide.</p>
+  return `<footer class="site-footer">
+    <div class="shell-inner">
+      <div class="surface footer-grid">
+        <div>
+          <p class="footer-title">${BRAND}</p>
+          <p>${BRAND} provides franchise lead generation, LinkedIn marketing, social media marketing, website development, SEO, and IT services worldwide.</p>
+        </div>
+        <div>
+          <p class="footer-title">Contact</p>
+          <p>Phone: <a href="tel:+15512012729">${PHONE}</a></p>
+          <p>Email: <a href="mailto:support@franchiseleadspro.com">support@franchiseleadspro.com</a></p>
+        </div>
+        <div>
+          <p class="footer-title">Quick links</p>
+          <nav aria-label="Footer" class="footer-links">
+            <a href="/services">Services</a>
+            <a href="/blog">Blog</a>
+            <a href="/contact">Contact</a>
+            <a href="/franchise-leads-usa">USA</a>
+            <a href="/franchise-leads-india">India</a>
+            <a href="/franchise-leads-uk">UK</a>
+            <a href="/buy-franchise-leads">Buy Leads</a>
+            <a href="/legal-terms/privacy-policy">Privacy Policy</a>
+          </nav>
+        </div>
+      </div>
+      <p class="footer-meta">&copy; ${new Date().getFullYear()} ${BRAND}. All rights reserved.</p>
+    </div>
   </footer>`;
+}
+
+function buildPrerenderStyles() {
+  return `<style>
+    :root {
+      color-scheme: light;
+      --background: 42 38% 96%;
+      --foreground: 216 33% 14%;
+      --surface: 0 0% 100%;
+      --surface-muted: 35 40% 93%;
+      --muted-foreground: 216 16% 38%;
+      --primary: 18 90% 52%;
+      --primary-foreground: 0 0% 100%;
+      --border: 28 25% 84%;
+      --ring: 18 90% 52%;
+      --shadow: 220 32% 18% / 0.08;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: hsl(var(--foreground));
+      background:
+        radial-gradient(circle at top left, hsl(var(--surface-muted)), transparent 35%),
+        linear-gradient(180deg, hsl(var(--background)) 0%, hsl(0 0% 100%) 100%);
+      line-height: 1.65;
+    }
+    a { color: hsl(var(--primary)); text-decoration: none; text-underline-offset: 0.18em; }
+    a:hover { text-decoration: underline; }
+    .shell-inner { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    .surface {
+      background: hsl(var(--surface) / 0.92);
+      border: 1px solid hsl(var(--border));
+      border-radius: 24px;
+      box-shadow: 0 20px 50px -24px hsl(var(--shadow));
+      backdrop-filter: blur(8px);
+    }
+    .topbar { padding: 24px 0 0; }
+    .brandbar {
+      display: flex; gap: 20px; align-items: center; justify-content: space-between;
+      padding: 20px 22px; flex-wrap: wrap;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 14px; color: hsl(var(--foreground)); min-width: 0; }
+    .brand:hover { text-decoration: none; }
+    .brand-mark {
+      display: inline-grid; place-items: center; width: 46px; height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, hsl(var(--primary)), hsl(18 95% 45%));
+      color: hsl(var(--primary-foreground));
+      font-weight: 800; letter-spacing: 0.06em;
+      box-shadow: 0 14px 30px -18px hsl(var(--primary) / 0.65);
+    }
+    .brand-copy { display: grid; gap: 2px; line-height: 1.15; }
+    .brand-copy span { color: hsl(var(--muted-foreground)); font-size: 0.92rem; }
+    .nav-links, .footer-links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .nav-links a, .footer-links a {
+      display: inline-flex; align-items: center; min-height: 38px; padding: 0 14px;
+      border-radius: 999px; background: hsl(var(--surface-muted));
+      color: hsl(var(--foreground)); border: 1px solid hsl(var(--border)); font-size: 0.95rem;
+    }
+    .nav-links a:hover, .footer-links a:hover {
+      text-decoration: none; border-color: hsl(var(--ring)); color: hsl(var(--primary));
+    }
+    main { padding: 24px 0 40px; }
+    .page-card { padding: clamp(24px, 3.5vw, 42px); }
+    .breadcrumbs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; font-size: 0.9rem; color: hsl(var(--muted-foreground)); }
+    .breadcrumbs a { color: hsl(var(--muted-foreground)); }
+    .breadcrumbs span { color: hsl(var(--muted-foreground)); }
+    .page-intro {
+      display: inline-flex; align-items: center; gap: 10px; margin: 0 0 14px; padding: 8px 14px;
+      border-radius: 999px; background: hsl(var(--surface-muted)); color: hsl(var(--muted-foreground));
+      border: 1px solid hsl(var(--border)); font-size: 0.86rem; letter-spacing: 0.02em; text-transform: uppercase;
+    }
+    h1, h2, h3 { line-height: 1.15; letter-spacing: -0.03em; margin: 0 0 14px; color: hsl(var(--foreground)); }
+    h1 { font-size: clamp(2.1rem, 5vw, 4.25rem); margin-bottom: 18px; }
+    h2 { font-size: clamp(1.45rem, 2.4vw, 2.15rem); margin-bottom: 12px; }
+    h3 { font-size: clamp(1.08rem, 1.8vw, 1.35rem); margin-bottom: 8px; }
+    p, li { font-size: 1.02rem; color: hsl(var(--foreground)); }
+    p { margin: 0 0 16px; }
+    ul, ol { margin: 0 0 18px; padding-left: 1.25rem; }
+    li + li { margin-top: 8px; }
+    main > .shell-inner > article > section,
+    main > .shell-inner > article > div[itemtype="https://schema.org/Question"] {
+      padding: 24px;
+      background: linear-gradient(180deg, hsl(var(--surface)) 0%, hsl(var(--surface-muted) / 0.35) 100%);
+      border: 1px solid hsl(var(--border));
+      border-radius: 20px;
+      margin-top: 22px;
+    }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+    .btn {
+      display: inline-flex; align-items: center; min-height: 46px; padding: 0 22px; border-radius: 999px;
+      background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); font-weight: 600;
+      border: 1px solid hsl(var(--primary));
+      box-shadow: 0 14px 30px -18px hsl(var(--primary) / 0.65);
+    }
+    .btn:hover { text-decoration: none; }
+    .btn.ghost { background: hsl(var(--surface)); color: hsl(var(--foreground)); border-color: hsl(var(--border)); box-shadow: none; }
+    .site-footer { padding: 0 0 36px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding: 24px; }
+    .footer-title { margin: 0 0 10px; font-weight: 700; letter-spacing: -0.02em; }
+    .footer-meta { margin: 14px 8px 0; color: hsl(var(--muted-foreground)); font-size: 0.92rem; }
+    @media (max-width: 820px) {
+      .brandbar, .footer-grid { grid-template-columns: 1fr; }
+      .nav-links a, .footer-links a { min-height: 36px; padding: 0 12px; }
+    }
+  </style>`;
+}
+
+function buildBreadcrumbsHtml(breadcrumbs) {
+  if (!breadcrumbs || breadcrumbs.length < 2) return '';
+  const parts = breadcrumbs.map((b, i) => {
+    const isLast = i === breadcrumbs.length - 1;
+    return isLast
+      ? `<span aria-current="page">${escapeHtml(b.name)}</span>`
+      : `<a href="${b.url}">${escapeHtml(b.name)}</a><span aria-hidden="true">›</span>`;
+  });
+  return `<nav class="breadcrumbs" aria-label="Breadcrumb">${parts.join(' ')}</nav>`;
 }
 
 // ─── STRUCTURED DATA ───
