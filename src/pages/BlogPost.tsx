@@ -5,6 +5,8 @@ import Footer from "@/components/Footer";
 import SEOBreadcrumbs from "@/components/SEOBreadcrumbs";
 import TableOfContents from "@/components/blog/TableOfContents";
 import ReadingProgress from "@/components/blog/ReadingProgress";
+import RelatedPosts from "@/components/blog/RelatedPosts";
+import FaqSchema from "@/components/blog/FaqSchema";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Calendar, User, ArrowLeft, Share2, FileText, Download, Check, Clock } from "lucide-react";
