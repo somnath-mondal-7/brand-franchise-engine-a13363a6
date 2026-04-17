@@ -298,6 +298,40 @@
   color: hsl(var(--brand-gray)) !important;
 }
 
+/* Anchored headings from rehype-autolink-headings */
+.blog-content h1 a,
+.blog-content h2 a,
+.blog-content h3 a,
+.blog-content h4 a,
+.blog-content h5 a,
+.blog-content h6 a {
+  color: inherit !important;
+  text-decoration: none !important;
+  font-weight: inherit !important;
+}
+.blog-content h1 a:hover,
+.blog-content h2 a:hover,
+.blog-content h3 a:hover,
+.blog-content h4 a:hover,
+.blog-content h5 a:hover,
+.blog-content h6 a:hover {
+  color: hsl(var(--primary)) !important;
+  text-decoration: none !important;
+}
+
+/* Smooth scroll offset so anchor links land below sticky nav */
+.blog-content h2,
+.blog-content h3 {
+  scroll-margin-top: 90px;
+}
+
+/* Inline blog images get magazine-style polish */
+.blog-content img {
+  border-radius: 0.75rem !important;
+  box-shadow: 0 8px 24px -12px hsl(var(--primary) / 0.18) !important;
+  margin: 2em auto !important;
+}
+
 /* Scrolling animation for client logos */
 @keyframes scroll {
   0% {

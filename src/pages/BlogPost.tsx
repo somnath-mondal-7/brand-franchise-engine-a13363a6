@@ -3,13 +3,18 @@ import { useEffect, useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOBreadcrumbs from "@/components/SEOBreadcrumbs";
+import TableOfContents from "@/components/blog/TableOfContents";
+import ReadingProgress from "@/components/blog/ReadingProgress";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Calendar, User, ArrowLeft, Share2, FileText, Download } from "lucide-react";
+import { Calendar, User, ArrowLeft, Share2, FileText, Download, Check, Clock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import { toast } from "@/hooks/use-toast";
 
 interface BlogPostData {
   id: string;
@@ -44,6 +49,24 @@ const BlogPost = () => {
   const [post, setPost] = useState<BlogPostData | null>(null);
   const [category, setCategory] = useState<Category | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [shared, setShared] = useState(false);
+
+  const handleShare = async () => {
+    const url = typeof window !== "undefined" ? window.location.href : "";
+    const title = post?.title || "FranchiseLeadsPro Blog";
+    try {
+      if (navigator.share) {
+        await navigator.share({ title, url });
+        return;
+      }
+      await navigator.clipboard.writeText(url);
+      setShared(true);
+      toast({ title: "Link copied!", description: "Share it anywhere you like." });
+      setTimeout(() => setShared(false), 2000);
+    } catch (e) {
+      // user cancelled — silent
+    }
+  };
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -132,6 +155,7 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <ReadingProgress />
       {/* SEO Meta Tags */}
       <Helmet>
         <title>{post.seo_title || post.title} | FranchiseLeads Pro</title>
@@ -232,24 +256,51 @@ const BlogPost = () => {
                 <span>{formatDate(post.published_at)}</span>
               </div>
               <div className="flex items-center space-x-2">
+                <Clock className="w-5 h-5" />
                 <span className="text-sm">{post.read_time_minutes} min read</span>
               </div>
-              <Button variant="outline" size="sm" className="ml-auto">
-                <Share2 className="w-4 h-4 mr-2" />
-                Share
+              <Button variant="outline" size="sm" className="ml-auto" onClick={handleShare}>
+                {shared ? (
+                  <>
+                    <Check className="w-4 h-4 mr-2" />
+                    Copied
+                  </>
+                ) : (
+                  <>
+                    <Share2 className="w-4 h-4 mr-2" />
+                    Share
+                  </>
+                )}
               </Button>
             </div>
 
-            {/* Excerpt */}
+            {/* Excerpt — Key takeaway intro */}
             {post.excerpt && (
-              <p className="text-xl text-brand-gray leading-relaxed mb-8">
-                {post.excerpt}
-              </p>
+              <div className="mb-10 p-6 rounded-xl bg-primary/5 border-l-4 border-primary">
+                <p className="text-xl text-foreground leading-relaxed font-medium">
+                  {post.excerpt}
+                </p>
+              </div>
             )}
 
+            {/* Table of Contents */}
+            <TableOfContents content={post.content} />
+
             {/* Content */}
-            <div className="blog-content prose prose-lg max-w-none">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <div className="blog-content prose prose-lg max-w-none scroll-smooth">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[
+                  rehypeSlug,
+                  [
+                    rehypeAutolinkHeadings,
+                    {
+                      behavior: "wrap",
+                      properties: { className: "no-underline hover:text-primary transition-colors" },
+                    },
+                  ],
+                ]}
+              >
                 {post.content}
               </ReactMarkdown>
             </div>

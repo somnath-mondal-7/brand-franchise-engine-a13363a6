@@ -230,76 +230,220 @@ Make it feel like breaking insights that readers can't get anywhere else.
   return { context, topicData };
 }
 
-async function generateBlogWithAI(researchContext: string, topicData: typeof RESEARCH_TOPICS[0]): Promise<{ title: string; content: string; excerpt: string; slug: string; tags: string[] }> {
+// ============================================================
+// IMAGE GENERATION + UPLOAD HELPERS
+// ============================================================
+
+async function generateImageBase64(prompt: string): Promise<string | null> {
+  const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+  if (!LOVABLE_API_KEY) return null;
+
+  try {
+    const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "google/gemini-2.5-flash-image",
+        messages: [{ role: "user", content: prompt }],
+        modalities: ["image", "text"],
+      }),
+    });
+
+    if (!res.ok) {
+      console.error("Image gen failed:", res.status, await res.text());
+      return null;
+    }
+
+    const data = await res.json();
+    const dataUrl = data.choices?.[0]?.message?.images?.[0]?.image_url?.url;
+    if (!dataUrl || !dataUrl.startsWith("data:image")) return null;
+    return dataUrl;
+  } catch (e) {
+    console.error("Image gen error:", e);
+    return null;
+  }
+}
+
+function dataUrlToBytes(dataUrl: string): { bytes: Uint8Array; contentType: string } {
+  const match = dataUrl.match(/^data:(image\/[a-z]+);base64,(.+)$/);
+  if (!match) throw new Error("Invalid data URL");
+  const contentType = match[1];
+  const b64 = match[2];
+  const binary = atob(b64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return { bytes, contentType };
+}
+
+async function uploadImageToStorage(
+  supabase: any,
+  dataUrl: string,
+  fileName: string,
+): Promise<string | null> {
+  try {
+    const { bytes, contentType } = dataUrlToBytes(dataUrl);
+    const ext = contentType.split("/")[1] || "png";
+    const path = `auto/${fileName}.${ext}`;
+
+    const { error } = await supabase.storage
+      .from("blog-images")
+      .upload(path, bytes, { contentType, upsert: true });
+
+    if (error) {
+      console.error("Upload error:", error);
+      return null;
+    }
+
+    const { data } = supabase.storage.from("blog-images").getPublicUrl(path);
+    return data.publicUrl;
+  } catch (e) {
+    console.error("Upload exception:", e);
+    return null;
+  }
+}
+
+function slugifyHeading(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 60);
+}
+
+// Build a Table of Contents from H2 headings in markdown
+function buildTableOfContents(content: string): string {
+  const lines = content.split("\n");
+  const headings: { level: number; text: string; id: string }[] = [];
+
+  for (const line of lines) {
+    const m = line.match(/^(##|###)\s+(.+?)\s*$/);
+    if (m) {
+      headings.push({
+        level: m[1].length,
+        text: m[2].replace(/[*_`]/g, "").trim(),
+        id: slugifyHeading(m[2]),
+      });
+    }
+  }
+
+  if (headings.length < 3) return "";
+
+  const items = headings
+    .filter((h) => h.level === 2)
+    .map((h) => `- [${h.text}](#${h.id})`)
+    .join("\n");
+
+  return `\n\n> 📋 **Table of Contents**\n\n${items}\n\n---\n`;
+}
+
+// Insert inline images into the markdown content at strategic positions
+function injectInlineImages(content: string, imageUrls: string[]): string {
+  if (imageUrls.length === 0) return content;
+
+  const lines = content.split("\n");
+  const h2Indices: number[] = [];
+  lines.forEach((line, i) => {
+    if (/^##\s+/.test(line)) h2Indices.push(i);
+  });
+
+  // Insert images after the 2nd and 4th H2 headings
+  const insertAfter: number[] = [];
+  if (h2Indices[1] !== undefined) insertAfter.push(h2Indices[1]);
+  if (h2Indices[3] !== undefined) insertAfter.push(h2Indices[3]);
+
+  let imgIdx = 0;
+  const result: string[] = [];
+  for (let i = 0; i < lines.length; i++) {
+    result.push(lines[i]);
+    if (insertAfter.includes(i) && imgIdx < imageUrls.length) {
+      result.push("");
+      result.push(`![Visual illustration](${imageUrls[imgIdx]})`);
+      result.push("");
+      imgIdx++;
+    }
+  }
+
+  return result.join("\n");
+}
+
+async function generateBlogWithAI(researchContext: string, topicData: typeof RESEARCH_TOPICS[0]): Promise<{ title: string; content: string; excerpt: string; slug: string; tags: string[]; coverImagePrompt?: string; inlineImagePrompts?: string[] }> {
   const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
   if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
 
-  const systemPrompt = `You are a TOP-TIER franchise industry writer for FranchiseLeadsPro. You write like the best business journalists—clear, punchy, insightful.
+  const systemPrompt = `You are a real human blogger for FranchiseLeadsPro. You write like a friend texting another friend who runs a franchise business — warm, casual, helpful, never corporate.
 
-=== YOUR VOICE ===
-- Write like you're explaining to a smart friend over coffee
-- Be direct. No corporate fluff. Every word earns its place.
-- Sound like an insider sharing secrets, not a marketer selling
-- Confident but never arrogant. Helpful, never preachy.
+=== YOUR VOICE (CRITICAL) ===
+- Sound like a real human friend, NOT an AI bot
+- Use contractions everywhere (don't, you're, it's, that's, here's, can't)
+- Use simple everyday words. If a 10-year-old wouldn't get it, rewrite it.
+- Throw in casual phrases: "Look,", "Honestly,", "Here's the thing,", "Real talk,", "No joke,"
+- Ask the reader questions like you're chatting with them
+- Tell tiny personal-sounding stories ("I was talking to a franchise owner last week...")
+- It's okay to be a little messy. Real people don't talk in perfect bullet lists.
+- Mix short punchy sentences. With longer ones too. Like this.
 
-=== STRICT WRITING RULES ===
+=== HUMAN VS AI — DO THIS ===
+✅ "Look, most franchise marketing is broken. Here's why."
+❌ "In the contemporary franchise landscape, marketing strategies face significant challenges."
 
-PARAGRAPHS:
-- Maximum 2-3 sentences per paragraph
-- One idea per paragraph
-- White space is your friend—use it generously
+✅ "I'll be honest — I almost gave up on LinkedIn last year."
+❌ "LinkedIn presents both opportunities and challenges for franchise development teams."
 
-STRUCTURE (MUST FOLLOW):
-1. HOOK (First sentence): Bold claim, surprising stat, or provocative question
-   - Never start with "In today's..." or "As businesses..."
-   - Jump straight into the insight
-   
-2. THE PROBLEM (100-150 words): What's broken and why it matters
-   - Use specific numbers
-   - Make the reader feel the pain
-   
-3. THE INSIGHT (200-300 words): Your main value—what they don't know
-   - Include 2-3 subheadings (## or ###)
-   - Use bullet points for lists
-   - Include at least 2 real statistics
-   
-4. ACTION STEPS (150-200 words): Exactly what to do
-   - Numbered list of 3-5 specific actions
-   - Each step must be concrete, not vague
-   
-5. REAL EXAMPLE (100-150 words): Mini case study or scenario
-   - Make it feel real with specific details
-   - Show before/after or results
-   
-6. THE BOTTOM LINE (75-100 words): Key takeaway + soft CTA
-   - Summarize in 2-3 sentences
-   - Natural mention of lead generation/marketing help
+✅ "Their phone wouldn't stop ringing. And they hated it."
+❌ "The increased call volume created operational difficulties for the organization."
+
+=== STRUCTURE (FOLLOW LOOSELY, NOT ROBOTICALLY) ===
+1. **Opening hook** — 2-3 short paragraphs. Drop the reader straight into a story or surprising thought.
+2. **The real problem** — What's actually going wrong. Be specific. Tell a quick story if you can.
+3. **Main content** — 3-4 H2 sections (## headings). Mix paragraphs, short lists, and one quick story per section.
+4. **What to actually do** — A short numbered list of 3-5 steps. Make each one feel like advice from a friend.
+5. **A real-feeling example** — Tell a 4-5 sentence story about "a franchise owner I know" or "this brand we worked with"
+6. **Bottom line** — Wrap up casually. Soft mention of how franchise lead gen help works. Not pushy.
 
 === FORMATTING RULES ===
-- Use ## for main sections, ### for subsections
-- Use **bold** for emphasis (sparingly)
-- Use bullet points (•) for lists of 3+ items
-- Include 1-2 relevant quotes (can be hypothetical industry expert)
-- Total length: 1,000-1,400 words
+- Use ## for main sections (3-4 of them — they'll become Table of Contents items)
+- Headings should sound like real things people would say, not textbook chapters
+  ✅ "Why Most Franchise Ads Flop"
+  ❌ "Examination of Franchise Advertising Effectiveness"
+- Short paragraphs — 1 to 3 sentences max
+- Use **bold** to highlight one or two key phrases per section
+- Bullet lists when you have 3+ quick items
+- Drop in 1 short blockquote (>) somewhere — like a tip, warning, or pull-quote
+- Total length: 1,100-1,500 words
+- DON'T over-format. Real blog posts breathe.
 
-=== FORBIDDEN ===
-- "In today's competitive market..."
-- "As we all know..."
-- "It goes without saying..."
-- Passive voice
-- Long sentences (max 20 words)
-- Paragraphs over 4 lines
-- Generic advice without specifics
-- Salesy language or hard pitches
+=== ABSOLUTELY FORBIDDEN ===
+- "In today's competitive market..." / "In the ever-evolving..." / "In the modern landscape..."
+- "As we all know..." / "It goes without saying..." / "Needless to say..."
+- "Furthermore" / "Moreover" / "Additionally" / "In conclusion"
+- "Leverage" / "Utilize" / "Synergy" / "Robust solutions" / "Cutting-edge"
+- Em dashes used 5+ times (use them sparingly, max 2-3)
+- Listing benefits in a perfectly parallel structure (sounds like AI)
+- Using a stat without context — always explain WHY it matters
+- Generic phrases like "in this article we will explore"
+- Hard sales pitches — be helpful, not pushy
+
+=== IMAGE PROMPTS ===
+You also need to suggest 3 images for this post:
+- coverImagePrompt: A wide hero image (16:9) describing the article topic — modern, clean, photographic style
+- inlineImagePrompts: 2 supporting images that visually support specific sections
+Each image prompt should be 1-2 sentences, vivid and specific. Style: "modern professional photography, soft natural lighting, business setting" or "clean flat illustration, minimalist, blue and white palette"
 
 === OUTPUT FORMAT ===
-Return ONLY valid JSON:
+Return ONLY valid JSON. No prose outside the JSON. No markdown code fences.
 {
-  "title": "Compelling, specific title under 60 characters",
-  "excerpt": "Punchy 1-sentence hook that creates curiosity (max 140 chars)",
-  "content": "Full markdown blog post following exact structure above",
+  "title": "Casual, friendly title under 70 chars (no clickbait)",
+  "excerpt": "1 sentence hook that sounds human (max 160 chars)",
+  "content": "Full markdown blog post following the human voice rules above",
   "tags": ["tag1", "tag2", "tag3", "tag4", "tag5"],
-  "slug": "seo-friendly-url-slug"
+  "slug": "seo-friendly-url-slug",
+  "coverImagePrompt": "Vivid description of the cover image",
+  "inlineImagePrompts": ["First inline image description", "Second inline image description"]
 }`;
 
   const userPrompt = `Write a ${topicData.category.replace('-', ' ')} blog post based on this research:
@@ -449,7 +593,55 @@ serve(async (req) => {
     const blogPost = await generateBlogWithAI(researchContext, topicData);
     console.log(`Generated: "${blogPost.title}"`);
 
-    const wordCount = blogPost.content.split(/\s+/).length;
+    // === Generate images in parallel ===
+    console.log("🎨 Generating cover + inline images...");
+    const safeSlug = blogPost.slug.replace(/[^a-z0-9-]/gi, "").slice(0, 40);
+    const ts = Date.now();
+
+    const coverPrompt = blogPost.coverImagePrompt
+      || `Wide hero photograph for a blog post titled "${blogPost.title}". Modern professional business photography, soft natural lighting, clean composition, photorealistic.`;
+    const inlinePrompts = (blogPost.inlineImagePrompts && blogPost.inlineImagePrompts.length > 0)
+      ? blogPost.inlineImagePrompts.slice(0, 2)
+      : [
+          `Clean modern flat illustration supporting the topic: ${blogPost.title}. Minimalist, blue and white palette, professional business style.`,
+          `Photograph of business professionals in a modern office discussing strategy related to: ${topicData.angle}. Bright, natural light, candid feel.`,
+        ];
+
+    const [coverDataUrl, ...inlineDataUrls] = await Promise.all([
+      generateImageBase64(coverPrompt),
+      ...inlinePrompts.map((p) => generateImageBase64(p)),
+    ]);
+
+    let coverUrl: string | null = null;
+    if (coverDataUrl) {
+      coverUrl = await uploadImageToStorage(supabase, coverDataUrl, `${safeSlug}-cover-${ts}`);
+    }
+
+    const inlineUrls: string[] = [];
+    for (let i = 0; i < inlineDataUrls.length; i++) {
+      const dUrl = inlineDataUrls[i];
+      if (!dUrl) continue;
+      const url = await uploadImageToStorage(supabase, dUrl, `${safeSlug}-inline-${i + 1}-${ts}`);
+      if (url) inlineUrls.push(url);
+    }
+
+    console.log(`🖼️  Cover: ${coverUrl ? "✅" : "❌"}, Inline: ${inlineUrls.length}/2`);
+
+    // === Build TOC + inject inline images into content ===
+    const toc = buildTableOfContents(blogPost.content);
+    let finalContent = blogPost.content;
+    if (toc) {
+      // Insert TOC after first paragraph
+      const firstHeadingIdx = finalContent.search(/^##\s+/m);
+      if (firstHeadingIdx > 0) {
+        finalContent = finalContent.slice(0, firstHeadingIdx) + toc + finalContent.slice(firstHeadingIdx);
+      } else {
+        finalContent = toc + finalContent;
+      }
+    }
+    finalContent = injectInlineImages(finalContent, inlineUrls);
+
+    const wordCount = finalContent.split(/\s+/).length;
     const readTime = Math.ceil(wordCount / 200);
 
     const { data: savedPost, error: saveError } = await supabase
@@ -457,7 +649,7 @@ serve(async (req) => {
       .insert({
         title: blogPost.title,
         slug: blogPost.slug,
-        content: blogPost.content,
+        content: finalContent,
         excerpt: blogPost.excerpt,
         author_name: 'FranchiseLeadsPro Research Team',
         tags: blogPost.tags,
@@ -466,6 +658,7 @@ serve(async (req) => {
         read_time_minutes: readTime,
         seo_title: blogPost.title,
         seo_description: blogPost.excerpt,
+        featured_image_url: coverUrl,
       })
       .select()
       .single();
