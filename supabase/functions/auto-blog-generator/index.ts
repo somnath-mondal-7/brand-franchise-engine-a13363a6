@@ -646,18 +646,16 @@ serve(async (req) => {
 
     console.log(`🖼️  Cover: ${coverUrl ? "✅" : "❌"}, Inline: ${inlineUrls.length}/2`);
 
-    // === Build TOC + inject inline images into content ===
-    const toc = buildTableOfContents(blogPost.content);
-    let finalContent = blogPost.content;
-    if (toc) {
-      // Insert TOC after first paragraph
-      const firstHeadingIdx = finalContent.search(/^##\s+/m);
-      if (firstHeadingIdx > 0) {
-        finalContent = finalContent.slice(0, firstHeadingIdx) + toc + finalContent.slice(firstHeadingIdx);
-      } else {
-        finalContent = toc + finalContent;
-      }
-    }
+    // === Assemble final content ===
+    // 1. Strip any duplicate title the model accidentally added at the top
+    let finalContent = stripDuplicateTitle(blogPost.content, blogPost.title);
+    // 2. Inject inline images at strategic H2 positions (skipping FAQ)
+    finalContent = injectInlineImages(finalContent, inlineUrls);
+    // 3. Append internal-linking section before the bottom-line wrap-up
+    //    We add it as its own section at the end (above auto-rendered Related Posts)
+    finalContent = finalContent.trimEnd() + "\n" + buildInternalLinksSection();
+    // NOTE: Table of Contents is now rendered by the React TableOfContents component
+    //       (positioned in the middle of the article in BlogPost.tsx) — no markdown TOC injection needed.
     finalContent = injectInlineImages(finalContent, inlineUrls);
 
     const wordCount = finalContent.split(/\s+/).length;
