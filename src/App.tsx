@@ -38,6 +38,14 @@ import NotFound from "./pages/NotFound";
 import Search from "./pages/Search";
 import ScrollToTop from "./components/ScrollToTop";
 import ChatWidget from "./components/ChatWidget";
+import { useLocation } from "react-router-dom";
+
+const ConditionalChatWidget = () => {
+  const location = useLocation();
+  // Don't show chat widget on blog post pages — keeps reader experience clean
+  if (location.pathname.startsWith("/blog/")) return null;
+  return <ChatWidget />;
+};
 
 const queryClient = new QueryClient();
 
