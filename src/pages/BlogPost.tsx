@@ -155,6 +155,7 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <ReadingProgress />
       {/* SEO Meta Tags */}
       <Helmet>
         <title>{post.seo_title || post.title} | FranchiseLeads Pro</title>
