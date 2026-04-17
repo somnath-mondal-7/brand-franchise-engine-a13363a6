@@ -285,27 +285,45 @@ const BlogPost = () => {
               </div>
             )}
 
-            {/* Table of Contents */}
-            <TableOfContents content={post.content} />
+            {/* Content split: first part → TOC in the middle → rest */}
+            {(() => {
+              const lines = post.content.split("\n");
+              const h2Indices: number[] = [];
+              lines.forEach((line, i) => {
+                if (/^##\s+/.test(line) && !/faq|frequently asked/i.test(line)) {
+                  h2Indices.push(i);
+                }
+              });
+              // Insert TOC right before the 2nd content H2 (so reader sees opener + first section first)
+              const splitIdx = h2Indices[1] ?? -1;
+              const firstHalf = splitIdx > 0 ? lines.slice(0, splitIdx).join("\n") : post.content;
+              const secondHalf = splitIdx > 0 ? lines.slice(splitIdx).join("\n") : "";
 
-            {/* Content */}
-            <div className="blog-content prose prose-lg max-w-none scroll-smooth">
-              <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
-                rehypePlugins={[
+              const mdProps = {
+                remarkPlugins: [remarkGfm],
+                rehypePlugins: [
                   rehypeSlug,
                   [
                     rehypeAutolinkHeadings,
                     {
-                      behavior: "wrap",
+                      behavior: "wrap" as const,
                       properties: { className: "no-underline hover:text-primary transition-colors" },
                     },
                   ],
-                ]}
-              >
-                {post.content}
-              </ReactMarkdown>
-            </div>
+                ] as any,
+              };
+
+              return (
+                <div className="blog-content prose prose-lg max-w-none scroll-smooth">
+                  <ReactMarkdown {...mdProps}>{firstHalf}</ReactMarkdown>
+                  {secondHalf && <TableOfContents content={post.content} />}
+                  {secondHalf && <ReactMarkdown {...mdProps}>{secondHalf}</ReactMarkdown>}
+                </div>
+              );
+            })()}
+
+            {/* FAQ structured data for Google rich results */}
+            <FaqSchema content={post.content} />
 
             {/* Attachments */}
             {post.attachments && post.attachments.length > 0 && (
