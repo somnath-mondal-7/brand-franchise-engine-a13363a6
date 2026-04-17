@@ -464,15 +464,21 @@ Each prompt: 1-2 vivid sentences. Style examples: "modern professional photograp
 
 ${researchContext}
 
-IMPORTANT:
-- Start with this hook (adapt it naturally, don't quote it word-for-word): "${topicData.hook}"
+CRITICAL REQUIREMENTS (your post will be REJECTED if any of these are missing):
+- Length: 1,200-1,600 words MINIMUM. Do not stop short.
+- Start with the hook (adapt it naturally): "${topicData.hook}"
 - Reference this insight if it fits: "${topicData.stats}"
-- Take this angle: "${topicData.angle}"
-- Reference current news when relevant
-- DO NOT put the title at the top of content — start with the hook directly
-- Include a ## FAQ section with exactly 5 ### questions
+- Angle: "${topicData.angle}"
+- DO NOT put the title at the top of content — start with the hook paragraph directly
+- Sprinkle 2-3 internal links naturally: [services](/services), [buy franchise leads](/buy-franchise-leads), [our blog](/blog), [case studies](/case-studies), [contact](/contact)
+- MANDATORY: Include a "## FAQ" section near the end with EXACTLY 5 ### questions. Each question must end with "?". Each answer 2-3 casual sentences. Example format:
+  ## FAQ
+  ### How much should I spend on franchise lead gen?
+  Honestly, it depends. But most brands see solid results...
+  ### What's the difference between MQLs and SQLs?
+  Okay so MQLs are basically warm. SQLs are ready to talk money...
 
-Make every sentence sound human. This should feel like advice from a friend, not a corporate report.`;
+Every sentence must sound human, like a friend giving advice — not a corporate report.`;
 
   // Use tool-calling for GUARANTEED valid JSON output (fixes prior parsing bugs)
   const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
