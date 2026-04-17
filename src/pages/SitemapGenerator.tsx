@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { generateSitemapXml } from '@/utils/sitemapGenerator';
+import { buildSitemapXml, getAllUrls } from '@/utils/sitemapIndexBuilder';
 import { Download, CheckCircle, AlertCircle } from 'lucide-react';
 
 const SitemapGenerator = () => {
@@ -12,9 +12,8 @@ const SitemapGenerator = () => {
     try {
       setStatus('generating');
       
-      // Generate the sitemap
-      const sitemapXml = generateSitemapXml();
-      const count = (sitemapXml.match(/<url>/g) || []).length;
+      const sitemapXml = buildSitemapXml(getAllUrls());
+      const count = getAllUrls().length;
       setUrlCount(count);
       
       // Create blob and download
@@ -36,7 +35,7 @@ const SitemapGenerator = () => {
   };
 
   const copyToClipboard = () => {
-    const sitemapXml = generateSitemapXml();
+    const sitemapXml = buildSitemapXml(getAllUrls());
     navigator.clipboard.writeText(sitemapXml);
     alert('Sitemap XML copied to clipboard!');
   };
@@ -47,7 +46,7 @@ const SitemapGenerator = () => {
         <Card className="p-8">
           <h1 className="text-3xl font-bold mb-2">Sitemap Generator</h1>
           <p className="text-muted-foreground mb-8">
-            Generate your complete sitemap with all 10,000+ SEO-optimized pages
+            Generate your curated sitemap with only valid indexable pages
           </p>
 
           <div className="space-y-4">
