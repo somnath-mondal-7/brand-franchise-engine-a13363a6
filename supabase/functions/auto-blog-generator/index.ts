@@ -593,7 +593,55 @@ serve(async (req) => {
     const blogPost = await generateBlogWithAI(researchContext, topicData);
     console.log(`Generated: "${blogPost.title}"`);
 
-    const wordCount = blogPost.content.split(/\s+/).length;
+    // === Generate images in parallel ===
+    console.log("🎨 Generating cover + inline images...");
+    const safeSlug = blogPost.slug.replace(/[^a-z0-9-]/gi, "").slice(0, 40);
+    const ts = Date.now();
+
+    const coverPrompt = blogPost.coverImagePrompt
+      || `Wide hero photograph for a blog post titled "${blogPost.title}". Modern professional business photography, soft natural lighting, clean composition, photorealistic.`;
+    const inlinePrompts = (blogPost.inlineImagePrompts && blogPost.inlineImagePrompts.length > 0)
+      ? blogPost.inlineImagePrompts.slice(0, 2)
+      : [
+          `Clean modern flat illustration supporting the topic: ${blogPost.title}. Minimalist, blue and white palette, professional business style.`,
+          `Photograph of business professionals in a modern office discussing strategy related to: ${topicData.angle}. Bright, natural light, candid feel.`,
+        ];
+
+    const [coverDataUrl, ...inlineDataUrls] = await Promise.all([
+      generateImageBase64(coverPrompt),
+      ...inlinePrompts.map((p) => generateImageBase64(p)),
+    ]);
+
+    let coverUrl: string | null = null;
+    if (coverDataUrl) {
+      coverUrl = await uploadImageToStorage(supabase, coverDataUrl, `${safeSlug}-cover-${ts}`);
+    }
+
+    const inlineUrls: string[] = [];
+    for (let i = 0; i < inlineDataUrls.length; i++) {
+      const dUrl = inlineDataUrls[i];
+      if (!dUrl) continue;
+      const url = await uploadImageToStorage(supabase, dUrl, `${safeSlug}-inline-${i + 1}-${ts}`);
+      if (url) inlineUrls.push(url);
+    }
+
+    console.log(`🖼️  Cover: ${coverUrl ? "✅" : "❌"}, Inline: ${inlineUrls.length}/2`);
+
+    // === Build TOC + inject inline images into content ===
+    const toc = buildTableOfContents(blogPost.content);
+    let finalContent = blogPost.content;
+    if (toc) {
+      // Insert TOC after first paragraph
+      const firstHeadingIdx = finalContent.search(/^##\s+/m);
+      if (firstHeadingIdx > 0) {
+        finalContent = finalContent.slice(0, firstHeadingIdx) + toc + finalContent.slice(firstHeadingIdx);
+      } else {
+        finalContent = toc + finalContent;
+      }
+    }
+    finalContent = injectInlineImages(finalContent, inlineUrls);
+
+    const wordCount = finalContent.split(/\s+/).length;
     const readTime = Math.ceil(wordCount / 200);
 
     const { data: savedPost, error: saveError } = await supabase
@@ -601,7 +649,7 @@ serve(async (req) => {
       .insert({
         title: blogPost.title,
         slug: blogPost.slug,
-        content: blogPost.content,
+        content: finalContent,
         excerpt: blogPost.excerpt,
         author_name: 'FranchiseLeadsPro Research Team',
         tags: blogPost.tags,
@@ -610,6 +658,7 @@ serve(async (req) => {
         read_time_minutes: readTime,
         seo_title: blogPost.title,
         seo_description: blogPost.excerpt,
+        featured_image_url: coverUrl,
       })
       .select()
       .single();
