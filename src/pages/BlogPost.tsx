@@ -3,13 +3,18 @@ import { useEffect, useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOBreadcrumbs from "@/components/SEOBreadcrumbs";
+import TableOfContents from "@/components/blog/TableOfContents";
+import ReadingProgress from "@/components/blog/ReadingProgress";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Calendar, User, ArrowLeft, Share2, FileText, Download } from "lucide-react";
+import { Calendar, User, ArrowLeft, Share2, FileText, Download, Check, Clock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import { toast } from "@/hooks/use-toast";
 
 interface BlogPostData {
   id: string;
