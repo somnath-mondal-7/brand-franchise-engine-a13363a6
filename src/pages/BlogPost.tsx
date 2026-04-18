@@ -7,6 +7,7 @@ import TableOfContents from "@/components/blog/TableOfContents";
 import ReadingProgress from "@/components/blog/ReadingProgress";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import BlogInternalLinks from "@/components/blog/BlogInternalLinks";
+import BlogComments from "@/components/blog/BlogComments";
 import FaqSchema from "@/components/blog/FaqSchema";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -394,6 +395,9 @@ const BlogPost = () => {
                 </Button>
               </Link>
             </div>
+
+            {/* Comments — let readers join the conversation */}
+            <BlogComments postId={post.id} />
 
             {/* Related Posts — keeps readers on the site, boosts internal linking & SEO */}
             <RelatedPosts currentPostId={post.id} categoryId={post.category_id} />
