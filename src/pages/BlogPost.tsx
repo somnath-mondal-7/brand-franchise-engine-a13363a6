@@ -7,6 +7,7 @@ import TableOfContents from "@/components/blog/TableOfContents";
 import ReadingProgress from "@/components/blog/ReadingProgress";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import BlogInternalLinks from "@/components/blog/BlogInternalLinks";
+import BlogComments from "@/components/blog/BlogComments";
 import FaqSchema from "@/components/blog/FaqSchema";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -17,6 +18,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeRaw from "rehype-raw";
 import { toast } from "@/hooks/use-toast";
 
 interface BlogPostData {
@@ -301,14 +303,16 @@ const BlogPost = () => {
                   h2Indices.push(i);
                 }
               });
-              // Insert TOC right before the 2nd content H2 (so reader sees opener + first section first)
-              const splitIdx = h2Indices[1] ?? -1;
+              // Insert TOC right before the FIRST content H2, so readers see it early.
+              // Falls back gracefully if there's no H2 at all.
+              const splitIdx = h2Indices[0] ?? -1;
               const firstHalf = splitIdx > 0 ? lines.slice(0, splitIdx).join("\n") : stripped;
               const secondHalf = splitIdx > 0 ? lines.slice(splitIdx).join("\n") : "";
 
               const mdProps = {
                 remarkPlugins: [remarkGfm],
                 rehypePlugins: [
+                  rehypeRaw,
                   rehypeSlug,
                   [
                     rehypeAutolinkHeadings,
@@ -394,6 +398,9 @@ const BlogPost = () => {
                 </Button>
               </Link>
             </div>
+
+            {/* Comments — let readers join the conversation */}
+            <BlogComments postId={post.id} />
 
             {/* Related Posts — keeps readers on the site, boosts internal linking & SEO */}
             <RelatedPosts currentPostId={post.id} categoryId={post.category_id} />
