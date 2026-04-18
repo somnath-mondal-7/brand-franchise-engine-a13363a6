@@ -475,14 +475,20 @@ DO NOT write "in this post" or "today we'll cover" intros — just dive in.
 
 Start the content with the opening hook (a short story or surprising thought, 2-3 short paragraphs). Then follow this structure:
 
-1. **The real problem** (no heading needed — flows from the hook)
-2. **## Section 1** — main point #1 with a quick story
-3. **## Section 2** — main point #2 with a tip
-4. **## Section 3** — main point #3 with an example
-5. **## Section 4** — actionable steps (numbered list of 3-5 steps)
-6. **## A Real-Life Win** — short case-study style story (4-6 sentences)
+1. **Opening hook** (no heading — flows from the title): 2-3 short paragraphs that grab attention.
+2. **## Section 1** — main point #1 with a short personal-feeling story.
+3. **## Section 2** — main point #2 with a concrete tip. Use **<mark>highlight</mark>** HTML around 1-2 key phrases here so they pop visually for the reader.
+4. **## Section 3** — main point #3 with at least ONE concrete example of a real tool/platform/approach a franchise can use (e.g., "a CRM like HubSpot or Zoho", "scheduling software like 7shifts", "review automation like Birdeye"). NEVER list more than 3 named examples in a row — keep it conversational.
+5. **## Section 4** — actionable steps (numbered list of 3-5 specific steps the reader can do this week).
+6. **## A Real-Life Win** — a short case-study story (4-6 sentences) showing how a franchise applied this. Use names, settings, situations — not just abstract ideas.
 7. **## FAQ** — exactly 5 H3 questions readers actually ask, each with a 2-3 sentence casual answer. Use ### for each question. CRITICAL: questions MUST end with a "?" and answers must sound like a friend explaining, not a textbook.
 8. **## The Bottom Line** — wrap up casually in 2-3 sentences. Soft mention that we help franchise brands with leads. Not pushy.
+
+CRITICAL — COMPLETENESS:
+- Every section must have a complete thought. NEVER cut a paragraph or sentence in the middle.
+- The final FAQ answer and the Bottom Line MUST both end with a complete sentence and a period.
+- If you're running out of space, shorten earlier sections — but never leave a half-finished sentence.
+- Concrete examples > abstract concepts. Always show, then tell.
 
 === INTERNAL LINKING (IMPORTANT) ===
 Sprinkle 2-3 of these contextual links naturally throughout the body where it actually makes sense:
@@ -501,13 +507,16 @@ Don't dump them all in one place. Weave them into sentences naturally.
   ❌ "Examination of Franchise Advertising Effectiveness"
 - Short paragraphs — 1 to 3 sentences max
 - Use **bold** for one or two key phrases per section
+- Use <mark>...</mark> (literal HTML) for 2-3 short phrases across the post that you want visually highlighted — pick the most quotable insights
 - Bullet lists when you have 3+ quick items
-- Drop in 1 short blockquote (>) somewhere — a tip or warning
+- Drop in 1 short blockquote (>) somewhere — a tip, warning, or quotable line
 - Total length: 1,200-1,600 words
 - Real blog posts breathe. Don't over-format.
+- ABSOLUTELY NO emojis anywhere in the content.
 
 === ABSOLUTELY FORBIDDEN ===
 - Repeating the title at the top of the content
+- ANY emoji characters (😀, 🚀, ✅, 💡, etc.) — strictly text only
 - "In today's competitive market..." / "In the ever-evolving..." / "In the modern landscape..."
 - "As we all know..." / "It goes without saying..." / "Needless to say..."
 - "Furthermore" / "Moreover" / "Additionally" / "In conclusion"
@@ -515,6 +524,7 @@ Don't dump them all in one place. Weave them into sentences naturally.
 - Em dashes used 5+ times (max 2-3 in the whole post)
 - Listing benefits in perfectly parallel structure (screams AI)
 - Hard sales pitches — be helpful, not pushy
+- Cutting off mid-thought or trailing off — every section ends cleanly
 
 === IMAGE PROMPTS ===
 - coverImagePrompt: Wide hero photo (16:9), modern professional, photographic style
