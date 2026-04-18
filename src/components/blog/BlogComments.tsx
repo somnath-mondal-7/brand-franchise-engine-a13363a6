@@ -103,12 +103,15 @@ const BlogComments = ({ postId }: BlogCommentsProps) => {
     }
 
     setSubmitting(true);
+    const { author_name, author_email, content: cmt } = parsed.data;
     const { data, error } = await supabase
       .from("blog_comments")
       .insert([
         {
           post_id: postId,
-          ...parsed.data,
+          author_name,
+          author_email,
+          content: cmt,
         },
       ])
       .select("id, author_name, content, created_at")
