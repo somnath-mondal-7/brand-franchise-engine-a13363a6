@@ -66,7 +66,7 @@ const TableOfContents = ({ content }: TableOfContentsProps) => {
     return () => observer.disconnect();
   }, [content, headings.length]);
 
-  if (headings.length < 3) return null;
+  if (headings.length < 2) return null;
 
   const handleClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
@@ -81,12 +81,12 @@ const TableOfContents = ({ content }: TableOfContentsProps) => {
   return (
     <nav
       aria-label="Table of contents"
-      className="not-prose my-8 rounded-xl border border-primary/20 bg-primary/5 p-5 sm:p-6"
+      className="not-prose my-8 rounded-xl border border-primary/20 bg-primary/5 p-4 sm:p-5"
     >
-      <div className="flex items-center gap-2 mb-3">
+      <div className="flex items-center gap-2 mb-2">
         <BookOpen className="w-4 h-4 text-primary" />
-        <h3 className="text-sm font-semibold uppercase tracking-wide text-primary m-0">
-          What's inside
+        <h3 className="text-xs font-semibold uppercase tracking-wide text-primary m-0">
+          In this post
         </h3>
       </div>
       <ol className="space-y-1.5 list-none pl-0 m-0">

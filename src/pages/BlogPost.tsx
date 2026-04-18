@@ -302,8 +302,9 @@ const BlogPost = () => {
                   h2Indices.push(i);
                 }
               });
-              // Insert TOC right before the 2nd content H2 (so reader sees opener + first section first)
-              const splitIdx = h2Indices[1] ?? -1;
+              // Insert TOC right before the FIRST content H2, so readers see it early.
+              // Falls back gracefully if there's no H2 at all.
+              const splitIdx = h2Indices[0] ?? -1;
               const firstHalf = splitIdx > 0 ? lines.slice(0, splitIdx).join("\n") : stripped;
               const secondHalf = splitIdx > 0 ? lines.slice(splitIdx).join("\n") : "";
 
