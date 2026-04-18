@@ -18,6 +18,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeRaw from "rehype-raw";
 import { toast } from "@/hooks/use-toast";
 
 interface BlogPostData {
@@ -311,6 +312,7 @@ const BlogPost = () => {
               const mdProps = {
                 remarkPlugins: [remarkGfm],
                 rehypePlugins: [
+                  rehypeRaw,
                   rehypeSlug,
                   [
                     rehypeAutolinkHeadings,
