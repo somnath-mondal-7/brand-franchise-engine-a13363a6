@@ -55,9 +55,14 @@ export const highValueKeywordPages = Array.from(
   ]),
 ).filter((keyword) => !excludedKeywordPageSlugs.has(slugify(keyword)));
 
+export const allServiceLocationKeywords = Array.from(new Set(broadMarketingKeywords));
+
 export const highValueServiceSlugs = new Set(highValueServiceKeywords.map((keyword) => slugify(keyword)));
 export const highValueKeywordSlugs = new Set(highValueKeywordPages.map((keyword) => slugify(keyword)));
 
 export const isHighValueServiceSlug = (serviceSlug: string) => highValueServiceSlugs.has(serviceSlug);
 
 export const isHighValueKeywordSlug = (keywordSlug: string) => highValueKeywordSlugs.has(keywordSlug);
+
+export const resolveServiceKeywordFromSlug = (serviceSlug: string) =>
+  allServiceLocationKeywords.find((keyword) => slugify(keyword) === serviceSlug);
