@@ -1,8 +1,7 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { ServiceLocationTemplate } from '@/components/ServiceLocationTemplate';
 import { locationData } from '@/data/locations';
-import { highValueServiceKeywords } from '@/utils/programmaticSeo';
-import { slugify } from '@/utils/slugify';
+import { resolveServiceKeywordFromSlug } from '@/utils/programmaticSeo';
 import NotFound from './NotFound';
 
 const ServiceLocationPage = () => {
@@ -14,8 +13,8 @@ const ServiceLocationPage = () => {
 
   const serviceSlug = service.toLowerCase();
 
-  // Check if service exists in our data (slug-safe, matches sitemap generation)
-  const foundService = highValueServiceKeywords.find(k => slugify(k) === serviceSlug);
+  // Accept current and legacy service slugs so previously indexed pages do not hard-404.
+  const foundService = resolveServiceKeywordFromSlug(serviceSlug);
 
   if (!foundService) {
     return <NotFound />;
