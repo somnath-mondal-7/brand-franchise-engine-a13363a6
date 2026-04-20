@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 /**
  * Copies pre-rendered HTML files from dist/__prerendered/ into dist/
- * so Cloudflare Pages serves them for matching routes.
- * 
- * For each route like /locations/usa/california/index.html,
- * Cloudflare Pages will serve it when visiting /locations/usa/california
+ * for SEO-heavy programmatic routes only.
+ *
+ * Important: do NOT overwrite core React pages like /blog, /about, /services, etc.
+ * Those should always use the main app design for real visitors.
  */
 
 import { cpSync, existsSync, rmSync, readdirSync, statSync } from 'fs';
-import { join, dirname } from 'path';
+import { join, dirname, relative } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -20,7 +20,25 @@ if (!existsSync(PRERENDERED)) {
   process.exit(0);
 }
 
-// Count files
+const blockedTopLevelRoutes = new Set([
+  'about',
+  'services',
+  'digital-marketing',
+  'contact',
+  'blog',
+  'testimonials',
+  'buy-franchise-leads',
+  'case-studies',
+  'franchise-leads-usa',
+  'franchise-leads-uk',
+  'franchise-leads-india',
+  'franchise-leads-canada',
+  'franchise-leads-australia',
+  'franchise-leads-dubai',
+  'franchise-leads-kuwait',
+  'legal-terms',
+]);
+
 function countFiles(dir) {
   let count = 0;
   for (const entry of readdirSync(dir)) {
@@ -34,13 +52,36 @@ function countFiles(dir) {
   return count;
 }
 
+function shouldCopy(relativePath) {
+  const normalized = relativePath.replace(/\\/g, '/');
+  if (normalized === 'index.html') return false;
+
+  const firstSegment = normalized.split('/')[0];
+  return !blockedTopLevelRoutes.has(firstSegment);
+}
+
+function copyAllowedFiles(sourceDir, targetDir) {
+  for (const entry of readdirSync(sourceDir)) {
+    const sourcePath = join(sourceDir, entry);
+    const stat = statSync(sourcePath);
+
+    if (stat.isDirectory()) {
+      copyAllowedFiles(sourcePath, targetDir);
+      continue;
+    }
+
+    const relativePath = relative(PRERENDERED, sourcePath);
+    if (!shouldCopy(relativePath)) continue;
+
+    const destinationPath = join(targetDir, relativePath);
+    cpSync(sourcePath, destinationPath, { force: true });
+  }
+}
+
 const fileCount = countFiles(PRERENDERED);
-console.log(`📦 Copying ${fileCount.toLocaleString()} pre-rendered HTML files into dist/...`);
+console.log(`📦 Reviewing ${fileCount.toLocaleString()} pre-rendered HTML files...`);
 
-// Copy all pre-rendered files into dist (merging, not replacing)
-cpSync(PRERENDERED, DIST, { recursive: true, force: false });
-
-// Clean up the __prerendered directory
+copyAllowedFiles(PRERENDERED, DIST);
 rmSync(PRERENDERED, { recursive: true, force: true });
 
-console.log(`✅ Done! ${fileCount.toLocaleString()} static HTML files merged into dist/`);
+console.log('✅ Done! Core React pages are preserved; only programmatic SEO pages are copied.');
