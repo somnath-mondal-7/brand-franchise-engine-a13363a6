@@ -552,36 +552,10 @@ function serviceLocationPage(serviceSlug, countryCode, stateSlug, citySlug) {
   };
 }
 
-// ─── STATIC PAGES DATA ───
-function getStaticPages() {
-  return {
-    '': { title: `${BRAND} — #1 Franchise Lead Generation Agency`, description: 'Generate qualified franchise buyer leads with LinkedIn marketing, social media, website development & IT services.', h1: '#1 Franchise Lead Generation Agency' },
-    'about': { title: `About ${BRAND} | Franchise Marketing Agency`, description: `${BRAND} is the leading franchise lead generation agency and IT solutions provider worldwide.`, h1: `About ${BRAND}` },
-    'services': { title: `Franchise Marketing & IT Services | ${BRAND}`, description: 'LinkedIn marketing, social media, website development, SEO, IT outsourcing & lead generation for franchisors.', h1: 'Franchise Marketing & IT Services' },
-    'digital-marketing': { title: `Franchise Digital Marketing | ${BRAND}`, description: 'SEO, PPC, social media, content marketing & franchise brand building for franchisors.', h1: 'Franchise Digital Marketing Services' },
-    'contact': { title: `Contact Us | ${BRAND}`, description: `Contact ${BRAND} for franchise lead generation, marketing & IT services. Free consultation.`, h1: `Contact ${BRAND}` },
-    'blog': { title: `Franchise Marketing Blog | ${BRAND}`, description: 'Expert insights on franchise lead generation, marketing strategies & industry trends.', h1: 'Franchise Marketing Blog' },
-    'testimonials': { title: `Client Testimonials | ${BRAND}`, description: 'See what franchise brands say about our lead generation, marketing & IT services.', h1: 'Client Testimonials & Success Stories' },
-    'buy-franchise-leads': { title: `Buy Franchise Leads | ${BRAND}`, description: 'Buy pre-qualified franchise buyer leads. Exclusive, verified franchise investor leads.', h1: 'Buy Pre-Qualified Franchise Leads' },
-    'case-studies': { title: `Case Studies | ${BRAND}`, description: 'Franchise lead generation success stories and case studies from real clients.', h1: 'Real Results. Real Clients.' },
-    'franchise-leads-usa': { title: `Franchise Leads USA | ${BRAND}`, description: 'Generate qualified franchise leads across all 50 US states.', h1: 'Franchise Lead Generation in the USA' },
-    'franchise-leads-uk': { title: `Franchise Leads UK | ${BRAND}`, description: 'Generate qualified franchise leads across the United Kingdom.', h1: 'Franchise Lead Generation in the UK' },
-    'franchise-leads-india': { title: `Franchise Leads India | ${BRAND}`, description: 'Generate qualified franchise leads across India. Mumbai, Delhi, Bangalore & more.', h1: 'Franchise Lead Generation in India' },
-    'franchise-leads-canada': { title: `Franchise Leads Canada | ${BRAND}`, description: 'Generate qualified franchise leads across Canada.', h1: 'Franchise Lead Generation in Canada' },
-    'franchise-leads-australia': { title: `Franchise Leads Australia | ${BRAND}`, description: 'Generate qualified franchise leads across Australia.', h1: 'Franchise Lead Generation in Australia' },
-    'franchise-leads-dubai': { title: `Franchise Leads Dubai & UAE | ${BRAND}`, description: 'Generate qualified franchise leads in Dubai, Abu Dhabi & UAE.', h1: 'Franchise Lead Generation in Dubai & UAE' },
-    'franchise-leads-kuwait': { title: `Franchise Leads Kuwait | ${BRAND}`, description: 'Generate qualified franchise leads in Kuwait.', h1: 'Franchise Lead Generation in Kuwait' },
-    'legal-terms/privacy-policy': { title: `Privacy Policy | ${BRAND}`, description: `${BRAND} privacy policy.`, h1: 'Privacy Policy', noindex: true },
-    'legal-terms/refund-satisfaction-guarantee-policy': { title: `Refund Policy | ${BRAND}`, description: `${BRAND} refund and satisfaction guarantee policy.`, h1: 'Refund & Satisfaction Guarantee Policy', noindex: true },
-  };
-}
-
 // ─── WRITE HTML FILE ───
 function writeHtmlFile(routePath, html) {
   let filePath;
   if (routePath === '' || routePath === '/') {
-    // Homepage — don't overwrite Vite's index.html, use a subfolder approach
-    // Actually for Cloudflare Pages, we write to dist/[path]/index.html
     filePath = join(DIST, '__prerendered', 'index.html');
   } else {
     filePath = join(DIST, '__prerendered', routePath, 'index.html');
@@ -607,21 +581,11 @@ async function main() {
   let count = 0;
   const startTime = Date.now();
 
-  // 1. Static pages
-  const staticPages = getStaticPages();
-  for (const [path, data] of Object.entries(staticPages)) {
-    const canonicalPath = path ? `/${path}` : '/';
-    const html = buildHtml({
-      ...data,
-      canonicalPath,
-      breadcrumbs: [{ name: 'Home', url: '/' }],
-    });
-    writeHtmlFile(path, html);
-    count++;
-  }
-  console.log(`  ✅ Static pages: ${count}`);
+  // Core marketing pages are handled by the React app.
+  // Do not generate static HTML overrides for them, otherwise visitors can get the stripped fallback layout.
+  console.log('  ✅ Static page overrides skipped to preserve the main site design');
 
-  // 2. Location pages (country/state/city)
+  // 1. Location pages (country/state/city)
   let locationCount = 0;
   for (const country of locationData) {
     const cc = country.countryCode.toLowerCase();
