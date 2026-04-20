@@ -7,7 +7,7 @@
  * Those should always use the main app design for real visitors.
  */
 
-import { cpSync, existsSync, rmSync, readdirSync, statSync } from 'fs';
+import { cpSync, existsSync, mkdirSync, rmSync, readdirSync, statSync } from 'fs';
 import { join, dirname, relative } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -74,6 +74,7 @@ function copyAllowedFiles(sourceDir, targetDir) {
     if (!shouldCopy(relativePath)) continue;
 
     const destinationPath = join(targetDir, relativePath);
+    mkdirSync(dirname(destinationPath), { recursive: true });
     cpSync(sourcePath, destinationPath, { force: true });
   }
 }
