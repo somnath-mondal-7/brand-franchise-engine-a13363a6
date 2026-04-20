@@ -1,11 +1,9 @@
 import { curatedKeywordSlugs, curatedServiceSlugs } from './programmaticSeoConfig.js';
 import { isValidLocation } from './validLocations.js';
 
-const legacyServiceSlugs = new Set([
-  'franchise-consulting', 'franchise-development', 'franchisee-recruitment', 'franchise-matchmaking', 'franchise-expansion', 'franchise-marketing', 'franchise-lead-generation', 'franchise-lead-generation-agency', 'franchise-leads', 'buy-franchise-leads', 'qualified-franchise-leads', 'franchise-buyer-leads', 'franchise-investor-leads', 'exclusive-franchise-leads', 'verified-franchise-leads', 'premium-franchise-leads', 'franchise-prospect-generation', 'franchise-marketing-agency', 'franchise-digital-marketing-agency', 'franchise-advertising-agency', 'franchise-branding-agency', 'franchise-growth-agency', 'franchise-seo-agency', 'franchise-ppc-agency', 'franchise-social-media-agency', 'linkedin-lead-generation-for-franchises', 'linkedin-lead-generation-for-franchise-brands', 'linkedin-marketing-for-franchisors', 'franchise-digital-marketing', 'franchise-seo', 'franchise-ppc-management', 'franchise-social-media-marketing', 'franchise-email-marketing', 'franchise-content-marketing', 'franchise-video-marketing', 'franchise-online-advertising', 'franchise-google-ads', 'franchise-facebook-ads', 'franchise-business-development', 'franchise-sales-consulting', 'franchise-growth-strategy', 'franchise-expansion-planning', 'franchise-territory-development', 'franchise-market-research', 'franchise-competitive-analysis', 'franchise-feasibility-study', 'franchise-operations-consulting', 'franchise-training-programs', 'franchise-support-services', 'franchise-management-consulting', 'franchise-performance-optimization', 'franchise-legal-services', 'franchise-funding-solutions', 'franchise-financing-help', 'franchise-business-plan', 'franchise-roi-analysis', 'franchise-branding-services', 'franchise-website-design', 'franchise-reputation-management', 'franchise-public-relations', 'master-franchise-development', 'multi-unit-franchise-consulting', 'franchise-resale-services', 'franchise-broker-services', 'international-franchise-consulting', 'franchise-conversion-consulting', 'franchise-turnaround-consulting'
-]);
-
-const supportedServiceSlugs = new Set([...curatedServiceSlugs, ...legacyServiceSlugs]);
+// Only curated, production-ready service slugs are valid. All other (legacy/dev)
+// slugs intentionally hard-404 so Google removes them from the index.
+const supportedServiceSlugs = new Set([...curatedServiceSlugs]);
 
 // Free DIY Prerender — serves static HTML to search engine bots
 // Matches LovableHTML quality: proper meta tags, single H1, rich content, structured data

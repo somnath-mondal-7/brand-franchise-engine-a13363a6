@@ -64,5 +64,9 @@ export const isHighValueServiceSlug = (serviceSlug: string) => highValueServiceS
 
 export const isHighValueKeywordSlug = (keywordSlug: string) => highValueKeywordSlugs.has(keywordSlug);
 
-export const resolveServiceKeywordFromSlug = (serviceSlug: string) =>
-  allServiceLocationKeywords.find((keyword) => slugify(keyword) === serviceSlug);
+// Only resolve curated, production-ready service slugs. Legacy/dev slugs
+// (e.g. franchise-feasibility-study) are intentionally rejected so they 404.
+export const resolveServiceKeywordFromSlug = (serviceSlug: string) => {
+  if (!highValueServiceSlugs.has(serviceSlug)) return undefined;
+  return highValueServiceKeywords.find((keyword) => slugify(keyword) === serviceSlug);
+};
