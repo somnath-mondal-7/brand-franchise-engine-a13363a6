@@ -3,8 +3,7 @@ const TestimonialsSection = () => {
     {
       name: "Shawn Gurn",
       title: "HOF Franchise Consulting Company • IFPG Member",
-      videoSrc: "/videos/shawn-gurn-review.mov",
-      videoType: "video/quicktime",
+      videoSrc: "/videos/shawn-gurn-review.mp4",
     },
     {
       name: "Jonathan Morgan",
@@ -62,7 +61,7 @@ const TestimonialsSection = () => {
                     controls
                     preload="metadata"
                   >
-                    <source src={testimonial.videoSrc} type={testimonial.videoType || "video/mp4"} />
+                    <source src={testimonial.videoSrc} type="video/mp4" />
                   </video>
                 </div>
               )}
