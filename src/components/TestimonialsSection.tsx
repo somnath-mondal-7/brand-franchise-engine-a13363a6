@@ -1,9 +1,10 @@
 const TestimonialsSection = () => {
   const testimonials = [
     {
-      name: "Jesica Thompson",
-      title: "Consultant, Franchise Solutions Inc.",
-      videoSrc: "/videos/jesica-thompson-review.mp4",
+      name: "Shawn Gurn",
+      title: "HOF Franchise Consulting Company • IFPG Member",
+      videoSrc: "/videos/shawn-gurn-review.mov",
+      videoType: "video/quicktime",
     },
     {
       name: "Jonathan Morgan",
