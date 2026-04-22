@@ -3,8 +3,7 @@ const TestimonialsSection = () => {
     {
       name: "Shawn Gurn",
       title: "HOF Franchise Consulting Company • IFPG Member",
-      videoSrc: "/videos/shawn-gurn-review.mov",
-      videoType: "video/quicktime",
+      videoSrc: "/videos/shawn-gurn-review.mp4",
     },
     {
       name: "Jonathan Morgan",
