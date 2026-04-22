@@ -74,6 +74,14 @@ const Footer = () => {
             <h4 className="text-lg font-semibold">Contact Info</h4>
             <div className="space-y-3 text-gray-400">
               <div className="flex items-center space-x-3">
+                <Mail className="w-4 h-4 flex-shrink-0" />
+                <a href="mailto:support@franchiseleadspro.com" className="hover:text-white transition-colors break-all">support@franchiseleadspro.com</a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Phone className="w-4 h-4 flex-shrink-0" />
+                <a href="tel:+15512012729" className="hover:text-white transition-colors">+1 (551)-201-27-29</a>
+              </div>
+              <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 flex-shrink-0" />
                 <a href="tel:+918327078841" className="hover:text-white transition-colors">+91 8327078841</a>
               </div>
@@ -90,8 +98,7 @@ const Footer = () => {
                     <p className="font-medium text-gray-300">India Office</p>
                     <p>Salt Lake Sector Five</p>
                     <p>Kolkata, West Bengal 700091</p>
-                    <a href="tel:+918327078841" className="block hover:text-white transition-colors">+91 8327078841</a>
-                    <a href="mailto:support@franchiseleadspro.com" className="block hover:text-white transition-colors break-all">support@franchiseleadspro.com</a>
+                    <a href="tel:+918327078841" className="hover:text-white transition-colors">+91 8327078841</a>
                   </div>
                 </div>
               </div>
