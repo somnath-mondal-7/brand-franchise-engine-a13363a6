@@ -61,7 +61,7 @@ const TestimonialsSection = () => {
                     controls
                     preload="metadata"
                   >
-                    <source src={testimonial.videoSrc} type={testimonial.videoType || "video/mp4"} />
+                    <source src={testimonial.videoSrc} type="video/mp4" />
                   </video>
                 </div>
               )}
