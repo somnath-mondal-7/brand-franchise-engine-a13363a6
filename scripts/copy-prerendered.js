@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 /**
- * Copies pre-rendered HTML files from dist/__prerendered/ into dist/
- * for SEO-heavy programmatic routes only.
+ * Cleans up generated pre-rendered HTML files.
  *
- * Important: do NOT overwrite core React pages like /blog, /about, /services, etc.
- * Those should always use the main app design for real visitors.
+ * Important: real visitors must always receive the React SPA version of pages,
+ * including /locations/* and service/location programmatic routes. Search bots are
+ * already handled by api/render.js at request time, so we should not copy static
+ * HTML into dist/ where it can override the live site design.
  */
 
-import { cpSync, existsSync, mkdirSync, rmSync, readdirSync, statSync } from 'fs';
-import { join, dirname, relative } from 'path';
+import { existsSync, rmSync, readdirSync, statSync } from 'fs';
+import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -19,25 +20,6 @@ if (!existsSync(PRERENDERED)) {
   console.log('⚠️ No pre-rendered files found. Skipping.');
   process.exit(0);
 }
-
-const blockedTopLevelRoutes = new Set([
-  'about',
-  'services',
-  'digital-marketing',
-  'contact',
-  'blog',
-  'testimonials',
-  'buy-franchise-leads',
-  'case-studies',
-  'franchise-leads-usa',
-  'franchise-leads-uk',
-  'franchise-leads-india',
-  'franchise-leads-canada',
-  'franchise-leads-australia',
-  'franchise-leads-dubai',
-  'franchise-leads-kuwait',
-  'legal-terms',
-]);
 
 function countFiles(dir) {
   let count = 0;
@@ -52,37 +34,9 @@ function countFiles(dir) {
   return count;
 }
 
-function shouldCopy(relativePath) {
-  const normalized = relativePath.replace(/\\/g, '/');
-  if (normalized === 'index.html') return false;
-
-  const firstSegment = normalized.split('/')[0];
-  return !blockedTopLevelRoutes.has(firstSegment);
-}
-
-function copyAllowedFiles(sourceDir, targetDir) {
-  for (const entry of readdirSync(sourceDir)) {
-    const sourcePath = join(sourceDir, entry);
-    const stat = statSync(sourcePath);
-
-    if (stat.isDirectory()) {
-      copyAllowedFiles(sourcePath, targetDir);
-      continue;
-    }
-
-    const relativePath = relative(PRERENDERED, sourcePath);
-    if (!shouldCopy(relativePath)) continue;
-
-    const destinationPath = join(targetDir, relativePath);
-    mkdirSync(dirname(destinationPath), { recursive: true });
-    cpSync(sourcePath, destinationPath, { force: true });
-  }
-}
-
 const fileCount = countFiles(PRERENDERED);
-console.log(`📦 Reviewing ${fileCount.toLocaleString()} pre-rendered HTML files...`);
+console.log(`🧹 Removing ${fileCount.toLocaleString()} pre-rendered HTML files so visitor routes keep the React SPA design...`);
 
-copyAllowedFiles(PRERENDERED, DIST);
 rmSync(PRERENDERED, { recursive: true, force: true });
 
-console.log('✅ Done! Core React pages are preserved; only programmatic SEO pages are copied.');
+console.log('✅ Done! Pre-rendered HTML was not copied into dist, so visitor-facing pages keep the live website styling.');
