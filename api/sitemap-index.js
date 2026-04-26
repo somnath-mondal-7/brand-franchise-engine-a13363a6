@@ -1,4 +1,7 @@
 // Sitemap Index — returns a <sitemapindex> pointing to chunked child sitemaps + blog sitemap
+// IMPORTANT: This sitemap MUST only contain URLs that api/render.js actually serves
+// with HTTP 200. Otherwise Google logs them as "Not found (404)" and wastes crawl budget.
+import { curatedKeywordSlugs, curatedServiceSlugs } from './programmaticSeoConfig.js';
 const DOMAIN = 'https://www.franchiseleadspro.com';
 
 // ─── Location Data (inline for serverless context) ───
@@ -462,35 +465,45 @@ function generateAllUrls() {
     urls.push({ loc: `${DOMAIN}${p.path}`, lastmod: currentDate, changefreq: p.changefreq, priority: p.priority });
   });
 
-  // Location pages (country/state/city)
+  // Location pages (country/state/city) — cap deep city URLs to focus crawl budget
+  const LOC_MAX_CITIES_PRIMARY = 8;
+  const LOC_MAX_CITIES_SECONDARY = 4;
   locationData.forEach(country => {
     const cc = country.countryCode.toLowerCase();
+    const isPrimary = ['usa', 'in'].includes(cc);
+    const cityCap = isPrimary ? LOC_MAX_CITIES_PRIMARY : LOC_MAX_CITIES_SECONDARY;
     urls.push({ loc: `${DOMAIN}/locations/${cc}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.80' });
     country.states.forEach(state => {
       urls.push({ loc: `${DOMAIN}/locations/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.75' });
-      state.cities.forEach(city => {
+      state.cities.slice(0, cityCap).forEach(city => {
         urls.push({ loc: `${DOMAIN}/locations/${cc}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.70' });
       });
     });
   });
 
-  // Keyword pages
-  seoKeywords.forEach(kw => {
-    urls.push({ loc: `${DOMAIN}/services/${slugify(kw)}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.70' });
+  // Keyword pages — ONLY curated slugs that api/render.js serves with 200 OK
+  curatedKeywordSlugs.forEach(slug => {
+    urls.push({ loc: `${DOMAIN}/services/${slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.70' });
   });
 
-  // Service + location pages
-  broadMarketingKeywords.forEach(service => {
-    const serviceSlug = slugify(service);
+  // Service + location pages — ONLY curated service slugs the renderer serves with 200 OK.
+  // Crawl-budget strategy for a young domain: include all state pages (high value, low count),
+  // top-N city pages for primary markets only (USA/India), no city pages for secondary markets.
+  // This drops thousands of low-value deep URLs that Google was reporting as
+  // "Discovered – currently not indexed".
+  const MAX_CITIES_PER_STATE_PRIMARY = 4; // USA, India top 4 cities per state
+  curatedServiceSlugs.forEach(serviceSlug => {
     locationData.forEach(country => {
       const cc = country.countryCode.toLowerCase();
       const isPrimary = ['usa', 'in'].includes(cc);
       const basePriority = isPrimary ? 0.85 : 0.75;
       country.states.forEach(state => {
         urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: basePriority.toFixed(2) });
-        state.cities.forEach(city => {
-          urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: (basePriority - 0.05).toFixed(2) });
-        });
+        if (isPrimary) {
+          state.cities.slice(0, MAX_CITIES_PER_STATE_PRIMARY).forEach(city => {
+            urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: (basePriority - 0.05).toFixed(2) });
+          });
+        }
       });
     });
   });
