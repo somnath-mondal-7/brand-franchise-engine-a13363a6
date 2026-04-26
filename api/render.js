@@ -1313,12 +1313,13 @@ function buildWebPageSchema(title, description, canonical) {
 
 function buildFAQContent(faq) {
   if (!faq || !faq.length) return '';
+  // NOTE: Do NOT add microdata (itemscope/itemtype/itemprop) here.
+  // The FAQPage schema is already emitted as JSON-LD via buildFAQSchema().
+  // Adding microdata creates a "Duplicate field FAQPage" error in Google Search Console.
   const items = faq.map(f => `
-    <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <h3 itemprop="name">${f.q}</h3>
-      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <p itemprop="text">${f.a}</p>
-      </div>
+    <div class="faq-item">
+      <h3>${f.q}</h3>
+      <p>${f.a}</p>
     </div>`).join('');
   return `<section><h2>Frequently Asked Questions</h2>${items}</section>`;
 }
