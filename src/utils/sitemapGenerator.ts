@@ -15,19 +15,28 @@ export const getTodayDate = (): string => {
   return new Date().toISOString().split('T')[0];
 };
 
-// Generate ALL location pages (country + state + city levels)
+// Generate location pages — cap deep city URLs to focus crawl budget on high-value pages.
+// Indexing diagnosis (Apr 2026): 6,400+ URLs were stuck "Discovered – currently not indexed"
+// because we advertised every city. We now keep only the top N cities per state.
+const LOC_MAX_CITIES_PRIMARY = 8;   // USA, India
+const LOC_MAX_CITIES_SECONDARY = 4; // Other countries
+
 export const generateLocationUrls = (): SitemapUrl[] => {
   const urls: SitemapUrl[] = [];
   const currentDate = new Date().toISOString().split('T')[0];
 
   locationData.forEach(country => {
-    urls.push({ loc: `${DOMAIN}/locations/${country.countryCode.toLowerCase()}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.8' });
+    const cc = country.countryCode.toLowerCase();
+    const isPrimary = ['usa', 'in'].includes(cc);
+    const cityCap = isPrimary ? LOC_MAX_CITIES_PRIMARY : LOC_MAX_CITIES_SECONDARY;
+
+    urls.push({ loc: `${DOMAIN}/locations/${cc}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.8' });
 
     country.states.forEach(state => {
-      urls.push({ loc: `${DOMAIN}/locations/${country.countryCode.toLowerCase()}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.75' });
+      urls.push({ loc: `${DOMAIN}/locations/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.75' });
 
-      state.cities.forEach(city => {
-        urls.push({ loc: `${DOMAIN}/locations/${country.countryCode.toLowerCase()}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.7' });
+      state.cities.slice(0, cityCap).forEach(city => {
+        urls.push({ loc: `${DOMAIN}/locations/${cc}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.7' });
       });
     });
   });
