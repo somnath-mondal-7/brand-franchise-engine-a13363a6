@@ -1,4 +1,7 @@
 // Sitemap Index — returns a <sitemapindex> pointing to chunked child sitemaps + blog sitemap
+// IMPORTANT: This sitemap MUST only contain URLs that api/render.js actually serves
+// with HTTP 200. Otherwise Google logs them as "Not found (404)" and wastes crawl budget.
+import { curatedKeywordSlugs, curatedServiceSlugs } from './programmaticSeoConfig.js';
 const DOMAIN = 'https://www.franchiseleadspro.com';
 
 // ─── Location Data (inline for serverless context) ───
@@ -474,21 +477,26 @@ function generateAllUrls() {
     });
   });
 
-  // Keyword pages
-  seoKeywords.forEach(kw => {
-    urls.push({ loc: `${DOMAIN}/services/${slugify(kw)}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.70' });
+  // Keyword pages — ONLY curated slugs that api/render.js serves with 200 OK
+  curatedKeywordSlugs.forEach(slug => {
+    urls.push({ loc: `${DOMAIN}/services/${slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.70' });
   });
 
-  // Service + location pages
-  broadMarketingKeywords.forEach(service => {
-    const serviceSlug = slugify(service);
+  // Service + location pages — ONLY curated service slugs the renderer serves with 200 OK.
+  // To keep crawl budget focused, we include all state pages but cap city pages per state.
+  // This drops thousands of low-value deep URLs that Google was reporting as
+  // "Discovered – currently not indexed".
+  const MAX_CITIES_PER_STATE_PRIMARY = 6;   // USA, India
+  const MAX_CITIES_PER_STATE_SECONDARY = 3; // Other countries
+  curatedServiceSlugs.forEach(serviceSlug => {
     locationData.forEach(country => {
       const cc = country.countryCode.toLowerCase();
       const isPrimary = ['usa', 'in'].includes(cc);
       const basePriority = isPrimary ? 0.85 : 0.75;
+      const cityCap = isPrimary ? MAX_CITIES_PER_STATE_PRIMARY : MAX_CITIES_PER_STATE_SECONDARY;
       country.states.forEach(state => {
         urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: basePriority.toFixed(2) });
-        state.cities.forEach(city => {
+        state.cities.slice(0, cityCap).forEach(city => {
           urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: (basePriority - 0.05).toFixed(2) });
         });
       });
