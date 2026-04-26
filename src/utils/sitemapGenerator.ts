@@ -62,19 +62,26 @@ export const generateServiceLocationUrls = (): SitemapUrl[] => {
   const urls: SitemapUrl[] = [];
   const currentDate = new Date().toISOString().split('T')[0];
 
+  // Crawl-budget strategy: include every state but only top-N cities for primary markets,
+  // and skip city pages entirely for secondary markets. Drops ~3,000 thin URLs.
+  const SVC_MAX_CITIES_PRIMARY = 4;
+
   highValueServiceKeywords.forEach(service => {
     const serviceSlug = service.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-    
+
     locationData.forEach(country => {
-      const isPrimaryMarket = ['USA', 'IN'].includes(country.countryCode.toUpperCase());
+      const cc = country.countryCode.toLowerCase();
+      const isPrimaryMarket = ['usa', 'in'].includes(cc);
       const basePriority = isPrimaryMarket ? 0.85 : 0.75;
 
       country.states.forEach(state => {
-        urls.push({ loc: `${DOMAIN}/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: basePriority.toString() });
+        urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: basePriority.toString() });
 
-        state.cities.forEach(city => {
-          urls.push({ loc: `${DOMAIN}/${serviceSlug}/${country.countryCode.toLowerCase()}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: (basePriority - 0.05).toString() });
-        });
+        if (isPrimaryMarket) {
+          state.cities.slice(0, SVC_MAX_CITIES_PRIMARY).forEach(city => {
+            urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: (basePriority - 0.05).toString() });
+          });
+        }
       });
     });
   });
