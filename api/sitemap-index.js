@@ -487,22 +487,23 @@ function generateAllUrls() {
   });
 
   // Service + location pages — ONLY curated service slugs the renderer serves with 200 OK.
-  // To keep crawl budget focused, we include all state pages but cap city pages per state.
+  // Crawl-budget strategy for a young domain: include all state pages (high value, low count),
+  // top-N city pages for primary markets only (USA/India), no city pages for secondary markets.
   // This drops thousands of low-value deep URLs that Google was reporting as
   // "Discovered – currently not indexed".
-  const MAX_CITIES_PER_STATE_PRIMARY = 6;   // USA, India
-  const MAX_CITIES_PER_STATE_SECONDARY = 3; // Other countries
+  const MAX_CITIES_PER_STATE_PRIMARY = 4; // USA, India top 4 cities per state
   curatedServiceSlugs.forEach(serviceSlug => {
     locationData.forEach(country => {
       const cc = country.countryCode.toLowerCase();
       const isPrimary = ['usa', 'in'].includes(cc);
       const basePriority = isPrimary ? 0.85 : 0.75;
-      const cityCap = isPrimary ? MAX_CITIES_PER_STATE_PRIMARY : MAX_CITIES_PER_STATE_SECONDARY;
       country.states.forEach(state => {
         urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: basePriority.toFixed(2) });
-        state.cities.slice(0, cityCap).forEach(city => {
-          urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: (basePriority - 0.05).toFixed(2) });
-        });
+        if (isPrimary) {
+          state.cities.slice(0, MAX_CITIES_PER_STATE_PRIMARY).forEach(city => {
+            urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: (basePriority - 0.05).toFixed(2) });
+          });
+        }
       });
     });
   });
