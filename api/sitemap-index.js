@@ -465,13 +465,17 @@ function generateAllUrls() {
     urls.push({ loc: `${DOMAIN}${p.path}`, lastmod: currentDate, changefreq: p.changefreq, priority: p.priority });
   });
 
-  // Location pages (country/state/city)
+  // Location pages (country/state/city) — cap deep city URLs to focus crawl budget
+  const LOC_MAX_CITIES_PRIMARY = 8;
+  const LOC_MAX_CITIES_SECONDARY = 4;
   locationData.forEach(country => {
     const cc = country.countryCode.toLowerCase();
+    const isPrimary = ['usa', 'in'].includes(cc);
+    const cityCap = isPrimary ? LOC_MAX_CITIES_PRIMARY : LOC_MAX_CITIES_SECONDARY;
     urls.push({ loc: `${DOMAIN}/locations/${cc}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.80' });
     country.states.forEach(state => {
       urls.push({ loc: `${DOMAIN}/locations/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.75' });
-      state.cities.forEach(city => {
+      state.cities.slice(0, cityCap).forEach(city => {
         urls.push({ loc: `${DOMAIN}/locations/${cc}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.70' });
       });
     });
