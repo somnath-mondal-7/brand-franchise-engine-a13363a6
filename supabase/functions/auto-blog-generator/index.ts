@@ -469,20 +469,33 @@ async function generateBlogWithAI(researchContext: string, topicData: typeof RES
 ✅ "I almost gave up on LinkedIn last year. Glad I didn't."
 ❌ "LinkedIn presents both opportunities and challenges for franchise development teams."
 
-=== CONTENT STRUCTURE (STRICT) ===
+=== CONTENT STRUCTURE (STRICT - LONG, DEEP, VALUE-PACKED) ===
 DO NOT include the title or any heading at the top of the content. The title is rendered separately.
 DO NOT write "in this post" or "today we'll cover" intros — just dive in.
 
-Start the content with the opening hook (a short story or surprising thought, 2-3 short paragraphs). Then follow this structure:
+This needs to be a LONG, DEEP, value-packed post — minimum 2,200 words, target 2,500-2,800 words. Readers should walk away thinking "wow, that was the most useful franchise post I've read in months." Every section needs MULTIPLE specific points, not one shallow takeaway.
 
-1. **Opening hook** (no heading — flows from the title): 2-3 short paragraphs that grab attention.
-2. **## Section 1** — main point #1 with a short personal-feeling story.
-3. **## Section 2** — main point #2 with a concrete tip. Use **<mark>highlight</mark>** HTML around 1-2 key phrases here so they pop visually for the reader.
-4. **## Section 3** — main point #3 with at least ONE concrete example of a real tool/platform/approach a franchise can use (e.g., "a CRM like HubSpot or Zoho", "scheduling software like 7shifts", "review automation like Birdeye"). NEVER list more than 3 named examples in a row — keep it conversational.
-5. **## Section 4** — actionable steps (numbered list of 3-5 specific steps the reader can do this week).
-6. **## A Real-Life Win** — a short case-study story (4-6 sentences) showing how a franchise applied this. Use names, settings, situations — not just abstract ideas.
-7. **## FAQ** — exactly 5 H3 questions readers actually ask, each with a 2-3 sentence casual answer. Use ### for each question. CRITICAL: questions MUST end with a "?" and answers must sound like a friend explaining, not a textbook.
-8. **## The Bottom Line** — wrap up casually in 2-3 sentences. Soft mention that we help franchise brands with leads. Not pushy.
+Follow this structure (every section must be substantive — minimum word counts enforced):
+
+1. **Opening hook** (no heading — flows from the title): 3-4 short paragraphs (~180 words) that grab attention with a story, stat, or contrarian take.
+
+2. **## The Real Problem (Why This Matters Right Now)** — ~250 words. Lay out exactly what's broken in the industry today. Use 2-3 specific data points. Mention current dynamics (rising ad costs, AI shifts, buyer behavior changes).
+
+3. **## What Most Franchises Get Wrong** — ~280 words. Walk through 3-4 SPECIFIC mistakes (use a sub-bullet structure or mini H3s for each). For each mistake, explain WHY it fails and what it costs them. Use **<mark>highlight</mark>** HTML around 2 key phrases.
+
+4. **## The Framework That Actually Works** — ~350 words. Lay out a clear 4-5 step framework or system. Each step gets its own paragraph with a concrete tool or platform example (e.g., "a CRM like HubSpot or Zoho", "a scheduler like Calendly", "review software like Birdeye"). Don't just name-drop — explain HOW to use it.
+
+5. **## Tools, Platforms & Tactics Worth Your Time** — ~250 words. Break this into a clear list of 5-7 specific tools/tactics with a 1-2 sentence explanation of when and why to use each. Be opinionated — say which ones are worth it and which aren't.
+
+6. **## Your Action Plan (Do This In The Next 30 Days)** — ~280 words. A numbered list of 5-7 SPECIFIC steps the reader can do this week and this month. Each step needs a concrete output ("by Friday, you should have X"). Include time estimates.
+
+7. **## A Real-Life Win** — ~220 words. A detailed case-study story showing how a franchise applied this. Use names (made-up is fine), city, specific numbers (before/after), what they did week by week, and what the outcome looked like. Make it feel real, not abstract.
+
+8. **## Common Mistakes To Sidestep** — ~180 words. List 4-5 traps and pitfalls with a quick fix for each. Bullet format works here.
+
+9. **## FAQ** — ~350 words. Exactly 6-7 H3 questions readers actually ask. Each answer must be 3-4 SUBSTANTIVE sentences (not 1-2). Use ### for each question. Questions MUST end with "?" and answers must sound like a friend explaining, with concrete numbers or examples where possible.
+
+10. **## The Bottom Line** — ~150 words. Wrap up in 3-4 paragraphs. Recap the 3 biggest takeaways. Soft mention that we help franchise brands with leads. Not pushy. End with one provocative question or call-to-action sentence.
 
 CRITICAL — COMPLETENESS:
 - Every section must have a complete thought. NEVER cut a paragraph or sentence in the middle.
@@ -509,9 +522,10 @@ Don't dump them all in one place. Weave them into sentences naturally.
 - Use **bold** for one or two key phrases per section
 - Use <mark>...</mark> (literal HTML) for 2-3 short phrases across the post that you want visually highlighted — pick the most quotable insights
 - Bullet lists when you have 3+ quick items
-- Drop in 1 short blockquote (>) somewhere — a tip, warning, or quotable line
-- Total length: 1,200-1,600 words
-- Real blog posts breathe. Don't over-format.
+- Drop in 2-3 short blockquotes (>) at different points — tips, warnings, or quotable lines
+- **Total length: 2,200-2,800 words MINIMUM. Posts shorter than 2,000 words will be rejected.**
+- Real blog posts breathe. Don't over-format, but DO go deep on every section.
+- Include specific numbers, percentages, dollar amounts, and timeframes throughout — vague advice is forbidden
 - ABSOLUTELY NO emojis anywhere in the content.
 
 === ABSOLUTELY FORBIDDEN ===
@@ -536,7 +550,9 @@ Each prompt: 1-2 vivid sentences. Style examples: "modern professional photograp
 ${researchContext}
 
 CRITICAL REQUIREMENTS (your post will be REJECTED if any of these are missing):
-- Length: 1,200-1,600 words MINIMUM. Do not stop short.
+- Length: **2,200-2,800 words MINIMUM**. Anything shorter gets rejected. Go DEEP on every section.
+- Every section must have MULTIPLE specific points, examples, numbers, or tactics — never a single shallow takeaway.
+- Include real numbers, percentages, dollar amounts, and timeframes throughout the post.
 - Start with the hook (adapt it naturally): "${topicData.hook}"
 - Reference this insight if it fits: "${topicData.stats}"
 - Angle: "${topicData.angle}"
@@ -551,75 +567,89 @@ CRITICAL REQUIREMENTS (your post will be REJECTED if any of these are missing):
 
 Every sentence must sound human, like a friend giving advice — not a corporate report.`;
 
-  // Use tool-calling for GUARANTEED valid JSON output (fixes prior parsing bugs)
-  const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${LOVABLE_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      model: "google/gemini-2.5-flash",
-      messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: userPrompt },
-      ],
-      temperature: 0.85,
-      max_tokens: 5000,
-      tools: [
-        {
-          type: "function",
-          function: {
-            name: "publish_blog_post",
-            description: "Publish a blog post with all required fields filled in.",
-            parameters: {
-              type: "object",
-              properties: {
-                title: { type: "string", description: "Casual, friendly title under 70 chars" },
-                excerpt: { type: "string", description: "1 sentence hook, max 160 chars" },
-                content: { type: "string", description: "Full markdown body. MUST NOT include the title or any H1. Start directly with the opening hook paragraph. Must include a ## FAQ section with 5 ### questions." },
-                slug: { type: "string", description: "SEO-friendly URL slug, lowercase, dashes only" },
-                tags: {
-                  type: "array",
-                  items: { type: "string" },
-                  description: "5 relevant tags",
+  // Try preferred model first, then fallback to lite if credits/rate-limit errors hit
+  const modelChain = ["google/gemini-2.5-flash", "google/gemini-2.5-flash-lite"];
+  let lastError = "";
+
+  for (const model of modelChain) {
+    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model,
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: userPrompt },
+        ],
+        temperature: 0.85,
+        max_tokens: 12000,
+        tools: [
+          {
+            type: "function",
+            function: {
+              name: "publish_blog_post",
+              description: "Publish a blog post with all required fields filled in.",
+              parameters: {
+                type: "object",
+                properties: {
+                  title: { type: "string", description: "Casual, friendly title under 70 chars" },
+                  excerpt: { type: "string", description: "1 sentence hook, max 160 chars" },
+                  content: { type: "string", description: "Full markdown body, 2,200-2,800 words. MUST NOT include the title or any H1. Start directly with the opening hook paragraph. Must include a ## FAQ section with 6-7 ### questions." },
+                  slug: { type: "string", description: "SEO-friendly URL slug, lowercase, dashes only" },
+                  tags: {
+                    type: "array",
+                    items: { type: "string" },
+                    description: "5 relevant tags",
+                  },
+                  coverImagePrompt: { type: "string", description: "Vivid 1-2 sentence description for the cover image" },
+                  inlineImagePrompts: {
+                    type: "array",
+                    items: { type: "string" },
+                    description: "Exactly 2 vivid descriptions for inline images",
+                  },
                 },
-                coverImagePrompt: { type: "string", description: "Vivid 1-2 sentence description for the cover image" },
-                inlineImagePrompts: {
-                  type: "array",
-                  items: { type: "string" },
-                  description: "Exactly 2 vivid descriptions for inline images",
-                },
+                required: ["title", "excerpt", "content", "slug", "tags", "coverImagePrompt", "inlineImagePrompts"],
+                additionalProperties: false,
               },
-              required: ["title", "excerpt", "content", "slug", "tags", "coverImagePrompt", "inlineImagePrompts"],
-              additionalProperties: false,
             },
           },
-        },
-      ],
-      tool_choice: { type: "function", function: { name: "publish_blog_post" } },
-    }),
-  });
+        ],
+        tool_choice: { type: "function", function: { name: "publish_blog_post" } },
+      }),
+    });
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`AI generation failed: ${response.status} - ${errorText}`);
+    if (!response.ok) {
+      const errorText = await response.text();
+      lastError = `${response.status} - ${errorText}`;
+      console.error(`Model ${model} failed: ${lastError}`);
+      // 402 = credits exhausted, 429 = rate limit -> try fallback
+      if (response.status === 402 || response.status === 429) continue;
+      throw new Error(`AI generation failed: ${lastError}`);
+    }
+
+    const data = await response.json();
+    const toolCall = data.choices?.[0]?.message?.tool_calls?.[0];
+    if (!toolCall?.function?.arguments) {
+      console.error(`Model ${model} returned no tool call:`, JSON.stringify(data).slice(0, 500));
+      lastError = "AI did not return a structured blog post";
+      continue;
+    }
+
+    try {
+      const parsed = JSON.parse(toolCall.function.arguments);
+      console.log(`✅ Generated with model: ${model}`);
+      return parsed;
+    } catch (e) {
+      console.error("Tool args parse error:", e, toolCall.function.arguments?.slice(0, 500));
+      lastError = "Failed to parse AI tool call arguments";
+      continue;
+    }
   }
 
-  const data = await response.json();
-  const toolCall = data.choices?.[0]?.message?.tool_calls?.[0];
-  if (!toolCall?.function?.arguments) {
-    console.error("No tool call in response:", JSON.stringify(data).slice(0, 500));
-    throw new Error("AI did not return a structured blog post");
-  }
-
-  try {
-    const parsed = JSON.parse(toolCall.function.arguments);
-    return parsed;
-  } catch (e) {
-    console.error("Tool args parse error:", e, toolCall.function.arguments?.slice(0, 500));
-    throw new Error("Failed to parse AI tool call arguments");
-  }
+  throw new Error(`AI generation failed across all models. Last error: ${lastError}. If this is a 402 error, your Lovable AI credits are exhausted — top up at Settings → Workspace → Usage.`);
 }
 
 async function getLastPostTime(supabase: any): Promise<Date | null> {
