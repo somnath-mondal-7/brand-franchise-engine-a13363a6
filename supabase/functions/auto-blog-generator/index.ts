@@ -391,23 +391,20 @@ async function ensureFaqSection(content: string, topic: string): Promise<string>
   }
   console.log("⚠️  FAQ section missing — generating fallback");
 
-  const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-  if (!LOVABLE_API_KEY) return content;
+  const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
+  if (!GEMINI_API_KEY) return content;
 
   try {
-    const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${LOVABLE_API_KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
-        messages: [
-          {
-            role: "system",
-            content: "You write blog FAQs in a casual, friendly, human voice. Use contractions. Sound like a friend giving advice, not a corporate FAQ.",
-          },
-          {
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: "You write blog FAQs in a casual, friendly, human voice. Use contractions. Sound like a friend giving advice, not a corporate FAQ." }] },
+          contents: [{
             role: "user",
-            content: `Generate a markdown FAQ section for a blog post about: "${topic}".
+            parts: [{ text: `Generate a markdown FAQ section for a blog post about: "${topic}".
 
 Return EXACTLY this format (5 questions, no preamble, no closing):
 
@@ -426,16 +423,15 @@ Casual 2-3 sentence answer.
 Casual 2-3 sentence answer.
 
 ### Question five ending in a question mark?
-Casual 2-3 sentence answer.`,
-          },
-        ],
-        temperature: 0.8,
-        max_tokens: 1200,
-      }),
-    });
+Casual 2-3 sentence answer.` }],
+          }],
+          generationConfig: { temperature: 0.8, maxOutputTokens: 1500 },
+        }),
+      }
+    );
     if (!res.ok) return content;
     const data = await res.json();
-    const faq = data.choices?.[0]?.message?.content?.trim();
+    const faq = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
     if (!faq || !/^##\s+FAQ/im.test(faq)) return content;
     return content.trimEnd() + "\n\n" + faq + "\n";
   } catch (e) {
