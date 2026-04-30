@@ -235,46 +235,45 @@ Make it feel like breaking insights that readers can't get anywhere else.
 // ============================================================
 
 async function generateImageBase64(prompt: string): Promise<string | null> {
-  // Use Lovable AI Gateway (Gemini 2.5 Flash Image / Nano Banana) — fast & reliable.
-  const apiKey = Deno.env.get("LOVABLE_API_KEY");
-  if (!apiKey) {
-    console.error("LOVABLE_API_KEY missing — cannot generate images");
-    return null;
-  }
-  try {
-    const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "google/gemini-2.5-flash-image",
-        messages: [
-          {
-            role: "user",
-            content: `Generate a high-quality, professional, photorealistic 16:9 blog cover image. Subject: ${prompt}. Style: clean, modern, vibrant business/marketing photography. No text, no watermarks, no logos.`,
-          },
-        ],
-        modalities: ["image", "text"],
-      }),
-    });
-    if (!res.ok) {
-      const txt = await res.text();
-      console.error("Lovable AI image gen failed:", res.status, txt.slice(0, 300));
-      return null;
+  // Use Pollinations.ai — free, no API key, with timeout + retry handling.
+  const enhancedPrompt = `professional photorealistic 16:9 blog cover, ${prompt}, clean modern vibrant business marketing photography, no text no watermarks no logos`;
+  const seed = Math.floor(Math.random() * 1_000_000);
+  const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(enhancedPrompt)}?width=1280&height=720&seed=${seed}&nologo=true&model=flux&enhance=true`;
+
+  const MAX_ATTEMPTS = 3;
+  const TIMEOUT_MS = 45_000;
+
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+    try {
+      const res = await fetch(url, { signal: controller.signal });
+      clearTimeout(timer);
+      if (!res.ok) {
+        console.error(`Pollinations attempt ${attempt} failed: ${res.status}`);
+        continue;
+      }
+      const buf = new Uint8Array(await res.arrayBuffer());
+      if (buf.byteLength < 1000) {
+        console.error(`Pollinations attempt ${attempt}: response too small (${buf.byteLength}b)`);
+        continue;
+      }
+      // Convert to base64 data URL (chunked to avoid stack overflow)
+      let binary = "";
+      const CHUNK = 0x8000;
+      for (let i = 0; i < buf.length; i += CHUNK) {
+        binary += String.fromCharCode.apply(null, buf.subarray(i, i + CHUNK) as unknown as number[]);
+      }
+      const b64 = btoa(binary);
+      console.log(`✅ Pollinations image ok (attempt ${attempt}, ${buf.byteLength} bytes)`);
+      return `data:image/jpeg;base64,${b64}`;
+    } catch (e) {
+      clearTimeout(timer);
+      console.error(`Pollinations attempt ${attempt} error:`, (e as Error).message);
     }
-    const data = await res.json();
-    const dataUrl = data?.choices?.[0]?.message?.images?.[0]?.image_url?.url;
-    if (!dataUrl || !dataUrl.startsWith("data:image/")) {
-      console.error("No image returned from Lovable AI");
-      return null;
-    }
-    return dataUrl;
-  } catch (e) {
-    console.error("Image gen error:", e);
-    return null;
   }
+  console.error("All Pollinations attempts exhausted — skipping image");
+  return null;
 }
 
 function dataUrlToBytes(dataUrl: string): { bytes: Uint8Array; contentType: string } {
