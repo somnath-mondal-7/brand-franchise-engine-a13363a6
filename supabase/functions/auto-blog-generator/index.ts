@@ -757,9 +757,22 @@ serve(async (req) => {
 
     const { data: savedPost, error: saveError } = await supabase
       .from('blog_posts')
+    // Ensure unique slug — append short timestamp suffix if it already exists
+    let finalSlug = blogPost.slug;
+    const { data: existing } = await supabase
+      .from('blog_posts')
+      .select('id')
+      .eq('slug', finalSlug)
+      .maybeSingle();
+    if (existing) {
+      finalSlug = `${blogPost.slug}-${Date.now().toString(36).slice(-5)}`;
+    }
+
+    const { data: savedPost, error: saveError } = await supabase
+      .from('blog_posts')
       .insert({
         title: blogPost.title,
-        slug: blogPost.slug,
+        slug: finalSlug,
         content: finalContent,
         excerpt: blogPost.excerpt,
         author_name: 'FranchiseLeadsPro Research Team',
