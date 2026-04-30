@@ -669,6 +669,141 @@ async function shouldPublish(supabase: any, intervalHours: number): Promise<bool
   return hoursDiff >= intervalHours;
 }
 
+// Heavy generation pipeline — extracted so it can run in background via EdgeRuntime.waitUntil
+async function runGenerationPipeline(supabase: any, publishAsDraft: boolean) {
+  console.log("Researching current franchise news and trends...");
+  const { context: researchContext, topicData } = await getResearchContext();
+  console.log(`Topic selected: [${topicData.category}] ${topicData.topic}`);
+
+  console.log("Generating human-centric blog content...");
+  const blogPost = await generateBlogWithAI(researchContext, topicData);
+  console.log(`Generated: "${blogPost.title}"`);
+
+  console.log("🎨 Generating cover + inline images...");
+  const safeSlug = blogPost.slug.replace(/[^a-z0-9-]/gi, "").slice(0, 40);
+  const ts = Date.now();
+
+  const coverPrompt = blogPost.coverImagePrompt
+    || `Wide hero photograph for a blog post titled "${blogPost.title}". Modern professional business photography, soft natural lighting, clean composition, photorealistic.`;
+  const inlinePrompts = (blogPost.inlineImagePrompts && blogPost.inlineImagePrompts.length > 0)
+    ? blogPost.inlineImagePrompts.slice(0, 2)
+    : [
+        `Clean modern flat illustration supporting the topic: ${blogPost.title}. Minimalist, blue and white palette, professional business style.`,
+        `Photograph of business professionals in a modern office discussing strategy related to: ${topicData.angle}. Bright, natural light, candid feel.`,
+      ];
+
+  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+  const coverDataUrl = await generateImageBase64(coverPrompt);
+  const inlineDataUrls: (string | null)[] = [];
+  for (const p of inlinePrompts) {
+    await sleep(2500);
+    inlineDataUrls.push(await generateImageBase64(p));
+  }
+
+  let coverUrl: string | null = null;
+  if (coverDataUrl) {
+    coverUrl = await uploadImageToStorage(supabase, coverDataUrl, `${safeSlug}-cover-${ts}`);
+  }
+
+  const inlineUrls: string[] = [];
+  for (let i = 0; i < inlineDataUrls.length; i++) {
+    const dUrl = inlineDataUrls[i];
+    if (!dUrl) continue;
+    const url = await uploadImageToStorage(supabase, dUrl, `${safeSlug}-inline-${i + 1}-${ts}`);
+    if (url) inlineUrls.push(url);
+  }
+
+  console.log(`🖼️  Cover: ${coverUrl ? "✅" : "❌"}, Inline: ${inlineUrls.length}/2`);
+
+  let finalContent = stripDuplicateTitle(blogPost.content, blogPost.title);
+  finalContent = await ensureFaqSection(finalContent, blogPost.title);
+  finalContent = injectInlineImages(finalContent, inlineUrls);
+  finalContent = finalContent.trimEnd() + "\n" + buildInternalLinksSection();
+
+  const wordCount = finalContent.split(/\s+/).length;
+  const readTime = Math.ceil(wordCount / 200);
+
+  let finalSlug = blogPost.slug;
+  const { data: existing } = await supabase
+    .from('blog_posts')
+    .select('id')
+    .eq('slug', finalSlug)
+    .maybeSingle();
+  if (existing) {
+    finalSlug = `${blogPost.slug}-${Date.now().toString(36).slice(-5)}`;
+  }
+
+  const { data: savedPost, error: saveError } = await supabase
+    .from('blog_posts')
+    .insert({
+      title: blogPost.title,
+      slug: finalSlug,
+      content: finalContent,
+      excerpt: blogPost.excerpt,
+      author_name: 'FranchiseLeadsPro Research Team',
+      tags: blogPost.tags,
+      is_published: !publishAsDraft,
+      published_at: publishAsDraft ? null : new Date().toISOString(),
+      read_time_minutes: readTime,
+      seo_title: blogPost.title,
+      seo_description: blogPost.excerpt,
+      featured_image_url: coverUrl,
+    })
+    .select()
+    .single();
+
+  if (saveError) {
+    throw new Error(`Database save failed: ${saveError.message}`);
+  }
+
+  console.log(`✅ Saved: ${savedPost.id} (${wordCount} words, ${readTime} min read)`);
+
+  if (!publishAsDraft) {
+    try {
+      const postUrl = `https://www.franchiseleadspro.com/blog/${finalSlug}`;
+      const sitemapUrls = [
+        'https://www.franchiseleadspro.com/sitemap.xml',
+        'https://www.franchiseleadspro.com/sitemap-blog.xml',
+      ];
+      const pingRequests: Promise<Response>[] = [];
+      for (const sm of sitemapUrls) {
+        pingRequests.push(fetch(`https://www.google.com/ping?sitemap=${encodeURIComponent(sm)}`));
+        pingRequests.push(fetch(`https://www.bing.com/ping?sitemap=${encodeURIComponent(sm)}`));
+      }
+      const indexNowKey = '8c9d4e5f6a7b8c9d0e1f2a3b4c5d6e7f';
+      pingRequests.push(
+        fetch('https://api.indexnow.org/indexnow', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            host: 'www.franchiseleadspro.com',
+            key: indexNowKey,
+            keyLocation: `https://www.franchiseleadspro.com/${indexNowKey}.txt`,
+            urlList: [postUrl, 'https://www.franchiseleadspro.com/blog'],
+          }),
+        })
+      );
+      const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+      const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+      pingRequests.push(
+        fetch(`${supabaseUrl}/functions/v1/google-indexing`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${supabaseKey}` },
+          body: JSON.stringify({ urls: [postUrl, 'https://www.franchiseleadspro.com/blog'] }),
+        })
+      );
+      pingRequests.push(fetch(postUrl, { method: 'GET' }));
+      const results = await Promise.allSettled(pingRequests);
+      const ok = results.filter(r => r.status === 'fulfilled').length;
+      console.log(`🔔 Search engine ping: ${ok}/${results.length} successful`);
+    } catch (pingErr) {
+      console.error('Ping failed (non-fatal):', pingErr);
+    }
+  }
+
+  return { savedPost, wordCount, readTime, topicData };
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -680,191 +815,56 @@ serve(async (req) => {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     const body = await req.json().catch(() => ({}));
-    const { 
-      force = false, 
+    const {
+      force = false,
       intervalHours = 24,
-      publishAsDraft = false 
+      publishAsDraft = false,
+      background = true, // run in background by default to avoid HTTP timeouts
     } = body;
 
-    console.log(`Auto-blog v2: force=${force}, interval=${intervalHours}h, draft=${publishAsDraft}`);
+    console.log(`Auto-blog v3: force=${force}, interval=${intervalHours}h, draft=${publishAsDraft}, bg=${background}`);
 
     if (!force) {
       const canPublish = await shouldPublish(supabase, intervalHours);
       if (!canPublish) {
         const lastPost = await getLastPostTime(supabase);
         const nextTime = lastPost ? new Date(lastPost.getTime() + intervalHours * 60 * 60 * 1000) : new Date();
-        
         return new Response(
-          JSON.stringify({ 
-            success: false, 
+          JSON.stringify({
+            success: false,
             message: `Next post in ${Math.ceil((nextTime.getTime() - Date.now()) / (1000 * 60 * 60))} hours. Use force=true to override.`,
             nextScheduled: nextTime.toISOString(),
-            intervalHours
+            intervalHours,
           }),
           { headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
     }
 
-    console.log("Researching current franchise news and trends...");
-    const { context: researchContext, topicData } = await getResearchContext();
-    console.log(`Topic selected: [${topicData.category}] ${topicData.topic}`);
-
-    console.log("Generating human-centric blog content...");
-    const blogPost = await generateBlogWithAI(researchContext, topicData);
-    console.log(`Generated: "${blogPost.title}"`);
-
-    // === Generate images in parallel ===
-    console.log("🎨 Generating cover + inline images...");
-    const safeSlug = blogPost.slug.replace(/[^a-z0-9-]/gi, "").slice(0, 40);
-    const ts = Date.now();
-
-    const coverPrompt = blogPost.coverImagePrompt
-      || `Wide hero photograph for a blog post titled "${blogPost.title}". Modern professional business photography, soft natural lighting, clean composition, photorealistic.`;
-    const inlinePrompts = (blogPost.inlineImagePrompts && blogPost.inlineImagePrompts.length > 0)
-      ? blogPost.inlineImagePrompts.slice(0, 2)
-      : [
-          `Clean modern flat illustration supporting the topic: ${blogPost.title}. Minimalist, blue and white palette, professional business style.`,
-          `Photograph of business professionals in a modern office discussing strategy related to: ${topicData.angle}. Bright, natural light, candid feel.`,
-        ];
-
-    // Sequential generation to avoid Pollinations rate-limits (429s when parallel)
-    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-    const coverDataUrl = await generateImageBase64(coverPrompt);
-    const inlineDataUrls: (string | null)[] = [];
-    for (const p of inlinePrompts) {
-      await sleep(2500); // breathing room between requests
-      inlineDataUrls.push(await generateImageBase64(p));
+    // Run pipeline in background so HTTP idle-timeout (150s) can't kill the DB save
+    if (background) {
+      // @ts-ignore — EdgeRuntime is provided by Supabase Edge Runtime
+      EdgeRuntime.waitUntil(
+        runGenerationPipeline(supabase, publishAsDraft).catch((e) => {
+          console.error("Background pipeline error:", e);
+        })
+      );
+      return new Response(
+        JSON.stringify({
+          success: true,
+          message: "Blog generation started in background. New post will appear in ~60-90 seconds.",
+          background: true,
+        }),
+        { status: 202, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
 
-    let coverUrl: string | null = null;
-    if (coverDataUrl) {
-      coverUrl = await uploadImageToStorage(supabase, coverDataUrl, `${safeSlug}-cover-${ts}`);
-    }
-
-    const inlineUrls: string[] = [];
-    for (let i = 0; i < inlineDataUrls.length; i++) {
-      const dUrl = inlineDataUrls[i];
-      if (!dUrl) continue;
-      const url = await uploadImageToStorage(supabase, dUrl, `${safeSlug}-inline-${i + 1}-${ts}`);
-      if (url) inlineUrls.push(url);
-    }
-
-    console.log(`🖼️  Cover: ${coverUrl ? "✅" : "❌"}, Inline: ${inlineUrls.length}/2`);
-
-    // === Assemble final content ===
-    // 1. Strip any duplicate title the model accidentally added at the top
-    let finalContent = stripDuplicateTitle(blogPost.content, blogPost.title);
-    // 2. Ensure a FAQ section exists (generate fallback if model skipped it)
-    finalContent = await ensureFaqSection(finalContent, blogPost.title);
-    // 3. Inject inline images at strategic H2 positions (skipping FAQ)
-    finalContent = injectInlineImages(finalContent, inlineUrls);
-    // 4. Append internal-linking section at the end (above auto-rendered Related Posts)
-    finalContent = finalContent.trimEnd() + "\n" + buildInternalLinksSection();
-    // NOTE: Table of Contents is rendered by the React TableOfContents component
-    //       (positioned in the middle of the article in BlogPost.tsx) — no markdown TOC needed.
-
-    const wordCount = finalContent.split(/\s+/).length;
-    const readTime = Math.ceil(wordCount / 200);
-
-    // Ensure unique slug — append short timestamp suffix if it already exists
-    let finalSlug = blogPost.slug;
-    const { data: existing } = await supabase
-      .from('blog_posts')
-      .select('id')
-      .eq('slug', finalSlug)
-      .maybeSingle();
-    if (existing) {
-      finalSlug = `${blogPost.slug}-${Date.now().toString(36).slice(-5)}`;
-    }
-
-    const { data: savedPost, error: saveError } = await supabase
-      .from('blog_posts')
-      .insert({
-        title: blogPost.title,
-        slug: finalSlug,
-        content: finalContent,
-        excerpt: blogPost.excerpt,
-        author_name: 'FranchiseLeadsPro Research Team',
-        tags: blogPost.tags,
-        is_published: !publishAsDraft,
-        published_at: publishAsDraft ? null : new Date().toISOString(),
-        read_time_minutes: readTime,
-        seo_title: blogPost.title,
-        seo_description: blogPost.excerpt,
-        featured_image_url: coverUrl,
-      })
-      .select()
-      .single();
-
-    if (saveError) {
-      throw new Error(`Database save failed: ${saveError.message}`);
-    }
-
-    console.log(`✅ Saved: ${savedPost.id} (${wordCount} words, ${readTime} min read)`);
-
-    // Auto-ping search engines after publishing
-    if (!publishAsDraft) {
-      try {
-        const postUrl = `https://www.franchiseleadspro.com/blog/${blogPost.slug}`;
-        const sitemapUrls = [
-          'https://www.franchiseleadspro.com/sitemap.xml',
-          'https://www.franchiseleadspro.com/sitemap-blog.xml',
-        ];
-
-        const pingRequests: Promise<Response>[] = [];
-
-        // Ping Google & Bing for sitemap re-crawl
-        for (const sm of sitemapUrls) {
-          pingRequests.push(fetch(`https://www.google.com/ping?sitemap=${encodeURIComponent(sm)}`));
-          pingRequests.push(fetch(`https://www.bing.com/ping?sitemap=${encodeURIComponent(sm)}`));
-        }
-
-        // IndexNow ping to Bing/Yandex for instant discovery
-        const indexNowKey = '8c9d4e5f6a7b8c9d0e1f2a3b4c5d6e7f';
-        pingRequests.push(
-          fetch('https://api.indexnow.org/indexnow', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              host: 'www.franchiseleadspro.com',
-              key: indexNowKey,
-              keyLocation: `https://www.franchiseleadspro.com/${indexNowKey}.txt`,
-              urlList: [postUrl, 'https://www.franchiseleadspro.com/blog'],
-            }),
-          })
-        );
-
-        // Google Indexing API - submit for instant crawl
-        const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-        const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-        pingRequests.push(
-          fetch(`${supabaseUrl}/functions/v1/google-indexing`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${supabaseKey}`,
-            },
-            body: JSON.stringify({
-              urls: [postUrl, 'https://www.franchiseleadspro.com/blog'],
-            }),
-          })
-        );
-
-        // Warm the post URL cache
-        pingRequests.push(fetch(postUrl, { method: 'GET' }));
-
-        const results = await Promise.allSettled(pingRequests);
-        const ok = results.filter(r => r.status === 'fulfilled').length;
-        console.log(`🔔 Search engine ping: ${ok}/${results.length} successful (includes Google Indexing API)`);
-      } catch (pingErr) {
-        console.error('Ping failed (non-fatal):', pingErr);
-      }
-    }
+    // Synchronous path (rare — only when caller explicitly opts in)
+    const { savedPost, wordCount, readTime, topicData } = await runGenerationPipeline(supabase, publishAsDraft);
 
     return new Response(
-      JSON.stringify({ 
-        success: true, 
+      JSON.stringify({
+        success: true,
         message: publishAsDraft ? "Draft saved!" : "Blog published!",
         post: {
           id: savedPost.id,
@@ -872,22 +872,18 @@ serve(async (req) => {
           slug: savedPost.slug,
           wordCount,
           readTime,
-          isDraft: publishAsDraft
+          isDraft: publishAsDraft,
         },
         category: topicData.category,
         topic: topicData.topic,
-        intervalHours
+        intervalHours,
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
-
   } catch (error) {
     console.error("Auto-blog error:", error);
     return new Response(
-      JSON.stringify({ 
-        success: false, 
-        error: error.message 
-      }),
+      JSON.stringify({ success: false, error: (error as Error).message }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
