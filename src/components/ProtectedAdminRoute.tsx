@@ -13,46 +13,59 @@ export default function ProtectedAdminRoute({ children }: ProtectedAdminRoutePro
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const getSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      const currentUser = session?.user ?? null;
-      setUser(currentUser);
-      
-      if (currentUser) {
-        const { data } = await supabase
+    let cancelled = false;
+
+    // Safety: never get stuck on the loader for more than 5s.
+    const safety = setTimeout(() => {
+      if (!cancelled) setIsLoading(false);
+    }, 5000);
+
+    const checkAdmin = async (currentUser: User | null) => {
+      if (!currentUser) {
+        if (!cancelled) {
+          setIsAdmin(false);
+          setIsLoading(false);
+        }
+        return;
+      }
+      try {
+        const { data, error } = await supabase
           .from('admin_users')
           .select('id')
           .eq('user_id', currentUser.id)
           .maybeSingle();
-        setIsAdmin(!!data);
+        if (error) console.error('admin_users lookup error:', error);
+        if (!cancelled) setIsAdmin(!!data);
+      } catch (err) {
+        console.error('admin check failed:', err);
+        if (!cancelled) setIsAdmin(false);
+      } finally {
+        if (!cancelled) setIsLoading(false);
       }
-      
-      setIsLoading(false);
     };
 
-    getSession();
+    // Subscribe FIRST, then read session — avoids missing the INITIAL_SESSION event.
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      const currentUser = session?.user ?? null;
+      setUser(currentUser);
+      // Defer DB call so we don't deadlock the auth callback.
+      setTimeout(() => checkAdmin(currentUser), 0);
+    });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        const currentUser = session?.user ?? null;
-        setUser(currentUser);
-        
-        if (currentUser) {
-          const { data } = await supabase
-            .from('admin_users')
-            .select('id')
-            .eq('user_id', currentUser.id)
-            .maybeSingle();
-          setIsAdmin(!!data);
-        } else {
-          setIsAdmin(false);
-        }
-        
-        setIsLoading(false);
-      }
-    );
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      const currentUser = session?.user ?? null;
+      setUser(currentUser);
+      checkAdmin(currentUser);
+    }).catch((err) => {
+      console.error('getSession failed:', err);
+      if (!cancelled) setIsLoading(false);
+    });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      cancelled = true;
+      clearTimeout(safety);
+      subscription.unsubscribe();
+    };
   }, []);
 
   const handleAuthSuccess = () => {};
