@@ -235,39 +235,29 @@ Make it feel like breaking insights that readers can't get anywhere else.
 // ============================================================
 
 async function generateImageBase64(prompt: string): Promise<string | null> {
-  const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
-  if (!GEMINI_API_KEY) return null;
-
+  // Use Pollinations.ai — free, no API key, no quota.
+  // Returns a JPEG image as a data URL.
   try {
-    // Free Gemini image generation via gemini-2.5-flash-image-preview (Nano Banana)
-    const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${GEMINI_API_KEY}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [{ role: "user", parts: [{ text: prompt }] }],
-          generationConfig: { responseModalities: ["IMAGE"] },
-        }),
-      }
-    );
-
+    const seed = Math.floor(Math.random() * 1_000_000);
+    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=1280&height=720&seed=${seed}&nologo=true&model=flux`;
+    const res = await fetch(url, { method: "GET" });
     if (!res.ok) {
-      console.error("Gemini image gen failed:", res.status, (await res.text()).slice(0, 300));
+      console.error("Pollinations image gen failed:", res.status);
       return null;
     }
-
-    const data = await res.json();
-    const parts = data.candidates?.[0]?.content?.parts || [];
-    for (const p of parts) {
-      const inline = p.inlineData || p.inline_data;
-      if (inline?.data) {
-        const mime = inline.mimeType || inline.mime_type || "image/png";
-        return `data:${mime};base64,${inline.data}`;
-      }
+    const buf = new Uint8Array(await res.arrayBuffer());
+    if (buf.length < 1000) {
+      console.error("Pollinations returned too-small image:", buf.length, "bytes");
+      return null;
     }
-    console.error("Gemini image gen: no inline image in response");
-    return null;
+    // Convert to base64
+    let binary = "";
+    const chunkSize = 0x8000;
+    for (let i = 0; i < buf.length; i += chunkSize) {
+      binary += String.fromCharCode(...buf.subarray(i, i + chunkSize));
+    }
+    const b64 = btoa(binary);
+    return `data:image/jpeg;base64,${b64}`;
   } catch (e) {
     console.error("Image gen error:", e);
     return null;
@@ -755,8 +745,6 @@ serve(async (req) => {
     const wordCount = finalContent.split(/\s+/).length;
     const readTime = Math.ceil(wordCount / 200);
 
-    const { data: savedPost, error: saveError } = await supabase
-      .from('blog_posts')
     // Ensure unique slug — append short timestamp suffix if it already exists
     let finalSlug = blogPost.slug;
     const { data: existing } = await supabase
