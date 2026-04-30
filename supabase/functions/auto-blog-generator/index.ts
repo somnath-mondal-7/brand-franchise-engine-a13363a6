@@ -251,6 +251,9 @@ async function generateImageBase64(prompt: string): Promise<string | null> {
       clearTimeout(timer);
       if (!res.ok) {
         console.error(`Pollinations attempt ${attempt} failed: ${res.status}`);
+        // Back off harder on rate-limit
+        const backoff = res.status === 429 ? 8000 * attempt : 2000 * attempt;
+        await new Promise((r) => setTimeout(r, backoff));
         continue;
       }
       const buf = new Uint8Array(await res.arrayBuffer());
