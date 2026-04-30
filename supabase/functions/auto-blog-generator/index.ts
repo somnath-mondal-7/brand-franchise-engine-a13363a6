@@ -235,29 +235,42 @@ Make it feel like breaking insights that readers can't get anywhere else.
 // ============================================================
 
 async function generateImageBase64(prompt: string): Promise<string | null> {
-  // Use Pollinations.ai — free, no API key, no quota.
-  // Returns a JPEG image as a data URL.
+  // Use Lovable AI Gateway (Gemini 2.5 Flash Image / Nano Banana) — fast & reliable.
+  const apiKey = Deno.env.get("LOVABLE_API_KEY");
+  if (!apiKey) {
+    console.error("LOVABLE_API_KEY missing — cannot generate images");
+    return null;
+  }
   try {
-    const seed = Math.floor(Math.random() * 1_000_000);
-    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=1280&height=720&seed=${seed}&nologo=true&model=flux`;
-    const res = await fetch(url, { method: "GET" });
+    const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "google/gemini-2.5-flash-image",
+        messages: [
+          {
+            role: "user",
+            content: `Generate a high-quality, professional, photorealistic 16:9 blog cover image. Subject: ${prompt}. Style: clean, modern, vibrant business/marketing photography. No text, no watermarks, no logos.`,
+          },
+        ],
+        modalities: ["image", "text"],
+      }),
+    });
     if (!res.ok) {
-      console.error("Pollinations image gen failed:", res.status);
+      const txt = await res.text();
+      console.error("Lovable AI image gen failed:", res.status, txt.slice(0, 300));
       return null;
     }
-    const buf = new Uint8Array(await res.arrayBuffer());
-    if (buf.length < 1000) {
-      console.error("Pollinations returned too-small image:", buf.length, "bytes");
+    const data = await res.json();
+    const dataUrl = data?.choices?.[0]?.message?.images?.[0]?.image_url?.url;
+    if (!dataUrl || !dataUrl.startsWith("data:image/")) {
+      console.error("No image returned from Lovable AI");
       return null;
     }
-    // Convert to base64
-    let binary = "";
-    const chunkSize = 0x8000;
-    for (let i = 0; i < buf.length; i += chunkSize) {
-      binary += String.fromCharCode(...buf.subarray(i, i + chunkSize));
-    }
-    const b64 = btoa(binary);
-    return `data:image/jpeg;base64,${b64}`;
+    return dataUrl;
   } catch (e) {
     console.error("Image gen error:", e);
     return null;
