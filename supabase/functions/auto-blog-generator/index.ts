@@ -235,32 +235,39 @@ Make it feel like breaking insights that readers can't get anywhere else.
 // ============================================================
 
 async function generateImageBase64(prompt: string): Promise<string | null> {
-  const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-  if (!LOVABLE_API_KEY) return null;
+  const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
+  if (!GEMINI_API_KEY) return null;
 
   try {
-    const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "google/gemini-2.5-flash-image",
-        messages: [{ role: "user", content: prompt }],
-        modalities: ["image", "text"],
-      }),
-    });
+    // Free Gemini image generation via gemini-2.5-flash-image-preview (Nano Banana)
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${GEMINI_API_KEY}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ role: "user", parts: [{ text: prompt }] }],
+          generationConfig: { responseModalities: ["IMAGE"] },
+        }),
+      }
+    );
 
     if (!res.ok) {
-      console.error("Image gen failed:", res.status, await res.text());
+      console.error("Gemini image gen failed:", res.status, (await res.text()).slice(0, 300));
       return null;
     }
 
     const data = await res.json();
-    const dataUrl = data.choices?.[0]?.message?.images?.[0]?.image_url?.url;
-    if (!dataUrl || !dataUrl.startsWith("data:image")) return null;
-    return dataUrl;
+    const parts = data.candidates?.[0]?.content?.parts || [];
+    for (const p of parts) {
+      const inline = p.inlineData || p.inline_data;
+      if (inline?.data) {
+        const mime = inline.mimeType || inline.mime_type || "image/png";
+        return `data:${mime};base64,${inline.data}`;
+      }
+    }
+    console.error("Gemini image gen: no inline image in response");
+    return null;
   } catch (e) {
     console.error("Image gen error:", e);
     return null;
