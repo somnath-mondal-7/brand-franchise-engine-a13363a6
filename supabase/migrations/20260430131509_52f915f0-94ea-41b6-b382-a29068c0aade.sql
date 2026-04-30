@@ -1,0 +1,1 @@
+DELETE FROM public.blog_posts WHERE slug = 'stop-wasting-franchise-marketing-budget-fybof' OR slug LIKE 'stop-wasting-franchise-marketing%';
