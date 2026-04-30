@@ -755,8 +755,6 @@ serve(async (req) => {
     const wordCount = finalContent.split(/\s+/).length;
     const readTime = Math.ceil(wordCount / 200);
 
-    const { data: savedPost, error: saveError } = await supabase
-      .from('blog_posts')
     // Ensure unique slug — append short timestamp suffix if it already exists
     let finalSlug = blogPost.slug;
     const { data: existing } = await supabase
