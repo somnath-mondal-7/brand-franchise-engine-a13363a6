@@ -442,8 +442,8 @@ Casual 2-3 sentence answer.` }],
 
 
 async function generateBlogWithAI(researchContext: string, topicData: typeof RESEARCH_TOPICS[0]): Promise<{ title: string; content: string; excerpt: string; slug: string; tags: string[]; coverImagePrompt?: string; inlineImagePrompts?: string[] }> {
-  const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-  if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
+  const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
+  if (!GEMINI_API_KEY) throw new Error("GEMINI_API_KEY not configured");
 
   const systemPrompt = `You are a real human blogger for FranchiseLeadsPro who has been in franchise marketing for over a decade. You're writing like you're texting a friend who runs a franchise — warm, casual, helpful, never corporate.
 
@@ -563,89 +563,73 @@ CRITICAL REQUIREMENTS (your post will be REJECTED if any of these are missing):
 
 Every sentence must sound human, like a friend giving advice — not a corporate report.`;
 
-  // Try preferred model first, then fallback to lite if credits/rate-limit errors hit
-  const modelChain = ["google/gemini-2.5-flash", "google/gemini-2.5-flash-lite"];
+  // Try preferred model first, then fallback to lite if rate-limit/quota errors hit
+  const modelChain = ["gemini-2.5-flash", "gemini-2.5-flash-lite"];
   let lastError = "";
 
+  // Gemini structured output via responseSchema
+  const responseSchema = {
+    type: "object",
+    properties: {
+      title: { type: "string", description: "Casual, friendly title under 70 chars" },
+      excerpt: { type: "string", description: "1 sentence hook, max 160 chars" },
+      content: { type: "string", description: "Full markdown body, 2,200-2,800 words. MUST NOT include the title or any H1. Start directly with the opening hook paragraph. Must include a ## FAQ section with 6-7 ### questions." },
+      slug: { type: "string", description: "SEO-friendly URL slug, lowercase, dashes only" },
+      tags: { type: "array", items: { type: "string" }, description: "5 relevant tags" },
+      coverImagePrompt: { type: "string", description: "Vivid 1-2 sentence description for the cover image" },
+      inlineImagePrompts: { type: "array", items: { type: "string" }, description: "Exactly 2 vivid descriptions for inline images" },
+    },
+    required: ["title", "excerpt", "content", "slug", "tags", "coverImagePrompt", "inlineImagePrompts"],
+  };
+
   for (const model of modelChain) {
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model,
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userPrompt },
-        ],
-        temperature: 0.85,
-        max_tokens: 12000,
-        tools: [
-          {
-            type: "function",
-            function: {
-              name: "publish_blog_post",
-              description: "Publish a blog post with all required fields filled in.",
-              parameters: {
-                type: "object",
-                properties: {
-                  title: { type: "string", description: "Casual, friendly title under 70 chars" },
-                  excerpt: { type: "string", description: "1 sentence hook, max 160 chars" },
-                  content: { type: "string", description: "Full markdown body, 2,200-2,800 words. MUST NOT include the title or any H1. Start directly with the opening hook paragraph. Must include a ## FAQ section with 6-7 ### questions." },
-                  slug: { type: "string", description: "SEO-friendly URL slug, lowercase, dashes only" },
-                  tags: {
-                    type: "array",
-                    items: { type: "string" },
-                    description: "5 relevant tags",
-                  },
-                  coverImagePrompt: { type: "string", description: "Vivid 1-2 sentence description for the cover image" },
-                  inlineImagePrompts: {
-                    type: "array",
-                    items: { type: "string" },
-                    description: "Exactly 2 vivid descriptions for inline images",
-                  },
-                },
-                required: ["title", "excerpt", "content", "slug", "tags", "coverImagePrompt", "inlineImagePrompts"],
-                additionalProperties: false,
-              },
-            },
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: systemPrompt }] },
+          contents: [{ role: "user", parts: [{ text: userPrompt }] }],
+          generationConfig: {
+            temperature: 0.85,
+            maxOutputTokens: 16000,
+            responseMimeType: "application/json",
+            responseSchema,
           },
-        ],
-        tool_choice: { type: "function", function: { name: "publish_blog_post" } },
-      }),
-    });
+        }),
+      }
+    );
 
     if (!response.ok) {
       const errorText = await response.text();
       lastError = `${response.status} - ${errorText}`;
       console.error(`Model ${model} failed: ${lastError}`);
-      // 402 = credits exhausted, 429 = rate limit -> try fallback
-      if (response.status === 402 || response.status === 429) continue;
-      throw new Error(`AI generation failed: ${lastError}`);
+      // 429 = rate limit / quota -> try fallback model
+      if (response.status === 429 || response.status === 503) continue;
+      throw new Error(`Gemini generation failed: ${lastError}`);
     }
 
     const data = await response.json();
-    const toolCall = data.choices?.[0]?.message?.tool_calls?.[0];
-    if (!toolCall?.function?.arguments) {
-      console.error(`Model ${model} returned no tool call:`, JSON.stringify(data).slice(0, 500));
-      lastError = "AI did not return a structured blog post";
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!text) {
+      console.error(`Model ${model} returned no text:`, JSON.stringify(data).slice(0, 500));
+      lastError = "Gemini did not return content";
       continue;
     }
 
     try {
-      const parsed = JSON.parse(toolCall.function.arguments);
-      console.log(`✅ Generated with model: ${model}`);
+      const parsed = JSON.parse(text);
+      console.log(`✅ Generated with Gemini model: ${model}`);
       return parsed;
     } catch (e) {
-      console.error("Tool args parse error:", e, toolCall.function.arguments?.slice(0, 500));
-      lastError = "Failed to parse AI tool call arguments";
+      console.error("JSON parse error:", e, text?.slice(0, 500));
+      lastError = "Failed to parse Gemini JSON output";
       continue;
     }
   }
 
-  throw new Error(`AI generation failed across all models. Last error: ${lastError}. If this is a 402 error, your Lovable AI credits are exhausted — top up at Settings → Workspace → Usage.`);
+  throw new Error(`Gemini generation failed across all models. Last error: ${lastError}. If this is a 429 quota error, you've hit the free-tier daily limit (1500 req/day on flash, 1500 on flash-lite) — wait until midnight Pacific or upgrade your Google AI key.`);
 }
 
 async function getLastPostTime(supabase: any): Promise<Date | null> {
