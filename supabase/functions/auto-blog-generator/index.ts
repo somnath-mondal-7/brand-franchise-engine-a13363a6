@@ -237,9 +237,11 @@ Make it feel like breaking insights that readers can't get anywhere else.
 async function generateImageBase64(prompt: string): Promise<string | null> {
   // Use Pollinations.ai — free, no API key, with timeout + retry handling.
   // Smaller dimensions + 'turbo' model = faster, fewer timeouts.
-  const enhancedPrompt = `professional photorealistic blog cover, ${prompt}, clean modern vibrant business marketing photography, no text no watermarks no logos`;
+  // CRITICAL: explicitly forbid any text/letters/typography — Pollinations otherwise hallucinates garbled text
+  const enhancedPrompt = `${prompt}, professional editorial photography, cinematic lighting, shallow depth of field, modern business environment, vibrant natural colors, ultra detailed, magazine quality, 8k, NO TEXT, NO LETTERS, NO TYPOGRAPHY, NO WORDS, NO WATERMARKS, NO LOGOS, NO UI, NO CHARTS WITH LABELS, pure imagery only`;
+  const negativePrompt = "text, letters, words, typography, watermark, logo, signature, caption, subtitle, ui, interface, low quality, blurry, distorted, deformed";
   const seed = Math.floor(Math.random() * 1_000_000);
-  const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(enhancedPrompt)}?width=1024&height=576&seed=${seed}&nologo=true&model=turbo`;
+  const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(enhancedPrompt)}?width=1280&height=720&seed=${seed}&nologo=true&model=flux&enhance=true&negative=${encodeURIComponent(negativePrompt)}`;
 
   const MAX_ATTEMPTS = 4;
   const TIMEOUT_MS = 60_000;
