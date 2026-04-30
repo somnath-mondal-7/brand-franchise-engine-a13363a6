@@ -236,12 +236,13 @@ Make it feel like breaking insights that readers can't get anywhere else.
 
 async function generateImageBase64(prompt: string): Promise<string | null> {
   // Use Pollinations.ai — free, no API key, with timeout + retry handling.
-  const enhancedPrompt = `professional photorealistic 16:9 blog cover, ${prompt}, clean modern vibrant business marketing photography, no text no watermarks no logos`;
+  // Smaller dimensions + 'turbo' model = faster, fewer timeouts.
+  const enhancedPrompt = `professional photorealistic blog cover, ${prompt}, clean modern vibrant business marketing photography, no text no watermarks no logos`;
   const seed = Math.floor(Math.random() * 1_000_000);
-  const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(enhancedPrompt)}?width=1280&height=720&seed=${seed}&nologo=true&model=flux&enhance=true`;
+  const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(enhancedPrompt)}?width=1024&height=576&seed=${seed}&nologo=true&model=turbo`;
 
-  const MAX_ATTEMPTS = 3;
-  const TIMEOUT_MS = 45_000;
+  const MAX_ATTEMPTS = 4;
+  const TIMEOUT_MS = 60_000;
 
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     const controller = new AbortController();
