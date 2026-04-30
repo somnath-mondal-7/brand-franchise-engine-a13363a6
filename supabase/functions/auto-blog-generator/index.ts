@@ -722,10 +722,14 @@ serve(async (req) => {
           `Photograph of business professionals in a modern office discussing strategy related to: ${topicData.angle}. Bright, natural light, candid feel.`,
         ];
 
-    const [coverDataUrl, ...inlineDataUrls] = await Promise.all([
-      generateImageBase64(coverPrompt),
-      ...inlinePrompts.map((p) => generateImageBase64(p)),
-    ]);
+    // Sequential generation to avoid Pollinations rate-limits (429s when parallel)
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+    const coverDataUrl = await generateImageBase64(coverPrompt);
+    const inlineDataUrls: (string | null)[] = [];
+    for (const p of inlinePrompts) {
+      await sleep(2500); // breathing room between requests
+      inlineDataUrls.push(await generateImageBase64(p));
+    }
 
     let coverUrl: string | null = null;
     if (coverDataUrl) {
