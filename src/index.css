@@ -250,8 +250,8 @@
 
 .blog-content p,
 .blog-content .ql-editor p {
-  font-size: 1.125rem !important;
-  line-height: 1.8 !important;
+  font-size: 1.25rem !important;
+  line-height: 1.85 !important;
   margin-bottom: 1.5em !important;
   color: hsl(var(--brand-gray)) !important;
 }
