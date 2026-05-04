@@ -234,16 +234,63 @@ Make it feel like breaking insights that readers can't get anywhere else.
 // IMAGE GENERATION + UPLOAD HELPERS
 // ============================================================
 
+// Generate image using Google Gemini Nano Banana (gemini-2.5-flash-image).
+// Falls back to Pollinations.ai if Gemini fails or quota is exhausted.
 async function generateImageBase64(prompt: string): Promise<string | null> {
-  // Use Pollinations.ai — free, no API key, with timeout + retry handling.
-  // Smaller dimensions + 'turbo' model = faster, fewer timeouts.
-  // CRITICAL: explicitly forbid any text/letters/typography — Pollinations otherwise hallucinates garbled text
-  const enhancedPrompt = `${prompt}, professional editorial photography, cinematic lighting, shallow depth of field, modern business environment, vibrant natural colors, ultra detailed, magazine quality, 8k, NO TEXT, NO LETTERS, NO TYPOGRAPHY, NO WORDS, NO WATERMARKS, NO LOGOS, NO UI, NO CHARTS WITH LABELS, pure imagery only`;
+  const enhancedPrompt = `Professional editorial photograph: ${prompt}. Cinematic lighting, shallow depth of field, modern business environment, vibrant natural colors, ultra-detailed, magazine-quality composition. ABSOLUTELY NO text, letters, typography, words, watermarks, logos, UI elements, or charts with labels. Pure photographic imagery only.`;
+
+  // ---- Attempt 1: Google Gemini Nano Banana (free tier) ----
+  const geminiKey = Deno.env.get("GEMINI_API_KEY");
+  if (geminiKey) {
+    try {
+      console.log("🎨 Trying Gemini Nano Banana...");
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 45_000);
+      const res = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${geminiKey}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          signal: controller.signal,
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: enhancedPrompt }] }],
+            generationConfig: { responseModalities: ["IMAGE"] },
+          }),
+        },
+      );
+      clearTimeout(timer);
+
+      if (res.ok) {
+        const data = await res.json();
+        const parts = data?.candidates?.[0]?.content?.parts ?? [];
+        for (const part of parts) {
+          const inline = part?.inlineData ?? part?.inline_data;
+          if (inline?.data) {
+            const mime = inline.mimeType || inline.mime_type || "image/png";
+            console.log(`✅ Nano Banana image ok (${inline.data.length} b64 chars)`);
+            return `data:${mime};base64,${inline.data}`;
+          }
+        }
+        console.warn("Gemini returned no image data, falling back to Pollinations");
+      } else {
+        const errText = await res.text();
+        console.error(`Gemini image failed (${res.status}):`, errText.slice(0, 300));
+      }
+    } catch (e) {
+      console.error("Gemini image error:", (e as Error).message);
+    }
+  } else {
+    console.warn("GEMINI_API_KEY missing — skipping Nano Banana");
+  }
+
+  // ---- Attempt 2: Pollinations.ai fallback ----
+  console.log("🎨 Falling back to Pollinations...");
+  const pollPrompt = `${enhancedPrompt}, 8k`;
   const negativePrompt = "text, letters, words, typography, watermark, logo, signature, caption, subtitle, ui, interface, low quality, blurry, distorted, deformed";
   const seed = Math.floor(Math.random() * 1_000_000);
-  const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(enhancedPrompt)}?width=1280&height=720&seed=${seed}&nologo=true&model=flux&enhance=true&negative=${encodeURIComponent(negativePrompt)}`;
+  const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(pollPrompt)}?width=1280&height=720&seed=${seed}&nologo=true&model=flux&enhance=true&negative=${encodeURIComponent(negativePrompt)}`;
 
-  const MAX_ATTEMPTS = 4;
+  const MAX_ATTEMPTS = 3;
   const TIMEOUT_MS = 60_000;
 
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
@@ -253,32 +300,26 @@ async function generateImageBase64(prompt: string): Promise<string | null> {
       const res = await fetch(url, { signal: controller.signal });
       clearTimeout(timer);
       if (!res.ok) {
-        console.error(`Pollinations attempt ${attempt} failed: ${res.status}`);
-        // Back off harder on rate-limit
         const backoff = res.status === 429 ? 8000 * attempt : 2000 * attempt;
         await new Promise((r) => setTimeout(r, backoff));
         continue;
       }
       const buf = new Uint8Array(await res.arrayBuffer());
-      if (buf.byteLength < 1000) {
-        console.error(`Pollinations attempt ${attempt}: response too small (${buf.byteLength}b)`);
-        continue;
-      }
-      // Convert to base64 data URL (chunked to avoid stack overflow)
+      if (buf.byteLength < 1000) continue;
       let binary = "";
       const CHUNK = 0x8000;
       for (let i = 0; i < buf.length; i += CHUNK) {
         binary += String.fromCharCode.apply(null, buf.subarray(i, i + CHUNK) as unknown as number[]);
       }
       const b64 = btoa(binary);
-      console.log(`✅ Pollinations image ok (attempt ${attempt}, ${buf.byteLength} bytes)`);
+      console.log(`✅ Pollinations fallback ok (attempt ${attempt}, ${buf.byteLength} bytes)`);
       return `data:image/jpeg;base64,${b64}`;
     } catch (e) {
       clearTimeout(timer);
       console.error(`Pollinations attempt ${attempt} error:`, (e as Error).message);
     }
   }
-  console.error("All Pollinations attempts exhausted — skipping image");
+  console.error("All image generation attempts exhausted");
   return null;
 }
 
