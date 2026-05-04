@@ -234,59 +234,69 @@ Make it feel like breaking insights that readers can't get anywhere else.
 // IMAGE GENERATION + UPLOAD HELPERS
 // ============================================================
 
-// Generate image using Google Gemini Nano Banana (gemini-2.5-flash-image).
-// Falls back to Pollinations.ai if Gemini fails or quota is exhausted.
+// Generate image using Lovable AI Gateway — Nano Banana Pro (gemini-3-pro-image-preview)
+// for highest fidelity faces, with Nano Banana 2 and Pollinations as fallbacks.
 async function generateImageBase64(prompt: string): Promise<string | null> {
-  const enhancedPrompt = `Professional editorial photograph: ${prompt}. Cinematic lighting, shallow depth of field, modern business environment, vibrant natural colors, ultra-detailed, magazine-quality composition. ABSOLUTELY NO text, letters, typography, words, watermarks, logos, UI elements, or charts with labels. Pure photographic imagery only.`;
+  const enhancedPrompt = `Ultra-photorealistic editorial photograph, shot on Canon EOS R5 with 85mm f/1.4 lens: ${prompt}. Sharp focus on subjects, anatomically perfect human faces with realistic skin texture, natural pores, lifelike eyes with clear iris detail, accurate facial proportions, symmetrical features, natural expressions, professional studio-quality cinematic lighting, shallow depth of field, vibrant natural colors, 8k ultra-detailed, magazine-quality composition. Faces must be clear, fully visible, in-focus, and identifiable. ABSOLUTELY NO text, letters, typography, words, watermarks, logos, UI elements, charts, deformed faces, distorted features, extra limbs, or blurry faces. Pure photographic imagery only.`;
 
-  // ---- Attempt 1: Google Gemini Nano Banana (free tier) ----
-  const geminiKey = Deno.env.get("GEMINI_API_KEY");
-  if (geminiKey) {
+  const lovableKey = Deno.env.get("LOVABLE_API_KEY");
+
+  // Helper to call Lovable AI Gateway with a given image model
+  async function tryLovableModel(model: string, label: string): Promise<string | null> {
+    if (!lovableKey) return null;
     try {
-      console.log("🎨 Trying Gemini Nano Banana...");
+      console.log(`🎨 Trying ${label} (${model})...`);
       const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), 45_000);
-      const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${geminiKey}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          signal: controller.signal,
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: enhancedPrompt }] }],
-            generationConfig: { responseModalities: ["IMAGE"] },
-          }),
+      const timer = setTimeout(() => controller.abort(), 90_000);
+      const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${lovableKey}`,
+          "Content-Type": "application/json",
         },
-      );
+        signal: controller.signal,
+        body: JSON.stringify({
+          model,
+          messages: [{ role: "user", content: enhancedPrompt }],
+          modalities: ["image", "text"],
+        }),
+      });
       clearTimeout(timer);
-
-      if (res.ok) {
-        const data = await res.json();
-        const parts = data?.candidates?.[0]?.content?.parts ?? [];
-        for (const part of parts) {
-          const inline = part?.inlineData ?? part?.inline_data;
-          if (inline?.data) {
-            const mime = inline.mimeType || inline.mime_type || "image/png";
-            console.log(`✅ Nano Banana image ok (${inline.data.length} b64 chars)`);
-            return `data:${mime};base64,${inline.data}`;
-          }
-        }
-        console.warn("Gemini returned no image data, falling back to Pollinations");
-      } else {
+      if (!res.ok) {
         const errText = await res.text();
-        console.error(`Gemini image failed (${res.status}):`, errText.slice(0, 300));
+        console.error(`${label} failed (${res.status}):`, errText.slice(0, 300));
+        return null;
       }
+      const data = await res.json();
+      const imgUrl = data?.choices?.[0]?.message?.images?.[0]?.image_url?.url;
+      if (imgUrl && imgUrl.startsWith("data:image")) {
+        console.log(`✅ ${label} image ok`);
+        return imgUrl;
+      }
+      console.warn(`${label} returned no image data`);
+      return null;
     } catch (e) {
-      console.error("Gemini image error:", (e as Error).message);
+      console.error(`${label} error:`, (e as Error).message);
+      return null;
     }
-  } else {
-    console.warn("GEMINI_API_KEY missing — skipping Nano Banana");
   }
 
-  // ---- Attempt 2: Pollinations.ai fallback ----
+  // ---- Attempt 1: Nano Banana Pro (highest quality, best faces) ----
+  let result = await tryLovableModel("google/gemini-3-pro-image-preview", "Nano Banana Pro");
+  if (result) return result;
+
+  // ---- Attempt 2: Nano Banana 2 (fast pro-quality) ----
+  result = await tryLovableModel("google/gemini-3.1-flash-image-preview", "Nano Banana 2");
+  if (result) return result;
+
+  // ---- Attempt 3: Original Nano Banana ----
+  result = await tryLovableModel("google/gemini-2.5-flash-image", "Nano Banana");
+  if (result) return result;
+
+  // ---- Attempt 4: Pollinations.ai fallback ----
   console.log("🎨 Falling back to Pollinations...");
   const pollPrompt = `${enhancedPrompt}, 8k`;
-  const negativePrompt = "text, letters, words, typography, watermark, logo, signature, caption, subtitle, ui, interface, low quality, blurry, distorted, deformed";
+  const negativePrompt = "text, letters, words, typography, watermark, logo, signature, caption, subtitle, ui, interface, low quality, blurry, distorted, deformed face, disfigured, bad anatomy, extra limbs, mutated hands, ugly, poorly drawn face";
   const seed = Math.floor(Math.random() * 1_000_000);
   const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(pollPrompt)}?width=1280&height=720&seed=${seed}&nologo=true&model=flux&enhance=true&negative=${encodeURIComponent(negativePrompt)}`;
 
