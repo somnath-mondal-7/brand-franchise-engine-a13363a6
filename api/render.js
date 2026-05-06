@@ -10,7 +10,7 @@ const supportedServiceSlugs = new Set([...curatedServiceSlugs]);
 
 const SITE = 'https://www.franchiseleadspro.com';
 const BRAND = 'FranchiseLeadsPro';
-const PHONE = '+1 (551)-201-27-29';
+const PHONE = '+1 (838)-247-5198';
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL || 'https://yquuidpajigvecyonqir.supabase.co';
 const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlxdXVpZHBhamlndmVjeW9ucWlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg3OTM1MDMsImV4cCI6MjA3NDM2OTUwM30.FIpWeiS_2B98HSE2Z2yxuOGp4gkO74rYIrAp-Aj2YTg';
 
@@ -180,7 +180,7 @@ function buildFooter() {
         </div>
         <div>
           <p class="footer-title">Contact</p>
-          <p>Phone: <a href="tel:+15512012729">${PHONE}</a></p>
+          <p>Phone: <a href="tel:+18382475198">${PHONE}</a></p>
           <p>Email: <a href="mailto:support@franchiseleadspro.com">support@franchiseleadspro.com</a></p>
         </div>
         <div>
@@ -1297,7 +1297,7 @@ function buildWebPageSchema(title, description, canonical) {
       "logo": `${SITE}/logo-hq.png`,
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+1-551-201-2729",
+        "telephone": "+1-838-247-5198",
         "contactType": "Sales",
         "areaServed": ["US", "IN", "GB", "CA", "AU", "AE", "KW"],
         "availableLanguage": "English"
