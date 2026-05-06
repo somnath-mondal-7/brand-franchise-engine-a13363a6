@@ -43,9 +43,9 @@ const Navigation = () => {
 
           {/* Phone and CTA */}
           <div className="hidden lg:flex items-center space-x-4">
-            <a href="tel:+15512012729">
+            <a href="tel:+18382475198">
               <Button variant="outline" className="border-border text-foreground hover:bg-muted">
-                <Phone className="w-4 h-4 mr-2" />+1 (551)-201-27-29
+                <Phone className="w-4 h-4 mr-2" />+1 (838)-247-5198
               </Button>
             </a>
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-2 rounded-lg" onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}>Let's talk</Button>
@@ -70,10 +70,10 @@ const Navigation = () => {
             <Link to="/blog" className="block px-3 py-3 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors duration-200" onClick={toggleMenu}>Blog</Link>
             <Link to="/contact" className="block px-3 py-3 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors duration-200" onClick={toggleMenu}>Contact Us</Link>
             <div className="px-3 py-3 space-y-2 border-t border-border mt-2">
-              <a href="tel:+15512012729" className="block">
+              <a href="tel:+18382475198" className="block">
                 <Button variant="outline" className="w-full border-border text-foreground min-h-[44px]">
                   <Phone className="w-4 h-4 mr-2" />
-                  <span className="text-sm">+1 (551)-201-27-29</span>
+                  <span className="text-sm">+1 (838)-247-5198</span>
                 </Button>
               </a>
               <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground min-h-[44px]" onClick={() => { window.open('https://calendly.com/lets-build-your-brand', '_blank'); toggleMenu(); }}>Let's talk</Button>
