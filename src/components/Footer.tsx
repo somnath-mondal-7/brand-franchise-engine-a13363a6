@@ -90,7 +90,7 @@ const Footer = () => {
                     <p>Jersey City, NJ 07310</p>
                     <p>United States</p>
                   </div>
-                  <div>
+                  <div className="hidden">
                     <p className="font-medium text-gray-300">India Office</p>
                     <p>Salt Lake Sector Five</p>
                     <p>Kolkata, West Bengal 700091</p>
