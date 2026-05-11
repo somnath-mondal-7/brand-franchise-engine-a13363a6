@@ -282,14 +282,16 @@ export const ServiceLocationTemplate = ({
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
-        {/* Index only state-level pages for primary markets (USA, IN). City-level
-            and secondary-market service pages are noindexed to fix the
-            "Crawled – currently not indexed" backlog from templated content. */}
+        {/* Index ONLY pages backed by curated unique regional content. Every
+            other programmatic permutation is templated and should stay out of
+            the index to clear the "Crawled – currently not indexed" backlog. */}
         {(() => {
-          const ccLower = countryCode.toLowerCase();
-          const isPrimary = ccLower === 'usa' || ccLower === 'in';
-          const isCityLevel = !!state; // state prop is set only for city pages
-          const shouldIndex = isPrimary && !isCityLevel;
+          // Lazy-import-safe inline check (template runs in client bundle)
+          // eslint-disable-next-line @typescript-eslint/no-var-requires
+          const { hasCuratedInsight } = require('@/utils/locationContent');
+          const isCityLevel = !!population || (!!state && !!stateSlug && location !== state);
+          const stateKey = state ? state.toLowerCase().replace(/\s+/g, '-') : undefined;
+          const shouldIndex = !isCityLevel && hasCuratedInsight(countryCode, stateKey);
           return (
             <meta
               name="robots"
