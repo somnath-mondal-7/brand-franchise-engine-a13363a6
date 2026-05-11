@@ -1,5 +1,6 @@
 import { locationData } from '@/data/locations';
 import { highValueKeywordPages, highValueServiceKeywords } from '@/utils/programmaticSeo';
+import { hasCuratedInsight } from '@/utils/locationContent';
 
 export interface SitemapUrl {
   loc: string;
