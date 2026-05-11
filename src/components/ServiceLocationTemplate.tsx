@@ -287,9 +287,6 @@ export const ServiceLocationTemplate = ({
             other programmatic permutation is templated and should stay out of
             the index to clear the "Crawled – currently not indexed" backlog. */}
         {(() => {
-          // Lazy-import-safe inline check (template runs in client bundle)
-          // eslint-disable-next-line @typescript-eslint/no-var-requires
-          const { hasCuratedInsight } = require('@/utils/locationContent');
           const isCityLevel = !!population || (!!state && !!stateSlug && location !== state);
           const stateKey = state ? state.toLowerCase().replace(/\s+/g, '-') : undefined;
           const shouldIndex = !isCityLevel && hasCuratedInsight(countryCode, stateKey);
