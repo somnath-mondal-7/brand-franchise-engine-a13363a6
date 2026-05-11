@@ -288,9 +288,8 @@ export const ServiceLocationTemplate = ({
         {(() => {
           const ccLower = countryCode.toLowerCase();
           const isPrimary = ccLower === 'usa' || ccLower === 'in';
-          const isStateLevel = !!state && !locationSlug?.includes('/');
-          const isCityLevel = !!state && !!locationSlug && location !== state;
-          const shouldIndex = isPrimary && isStateLevel && !isCityLevel;
+          const isCityLevel = !!state; // state prop is set only for city pages
+          const shouldIndex = isPrimary && !isCityLevel;
           return (
             <meta
               name="robots"
