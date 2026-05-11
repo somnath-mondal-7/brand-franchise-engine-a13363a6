@@ -465,23 +465,21 @@ function generateAllUrls() {
     urls.push({ loc: `${DOMAIN}${p.path}`, lastmod: currentDate, changefreq: p.changefreq, priority: p.priority });
   });
 
-  // Location pages — aggressive pruning. Diagnosis (May 2026): 984 URLs stuck
-  // "Crawled – currently not indexed" because templated city/service pages were
-  // judged low-value at scale. We now publish only:
-  //   • country pages (all)
-  //   • state + top-3 city pages (USA, India only)
-  // Everything else returns noindex via api/render.js.
-  const LOC_MAX_CITIES_PRIMARY = 3;
+  // Sitemap policy (May 2026 v2): only emit URLs backed by curated unique
+  // content. Templated state/city/service pages are noindexed in api/render.js
+  // and excluded here so Google can drop the "Crawled – currently not
+  // indexed" backlog.
+  const CURATED_COUNTRIES = new Set(['usa', 'in', 'uk', 'ca', 'au', 'ae', 'kw']);
+  const CURATED_USA_STATES = new Set(['california', 'texas', 'new-york', 'florida', 'illinois', 'georgia']);
+
   locationData.forEach(country => {
     const cc = country.countryCode.toLowerCase();
-    const isPrimary = ['usa', 'in'].includes(cc);
+    if (!CURATED_COUNTRIES.has(cc)) return;
     urls.push({ loc: `${DOMAIN}/locations/${cc}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.80' });
-    if (!isPrimary) return;
+    if (cc !== 'usa') return;
     country.states.forEach(state => {
+      if (!CURATED_USA_STATES.has(state.slug)) return;
       urls.push({ loc: `${DOMAIN}/locations/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.75' });
-      state.cities.slice(0, LOC_MAX_CITIES_PRIMARY).forEach(city => {
-        urls.push({ loc: `${DOMAIN}/locations/${cc}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.70' });
-      });
     });
   });
 
@@ -490,14 +488,13 @@ function generateAllUrls() {
     urls.push({ loc: `${DOMAIN}/services/${slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.70' });
   });
 
-  // Service + location pages — state-level only, primary markets only.
-  // City-level service pages are excluded (they were the main source of
-  // "Crawled – currently not indexed").
+  // Service + location — only curated USA states (where unique state copy exists).
   curatedServiceSlugs.forEach(serviceSlug => {
     locationData.forEach(country => {
       const cc = country.countryCode.toLowerCase();
-      if (!['usa', 'in'].includes(cc)) return;
+      if (cc !== 'usa') return;
       country.states.forEach(state => {
+        if (!CURATED_USA_STATES.has(state.slug)) return;
         urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.80' });
       });
     });
