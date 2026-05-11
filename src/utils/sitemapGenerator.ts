@@ -1,5 +1,6 @@
 import { locationData } from '@/data/locations';
 import { highValueKeywordPages, highValueServiceKeywords } from '@/utils/programmaticSeo';
+import { hasCuratedInsight } from '@/utils/locationContent';
 
 export interface SitemapUrl {
   loc: string;
@@ -15,14 +16,10 @@ export const getTodayDate = (): string => {
   return new Date().toISOString().split('T')[0];
 };
 
-// Generate location pages — aggressive crawl-budget pruning.
-// Diagnosis (May 2026): 984 URLs stuck "Crawled – currently not indexed" because
-// service+city pages are too templated/duplicated. We now publish:
-//   • Country pages (all)
-//   • State pages (primary markets only)
-//   • City pages (top 3 cities per state, primary markets only)
-// Everything else returns to the index naturally as Google drops stale URLs.
-const LOC_MAX_CITIES_PRIMARY = 3;
+// Sitemap policy (May 2026): only emit URLs that are backed by genuinely
+// unique curated content. Templated city/service permutations were the
+// source of "Crawled – currently not indexed" at scale, so they are
+// excluded from the sitemap and noindexed at render time.
 
 export const generateLocationUrls = (): SitemapUrl[] => {
   const urls: SitemapUrl[] = [];
@@ -30,18 +27,13 @@ export const generateLocationUrls = (): SitemapUrl[] => {
 
   locationData.forEach(country => {
     const cc = country.countryCode.toLowerCase();
-    const isPrimary = ['usa', 'in'].includes(cc);
+    if (!hasCuratedInsight(country.countryCode)) return;
 
     urls.push({ loc: `${DOMAIN}/locations/${cc}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.8' });
 
-    if (!isPrimary) return; // Secondary markets: country-level only
-
     country.states.forEach(state => {
+      if (!hasCuratedInsight(country.countryCode, state.slug)) return;
       urls.push({ loc: `${DOMAIN}/locations/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.75' });
-
-      state.cities.slice(0, LOC_MAX_CITIES_PRIMARY).forEach(city => {
-        urls.push({ loc: `${DOMAIN}/locations/${cc}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.7' });
-      });
     });
   });
 
@@ -61,9 +53,7 @@ export const generateKeywordUrls = (): SitemapUrl[] => {
   return urls;
 };
 
-// Generate service + location combinations — strictly state-level for primary markets.
-// City-level service pages are excluded from the sitemap because they were the main
-// source of "Crawled – currently not indexed" (templated content at scale).
+// Service+location URLs — only state-level combinations for curated states.
 export const generateServiceLocationUrls = (): SitemapUrl[] => {
   const urls: SitemapUrl[] = [];
   const currentDate = new Date().toISOString().split('T')[0];
@@ -73,16 +63,16 @@ export const generateServiceLocationUrls = (): SitemapUrl[] => {
 
     locationData.forEach(country => {
       const cc = country.countryCode.toLowerCase();
-      const isPrimaryMarket = ['usa', 'in'].includes(cc);
-      if (!isPrimaryMarket) return; // Secondary markets get no service+location URLs
+      if (!hasCuratedInsight(country.countryCode)) return;
 
       country.states.forEach(state => {
+        if (!hasCuratedInsight(country.countryCode, state.slug)) return;
         urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.8' });
       });
     });
   });
 
-  console.log(`✅ Generated ${urls.length} service+location URLs`);
+  console.log(`✅ Generated ${urls.length} service+location URLs (curated only)`);
   return urls;
 };
 

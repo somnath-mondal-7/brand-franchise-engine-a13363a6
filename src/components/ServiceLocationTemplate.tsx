@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import { Button } from "./ui/button";
 import { CheckCircle, TrendingUp, Users, Target, Zap, Building2, Handshake, Award, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { hasCuratedInsight } from "@/utils/locationContent";
 
 interface ServiceLocationTemplateProps {
   service: string;
@@ -282,14 +283,13 @@ export const ServiceLocationTemplate = ({
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
-        {/* Index only state-level pages for primary markets (USA, IN). City-level
-            and secondary-market service pages are noindexed to fix the
-            "Crawled – currently not indexed" backlog from templated content. */}
+        {/* Index ONLY pages backed by curated unique regional content. Every
+            other programmatic permutation is templated and should stay out of
+            the index to clear the "Crawled – currently not indexed" backlog. */}
         {(() => {
-          const ccLower = countryCode.toLowerCase();
-          const isPrimary = ccLower === 'usa' || ccLower === 'in';
-          const isCityLevel = !!state; // state prop is set only for city pages
-          const shouldIndex = isPrimary && !isCityLevel;
+          const isCityLevel = !!population || (!!state && !!stateSlug && location !== state);
+          const stateKey = state ? state.toLowerCase().replace(/\s+/g, '-') : undefined;
+          const shouldIndex = !isCityLevel && hasCuratedInsight(countryCode, stateKey);
           return (
             <meta
               name="robots"

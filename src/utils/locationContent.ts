@@ -206,4 +206,17 @@ export function getAvailableStateInsights(): string[] {
   return Object.keys(usaStateInsights);
 }
 
+// Indexability gate — only programmatic pages backed by curated, unique
+// regional content should appear in the sitemap and be indexable. Everything
+// else returns noindex so Google stops flagging "Crawled – currently not
+// indexed" on templated state/city service pages.
+export function hasCuratedInsight(countryCode: string, stateSlug?: string): boolean {
+  const cc = countryCode.toUpperCase();
+  if (stateSlug) {
+    if (cc === 'USA') return Object.prototype.hasOwnProperty.call(usaStateInsights, stateSlug);
+    return false; // No curated state-level data for non-US markets yet
+  }
+  return Object.prototype.hasOwnProperty.call(countryInsights, cc);
+}
+
 export { usaStateInsights, countryInsights };

@@ -1409,8 +1409,13 @@ export default async function handler(req, res) {
       const [, country, state, city] = segments;
       if (country && isValidLocation(country, state, city)) {
         pageData = locationPage(country, state, city);
-        const isPrimary = country === 'usa' || country === 'in';
-        if (city && !isPrimary) pageData.noindex = true;
+        // Curated index allowlist — only USA + curated US states are eligible.
+        const CURATED_COUNTRIES = new Set(['usa', 'in', 'uk', 'ca', 'au', 'ae', 'kw']);
+        const CURATED_USA_STATES = new Set(['california','texas','new-york','florida','illinois','georgia']);
+        const isIndexable = !city
+          && CURATED_COUNTRIES.has(country)
+          && (!state || (country === 'usa' && CURATED_USA_STATES.has(state)));
+        if (!isIndexable) pageData.noindex = true;
       }
     } else if (segments[0] === 'services' && segments[1] && curatedKeywordSlugs.has(segments[1])) {
       pageData = keywordPage(segments[1]);
@@ -1429,9 +1434,12 @@ export default async function handler(req, res) {
       if (isValidLocation(segments[1], segments[2], segments[3])) {
         pageData = serviceLocationPage(segments[0], segments[1], segments[2], segments[3]);
         const country = segments[1];
-        const isPrimary = country === 'usa' || country === 'in';
+        const state = segments[2];
         const isCityLevel = !!segments[3];
-        if (!isPrimary || isCityLevel) pageData.noindex = true;
+        const CURATED_USA_STATES = new Set(['california','texas','new-york','florida','illinois','georgia']);
+        // Only state-level service pages for curated USA states are indexable.
+        const isIndexable = !isCityLevel && country === 'usa' && CURATED_USA_STATES.has(state);
+        if (!isIndexable) pageData.noindex = true;
       }
     } else {
       pageData = staticPage(rawPath);
