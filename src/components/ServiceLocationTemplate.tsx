@@ -282,9 +282,26 @@ export const ServiceLocationTemplate = ({
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        {/* Index only state-level pages for primary markets (USA, IN). City-level
+            and secondary-market service pages are noindexed to fix the
+            "Crawled – currently not indexed" backlog from templated content. */}
+        {(() => {
+          const ccLower = countryCode.toLowerCase();
+          const isPrimary = ccLower === 'usa' || ccLower === 'in';
+          const isCityLevel = !!state; // state prop is set only for city pages
+          const shouldIndex = isPrimary && !isCityLevel;
+          return (
+            <meta
+              name="robots"
+              content={shouldIndex
+                ? "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+                : "noindex, follow"}
+            />
+          );
+        })()}
         <meta name="keywords" content={`${service} ${location}, ${service} ${state || country}, franchise consultant ${location}, franchise consulting ${location}, best ${service} ${location}`} />
         <link rel="canonical" href={canonicalUrl} />
+
         
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />

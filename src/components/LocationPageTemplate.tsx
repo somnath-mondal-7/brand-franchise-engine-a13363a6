@@ -78,7 +78,20 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        {(() => {
+          const ccLower = countryCode.toLowerCase();
+          const isPrimary = ccLower === 'usa' || ccLower === 'in';
+          // Index country/state pages always; city pages only in primary markets.
+          const shouldIndex = !isCity || isPrimary;
+          return (
+            <meta
+              name="robots"
+              content={shouldIndex
+                ? "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+                : "noindex, follow"}
+            />
+          );
+        })()}
         <meta name="keywords" content={`franchise leads ${location.toLowerCase()}, franchise lead generation ${location.toLowerCase()}, buy franchise leads ${location.toLowerCase()}, franchise consultant ${location.toLowerCase()}, linkedin franchise leads ${location.toLowerCase()}, franchise marketing ${location.toLowerCase()}`} />
         <link rel="canonical" href={canonicalUrl} />
         

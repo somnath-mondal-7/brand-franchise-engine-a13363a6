@@ -465,17 +465,21 @@ function generateAllUrls() {
     urls.push({ loc: `${DOMAIN}${p.path}`, lastmod: currentDate, changefreq: p.changefreq, priority: p.priority });
   });
 
-  // Location pages (country/state/city) — cap deep city URLs to focus crawl budget
-  const LOC_MAX_CITIES_PRIMARY = 8;
-  const LOC_MAX_CITIES_SECONDARY = 4;
+  // Location pages — aggressive pruning. Diagnosis (May 2026): 984 URLs stuck
+  // "Crawled – currently not indexed" because templated city/service pages were
+  // judged low-value at scale. We now publish only:
+  //   • country pages (all)
+  //   • state + top-3 city pages (USA, India only)
+  // Everything else returns noindex via api/render.js.
+  const LOC_MAX_CITIES_PRIMARY = 3;
   locationData.forEach(country => {
     const cc = country.countryCode.toLowerCase();
     const isPrimary = ['usa', 'in'].includes(cc);
-    const cityCap = isPrimary ? LOC_MAX_CITIES_PRIMARY : LOC_MAX_CITIES_SECONDARY;
     urls.push({ loc: `${DOMAIN}/locations/${cc}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.80' });
+    if (!isPrimary) return;
     country.states.forEach(state => {
       urls.push({ loc: `${DOMAIN}/locations/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.75' });
-      state.cities.slice(0, cityCap).forEach(city => {
+      state.cities.slice(0, LOC_MAX_CITIES_PRIMARY).forEach(city => {
         urls.push({ loc: `${DOMAIN}/locations/${cc}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.70' });
       });
     });
@@ -486,24 +490,15 @@ function generateAllUrls() {
     urls.push({ loc: `${DOMAIN}/services/${slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.70' });
   });
 
-  // Service + location pages — ONLY curated service slugs the renderer serves with 200 OK.
-  // Crawl-budget strategy for a young domain: include all state pages (high value, low count),
-  // top-N city pages for primary markets only (USA/India), no city pages for secondary markets.
-  // This drops thousands of low-value deep URLs that Google was reporting as
-  // "Discovered – currently not indexed".
-  const MAX_CITIES_PER_STATE_PRIMARY = 4; // USA, India top 4 cities per state
+  // Service + location pages — state-level only, primary markets only.
+  // City-level service pages are excluded (they were the main source of
+  // "Crawled – currently not indexed").
   curatedServiceSlugs.forEach(serviceSlug => {
     locationData.forEach(country => {
       const cc = country.countryCode.toLowerCase();
-      const isPrimary = ['usa', 'in'].includes(cc);
-      const basePriority = isPrimary ? 0.85 : 0.75;
+      if (!['usa', 'in'].includes(cc)) return;
       country.states.forEach(state => {
-        urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: basePriority.toFixed(2) });
-        if (isPrimary) {
-          state.cities.slice(0, MAX_CITIES_PER_STATE_PRIMARY).forEach(city => {
-            urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: (basePriority - 0.05).toFixed(2) });
-          });
-        }
+        urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.80' });
       });
     });
   });

@@ -1409,6 +1409,8 @@ export default async function handler(req, res) {
       const [, country, state, city] = segments;
       if (country && isValidLocation(country, state, city)) {
         pageData = locationPage(country, state, city);
+        const isPrimary = country === 'usa' || country === 'in';
+        if (city && !isPrimary) pageData.noindex = true;
       }
     } else if (segments[0] === 'services' && segments[1] && curatedKeywordSlugs.has(segments[1])) {
       pageData = keywordPage(segments[1]);
@@ -1426,6 +1428,10 @@ export default async function handler(req, res) {
     } else if (segments.length >= 3 && supportedServiceSlugs.has(segments[0]) && !['locations','blog','legal-terms','admin','sitemap'].includes(segments[0])) {
       if (isValidLocation(segments[1], segments[2], segments[3])) {
         pageData = serviceLocationPage(segments[0], segments[1], segments[2], segments[3]);
+        const country = segments[1];
+        const isPrimary = country === 'usa' || country === 'in';
+        const isCityLevel = !!segments[3];
+        if (!isPrimary || isCityLevel) pageData.noindex = true;
       }
     } else {
       pageData = staticPage(rawPath);
