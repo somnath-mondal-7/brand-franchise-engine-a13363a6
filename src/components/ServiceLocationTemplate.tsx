@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import { Button } from "./ui/button";
 import { CheckCircle, TrendingUp, Users, Target, Zap, Building2, Handshake, Award, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { hasCuratedInsight } from "@/utils/locationContent";
 
 interface ServiceLocationTemplateProps {
   service: string;
