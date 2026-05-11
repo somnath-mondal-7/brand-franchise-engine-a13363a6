@@ -61,14 +61,12 @@ export const generateKeywordUrls = (): SitemapUrl[] => {
   return urls;
 };
 
-// Generate ALL service + location combinations
+// Generate service + location combinations — strictly state-level for primary markets.
+// City-level service pages are excluded from the sitemap because they were the main
+// source of "Crawled – currently not indexed" (templated content at scale).
 export const generateServiceLocationUrls = (): SitemapUrl[] => {
   const urls: SitemapUrl[] = [];
   const currentDate = new Date().toISOString().split('T')[0];
-
-  // Crawl-budget strategy: include every state but only top-N cities for primary markets,
-  // and skip city pages entirely for secondary markets. Drops ~3,000 thin URLs.
-  const SVC_MAX_CITIES_PRIMARY = 4;
 
   highValueServiceKeywords.forEach(service => {
     const serviceSlug = service.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
@@ -76,16 +74,10 @@ export const generateServiceLocationUrls = (): SitemapUrl[] => {
     locationData.forEach(country => {
       const cc = country.countryCode.toLowerCase();
       const isPrimaryMarket = ['usa', 'in'].includes(cc);
-      const basePriority = isPrimaryMarket ? 0.85 : 0.75;
+      if (!isPrimaryMarket) return; // Secondary markets get no service+location URLs
 
       country.states.forEach(state => {
-        urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: basePriority.toString() });
-
-        if (isPrimaryMarket) {
-          state.cities.slice(0, SVC_MAX_CITIES_PRIMARY).forEach(city => {
-            urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: (basePriority - 0.05).toString() });
-          });
-        }
+        urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.8' });
       });
     });
   });
