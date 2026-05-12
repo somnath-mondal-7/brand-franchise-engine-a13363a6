@@ -730,45 +730,12 @@ async function runGenerationPipeline(supabase: any, publishAsDraft: boolean) {
   const blogPost = await generateBlogWithAI(researchContext, topicData);
   console.log(`Generated: "${blogPost.title}"`);
 
-  console.log("🎨 Generating cover + inline images...");
-  const safeSlug = blogPost.slug.replace(/[^a-z0-9-]/gi, "").slice(0, 40);
-  const ts = Date.now();
-
-  const coverPrompt = blogPost.coverImagePrompt
-    || `Wide hero photograph for a blog post titled "${blogPost.title}". Modern professional business photography, soft natural lighting, clean composition, photorealistic.`;
-  const inlinePrompts = (blogPost.inlineImagePrompts && blogPost.inlineImagePrompts.length > 0)
-    ? blogPost.inlineImagePrompts.slice(0, 2)
-    : [
-        `Clean modern flat illustration supporting the topic: ${blogPost.title}. Minimalist, blue and white palette, professional business style.`,
-        `Photograph of business professionals in a modern office discussing strategy related to: ${topicData.angle}. Bright, natural light, candid feel.`,
-      ];
-
-  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-  const coverDataUrl = await generateImageBase64(coverPrompt);
-  const inlineDataUrls: (string | null)[] = [];
-  for (const p of inlinePrompts) {
-    await sleep(2500);
-    inlineDataUrls.push(await generateImageBase64(p));
-  }
-
-  let coverUrl: string | null = null;
-  if (coverDataUrl) {
-    coverUrl = await uploadImageToStorage(supabase, coverDataUrl, `${safeSlug}-cover-${ts}`);
-  }
-
-  const inlineUrls: string[] = [];
-  for (let i = 0; i < inlineDataUrls.length; i++) {
-    const dUrl = inlineDataUrls[i];
-    if (!dUrl) continue;
-    const url = await uploadImageToStorage(supabase, dUrl, `${safeSlug}-inline-${i + 1}-${ts}`);
-    if (url) inlineUrls.push(url);
-  }
-
-  console.log(`🖼️  Cover: ${coverUrl ? "✅" : "❌"}, Inline: ${inlineUrls.length}/2`);
+  // Image generation disabled — text-only blog posts
+  console.log("⏭️  Image generation disabled (text-only mode)");
+  const coverUrl: string | null = null;
 
   let finalContent = stripDuplicateTitle(blogPost.content, blogPost.title);
   finalContent = await ensureFaqSection(finalContent, blogPost.title);
-  finalContent = injectInlineImages(finalContent, inlineUrls);
   finalContent = finalContent.trimEnd() + "\n" + buildInternalLinksSection();
 
   const wordCount = finalContent.split(/\s+/).length;
