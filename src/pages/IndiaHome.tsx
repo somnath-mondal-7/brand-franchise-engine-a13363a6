@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import IndiaNav from "@/components/india/IndiaNav";
 import IndiaFooter from "@/components/india/IndiaFooter";
+import FranchiseSearchHero from "@/components/india/FranchiseSearchHero";
 
 const solutions = [
   { icon: Linkedin, title: "LinkedIn Investor Outreach", desc: "Hand-built outreach to HNI investors, family offices, and serious franchise buyers across India." },
