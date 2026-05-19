@@ -39,11 +39,11 @@ const IndiaNav = () => {
           </div>
 
           <div className="hidden lg:flex items-center gap-3">
-            <a href="tel:+15512012729">
+            <Link to="/contact">
               <Button variant="ghost" className="text-foreground hover:text-primary hover:bg-secondary text-sm">
-                <Phone className="w-4 h-4 mr-2" />+1 (551)-201-2729
+                <Phone className="w-4 h-4 mr-2" />Enquire Now
               </Button>
-            </a>
+            </Link>
             <Button
               className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-md shadow-card"
               onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
