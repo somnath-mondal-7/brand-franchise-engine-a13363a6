@@ -74,57 +74,48 @@ const IndiaHome = () => {
 
       <IndiaNav />
 
-      {/* HERO */}
-      <section className="relative pt-28 pb-20 sm:pt-32 sm:pb-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-hero opacity-[0.07]" />
+      {/* HERO — Franchise India inspired */}
+      <section className="relative pt-24 pb-16 sm:pt-28 sm:pb-20 overflow-hidden bg-gradient-to-br from-primary/95 via-primary to-primary-dark text-primary-foreground">
         <div
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.08] pointer-events-none"
           style={{
             backgroundImage:
-              "radial-gradient(hsl(var(--primary)) 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
+              "radial-gradient(hsl(var(--accent)) 1px, transparent 1px)",
+            backgroundSize: "26px 26px",
           }}
         />
-
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary border border-accent/30 text-xs uppercase tracking-[0.2em] text-primary mb-7">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 text-[11px] uppercase tracking-[0.2em] mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-accent" />
               India's Franchise Growth Partner
             </div>
-
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[1.02] text-foreground mb-7">
-              <span className="text-accent">₹1</span> Franchise<br/>
-              Lead Generation<br/>
-              <em className="text-primary/80">for India.</em>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] mb-4">
+              Find your next <span className="text-accent">franchise opportunity</span> across India.
             </h1>
-
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10">
-              Built for Indian franchisors who want serious investor enquiries — not random form fills.
-              LinkedIn, performance ads, WhatsApp funnels and franchise-grade websites, run by a dedicated India pod.
+            <p className="text-base sm:text-lg text-primary-foreground/85 max-w-2xl mb-2">
+              Search verified Indian franchise brands by category, location, investment range or brand name — and connect with our consulting team.
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-              <Button
-                size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 h-14 text-base rounded-md shadow-elegant"
-                onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
-              >
-                Book Free Consultation <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <a href="#pricing">
-                <Button size="lg" variant="outline" className="border-primary/30 text-primary hover:bg-secondary px-8 h-14 text-base rounded-md">
-                  See Pricing
-                </Button>
-              </a>
-            </div>
-
-            <p className="mt-8 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-              Trusted by emerging & legacy franchise brands across India
+            <p className="text-sm text-accent font-semibold tracking-wide mb-7">
+              ₹1 Franchise Lead Generation — built for Indian franchisors.
             </p>
+          </div>
+
+          {/* Search filter card */}
+          <div className="max-w-5xl">
+            <FranchiseSearchHero />
+          </div>
+
+          <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs uppercase tracking-[0.18em] text-primary-foreground/70">
+            <span>Trusted by emerging & legacy franchise brands</span>
+            <span className="hidden sm:inline">•</span>
+            <span>Pan India coverage</span>
+            <span className="hidden sm:inline">•</span>
+            <span>F&B · Education · Wellness · Retail · Healthcare</span>
           </div>
         </div>
       </section>
+
 
       {/* CATEGORY BAR */}
       <section className="border-y border-border bg-secondary/40">
