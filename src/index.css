@@ -87,6 +87,70 @@
   }
 }
 
+/* ============================================================
+   INDIA THEME — Emerald Prestige (scoped via .india-theme wrap)
+   Overrides token variables only inside the India experience.
+   Existing USA pages stay visually untouched.
+   ============================================================ */
+.india-theme {
+  --background: 42 33% 96%;
+  --foreground: 162 76% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 162 76% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 162 76% 12%;
+
+  --primary: 162 76% 16%;
+  --primary-foreground: 42 50% 96%;
+  --primary-light: 162 60% 26%;
+  --primary-dark: 162 80% 10%;
+
+  --secondary: 42 30% 92%;
+  --secondary-foreground: 162 76% 14%;
+  --muted: 42 25% 93%;
+  --muted-foreground: 162 18% 30%;
+
+  --accent: 43 53% 54%;
+  --accent-foreground: 162 76% 12%;
+  --accent-light: 43 70% 70%;
+  --accent-dark: 43 60% 42%;
+
+  --border: 42 22% 86%;
+  --input: 42 22% 86%;
+  --ring: 162 76% 16%;
+  --radius: 0.5rem;
+
+  --brand-navy: 162 76% 12%;
+  --brand-gray: 162 14% 32%;
+  --brand-light: 42 33% 96%;
+
+  --gradient-primary: linear-gradient(135deg, hsl(162 80% 12%), hsl(162 60% 22%));
+  --gradient-hero: linear-gradient(135deg, hsl(162 80% 10%) 0%, hsl(162 60% 18%) 60%, hsl(43 53% 30%) 100%);
+  --gradient-trust: linear-gradient(90deg, hsl(162 76% 16%), hsl(43 53% 54%));
+  --gradient-warm: linear-gradient(135deg, hsl(43 53% 54%), hsl(43 70% 68%));
+  --gradient-cool: linear-gradient(135deg, hsl(162 76% 16%), hsl(162 50% 30%));
+  --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(42 30% 97%));
+
+  --shadow-elegant: 0 20px 40px -12px hsl(162 80% 10% / 0.18), 0 8px 16px -8px hsl(162 80% 10% / 0.08);
+  --shadow-card: 0 4px 14px -4px hsl(162 80% 10% / 0.08);
+  --shadow-hover: 0 28px 50px -16px hsl(162 80% 10% / 0.28);
+
+  font-family: 'Work Sans', system-ui, -apple-system, sans-serif;
+  color: hsl(var(--foreground));
+  background: hsl(var(--background));
+}
+
+.india-theme .font-display {
+  font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+.india-theme ::selection {
+  background-color: hsl(var(--accent) / 0.35);
+  color: hsl(var(--primary));
+}
+
 @layer base {
   * {
     @apply border-border;
