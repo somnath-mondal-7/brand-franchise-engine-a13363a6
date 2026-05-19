@@ -3,6 +3,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { locationData } from '@/data/locations';
 import { MapPin, FileText, Briefcase, Globe } from 'lucide-react';
+import { hasCuratedInsight } from '@/utils/locationContent';
 import { slugify } from '@/utils/slugify';
 import { highValueKeywordPages, highValueServiceKeywords } from '@/utils/programmaticSeo';
 
@@ -103,7 +104,7 @@ const Sitemap = () => {
         </section>
 
         {/* Locations by Country */}
-        {locationData.map((countryData) => (
+        {locationData.filter((countryData) => hasCuratedInsight(countryData.countryCode)).map((countryData) => (
           <section key={countryData.country} className="py-12 bg-card border-t border-border">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="max-w-6xl mx-auto">
@@ -124,7 +125,7 @@ const Sitemap = () => {
 
                 {/* States & Cities */}
                 <div className="space-y-8">
-                  {countryData.states.map((state) => (
+                  {countryData.states.filter((state) => hasCuratedInsight(countryData.countryCode, state.slug)).map((state) => (
                     <div key={state.slug}>
                       <a 
                         href={`/locations/${countryData.countryCode.toLowerCase()}/${state.slug}`}
@@ -132,17 +133,6 @@ const Sitemap = () => {
                       >
                         {state.name}
                       </a>
-                      <div className="grid md:grid-cols-4 gap-3 pl-6">
-                        {state.cities.map((city) => (
-                          <a
-                            key={city.slug}
-                            href={`/locations/${countryData.countryCode.toLowerCase()}/${state.slug}/${city.slug}`}
-                            className="text-primary hover:underline text-sm"
-                          >
-                            {city.name}
-                          </a>
-                        ))}
-                      </div>
                     </div>
                   ))}
                 </div>
@@ -166,16 +156,14 @@ const Sitemap = () => {
                   <div key={service} className="mb-8">
                     <h3 className="text-xl font-semibold text-foreground mb-4 capitalize">{service}</h3>
                     <div className="grid md:grid-cols-4 gap-3">
-                      {locationData[0]?.states.slice(0, 4).map((state) => {
-                        const city = state.cities[0];
-                        if (!city) return null;
+                      {locationData[0]?.states.filter((state) => hasCuratedInsight(locationData[0].countryCode, state.slug)).slice(0, 6).map((state) => {
                         return (
                           <a
-                            key={`${service}-${city.slug}`}
-                            href={`/${serviceSlug}/${locationData[0].countryCode.toLowerCase()}/${state.slug}/${city.slug}`}
+                            key={`${service}-${state.slug}`}
+                            href={`/${serviceSlug}/${locationData[0].countryCode.toLowerCase()}/${state.slug}`}
                             className="text-primary hover:underline text-sm"
                           >
-                            {service} in {city.name}
+                            {service} in {state.name}
                           </a>
                         );
                       })}
