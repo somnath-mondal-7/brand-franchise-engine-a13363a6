@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
+import IndiaHome from "./pages/IndiaHome";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import DigitalMarketing from "./pages/DigitalMarketing";
@@ -59,7 +60,10 @@ const App = () => (
           <ScrollToTop />
           <ConditionalChatWidget />
           <Routes>
-            <Route path="/" element={<Index />} />
+            <Route path="/" element={<IndiaHome />} />
+            <Route path="/india" element={<IndiaHome />} />
+            <Route path="/usa" element={<Index />} />
+            <Route path="/home-original" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/digital-marketing" element={<DigitalMarketing />} />
