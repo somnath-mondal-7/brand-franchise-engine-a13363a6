@@ -10,14 +10,15 @@ import {
 import IndiaNav from "@/components/india/IndiaNav";
 import IndiaFooter from "@/components/india/IndiaFooter";
 import FranchiseSearchHero from "@/components/india/FranchiseSearchHero";
+import FeaturedBrands from "@/components/india/FeaturedBrands";
 
 const solutions = [
-  { icon: Linkedin, title: "LinkedIn Investor Outreach", desc: "Hand-built outreach to HNI investors, family offices, and serious franchise buyers across India." },
-  { icon: Share2, title: "Performance Social Ads", desc: "Meta, Instagram & YouTube campaigns tuned for the Indian investor — Hindi + English creatives." },
-  { icon: Globe, title: "Franchise Website Build", desc: "Mobile-first websites with WhatsApp lead capture, regional language support and investor portals." },
-  { icon: Bot, title: "AI + WhatsApp Automation", desc: "AI follow-ups and WhatsApp drip sequences so no investor enquiry goes cold." },
-  { icon: Crown, title: "Founder Authority Building", desc: "Position the founder as the face of the brand on LinkedIn, podcasts and franchise media." },
-  { icon: Users, title: "Dedicated India Account Pod", desc: "A named manager, strategist and creative team — working in IST, on Indian franchise context." },
+  { icon: Crown, title: "Franchise Strategy & Readiness", desc: "End-to-end franchise model design — unit economics, royalty structures, territory planning, and franchise-readiness audit." },
+  { icon: ShieldCheck, title: "Franchise Documentation & Legal", desc: "FDD, franchise agreements, operations manuals, and SOPs drafted by franchise specialists — fully India-compliant." },
+  { icon: Linkedin, title: "LinkedIn Investor Outreach", desc: "Hand-built outreach to HNI investors, family offices and serious franchise buyers across India." },
+  { icon: Share2, title: "Performance Marketing & Ads", desc: "Meta, Google, Instagram and YouTube campaigns tuned for the Indian investor — Hindi + English creatives." },
+  { icon: Globe, title: "Franchise Website & Brand Build", desc: "Investor-grade websites, brand decks and pitch material with WhatsApp lead capture and regional language support." },
+  { icon: Users, title: "Franchisee Recruitment & Onboarding", desc: "From lead qualification to discovery day, agreement signing and launch — we manage the full onboarding pipeline." },
 ];
 
 const why = [
@@ -91,10 +92,10 @@ const IndiaHome = () => {
               India's Franchise Growth Partner
             </div>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] mb-4">
-              Find your next <span className="text-accent">franchise opportunity</span> across India.
+              India's <span className="text-accent">end-to-end franchise consulting</span> partner.
             </h1>
             <p className="text-base sm:text-lg text-primary-foreground/85 max-w-2xl mb-2">
-              Search verified Indian franchise brands by category, location, investment range or brand name — and connect with our consulting team.
+              From franchise strategy, FDD and documentation to marketing, lead generation and franchisee onboarding — we handle the full franchise journey. Not just matchmaking.
             </p>
             <p className="text-sm text-accent font-semibold tracking-wide mb-7">
               ₹1 Franchise Lead Generation — built for Indian franchisors.
