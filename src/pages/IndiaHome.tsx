@@ -128,6 +128,9 @@ const IndiaHome = () => {
         </div>
       </section>
 
+      {/* FEATURED FRANCHISE BRANDS — Franchise India inspired */}
+      <FeaturedBrands />
+
       {/* SOLUTIONS — full-width section */}
       <section id="solutions" className="py-24 sm:py-28">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
