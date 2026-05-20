@@ -8,11 +8,12 @@ const IndiaFooter = () => {
         <div className="grid md:grid-cols-4 gap-10">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-9 h-9 rounded-md bg-accent text-primary flex items-center justify-center font-display text-xl">₹</div>
-              <span className="font-display text-2xl">Franchise<span className="text-accent">India</span>Pro</span>
+              <span className="font-display text-2xl font-bold">
+                Franchise<span className="text-accent">Leads</span>Pro
+              </span>
             </div>
-            <p className="text-primary-foreground/75 max-w-md leading-relaxed">
-              India's franchise growth partner. We help Indian franchisors and consultants attract serious investors through LinkedIn, social media, and franchise-grade websites.
+            <p className="text-primary-foreground/80 max-w-md leading-relaxed">
+              India's end-to-end franchise consulting partner. From franchise strategy, documentation and FDD to marketing, lead generation and investor matchmaking — we handle the full franchise growth journey.
             </p>
             <p className="mt-6 text-xs uppercase tracking-[0.2em] text-accent/90">₹1 Franchise Lead Generation</p>
           </div>
