@@ -32,11 +32,17 @@ const BrandDetail = () => {
           <div className="grid lg:grid-cols-[240px_1fr] gap-8 items-center">
             <div className="bg-white border border-border rounded-lg h-48 flex items-center justify-center p-6">
               <img
-                src={`https://logo.clearbit.com/${brand.domain}?size=400`}
+                src={`https://icons.duckduckgo.com/ip3/${brand.domain}.ico`}
                 alt={`${brand.name} logo`}
-                className="max-h-full max-w-full object-contain"
+                className="max-h-32 max-w-full object-contain"
                 onError={(e) => {
-                  e.currentTarget.style.display = "none";
+                  const img = e.currentTarget;
+                  if (!img.dataset.fallback) {
+                    img.dataset.fallback = "1";
+                    img.src = `https://www.google.com/s2/favicons?sz=128&domain=${brand.domain}`;
+                  } else {
+                    img.style.display = "none";
+                  }
                 }}
               />
             </div>
@@ -122,7 +128,20 @@ const BrandDetail = () => {
               {related.map((b) => (
                 <Link key={b.slug} to={`/brands/${b.slug}`} className="bg-card border border-border rounded-lg p-5 hover:shadow-elegant hover:-translate-y-1 transition-all">
                   <div className="bg-white border border-border rounded h-20 flex items-center justify-center mb-3 p-3">
-                    <img src={`https://logo.clearbit.com/${b.domain}?size=120`} alt={b.name} className="max-h-full max-w-full object-contain" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                    <img
+                      src={`https://icons.duckduckgo.com/ip3/${b.domain}.ico`}
+                      alt={b.name}
+                      className="max-h-full max-w-full object-contain"
+                      onError={(e) => {
+                        const img = e.currentTarget;
+                        if (!img.dataset.fallback) {
+                          img.dataset.fallback = "1";
+                          img.src = `https://www.google.com/s2/favicons?sz=128&domain=${b.domain}`;
+                        } else {
+                          img.style.display = "none";
+                        }
+                      }}
+                    />
                   </div>
                   <p className="text-[11px] uppercase tracking-[0.15em] text-accent font-semibold">{b.category}</p>
                   <h3 className="font-display text-lg">{b.name}</h3>
