@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import FranchiseSearchHero from "@/components/india/FranchiseSearchHero";
 
 const slides = [
   {
