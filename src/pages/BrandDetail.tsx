@@ -19,7 +19,7 @@ const BrandDetail = () => {
       <Helmet>
         <title>{`${brand.name} Franchise — Investment, Cost & Details | FranchiseLeadsPro`}</title>
         <meta name="description" content={`${brand.name} franchise details: investment ${brand.investment}, area ${brand.area}, ${brand.outlets} outlets. ${brand.tagline}.`} />
-        <link rel="canonical" href={`https://brand-franchise-engine.lovable.app/brands/${brand.slug}`} />
+        <link rel="canonical" href={`https://www.franchiseleadspro.com/brands/${brand.slug}`} />
       </Helmet>
 
       <IndiaNav />
