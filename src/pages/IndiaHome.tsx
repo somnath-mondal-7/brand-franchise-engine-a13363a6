@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
   ArrowRight, CheckCircle2, Linkedin, Share2, Globe, Bot, Crown, Users,
-  Building2, IndianRupee, ShieldCheck, Sparkles, TrendingUp, Award,
+  IndianRupee, ShieldCheck, Sparkles, TrendingUp, Award,
 } from "lucide-react";
 import IndiaNav from "@/components/india/IndiaNav";
 import IndiaFooter from "@/components/india/IndiaFooter";
