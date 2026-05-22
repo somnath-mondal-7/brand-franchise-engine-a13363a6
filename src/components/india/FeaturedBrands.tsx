@@ -1,41 +1,28 @@
-import { Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
-
-type Brand = {
-  name: string;
-  category: string;
-  investment: string;
-  area: string;
-  outlets: string;
-};
-
-const leading: Brand[] = [
-  { name: "Wow! Momo", category: "Food & Beverage", investment: "₹25L – 50L", area: "300 – 600 sq.ft", outlets: "500+" },
-  { name: "Lenskart", category: "Retail / Eyewear", investment: "₹30L – 60L", area: "400 – 800 sq.ft", outlets: "1500+" },
-  { name: "Lakmé Salon", category: "Wellness & Salon", investment: "₹40L – 80L", area: "1000 – 1500 sq.ft", outlets: "490+" },
-  { name: "Kidzee", category: "Education / Pre-School", investment: "₹10L – 20L", area: "1500 – 2500 sq.ft", outlets: "1900+" },
-];
-
-const opportunities: Brand[] = [
-  { name: "Chai Sutta Bar", category: "QSR / Cafe", investment: "₹12L – 16L", area: "200 – 400 sq.ft", outlets: "400+" },
-  { name: "Cult.fit", category: "Fitness & Gym", investment: "₹50L – 1 Cr", area: "2000 – 4000 sq.ft", outlets: "500+" },
-  { name: "FirstCry", category: "Retail / Kids", investment: "₹35L – 70L", area: "1000 – 2000 sq.ft", outlets: "400+" },
-  { name: "Dr. Lal PathLabs", category: "Healthcare / Diagnostics", investment: "₹10L – 25L", area: "150 – 300 sq.ft", outlets: "5000+" },
-  { name: "BlueTokai Coffee", category: "Cafe", investment: "₹40L – 80L", area: "600 – 1200 sq.ft", outlets: "100+" },
-  { name: "Decathlon", category: "Sports Retail", investment: "₹2 Cr – 5 Cr", area: "8000+ sq.ft", outlets: "120+" },
-  { name: "Apollo Pharmacy", category: "Healthcare", investment: "₹15L – 30L", area: "200 – 400 sq.ft", outlets: "5000+" },
-  { name: "Burger Singh", category: "QSR", investment: "₹20L – 40L", area: "250 – 600 sq.ft", outlets: "180+" },
-];
+import { indiaLeading, indiaOpportunities, usaBrands, type Brand } from "@/data/brands";
 
 const BrandCard = ({ b }: { b: Brand }) => (
   <Link
-    to={`/contact?intent=franchise-enquiry&q=${encodeURIComponent(`Brand: ${b.name} | Category: ${b.category}`)}`}
+    to={`/brands/${b.slug}`}
     className="group bg-card border border-border rounded-lg overflow-hidden shadow-card hover:shadow-elegant hover:-translate-y-1 transition-all"
   >
-    <div className="h-32 bg-gradient-to-br from-secondary to-background flex items-center justify-center border-b border-border">
-      <div className="flex flex-col items-center gap-2 px-4 text-center">
-        <Building2 className="w-7 h-7 text-primary/60" />
-        <span className="font-display text-base text-foreground">{b.name}</span>
+    <div className="h-36 bg-white flex items-center justify-center border-b border-border p-6">
+      <img
+        src={`https://logo.clearbit.com/${b.domain}?size=200`}
+        alt={`${b.name} logo`}
+        loading="lazy"
+        className="max-h-full max-w-full object-contain"
+        onError={(e) => {
+          const img = e.currentTarget;
+          img.style.display = "none";
+          const fallback = img.nextElementSibling as HTMLElement | null;
+          if (fallback) fallback.style.display = "flex";
+        }}
+      />
+      <div
+        className="hidden w-full h-full items-center justify-center font-display text-2xl text-primary"
+      >
+        {b.name}
       </div>
     </div>
     <div className="p-5">
@@ -56,50 +43,53 @@ const BrandCard = ({ b }: { b: Brand }) => (
         </div>
       </dl>
       <div className="block w-full text-center border border-primary text-primary group-hover:bg-primary group-hover:text-primary-foreground font-semibold rounded-md py-2 text-sm transition-colors">
-        Know More
+        View Brand Details
       </div>
     </div>
   </Link>
 );
 
+const Section = ({ title, subtitle, brands, cta }: { title: string; subtitle?: string; brands: Brand[]; cta?: { label: string; to: string } }) => (
+  <section className="py-20">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex items-end justify-between mb-10 flex-wrap gap-3">
+        <div>
+          <h2 className="font-display text-3xl sm:text-4xl text-foreground border-b-4 border-accent inline-block pb-2">
+            {title}
+          </h2>
+          {subtitle && <p className="text-muted-foreground mt-3 max-w-2xl">{subtitle}</p>}
+        </div>
+        {cta && (
+          <Link to={cta.to} className="text-sm font-semibold text-accent hover:underline">
+            {cta.label} →
+          </Link>
+        )}
+      </div>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {brands.map((b) => <BrandCard key={b.slug} b={b} />)}
+      </div>
+    </div>
+  </section>
+);
+
 const FeaturedBrands = () => {
   return (
     <>
-      <section className="py-20 bg-secondary/30 border-y border-border">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-10 flex-wrap gap-3">
-            <div>
-              <h2 className="font-display text-3xl sm:text-4xl text-foreground border-b-4 border-accent inline-block pb-2">
-                Leading Franchises Today
-              </h2>
-            </div>
-            <Link to="/contact" className="text-sm font-semibold text-accent hover:underline">
-              Enquire for any brand →
-            </Link>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {leading.map((b) => <BrandCard key={b.name} b={b} />)}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-10 flex-wrap gap-3">
-            <div>
-              <h2 className="font-display text-3xl sm:text-4xl text-foreground border-b-4 border-accent inline-block pb-2">
-                Top Business Opportunities
-              </h2>
-              <p className="text-muted-foreground mt-3 max-w-2xl">
-                Explore investment-ready franchise opportunities across India. Connect with our consulting team for a personalised match.
-              </p>
-            </div>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {opportunities.map((b) => <BrandCard key={b.name} b={b} />)}
-          </div>
-        </div>
-      </section>
+      <div className="bg-secondary/30 border-y border-border">
+        <Section title="Leading Franchises Today" brands={indiaLeading} cta={{ label: "Enquire for any brand", to: "/contact" }} />
+      </div>
+      <Section
+        title="Top Business Opportunities"
+        subtitle="Explore investment-ready franchise opportunities across India. Connect with our consulting team for a personalised match."
+        brands={indiaOpportunities}
+      />
+      <div className="bg-secondary/30 border-y border-border">
+        <Section
+          title="USA Franchise Brands"
+          subtitle="World-class American franchise systems we help bring to India and support globally."
+          brands={usaBrands}
+        />
+      </div>
     </>
   );
 };
