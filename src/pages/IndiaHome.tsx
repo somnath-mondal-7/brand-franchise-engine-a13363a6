@@ -173,101 +173,108 @@ const IndiaHome = () => {
         </div>
       </section>
 
-      {/* PRICING */}
-      <section id="pricing" className="py-24 sm:py-28 bg-secondary/40 border-y border-border">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Pricing</p>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] text-foreground mb-5">
-              Simple plans. <em>Premium delivery.</em>
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Pick a plan and our India pod takes over — strategy, creative, outreach and reporting.
-            </p>
-          </div>
+      {/* ₹1 / $1 QUALIFIED FRANCHISE LEADS */}
+      <section id="leads" className="relative py-24 sm:py-28 bg-secondary/40 border-y border-border overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-[0.05] pointer-events-none"
+          style={{
+            backgroundImage: "radial-gradient(hsl(var(--primary)) 1px, transparent 1px)",
+            backgroundSize: "26px 26px",
+          }}
+        />
+        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-6">
+              <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Pay-per-Lead Offer</p>
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] text-foreground mb-5">
+                Qualified franchise leads for <em className="text-primary">just ₹1 / $1.</em>
+              </h2>
+              <p className="text-lg text-muted-foreground mb-7">
+                No retainers. No bloated agency fees. Pay only for pre-screened, intent-verified franchise investor leads — delivered straight to your CRM and WhatsApp.
+              </p>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {/* Growth */}
-            <Card className="border border-border bg-card rounded-md shadow-card">
-              <CardContent className="p-9">
-                <div className="flex items-center gap-2 mb-2 text-accent">
-                  <Building2 className="w-4 h-4" />
-                  <span className="text-xs uppercase tracking-[0.2em]">India Growth</span>
-                </div>
-                <h3 className="font-display text-3xl text-foreground mb-4">Franchise Growth Plan</h3>
-                <p className="text-muted-foreground mb-6">For emerging franchisors ready to scale enquiries across India.</p>
-                <div className="mb-7">
-                  <span className="font-display text-2xl text-foreground">Custom INR Plan</span>
-                  <p className="text-sm text-muted-foreground mt-1">Tailored on your category, ticket size and city focus.</p>
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {[
-                    "LinkedIn investor outreach",
-                    "Meta & Google performance ads",
-                    "WhatsApp + CRM lead funnel",
-                    "Founder authority content",
-                    "Weekly reports & strategy call",
-                    "Dedicated India account pod",
-                  ].map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-foreground">
-                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
+              <ul className="space-y-3 mb-9">
+                {[
+                  "Pre-qualified investor — budget & timeline verified",
+                  "Right category fit for your franchise model",
+                  "Delivered live on WhatsApp + CRM",
+                  "No setup cost. No long-term lock-in.",
+                  "Replacement guarantee on unqualified leads",
+                ].map((f) => (
+                  <li key={f} className="flex items-start gap-3 text-foreground">
+                    <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground h-12 px-7 rounded-md"
+                  onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
+                >
+                  Claim ₹1 / $1 Leads <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
                 <Link to="/contact">
-                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-12 rounded-md">
-                    Request a Proposal <ArrowRight className="ml-2 h-4 w-4" />
+                  <Button variant="outline" className="h-12 px-7 rounded-md border-primary/30 text-primary hover:bg-primary/5">
+                    Talk to a Strategist
                   </Button>
                 </Link>
-              </CardContent>
-            </Card>
-
-            {/* Premium */}
-            <Card className="border-2 border-primary bg-card rounded-md shadow-elegant relative overflow-hidden">
-              <div className="absolute top-0 right-0 px-3 py-1 bg-accent text-primary text-[10px] uppercase tracking-[0.2em] font-semibold">
-                Most chosen
               </div>
-              <CardContent className="p-9">
-                <div className="flex items-center gap-2 mb-2 text-accent">
-                  <Award className="w-4 h-4" />
-                  <span className="text-xs uppercase tracking-[0.2em]">Founder Pod</span>
-                </div>
-                <h3 className="font-display text-3xl text-foreground mb-4">Founder-Led Growth Pod</h3>
-                <p className="text-muted-foreground mb-6">For franchisors who want their brand and founder to lead the category in India.</p>
-                <div className="mb-7">
-                  <span className="font-display text-2xl text-foreground">Bespoke Engagement</span>
-                  <p className="text-sm text-muted-foreground mt-1">Includes website rebuild, brand polish and PR.</p>
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {[
-                    "Everything in Growth Plan",
-                    "Franchise website rebuild",
-                    "Brand & investor deck refresh",
-                    "Podcast + media positioning",
-                    "Senior strategist on weekly calls",
-                    "Quarterly on-site / virtual review",
-                  ].map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-foreground">
-                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link to="/contact">
-                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-12 rounded-md">
-                    Talk to Founder Team <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
+            </div>
 
-          <p className="text-center text-sm text-muted-foreground mt-8">
-            All plans honour our <span className="text-primary font-medium">₹1 Franchise Lead Generation</span> promise — relentless cost-efficiency on every qualified investor enquiry.
-          </p>
+            <div className="lg:col-span-6">
+              <Card className="border-2 border-primary bg-card rounded-md shadow-elegant relative overflow-hidden">
+                <div className="absolute top-0 right-0 px-3 py-1 bg-accent text-primary text-[10px] uppercase tracking-[0.2em] font-semibold">
+                  Founder Favourite
+                </div>
+                <CardContent className="p-9">
+                  <div className="flex items-center gap-2 mb-2 text-accent">
+                    <Award className="w-4 h-4" />
+                    <span className="text-xs uppercase tracking-[0.2em]">Pay-Per-Lead</span>
+                  </div>
+                  <h3 className="font-display text-3xl text-foreground mb-3">₹1 / $1 Qualified Franchise Leads</h3>
+                  <p className="text-muted-foreground mb-7">
+                    Brutally cost-efficient franchise lead generation for India & USA franchisors. You pay only when a verified investor lands in your inbox.
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-4 mb-8">
+                    <div className="p-5 rounded-md bg-primary/5 border border-primary/10">
+                      <p className="text-xs uppercase tracking-[0.2em] text-accent mb-2">India</p>
+                      <p className="font-display text-3xl text-foreground">₹1<span className="text-sm text-muted-foreground"> / lead</span></p>
+                    </div>
+                    <div className="p-5 rounded-md bg-primary/5 border border-primary/10">
+                      <p className="text-xs uppercase tracking-[0.2em] text-accent mb-2">USA</p>
+                      <p className="font-display text-3xl text-foreground">$1<span className="text-sm text-muted-foreground"> / lead</span></p>
+                    </div>
+                  </div>
+
+                  <ul className="space-y-3 mb-8">
+                    {[
+                      "LinkedIn + Meta + Google sourcing",
+                      "Manually qualified by our India pod",
+                      "Delivered on WhatsApp + CRM in real time",
+                      "Weekly performance reporting",
+                    ].map((f) => (
+                      <li key={f} className="flex items-start gap-3 text-foreground">
+                        <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link to="/contact">
+                    <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-12 rounded-md">
+                      Get My First Batch of Leads <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
       </section>
+
 
       {/* FAQ */}
       <section className="py-24 sm:py-28">
