@@ -74,20 +74,31 @@ const FeaturedBrands = () => {
   return (
     <>
       <div className="bg-secondary/30 border-y border-border">
-        <Section title="Leading Franchises Today" brands={indiaLeading} cta={{ label: "Enquire for any brand", to: "/contact" }} />
+        <Section
+          title="Leading Indian Franchises Today"
+          subtitle="India's most loved franchise brands across F&B, retail, education, wellness and healthcare."
+          brands={indiaLeading}
+          cta={{ label: "Enquire for any brand", to: "/contact" }}
+        />
       </div>
       <Section
-        title="Top Business Opportunities"
-        subtitle="Explore investment-ready franchise opportunities across India. Connect with our consulting team for a personalised match."
+        title="Top India Business Opportunities"
+        subtitle="Explore investment-ready Indian franchise opportunities. Connect with our consulting team for a personalised match."
         brands={indiaOpportunities}
       />
       <div className="bg-secondary/30 border-y border-border">
         <Section
-          title="USA Franchise Brands"
-          subtitle="World-class American franchise systems we help bring to India and support globally."
-          brands={usaBrands}
+          title="Leading USA Franchise Brands"
+          subtitle="World-class American franchise systems — from QSR giants to fitness, retail and hospitality leaders."
+          brands={usaLeading}
+          cta={{ label: "Enquire for any USA brand", to: "/contact" }}
         />
       </div>
+      <Section
+        title="Top USA Franchise Opportunities"
+        subtitle="High-growth American franchise systems open to multi-unit operators and international master franchisees."
+        brands={usaOpportunities}
+      />
     </>
   );
 };
