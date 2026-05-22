@@ -1,6 +1,7 @@
 import { locationData } from '@/data/locations';
 import { hasCuratedInsight } from '@/utils/locationContent';
 import { highValueKeywordPages, highValueServiceKeywords } from '@/utils/programmaticSeo';
+import { brands } from '@/data/brands';
 
 export interface SitemapUrl {
   loc: string;
@@ -21,6 +22,7 @@ export const generateCorePages = (): SitemapUrl[] => {
   const currentDate = getTodayDate();
   return [
     { loc: `${DOMAIN}/`, lastmod: currentDate, changefreq: 'weekly', priority: '1.0' },
+    { loc: `${DOMAIN}/usa`, lastmod: currentDate, changefreq: 'weekly', priority: '0.95' },
     { loc: `${DOMAIN}/about`, lastmod: currentDate, changefreq: 'monthly', priority: '0.9' },
     { loc: `${DOMAIN}/services`, lastmod: currentDate, changefreq: 'weekly', priority: '0.95' },
     { loc: `${DOMAIN}/contact`, lastmod: currentDate, changefreq: 'monthly', priority: '0.8' },
@@ -36,6 +38,16 @@ export const generateCorePages = (): SitemapUrl[] => {
     { loc: `${DOMAIN}/buy-franchise-leads`, lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
     { loc: `${DOMAIN}/digital-marketing`, lastmod: currentDate, changefreq: 'weekly', priority: '0.85' },
   ];
+};
+
+export const generateBrandUrls = (): SitemapUrl[] => {
+  const currentDate = getTodayDate();
+  return brands.map((brand) => ({
+    loc: `${DOMAIN}/brands/${brand.slug}`,
+    lastmod: currentDate,
+    changefreq: 'weekly',
+    priority: '0.8',
+  }));
 };
 
 // Curated sitemap policy: only emit URLs backed by unique regional content.
@@ -101,6 +113,7 @@ export const generateServiceLocationUrls = (): SitemapUrl[] => {
 export const getAllUrls = (): SitemapUrl[] => {
   return [
     ...generateCorePages(),
+    ...generateBrandUrls(),
     ...generateLocationUrls(),
     ...generateKeywordUrls(),
     ...generateServiceLocationUrls(),
@@ -151,6 +164,7 @@ export const getSitemapStats = () => {
     sitemapCount: chunks.length,
     chunkSize,
     corePages: generateCorePages().length,
+    brandPages: generateBrandUrls().length,
     locationPages: generateLocationUrls().length,
     keywordPages: generateKeywordUrls().length,
     serviceLocationPages: generateServiceLocationUrls().length,

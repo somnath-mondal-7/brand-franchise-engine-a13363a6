@@ -24,14 +24,6 @@ const Index = () => {
             "name": "FranchiseLeadsPro",
             "url": "https://www.franchiseleadspro.com",
             "description": "We help franchise consultants and franchisors generate qualified investor leads through LinkedIn marketing, social media campaigns, and franchise website development.",
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": {
-                "@type": "EntryPoint",
-                "urlTemplate": "https://www.franchiseleadspro.com/search?q={search_term_string}"
-              },
-              "query-input": "required name=search_term_string"
-            },
             "mainEntity": {
               "@type": "Organization",
               "name": "FranchiseLeadsPro",

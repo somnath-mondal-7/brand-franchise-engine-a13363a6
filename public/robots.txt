@@ -17,6 +17,8 @@ Disallow: /*?*sort=
 Disallow: /*?*filter=
 Disallow: /session-demo
 Disallow: /search
+Disallow: /india
+Disallow: /home-original
 
 # Allow important bot access
 User-agent: Googlebot
@@ -56,6 +58,8 @@ User-agent: Cohere-ai
 Allow: /
 
 # High-priority pages
+Allow: /
+Allow: /brands/
 Allow: /franchise-leads-usa
 Allow: /franchise-leads-uk  
 Allow: /franchise-leads-canada
