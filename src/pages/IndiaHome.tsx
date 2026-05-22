@@ -75,47 +75,8 @@ const IndiaHome = () => {
 
       <IndiaNav />
 
-      {/* HERO — Franchise India inspired */}
-      <section className="relative pt-24 pb-16 sm:pt-28 sm:pb-20 overflow-hidden bg-gradient-to-br from-primary/95 via-primary to-primary-dark text-primary-foreground">
-        <div
-          className="absolute inset-0 opacity-[0.08] pointer-events-none"
-          style={{
-            backgroundImage:
-              "radial-gradient(hsl(var(--accent)) 1px, transparent 1px)",
-            backgroundSize: "26px 26px",
-          }}
-        />
-        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 text-[11px] uppercase tracking-[0.2em] mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-              India 🇮🇳 + USA 🇺🇸 Franchise Growth Partner
-            </div>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] mb-4">
-              End-to-end <span className="text-accent">franchise consulting</span> for India & the USA.
-            </h1>
-            <p className="text-base sm:text-lg text-primary-foreground/85 max-w-2xl mb-2">
-              From franchise strategy, FDD and documentation to marketing, lead generation and franchisee onboarding — we serve Indian franchisors scaling pan-India and American brands expanding globally.
-            </p>
-            <p className="text-sm text-accent font-semibold tracking-wide mb-7">
-              ₹1 Franchise Lead Generation — trusted by brands across India & the USA.
-            </p>
-          </div>
-
-          {/* Search filter card */}
-          <div className="max-w-5xl">
-            <FranchiseSearchHero />
-          </div>
-
-          <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs uppercase tracking-[0.18em] text-primary-foreground/70">
-            <span>Trusted by emerging & legacy franchise brands</span>
-            <span className="hidden sm:inline">•</span>
-            <span>Pan India coverage</span>
-            <span className="hidden sm:inline">•</span>
-            <span>F&B · Education · Wellness · Retail · Healthcare</span>
-          </div>
-        </div>
-      </section>
+      {/* HERO SLIDER — 4 trust-building slides */}
+      <HeroSlider />
 
 
       {/* CATEGORY BAR */}
