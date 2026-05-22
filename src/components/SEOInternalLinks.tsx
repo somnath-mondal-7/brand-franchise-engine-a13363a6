@@ -1,21 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MapPin, Briefcase, Globe } from "lucide-react";
+import { Building2, Globe, Briefcase } from "lucide-react";
 
 const columns = [
   {
-    icon: <MapPin className="w-4 h-4" />,
-    title: "Popular Locations",
+    icon: <Building2 className="w-4 h-4" />,
+    title: "Featured Brands",
     links: [
-      { label: "California", href: "/locations/usa/california" },
-      { label: "Texas", href: "/locations/usa/texas" },
-      { label: "New York", href: "/locations/usa/new-york" },
-      { label: "Florida", href: "/locations/usa/florida" },
-      { label: "England", href: "/locations/uk/england" },
-      { label: "Ontario", href: "/locations/ca/ontario" },
-      { label: "Maharashtra", href: "/locations/in/maharashtra" },
-      { label: "Delhi NCR", href: "/locations/in/delhi-ncr" },
-      { label: "Dubai", href: "/locations/ae/dubai" },
+      { label: "McDonald's", href: "/brands/mcdonalds" },
+      { label: "Subway", href: "/brands/subway" },
+      { label: "7-Eleven", href: "/brands/7-eleven" },
+      { label: "The UPS Store", href: "/brands/ups-store" },
+      { label: "Lenskart", href: "/brands/lenskart" },
+      { label: "Kidzee", href: "/brands/kidzee" },
+      { label: "Haldiram's", href: "/brands/haldirams" },
+      { label: "Amul Parlour", href: "/brands/amul" },
     ],
   },
   {
