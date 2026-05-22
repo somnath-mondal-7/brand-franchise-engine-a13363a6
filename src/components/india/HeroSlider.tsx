@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import FranchiseSearchHero from "@/components/india/FranchiseSearchHero";
 
 const slides = [
   {
@@ -93,10 +92,6 @@ const HeroSlider = () => {
                 >
                   {s.cta} <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-              </div>
-
-              <div className="max-w-5xl mt-10">
-                <FranchiseSearchHero />
               </div>
             </div>
           </div>
