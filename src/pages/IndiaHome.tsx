@@ -89,16 +89,16 @@ const IndiaHome = () => {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 text-[11px] uppercase tracking-[0.2em] mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-              India's Franchise Growth Partner
+              India 🇮🇳 + USA 🇺🇸 Franchise Growth Partner
             </div>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] mb-4">
-              India's <span className="text-accent">end-to-end franchise consulting</span> partner.
+              End-to-end <span className="text-accent">franchise consulting</span> for India & the USA.
             </h1>
             <p className="text-base sm:text-lg text-primary-foreground/85 max-w-2xl mb-2">
-              From franchise strategy, FDD and documentation to marketing, lead generation and franchisee onboarding — we handle the full franchise journey. Not just matchmaking.
+              From franchise strategy, FDD and documentation to marketing, lead generation and franchisee onboarding — we serve Indian franchisors scaling pan-India and American brands expanding globally.
             </p>
             <p className="text-sm text-accent font-semibold tracking-wide mb-7">
-              ₹1 Franchise Lead Generation — built for Indian franchisors.
+              ₹1 Franchise Lead Generation — trusted by brands across India & the USA.
             </p>
           </div>
 
