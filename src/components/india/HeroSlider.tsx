@@ -93,10 +93,6 @@ const HeroSlider = () => {
                   {s.cta} <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
-
-              <div className="max-w-5xl mt-10">
-                <FranchiseSearchHero />
-              </div>
             </div>
           </div>
         ))}
