@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import IndiaNav from "@/components/india/IndiaNav";
 import IndiaFooter from "@/components/india/IndiaFooter";
-import FranchiseSearchHero from "@/components/india/FranchiseSearchHero";
+import HeroSlider from "@/components/india/HeroSlider";
 import FeaturedBrands from "@/components/india/FeaturedBrands";
 
 const solutions = [
