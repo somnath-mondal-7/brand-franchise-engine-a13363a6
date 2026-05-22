@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { indiaLeading, indiaOpportunities, usaBrands, type Brand } from "@/data/brands";
+import { indiaLeading, indiaOpportunities, usaLeading, usaOpportunities, type Brand } from "@/data/brands";
 
 const BrandCard = ({ b }: { b: Brand }) => (
   <Link
