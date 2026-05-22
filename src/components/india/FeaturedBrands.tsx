@@ -6,24 +6,22 @@ const BrandCard = ({ b }: { b: Brand }) => (
     to={`/brands/${b.slug}`}
     className="group bg-card border border-border rounded-lg overflow-hidden shadow-card hover:shadow-elegant hover:-translate-y-1 transition-all"
   >
-    <div className="h-36 bg-white flex items-center justify-center border-b border-border p-6">
+    <div className="h-36 bg-white flex items-center justify-center border-b border-border p-6 relative">
       <img
-        src={`https://logo.clearbit.com/${b.domain}?size=200`}
+        src={`https://icons.duckduckgo.com/ip3/${b.domain}.ico`}
         alt={`${b.name} logo`}
         loading="lazy"
-        className="max-h-full max-w-full object-contain"
+        className="max-h-20 max-w-[80%] object-contain"
         onError={(e) => {
           const img = e.currentTarget;
-          img.style.display = "none";
-          const fallback = img.nextElementSibling as HTMLElement | null;
-          if (fallback) fallback.style.display = "flex";
+          if (!img.dataset.fallback) {
+            img.dataset.fallback = "1";
+            img.src = `https://www.google.com/s2/favicons?sz=128&domain=${b.domain}`;
+          } else {
+            img.style.display = "none";
+          }
         }}
       />
-      <div
-        className="hidden w-full h-full items-center justify-center font-display text-2xl text-primary"
-      >
-        {b.name}
-      </div>
     </div>
     <div className="p-5">
       <p className="text-[11px] uppercase tracking-[0.15em] text-accent font-semibold mb-2">{b.category}</p>
