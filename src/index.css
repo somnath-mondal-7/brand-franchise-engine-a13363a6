@@ -94,46 +94,46 @@
    ============================================================ */
 .india-theme {
   --background: 0 0% 100%;
-  --foreground: 220 18% 14%;
+  --foreground: 0 0% 8%;
   --card: 0 0% 100%;
-  --card-foreground: 220 18% 14%;
+  --card-foreground: 0 0% 8%;
   --popover: 0 0% 100%;
-  --popover-foreground: 220 18% 14%;
+  --popover-foreground: 0 0% 8%;
 
-  --primary: 220 91% 48%;            /* Trustworthy Blue primary */
+  --primary: 0 0% 7%;                /* Hoopdesk-style deep black */
   --primary-foreground: 0 0% 100%;
-  --primary-light: 220 91% 60%;
-  --primary-dark: 220 91% 36%;
+  --primary-light: 0 0% 18%;
+  --primary-dark: 0 0% 0%;
 
-  --secondary: 220 30% 97%;
-  --secondary-foreground: 220 25% 14%;
-  --muted: 220 20% 96%;
-  --muted-foreground: 220 9% 42%;
+  --secondary: 48 100% 96%;
+  --secondary-foreground: 0 0% 8%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 38%;
 
-  --accent: 22 95% 54%;              /* Vibrant Orange accent */
-  --accent-foreground: 0 0% 100%;
-  --accent-light: 22 95% 65%;
-  --accent-dark: 22 95% 44%;
+  --accent: 48 100% 50%;             /* Signature yellow */
+  --accent-foreground: 0 0% 7%;
+  --accent-light: 48 100% 62%;
+  --accent-dark: 48 100% 42%;
 
-  --border: 220 18% 90%;
-  --input: 220 18% 90%;
-  --ring: 220 91% 48%;
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  --ring: 48 100% 50%;
   --radius: 0.5rem;
 
-  --brand-navy: 220 45% 14%;
-  --brand-gray: 220 9% 42%;
-  --brand-light: 220 30% 97%;
+  --brand-navy: 0 0% 7%;
+  --brand-gray: 0 0% 38%;
+  --brand-light: 48 100% 96%);
 
-  --gradient-primary: linear-gradient(135deg, hsl(220 91% 40%), hsl(220 91% 55%));
-  --gradient-hero: linear-gradient(135deg, hsl(220 91% 36%) 0%, hsl(220 91% 48%) 55%, hsl(22 95% 54%) 100%);
-  --gradient-trust: linear-gradient(90deg, hsl(220 91% 48%), hsl(22 95% 54%));
-  --gradient-warm: linear-gradient(135deg, hsl(22 95% 54%), hsl(22 95% 65%));
-  --gradient-cool: linear-gradient(135deg, hsl(220 91% 48%), hsl(220 91% 62%));
-  --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(220 30% 98%));
+  --gradient-primary: linear-gradient(135deg, hsl(0 0% 7%), hsl(0 0% 18%));
+  --gradient-hero: linear-gradient(135deg, hsl(0 0% 5%) 0%, hsl(0 0% 12%) 100%);
+  --gradient-trust: linear-gradient(90deg, hsl(0 0% 7%), hsl(48 100% 50%));
+  --gradient-warm: linear-gradient(135deg, hsl(48 100% 50%), hsl(48 100% 62%));
+  --gradient-cool: linear-gradient(135deg, hsl(0 0% 7%), hsl(0 0% 22%));
+  --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(48 100% 98%));
 
-  --shadow-elegant: 0 18px 38px -14px hsl(220 91% 30% / 0.20), 0 6px 14px -6px hsl(220 45% 14% / 0.08);
-  --shadow-card: 0 4px 14px -6px hsl(220 45% 14% / 0.10);
-  --shadow-hover: 0 26px 48px -16px hsl(220 91% 30% / 0.28);
+  --shadow-elegant: 0 18px 38px -14px hsl(0 0% 0% / 0.25), 0 6px 14px -6px hsl(0 0% 0% / 0.10);
+  --shadow-card: 0 4px 14px -6px hsl(0 0% 0% / 0.12);
+  --shadow-hover: 0 26px 48px -16px hsl(0 0% 0% / 0.32);
 
   font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
   color: hsl(var(--foreground));
@@ -142,18 +142,20 @@
 }
 
 .india-theme .font-display {
-  font-family: 'Poppins', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: 'Playfair Display', 'Poppins', Georgia, serif;
   font-weight: 700;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
 }
 
 .india-theme em {
-  font-style: normal;
-  color: hsl(var(--primary));
+  font-style: italic;
+  font-family: 'Playfair Display', Georgia, serif;
+  color: hsl(var(--accent));
+  font-weight: 600;
 }
 
 .india-theme ::selection {
-  background-color: hsl(var(--primary) / 0.18);
+  background-color: hsl(var(--accent) / 0.4);
   color: hsl(var(--primary));
 }
 
