@@ -125,18 +125,18 @@ const IndiaHome = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-5">
-              <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Why FranchiseIndiaPro</p>
+              <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Why FranchiseLeadsPro</p>
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] mb-6">
-                A franchise consulting partner that <em className="text-accent">actually understands India.</em>
+                A franchise consulting partner that <em className="text-accent">actually understands America.</em>
               </h2>
               <p className="text-primary-foreground/75 text-lg leading-relaxed">
-                We are not a generic digital agency moonlighting in franchise. Every team member is trained in Indian franchise dynamics — unit economics, FDD, royalty structures, regional buyer behaviour, and the realities of selling franchise opportunities across Bharat.
+                We are not a generic digital agency moonlighting in franchise. Every team member is trained in U.S. franchise dynamics — unit economics, FDD, royalty structures, regional buyer behavior, and the realities of selling franchise opportunities across all 50 states.
               </p>
               <Button
                 className="mt-8 bg-accent text-primary hover:bg-accent/90 px-7 h-12 rounded-md"
                 onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
               >
-                Talk to an India Strategist <ArrowRight className="ml-2 h-4 w-4" />
+                Talk to a U.S. Strategist <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
 
