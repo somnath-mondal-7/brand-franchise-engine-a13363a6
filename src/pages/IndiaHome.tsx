@@ -11,6 +11,7 @@ import IndiaNav from "@/components/india/IndiaNav";
 import IndiaFooter from "@/components/india/IndiaFooter";
 import HeroSlider from "@/components/india/HeroSlider";
 import FeaturedBrands from "@/components/india/FeaturedBrands";
+import TestimonialsSection from "@/components/TestimonialsSection";
 
 const solutions = [
   { icon: Crown, title: "Franchise Strategy & Readiness", desc: "End-to-end franchise model design — unit economics, royalty structures, territory planning, and franchise-readiness audit." },
@@ -274,6 +275,11 @@ const IndiaHome = () => {
           </div>
         </div>
       </section>
+
+      {/* TESTIMONIALS — restored video reviews (Shawn Gurn, Jonathan Morgan, etc.) */}
+      <TestimonialsSection />
+
+
 
 
       {/* FAQ */}
