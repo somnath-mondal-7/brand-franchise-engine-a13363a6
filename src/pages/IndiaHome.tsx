@@ -83,7 +83,7 @@ const IndiaHome = () => {
       {/* CATEGORY BAR */}
       <section className="border-y border-border bg-secondary/40">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted-foreground">
-          <span className="font-display text-base text-primary">We grow franchises in:</span>
+          <span className="font-display text-base text-primary">We grow U.S. franchises in:</span>
           {categories.map((c) => (
             <span key={c} className="whitespace-nowrap">{c}</span>
           ))}
