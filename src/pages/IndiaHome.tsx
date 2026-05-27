@@ -99,10 +99,10 @@ const IndiaHome = () => {
           <div className="max-w-3xl mb-16">
             <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Solutions</p>
             <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] text-foreground mb-5">
-              Everything an Indian franchisor needs to attract <em>serious investors.</em>
+              Everything a U.S. franchisor needs to attract <em>serious investors.</em>
             </h2>
             <p className="text-lg text-muted-foreground">
-              One India-focused team, six growth engines — engineered to put your franchise in front of buyers who can actually write the cheque.
+              One USA-focused team, six growth engines — engineered to put your franchise in front of buyers who can actually write the check.
             </p>
           </div>
 
