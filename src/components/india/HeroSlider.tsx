@@ -3,10 +3,10 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const headlines = [
-  { eyebrow: "India + USA Franchise Growth Partner", title: "Trusted By Franchises", titleEm: "And Counting" },
-  { eyebrow: "Where Founders Meet Investors", title: "Built For Serious", titleEm: "Franchise Brands" },
+  { eyebrow: "USA Franchise Growth Partner", title: "Trusted By American Franchises", titleEm: "And Counting" },
+  { eyebrow: "Where Founders Meet Investors", title: "Built For Serious", titleEm: "U.S. Franchise Brands" },
   { eyebrow: "End-to-End Franchise Marketing", title: "Your Franchise.", titleEm: "Our Growth Engine." },
-  { eyebrow: "Qualified Investor Leads", title: "Real Investors.", titleEm: "Real Conversations." },
+  { eyebrow: "Qualified U.S. Investor Leads", title: "Real Investors.", titleEm: "Real Conversations." },
 ];
 
 const collageImages = [
