@@ -234,27 +234,27 @@ const IndiaHome = () => {
                     <Award className="w-4 h-4" />
                     <span className="text-xs uppercase tracking-[0.2em]">Pay-Per-Lead</span>
                   </div>
-                  <h3 className="font-display text-3xl text-foreground mb-3">₹1 / $1 Qualified Franchise Leads</h3>
+                  <h3 className="font-display text-3xl text-foreground mb-3">$1 Qualified Franchise Leads</h3>
                   <p className="text-muted-foreground mb-7">
-                    Brutally cost-efficient franchise lead generation for India & USA franchisors. You pay only when a verified investor lands in your inbox.
+                    Brutally cost-efficient franchise lead generation for U.S. franchisors. You pay only when a verified investor lands in your inbox.
                   </p>
 
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     <div className="p-5 rounded-md bg-primary/5 border border-primary/10">
-                      <p className="text-xs uppercase tracking-[0.2em] text-accent mb-2">India</p>
-                      <p className="font-display text-3xl text-foreground">₹1<span className="text-sm text-muted-foreground"> / lead</span></p>
+                      <p className="text-xs uppercase tracking-[0.2em] text-accent mb-2">Starter</p>
+                      <p className="font-display text-3xl text-foreground">$1<span className="text-sm text-muted-foreground"> / lead</span></p>
                     </div>
                     <div className="p-5 rounded-md bg-primary/5 border border-primary/10">
-                      <p className="text-xs uppercase tracking-[0.2em] text-accent mb-2">USA</p>
-                      <p className="font-display text-3xl text-foreground">$1<span className="text-sm text-muted-foreground"> / lead</span></p>
+                      <p className="text-xs uppercase tracking-[0.2em] text-accent mb-2">Scale</p>
+                      <p className="font-display text-3xl text-foreground">Custom<span className="text-sm text-muted-foreground"> / month</span></p>
                     </div>
                   </div>
 
                   <ul className="space-y-3 mb-8">
                     {[
                       "LinkedIn + Meta + Google sourcing",
-                      "Manually qualified by our India pod",
-                      "Delivered on WhatsApp + CRM in real time",
+                      "Manually qualified by our U.S. pod",
+                      "Delivered to your CRM in real time",
                       "Weekly performance reporting",
                     ].map((f) => (
                       <li key={f} className="flex items-start gap-3 text-foreground">
