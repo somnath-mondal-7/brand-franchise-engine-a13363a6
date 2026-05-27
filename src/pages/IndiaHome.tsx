@@ -188,17 +188,17 @@ const IndiaHome = () => {
             <div className="lg:col-span-6">
               <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Pay-per-Lead Offer</p>
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] text-foreground mb-5">
-                Qualified franchise leads for <em className="text-primary">just ₹1 / $1.</em>
+                Qualified franchise leads for <em className="text-primary">just $1.</em>
               </h2>
               <p className="text-lg text-muted-foreground mb-7">
-                No retainers. No bloated agency fees. Pay only for pre-screened, intent-verified franchise investor leads — delivered straight to your CRM and WhatsApp.
+                No retainers. No bloated agency fees. Pay only for pre-screened, intent-verified U.S. franchise investor leads — delivered straight to your CRM.
               </p>
 
               <ul className="space-y-3 mb-9">
                 {[
                   "Pre-qualified investor — budget & timeline verified",
                   "Right category fit for your franchise model",
-                  "Delivered live on WhatsApp + CRM",
+                  "Delivered live to your CRM",
                   "No setup cost. No long-term lock-in.",
                   "Replacement guarantee on unqualified leads",
                 ].map((f) => (
@@ -214,7 +214,7 @@ const IndiaHome = () => {
                   className="bg-primary hover:bg-primary/90 text-primary-foreground h-12 px-7 rounded-md"
                   onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
                 >
-                  Claim ₹1 / $1 Leads <ArrowRight className="ml-2 h-4 w-4" />
+                  Claim $1 Leads <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
                 <Link to="/contact">
                   <Button variant="outline" className="h-12 px-7 rounded-md border-primary/30 text-primary hover:bg-primary/5">
