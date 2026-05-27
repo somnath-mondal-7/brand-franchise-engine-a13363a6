@@ -37,6 +37,9 @@ import BlogSitemap from "./pages/BlogSitemap";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import NotFound from "./pages/NotFound";
+import FranchiseMarketing from "./pages/FranchiseMarketing";
+import FranchiseFlow from "./pages/FranchiseFlow";
+import ServiceDetail from "./pages/ServiceDetail";
 import ScrollToTop from "./components/ScrollToTop";
 import ChatWidget from "./components/ChatWidget";
 import { useLocation } from "react-router-dom";
@@ -59,6 +62,7 @@ const App = () => (
         <BrowserRouter>
           <ScrollToTop />
           <ConditionalChatWidget />
+          <div className="india-theme">
           <Routes>
             <Route path="/" element={<IndiaHome />} />
             <Route path="/india" element={<Navigate to="/" replace />} />
@@ -112,8 +116,12 @@ const App = () => (
             <Route path="/legal-terms/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/legal-terms/refund-satisfaction-guarantee-policy" element={<RefundPolicy />} />
             
+            <Route path="/franchise-marketing" element={<FranchiseMarketing />} />
+            <Route path="/franchise-marketing/:slug" element={<ServiceDetail />} />
+            <Route path="/franchise-flow" element={<FranchiseFlow />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </div>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

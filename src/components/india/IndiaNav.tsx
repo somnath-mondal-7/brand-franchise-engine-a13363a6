@@ -7,57 +7,30 @@ type MegaCol = { title: string; links: { label: string; href: string }[] };
 
 const servicesMega: MegaCol[] = [
   {
-    title: "Start Franchising in 7 Days",
+    title: "Strategy & Documents",
     links: [
-      { label: "Are You Ready to Franchise Your Business", href: "/services" },
-      { label: "Franchise Readiness Audit", href: "/services" },
-      { label: "How to Make Franchise Successful", href: "/services" },
-      { label: "Franchise Registration in India", href: "/services" },
+      { label: "Franchise Strategy", href: "/franchise-marketing/franchise-strategy" },
+      { label: "Franchise Documentation", href: "/franchise-marketing/franchise-documentation" },
+      { label: "franchiseFLOW System", href: "/franchise-flow" },
+      { label: "All Services", href: "/franchise-marketing" },
     ],
   },
   {
-    title: "A-Z Franchise Consultancy",
+    title: "Marketing & Demand",
     links: [
-      { label: "Franchising Your Business", href: "/services" },
-      { label: "Franchise Strategy Development", href: "/services" },
-      { label: "Advantages of Franchising", href: "/services" },
-      { label: "Franchise Questions & Answers", href: "/services" },
+      { label: "LinkedIn Marketing", href: "/franchise-marketing/linkedin-marketing" },
+      { label: "Performance Marketing", href: "/franchise-marketing/performance-marketing" },
+      { label: "Franchise Website", href: "/franchise-marketing/franchise-website" },
+      { label: "Franchise Recruitment", href: "/franchise-marketing/franchise-recruitment" },
     ],
   },
   {
-    title: "Franchise Development India",
+    title: "Explore",
     links: [
-      { label: "Business Growth Strategies", href: "/services" },
-      { label: "Appoint Dealers / Distributors", href: "/services" },
-      { label: "Sell Your Business", href: "/services" },
-      { label: "Small Business Consulting", href: "/services" },
-    ],
-  },
-  {
-    title: "Business Franchise Marketing",
-    links: [
-      { label: "Franchise Marketing Strategy", href: "/services" },
-      { label: "Franchise Recruitment Service", href: "/services" },
-      { label: "Franchise Lead Generation", href: "/" },
-      { label: "Franchise Exhibitions", href: "/services" },
-    ],
-  },
-  {
-    title: "Franchise Documents",
-    links: [
-      { label: "Franchise Agreement India", href: "/services" },
-      { label: "Franchise Marketing Kits", href: "/services" },
-      { label: "Franchise Manuals", href: "/services" },
-      { label: "Franchise Business Plan", href: "/services" },
-    ],
-  },
-  {
-    title: "Global & Solutions",
-    links: [
-      { label: "India Master Franchise Program", href: "/services" },
-      { label: "International Franchise Opportunities", href: "/services" },
-      { label: "Managing Franchisees", href: "/services" },
-      { label: "Franchise Training Programs", href: "/services" },
+      { label: "Our Clients", href: "/case-studies" },
+      { label: "About", href: "/about" },
+      { label: "Blog", href: "/blog" },
+      { label: "Contact", href: "/contact" },
     ],
   },
 ];

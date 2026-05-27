@@ -94,46 +94,46 @@
    ============================================================ */
 .india-theme {
   --background: 0 0% 100%;
-  --foreground: 0 0% 8%;
+  --foreground: 215 35% 14%;
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 8%;
+  --card-foreground: 215 35% 14%;
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 8%;
+  --popover-foreground: 215 35% 14%;
 
-  --primary: 0 0% 7%;                /* Hoopdesk-style deep black */
-  --primary-foreground: 0 0% 100%;
-  --primary-light: 0 0% 18%;
-  --primary-dark: 0 0% 0%;
+  --primary: 215 50% 18%;            /* Deep trust navy */
+  --primary-foreground: 40 30% 96%;
+  --primary-light: 215 42% 28%;
+  --primary-dark: 215 55% 12%;
 
-  --secondary: 48 100% 96%;
-  --secondary-foreground: 0 0% 8%;
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 38%;
+  --secondary: 38 30% 96%;
+  --secondary-foreground: 215 50% 18%;
+  --muted: 215 20% 96%;
+  --muted-foreground: 215 16% 42%;
 
-  --accent: 48 100% 50%;             /* Signature yellow */
-  --accent-foreground: 0 0% 7%;
-  --accent-light: 48 100% 62%;
-  --accent-dark: 48 100% 42%;
+  --accent: 38 58% 52%;              /* Warm muted gold */
+  --accent-foreground: 215 50% 12%;
+  --accent-light: 38 62% 62%;
+  --accent-dark: 38 60% 42%;
 
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 48 100% 50%;
+  --border: 215 20% 88%;
+  --input: 215 20% 88%;
+  --ring: 38 58% 52%;
   --radius: 0.5rem;
 
-  --brand-navy: 0 0% 7%;
-  --brand-gray: 0 0% 38%;
-  --brand-light: 48 100% 96%;
+  --brand-navy: 215 50% 18%;
+  --brand-gray: 215 16% 42%;
+  --brand-light: 38 30% 96%;
 
-  --gradient-primary: linear-gradient(135deg, hsl(0 0% 7%), hsl(0 0% 18%));
-  --gradient-hero: linear-gradient(135deg, hsl(0 0% 5%) 0%, hsl(0 0% 12%) 100%);
-  --gradient-trust: linear-gradient(90deg, hsl(0 0% 7%), hsl(48 100% 50%));
-  --gradient-warm: linear-gradient(135deg, hsl(48 100% 50%), hsl(48 100% 62%));
-  --gradient-cool: linear-gradient(135deg, hsl(0 0% 7%), hsl(0 0% 22%));
-  --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(48 100% 98%));
+  --gradient-primary: linear-gradient(135deg, hsl(215 50% 18%), hsl(215 42% 28%));
+  --gradient-hero: linear-gradient(135deg, hsl(215 55% 12%) 0%, hsl(215 45% 22%) 100%);
+  --gradient-trust: linear-gradient(90deg, hsl(215 50% 18%), hsl(38 58% 52%));
+  --gradient-warm: linear-gradient(135deg, hsl(38 58% 52%), hsl(38 62% 62%));
+  --gradient-cool: linear-gradient(135deg, hsl(215 50% 18%), hsl(215 35% 28%));
+  --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(215 20% 98%));
 
-  --shadow-elegant: 0 18px 38px -14px hsl(0 0% 0% / 0.25), 0 6px 14px -6px hsl(0 0% 0% / 0.10);
-  --shadow-card: 0 4px 14px -6px hsl(0 0% 0% / 0.12);
-  --shadow-hover: 0 26px 48px -16px hsl(0 0% 0% / 0.32);
+  --shadow-elegant: 0 18px 38px -14px hsl(215 50% 18% / 0.22), 0 6px 14px -6px hsl(215 50% 18% / 0.10);
+  --shadow-card: 0 4px 14px -6px hsl(215 50% 18% / 0.10);
+  --shadow-hover: 0 26px 48px -16px hsl(215 50% 18% / 0.28);
 
   font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
   color: hsl(var(--foreground));
@@ -155,7 +155,7 @@
 }
 
 .india-theme ::selection {
-  background-color: hsl(var(--accent) / 0.4);
+  background-color: hsl(var(--accent) / 0.35);
   color: hsl(var(--primary));
 }
 
