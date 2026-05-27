@@ -326,10 +326,10 @@ const IndiaHome = () => {
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-xs uppercase tracking-[0.3em] text-accent mb-4">Ready when you are</p>
             <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] mb-5">
-              Let's put your franchise in front of <em className="text-accent">India's serious investors.</em>
+              Let's put your franchise in front of <em className="text-accent">America's serious investors.</em>
             </h2>
             <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-9">
-              30 minutes. Zero obligation. A direct conversation with an India franchise strategist — not a sales bot.
+              30 minutes. Zero obligation. A direct conversation with a U.S. franchise strategist — not a sales bot.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button
