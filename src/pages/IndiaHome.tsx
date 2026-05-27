@@ -53,22 +53,22 @@ const IndiaHome = () => {
   return (
     <div className="india-theme min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>₹1 Franchise Lead Generation in India | FranchiseIndiaPro</title>
-        <meta name="description" content="India's franchise growth partner. LinkedIn, social media and website-driven franchise lead generation for Indian franchisors. Book a free consultation." />
+        <title>$1 Franchise Lead Generation in USA | FranchiseLeadsPro</title>
+        <meta name="description" content="America's franchise growth partner. LinkedIn, social media and website-driven franchise lead generation for U.S. franchisors. Book a free consultation." />
         <link rel="canonical" href="https://www.franchiseleadspro.com/" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
-            "name": "FranchiseIndiaPro by FranchiseLeadsPro",
-            "areaServed": "IN",
+            "name": "FranchiseLeadsPro",
+            "areaServed": "US",
             "url": "https://www.franchiseleadspro.com/",
-            "slogan": "₹1 Franchise Lead Generation",
+            "slogan": "$1 Franchise Lead Generation",
             "serviceType": [
-              "Franchise Lead Generation in India",
-              "LinkedIn Marketing for Indian Franchisors",
-              "Franchise Website Development India",
-              "Franchise Consulting India",
+              "Franchise Lead Generation in USA",
+              "LinkedIn Marketing for U.S. Franchisors",
+              "Franchise Website Development USA",
+              "Franchise Consulting USA",
             ],
           })}
         </script>
