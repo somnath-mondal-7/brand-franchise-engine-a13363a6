@@ -14,61 +14,61 @@ import FeaturedBrands from "@/components/india/FeaturedBrands";
 import TestimonialsSection from "@/components/TestimonialsSection";
 
 const solutions = [
-  { icon: Crown, title: "Franchise Strategy & Readiness", desc: "End-to-end franchise model design — unit economics, royalty structures, territory planning, and franchise-readiness audit." },
-  { icon: ShieldCheck, title: "Franchise Documentation & Legal", desc: "FDD, franchise agreements, operations manuals, and SOPs drafted by franchise specialists — fully India-compliant." },
-  { icon: Linkedin, title: "LinkedIn Investor Outreach", desc: "Hand-built outreach to HNI investors, family offices and serious franchise buyers across India." },
-  { icon: Share2, title: "Performance Marketing & Ads", desc: "Meta, Google, Instagram and YouTube campaigns tuned for the Indian investor — Hindi + English creatives." },
-  { icon: Globe, title: "Franchise Website & Brand Build", desc: "Investor-grade websites, brand decks and pitch material with WhatsApp lead capture and regional language support." },
-  { icon: Users, title: "Franchisee Recruitment & Onboarding", desc: "From lead qualification to discovery day, agreement signing and launch — we manage the full onboarding pipeline." },
+  { icon: Crown, title: "Franchise Strategy & Readiness", desc: "End-to-end franchise model design — unit economics, royalty structures, territory planning, and franchise-readiness audit for the U.S. market." },
+  { icon: ShieldCheck, title: "Franchise Documentation & FDD", desc: "FDD, franchise agreements, operations manuals, and SOPs drafted by franchise specialists — fully U.S.-compliant." },
+  { icon: Linkedin, title: "LinkedIn Investor Outreach", desc: "Hand-built outreach to qualified U.S. investors, family offices, and serious franchise buyers across all 50 states." },
+  { icon: Share2, title: "Performance Marketing & Ads", desc: "Meta, Google, Instagram and YouTube campaigns tuned for the American franchise investor." },
+  { icon: Globe, title: "Franchise Website & Brand Build", desc: "Investor-grade websites, brand decks, and pitch material with CRM-integrated lead capture." },
+  { icon: Users, title: "Franchisee Recruitment & Onboarding", desc: "From lead qualification to discovery day, agreement signing, and launch — we manage the full onboarding pipeline." },
 ];
 
 const why = [
-  { icon: IndianRupee, title: "India-first pricing", desc: "Built for Indian franchisors — INR-friendly plans, no inflated USD packages." },
+  { icon: IndianRupee, title: "Transparent USD pricing", desc: "Built for American franchisors — clear USD plans, no surprise retainers." },
   { icon: ShieldCheck, title: "Franchise specialists only", desc: "We work with franchise brands. Not real estate, not e-com, not SaaS." },
   { icon: Sparkles, title: "Premium creative", desc: "Editorial-grade brand decks, investor pitch sites, and ad creatives that look the part." },
   { icon: TrendingUp, title: "Built for serious investors", desc: "We attract qualified franchise buyers — not curious browsers." },
 ];
 
 const steps = [
-  { n: "01", title: "Discovery", desc: "We study your franchise model, ticket size, ideal franchisee, and Indian regional strategy." },
-  { n: "02", title: "Brand & Funnel", desc: "Brand polish, investor landing page, WhatsApp + CRM funnel, and creative system." },
-  { n: "03", title: "Multi-Channel Outreach", desc: "LinkedIn outreach, performance ads, and content engine go live across India." },
+  { n: "01", title: "Discovery", desc: "We study your franchise model, ticket size, ideal franchisee profile, and U.S. regional strategy." },
+  { n: "02", title: "Brand & Funnel", desc: "Brand polish, investor landing page, CRM funnel, and creative system." },
+  { n: "03", title: "Multi-Channel Outreach", desc: "LinkedIn outreach, performance ads, and content engine go live across the U.S." },
   { n: "04", title: "Qualified Investor Calls", desc: "Pre-screened franchise buyers booked directly on your calendar." },
 ];
 
 const faqs = [
-  { q: "What does ₹1 Franchise Lead Generation actually mean?", a: "It is our promise of brutally cost-efficient lead generation for Indian franchisors. Through LinkedIn, performance ads and authority content we drive your cost per qualified investor enquiry down to a level that feels almost free — so your franchise sales math finally works." },
-  { q: "Which Indian franchise categories do you work with?", a: "Food & beverage, education, wellness, retail, services, fitness, salons, healthcare and emerging D2C brands going the franchise route. If you have a working unit economics and a franchise document, we can run growth for you." },
-  { q: "Do you work with new franchisors who have just 1–2 units?", a: "Yes — provided the unit is profitable and you have FDD / franchise agreement ready. We help young franchisors look as credible as legacy brands from day one." },
-  { q: "Do you handle Hindi creatives and regional targeting?", a: "Absolutely. We build creatives in Hindi, English and major regional languages, and run state-wise targeting (Maharashtra, Karnataka, Tamil Nadu, Telangana, UP, Delhi NCR, Gujarat and more)." },
-  { q: "Where are leads delivered?", a: "Directly into your CRM and on WhatsApp, with the qualification notes from our team. You also get weekly reports and a dedicated India success manager." },
+  { q: "What does $1 Franchise Lead Generation actually mean?", a: "It is our promise of brutally cost-efficient lead generation for U.S. franchisors. Through LinkedIn, performance ads, and authority content we drive your cost per qualified investor enquiry down to a level that feels almost free — so your franchise sales math finally works." },
+  { q: "Which U.S. franchise categories do you work with?", a: "Food & beverage, education, wellness, retail, services, fitness, salons, healthcare, and emerging D2C brands going the franchise route. If you have working unit economics and an FDD ready, we can run growth for you." },
+  { q: "Do you work with emerging franchisors who have just 1–2 units?", a: "Yes — provided the unit is profitable and you have an FDD / franchise agreement ready. We help young franchisors look as credible as legacy brands from day one." },
+  { q: "Do you handle state-by-state targeting and FDD-registration states?", a: "Absolutely. We run state-wise targeting across all 50 states and respect registration-state requirements (CA, NY, IL, VA, WA, MN, MD, RI, ND, SD, HI, MI, WI, IN)." },
+  { q: "Where are leads delivered?", a: "Directly into your CRM, with qualification notes from our team. You also get weekly reports and a dedicated U.S. success manager." },
 ];
 
 const categories = [
-  "Food & Beverage", "Education & EdTech", "Wellness & Salon", "Fitness & Gym",
-  "Retail & D2C", "Healthcare", "Cloud Kitchens", "Coaching & Tuition",
+  "Food & Beverage", "Education & Tutoring", "Wellness & Salon", "Fitness & Gym",
+  "Retail & D2C", "Healthcare", "Cloud Kitchens", "Home Services",
 ];
 
 const IndiaHome = () => {
   return (
     <div className="india-theme min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>₹1 Franchise Lead Generation in India | FranchiseIndiaPro</title>
-        <meta name="description" content="India's franchise growth partner. LinkedIn, social media and website-driven franchise lead generation for Indian franchisors. Book a free consultation." />
+        <title>$1 Franchise Lead Generation in USA | FranchiseLeadsPro</title>
+        <meta name="description" content="America's franchise growth partner. LinkedIn, social media and website-driven franchise lead generation for U.S. franchisors. Book a free consultation." />
         <link rel="canonical" href="https://www.franchiseleadspro.com/" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
-            "name": "FranchiseIndiaPro by FranchiseLeadsPro",
-            "areaServed": "IN",
+            "name": "FranchiseLeadsPro",
+            "areaServed": "US",
             "url": "https://www.franchiseleadspro.com/",
-            "slogan": "₹1 Franchise Lead Generation",
+            "slogan": "$1 Franchise Lead Generation",
             "serviceType": [
-              "Franchise Lead Generation in India",
-              "LinkedIn Marketing for Indian Franchisors",
-              "Franchise Website Development India",
-              "Franchise Consulting India",
+              "Franchise Lead Generation in USA",
+              "LinkedIn Marketing for U.S. Franchisors",
+              "Franchise Website Development USA",
+              "Franchise Consulting USA",
             ],
           })}
         </script>
@@ -83,7 +83,7 @@ const IndiaHome = () => {
       {/* CATEGORY BAR */}
       <section className="border-y border-border bg-secondary/40">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted-foreground">
-          <span className="font-display text-base text-primary">We grow franchises in:</span>
+          <span className="font-display text-base text-primary">We grow U.S. franchises in:</span>
           {categories.map((c) => (
             <span key={c} className="whitespace-nowrap">{c}</span>
           ))}
@@ -99,10 +99,10 @@ const IndiaHome = () => {
           <div className="max-w-3xl mb-16">
             <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Solutions</p>
             <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] text-foreground mb-5">
-              Everything an Indian franchisor needs to attract <em>serious investors.</em>
+              Everything a U.S. franchisor needs to attract <em>serious investors.</em>
             </h2>
             <p className="text-lg text-muted-foreground">
-              One India-focused team, six growth engines — engineered to put your franchise in front of buyers who can actually write the cheque.
+              One USA-focused team, six growth engines — engineered to put your franchise in front of buyers who can actually write the check.
             </p>
           </div>
 
@@ -125,18 +125,18 @@ const IndiaHome = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-5">
-              <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Why FranchiseIndiaPro</p>
+              <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Why FranchiseLeadsPro</p>
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] mb-6">
-                A franchise consulting partner that <em className="text-accent">actually understands India.</em>
+                A franchise consulting partner that <em className="text-accent">actually understands America.</em>
               </h2>
               <p className="text-primary-foreground/75 text-lg leading-relaxed">
-                We are not a generic digital agency moonlighting in franchise. Every team member is trained in Indian franchise dynamics — unit economics, FDD, royalty structures, regional buyer behaviour, and the realities of selling franchise opportunities across Bharat.
+                We are not a generic digital agency moonlighting in franchise. Every team member is trained in U.S. franchise dynamics — unit economics, FDD, royalty structures, regional buyer behavior, and the realities of selling franchise opportunities across all 50 states.
               </p>
               <Button
                 className="mt-8 bg-accent text-primary hover:bg-accent/90 px-7 h-12 rounded-md"
                 onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
               >
-                Talk to an India Strategist <ArrowRight className="ml-2 h-4 w-4" />
+                Talk to a U.S. Strategist <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
 
@@ -188,17 +188,17 @@ const IndiaHome = () => {
             <div className="lg:col-span-6">
               <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Pay-per-Lead Offer</p>
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] text-foreground mb-5">
-                Qualified franchise leads for <em className="text-primary">just ₹1 / $1.</em>
+                Qualified franchise leads for <em className="text-primary">just $1.</em>
               </h2>
               <p className="text-lg text-muted-foreground mb-7">
-                No retainers. No bloated agency fees. Pay only for pre-screened, intent-verified franchise investor leads — delivered straight to your CRM and WhatsApp.
+                No retainers. No bloated agency fees. Pay only for pre-screened, intent-verified U.S. franchise investor leads — delivered straight to your CRM.
               </p>
 
               <ul className="space-y-3 mb-9">
                 {[
                   "Pre-qualified investor — budget & timeline verified",
                   "Right category fit for your franchise model",
-                  "Delivered live on WhatsApp + CRM",
+                  "Delivered live to your CRM",
                   "No setup cost. No long-term lock-in.",
                   "Replacement guarantee on unqualified leads",
                 ].map((f) => (
@@ -214,7 +214,7 @@ const IndiaHome = () => {
                   className="bg-primary hover:bg-primary/90 text-primary-foreground h-12 px-7 rounded-md"
                   onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
                 >
-                  Claim ₹1 / $1 Leads <ArrowRight className="ml-2 h-4 w-4" />
+                  Claim $1 Leads <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
                 <Link to="/contact">
                   <Button variant="outline" className="h-12 px-7 rounded-md border-primary/30 text-primary hover:bg-primary/5">
@@ -234,27 +234,27 @@ const IndiaHome = () => {
                     <Award className="w-4 h-4" />
                     <span className="text-xs uppercase tracking-[0.2em]">Pay-Per-Lead</span>
                   </div>
-                  <h3 className="font-display text-3xl text-foreground mb-3">₹1 / $1 Qualified Franchise Leads</h3>
+                  <h3 className="font-display text-3xl text-foreground mb-3">$1 Qualified Franchise Leads</h3>
                   <p className="text-muted-foreground mb-7">
-                    Brutally cost-efficient franchise lead generation for India & USA franchisors. You pay only when a verified investor lands in your inbox.
+                    Brutally cost-efficient franchise lead generation for U.S. franchisors. You pay only when a verified investor lands in your inbox.
                   </p>
 
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     <div className="p-5 rounded-md bg-primary/5 border border-primary/10">
-                      <p className="text-xs uppercase tracking-[0.2em] text-accent mb-2">India</p>
-                      <p className="font-display text-3xl text-foreground">₹1<span className="text-sm text-muted-foreground"> / lead</span></p>
+                      <p className="text-xs uppercase tracking-[0.2em] text-accent mb-2">Starter</p>
+                      <p className="font-display text-3xl text-foreground">$1<span className="text-sm text-muted-foreground"> / lead</span></p>
                     </div>
                     <div className="p-5 rounded-md bg-primary/5 border border-primary/10">
-                      <p className="text-xs uppercase tracking-[0.2em] text-accent mb-2">USA</p>
-                      <p className="font-display text-3xl text-foreground">$1<span className="text-sm text-muted-foreground"> / lead</span></p>
+                      <p className="text-xs uppercase tracking-[0.2em] text-accent mb-2">Scale</p>
+                      <p className="font-display text-3xl text-foreground">Custom<span className="text-sm text-muted-foreground"> / month</span></p>
                     </div>
                   </div>
 
                   <ul className="space-y-3 mb-8">
                     {[
                       "LinkedIn + Meta + Google sourcing",
-                      "Manually qualified by our India pod",
-                      "Delivered on WhatsApp + CRM in real time",
+                      "Manually qualified by our U.S. pod",
+                      "Delivered to your CRM in real time",
                       "Weekly performance reporting",
                     ].map((f) => (
                       <li key={f} className="flex items-start gap-3 text-foreground">
@@ -289,7 +289,7 @@ const IndiaHome = () => {
             <div className="lg:col-span-5">
               <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">FAQ</p>
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] text-foreground mb-5">
-                Questions Indian franchisors <em>actually ask us.</em>
+                Questions U.S. franchisors <em>actually ask us.</em>
               </h2>
               <p className="text-muted-foreground text-lg">
                 Still unsure if we are the right partner? Book a free 30-minute consultation and we will give you a candid view of your franchise growth funnel.
@@ -326,10 +326,10 @@ const IndiaHome = () => {
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-xs uppercase tracking-[0.3em] text-accent mb-4">Ready when you are</p>
             <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] mb-5">
-              Let's put your franchise in front of <em className="text-accent">India's serious investors.</em>
+              Let's put your franchise in front of <em className="text-accent">America's serious investors.</em>
             </h2>
             <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-9">
-              30 minutes. Zero obligation. A direct conversation with an India franchise strategist — not a sales bot.
+              30 minutes. Zero obligation. A direct conversation with a U.S. franchise strategist — not a sales bot.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button
