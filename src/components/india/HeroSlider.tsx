@@ -30,12 +30,12 @@ const HeroSlider = () => {
 
   return (
     <section className="relative bg-primary text-primary-foreground overflow-hidden pt-[7.5rem] pb-20 md:pt-36 md:pb-28">
-      {/* Subtle radial glow */}
+      {/* Subtle radial glow — accent tinted */}
       <div
         className="absolute inset-0 opacity-30 pointer-events-none"
         style={{
           background:
-            "radial-gradient(60% 60% at 70% 40%, hsl(48 100% 50% / 0.18) 0%, transparent 70%)",
+            "radial-gradient(60% 60% at 70% 40%, hsl(40 65% 52% / 0.18) 0%, transparent 70%)",
         }}
       />
 
