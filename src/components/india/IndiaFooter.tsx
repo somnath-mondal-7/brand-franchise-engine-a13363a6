@@ -13,9 +13,9 @@ const IndiaFooter = () => {
               </span>
             </div>
             <p className="text-primary-foreground/80 max-w-md leading-relaxed">
-              India's end-to-end franchise consulting partner. From franchise strategy, documentation and FDD to marketing, lead generation and investor matchmaking — we handle the full franchise growth journey.
+              America's end-to-end franchise consulting partner. From franchise strategy, documentation and FDD to marketing, lead generation and investor matchmaking — we handle the full franchise growth journey.
             </p>
-            <p className="mt-6 text-xs uppercase tracking-[0.2em] text-accent/90">₹1 Franchise Lead Generation</p>
+            <p className="mt-6 text-xs uppercase tracking-[0.2em] text-accent/90">$1 Franchise Lead Generation</p>
           </div>
 
           <div>
