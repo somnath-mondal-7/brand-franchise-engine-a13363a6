@@ -289,7 +289,7 @@ const IndiaHome = () => {
             <div className="lg:col-span-5">
               <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">FAQ</p>
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] text-foreground mb-5">
-                Questions Indian franchisors <em>actually ask us.</em>
+                Questions U.S. franchisors <em>actually ask us.</em>
               </h2>
               <p className="text-muted-foreground text-lg">
                 Still unsure if we are the right partner? Book a free 30-minute consultation and we will give you a candid view of your franchise growth funnel.
