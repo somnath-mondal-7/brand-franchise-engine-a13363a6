@@ -54,9 +54,9 @@ const HeroSlider = () => {
             </h1>
 
             <p className="text-base sm:text-lg text-primary-foreground/70 max-w-xl leading-relaxed mb-10">
-              We've partnered with franchise brands across India and the USA to deliver expansion
+              We partner with franchise brands across the United States to deliver expansion
               strategies that drive growth, build investor connections, and create scalable
-              franchise possibilities.
+              franchise opportunities nationwide.
             </p>
 
             <Button
