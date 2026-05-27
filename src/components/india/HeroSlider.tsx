@@ -1,132 +1,157 @@
-import { useState, useEffect, useCallback } from "react";
-import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const slides = [
-  {
-    tag: "India 🇮🇳 + USA 🇺🇸 Franchise Growth Partner",
-    title: "End-to-end franchise consulting for India & the USA.",
-    desc: "From franchise strategy, FDD and documentation to marketing, lead generation and franchisee onboarding — we serve Indian franchisors scaling pan-India and American brands expanding globally.",
-    badge: "₹1 Franchise Lead Generation — trusted by brands across India & the USA.",
-    cta: "Book Free Strategy Call",
-    image:
-      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1920&q=80",
-  },
-  {
-    tag: "Trusted by Founders & Investors",
-    title: "Where serious franchisors meet serious investors.",
-    desc: "We hand-build outreach to HNIs, family offices and qualified franchise buyers — no curious browsers, only cheque-ready conversations.",
-    badge: "100+ franchise founders trust our India + USA growth pods.",
-    cta: "Talk to a Strategist",
-    image:
-      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1920&q=80",
-  },
-  {
-    tag: "FDD, Legal & Documentation",
-    title: "Franchise-ready documentation, done right.",
-    desc: "FDD, franchise agreements, SOPs and operations manuals drafted by franchise specialists — compliant in India and the USA.",
-    badge: "End-to-end franchise legal & operations support.",
-    cta: "Request a Proposal",
-    image:
-      "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1920&q=80",
-  },
-  {
-    tag: "Performance Marketing",
-    title: "Qualified franchise leads — for as little as ₹1.",
-    desc: "LinkedIn outreach, Meta & Google ads, WhatsApp funnels and authority content engineered to drive your cost per investor lead to almost zero.",
-    badge: "Pay only for qualified, pre-screened investor leads.",
-    cta: "Get Qualified Leads",
-    image:
-      "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1920&q=80",
-  },
+const headlines = [
+  { eyebrow: "India + USA Franchise Growth Partner", title: "Trusted By Franchises", titleEm: "And Counting" },
+  { eyebrow: "Where Founders Meet Investors", title: "Built For Serious", titleEm: "Franchise Brands" },
+  { eyebrow: "End-to-End Franchise Marketing", title: "Your Franchise.", titleEm: "Our Growth Engine." },
+  { eyebrow: "Qualified Investor Leads", title: "Real Investors.", titleEm: "Real Conversations." },
+];
+
+const collageImages = [
+  "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=900&q=80",
 ];
 
 const HeroSlider = () => {
   const [i, setI] = useState(0);
-  const next = useCallback(() => setI((p) => (p + 1) % slides.length), []);
-  const prev = useCallback(() => setI((p) => (p - 1 + slides.length) % slides.length), []);
 
   useEffect(() => {
-    const t = setInterval(next, 7000);
+    const t = setInterval(() => setI((p) => (p + 1) % headlines.length), 5000);
     return () => clearInterval(t);
-  }, [next]);
+  }, []);
+
+  const h = headlines[i];
 
   return (
-    <section className="relative pt-16 overflow-hidden bg-primary">
-      <div className="relative min-h-[640px] sm:min-h-[680px] md:min-h-[720px]">
-        {slides.map((s, idx) => (
-          <div
-            key={idx}
-            className={`absolute inset-0 transition-opacity duration-700 ${
-              idx === i ? "opacity-100 z-10" : "opacity-0 z-0"
-            }`}
-            aria-hidden={idx !== i}
-          >
-            <img
-              src={s.image}
-              alt={s.title}
-              className="absolute inset-0 w-full h-full object-cover"
-              loading={idx === 0 ? "eager" : "lazy"}
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/40" />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
+    <section className="relative bg-primary text-primary-foreground overflow-hidden pt-[7.5rem] pb-20 md:pt-36 md:pb-28">
+      {/* Subtle radial glow */}
+      <div
+        className="absolute inset-0 opacity-30 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(60% 60% at 70% 40%, hsl(48 100% 50% / 0.18) 0%, transparent 70%)",
+        }}
+      />
 
-            <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 text-primary-foreground">
-              <div className="max-w-3xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 text-[11px] uppercase tracking-[0.2em] mb-5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                  {s.tag}
-                </div>
-                <h1 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] mb-4">
-                  {s.title}
-                </h1>
-                <p className="text-base sm:text-lg text-primary-foreground/90 max-w-2xl mb-3">
-                  {s.desc}
-                </p>
-                <p className="text-sm text-accent font-semibold tracking-wide mb-6">
-                  {s.badge}
-                </p>
-                <Button
-                  className="bg-accent text-primary hover:bg-accent/90 h-12 px-7 rounded-md"
-                  onClick={() => window.open("https://calendly.com/lets-build-your-brand", "_blank")}
-                >
-                  {s.cta} <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* LEFT — Big serif headline */}
+          <div className="lg:col-span-6 xl:col-span-7">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-foreground/5 border border-primary-foreground/15 text-[11px] uppercase tracking-[0.2em] text-accent mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+              {h.eyebrow}
+            </div>
+
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.25rem] leading-[1.02] mb-8">
+              <span className="block">{h.title}</span>
+              <span className="block italic text-primary-foreground/95">{h.titleEm}</span>
+            </h1>
+
+            <p className="text-base sm:text-lg text-primary-foreground/70 max-w-xl leading-relaxed mb-10">
+              We've partnered with franchise brands across India and the USA to deliver expansion
+              strategies that drive growth, build investor connections, and create scalable
+              franchise possibilities.
+            </p>
+
+            <Button
+              className="bg-accent text-accent-foreground hover:bg-accent/90 h-14 px-8 rounded-full font-semibold text-base"
+              onClick={() => window.open("https://calendly.com/lets-build-your-brand", "_blank")}
+            >
+              START YOUR EXPANSION <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+
+            {/* Tiny scrolling trust strip */}
+            <div className="mt-12 flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-accent/90">
+              <span className="w-8 h-px bg-accent/50" />
+              Trusted by hundreds of business owners
             </div>
           </div>
-        ))}
 
-        {/* Arrows */}
-        <button
-          onClick={prev}
-          aria-label="Previous slide"
-          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 border border-primary-foreground/20 text-primary-foreground flex items-center justify-center backdrop-blur-sm transition"
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </button>
-        <button
-          onClick={next}
-          aria-label="Next slide"
-          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 border border-primary-foreground/20 text-primary-foreground flex items-center justify-center backdrop-blur-sm transition"
-        >
-          <ChevronRight className="w-5 h-5" />
-        </button>
+          {/* RIGHT — Image collage (hoopdesk-style) */}
+          <div className="lg:col-span-6 xl:col-span-5 relative h-[420px] sm:h-[480px] lg:h-[540px]">
+            {/* Card 1 — top right, large */}
+            <div className="absolute top-0 right-0 w-[68%] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-primary-foreground/10 transition-transform duration-700 hover:-translate-y-1">
+              <img
+                src={collageImages[i % collageImages.length]}
+                alt="Franchise consulting"
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
 
-        {/* Dots */}
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-          {slides.map((_, idx) => (
-            <button
-              key={idx}
-              aria-label={`Slide ${idx + 1}`}
-              onClick={() => setI(idx)}
-              className={`h-2 rounded-full transition-all ${
-                idx === i ? "w-8 bg-accent" : "w-2 bg-primary-foreground/40 hover:bg-primary-foreground/70"
-              }`}
-            />
-          ))}
+            {/* Card 2 — middle left, medium */}
+            <div className="absolute top-[28%] left-0 w-[56%] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-primary-foreground/10 z-10 transition-transform duration-700 hover:-translate-y-1">
+              <img
+                src={collageImages[(i + 1) % collageImages.length]}
+                alt="Franchise expansion strategy"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+
+            {/* Card 3 — bottom right, small */}
+            <div className="absolute bottom-0 right-[8%] w-[46%] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-primary-foreground/10 transition-transform duration-700 hover:-translate-y-1">
+              <img
+                src={collageImages[(i + 2) % collageImages.length]}
+                alt="Franchise investor meetings"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+
+            {/* Floating arrow badge — hoopdesk signature */}
+            <div className="absolute top-[24%] left-[42%] z-20 w-14 h-14 rounded-xl bg-accent text-accent-foreground flex items-center justify-center shadow-xl rotate-[-6deg]">
+              <ArrowUpRight className="w-7 h-7" strokeWidth={2.5} />
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Bottom marquee strip */}
+      <div className="relative mt-16 md:mt-20 border-y border-primary-foreground/10 py-5 overflow-hidden">
+        <div className="flex gap-12 animate-[marquee_30s_linear_infinite] whitespace-nowrap text-accent font-display text-lg italic">
+          {[...Array(2)].flatMap((_, k) =>
+            [
+              "Trusted by Hundreds of Business Owners",
+              "A Legacy of Excellence in Franchise Marketing",
+              "Our Trusted Franchise Partners",
+              "Franchises and Counting",
+            ].map((t, idx) => (
+              <span key={`${k}-${idx}`} className="flex items-center gap-12">
+                <span>✦</span>
+                <span>{t}</span>
+              </span>
+            ))
+          )}
+        </div>
+      </div>
+
+      {/* Slide indicator dots */}
+      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex gap-2 lg:hidden">
+        {headlines.map((_, idx) => (
+          <button
+            key={idx}
+            aria-label={`Slide ${idx + 1}`}
+            onClick={() => setI(idx)}
+            className={`h-1.5 rounded-full transition-all ${
+              idx === i ? "w-8 bg-accent" : "w-1.5 bg-primary-foreground/30"
+            }`}
+          />
+        ))}
+      </div>
+
+      <style>{`
+        @keyframes marquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+      `}</style>
     </section>
   );
 };
