@@ -70,16 +70,13 @@ const IndiaNav = () => {
               </a>
             </div>
             <div className="flex items-center gap-4">
-              <a href="https://facebook.com/franchiseleadspro" aria-label="Facebook" className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/80 transition-colors">
+              <a href="https://www.facebook.com/profile.php?id=61579709174263" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/80 transition-colors">
                 <Facebook className="w-3.5 h-3.5" />
               </a>
-              <a href="https://twitter.com/franchiseleadspro" aria-label="Twitter" className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/80 transition-colors">
-                <Twitter className="w-3.5 h-3.5" />
-              </a>
-              <a href="https://linkedin.com/company/franchiseleadspro" aria-label="LinkedIn" className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/80 transition-colors">
+              <a href="https://www.linkedin.com/company/franchiseleadspro/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/80 transition-colors">
                 <Linkedin className="w-3.5 h-3.5" />
               </a>
-              <a href="#" aria-label="Instagram" className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/80 transition-colors">
+              <a href="https://www.instagram.com/franchiseleadspro_company/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/80 transition-colors">
                 <Instagram className="w-3.5 h-3.5" />
               </a>
             </div>
