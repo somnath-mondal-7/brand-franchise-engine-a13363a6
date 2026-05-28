@@ -1,293 +1,140 @@
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Target, Award, TrendingUp } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, ArrowUpRight, Compass, Handshake, Sparkles, Globe2 } from "lucide-react";
+import IndiaNav from "@/components/india/IndiaNav";
+import IndiaFooter from "@/components/india/IndiaFooter";
 
-// Team member imports
-import marketingDirectorSarahChen from "@/assets/team/marketing-director-sarah-chen.jpg";
-import leadSpecialistDavidMartinez from "@/assets/team/lead-specialist-david-martinez.jpg";  
-import brandStrategistEmilyThompson from "@/assets/team/brand-strategist-emily-thompson.jpg";
+const pillars = [
+  { icon: Compass, title: "Franchise-only focus", desc: "We work exclusively with franchise brands. Not real estate. Not e-commerce. Not generic SaaS." },
+  { icon: Handshake, title: "Founder-led service", desc: "Senior franchise strategists run your account — not junior media buyers learning on your budget." },
+  { icon: Sparkles, title: "Premium creative bar", desc: "Editorial-grade pitch decks, investor sites, and ad creatives that look as serious as your franchise model." },
+  { icon: Globe2, title: "India + USA fluency", desc: "Native pods in both markets — Hindi, English, regional targeting, and US franchise-buyer psychology." },
+];
 
 const About = () => {
-  const teamMembers = [
-    {
-      name: "Sarah Chen",
-      position: "Franchise Development Director",
-      image: marketingDirectorSarahChen,
-      bio: "15+ years in franchise consulting. Led 300+ franchise development projects across retail, F&B, and service industries in India and USA markets.",
-      expertise: ["Franchise Development", "Legal Compliance", "Operations Manuals"]
-    },
-    {
-      name: "David Martinez",
-      position: "Franchisee Recruitment Specialist",
-      image: leadSpecialistDavidMartinez,
-      bio: "Expert in franchise matchmaking and investor relations. Successfully matched franchisees with ideal opportunities, maintaining exceptional retention rates.",
-      expertise: ["Franchisee Recruitment", "Investor Relations", "Due Diligence"] 
-    },
-    {
-      name: "Emily Thompson",
-      position: "Expansion Strategy Consultant",
-      image: brandStrategistEmilyThompson,
-      bio: "International franchising expert specializing in USA and India expansion. Helped 100+ brands scale their franchise networks across multiple markets.",
-      expertise: ["Expansion Strategy", "Market Research", "International Franchising"]
-    }
-  ];
-
-  const values = [
-    {
-      icon: <Target className="w-8 h-8 text-primary" />,
-      title: "Comprehensive Solutions",
-      description: "End-to-end franchise consulting from development to expansion, covering every aspect of franchising success."
-    },
-    {
-      icon: <Users className="w-8 h-8 text-primary" />,
-      title: "Client Partnership",
-      description: "We build long-term relationships, guiding you through every stage of your franchise journey with dedicated support."
-    },
-    {
-      icon: <Award className="w-8 h-8 text-primary" />,
-      title: "Proven Expertise",
-      description: "18+ years of franchise consulting experience across India and USA markets with 850+ successful projects."
-    },
-    {
-      icon: <TrendingUp className="w-8 h-8 text-primary" />,
-      title: "Results-Driven",
-      description: "We focus on measurable outcomes - successful franchise launches, qualified franchisee matches, and profitable expansion."
-    }
-  ];
-
   return (
-      <div className="min-h-screen bg-background">
-        <Helmet>
-          <title>About FranchiseLeadsPro - Leading Franchise Consulting Firm | India & USA</title>
-          <meta name="description" content="FranchiseLeadsPro is a premier franchise consulting company with 18+ years of experience in franchise development, recruitment, matchmaking, and expansion across India and USA." />
-          <link rel="canonical" href="https://www.franchiseleadspro.com/about" />
-        </Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "What is FranchiseLeadsPro?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "FranchiseLeadsPro is a specialized franchise marketing and lead generation agency helping consultants and franchisors grow with qualified leads and strong brand positioning."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Where do you operate?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "We serve clients worldwide, with strong presence across the USA, UK, Canada, Australia, Dubai, India and Kuwait."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What services do you provide?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "We offer franchise lead generation, brand building, digital marketing strategy, campaign execution, and conversion optimization tailored to the franchise industry."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "How fast can I see results?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Many clients start seeing qualified franchise inquiries within 30 days, depending on budget, market, and goals."
-                }
-              }
-            ]
-          })}
-        </script>
-        <Navigation />
-      {/* Hero Section */}
-      <section className="pt-24 pb-20 bg-gradient-to-br from-background via-accent/30 to-primary/5">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
-            <h1 className="text-5xl lg:text-6xl font-bold text-brand-navy leading-tight">
-              About FranchiseLeads Pro
+    <div className="india-theme min-h-screen bg-background text-foreground">
+      <Helmet>
+        <title>About FranchiseLeadsPro | Franchise Growth Partner</title>
+        <meta name="description" content="We are FranchiseLeadsPro — a franchise-only growth partner helping Indian and American franchisors attract qualified investors, build investor-grade brand assets and scale faster." />
+        <link rel="canonical" href="https://www.franchiseleadspro.com/about" />
+      </Helmet>
+
+      <IndiaNav />
+
+      {/* HERO */}
+      <section className="relative bg-primary text-primary-foreground pt-36 pb-24 overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-30 pointer-events-none"
+          style={{ background: "radial-gradient(60% 60% at 30% 40%, hsl(40 65% 52% / 0.18) 0%, transparent 70%)" }}
+        />
+        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-foreground/5 border border-primary-foreground/15 text-[11px] uppercase tracking-[0.25em] text-accent mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent" /> About FranchiseLeadsPro
+            </div>
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl leading-[1.02] mb-6">
+              We Help Franchise Brands <em>Scale.</em>
             </h1>
-            <p className="text-xl text-brand-gray leading-relaxed">
-              Your trusted franchise consulting partner with 18+ years of experience helping businesses franchise successfully 
-              and connecting investors with profitable franchise opportunities across India & USA.
+            <p className="text-lg text-primary-foreground/75 max-w-2xl leading-relaxed">
+              FranchiseLeadsPro is a franchise-only growth partner. We design franchise models,
+              build investor-grade brand assets, run multi-channel investor outreach, and put
+              qualified franchise buyers directly on your calendar — across India and the USA.
             </p>
+            <Button
+              className="mt-9 bg-accent text-accent-foreground hover:bg-accent/90 h-14 px-8 rounded-full font-semibold"
+              onClick={() => window.open("https://calendly.com/lets-build-your-brand", "_blank")}
+            >
+              Talk With A Franchise Consultant <ArrowUpRight className="ml-2 h-5 w-5" />
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="py-20 bg-background">
+      {/* STORY */}
+      <section className="py-24 sm:py-28">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6">
-                <h2 className="text-4xl font-bold text-brand-navy">Our Mission</h2>
-                <p className="text-lg text-brand-gray leading-relaxed">
-                  To empower businesses to franchise successfully and help entrepreneurs find the perfect franchise opportunity 
-                  through expert consulting, strategic guidance, and proven methodologies that work in both Indian and American markets.
-                </p>
-                <p className="text-lg text-brand-gray leading-relaxed">
-                  Founded in 2007, we've helped 850+ brands develop and expand their franchise systems, matched thousands of investors 
-                  with their ideal franchise opportunities, and facilitated franchise growth across 60+ industries.
-                </p>
-                <p className="text-lg text-brand-gray leading-relaxed">
-                  We're not just another consulting agency. We're franchise development specialists who understand 
-                  every aspect of franchising - from legal documentation and operations manuals to recruitment strategies 
-                  and international expansion. Our bilingual team brings deep expertise in both Indian and USA markets.
-                </p>
-              </div>
-              <div className="bg-gradient-secondary p-8 rounded-3xl shadow-card">
-              </div>
+          <div className="grid lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-5">
+              <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Our story</p>
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] text-foreground">
+                Built from inside the <em>franchise industry.</em>
+              </h2>
+            </div>
+            <div className="lg:col-span-7 space-y-5 text-lg text-muted-foreground leading-relaxed">
+              <p>
+                FranchiseLeadsPro began because most marketing agencies treat franchise brands like
+                any other client — running generic ads, sending cold lists and hoping something
+                sticks. Franchise sales does not work that way. It is a long, trust-led process with
+                six and seven-figure decisions on the other side.
+              </p>
+              <p>
+                So we built a different kind of agency. Every team member is trained on franchise
+                unit economics, FDD, royalty structures, regional buyer behaviour and the realities
+                of recruiting franchisees in both India and the USA.
+              </p>
+              <p>
+                Today, founders across food &amp; beverage, education, wellness, retail and services
+                trust us to run their franchise growth — quietly, professionally and without the
+                inflated retainer fees of legacy consultancies.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="py-20 bg-gradient-secondary">
+      {/* PILLARS — dark band */}
+      <section className="py-24 sm:py-28 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-brand-navy mb-6">Our Core Values</h2>
-            <p className="text-xl text-brand-gray max-w-3xl mx-auto">
-              These principles guide everything we do and ensure we deliver exceptional results for every client.
-            </p>
+          <div className="max-w-3xl mb-14">
+            <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">What we stand for</p>
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05]">
+              Four principles that shape <em>every engagement.</em>
+            </h2>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <Card 
-                key={index}
-                className="text-center hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 border-border/50"
-              >
-                <CardHeader className="pb-4">
-                  <div className="flex justify-center mb-4">
-                    {value.icon}
-                  </div>
-                  <CardTitle className="text-xl text-brand-navy">
-                    {value.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-brand-gray text-sm leading-relaxed">
-                    {value.description}
-                  </p>
-                </CardContent>
-              </Card>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-primary-foreground/10 rounded-md overflow-hidden">
+            {pillars.map((p) => (
+              <div key={p.title} className="bg-primary p-8">
+                <div className="w-12 h-12 rounded-lg bg-accent/10 text-accent flex items-center justify-center mb-5">
+                  <p.icon className="w-5 h-5" />
+                </div>
+                <h3 className="font-display text-xl mb-2">{p.title}</h3>
+                <p className="text-primary-foreground/70 text-sm leading-relaxed">{p.desc}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Meet Our Team Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-brand-navy mb-6">Meet Our Expert Team</h2>
-            <p className="text-xl text-brand-gray max-w-3xl mx-auto">
-              Our team combines deep franchise industry knowledge with cutting-edge marketing strategies 
-              to deliver results that matter.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {teamMembers.map((member, index) => (
-              <Card key={index} className="text-center hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 border-border/50">
-                <CardHeader className="pb-4">
-                  <div className="relative w-32 h-32 mx-auto mb-4">
-                    <img 
-                      src={member.image} 
-                      alt={`${member.name} - ${member.position}`}
-                      className="w-full h-full rounded-full object-cover shadow-card"
-                      loading="lazy"
-                    />
-                  </div>
-                  <CardTitle className="text-xl text-brand-navy">
-                    {member.name}
-                  </CardTitle>
-                  <p className="text-primary font-medium text-sm mb-3">
-                    {member.position}
-                  </p>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-brand-gray text-sm leading-relaxed">
-                    {member.bio}
-                  </p>
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-semibold text-brand-navy">Specialties:</h4>
-                    <div className="flex flex-wrap gap-1 justify-center">
-                      {member.expertise.map((skill, skillIndex) => (
-                        <span 
-                          key={skillIndex}
-                          className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+      {/* MISSION */}
+      <section className="py-24 sm:py-28">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
+          <p className="text-xs uppercase tracking-[0.25em] text-accent mb-5">Our mission</p>
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] text-foreground mb-7">
+            To make franchise growth <em>boring, predictable and professional.</em>
+          </h2>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            No more chasing tyre-kickers on Instagram. No more bloated retainers. Just franchise
+            brands, qualified investors, and the systems that bring them together.
+          </p>
+          <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
+            <Button
+              className="bg-accent text-accent-foreground hover:bg-accent/90 h-12 px-7 rounded-full font-semibold"
+              onClick={() => window.open("https://calendly.com/lets-build-your-brand", "_blank")}
+            >
+              Book Free Consultation <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+            <Link to="/case-studies">
+              <Button variant="outline" className="h-12 px-7 rounded-full border-primary/20 text-primary hover:bg-primary/5">
+                See Our Clients
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
-      <section className="py-20 bg-gradient-secondary">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-brand-navy mb-6">Why Choose FranchiseLeads Pro?</h2>
-            <p className="text-xl text-brand-gray max-w-3xl mx-auto">
-              We're not just another marketing agency. Here's what sets us apart in the franchise industry.
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto space-y-8">
-            <div className="bg-card p-8 rounded-2xl shadow-card">
-              <h3 className="text-2xl font-bold text-brand-navy mb-4">Complete Franchise Development</h3>
-              <p className="text-brand-gray leading-relaxed">
-                We transform successful businesses into franchise systems with comprehensive development services including FDD preparation, 
-                operations manuals, training programs, and legal compliance. Our expertise spans both Indian and USA franchise laws, 
-                ensuring your franchise model meets all regulatory requirements while being attractive to potential franchisees.
-              </p>
-            </div>
-
-            <div className="bg-card p-8 rounded-2xl shadow-card">
-              <h3 className="text-2xl font-bold text-brand-navy mb-4">Expert Franchise Matchmaking</h3>
-              <p className="text-brand-gray leading-relaxed">
-                With 850+ franchise projects completed, we excel at connecting the right investors with the right opportunities. 
-                Our matchmaking process includes detailed investor profiling, financial capability assessment, and brand compatibility analysis 
-                to ensure mutually beneficial partnerships that lead to long-term success for both franchisors and franchisees.
-              </p>
-            </div>
-
-            <div className="bg-card p-8 rounded-2xl shadow-card">
-              <h3 className="text-2xl font-bold text-brand-navy mb-4">Strategic Expansion Planning</h3>
-              <p className="text-brand-gray leading-relaxed">
-                Whether you're expanding within India, entering the USA market, or going international, we provide data-driven expansion 
-                strategies. Our services include market research, site selection, territory planning, and master franchise development 
-                to help you scale your franchise network efficiently while maintaining brand consistency and quality standards.
-              </p>
-            </div>
-
-            <div className="bg-card p-8 rounded-2xl shadow-card">
-              <h3 className="text-2xl font-bold text-brand-navy mb-4">Ongoing Support & Training</h3>
-              <p className="text-brand-gray leading-relaxed">
-                Franchising success requires continuous support. We provide comprehensive training programs, operational guidance, 
-                quality assurance systems, and performance monitoring to ensure every franchise location operates at peak efficiency. 
-                Our dedicated support team helps franchisors and franchisees navigate challenges and capitalize on growth opportunities.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
+      <IndiaFooter />
     </div>
   );
 };

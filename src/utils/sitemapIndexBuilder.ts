@@ -1,5 +1,7 @@
 import { locationData } from '@/data/locations';
+import { hasCuratedInsight } from '@/utils/locationContent';
 import { highValueKeywordPages, highValueServiceKeywords } from '@/utils/programmaticSeo';
+import { brands } from '@/data/brands';
 
 export interface SitemapUrl {
   loc: string;
@@ -20,6 +22,7 @@ export const generateCorePages = (): SitemapUrl[] => {
   const currentDate = getTodayDate();
   return [
     { loc: `${DOMAIN}/`, lastmod: currentDate, changefreq: 'weekly', priority: '1.0' },
+    { loc: `${DOMAIN}/usa`, lastmod: currentDate, changefreq: 'weekly', priority: '0.95' },
     { loc: `${DOMAIN}/about`, lastmod: currentDate, changefreq: 'monthly', priority: '0.9' },
     { loc: `${DOMAIN}/services`, lastmod: currentDate, changefreq: 'weekly', priority: '0.95' },
     { loc: `${DOMAIN}/contact`, lastmod: currentDate, changefreq: 'monthly', priority: '0.8' },
@@ -37,31 +40,34 @@ export const generateCorePages = (): SitemapUrl[] => {
   ];
 };
 
-// Crawl-budget caps. Diagnosis (Apr 2026): GSC reported 6,400+ URLs stuck in
-// "Discovered – currently not indexed" because we advertised every city for every service.
-// We now keep only the highest-value depth per market.
-const LOC_MAX_CITIES_PRIMARY = 8;   // /locations/* — USA, India
-const LOC_MAX_CITIES_SECONDARY = 4; // /locations/* — other countries
-const SVC_MAX_CITIES_PRIMARY = 4;   // /<service>/<country>/<state>/<city> — USA, India only
+export const generateBrandUrls = (): SitemapUrl[] => {
+  const currentDate = getTodayDate();
+  return brands.map((brand) => ({
+    loc: `${DOMAIN}/brands/${brand.slug}`,
+    lastmod: currentDate,
+    changefreq: 'weekly',
+    priority: '0.8',
+  }));
+};
 
-// Generate location pages (country/state/city)
+// Curated sitemap policy: only emit URLs backed by unique regional content.
+// This keeps Google away from retired or templated permutations that were
+// creating repeated 404/410 and crawl-budget waste in Search Console.
+
+// Generate location pages (country + curated state only)
 export const generateLocationUrls = (): SitemapUrl[] => {
   const urls: SitemapUrl[] = [];
   const currentDate = getTodayDate();
 
   locationData.forEach(country => {
     const cc = country.countryCode.toLowerCase();
-    const isPrimary = ['usa', 'in'].includes(cc);
-    const cityCap = isPrimary ? LOC_MAX_CITIES_PRIMARY : LOC_MAX_CITIES_SECONDARY;
+    if (!hasCuratedInsight(country.countryCode)) return;
 
     urls.push({ loc: `${DOMAIN}/locations/${cc}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.8' });
 
     country.states.forEach(state => {
+      if (!hasCuratedInsight(country.countryCode, state.slug)) return;
       urls.push({ loc: `${DOMAIN}/locations/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.75' });
-
-      state.cities.slice(0, cityCap).forEach(city => {
-        urls.push({ loc: `${DOMAIN}/locations/${cc}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.7' });
-      });
     });
   });
 
@@ -81,8 +87,7 @@ export const generateKeywordUrls = (): SitemapUrl[] => {
   return urls;
 };
 
-// Generate service + location pages — primary markets get state + top cities,
-// secondary markets get state-level only (no city pages).
+// Generate service + location pages — curated state-level combinations only.
 export const generateServiceLocationUrls = (): SitemapUrl[] => {
   const urls: SitemapUrl[] = [];
   const currentDate = getTodayDate();
@@ -92,17 +97,11 @@ export const generateServiceLocationUrls = (): SitemapUrl[] => {
 
     locationData.forEach(country => {
       const cc = country.countryCode.toLowerCase();
-      const isPrimaryMarket = ['usa', 'in'].includes(cc);
-      const basePriority = isPrimaryMarket ? 0.85 : 0.75;
+      if (!hasCuratedInsight(country.countryCode)) return;
 
       country.states.forEach(state => {
-        urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: basePriority.toFixed(2) });
-
-        if (isPrimaryMarket) {
-          state.cities.slice(0, SVC_MAX_CITIES_PRIMARY).forEach(city => {
-            urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}/${city.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: (basePriority - 0.05).toFixed(2) });
-          });
-        }
+        if (!hasCuratedInsight(country.countryCode, state.slug)) return;
+        urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.80' });
       });
     });
   });
@@ -114,6 +113,7 @@ export const generateServiceLocationUrls = (): SitemapUrl[] => {
 export const getAllUrls = (): SitemapUrl[] => {
   return [
     ...generateCorePages(),
+    ...generateBrandUrls(),
     ...generateLocationUrls(),
     ...generateKeywordUrls(),
     ...generateServiceLocationUrls(),
@@ -164,6 +164,7 @@ export const getSitemapStats = () => {
     sitemapCount: chunks.length,
     chunkSize,
     corePages: generateCorePages().length,
+    brandPages: generateBrandUrls().length,
     locationPages: generateLocationUrls().length,
     keywordPages: generateKeywordUrls().length,
     serviceLocationPages: generateServiceLocationUrls().length,
