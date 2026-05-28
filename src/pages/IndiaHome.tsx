@@ -12,6 +12,7 @@ import IndiaFooter from "@/components/india/IndiaFooter";
 import HeroSlider from "@/components/india/HeroSlider";
 import FeaturedBrands from "@/components/india/FeaturedBrands";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import somnathPhoto from "@/assets/somnath-photo.png";
 
 const solutions = [
   { icon: Crown, title: "Franchise Strategy & Readiness", desc: "End-to-end franchise model design — unit economics, royalty structures, territory planning, and franchise-readiness audit for the U.S. market." },
