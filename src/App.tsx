@@ -63,6 +63,7 @@ const App = () => (
         <BrowserRouter>
           <ScrollToTop />
           <ConditionalChatWidget />
+          <SocialFloat />
           <div className="india-theme">
           <Routes>
             <Route path="/" element={<IndiaHome />} />
