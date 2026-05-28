@@ -1,20 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Building2, Globe, Briefcase } from "lucide-react";
+import { MapPin, Briefcase, Globe } from "lucide-react";
 
 const columns = [
   {
-    icon: <Building2 className="w-4 h-4" />,
-    title: "Featured Brands",
+    icon: <MapPin className="w-4 h-4" />,
+    title: "Popular Locations",
     links: [
-      { label: "McDonald's", href: "/brands/mcdonalds" },
-      { label: "Subway", href: "/brands/subway" },
-      { label: "7-Eleven", href: "/brands/7-eleven" },
-      { label: "The UPS Store", href: "/brands/ups-store" },
-      { label: "Lenskart", href: "/brands/lenskart" },
-      { label: "Kidzee", href: "/brands/kidzee" },
-      { label: "Haldiram's", href: "/brands/haldirams" },
-      { label: "Amul Parlour", href: "/brands/amul" },
+      { label: "California", href: "/locations/usa/california" },
+      { label: "Texas", href: "/locations/usa/texas" },
+      { label: "New York", href: "/locations/usa/new-york" },
+      { label: "Florida", href: "/locations/usa/florida" },
+      { label: "England", href: "/locations/uk/england" },
+      { label: "Ontario", href: "/locations/ca/ontario" },
+      { label: "Maharashtra", href: "/locations/in/maharashtra" },
+      { label: "Delhi", href: "/locations/in/delhi" },
+      { label: "Dubai", href: "/locations/ae/dubai" },
     ],
   },
   {
@@ -23,13 +24,13 @@ const columns = [
     links: [
       { label: "Lead Generation", href: "/services/franchise-lead-generation" },
       { label: "Marketing Agency", href: "/services/franchise-marketing-agency" },
-      { label: "Franchise Development", href: "/services/franchise-development" },
-      { label: "Franchise Expansion", href: "/services/franchise-expansion" },
+      { label: "Website Development", href: "/services/franchise-website-development-company" },
+      { label: "App Development", href: "/services/franchise-app-development-company" },
       { label: "SEO Services", href: "/services/franchise-seo" },
       { label: "Digital Marketing", href: "/services/franchise-digital-marketing" },
       { label: "Consulting", href: "/services/franchise-consulting" },
-      { label: "Advertising", href: "/services/franchise-advertising" },
-      { label: "Branding", href: "/services/franchise-branding" },
+      { label: "IT Services", href: "/services/it-services-for-franchise-businesses" },
+      { label: "Web Dev for Franchisors", href: "/services/web-development-for-franchisors" },
     ],
   },
   {

@@ -1,9 +1,10 @@
 import { Helmet } from 'react-helmet-async';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { FileText, Briefcase, Globe, Building2 } from 'lucide-react';
-import { brands } from '@/data/brands';
-import { highValueKeywordPages } from '@/utils/programmaticSeo';
+import { locationData } from '@/data/locations';
+import { MapPin, FileText, Briefcase, Globe } from 'lucide-react';
+import { slugify } from '@/utils/slugify';
+import { highValueKeywordPages, highValueServiceKeywords } from '@/utils/programmaticSeo';
 
 const Sitemap = () => {
   return (
@@ -101,21 +102,87 @@ const Sitemap = () => {
           </div>
         </section>
 
-        {/* Brand Pages */}
-        <section className="py-12 bg-card border-t border-border">
+        {/* Locations by Country */}
+        {locationData.map((countryData) => (
+          <section key={countryData.country} className="py-12 bg-card border-t border-border">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-6xl mx-auto">
+                <div className="flex items-center gap-3 mb-6">
+                  <MapPin className="h-6 w-6 text-primary" />
+                  <h2 className="text-2xl font-bold text-foreground">{countryData.country} Locations</h2>
+                </div>
+                
+                {/* Country Level */}
+                <div className="mb-6">
+                  <a 
+                    href={`/locations/${countryData.countryCode.toLowerCase()}`}
+                    className="text-lg font-semibold text-primary hover:underline"
+                  >
+                    All {countryData.country} Locations
+                  </a>
+                </div>
+
+                {/* States & Cities */}
+                <div className="space-y-8">
+                  {countryData.states.map((state) => (
+                    <div key={state.slug}>
+                      <a 
+                        href={`/locations/${countryData.countryCode.toLowerCase()}/${state.slug}`}
+                        className="text-lg font-semibold text-primary hover:underline block mb-3"
+                      >
+                        {state.name}
+                      </a>
+                      <div className="grid md:grid-cols-4 gap-3 pl-6">
+                        {state.cities.map((city) => (
+                          <a
+                            key={city.slug}
+                            href={`/locations/${countryData.countryCode.toLowerCase()}/${state.slug}/${city.slug}`}
+                            className="text-primary hover:underline text-sm"
+                          >
+                            {city.name}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        ))}
+
+        {/* Service + Location Combinations (sample) */}
+        <section className="py-12 bg-muted">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
-              <div className="flex items-center gap-3 mb-6">
-                <Building2 className="h-6 w-6 text-primary" />
-                <h2 className="text-2xl font-bold text-foreground">Franchise Brand Pages</h2>
-              </div>
-              <div className="grid md:grid-cols-3 gap-4">
-                {brands.map((brand) => (
-                  <a key={brand.slug} href={`/brands/${brand.slug}`} className="text-primary hover:underline">
-                    {brand.name}
-                  </a>
-                ))}
-              </div>
+              <h2 className="text-2xl font-bold text-foreground mb-6">Service + Location Pages</h2>
+              <p className="text-muted-foreground mb-6">
+                We offer specialized franchise services in major cities. Here's a sample — browse by service type and location:
+              </p>
+              
+              {highValueServiceKeywords.slice(0, 5).map((service) => {
+                const serviceSlug = slugify(service);
+                return (
+                  <div key={service} className="mb-8">
+                    <h3 className="text-xl font-semibold text-foreground mb-4 capitalize">{service}</h3>
+                    <div className="grid md:grid-cols-4 gap-3">
+                      {locationData[0]?.states.slice(0, 4).map((state) => {
+                        const city = state.cities[0];
+                        if (!city) return null;
+                        return (
+                          <a
+                            key={`${service}-${city.slug}`}
+                            href={`/${serviceSlug}/${locationData[0].countryCode.toLowerCase()}/${state.slug}/${city.slug}`}
+                            className="text-primary hover:underline text-sm"
+                          >
+                            {service} in {city.name}
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>

@@ -87,78 +87,6 @@
   }
 }
 
-/* ============================================================
-   INDIA THEME — Deep Maroon & Warm Gold (scoped via .india-theme)
-   Rich maroon primary, cream background, charcoal text, gold accent.
-   Existing USA pages stay visually untouched.
-   ============================================================ */
-.india-theme {
-  --background: 30 25% 97%;
-  --foreground: 340 20% 15%;
-  --card: 30 25% 97%;
-  --card-foreground: 340 20% 15%;
-  --popover: 30 25% 97%;
-  --popover-foreground: 340 20% 15%;
-
-  --primary: 350 55% 28%;            /* Deep trust maroon */
-  --primary-foreground: 40 40% 96%;
-  --primary-light: 350 48% 38%;
-  --primary-dark: 350 60% 20%;
-
-  --secondary: 35 30% 96%;
-  --secondary-foreground: 350 55% 28%;
-  --muted: 30 18% 94%;
-  --muted-foreground: 340 10% 40%;
-
-  --accent: 40 65% 52%;              /* Warm muted gold */
-  --accent-foreground: 350 55% 12%;
-  --accent-light: 40 70% 62%;
-  --accent-dark: 40 60% 42%;
-
-  --border: 30 15% 88%;
-  --input: 30 15% 88%;
-  --ring: 40 65% 52%;
-  --radius: 0.5rem;
-
-  --brand-navy: 350 55% 28%;
-  --brand-gray: 340 10% 40%;
-  --brand-light: 35 30% 96%;
-
-  --gradient-primary: linear-gradient(135deg, hsl(350 55% 28%), hsl(350 48% 38%));
-  --gradient-hero: linear-gradient(135deg, hsl(350 60% 20%) 0%, hsl(350 50% 30%) 100%);
-  --gradient-trust: linear-gradient(90deg, hsl(350 55% 28%), hsl(40 65% 52%));
-  --gradient-warm: linear-gradient(135deg, hsl(40 65% 52%), hsl(40 70% 62%));
-  --gradient-cool: linear-gradient(135deg, hsl(350 55% 28%), hsl(350 45% 35%));
-  --gradient-card: linear-gradient(135deg, hsl(30 25% 97%), hsl(30 18% 96%));
-
-  --shadow-elegant: 0 18px 38px -14px hsl(350 55% 28% / 0.22), 0 6px 14px -6px hsl(350 55% 28% / 0.10);
-  --shadow-card: 0 4px 14px -6px hsl(350 55% 28% / 0.10);
-  --shadow-hover: 0 26px 48px -16px hsl(350 55% 28% / 0.28);
-
-  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
-  color: hsl(var(--foreground));
-  background: hsl(var(--background));
-  letter-spacing: -0.005em;
-}
-
-.india-theme .font-display {
-  font-family: 'Playfair Display', 'Poppins', Georgia, serif;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.india-theme em {
-  font-style: italic;
-  font-family: 'Playfair Display', Georgia, serif;
-  color: hsl(var(--accent));
-  font-weight: 600;
-}
-
-.india-theme ::selection {
-  background-color: hsl(var(--accent) / 0.35);
-  color: hsl(var(--primary));
-}
-
 @layer base {
   * {
     @apply border-border;
@@ -168,7 +96,7 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  /* Maroon text selection — applies site-wide */
+  /* Brand-orange text selection — applies site-wide */
   ::selection {
     background-color: hsl(var(--primary) / 0.25);
     color: hsl(var(--brand-navy));

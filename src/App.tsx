@@ -2,11 +2,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
-import IndiaHome from "./pages/IndiaHome";
-import BrandDetail from "./pages/BrandDetail";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import DigitalMarketing from "./pages/DigitalMarketing";
@@ -37,9 +35,7 @@ import BlogSitemap from "./pages/BlogSitemap";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import NotFound from "./pages/NotFound";
-import FranchiseMarketing from "./pages/FranchiseMarketing";
-import FranchiseFlow from "./pages/FranchiseFlow";
-import ServiceDetail from "./pages/ServiceDetail";
+import Search from "./pages/Search";
 import ScrollToTop from "./components/ScrollToTop";
 import ChatWidget from "./components/ChatWidget";
 import { useLocation } from "react-router-dom";
@@ -62,13 +58,8 @@ const App = () => (
         <BrowserRouter>
           <ScrollToTop />
           <ConditionalChatWidget />
-          <div className="india-theme">
           <Routes>
-            <Route path="/" element={<IndiaHome />} />
-            <Route path="/india" element={<Navigate to="/" replace />} />
-            <Route path="/brands/:slug" element={<BrandDetail />} />
-            <Route path="/usa" element={<Index />} />
-            <Route path="/home-original" element={<Navigate to="/usa" replace />} />
+            <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/digital-marketing" element={<DigitalMarketing />} />
@@ -112,16 +103,12 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/sitemap" element={<Sitemap />} />
             <Route path="/sitemap-blog.xml" element={<BlogSitemap />} />
-            <Route path="/search" element={<Navigate to="/" replace />} />
+            <Route path="/search" element={<Search />} />
             <Route path="/legal-terms/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/legal-terms/refund-satisfaction-guarantee-policy" element={<RefundPolicy />} />
             
-            <Route path="/franchise-marketing" element={<FranchiseMarketing />} />
-            <Route path="/franchise-marketing/:slug" element={<ServiceDetail />} />
-            <Route path="/franchise-flow" element={<FranchiseFlow />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-          </div>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

@@ -36,21 +36,6 @@
       "source": "/locations/us/(.*)",
       "destination": "/locations/usa/$1",
       "permanent": true
-    },
-    {
-      "source": "/india",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/home-original",
-      "destination": "/usa",
-      "permanent": true
-    },
-    {
-      "source": "/search",
-      "destination": "/",
-      "permanent": true
     }
   ],
   "rewrites": [
@@ -134,12 +119,6 @@
       "headers": [
         { "key": "X-Robots-Tag", "value": "index, follow, max-snippet:-1, max-image-preview:large" },
         { "key": "Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=604800" }
-      ]
-    },
-    {
-      "source": "/(india|home-original|search)",
-      "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
       ]
     }
   ]
