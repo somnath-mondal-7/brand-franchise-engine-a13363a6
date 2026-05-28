@@ -334,7 +334,7 @@ const IndiaHome = () => {
             </p>
             <div className="flex items-center justify-center gap-3 mb-7">
               <img
-                src="/src/assets/somnath-photo.png"
+                src={somnathPhoto}
                 alt="Somnath Mondal - Founder of FranchiseLeadsPro"
                 className="w-14 h-14 rounded-full object-cover ring-4 ring-accent/30"
               />
