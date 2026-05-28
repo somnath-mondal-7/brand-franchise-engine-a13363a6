@@ -12,6 +12,7 @@ import IndiaFooter from "@/components/india/IndiaFooter";
 import HeroSlider from "@/components/india/HeroSlider";
 import FeaturedBrands from "@/components/india/FeaturedBrands";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import somnathPhoto from "@/assets/somnath-photo.png";
 
 const solutions = [
   { icon: Crown, title: "Franchise Strategy & Readiness", desc: "End-to-end franchise model design — unit economics, royalty structures, territory planning, and franchise-readiness audit for the U.S. market." },
@@ -331,6 +332,17 @@ const IndiaHome = () => {
             <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-9">
               30 minutes. Zero obligation. A direct conversation with a U.S. franchise strategist — not a sales bot.
             </p>
+            <div className="flex items-center justify-center gap-3 mb-7">
+              <img
+                src={somnathPhoto}
+                alt="Somnath Mondal - Founder of FranchiseLeadsPro"
+                className="w-14 h-14 rounded-full object-cover ring-4 ring-accent/30"
+              />
+              <div className="text-left">
+                <p className="text-base font-semibold text-primary-foreground leading-tight">Somnath Mondal</p>
+                <p className="text-sm text-primary-foreground/75 leading-tight">Founder, FranchiseLeadsPro</p>
+              </div>
+            </div>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button
                 size="lg"
@@ -345,6 +357,7 @@ const IndiaHome = () => {
                 </Button>
               </Link>
             </div>
+
           </div>
         </div>
       </section>
