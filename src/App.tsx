@@ -42,7 +42,6 @@ import FranchiseFlow from "./pages/FranchiseFlow";
 import ServiceDetail from "./pages/ServiceDetail";
 import ScrollToTop from "./components/ScrollToTop";
 import ChatWidget from "./components/ChatWidget";
-import SocialFloat from "./components/SocialFloat";
 import { useLocation } from "react-router-dom";
 
 const ConditionalChatWidget = () => {
@@ -63,7 +62,6 @@ const App = () => (
         <BrowserRouter>
           <ScrollToTop />
           <ConditionalChatWidget />
-          <SocialFloat />
           <div className="india-theme">
           <Routes>
             <Route path="/" element={<IndiaHome />} />
