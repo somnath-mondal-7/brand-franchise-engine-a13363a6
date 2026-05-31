@@ -46,7 +46,14 @@ const LocationPage = () => {
       return <NotFound />;
     }
 
-    return <Navigate to={`/locations/${canonicalCountryCode}/${stateData.slug}`} replace />;
+    return (
+      <Navigate
+        to={hasCuratedInsight(countryData.countryCode, stateData.slug)
+          ? `/locations/${canonicalCountryCode}/${stateData.slug}`
+          : `/locations/${canonicalCountryCode}`}
+        replace
+      />
+    );
   }
 
   // Otherwise, find the state/region data
