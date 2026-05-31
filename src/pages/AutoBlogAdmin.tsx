@@ -299,6 +299,32 @@ const AutoBlogAdmin = () => {
                   )}
                   Force Generate Now
                 </Button>
+                <Button
+                  variant="secondary"
+                  onClick={async () => {
+                    setIsGenerating(true);
+                    try {
+                      const { data, error } = await supabase.functions.invoke('seed-cornerstone-posts');
+                      if (error) throw error;
+                      if (data?.success) {
+                        toast.success(`Seeded ${data.inserted} cornerstone pillar posts`);
+                        fetchRecentPosts();
+                      } else {
+                        toast.error(data?.error || 'Seeding failed');
+                      }
+                    } catch (e: any) {
+                      toast.error('Seeding failed', { description: e.message });
+                    } finally {
+                      setIsGenerating(false);
+                    }
+                  }}
+                  disabled={isGenerating}
+                  className="gap-2"
+                  size="lg"
+                >
+                  <Newspaper className="h-4 w-4" />
+                  Seed 5 Cornerstone Pillar Posts
+                </Button>
               </div>
 
               <div className="bg-muted/50 rounded-lg p-4 text-sm">
