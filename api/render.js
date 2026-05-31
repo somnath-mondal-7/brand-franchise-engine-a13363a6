@@ -681,6 +681,7 @@ function locationPage(country, state, city) {
   const cityName = city ? slugToTitle(city) : '';
   const locationStr = cityName ? `${cityName}, ${stateName}` : stateName || countryName;
   const fullLocation = cityName ? `${cityName}, ${stateName}, ${countryName}` : stateName ? `${stateName}, ${countryName}` : countryName;
+  const isCountryHub = Boolean(country) && !state && !city;
 
   const crumbs = [{ name: 'Home', url: '/' }, { name: 'Locations', url: '/locations' }];
   if (country) crumbs.push({ name: countryName, url: `/locations/${country}` });
@@ -697,6 +698,74 @@ function locationPage(country, state, city) {
   const demographics = si ? si.demographics : ci.demographics;
   const growth = si ? si.growth : ci.growth;
   const investment = si ? si.investment : ci.investment;
+
+  const curatedUsaStates = [
+    { slug: 'california', name: 'California', summary: 'West Coast franchise demand, premium metro markets, and brand-led expansion opportunities.' },
+    { slug: 'texas', name: 'Texas', summary: 'Fast-moving regional expansion markets with strong demand across major business corridors.' },
+    { slug: 'new-york', name: 'New York', summary: 'Dense urban and suburban franchise markets with strong buyer intent and premium positioning.' },
+    { slug: 'florida', name: 'Florida', summary: 'High-intent coastal and suburban markets suited to service, retail, and lifestyle franchises.' },
+    { slug: 'illinois', name: 'Illinois', summary: 'Midwest franchise visibility anchored by Chicago-area demand and established business markets.' },
+    { slug: 'georgia', name: 'Georgia', summary: 'Southeast expansion territory with strong regional reach and growing suburban demand.' },
+  ];
+
+  if (isCountryHub) {
+    const hubCards = country === 'usa'
+      ? `<div class="link-grid">${curatedUsaStates.map((entry) => `
+          <a class="link-card" href="/locations/${country}/${entry.slug}">
+            <strong>${entry.name}</strong>
+            <span>${entry.summary}</span>
+          </a>`).join('')}
+        </div>`
+      : '';
+
+    return {
+      title: truncate(`Franchise Leads in ${countryName} | ${BRAND}`, 60),
+      description: truncate(`Explore curated franchise lead generation pages across ${countryName}, with direct paths into the strongest regional markets.`, 160),
+      h1: `Franchise Leads in ${countryName}`,
+      breadcrumbs: crumbs,
+      extraSchemas: [{
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: `Franchise Leads in ${countryName}`,
+        description: `Curated regional franchise lead generation pages across ${countryName}.`,
+        url: `${SITE}/locations/${country}`,
+        hasPart: country === 'usa'
+          ? curatedUsaStates.map((entry) => ({
+              '@type': 'WebPage',
+              name: `${entry.name} Franchise Leads`,
+              url: `${SITE}/locations/${country}/${entry.slug}`,
+            }))
+          : undefined,
+      }],
+      content: `
+        <section>
+          <h2>${countryName} franchise market hub</h2>
+          <p>This page is the curated entry point for franchise lead generation across ${countryName}. It helps visitors move from the national market view into the regional pages that carry the strongest local context and buying intent.</p>
+          <p>${economy}</p>
+          <p>${demographics}</p>
+        </section>
+        <section>
+          <h2>How to use this location hub</h2>
+          <p>Start with the state or region most closely aligned to your expansion plan, then use that page to review local context, service fit, and the next step for market entry.</p>
+          <ul>
+            <li>Open curated regional pages with stronger location-specific context</li>
+            <li>Compare markets before launching franchise lead generation campaigns</li>
+            <li>Use service pages for consulting, marketing, and lead generation support</li>
+            <li>Contact our team when you need help choosing the right target market</li>
+          </ul>
+        </section>
+        ${hubCards ? `<section><h2>Curated markets in ${countryName}</h2><p>These are the strongest regional pages currently maintained for search and visitor discovery.</p>${hubCards}</section>` : ''}
+        <section>
+          <h2>Related paths</h2>
+          <ul>
+            <li><a href="/services">Explore all services</a></li>
+            ${country === 'usa' ? '<li><a href="/franchise-leads-usa">Open USA service landing page</a></li>' : ''}
+            <li><a href="/contact">Request a strategy consultation</a></li>
+          </ul>
+        </section>
+      `,
+    };
+  }
 
   // Build rich, unique FAQ
   const faq = [
