@@ -1,5 +1,5 @@
 import { locationData } from '@/data/locations';
-import { highValueKeywordPages, highValueServiceKeywords } from '@/utils/programmaticSeo';
+import { highValueKeywordPages } from '@/utils/programmaticSeo';
 import { hasCuratedInsight } from '@/utils/locationContent';
 
 export interface SitemapUrl {
@@ -53,27 +53,12 @@ export const generateKeywordUrls = (): SitemapUrl[] => {
   return urls;
 };
 
-// Service+location URLs — only state-level combinations for curated states.
+// Service+location URLs are intentionally excluded from sitemap discovery.
+// Even curated combinations have been the main source of large-scale
+// "Crawled – currently not indexed" reports, so we only keep country/state
+// location hubs plus core service pages in XML.
 export const generateServiceLocationUrls = (): SitemapUrl[] => {
-  const urls: SitemapUrl[] = [];
-  const currentDate = new Date().toISOString().split('T')[0];
-
-  highValueServiceKeywords.forEach(service => {
-    const serviceSlug = service.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-
-    locationData.forEach(country => {
-      const cc = country.countryCode.toLowerCase();
-      if (!hasCuratedInsight(country.countryCode)) return;
-
-      country.states.forEach(state => {
-        if (!hasCuratedInsight(country.countryCode, state.slug)) return;
-        urls.push({ loc: `${DOMAIN}/${serviceSlug}/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.8' });
-      });
-    });
-  });
-
-  console.log(`✅ Generated ${urls.length} service+location URLs (curated only)`);
-  return urls;
+  return [];
 };
 
 export const generateSitemapXml = (): string => {
