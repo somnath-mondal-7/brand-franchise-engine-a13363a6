@@ -25,7 +25,7 @@ const IndiaFooter = () => {
               <li><Link to="/#pricing" className="hover:text-accent">Pricing</Link></li>
               <li><Link to="/case-studies" className="hover:text-accent">Case Studies</Link></li>
               <li><Link to="/blog" className="hover:text-accent">Blog</Link></li>
-              <li><Link to="/usa" className="hover:text-accent">USA Operations</Link></li>
+              <li><Link to="/" className="hover:text-accent">USA Operations</Link></li>
             </ul>
           </div>
 

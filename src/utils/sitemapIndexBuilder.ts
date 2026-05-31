@@ -22,7 +22,6 @@ export const generateCorePages = (): SitemapUrl[] => {
   const currentDate = getTodayDate();
   return [
     { loc: `${DOMAIN}/`, lastmod: currentDate, changefreq: 'weekly', priority: '1.0' },
-    { loc: `${DOMAIN}/usa`, lastmod: currentDate, changefreq: 'weekly', priority: '0.95' },
     { loc: `${DOMAIN}/about`, lastmod: currentDate, changefreq: 'monthly', priority: '0.9' },
     { loc: `${DOMAIN}/services`, lastmod: currentDate, changefreq: 'weekly', priority: '0.95' },
     { loc: `${DOMAIN}/contact`, lastmod: currentDate, changefreq: 'monthly', priority: '0.8' },
