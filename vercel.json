@@ -130,9 +130,8 @@
       ]
     },
     {
-      "source": "/(locations|services|franchise-leads|buy-franchise-leads|blog|about|contact|digital-marketing|testimonials)(.*)",
+      "source": "/(franchise-leads|buy-franchise-leads|blog|about|contact|digital-marketing|testimonials)(.*)",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "index, follow, max-snippet:-1, max-image-preview:large" },
         { "key": "Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=604800" }
       ]
     },
