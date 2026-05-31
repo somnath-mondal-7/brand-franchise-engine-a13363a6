@@ -17,10 +17,6 @@ const ServiceLocationPage = () => {
   // Accept current and legacy service slugs so previously indexed pages do not hard-404.
   const foundService = resolveServiceKeywordFromSlug(serviceSlug);
 
-  if (!foundService) {
-    return <NotFound />;
-  }
-
   // Find the country data (normalize common variants)
   const normalizeCountry = (c: string) => {
     const v = c.toLowerCase();
@@ -43,25 +39,31 @@ const ServiceLocationPage = () => {
     return <Navigate to={redirectPath} replace />;
   }
 
+  const stateData = countryData.states.find(s => s.slug === location);
+  if (!stateData) {
+    return <NotFound />;
+  }
+
+  const fallbackLocationPath = hasCuratedInsight(countryData.countryCode, stateData.slug)
+    ? `/locations/${canonicalCountryCode}/${stateData.slug}`
+    : `/locations/${canonicalCountryCode}`;
+
   // If city is provided, find the city data
   if (city) {
-    const stateData = countryData.states.find(s => s.slug === location);
-    if (!stateData) {
-      return <NotFound />;
-    }
-
     const cityData = stateData.cities.find(c => c.slug === city);
     if (!cityData) {
       return <NotFound />;
     }
 
+    if (!foundService) {
+      return <Navigate to={fallbackLocationPath} replace />;
+    }
+
     return <Navigate to={`/${serviceSlug}/${canonicalCountryCode}/${stateData.slug}`} replace />;
   }
 
-  // Otherwise, find the state/region data
-  const stateData = countryData.states.find(s => s.slug === location);
-  if (!stateData) {
-    return <NotFound />;
+  if (!foundService) {
+    return <Navigate to={fallbackLocationPath} replace />;
   }
 
   if (!hasCuratedInsight(countryData.countryCode, stateData.slug)) {
