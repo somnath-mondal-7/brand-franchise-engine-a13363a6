@@ -7,21 +7,30 @@ import NotFound from './NotFound';
 import { locationData } from '@/data/locations';
 import { hasCuratedInsight } from '@/utils/locationContent';
 
+const usaStateHighlights: Record<string, string> = {
+  california: 'West Coast franchise demand, premium metro markets, and brand-led expansion opportunities.',
+  texas: 'Fast-moving regional expansion markets with strong demand across major business corridors.',
+  'new-york': 'Dense urban and suburban franchise markets with strong buyer intent and premium positioning.',
+  florida: 'High-intent coastal and suburban markets suited to service, retail, and lifestyle franchises.',
+  illinois: 'Midwest franchise visibility anchored by Chicago-area demand and established business markets.',
+  georgia: 'Southeast expansion territory with strong regional reach and growing suburban demand.',
+};
+
 const CountryLocationPage: React.FC = () => {
   const { country } = useParams();
 
   if (!country) return <NotFound />;
 
-  const normalizeCountry = (c: string) => {
-    const v = c.toLowerCase();
-    if (v === 'us' || v === 'united-states' || v === 'united-states-of-america') return 'usa';
-    return v;
+  const normalizeCountry = (value: string) => {
+    const slug = value.toLowerCase();
+    if (slug === 'us' || slug === 'united-states' || slug === 'united-states-of-america') return 'usa';
+    return slug;
   };
 
   const normalized = normalizeCountry(country);
 
   const countryData = locationData.find(
-    (c) => c.countryCode.toLowerCase() === normalized || c.country.toLowerCase().replace(/\s+/g, '-') === normalized
+    (entry) => entry.countryCode.toLowerCase() === normalized || entry.country.toLowerCase().replace(/\s+/g, '-') === normalized,
   );
 
   if (!countryData) return <NotFound />;
@@ -31,13 +40,22 @@ const CountryLocationPage: React.FC = () => {
     return <Navigate to={`/locations/${canonicalCountryCode}`} replace />;
   }
 
-  const curatedStates = countryData.states.filter((state) =>
-    hasCuratedInsight(countryData.countryCode, state.slug),
-  );
+  const curatedStates = countryData.states.filter((state) => hasCuratedInsight(countryData.countryCode, state.slug));
+  const isUSA = canonicalCountryCode === 'usa';
 
-  const pageTitle = `Franchise Lead Generation in ${countryData.country} | FranchiseLeadsPro`;
-  const pageDescription = `Top franchise lead generation agency serving ${countryData.country}. Explore state and city pages for tailored franchise marketing and development.`;
-  const canonicalUrl = `https://www.franchiseleadspro.com/locations/${countryData.countryCode.toLowerCase()}`;
+  const pageTitle = `Franchise Leads in ${countryData.country} | FranchiseLeadsPro`;
+  const pageDescription = isUSA
+    ? 'Explore curated United States franchise lead generation pages by state, with regional context and direct paths to the strongest markets.'
+    : `Explore curated franchise lead generation pages across ${countryData.country}, including regional markets and local expansion pages.`;
+  const canonicalUrl = `https://www.franchiseleadspro.com/locations/${canonicalCountryCode}`;
+
+  const introCopy = isUSA
+    ? 'Use this United States hub to review the strongest curated state pages, compare regional markets, and move into the location that best matches your franchise growth plan.'
+    : `Use this ${countryData.country} hub to explore curated regional pages and find the market that best matches your franchise growth plan.`;
+
+  const sectionCopy = isUSA
+    ? 'Each state page focuses on local franchise demand, market positioning, and the service mix most relevant to that region.'
+    : `Each regional page focuses on local franchise demand, market positioning, and the service mix most relevant to that market.`;
 
   return (
     <>
@@ -57,13 +75,13 @@ const CountryLocationPage: React.FC = () => {
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
-            name: `Franchise Lead Generation in ${countryData.country}`,
+            name: pageTitle,
+            description: pageDescription,
             url: canonicalUrl,
-            about: `State and city franchise lead generation pages in ${countryData.country}`,
-            hasPart: curatedStates.map((s) => ({
+            hasPart: curatedStates.map((state) => ({
               '@type': 'WebPage',
-              name: `${s.name} Franchise Leads`,
-              url: `https://www.franchiseleadspro.com/locations/${countryData.countryCode.toLowerCase()}/${s.slug}`,
+              name: `${state.name} Franchise Leads`,
+              url: `https://www.franchiseleadspro.com/locations/${canonicalCountryCode}/${state.slug}`,
             })),
           })}
         </script>
@@ -71,39 +89,90 @@ const CountryLocationPage: React.FC = () => {
 
       <Navigation />
 
-      <main>
-        {/* Hero */}
-        <section className="relative min-h-[40vh] bg-gradient-to-br from-primary via-primary-dark to-primary-light flex items-center">
-          <div className="absolute inset-0 bg-black/20" />
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl text-white">
-              <h1 className="text-4xl md:text-6xl font-bold mb-4">
-                Franchise Leads in {countryData.country}
-              </h1>
-              <p className="text-lg md:text-xl opacity-90 max-w-3xl">
-                Explore our franchise lead generation coverage across {countryData.country}. Choose your state to access detailed local pages and start generating qualified franchise leads.
-              </p>
+      <main className="bg-background text-foreground">
+        <section className="border-b border-border bg-secondary/30 py-16 sm:py-20">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl space-y-6">
+              <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">Location hub</p>
+              <h1 className="text-4xl font-bold sm:text-5xl">Franchise Leads in {countryData.country}</h1>
+              <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">{introCopy}</p>
             </div>
           </div>
         </section>
 
-        {/* States list */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-8">Browse States/Regions</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <section className="py-16 sm:py-20">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl space-y-4">
+              <h2 className="text-2xl font-semibold sm:text-3xl">Browse curated states and regions</h2>
+              <p className="text-muted-foreground">{sectionCopy}</p>
+            </div>
+
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {curatedStates.map((state) => (
                 <Link
                   key={state.slug}
-                  to={`/locations/${countryData.countryCode.toLowerCase()}/${state.slug}`}
-                  className="block bg-card rounded-lg p-4 border hover:shadow-md transition-shadow"
+                  to={`/locations/${canonicalCountryCode}/${state.slug}`}
+                  className="block rounded-lg border border-border bg-card p-5 transition-shadow hover:shadow-card"
                 >
-                  <div className="text-lg font-medium">{state.name}</div>
-                  <div className="text-muted-foreground text-sm mt-1">
-                    {state.cities.length} major cities covered
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-semibold text-foreground">{state.name}</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                      {usaStateHighlights[state.slug] || `Explore curated franchise lead generation coverage for ${state.name}.`}
+                    </p>
+                    <span className="inline-flex text-sm font-medium text-primary">Open state page</span>
                   </div>
                 </Link>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-y border-border bg-secondary/20 py-16 sm:py-20">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+              <div className="space-y-4">
+                <h2 className="text-2xl font-semibold sm:text-3xl">What you will find on each market page</h2>
+                <p className="text-muted-foreground">
+                  Every curated market page is designed to help visitors understand the local demand story, the right service mix,
+                  and the best next step for regional expansion.
+                </p>
+              </div>
+
+              <div className="rounded-lg border border-border bg-card p-6">
+                <ul className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+                  <li>Regional market context written for that location.</li>
+                  <li>Clear internal paths to related franchise growth services.</li>
+                  <li>Direct navigation into the strongest curated state pages.</li>
+                  <li>Focused entry points for consultation and next-step planning.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 sm:py-20">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid gap-6 lg:grid-cols-3">
+              <Link to="/services" className="rounded-lg border border-border bg-card p-6 transition-shadow hover:shadow-card">
+                <h2 className="text-xl font-semibold">Explore services</h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Review the full service mix behind franchise lead generation, consulting, marketing, and expansion support.
+                </p>
+              </Link>
+
+              <Link to="/franchise-leads-usa" className="rounded-lg border border-border bg-card p-6 transition-shadow hover:shadow-card">
+                <h2 className="text-xl font-semibold">Open USA service page</h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  See the broader United States service-led landing page for national franchise lead generation support.
+                </p>
+              </Link>
+
+              <Link to="/contact" className="rounded-lg border border-border bg-card p-6 transition-shadow hover:shadow-card">
+                <h2 className="text-xl font-semibold">Talk about your target market</h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Share the region you want to grow in and we will point you to the best matching market path.
+                </p>
+              </Link>
             </div>
           </div>
         </section>

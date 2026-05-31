@@ -54,8 +54,11 @@ const Footer = () => {
             <h4 className="text-lg font-semibold">Franchise Leads by Location</h4>
             <ul className="space-y-2 text-gray-400">
               <li><a href="/franchise-leads-usa" className="hover:text-white transition-colors py-1 inline-block">USA Franchise Leads</a></li>
+              <li><a href="/locations/usa" className="hover:text-white transition-colors py-1 inline-block">USA Market Hub</a></li>
               <li><a href="/franchise-leads-uk" className="hover:text-white transition-colors py-1 inline-block">UK Franchise Leads</a></li>
+              <li><a href="/locations/uk" className="hover:text-white transition-colors py-1 inline-block">UK Market Hub</a></li>
               <li><a href="/franchise-leads-canada" className="hover:text-white transition-colors py-1 inline-block">Canada Franchise Leads</a></li>
+              <li><a href="/locations/ca" className="hover:text-white transition-colors py-1 inline-block">Canada Market Hub</a></li>
             </ul>
           </div>
 
