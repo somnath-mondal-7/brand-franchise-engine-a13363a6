@@ -1,6 +1,7 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { LocationPageTemplate } from '@/components/LocationPageTemplate';
 import { locationData } from '@/data/locations';
+import { hasCuratedInsight } from '@/utils/locationContent';
 import NotFound from './NotFound';
 
 const LocationPage = () => {
@@ -45,28 +46,17 @@ const LocationPage = () => {
       return <NotFound />;
     }
 
-    return (
-      <LocationPageTemplate
-        location={cityData.name}
-        locationSlug={cityData.slug}
-        state={stateData.name}
-        stateSlug={stateData.slug}
-        country={countryData.country}
-        countryCode={countryData.countryCode}
-        population={cityData.population}
-        isCity={true}
-        nearbyLocations={stateData.cities
-          .filter(c => c.slug !== city)
-          .slice(0, 3)
-          .map(c => ({ name: c.name, slug: c.slug }))}
-      />
-    );
+    return <Navigate to={`/locations/${canonicalCountryCode}/${stateData.slug}`} replace />;
   }
 
   // Otherwise, find the state/region data
   const stateData = countryData.states.find(s => s.slug === location);
   if (!stateData) {
     return <NotFound />;
+  }
+
+   if (!hasCuratedInsight(countryData.countryCode, stateData.slug)) {
+    return <Navigate to={`/locations/${canonicalCountryCode}`} replace />;
   }
 
   return (
