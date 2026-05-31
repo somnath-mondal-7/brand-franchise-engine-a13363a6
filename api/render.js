@@ -2,9 +2,20 @@ import { curatedKeywordSlugs, curatedServiceSlugs } from './programmaticSeoConfi
 import { isValidLocation } from './validLocations.js';
 import { brands } from './brandData.js';
 
-// Only curated, production-ready service slugs are valid. All other (legacy/dev)
-// slugs intentionally hard-404 so Google removes them from the index.
+// Curated service slugs are indexable. Legacy service slugs should still resolve
+// to a permanent redirect so old Search Console URLs stop surfacing as 404s.
 const supportedServiceSlugs = new Set([...curatedServiceSlugs]);
+
+const legacyServiceRedirects = new Map([
+  ['franchise-training-programs', 'franchise-consulting'],
+  ['franchise-conversion-consulting', 'franchise-consulting'],
+  ['franchise-legal-services', 'franchise-consulting'],
+  ['franchise-prospect-generation', 'franchise-lead-generation'],
+  ['franchise-buyer-leads', 'franchise-lead-generation'],
+  ['franchise-growth-agency', 'franchise-marketing'],
+  ['franchise-branding-services', 'franchise-marketing-agency'],
+  ['franchise-social-media-marketing', 'franchise-marketing'],
+]);
 
 // Free DIY Prerender — serves static HTML to search engine bots
 // Matches LovableHTML quality: proper meta tags, single H1, rich content, structured data
@@ -1546,6 +1557,7 @@ export default async function handler(req, res) {
     const segments = rawPath.split('/').filter(Boolean);
     let pageData;
     const canonicalPath = rawPath ? `/${rawPath}` : '/';
+    const redirectedLegacyService = legacyServiceRedirects.get(segments[0]);
     const isReservedRoot = ['locations', 'blog', 'legal-terms', 'admin', 'sitemap', 'services'].includes(segments[0]);
     const looksLikeServiceLocationPath = segments.length >= 3 && !isReservedRoot;
     const looksLikeProgrammaticPath =
@@ -1600,8 +1612,12 @@ export default async function handler(req, res) {
         breadcrumbs: [{ name: 'Home', url: '/' }],
         noindex: true,
       };
-    } else if (segments.length >= 3 && supportedServiceSlugs.has(segments[0]) && !['locations','blog','legal-terms','admin','sitemap'].includes(segments[0])) {
+    } else if (segments.length >= 3 && (supportedServiceSlugs.has(segments[0]) || redirectedLegacyService) && !['locations','blog','legal-terms','admin','sitemap'].includes(segments[0])) {
       if (isValidLocation(segments[1], segments[2], segments[3])) {
+        if (redirectedLegacyService) {
+          res.setHeader('Location', `${SITE}/${redirectedLegacyService}/${segments.slice(1).join('/')}`);
+          return res.status(301).end();
+        }
         const service = segments[0];
         const country = segments[1];
         const state = segments[2];

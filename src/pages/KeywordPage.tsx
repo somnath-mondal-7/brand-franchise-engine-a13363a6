@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { KeywordPageTemplate } from '@/components/KeywordPageTemplate';
 import { highValueKeywordPages } from '@/utils/programmaticSeo';
 import NotFound from './NotFound';
@@ -21,7 +21,7 @@ const KeywordPage = () => {
   );
 
   if (!foundKeyword) {
-    return <NotFound />;
+    return <Navigate to="/services" replace />;
   }
 
   // Determine service type based on keyword
