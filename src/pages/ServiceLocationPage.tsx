@@ -2,6 +2,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import { ServiceLocationTemplate } from '@/components/ServiceLocationTemplate';
 import { locationData } from '@/data/locations';
 import { resolveServiceKeywordFromSlug } from '@/utils/programmaticSeo';
+import { hasCuratedInsight } from '@/utils/locationContent';
 import NotFound from './NotFound';
 
 const ServiceLocationPage = () => {
@@ -54,24 +55,17 @@ const ServiceLocationPage = () => {
       return <NotFound />;
     }
 
-    return (
-      <ServiceLocationTemplate
-        service={foundService}
-        location={cityData.name}
-        locationSlug={cityData.slug}
-        state={stateData.name}
-        stateSlug={stateData.slug}
-        country={countryData.country}
-        countryCode={countryData.countryCode}
-        population={cityData.population}
-      />
-    );
+    return <Navigate to={`/${serviceSlug}/${canonicalCountryCode}/${stateData.slug}`} replace />;
   }
 
   // Otherwise, find the state/region data
   const stateData = countryData.states.find(s => s.slug === location);
   if (!stateData) {
     return <NotFound />;
+  }
+
+  if (!hasCuratedInsight(countryData.countryCode, stateData.slug)) {
+    return <Navigate to={`/locations/${canonicalCountryCode}/${stateData.slug}`} replace />;
   }
 
   return (
