@@ -38,13 +38,18 @@
       "permanent": true
     },
     {
+      "source": "/usa",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/india",
       "destination": "/",
       "permanent": true
     },
     {
       "source": "/home-original",
-      "destination": "/usa",
+      "destination": "/",
       "permanent": true
     },
     {

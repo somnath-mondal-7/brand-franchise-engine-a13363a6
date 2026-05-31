@@ -5,6 +5,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import NotFound from './NotFound';
 import { locationData } from '@/data/locations';
+import { hasCuratedInsight } from '@/utils/locationContent';
 
 const CountryLocationPage: React.FC = () => {
   const { country } = useParams();
@@ -29,6 +30,10 @@ const CountryLocationPage: React.FC = () => {
   if (country.toLowerCase() !== canonicalCountryCode) {
     return <Navigate to={`/locations/${canonicalCountryCode}`} replace />;
   }
+
+  const curatedStates = countryData.states.filter((state) =>
+    hasCuratedInsight(countryData.countryCode, state.slug),
+  );
 
   const pageTitle = `Franchise Lead Generation in ${countryData.country} | FranchiseLeadsPro`;
   const pageDescription = `Top franchise lead generation agency serving ${countryData.country}. Explore state and city pages for tailored franchise marketing and development.`;
@@ -55,7 +60,7 @@ const CountryLocationPage: React.FC = () => {
             name: `Franchise Lead Generation in ${countryData.country}`,
             url: canonicalUrl,
             about: `State and city franchise lead generation pages in ${countryData.country}`,
-            hasPart: countryData.states.map((s) => ({
+            hasPart: curatedStates.map((s) => ({
               '@type': 'WebPage',
               name: `${s.name} Franchise Leads`,
               url: `https://www.franchiseleadspro.com/locations/${countryData.countryCode.toLowerCase()}/${s.slug}`,
@@ -87,7 +92,7 @@ const CountryLocationPage: React.FC = () => {
           <div className="container mx-auto px-4">
             <h2 className="text-2xl md:text-3xl font-semibold mb-8">Browse States/Regions</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {countryData.states.map((state) => (
+              {curatedStates.map((state) => (
                 <Link
                   key={state.slug}
                   to={`/locations/${countryData.countryCode.toLowerCase()}/${state.slug}`}

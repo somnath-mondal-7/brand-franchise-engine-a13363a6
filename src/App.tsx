@@ -67,8 +67,8 @@ const App = () => (
             <Route path="/" element={<IndiaHome />} />
             <Route path="/india" element={<Navigate to="/" replace />} />
             <Route path="/brands/:slug" element={<BrandDetail />} />
-            <Route path="/usa" element={<Index />} />
-            <Route path="/home-original" element={<Navigate to="/usa" replace />} />
+            <Route path="/usa" element={<Navigate to="/" replace />} />
+            <Route path="/home-original" element={<Navigate to="/" replace />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/digital-marketing" element={<DigitalMarketing />} />
