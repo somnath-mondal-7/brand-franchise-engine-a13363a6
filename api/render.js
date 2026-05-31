@@ -1,5 +1,6 @@
 import { curatedKeywordSlugs, curatedServiceSlugs } from './programmaticSeoConfig.js';
 import { isValidLocation } from './validLocations.js';
+import { brands } from './brandData.js';
 
 // Only curated, production-ready service slugs are valid. All other (legacy/dev)
 // slugs intentionally hard-404 so Google removes them from the index.
@@ -956,6 +957,126 @@ function keywordPage(keyword) {
   };
 }
 
+function brandPage(slug) {
+  const brand = brands.find((entry) => entry.slug === slug);
+  if (!brand) return null;
+
+  const related = brands
+    .filter((entry) => entry.slug !== brand.slug && entry.category === brand.category)
+    .slice(0, 3);
+
+  return {
+    title: truncate(`${brand.name} Franchise | ${BRAND}`, 60),
+    description: truncate(`${brand.name} franchise details: investment ${brand.investment}, area ${brand.area}, ${brand.outlets} outlets. ${brand.tagline}.`, 160),
+    h1: `${brand.name} Franchise`,
+    breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Brands', url: '/sitemap' }, { name: brand.name, url: `/brands/${brand.slug}` }],
+    content: `
+      <section>
+        <h2>About ${brand.name}</h2>
+        <p>${escapeHtml(brand.about)}</p>
+      </section>
+      <section>
+        <h2>Franchise Snapshot</h2>
+        <ul>
+          <li><strong>Category:</strong> ${escapeHtml(brand.category)}</li>
+          <li><strong>Country:</strong> ${escapeHtml(brand.country)}</li>
+          <li><strong>Investment:</strong> ${escapeHtml(brand.investment)}</li>
+          <li><strong>Area required:</strong> ${escapeHtml(brand.area)}</li>
+          <li><strong>Outlets:</strong> ${escapeHtml(brand.outlets)}</li>
+          <li><strong>Founded:</strong> ${escapeHtml(brand.founded)}</li>
+          <li><strong>Headquarters:</strong> ${escapeHtml(brand.hq)}</li>
+          <li><strong>ROI:</strong> ${escapeHtml(brand.roi)}</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Why Choose ${brand.name}</h2>
+        <ul>${brand.why.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+      </section>
+      <section>
+        <h2>Support From the Franchisor</h2>
+        <ul>${brand.support.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+      </section>
+      <section>
+        <h2>Franchisee Requirements</h2>
+        <ul>${brand.requirements.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+        ${brand.website ? `<p><a href="${escapeHtml(brand.website)}">Visit official website</a></p>` : ''}
+      </section>
+      ${related.length ? `<section><h2>Related Brand Pages</h2><ul>${related.map((item) => `<li><a href="/brands/${item.slug}">${escapeHtml(item.name)}</a></li>`).join('')}</ul></section>` : ''}
+    `,
+  };
+}
+
+function serviceDetailPage(slug) {
+  const pages = {
+    'franchise-strategy': {
+      title: 'Franchise Strategy | FranchiseLeadsPro',
+      description: 'Franchise model design, unit economics, territory mapping and growth planning for brands ready to scale.',
+      h1: 'Franchise Strategy',
+      intro: 'Blueprint for scalable franchise expansion.',
+      deliverables: ['Franchise model and fee structure', 'Unit economics workbook', 'Territory rollout plan', 'Investor pitch positioning'],
+    },
+    'franchise-documentation': {
+      title: 'Franchise Documentation | FranchiseLeadsPro',
+      description: 'Agreements, operations manuals and disclosure-grade franchise documentation built for investor scrutiny.',
+      h1: 'Franchise Documentation',
+      intro: 'Agreements, manuals and disclosure-ready paperwork.',
+      deliverables: ['Franchise agreement support', 'Disclosure-grade document pack', 'Operations manual', 'Training and SOP playbooks'],
+    },
+    'linkedin-marketing': {
+      title: 'LinkedIn Marketing | FranchiseLeadsPro',
+      description: 'LinkedIn outreach, founder positioning and investor conversations built for franchisors and franchise consultants.',
+      h1: 'LinkedIn Marketing',
+      intro: 'Reach decision-grade investors directly.',
+      deliverables: ['Founder profile rebuild', 'Sales Navigator targeting', 'Outreach sequences', 'Reply-to-meeting workflow'],
+    },
+    'performance-marketing': {
+      title: 'Performance Marketing | FranchiseLeadsPro',
+      description: 'Paid acquisition systems for qualified franchise inquiries across Google, Meta and LinkedIn.',
+      h1: 'Performance Marketing',
+      intro: 'Paid acquisition tuned for franchise inquiries.',
+      deliverables: ['Meta and Google campaign setup', 'LinkedIn lead-gen campaigns', 'Landing pages', 'Lead routing and reporting'],
+    },
+    'franchise-website': {
+      title: 'Franchise Website | FranchiseLeadsPro',
+      description: 'Investor-ready franchise websites with territory pages, lead capture and conversion-focused UX.',
+      h1: 'Franchise Website',
+      intro: 'Investor-ready websites that convert.',
+      deliverables: ['Custom franchise portal design', 'Territory and investment pages', 'CRM-connected forms', 'SEO-ready structure'],
+    },
+    'franchise-recruitment': {
+      title: 'Franchise Recruitment | FranchiseLeadsPro',
+      description: 'Investor qualification, discovery calls and onboarding support from first enquiry to signed franchisee.',
+      h1: 'Franchise Recruitment',
+      intro: 'Investor screening to signed franchisee.',
+      deliverables: ['Investor qualification calls', 'Discovery day support', 'Application review', 'Onboarding handoff'],
+    },
+  };
+
+  const page = pages[slug];
+  if (!page) return null;
+
+  return {
+    title: page.title,
+    description: page.description,
+    h1: page.h1,
+    breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Franchise Marketing', url: '/franchise-marketing' }, { name: page.h1, url: `/franchise-marketing/${slug}` }],
+    content: `
+      <section>
+        <h2>${page.h1}</h2>
+        <p>${page.intro}</p>
+      </section>
+      <section>
+        <h2>What You Get</h2>
+        <ul>${page.deliverables.map((item) => `<li>${item}</li>`).join('')}</ul>
+      </section>
+      <section>
+        <h2>Next Step</h2>
+        <p><a href="/contact">Book a consultation</a> to plan the right growth system for your brand.</p>
+      </section>
+    `,
+  };
+}
+
 async function blogPostPage(slug) {
   const fallbackTitle = slugToTitle(slug);
 
@@ -1230,6 +1351,37 @@ function staticPage(path) {
         </section>
       `,
     },
+    'case-studies/hof-franchise-consulting': {
+      title: `HOF Franchise Consulting Website Redesign Case Study | ${BRAND}`,
+      description: `How ${BRAND} rebuilt HOF Franchise Consulting into a modern, high-converting digital presence for franchise growth.`,
+      h1: 'HOF Franchise Consulting Website Redesign Case Study',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Case Studies', url: '/case-studies' }, { name: 'HOF Franchise Consulting', url: '/case-studies/hof-franchise-consulting' }],
+      content: `
+        <section><h2>Client Overview</h2><p>HOF Franchise Consulting partnered with ${BRAND} for a full digital transformation focused on credibility, conversion, and franchise buyer trust.</p></section>
+        <section><h2>What Changed</h2><ul><li>Modern website redesign</li><li>Stronger brand presentation</li><li>Conversion-focused user journey</li><li>Lead capture and booking improvements</li></ul></section>
+        <section><h2>Outcome</h2><p>The result was a cleaner, faster, more professional online presence designed to support franchise recruitment and investor enquiries.</p></section>
+      `,
+    },
+    'franchise-marketing': {
+      title: `Franchise Marketing Services | ${BRAND}`,
+      description: 'End-to-end franchise marketing covering strategy, documentation, LinkedIn, paid media, websites and recruitment.',
+      h1: 'Franchise Marketing Services',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Franchise Marketing', url: '/franchise-marketing' }],
+      content: `
+        <section><h2>The Full Franchise Growth Engine</h2><p>${BRAND} combines franchise strategy, documentation, marketing systems, websites, and recruitment support into one coordinated growth stack.</p></section>
+        <section><h2>Core Services</h2><ul><li><a href="/franchise-marketing/franchise-strategy">Franchise Strategy</a></li><li><a href="/franchise-marketing/franchise-documentation">Franchise Documentation</a></li><li><a href="/franchise-marketing/linkedin-marketing">LinkedIn Marketing</a></li><li><a href="/franchise-marketing/performance-marketing">Performance Marketing</a></li><li><a href="/franchise-marketing/franchise-website">Franchise Website</a></li><li><a href="/franchise-marketing/franchise-recruitment">Franchise Recruitment</a></li></ul></section>
+      `,
+    },
+    'franchise-flow': {
+      title: `franchiseFLOW | ${BRAND}`,
+      description: 'The five-phase franchiseFLOW system for taking brands from concept to signed franchisees.',
+      h1: 'franchiseFLOW',
+      breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'franchiseFLOW', url: '/franchise-flow' }],
+      content: `
+        <section><h2>The System</h2><p>franchiseFLOW is our five-phase framework: discover, document, demand, decide, and deploy.</p></section>
+        <section><h2>How It Works</h2><ol><li>Discover your franchise readiness.</li><li>Document the operating system.</li><li>Drive investor demand.</li><li>Qualify and decide.</li><li>Deploy signed franchisees.</li></ol></section>
+      `,
+    },
   };
   return pages[path] || null;
 }
@@ -1403,8 +1555,13 @@ export default async function handler(req, res) {
 
     if (!rawPath || rawPath === 'index.html') {
       pageData = homePage();
+    } else if (rawPath === 'usa' || rawPath === 'home-original') {
+      res.setHeader('Location', `${SITE}/`);
+      return res.status(301).end();
     } else if (segments[0] === 'blog' && segments[1]) {
       pageData = await blogPostPage(segments[1]);
+    } else if (segments[0] === 'brands' && segments[1]) {
+      pageData = brandPage(segments[1]);
     } else if (segments[0] === 'locations') {
       const [, country, state, city] = segments;
       const CURATED_COUNTRIES = new Set(['usa', 'in', 'uk', 'ca', 'au', 'ae', 'kw']);
@@ -1430,6 +1587,8 @@ export default async function handler(req, res) {
       }
     } else if (segments[0] === 'services' && segments[1] && curatedKeywordSlugs.has(segments[1])) {
       pageData = keywordPage(segments[1]);
+    } else if (segments[0] === 'franchise-marketing' && segments[1]) {
+      pageData = serviceDetailPage(segments[1]);
     } else if (segments[0] === 'legal-terms') {
       pageData = legalPage(rawPath);
     } else if (['search', 'session-demo', 'admin', 'blog-admin', 'auto-blog-admin', 'sitemap-generator'].includes(segments[0])) {
