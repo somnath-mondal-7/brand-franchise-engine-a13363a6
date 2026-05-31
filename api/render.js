@@ -1407,15 +1407,26 @@ export default async function handler(req, res) {
       pageData = await blogPostPage(segments[1]);
     } else if (segments[0] === 'locations') {
       const [, country, state, city] = segments;
+      const CURATED_COUNTRIES = new Set(['usa', 'in', 'uk', 'ca', 'au', 'ae', 'kw']);
+      const CURATED_USA_STATES = new Set(['california','texas','new-york','florida','illinois','georgia']);
       if (country && isValidLocation(country, state, city)) {
+        if (city) {
+          res.setHeader('Location', `${SITE}/locations/${country}/${state}`);
+          return res.status(301).end();
+        }
+        if (state && country === 'usa' && !CURATED_USA_STATES.has(state)) {
+          res.setHeader('Location', `${SITE}/locations/usa`);
+          return res.status(301).end();
+        }
+        if (state && country !== 'usa') {
+          res.setHeader('Location', `${SITE}/locations/${country}`);
+          return res.status(301).end();
+        }
+        if (!CURATED_COUNTRIES.has(country)) {
+          res.setHeader('Location', `${SITE}/`);
+          return res.status(301).end();
+        }
         pageData = locationPage(country, state, city);
-        // Curated index allowlist — only USA + curated US states are eligible.
-        const CURATED_COUNTRIES = new Set(['usa', 'in', 'uk', 'ca', 'au', 'ae', 'kw']);
-        const CURATED_USA_STATES = new Set(['california','texas','new-york','florida','illinois','georgia']);
-        const isIndexable = !city
-          && CURATED_COUNTRIES.has(country)
-          && (!state || (country === 'usa' && CURATED_USA_STATES.has(state)));
-        if (!isIndexable) pageData.noindex = true;
       }
     } else if (segments[0] === 'services' && segments[1] && curatedKeywordSlugs.has(segments[1])) {
       pageData = keywordPage(segments[1]);
@@ -1432,14 +1443,20 @@ export default async function handler(req, res) {
       };
     } else if (segments.length >= 3 && supportedServiceSlugs.has(segments[0]) && !['locations','blog','legal-terms','admin','sitemap'].includes(segments[0])) {
       if (isValidLocation(segments[1], segments[2], segments[3])) {
-        pageData = serviceLocationPage(segments[0], segments[1], segments[2], segments[3]);
+        const service = segments[0];
         const country = segments[1];
         const state = segments[2];
-        const isCityLevel = !!segments[3];
+        const city = segments[3];
         const CURATED_USA_STATES = new Set(['california','texas','new-york','florida','illinois','georgia']);
-        // Only state-level service pages for curated USA states are indexable.
-        const isIndexable = !isCityLevel && country === 'usa' && CURATED_USA_STATES.has(state);
-        if (!isIndexable) pageData.noindex = true;
+        if (city) {
+          res.setHeader('Location', `${SITE}/${service}/${country}/${state}`);
+          return res.status(301).end();
+        }
+        if (!(country === 'usa' && CURATED_USA_STATES.has(state))) {
+          res.setHeader('Location', `${SITE}/locations/${country === 'usa' ? 'usa' : country}`);
+          return res.status(301).end();
+        }
+        pageData = serviceLocationPage(service, country, state, city);
       }
     } else {
       pageData = staticPage(rawPath);
