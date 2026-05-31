@@ -2,9 +2,20 @@ import { curatedKeywordSlugs, curatedServiceSlugs } from './programmaticSeoConfi
 import { isValidLocation } from './validLocations.js';
 import { brands } from './brandData.js';
 
-// Only curated, production-ready service slugs are valid. All other (legacy/dev)
-// slugs intentionally hard-404 so Google removes them from the index.
+// Curated service slugs are indexable. Legacy service slugs should still resolve
+// to a permanent redirect so old Search Console URLs stop surfacing as 404s.
 const supportedServiceSlugs = new Set([...curatedServiceSlugs]);
+
+const legacyServiceRedirects = new Map([
+  ['franchise-training-programs', 'franchise-consulting'],
+  ['franchise-conversion-consulting', 'franchise-consulting'],
+  ['franchise-legal-services', 'franchise-consulting'],
+  ['franchise-prospect-generation', 'franchise-lead-generation'],
+  ['franchise-buyer-leads', 'franchise-lead-generation'],
+  ['franchise-growth-agency', 'franchise-marketing'],
+  ['franchise-branding-services', 'franchise-marketing-agency'],
+  ['franchise-social-media-marketing', 'franchise-marketing'],
+]);
 
 // Free DIY Prerender — serves static HTML to search engine bots
 // Matches LovableHTML quality: proper meta tags, single H1, rich content, structured data
