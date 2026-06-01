@@ -80,7 +80,7 @@ const PricingSection = () => {
                     <p className="text-card-foreground font-semibold">Additional Profiles</p>
                     <p className="text-sm text-muted-foreground">Per extra LinkedIn profile</p>
                   </div>
-                  <span className="text-2xl font-extrabold text-foreground">$499<span className="text-sm font-normal text-muted-foreground">/mo</span></span>
+                  <span className="text-2xl font-extrabold text-foreground">$497<span className="text-sm font-normal text-muted-foreground">/mo</span></span>
                 </div>
               </div>
               <Link to="/contact" className="block mt-8">
