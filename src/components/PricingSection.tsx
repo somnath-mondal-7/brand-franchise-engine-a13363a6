@@ -39,7 +39,7 @@ const PricingSection = () => {
             Simple, Transparent Pricing
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Everything you need to generate franchise leads — starting at just $599/month.
+            Everything you need to generate qualified B2B leads — starting at just $597/month.
           </p>
         </div>
 
@@ -55,7 +55,7 @@ const PricingSection = () => {
                 LinkedIn Lead Engine
               </CardTitle>
               <div className="mt-4">
-                <span className="text-5xl font-extrabold text-foreground">$599</span>
+                <span className="text-5xl font-extrabold text-foreground">$597</span>
                 <span className="text-muted-foreground text-lg">/month</span>
               </div>
               <p className="text-sm text-muted-foreground mt-2">
@@ -80,7 +80,7 @@ const PricingSection = () => {
                     <p className="text-card-foreground font-semibold">Additional Profiles</p>
                     <p className="text-sm text-muted-foreground">Per extra LinkedIn profile</p>
                   </div>
-                  <span className="text-2xl font-extrabold text-foreground">$499<span className="text-sm font-normal text-muted-foreground">/mo</span></span>
+                  <span className="text-2xl font-extrabold text-foreground">$497<span className="text-sm font-normal text-muted-foreground">/mo</span></span>
                 </div>
               </div>
               <Link to="/contact" className="block mt-8">

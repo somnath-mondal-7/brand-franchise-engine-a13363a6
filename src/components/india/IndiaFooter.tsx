@@ -32,18 +32,27 @@ const IndiaFooter = () => {
           <div>
             <h4 className="font-display text-lg mb-4 text-accent">Contact</h4>
             <ul className="space-y-3 text-sm text-primary-foreground/80">
-              <li className="flex gap-2"><Phone className="w-4 h-4 mt-0.5 text-accent" /><a href="tel:+15512012729">+1 (551)-201-2729</a></li>
+              <li className="flex gap-2"><Phone className="w-4 h-4 mt-0.5 text-accent" /><a href="tel:+18382475198">+1 (838)-247-5198</a></li>
               <li className="flex gap-2"><Mail className="w-4 h-4 mt-0.5 text-accent" /><a href="mailto:support@franchiseleadspro.com">support@franchiseleadspro.com</a></li>
-              <li className="flex gap-2"><MapPin className="w-4 h-4 mt-0.5 text-accent" /><span>Serving franchisors across India</span></li>
+              <li className="flex gap-2">
+                <MapPin className="w-4 h-4 mt-0.5 text-accent" />
+                <span>
+                  <strong className="block text-primary-foreground">Franchiseleadspro</strong>
+                  Salt Lake Sector Five<br />
+                  Kolkata, West Bengal 700091<br />
+                  India
+                </span>
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 pt-6 border-t border-primary-foreground/15 flex flex-col sm:flex-row justify-between gap-3 text-xs text-primary-foreground/60">
-          <p>© {new Date().getFullYear()} FranchiseLeadsPro. All rights reserved.</p>
-          <div className="flex gap-5">
-            <Link to="/legal-terms/privacy-policy" className="hover:text-accent">Privacy</Link>
-            <Link to="/legal-terms/refund-satisfaction-guarantee-policy" className="hover:text-accent">Refund Policy</Link>
+          <p>© {new Date().getFullYear()} Franchiseleadspro. All rights reserved.</p>
+          <div className="flex flex-wrap gap-5">
+            <Link to="/legal-terms/privacy-policy" className="hover:text-accent">Privacy Policy</Link>
+            <Link to="/legal-terms/terms-of-service" className="hover:text-accent">Terms of Service</Link>
+            <Link to="/legal-terms/refund-cancellation-policy" className="hover:text-accent">Refund & Cancellation</Link>
             <Link to="/sitemap" className="hover:text-accent">Sitemap</Link>
           </div>
         </div>
