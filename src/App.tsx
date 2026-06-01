@@ -36,6 +36,8 @@ import Sitemap from "./pages/Sitemap";
 import BlogSitemap from "./pages/BlogSitemap";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
+import RefundCancellation from "./pages/RefundCancellation";
+import TermsOfService from "./pages/TermsOfService";
 import NotFound from "./pages/NotFound";
 import FranchiseMarketing from "./pages/FranchiseMarketing";
 import FranchiseFlow from "./pages/FranchiseFlow";
@@ -115,6 +117,8 @@ const App = () => (
             <Route path="/search" element={<Navigate to="/" replace />} />
             <Route path="/legal-terms/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/legal-terms/refund-satisfaction-guarantee-policy" element={<RefundPolicy />} />
+            <Route path="/legal-terms/refund-cancellation-policy" element={<RefundCancellation />} />
+            <Route path="/legal-terms/terms-of-service" element={<TermsOfService />} />
             
             <Route path="/franchise-marketing" element={<FranchiseMarketing />} />
             <Route path="/franchise-marketing/:slug" element={<ServiceDetail />} />
