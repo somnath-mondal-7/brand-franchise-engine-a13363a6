@@ -39,7 +39,7 @@ const PricingSection = () => {
             Simple, Transparent Pricing
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Everything you need to generate franchise leads — starting at just $599/month.
+            Everything you need to generate qualified B2B leads — starting at just $597/month.
           </p>
         </div>
 
