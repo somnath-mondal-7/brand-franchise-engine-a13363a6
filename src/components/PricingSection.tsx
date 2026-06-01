@@ -55,7 +55,7 @@ const PricingSection = () => {
                 LinkedIn Lead Engine
               </CardTitle>
               <div className="mt-4">
-                <span className="text-5xl font-extrabold text-foreground">$599</span>
+                <span className="text-5xl font-extrabold text-foreground">$597</span>
                 <span className="text-muted-foreground text-lg">/month</span>
               </div>
               <p className="text-sm text-muted-foreground mt-2">
