@@ -92,12 +92,14 @@ const Footer = () => {
                     <p>111 Town Square Place</p>
                     <p>Jersey City, NJ 07310</p>
                     <p>United States</p>
+                    <a href="tel:+18382475198" className="hover:text-white transition-colors">+1 (838)-247-5198</a>
                   </div>
                   <div>
                     <p className="font-medium text-gray-300">India Office</p>
                     <p>Salt Lake Sector Five</p>
                     <p>Kolkata, West Bengal 700091</p>
-                    <a href="tel:+18382475198" className="hover:text-white transition-colors">+1 (838)-247-5198</a>
+                    <p>India</p>
+                    <a href="tel:+918327078841" className="hover:text-white transition-colors">+91 8327078841</a>
                   </div>
                 </div>
               </div>

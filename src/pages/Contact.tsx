@@ -222,7 +222,7 @@ const Contact = () => {
                   <CardHeader>
                     <CardTitle className="text-xl text-brand-navy">Contact Information</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-6">
+                <CardContent className="space-y-6">
                     <div className="flex items-start space-x-4">
                       <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0">
                         <Mail className="w-5 h-5 text-white" />
@@ -239,7 +239,30 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="font-semibold text-brand-navy">Phone</p>
-                        <p className="text-brand-gray">+1 (838)-247-5198</p>
+                        <p className="text-brand-gray">USA: +1 (838)-247-5198</p>
+                        <p className="text-brand-gray">India: +91 8327078841</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-brand-navy">USA Office</p>
+                        <p className="text-brand-gray">111 Town Square Place</p>
+                        <p className="text-brand-gray">Jersey City, NJ 07310</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-brand-navy">India Office</p>
+                        <p className="text-brand-gray">Salt Lake Sector Five</p>
+                        <p className="text-brand-gray">Kolkata, West Bengal 700091</p>
                       </div>
                     </div>
                     
