@@ -16,7 +16,7 @@ const DIST = join(ROOT, 'dist');
 // ─── CONFIG ───
 const SITE = 'https://www.franchiseleadspro.com';
 const BRAND = 'FranchiseLeadsPro';
-const PHONE = '+1 (838)-247-5198';
+const PHONE = '+1 (424) 445-5334';
 
 // ─── HELPERS ───
 function slugToTitle(slug) {
@@ -72,7 +72,7 @@ function buildFooter() {
         </div>
         <div>
           <p class="footer-title">Contact</p>
-          <p>Phone: <a href="tel:+18382475198">${PHONE}</a></p>
+          <p>Phone: <a href="tel:+14244455334">${PHONE}</a></p>
           <p>Email: <a href="mailto:support@franchiseleadspro.com">support@franchiseleadspro.com</a></p>
         </div>
         <div>
@@ -255,7 +255,7 @@ function buildWebPageSchema(title, description, canonical) {
       "logo": `${SITE}/logo-hq.png`,
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+1-838-247-5198",
+        "telephone": "+1-424-445-5334",
         "contactType": "Sales",
         "areaServed": ["US", "IN", "GB", "CA", "AU", "AE", "KW"],
         "availableLanguage": "English"
@@ -283,7 +283,7 @@ function buildCtaSection() {
     <p>Book a free strategy call with our franchise marketing team. We'll map a lead-generation plan tailored to your brand, market, and investment range.</p>
     <div class="cta-row">
       <a class="btn" href="/contact">Book a free consultation</a>
-      <a class="btn ghost" href="tel:+18382475198">Call ${PHONE}</a>
+      <a class="btn ghost" href="tel:+14244455334">Call ${PHONE}</a>
     </div>
   </section>`;
 }

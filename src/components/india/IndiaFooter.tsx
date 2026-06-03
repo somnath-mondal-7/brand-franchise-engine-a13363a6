@@ -32,7 +32,7 @@ const IndiaFooter = () => {
           <div>
             <h4 className="font-display text-lg mb-4 text-accent">Contact</h4>
             <ul className="space-y-3 text-sm text-primary-foreground/80">
-              <li className="flex gap-2"><Phone className="w-4 h-4 mt-0.5 text-accent" /><a href="tel:+18382475198">USA: +1 (838)-247-5198</a></li>
+              <li className="flex gap-2"><Phone className="w-4 h-4 mt-0.5 text-accent" /><a href="tel:+14244455334">USA: +1 (424) 445-5334</a></li>
               <li className="flex gap-2"><Phone className="w-4 h-4 mt-0.5 text-accent" /><a href="tel:+918327078841">India: +91 8327078841</a></li>
               <li className="flex gap-2"><Mail className="w-4 h-4 mt-0.5 text-accent" /><a href="mailto:support@franchiseleadspro.com">support@franchiseleadspro.com</a></li>
               <li className="flex gap-2">

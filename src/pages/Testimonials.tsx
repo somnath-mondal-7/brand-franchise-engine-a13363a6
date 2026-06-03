@@ -63,6 +63,61 @@ const Testimonials = () => {
       results: "Consistent pipeline",
       industry: "Business Brokerage"
     }
+    ,
+    {
+      name: "Amanda Reyes",
+      title: "Independent Franchise Consultant",
+      company: "Reyes Franchise Advisory • Phoenix, AZ",
+      rating: 5,
+      text: "As a solo consultant, my calendar is my business. Their team handles outreach and qualification end-to-end so every conversation I take is with a serious, vetted candidate.",
+      results: "Vetted candidates",
+      industry: "Independent Consulting"
+    },
+    {
+      name: "Daniel Brooks",
+      title: "Franchise Development Director",
+      company: "Brooks Brands USA • Atlanta, GA",
+      rating: 5,
+      text: "They actually took the time to learn our brand story. The candidates they bring fit our culture, not just the price point. That's something other agencies never delivered.",
+      results: "Culture-fit leads",
+      industry: "Multi-Brand Franchisor"
+    },
+    {
+      name: "Priya Natarajan",
+      title: "VP Franchise Growth",
+      company: "Sunrise QSR Group • Chicago, IL",
+      rating: 5,
+      text: "Prospects show up to our discovery calls already familiar with our concept. That kind of warm pipeline is rare and it's changed how our development team operates.",
+      results: "Warm discovery calls",
+      industry: "Quick Service Restaurants"
+    },
+    {
+      name: "Marcus Hill",
+      title: "Independent Franchise Broker, IFPG",
+      company: "Hill Franchise Group • Charlotte, NC",
+      rating: 5,
+      text: "Straightforward team, no fluff, no over-promising. They told me what to expect and delivered consistently month after month. Refreshing in this industry.",
+      results: "Consistent delivery",
+      industry: "Independent Brokerage"
+    },
+    {
+      name: "Elena Vasquez",
+      title: "Franchise Consultant",
+      company: "FranBridge Partners • Miami, FL",
+      rating: 5,
+      text: "Communication is what sets them apart. Clear weekly updates, transparent reporting, and a team that actually picks up the phone when I have a question.",
+      results: "Transparent reporting",
+      industry: "Franchise Consulting"
+    },
+    {
+      name: "Gregory Patel",
+      title: "Founder & CEO",
+      company: "Patel Fitness Concepts • Houston, TX",
+      rating: 5,
+      text: "We're a US-based emerging franchisor and they treated our brand like it was their own. The investor introductions they made directly led to signed franchise agreements.",
+      results: "Signed agreements",
+      industry: "Health & Fitness Franchisor"
+    }
   ];
 
 

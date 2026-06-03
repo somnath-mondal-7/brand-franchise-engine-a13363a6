@@ -55,9 +55,9 @@ const IndiaNav = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-10 text-sm font-medium">
             <div className="flex items-center gap-8">
-              <a href="tel:+18382475198" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+              <a href="tel:+14244455334" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                 <Phone className="w-4 h-4" />
-                <span>+1 838-247-5198</span>
+                <span>+1 (424) 445-5334</span>
               </a>
               <a
                 href="https://calendly.com/lets-build-your-brand"
