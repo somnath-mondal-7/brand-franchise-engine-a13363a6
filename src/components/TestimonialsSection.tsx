@@ -12,9 +12,44 @@ const TestimonialsSection = () => {
     },
     {
       name: "Robert Williams",
-      title: "Sr. Franchise Consultant, GrowthPath Advisory",
+      title: "Sr. Franchise Consultant, GrowthPath Advisory • Dallas, TX",
       quote:
-        "FranchiseLeadsPro completely transformed our lead pipeline. Within the first month, we had 12 qualified franchise investor meetings — something that used to take us a full quarter.",
+        "FranchiseLeadsPro completely transformed our lead pipeline. The investor conversations they put on my calendar are warm, qualified, and ready to talk numbers.",
+      isTextReview: true,
+    },
+    {
+      name: "Amanda Reyes",
+      title: "Independent Franchise Consultant • Phoenix, AZ",
+      quote:
+        "As a solo consultant, my time is everything. Their team handles the outreach and qualification so I can focus on closing — it feels like having a full BDR team behind me.",
+      isTextReview: true,
+    },
+    {
+      name: "Daniel Brooks",
+      title: "Franchise Development Director, Brooks Brands USA • Atlanta, GA",
+      quote:
+        "We've worked with several lead gen agencies. FranchiseLeadsPro is the first one that actually understood our brand story and brought us candidates who fit our culture, not just our budget.",
+      isTextReview: true,
+    },
+    {
+      name: "Priya Natarajan",
+      title: "VP Franchise Growth, Sunrise QSR Group • Chicago, IL",
+      quote:
+        "Their outreach quality is exceptional. Prospects show up to discovery calls already familiar with our concept — that almost never happens with cold lead vendors.",
+      isTextReview: true,
+    },
+    {
+      name: "Marcus Hill",
+      title: "Independent Franchise Broker, IFPG • Charlotte, NC",
+      quote:
+        "Straightforward team, no fluff, no over-promising. They told me exactly what to expect, then delivered consistently month after month. Rare in this industry.",
+      isTextReview: true,
+    },
+    {
+      name: "Elena Vasquez",
+      title: "Franchise Consultant, FranBridge Partners • Miami, FL",
+      quote:
+        "Communication is what sets them apart. Clear weekly updates, transparent reporting, and a team that actually picks up the phone when I have a question.",
       isTextReview: true,
     },
   ];
