@@ -69,7 +69,7 @@ const Contact = () => {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Contact Us | Get a Free Franchise Marketing Consultation | FranchiseLeadsPro</title>
-        <meta name="description" content="Contact FranchiseLeadsPro for a free franchise marketing consultation. Get qualified franchise leads, website development, and IT services. Call +1 (838)-247-5198." />
+        <meta name="description" content="Contact FranchiseLeadsPro for a free franchise marketing consultation. Get qualified franchise leads, website development, and IT services. Call +1 (424) 445-5334." />
         <link rel="canonical" href="https://www.franchiseleadspro.com/contact" />
         <meta name="robots" content="index, follow" />
       </Helmet>
@@ -239,7 +239,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="font-semibold text-brand-navy">Phone</p>
-                        <p className="text-brand-gray">USA: +1 (838)-247-5198</p>
+                        <p className="text-brand-gray">USA: +1 (424) 445-5334</p>
                         <p className="text-brand-gray">India: +91 8327078841</p>
                       </div>
                     </div>
