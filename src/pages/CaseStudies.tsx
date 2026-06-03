@@ -181,7 +181,7 @@ const CaseStudies = () => {
       {/* TEXT TESTIMONIALS */}
       <section className="py-24 sm:py-28 bg-secondary/40 border-y border-border">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-7 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7 max-w-6xl mx-auto">
             {textTestimonials.map((t) => (
               <div key={t.name} className="bg-card border border-border rounded-2xl p-8">
                 <Quote className="w-6 h-6 text-accent mb-4" />
