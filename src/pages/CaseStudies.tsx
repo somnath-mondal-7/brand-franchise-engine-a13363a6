@@ -43,9 +43,39 @@ const featuredClients = [
 const textTestimonials = [
   {
     name: "Robert Williams",
-    role: "Sr. Franchise Consultant, GrowthPath Advisory",
+    role: "Sr. Franchise Consultant, GrowthPath Advisory • Dallas, TX",
     quote:
-      "FranchiseLeadsPro completely transformed our lead pipeline. The franchise enquiries we now book in a week used to take us a full quarter.",
+      "FranchiseLeadsPro completely transformed our lead pipeline. The investor conversations they put on my calendar are warm, qualified, and ready to talk numbers.",
+  },
+  {
+    name: "Amanda Reyes",
+    role: "Independent Franchise Consultant • Phoenix, AZ",
+    quote:
+      "As a solo consultant, my time is everything. Their team handles the outreach and qualification so I can focus on closing — it feels like having a full BDR team behind me.",
+  },
+  {
+    name: "Daniel Brooks",
+    role: "Franchise Development Director, Brooks Brands USA • Atlanta, GA",
+    quote:
+      "We've worked with several lead gen agencies. FranchiseLeadsPro is the first one that actually understood our brand story and brought us candidates who fit our culture, not just our budget.",
+  },
+  {
+    name: "Priya Natarajan",
+    role: "VP Franchise Growth, Sunrise QSR Group • Chicago, IL",
+    quote:
+      "Their outreach quality is exceptional. Prospects show up to discovery calls already familiar with our concept — that almost never happens with cold lead vendors.",
+  },
+  {
+    name: "Marcus Hill",
+    role: "Independent Franchise Broker, IFPG • Charlotte, NC",
+    quote:
+      "Straightforward team, no fluff, no over-promising. They told me exactly what to expect, then delivered consistently month after month. Rare in this industry.",
+  },
+  {
+    name: "Elena Vasquez",
+    role: "Franchise Consultant, FranBridge Partners • Miami, FL",
+    quote:
+      "Communication is what sets them apart. Clear weekly updates, transparent reporting, and a team that actually picks up the phone when I have a question.",
   },
   {
     name: "Priya Sharma",
