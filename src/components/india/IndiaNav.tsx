@@ -28,7 +28,6 @@ const servicesMega: MegaCol[] = [
     title: "Explore",
     links: [
       { label: "Our Clients", href: "/case-studies" },
-      { label: "About", href: "/about" },
       { label: "Blog", href: "/blog" },
       { label: "Contact", href: "/contact" },
     ],
@@ -42,8 +41,6 @@ const IndiaNav = () => {
 
   const links = [
     { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Case Studies", href: "/case-studies" },
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ];
@@ -101,9 +98,6 @@ const IndiaNav = () => {
               <Link to="/" className="text-sm font-medium text-primary-foreground/90 hover:text-accent transition-colors">
                 Home
               </Link>
-              <Link to="/about" className="text-sm font-medium text-primary-foreground/90 hover:text-accent transition-colors">
-                About
-              </Link>
 
               {/* Services mega-menu */}
               <div className="relative group">
@@ -134,9 +128,6 @@ const IndiaNav = () => {
                 </div>
               </div>
 
-              <Link to="/case-studies" className="text-sm font-medium text-primary-foreground/90 hover:text-accent transition-colors">
-                Case Studies
-              </Link>
               <Link to="/testimonials" className="text-sm font-medium text-primary-foreground/90 hover:text-accent transition-colors">
                 Our Clients
               </Link>
