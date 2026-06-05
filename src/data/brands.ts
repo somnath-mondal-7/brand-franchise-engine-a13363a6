@@ -2,7 +2,7 @@ export type Brand = {
   slug: string;
   name: string;
   category: string;
-  country: "India" | "USA";
+  country: "USA";
   investment: string;
   area: string;
   outlets: string;
@@ -19,159 +19,6 @@ export type Brand = {
 };
 
 export const brands: Brand[] = [
-  // ===== India — Leading =====
-  {
-    slug: "wow-momo",
-    name: "Wow! Momo",
-    category: "Food & Beverage",
-    country: "India",
-    investment: "₹25L – 50L",
-    area: "300 – 600 sq.ft",
-    outlets: "500+",
-    founded: "2008",
-    hq: "Kolkata, India",
-    domain: "wowmomo.com",
-    tagline: "India's largest momo QSR chain",
-    about: "Wow! Momo is India's largest momo-focused QSR chain, serving fusion momos, momo burgers and momo bowls across 35+ cities. The brand is investor-backed by Tiger Global and OAKS Asset Management.",
-    why: ["Category leader in a fast-growing QSR niche", "Strong central kitchen & supply chain", "Proven unit economics across formats"],
-    support: ["Site selection & lease support", "Staff training at Wow! Academy", "Marketing & launch campaigns", "Centralised supply chain"],
-    requirements: ["Prime high-footfall location", "Liquid investment of ₹25L+", "Commitment to brand SOPs"],
-    roi: "Typical payback: 24–36 months",
-    website: "https://wowmomo.com",
-  },
-  {
-    slug: "lenskart",
-    name: "Lenskart",
-    category: "Retail / Eyewear",
-    country: "India",
-    investment: "₹30L – 60L",
-    area: "400 – 800 sq.ft",
-    outlets: "1500+",
-    founded: "2010",
-    hq: "Gurugram, India",
-    domain: "lenskart.com",
-    tagline: "India's largest omnichannel eyewear brand",
-    about: "Lenskart is India's largest eyewear retailer with 1500+ stores and a strong online presence. Backed by SoftBank, KKR, and Temasek, the brand offers a robust franchise model under its FOFO and FOCO structures.",
-    why: ["Category-leader brand recall", "Tech-driven inventory & try-on", "High repeat-customer behaviour"],
-    support: ["Store design & build-out", "Full inventory consignment", "National marketing campaigns", "Staff training"],
-    requirements: ["Retail-grade location, ground floor", "Investment ₹30L+", "Operator presence on-site"],
-    roi: "Typical payback: 30–42 months",
-    website: "https://lenskart.com",
-  },
-  {
-    slug: "lakme-salon",
-    name: "Lakmé Salon",
-    category: "Wellness & Salon",
-    country: "India",
-    investment: "₹40L – 80L",
-    area: "1000 – 1500 sq.ft",
-    outlets: "490+",
-    founded: "2003",
-    hq: "Mumbai, India",
-    domain: "lakmesalon.in",
-    tagline: "India's most loved beauty salon chain",
-    about: "Lakmé Salon, part of Hindustan Unilever, is one of India's most trusted beauty and salon brands with 490+ outlets across 165+ cities.",
-    why: ["HUL-backed brand trust", "Strong female-centric audience", "Premium pricing power"],
-    support: ["Salon design & layout", "Stylist training academies", "Lakmé product supply", "Marketing & PR"],
-    requirements: ["Premium catchment area", "Investment ₹40L+", "5+ year commitment"],
-    roi: "Typical payback: 36–48 months",
-    website: "https://lakmesalon.in",
-  },
-  {
-    slug: "kidzee",
-    name: "Kidzee",
-    category: "Education / Pre-School",
-    country: "India",
-    investment: "₹10L – 20L",
-    area: "1500 – 2500 sq.ft",
-    outlets: "1900+",
-    founded: "2003",
-    hq: "Mumbai, India",
-    domain: "kidzee.com",
-    tagline: "Asia's largest preschool chain",
-    about: "Kidzee, by ZEE Learn, is Asia's largest preschool chain with 1900+ centres across 750+ cities. Strong brand recall and a structured curriculum make it a favourite among first-time edupreneurs.",
-    why: ["Largest preschool brand in Asia", "Proven low-investment model", "Recession-resistant category"],
-    support: ["Curriculum & teacher training", "Centre setup support", "Admission marketing", "Annual brand campaigns"],
-    requirements: ["Ground floor space, child-safe", "Investment ₹10L+", "Passion for early education"],
-    roi: "Typical payback: 24–36 months",
-    website: "https://kidzee.com",
-  },
-  // ===== India — Opportunities =====
-  {
-    slug: "chai-sutta-bar",
-    name: "Chai Sutta Bar",
-    category: "QSR / Cafe",
-    country: "India",
-    investment: "₹12L – 16L",
-    area: "200 – 400 sq.ft",
-    outlets: "400+",
-    founded: "2016",
-    hq: "Indore, India",
-    domain: "chaisuttabarindia.com",
-    tagline: "India's fastest growing chai cafe chain",
-    about: "Chai Sutta Bar is a fast-growing chai cafe brand with 400+ outlets across India and select international markets. Known for its kulhad chai and youth-driven branding.",
-    why: ["Low investment, high footfall", "Strong youth + tier-2/3 city demand", "Quick break-even"],
-    support: ["Outlet design", "Raw material supply", "Staff training", "Social media marketing"],
-    requirements: ["High-footfall street location", "₹12L+ liquid investment"],
-    roi: "Typical payback: 12–18 months",
-  },
-  {
-    slug: "cult-fit",
-    name: "Cult.fit",
-    category: "Fitness & Gym",
-    country: "India",
-    investment: "₹50L – 1 Cr",
-    area: "2000 – 4000 sq.ft",
-    outlets: "500+",
-    founded: "2016",
-    hq: "Bengaluru, India",
-    domain: "cult.fit",
-    tagline: "India's largest fitness brand",
-    about: "Cult.fit is India's most loved fitness and wellness brand offering group workouts, gym, and online fitness classes through 500+ centres.",
-    why: ["Tech-enabled fitness category leader", "Subscription-driven recurring revenue", "Strong urban brand"],
-    support: ["Trainer certification", "App + booking infra", "Marketing engine", "Equipment sourcing"],
-    requirements: ["Urban premium catchment", "₹50L+ investment"],
-    roi: "Typical payback: 30–42 months",
-    website: "https://cult.fit",
-  },
-  {
-    slug: "firstcry",
-    name: "FirstCry",
-    category: "Retail / Kids",
-    country: "India",
-    investment: "₹35L – 70L",
-    area: "1000 – 2000 sq.ft",
-    outlets: "400+",
-    founded: "2010",
-    hq: "Pune, India",
-    domain: "firstcry.com",
-    tagline: "Asia's largest kids & baby products retailer",
-    about: "FirstCry is Asia's largest kids and baby products platform with 400+ offline stores complementing its market-leading online business.",
-    why: ["Recession-resistant category", "Omnichannel inventory pooling", "Strong loyalty engine"],
-    support: ["Store fit-out", "Inventory consignment", "National marketing", "App integration"],
-    requirements: ["Family catchment location", "₹35L+ investment"],
-    roi: "Typical payback: 30–40 months",
-    website: "https://firstcry.com",
-  },
-  {
-    slug: "apollo-pharmacy",
-    name: "Apollo Pharmacy",
-    category: "Healthcare",
-    country: "India",
-    investment: "₹15L – 30L",
-    area: "200 – 400 sq.ft",
-    outlets: "5000+",
-    founded: "1987",
-    hq: "Chennai, India",
-    domain: "apollopharmacy.in",
-    tagline: "India's largest pharmacy chain",
-    about: "Apollo Pharmacy is India's largest organised pharmacy retail chain with 5000+ outlets, backed by the Apollo Hospitals group.",
-    why: ["Recession-proof healthcare category", "Trusted brand legacy", "Steady walk-in demand"],
-    support: ["Licensing assistance", "Inventory + cold chain", "Software + POS", "Training"],
-    requirements: ["Pharmacist on staff", "Ground floor location", "₹15L+ investment"],
-    roi: "Typical payback: 24–36 months",
-    website: "https://apollopharmacy.in",
-  },
   // ===== USA Brands =====
   {
     slug: "subway",
@@ -307,22 +154,6 @@ export const brands: Brand[] = [
     website: "https://theupsstore.com",
   },
 
-  // ===== More India Brands =====
-  { slug: "haldirams", name: "Haldiram's", category: "QSR / Sweets & Snacks", country: "India", investment: "₹50L – 1 Cr", area: "800 – 1500 sq.ft", outlets: "150+", founded: "1937", hq: "Nagpur, India", domain: "haldirams.com", tagline: "India's iconic sweets & snacks brand", about: "Haldiram's is one of India's most loved snacks, sweets and QSR brands with a multi-generational legacy and pan-India presence.", why: ["Legacy brand with mass appeal", "Diversified product portfolio", "Strong family-dining demand"], support: ["Outlet design", "Central kitchen supply", "Training", "Marketing"], requirements: ["Premium location", "₹50L+ investment"], roi: "Typical payback: 30–48 months", website: "https://haldirams.com" },
-  { slug: "bikanervala", name: "Bikanervala", category: "QSR / Sweets", country: "India", investment: "₹40L – 80L", area: "700 – 1200 sq.ft", outlets: "120+", founded: "1950", hq: "Delhi, India", domain: "bikanervala.com", tagline: "Authentic Indian sweets & vegetarian QSR", about: "Bikanervala is a heritage Indian sweets and vegetarian QSR brand with strong presence across India and international markets.", why: ["Trusted legacy brand", "Vegetarian advantage in India", "Diverse menu mix"], support: ["Recipe & training", "Supply chain", "Marketing"], requirements: ["High-footfall location", "₹40L+ investment"], roi: "Typical payback: 30–42 months", website: "https://bikanervala.com" },
-  { slug: "burger-singh", name: "Burger Singh", category: "QSR / Burgers", country: "India", investment: "₹25L – 50L", area: "300 – 800 sq.ft", outlets: "180+", founded: "2014", hq: "Gurugram, India", domain: "burgersingh.com", tagline: "Great Indian Burgers", about: "Burger Singh is India's homegrown burger QSR chain known for its desi-flavoured burgers and rapid expansion across India and the UK.", why: ["Indianised menu edge", "Fast-growing category", "Multiple format options"], support: ["Kitchen setup", "Training academy", "Marketing", "Supply chain"], requirements: ["High-footfall location", "₹25L+ investment"], roi: "Typical payback: 24–36 months", website: "https://burgersingh.com" },
-  { slug: "biryani-by-kilo", name: "Biryani By Kilo", category: "QSR / Cloud Kitchen", country: "India", investment: "₹40L – 70L", area: "600 – 1200 sq.ft", outlets: "100+", founded: "2015", hq: "Gurugram, India", domain: "biryanibykilo.com", tagline: "India's premium biryani brand", about: "Biryani By Kilo (BBK) is India's leading premium biryani brand serving handi-cooked biryanis across 50+ cities, backed by IvyCap, Mayfield and others.", why: ["Premium category leader", "Strong delivery economics", "VC-backed expansion"], support: ["Kitchen setup", "SOPs & training", "Aggregator marketing"], requirements: ["Cloud-kitchen friendly location", "₹40L+ investment"], roi: "Typical payback: 30–42 months", website: "https://biryanibykilo.com" },
-  { slug: "barbeque-nation", name: "Barbeque Nation", category: "Casual Dining", country: "India", investment: "₹2 Cr – 4 Cr", area: "4000 – 6000 sq.ft", outlets: "200+", founded: "2006", hq: "Bengaluru, India", domain: "barbequenation.com", tagline: "India's #1 casual dining brand", about: "Barbeque Nation is India's largest casual-dining chain known for live grills and buffet experience.", why: ["Listed, audited brand", "Strong dine-in demand", "Pan-India recognition"], support: ["Site selection", "Operations", "Marketing", "Supply chain"], requirements: ["Mall / high street location", "₹2 Cr+ investment"], roi: "Typical payback: 48–60 months", website: "https://barbequenation.com" },
-  { slug: "naturals-ice-cream", name: "Naturals Ice Cream", category: "Dessert / Ice Cream", country: "India", investment: "₹25L – 45L", area: "200 – 500 sq.ft", outlets: "165+", founded: "1984", hq: "Mumbai, India", domain: "naturalicecreams.in", tagline: "India's premium fruit ice cream brand", about: "Naturals is India's most loved real-fruit ice cream brand with a strong cult following and 165+ outlets across India.", why: ["Cult-loved brand", "High repeat behaviour", "Premium pricing"], support: ["Supply chain", "Outlet design", "Marketing"], requirements: ["Premium catchment", "₹25L+ investment"], roi: "Typical payback: 24–36 months", website: "https://naturalicecreams.in" },
-  { slug: "third-wave-coffee", name: "Third Wave Coffee", category: "Cafe / Coffee", country: "India", investment: "₹60L – 1 Cr", area: "800 – 1500 sq.ft", outlets: "100+", founded: "2016", hq: "Bengaluru, India", domain: "thirdwavecoffee.in", tagline: "India's specialty coffee brand", about: "Third Wave Coffee is a fast-growing specialty cafe brand in India, backed by WestBridge Capital and Creaegis.", why: ["Specialty coffee leader", "VC-backed expansion", "Premium urban brand"], support: ["Cafe design", "Barista training", "Supply chain"], requirements: ["Premium catchment", "₹60L+ investment"], roi: "Typical payback: 30–42 months", website: "https://thirdwavecoffee.in" },
-  { slug: "fab-india", name: "FabIndia", category: "Retail / Lifestyle", country: "India", investment: "₹50L – 1 Cr", area: "1500 – 3000 sq.ft", outlets: "300+", founded: "1960", hq: "Delhi, India", domain: "fabindia.com", tagline: "India's iconic ethnic lifestyle brand", about: "FabIndia is India's largest private platform for ethnic apparel, home, and lifestyle products sourced from artisans across the country.", why: ["Iconic heritage brand", "Premium positioning", "Loyal customer base"], support: ["Store design", "Inventory consignment", "Marketing"], requirements: ["Premium high-street / mall location", "₹50L+ investment"], roi: "Typical payback: 36–48 months", website: "https://fabindia.com" },
-  { slug: "vlcc", name: "VLCC", category: "Wellness & Beauty", country: "India", investment: "₹40L – 80L", area: "1500 – 2500 sq.ft", outlets: "200+", founded: "1989", hq: "Delhi, India", domain: "vlcc.com", tagline: "Asia's leading wellness & beauty chain", about: "VLCC is a leading wellness, beauty and slimming chain with 200+ centres across 12 countries.", why: ["Established wellness brand", "Multi-service revenue", "Strong female catchment"], support: ["Centre design", "Specialist training", "Marketing"], requirements: ["Premium location", "₹40L+ investment"], roi: "Typical payback: 36–48 months", website: "https://vlcc.com" },
-  { slug: "euro-kids", name: "EuroKids", category: "Education / Pre-School", country: "India", investment: "₹8L – 18L", area: "1500 – 2500 sq.ft", outlets: "1300+", founded: "2001", hq: "Mumbai, India", domain: "eurokidsindia.com", tagline: "India's leading preschool brand", about: "EuroKids is one of India's largest pre-school chains with 1300+ centres across India, Nepal and Bangladesh.", why: ["Established curriculum", "Low-investment model", "Strong parent trust"], support: ["Teacher training", "Marketing", "Curriculum"], requirements: ["Child-safe ground floor space", "₹8L+ investment"], roi: "Typical payback: 24–36 months", website: "https://eurokidsindia.com" },
-  { slug: "physicswallah", name: "PhysicsWallah Vidyapeeth", category: "Education / Coaching", country: "India", investment: "₹50L – 1 Cr", area: "3000 – 5000 sq.ft", outlets: "100+", founded: "2020", hq: "Noida, India", domain: "pw.live", tagline: "India's largest edtech offline-online brand", about: "PhysicsWallah (PW) is India's most-loved edtech brand with offline Vidyapeeth centres across 100+ cities for JEE, NEET and UPSC.", why: ["India's most trusted coaching brand", "Hybrid online-offline model", "Massive student demand"], support: ["Curriculum", "Faculty training", "Marketing"], requirements: ["Education-zone location", "₹50L+ investment"], roi: "Typical payback: 24–36 months", website: "https://pw.live" },
-  { slug: "amul", name: "Amul Parlour", category: "Retail / Dairy", country: "India", investment: "₹2L – 6L", area: "150 – 300 sq.ft", outlets: "10,000+", founded: "1946", hq: "Anand, India", domain: "amul.com", tagline: "The Taste of India", about: "Amul Parlour is one of India's most trusted franchise opportunities — low investment, strong brand pull and quick break-even.", why: ["Lowest-cost entry", "Iconic brand pull", "Recession-proof category"], support: ["Equipment supply", "Branding kit", "Supply chain"], requirements: ["Street-facing 150+ sq.ft", "₹2L+ investment"], roi: "Typical payback: 12–18 months", website: "https://amul.com" },
-  { slug: "tata-1mg", name: "Tata 1mg", category: "Healthcare / Pharmacy", country: "India", investment: "₹10L – 25L", area: "200 – 400 sq.ft", outlets: "500+", founded: "2015", hq: "Gurugram, India", domain: "1mg.com", tagline: "Tata-backed e-pharmacy & diagnostics", about: "Tata 1mg is a leading digital health platform offering medicines, diagnostics and consultations with growing offline presence.", why: ["Tata-backed trust", "Omnichannel model", "Growing chronic-care demand"], support: ["Licensing help", "Tech platform", "Supply chain"], requirements: ["Pharmacist on staff", "₹10L+ investment"], roi: "Typical payback: 24–36 months", website: "https://1mg.com" },
-  { slug: "decathlon", name: "Decathlon", category: "Retail / Sports", country: "India", investment: "₹1 Cr – 3 Cr", area: "5000 – 15000 sq.ft", outlets: "120+", founded: "1976", hq: "Villeneuve-d'Ascq, France", domain: "decathlon.in", tagline: "World's largest sports retailer", about: "Decathlon is the world's largest sporting goods retailer with 120+ stores in India and a fast-growing franchise/partnership model.", why: ["Global brand", "Wide product range", "Family-oriented retail"], support: ["Store design", "Inventory", "Training"], requirements: ["Large-format catchment", "₹1 Cr+ investment"], roi: "Typical payback: 48–60 months", website: "https://decathlon.in" },
-
   // ===== More USA Brands =====
   { slug: "starbucks", name: "Starbucks", category: "Cafe / Coffee", country: "USA", investment: "$3.15L – $3.15M (Licensed)", area: "1500 – 2500 sq.ft", outlets: "38,000+", founded: "1971", hq: "Seattle, Washington, USA", domain: "starbucks.com", tagline: "World's #1 coffeehouse brand", about: "Starbucks is the world's largest coffeehouse chain with 38,000+ stores. In most markets it operates via licensed-store partnerships rather than open franchising.", why: ["Iconic global brand", "Premium pricing power", "Strong daypart economics"], support: ["Store design", "Training", "Supply chain"], requirements: ["Strategic partnership / licensee", "Strong real-estate portfolio"], roi: "Typical payback: 48–72 months", website: "https://starbucks.com" },
   { slug: "burger-king", name: "Burger King", category: "QSR / Burgers", country: "USA", investment: "$1.9L – $3.3M", area: "2000 – 3500 sq.ft", outlets: "19,000+", founded: "1954", hq: "Miami, Florida, USA", domain: "bk.com", tagline: "Home of the Whopper", about: "Burger King is one of the world's largest QSR chains with 19,000+ outlets across 100+ countries.", why: ["Global brand", "Strong franchisee support", "Flame-grilled differentiator"], support: ["Real estate", "Training", "Marketing fund", "Supply chain"], requirements: ["Net worth $1.5M+, liquid $500K+", "Multi-unit operator preferred"], roi: "Typical payback: 48–72 months", website: "https://bk.com" },
@@ -338,13 +169,14 @@ export const brands: Brand[] = [
   { slug: "ace-hardware", name: "Ace Hardware", category: "Retail / Hardware", country: "USA", investment: "$2.7L – $1.5M", area: "8,000 – 14,000 sq.ft", outlets: "5,800+", founded: "1924", hq: "Oak Brook, Illinois, USA", domain: "acehardware.com", tagline: "The helpful place", about: "Ace Hardware is America's largest hardware cooperative with 5,800+ stores globally.", why: ["Co-op model with strong economics", "Neighbourhood positioning", "Diversified product mix"], support: ["Site selection", "Inventory", "Training"], requirements: ["Net worth $400K+, liquid $250K+"], roi: "Typical payback: 36–60 months", website: "https://acehardware.com" },
   { slug: "jan-pro", name: "Jan-Pro Cleaning", category: "Business Services / Cleaning", country: "USA", investment: "$4K – $58K", area: "Home-based", outlets: "10,000+", founded: "1991", hq: "Alpharetta, Georgia, USA", domain: "jan-pro.com", tagline: "World's #1 commercial cleaning franchise", about: "Jan-Pro is one of the world's largest commercial cleaning franchise systems with 10,000+ owner-operators.", why: ["Low-cost entry", "Recession-resilient B2B", "Recurring contracts"], support: ["Training", "Lead generation", "Contracts"], requirements: ["Owner-operator", "Liquid $4K+"], roi: "Typical payback: 12–24 months", website: "https://jan-pro.com" },
   { slug: "great-clips", name: "Great Clips", category: "Salon / Hair", country: "USA", investment: "$1.5L – $3.6L", area: "1000 – 1200 sq.ft", outlets: "4,400+", founded: "1982", hq: "Minneapolis, Minnesota, USA", domain: "greatclips.com", tagline: "America's #1 hair salon brand", about: "Great Clips is the largest hair salon brand in North America with 4,400+ salons.", why: ["Walk-in convenience model", "Cash-flow positive quickly", "Tech-led check-in"], support: ["Real estate", "Training", "Marketing"], requirements: ["Net worth $300K+, liquid $50K+"], roi: "Typical payback: 24–48 months", website: "https://greatclips.com" },
-  { slug: "kumon", name: "Kumon", category: "Education / Coaching", country: "USA", investment: "$74K – $156K", area: "800 – 1500 sq.ft", outlets: "25,000+", founded: "1958", hq: "Osaka, Japan / Teaneck, NJ (US HQ)", domain: "kumon.com", tagline: "World's largest after-school learning brand", about: "Kumon is the world's largest after-school maths and reading program with 25,000+ centres globally.", why: ["Global category leader", "Recurring tuition revenue", "Recession-resilient"], support: ["Curriculum", "Training", "Marketing"], requirements: ["Bachelor's degree", "Liquid $70K+"], roi: "Typical payback: 24–36 months", website: "https://kumon.com" },
+  { slug: "kumon", name: "Kumon", category: "Education / Coaching", country: "USA", investment: "$74K – $156K", area: "800 – 1500 sq.ft", outlets: "25,000+", founded: "1958", hq: "Teaneck, New Jersey, USA", domain: "kumon.com", tagline: "World's largest after-school learning brand", about: "Kumon is the world's largest after-school maths and reading program with 25,000+ centres globally.", why: ["Global category leader", "Recurring tuition revenue", "Recession-resilient"], support: ["Curriculum", "Training", "Marketing"], requirements: ["Bachelor's degree", "Liquid $70K+"], roi: "Typical payback: 24–36 months", website: "https://kumon.com" },
 ];
 
 export const getBrand = (slug: string) => brands.find((b) => b.slug === slug);
-export const indiaBrands = brands.filter((b) => b.country === "India");
-export const indiaLeading = indiaBrands.slice(0, 4);
-export const indiaOpportunities = indiaBrands.slice(4);
 export const usaBrands = brands.filter((b) => b.country === "USA");
 export const usaLeading = usaBrands.slice(0, 4);
 export const usaOpportunities = usaBrands.slice(4);
+// Back-compat shims — India catalog has been removed; keep empty to avoid import errors.
+export const indiaBrands: Brand[] = [];
+export const indiaLeading: Brand[] = [];
+export const indiaOpportunities: Brand[] = [];
