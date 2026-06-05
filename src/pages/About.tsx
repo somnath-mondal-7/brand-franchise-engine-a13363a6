@@ -17,8 +17,12 @@ const About = () => {
     <div className="india-theme min-h-screen bg-background text-foreground">
       <Helmet>
         <title>About FranchiseLeadsPro | Franchise Growth Partner</title>
-        <meta name="description" content="We are FranchiseLeadsPro — a franchise-only growth partner helping Indian and American franchisors attract qualified investors, build investor-grade brand assets and scale faster." />
+        <meta name="description" content="FranchiseLeadsPro is a franchise-only growth partner helping Indian and US franchisors attract qualified investors and scale faster." />
         <link rel="canonical" href="https://www.franchiseleadspro.com/about" />
+        <meta property="og:title" content="About FranchiseLeadsPro | Franchise Growth Partner" />
+        <meta property="og:description" content="A franchise-only growth partner helping Indian and US franchisors attract qualified investors and scale faster." />
+        <meta property="og:url" content="https://www.franchiseleadspro.com/about" />
+        <meta property="og:type" content="website" />
       </Helmet>
 
       <IndiaNav />
