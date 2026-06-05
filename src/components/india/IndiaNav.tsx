@@ -135,6 +135,9 @@ const IndiaNav = () => {
               </div>
 
               <Link to="/case-studies" className="text-sm font-medium text-primary-foreground/90 hover:text-accent transition-colors">
+                Case Studies
+              </Link>
+              <Link to="/testimonials" className="text-sm font-medium text-primary-foreground/90 hover:text-accent transition-colors">
                 Our Clients
               </Link>
               <Link to="/blog" className="text-sm font-medium text-primary-foreground/90 hover:text-accent transition-colors">

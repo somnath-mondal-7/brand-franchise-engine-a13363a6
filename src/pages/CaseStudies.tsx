@@ -1,103 +1,72 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight, Quote } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, Quote, Calendar, Globe, Target, Megaphone } from "lucide-react";
 import IndiaNav from "@/components/india/IndiaNav";
 import IndiaFooter from "@/components/india/IndiaFooter";
 
-const partnerLogos = [
-  { name: "McDonald's", domain: "mcdonalds.com" },
-  { name: "Lenskart", domain: "lenskart.com" },
-  { name: "Amul", domain: "amul.com" },
-  { name: "Domino's", domain: "dominos.com" },
-  { name: "Tim Hortons", domain: "timhortons.com" },
-  { name: "Subway", domain: "subway.com" },
-  { name: "Haldiram's", domain: "haldirams.com" },
-  { name: "KFC", domain: "kfc.com" },
+const servicesDelivered = [
+  "Paid Advertising (Meta + Google)",
+  "CRM Setup & Management",
+  "Website Inbound Lead Routing",
+  "Investor Qualification Workflow",
+  "Funnel Copy & Creative",
+  "Weekly Reporting & Strategy",
 ];
 
-const featuredClients = [
+const timeline = [
   {
-    name: "Shawn Gurn",
-    role: "HOF Franchise Consulting — IFPG Member",
-    videoSrc: "/videos/shawn-gurn-review.mp4",
-    quote:
-      "FranchiseLeadsPro built our investor inbound funnel from the ground up. The quality of qualified franchise enquiries we receive every week speaks for itself.",
+    phase: "Discovery",
+    title: "Understanding the franchise portfolio",
+    body:
+      "We sat down with Jesica to map every brand she represents at Franchise Solutions Inc., the typical investor profile for each, and the friction points in her existing intake process.",
   },
   {
-    name: "Jonathan Morgan",
-    role: "CEO, NextFranch Corp",
-    videoSrc: "/videos/jonathan-morgan-review.mp4",
-    quote:
-      "They actually understand franchise sales. Our LinkedIn outreach now puts cheque-ready investors on our calendar — not curious browsers.",
+    phase: "Build",
+    title: "Launching paid + inbound engine",
+    body:
+      "We rebuilt her advertising creative around investor intent, structured a CRM to route enquiries from our network of franchise sites, and gave her a single dashboard to manage everything.",
   },
   {
-    name: "Jesica Thompson",
-    role: "Franchise Solutions Inc.",
-    videoSrc: "/videos/jesica-thompson-review.mp4",
-    quote:
-      "From paid ads to CRM automation to a high-converting website, our growth engine finally runs on autopilot.",
+    phase: "Scale",
+    title: "Steady, qualified inbound — every week",
+    body:
+      "Once the engine was live, our role shifted to optimisation — sharper targeting, better qualification, faster follow-up — so Jesica spends her time on conversations that actually close.",
   },
 ];
 
-const textTestimonials = [
-  {
-    name: "Robert Williams",
-    role: "Sr. Franchise Consultant, GrowthPath Advisory • Dallas, TX",
-    quote:
-      "FranchiseLeadsPro completely transformed our lead pipeline. The investor conversations they put on my calendar are warm, qualified, and ready to talk numbers.",
-  },
-  {
-    name: "Amanda Reyes",
-    role: "Independent Franchise Consultant • Phoenix, AZ",
-    quote:
-      "As a solo consultant, my time is everything. Their team handles the outreach and qualification so I can focus on closing — it feels like having a full BDR team behind me.",
-  },
-  {
-    name: "Daniel Brooks",
-    role: "Franchise Development Director, Brooks Brands USA • Atlanta, GA",
-    quote:
-      "We've worked with several lead gen agencies. FranchiseLeadsPro is the first one that actually understood our brand story and brought us candidates who fit our culture, not just our budget.",
-  },
-  {
-    name: "Priya Natarajan",
-    role: "VP Franchise Growth, Sunrise QSR Group • Chicago, IL",
-    quote:
-      "Their outreach quality is exceptional. Prospects show up to discovery calls already familiar with our concept — that almost never happens with cold lead vendors.",
-  },
-  {
-    name: "Marcus Hill",
-    role: "Independent Franchise Broker, IFPG • Charlotte, NC",
-    quote:
-      "Straightforward team, no fluff, no over-promising. They told me exactly what to expect, then delivered consistently month after month. Rare in this industry.",
-  },
-  {
-    name: "Elena Vasquez",
-    role: "Franchise Consultant, FranBridge Partners • Miami, FL",
-    quote:
-      "Communication is what sets them apart. Clear weekly updates, transparent reporting, and a team that actually picks up the phone when I have a question.",
-  },
-  {
-    name: "Priya Sharma",
-    role: "Founder, Cloud Kitchen Brand (India)",
-    quote:
-      "They speak franchise. Unit economics, FDD, royalty conversations — they got it on day one and our investor calls have never looked sharper.",
-  },
+const outcomes = [
+  { icon: Target, label: "Investor enquiries", body: "Consistent inbound from serious franchise buyers — not curious browsers." },
+  { icon: Megaphone, label: "Paid ad efficiency", body: "Sharper creative and tighter audiences mean every dollar works harder." },
+  { icon: Globe, label: "Website conversions", body: "Inbound leads from our franchise network flow straight into her CRM." },
+  { icon: CheckCircle2, label: "Closed placements", body: "A steady cadence of qualified discovery calls that convert to placements." },
 ];
 
 const CaseStudies = () => {
   return (
     <div className="india-theme min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>Our Clients | FranchiseLeadsPro</title>
-        <meta name="description" content="Franchise brands and consultants who trust FranchiseLeadsPro to run their investor lead generation, brand and franchise marketing engine." />
+        <title>Case Studies | FranchiseLeadsPro</title>
+        <meta
+          name="description"
+          content="Real franchise consulting and franchisor case studies — how FranchiseLeadsPro builds investor lead engines that actually convert."
+        />
         <link rel="canonical" href="https://www.franchiseleadspro.com/case-studies" />
+        <meta property="og:title" content="Case Studies | Franchise Lead Generation Success Stories" />
+        <meta
+          property="og:description"
+          content="See how franchise consultants run their investor lead pipeline with FranchiseLeadsPro — paid ads, CRM, website inbound, and qualification done right."
+        />
+        <meta property="og:image" content="https://www.franchiseleadspro.com/og-image.png" />
+        <meta property="og:url" content="https://www.franchiseleadspro.com/case-studies" />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
       <IndiaNav />
 
       {/* HERO */}
-      <section className="relative bg-primary text-primary-foreground pt-36 pb-24 overflow-hidden">
+      <section className="relative bg-primary text-primary-foreground pt-36 pb-20 overflow-hidden">
         <div
           className="absolute inset-0 opacity-30 pointer-events-none"
           style={{ background: "radial-gradient(60% 60% at 70% 40%, hsl(40 65% 52% / 0.18) 0%, transparent 70%)" }}
@@ -105,93 +74,186 @@ const CaseStudies = () => {
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-foreground/5 border border-primary-foreground/15 text-[11px] uppercase tracking-[0.25em] text-accent mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent" /> Our Clients
+              <span className="w-1.5 h-1.5 rounded-full bg-accent" /> Case Studies
             </div>
             <h1 className="font-display text-5xl sm:text-6xl md:text-7xl leading-[1.02] mb-6">
-              The Franchise Brands <em>That Trust Us.</em>
+              Real Clients. <em>Real Results.</em>
             </h1>
             <p className="text-lg text-primary-foreground/75 max-w-2xl leading-relaxed">
-              From legacy franchise systems to ambitious young franchisors — meet the founders,
-              consultants and franchise leaders who run their growth with FranchiseLeadsPro.
+              A closer look at how franchise consultants and franchisors run their investor lead pipeline
+              with FranchiseLeadsPro — the engine, the process, and the outcome.
             </p>
           </div>
         </div>
       </section>
 
-      {/* LOGO WALL */}
-      <section className="py-16 border-b border-border">
+      {/* FEATURED CASE STUDY — Jesica Thompson */}
+      <section className="py-20 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-xs uppercase tracking-[0.3em] text-accent mb-10">
-            ✦ A Legacy of Excellence in Franchise Marketing ✦
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-8 items-center">
-            {partnerLogos.map((b) => (
-              <div key={b.name} className="flex items-center justify-center h-16 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all">
-                <img
-                  src={`https://icons.duckduckgo.com/ip3/${b.domain}.ico`}
-                  alt={`${b.name} logo`}
-                  loading="lazy"
-                  className="max-h-12 max-w-[100%] object-contain"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+          <div className="grid lg:grid-cols-3 gap-10">
+            {/* Main content */}
+            <article className="lg:col-span-2 space-y-12">
+              <header>
+                <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">Featured Case Study</p>
+                <h2 className="font-display text-4xl sm:text-5xl leading-[1.05] text-foreground mb-4">
+                  Jesica Thompson — <em>Franchise Solutions Inc.</em>
+                </h2>
+                <p className="text-muted-foreground text-lg leading-relaxed">
+                  Independent franchise consultant. Multiple brands in her portfolio. No active LinkedIn channel.
+                  She needed an investor lead engine that ran in the background while she focused on placements.
+                </p>
+              </header>
 
-      {/* FEATURED CLIENT VIDEOS */}
-      <section className="py-24 sm:py-28">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-14">
-            <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">In their own words</p>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] text-foreground">
-              Real franchise leaders. <em>Real conversations.</em>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {featuredClients.map((c) => (
-              <div
-                key={c.name}
-                className="group rounded-2xl border border-border bg-card overflow-hidden shadow-card hover:shadow-elegant transition-all"
-              >
-                <div className="aspect-[3/4] bg-muted relative overflow-hidden">
+              {/* Video */}
+              <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-card">
+                <div className="aspect-video bg-muted">
                   <video
                     className="w-full h-full object-cover"
                     controls
                     preload="metadata"
+                    poster="/videos/jesica-thompson-poster.jpg"
                   >
-                    <source src={c.videoSrc} type="video/mp4" />
+                    <source src="/videos/jesica-thompson-review.mp4" type="video/mp4" />
                   </video>
                 </div>
-                <div className="p-6">
-                  <Quote className="w-5 h-5 text-accent mb-3" />
-                  <p className="text-sm text-muted-foreground italic leading-relaxed mb-4">
-                    "{c.quote}"
-                  </p>
-                  <p className="font-display text-base text-foreground">{c.name}</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">{c.role}</p>
+              </div>
+
+              {/* Overview */}
+              <div>
+                <h3 className="font-display text-2xl text-foreground mb-3">Overview</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Jesica came to us running her consultancy almost entirely on referrals and word of mouth.
+                  Strong brand, great close rate — but no predictable top-of-funnel. We built her a paid
+                  advertising + CRM + website inbound system that puts qualified franchise buyer enquiries
+                  in front of her every single week.
+                </p>
+              </div>
+
+              {/* Timeline */}
+              <div>
+                <h3 className="font-display text-2xl text-foreground mb-6">The Engagement</h3>
+                <div className="space-y-6">
+                  {timeline.map((t, i) => (
+                    <div key={t.phase} className="flex gap-5">
+                      <div className="shrink-0 w-10 h-10 rounded-full bg-accent text-accent-foreground font-display font-bold flex items-center justify-center">
+                        {i + 1}
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.2em] text-accent mb-1">{t.phase}</p>
+                        <h4 className="font-display text-xl text-foreground mb-1.5">{t.title}</h4>
+                        <p className="text-muted-foreground leading-relaxed">{t.body}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
+
+              {/* Outcomes — qualitative */}
+              <div>
+                <h3 className="font-display text-2xl text-foreground mb-6">The Outcome</h3>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {outcomes.map((o) => (
+                    <div key={o.label} className="rounded-2xl border border-border bg-card p-6">
+                      <o.icon className="w-6 h-6 text-accent mb-3" />
+                      <p className="font-display text-lg text-foreground mb-1.5">{o.label}</p>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{o.body}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Client quote */}
+              <div className="rounded-2xl bg-primary text-primary-foreground p-8 sm:p-10">
+                <Quote className="w-7 h-7 text-accent mb-4" />
+                <p className="font-display text-2xl leading-snug mb-6">
+                  "From paid ads to CRM automation to a high-converting website, our growth engine finally
+                  runs on autopilot. The team genuinely understands franchise sales — it shows in the
+                  quality of conversations they put on my calendar."
+                </p>
+                <div>
+                  <p className="font-semibold">Jesica Thompson</p>
+                  <p className="text-sm text-primary-foreground/70">Franchise Consultant, Franchise Solutions Inc.</p>
+                </div>
+              </div>
+            </article>
+
+            {/* Sticky sidebar */}
+            <aside className="lg:col-span-1">
+              <div className="lg:sticky lg:top-32 space-y-6">
+                <div className="rounded-2xl border border-border bg-card p-6">
+                  <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Client</p>
+                  <p className="font-display text-xl text-foreground mb-1">Jesica Thompson</p>
+                  <p className="text-sm text-muted-foreground mb-6">Franchise Solutions Inc.</p>
+
+                  <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">Services Delivered</p>
+                  <ul className="space-y-2 mb-6">
+                    {servicesDelivered.map((s) => (
+                      <li key={s} className="flex items-start gap-2 text-sm text-foreground">
+                        <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 shrink-0" />
+                        <span>{s}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Button
+                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90 rounded-full font-semibold h-12"
+                    onClick={() => window.open("https://calendly.com/lets-build-your-brand", "_blank")}
+                  >
+                    <Calendar className="w-4 h-4 mr-2" /> Schedule a Call
+                  </Button>
+                </div>
+
+                <div className="rounded-2xl border border-border bg-secondary/40 p-6">
+                  <p className="font-display text-lg text-foreground mb-2">More client stories</p>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Browse video testimonials and quotes from franchise leaders we work with.
+                  </p>
+                  <Link to="/testimonials" className="text-sm font-semibold text-accent inline-flex items-center gap-1.5 hover:gap-2 transition-all">
+                    View Testimonials <ArrowUpRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
 
-      {/* TEXT TESTIMONIALS */}
-      <section className="py-24 sm:py-28 bg-secondary/40 border-y border-border">
+      {/* MORE CASE STUDIES */}
+      <section className="py-20 bg-secondary/40 border-y border-border">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7 max-w-6xl mx-auto">
-            {textTestimonials.map((t) => (
-              <div key={t.name} className="bg-card border border-border rounded-2xl p-8">
-                <Quote className="w-6 h-6 text-accent mb-4" />
-                <p className="font-display text-xl text-foreground leading-snug mb-6">
-                  "{t.quote}"
-                </p>
-                <p className="font-semibold text-foreground">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.role}</p>
-              </div>
-            ))}
+          <div className="max-w-3xl mb-12">
+            <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">More Case Studies</p>
+            <h2 className="font-display text-3xl sm:text-4xl text-foreground leading-tight">
+              Other franchise brands <em>we've helped build.</em>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <Link
+              to="/case-studies/hof-franchise-consulting"
+              className="group rounded-2xl border border-border bg-card p-8 hover:shadow-elegant transition-all"
+            >
+              <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">Website Redesign</p>
+              <h3 className="font-display text-2xl text-foreground mb-3 group-hover:text-accent transition-colors">
+                HOF Franchise Consulting
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                Complete website rebuild for Shawn Gurn's franchise consultancy — modern brand,
+                searchable franchise directory, video storytelling, and a real lead capture system.
+              </p>
+              <span className="text-sm font-semibold text-accent inline-flex items-center gap-1.5 group-hover:gap-2 transition-all">
+                Read the case study <ArrowUpRight className="w-4 h-4" />
+              </span>
+            </Link>
+
+            <div className="rounded-2xl border border-dashed border-border bg-card/50 p-8 flex flex-col justify-center">
+              <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">Coming Soon</p>
+              <h3 className="font-display text-2xl text-foreground mb-3">More client stories</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                We're documenting more engagements — LinkedIn outreach, paid media, and full franchise
+                growth systems. New case studies drop every month.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -200,7 +262,7 @@ const CaseStudies = () => {
       <section className="py-24 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] mb-6">
-            Ready to be our <em>next success story?</em>
+            Ready to be our <em>next case study?</em>
           </h2>
           <p className="text-primary-foreground/75 text-lg max-w-2xl mx-auto mb-9">
             30 minutes. Zero obligation. A direct conversation with a franchise strategist.
