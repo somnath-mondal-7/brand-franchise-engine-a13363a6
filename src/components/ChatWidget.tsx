@@ -399,13 +399,9 @@ const ChatWidget = () => {
     if (!conversationId) return;
 
     try {
-      // Update conversation status
-      await supabase
-        .from('chat_conversations')
-        .update({ status: 'ended', ended_at: new Date().toISOString() })
-        .eq('id', conversationId);
-
-      // Send email notification
+      // Send email notification — the edge function also marks the
+      // conversation as ended server-side using the service role,
+      // so the browser no longer needs direct UPDATE access.
       await supabase.functions.invoke('send-chat-notification', {
         body: {
           conversationId,
@@ -418,6 +414,7 @@ const ChatWidget = () => {
           }))
         }
       });
+
 
       toast({
         title: "Chat Ended",
