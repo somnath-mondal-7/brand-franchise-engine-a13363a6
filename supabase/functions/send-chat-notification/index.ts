@@ -1,7 +1,9 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
-// Note: Resend requires API key setup. For now, we'll just log and return success.
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
+const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -26,6 +28,18 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const { conversationId, visitorName, visitorEmail, messages }: ChatNotificationRequest = await req.json();
+
+    // Mark conversation as ended using service role (browser can no longer do this directly).
+    try {
+      const admin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+      await admin
+        .from("chat_conversations")
+        .update({ status: "ended", ended_at: new Date().toISOString() })
+        .eq("id", conversationId);
+    } catch (e) {
+      console.error("Failed to mark conversation ended:", e);
+    }
+
 
     // Format conversation history
     const conversationHistory = messages.map(msg => 
