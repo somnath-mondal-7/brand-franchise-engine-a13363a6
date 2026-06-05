@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { indiaLeading, indiaOpportunities, usaLeading, usaOpportunities, type Brand } from "@/data/brands";
+import { usaLeading, usaOpportunities, type Brand } from "@/data/brands";
 
 const BrandCard = ({ b }: { b: Brand }) => (
   <Link
@@ -73,19 +73,6 @@ const Section = ({ title, subtitle, brands, cta }: { title: string; subtitle?: s
 const FeaturedBrands = () => {
   return (
     <>
-      <div className="bg-secondary/30 border-y border-border">
-        <Section
-          title="Leading Indian Franchises Today"
-          subtitle="India's most loved franchise brands across F&B, retail, education, wellness and healthcare."
-          brands={indiaLeading}
-          cta={{ label: "Enquire for any brand", to: "/contact" }}
-        />
-      </div>
-      <Section
-        title="Top India Business Opportunities"
-        subtitle="Explore investment-ready Indian franchise opportunities. Connect with our consulting team for a personalised match."
-        brands={indiaOpportunities}
-      />
       <div className="bg-secondary/30 border-y border-border">
         <Section
           title="Leading USA Franchise Brands"
