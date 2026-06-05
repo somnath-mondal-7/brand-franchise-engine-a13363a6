@@ -121,22 +121,6 @@ const IndiaHome = () => {
         </div>
       </section>
 
-      {/* ABOUT US */}
-      <section id="about" className="py-24 sm:py-28 bg-secondary/40 border-b border-border">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">About Us</p>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] text-foreground mb-6">
-              Kolkata-based. <em>USA-focused.</em>
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Franchiseleadspro is a Kolkata-based and USA-based B2B marketing and lead
-              generation company helping franchise and business owners in the USA find
-              qualified prospects through data-driven outreach strategies.
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* FEATURED FRANCHISE BRANDS — Franchise India inspired */}
       <FeaturedBrands />
