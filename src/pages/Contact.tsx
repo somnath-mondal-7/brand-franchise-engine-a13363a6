@@ -68,10 +68,42 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Contact Us | Get a Free Franchise Marketing Consultation | FranchiseLeadsPro</title>
-        <meta name="description" content="Contact FranchiseLeadsPro for a free franchise marketing consultation. Get qualified franchise leads, website development, and IT services. Call +1 (424) 445-5334." />
+        <title>Contact FranchiseLeadsPro | Free Strategy Call</title>
+        <meta name="description" content="Book a free franchise marketing consultation. Qualified leads, websites, and growth support. Call +1 (424) 445-5334." />
         <link rel="canonical" href="https://www.franchiseleadspro.com/contact" />
         <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Contact FranchiseLeadsPro | Free Strategy Call" />
+        <meta property="og:description" content="Book a free franchise marketing consultation with FranchiseLeadsPro." />
+        <meta property="og:url" content="https://www.franchiseleadspro.com/contact" />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How quickly can we start seeing results?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Most clients start seeing qualified leads within 2-3 weeks of campaign launch, with full optimization typically achieved within 30-45 days." }
+              },
+              {
+                "@type": "Question",
+                "name": "What makes your leads higher quality?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Our multi-step qualification process ensures leads meet specific criteria for investment capacity, genuine interest, and franchise readiness before delivery." }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you work with all franchise industries?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes, we work with franchise consultants and franchisors across all industries, from food service to business services and everything in between." }
+              },
+              {
+                "@type": "Question",
+                "name": "What's included in brand building?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Brand strategy, positioning, content creation, digital presence optimization, and ongoing market analysis to ensure your brand stands out." }
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       <Navigation />
       
