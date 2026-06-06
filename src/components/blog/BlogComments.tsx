@@ -56,6 +56,7 @@ const initials = (name: string) =>
     .toUpperCase();
 
 const BlogComments = ({ postId }: BlogCommentsProps) => {
+  const db = supabase as any;
   const [comments, setComments] = useState<CommentRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -67,7 +68,7 @@ const BlogComments = ({ postId }: BlogCommentsProps) => {
   useEffect(() => {
     let active = true;
     (async () => {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from("blog_comments_public")
         .select("id, author_name, content, created_at, post_id")
         .eq("post_id", postId)
