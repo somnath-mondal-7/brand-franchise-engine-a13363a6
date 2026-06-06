@@ -14,6 +14,14 @@ interface CommentRow {
   created_at: string;
 }
 
+interface PublicCommentRow {
+  id: string;
+  author_name: string;
+  content: string;
+  created_at: string;
+  post_id: string;
+}
+
 interface BlogCommentsProps {
   postId: string;
 }
@@ -60,13 +68,12 @@ const BlogComments = ({ postId }: BlogCommentsProps) => {
     let active = true;
     (async () => {
       const { data, error } = await supabase
-        .from("blog_comments")
-        .select("id, author_name, content, created_at")
+        .from("blog_comments_public")
+        .select("id, author_name, content, created_at, post_id")
         .eq("post_id", postId)
-        .eq("is_approved", true)
         .order("created_at", { ascending: false });
       if (!active) return;
-      if (!error && data) setComments(data as CommentRow[]);
+      if (!error && data) setComments(data as PublicCommentRow[]);
       setLoading(false);
     })();
     return () => {
