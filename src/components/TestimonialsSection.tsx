@@ -52,6 +52,41 @@ const TestimonialsSection = () => {
         "Communication is what sets them apart. Clear weekly updates, transparent reporting, and a team that actually picks up the phone when I have a question.",
       isTextReview: true,
     },
+    {
+      name: "Kevin O'Sullivan",
+      title: "Franchise Broker, FBA Member • Boston, MA",
+      quote:
+        "I've referred multiple candidates from their pipeline and the close rate is the best I've seen. They pre-qualify properly so I'm not wasting cycles on tire-kickers.",
+      isTextReview: true,
+    },
+    {
+      name: "Rachel Kim",
+      title: "Managing Broker, Summit Commercial Realty • Seattle, WA",
+      quote:
+        "We partner with them on tenant-rep deals for franchise concepts. Their candidates are funded, serious, and ready to sign leases — exactly what landlords want to see.",
+      isTextReview: true,
+    },
+    {
+      name: "Tom Hargrove",
+      title: "Principal Broker, Hargrove Business Brokers • Nashville, TN",
+      quote:
+        "As a business broker, lead quality is everything. FranchiseLeadsPro consistently delivers buyers with verified capital and a clear timeline to acquire.",
+      isTextReview: true,
+    },
+    {
+      name: "Nicole Carter",
+      title: "Commercial Real Estate Broker, Carter Retail Group • Denver, CO",
+      quote:
+        "Their franchise candidates show up to site tours informed and decisive. It's made our retail leasing process dramatically faster for our franchisor clients.",
+      isTextReview: true,
+    },
+    {
+      name: "James Whitaker",
+      title: "Senior Franchise Broker, IFPG • Tampa, FL",
+      quote:
+        "After 15 years in the industry, I can tell when a lead source is solid. These folks are the real deal — every introduction has been worth my time.",
+      isTextReview: true,
+    },
   ];
 
   return (
