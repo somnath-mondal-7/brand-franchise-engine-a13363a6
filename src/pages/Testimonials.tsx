@@ -1,5 +1,5 @@
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import IndiaNav from "@/components/india/IndiaNav";
+import IndiaFooter from "@/components/india/IndiaFooter";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -130,7 +130,7 @@ const Testimonials = () => {
         <link rel="canonical" href="https://www.franchiseleadspro.com/testimonials" />
         <meta name="robots" content="index, follow" />
       </Helmet>
-      <Navigation />
+      <IndiaNav />
       
       {/* Hero Section */}
       <section className="pt-24 pb-20 bg-gradient-to-br from-background via-accent/30 to-primary/5">
@@ -297,7 +297,7 @@ const Testimonials = () => {
         </div>
       </section>
 
-      <Footer />
+      <IndiaFooter />
     </div>
   );
 };
