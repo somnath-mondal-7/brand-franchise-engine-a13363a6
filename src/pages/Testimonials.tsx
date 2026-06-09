@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Star, Quote, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import jesicaThompsonVideo from "@/assets/videos/jesica-thompson-review.mp4.asset.json";
+import jonathanMorganVideo from "@/assets/videos/jonathan-morgan-review.mp4.asset.json";
 
 const Testimonials = () => {
   const testimonials = [
