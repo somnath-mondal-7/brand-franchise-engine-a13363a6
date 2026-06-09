@@ -531,39 +531,39 @@ async function generateBlogWithAI(researchContext: string, topicData: typeof RES
 ✅ "I almost gave up on LinkedIn last year. Glad I didn't."
 ❌ "LinkedIn presents both opportunities and challenges for franchise development teams."
 
-=== CONTENT STRUCTURE (STRICT - LONG, DEEP, VALUE-PACKED) ===
+=== CONTENT STRUCTURE (STRICT — LONG, DEEP, VALUE-FIRST) ===
 DO NOT include the title or any heading at the top of the content. The title is rendered separately.
 DO NOT write "in this post" or "today we'll cover" intros — just dive in.
 
-This needs to be a LONG, DEEP, value-packed post — minimum 2,200 words, target 2,500-2,800 words. Readers should walk away thinking "wow, that was the most useful franchise post I've read in months." Every section needs MULTIPLE specific points, not one shallow takeaway.
+This must be a LONG, DEEP, value-packed post — **minimum 3,200 words, target 3,500-4,200 words**. Quality over quantity means every paragraph earns its place: specific tactics, real examples, named tools, exact steps. Readers should walk away thinking "this is the most useful franchise piece I've read all year." Shallow, generic, or padded posts will be rejected.
 
-Follow this structure (every section must be substantive — minimum word counts enforced):
+Follow this structure (every section must go deep — minimum word counts enforced):
 
-1. **Opening hook** (no heading — flows from the title): 3-4 short paragraphs (~180 words) that grab attention with a story, stat, or contrarian take.
+1. **Opening hook** (no heading — flows from the title): 4-5 short paragraphs (~250 words) that grab attention with a story, stat, or contrarian take.
 
-2. **## The Real Problem (Why This Matters Right Now)** — ~250 words. Lay out exactly what's broken in the industry today. Use 2-3 specific data points. Mention current dynamics (rising ad costs, AI shifts, buyer behavior changes).
+2. **## The Real Problem (Why This Matters Right Now)** — ~350 words. Lay out exactly what's broken today. Use 3-4 specific data points. Mention current dynamics (rising ad costs, AI shifts, buyer behavior changes, broker market shifts).
 
-3. **## What Most Franchises Get Wrong** — ~280 words. Walk through 3-4 SPECIFIC mistakes (use a sub-bullet structure or mini H3s for each). For each mistake, explain WHY it fails and what it costs them. Use **<mark>highlight</mark>** HTML around 2 key phrases.
+3. **## What Most Franchise Brands & Brokers Get Wrong** — ~400 words. Walk through 4-5 SPECIFIC mistakes (use H3 sub-headings for each). For each: WHY it fails, what it costs them, and what to do instead. Use **<mark>highlight</mark>** HTML around 2 key phrases.
 
-4. **## The Framework That Actually Works** — ~350 words. Lay out a clear 4-5 step framework or system. Each step gets its own paragraph with a concrete tool or platform example (e.g., "a CRM like HubSpot or Zoho", "a scheduler like Calendly", "review software like Birdeye"). Don't just name-drop — explain HOW to use it.
+4. **## The Framework That Actually Works** — ~500 words. A clear 5-6 step framework. Each step gets its own paragraph with a concrete tool or platform example (e.g., "a CRM like HubSpot, Zoho or GoHighLevel", "a scheduler like Calendly", "review software like Birdeye"). Explain HOW to use it and what good looks like.
 
-5. **## Tools, Platforms & Tactics Worth Your Time** — ~250 words. Break this into a clear list of 5-7 specific tools/tactics with a 1-2 sentence explanation of when and why to use each. Be opinionated — say which ones are worth it and which aren't.
+5. **## Tools, Platforms & Tactics Worth Your Time** — ~400 words. A clear list of 7-9 specific tools/tactics with 2-3 sentences each — when to use, why it wins, what to skip. Be opinionated.
 
-6. **## Your Action Plan (Do This In The Next 30 Days)** — ~280 words. A numbered list of 5-7 SPECIFIC steps the reader can do this week and this month. Each step needs a concrete output ("by Friday, you should have X"). Include time estimates.
+6. **## Your Action Plan (Do This In The Next 30 Days)** — ~400 words. A numbered list of 6-8 SPECIFIC steps for this week and this month. Each step needs a concrete output ("by Friday you should have X") and a time estimate.
 
-7. **## A Real-Life Win** — ~220 words. A detailed case-study story showing how a franchise applied this. Use names (made-up is fine), city, specific numbers (before/after), what they did week by week, and what the outcome looked like. Make it feel real, not abstract.
+7. **## A Real-Life Win** — ~350 words. A detailed case-study story showing how a franchise brand or broker applied this. Use names (made-up is fine), city, specific numbers (before/after), week-by-week actions, and outcome.
 
-8. **## Common Mistakes To Sidestep** — ~180 words. List 4-5 traps and pitfalls with a quick fix for each. Bullet format works here.
+8. **## Common Mistakes To Sidestep** — ~280 words. List 5-6 traps with a quick fix for each.
 
-9. **## FAQ** — ~350 words. Exactly 6-7 H3 questions readers actually ask. Each answer must be 3-4 SUBSTANTIVE sentences (not 1-2). Use ### for each question. Questions MUST end with "?" and answers must sound like a friend explaining, with concrete numbers or examples where possible.
+9. **## FAQ** — ~450 words. Exactly 7 H3 questions. Each answer must be 4-5 SUBSTANTIVE sentences. Use ### for each question. Questions MUST end with "?".
 
-10. **## The Bottom Line** — ~150 words. Wrap up in 3-4 paragraphs. Recap the 3 biggest takeaways. Soft mention that we help franchise brands with leads. Not pushy. End with one provocative question or call-to-action sentence.
+10. **## The Bottom Line** — ~200 words. Wrap up in 3-4 paragraphs. Recap the 3 biggest takeaways. Soft mention that we help franchise brands and brokers with leads, CRM and apps. End with one provocative question.
 
 CRITICAL — COMPLETENESS:
 - Every section must have a complete thought. NEVER cut a paragraph or sentence in the middle.
 - The final FAQ answer and the Bottom Line MUST both end with a complete sentence and a period.
-- If you're running out of space, shorten earlier sections — but never leave a half-finished sentence.
 - Concrete examples > abstract concepts. Always show, then tell.
+- Quality over quantity — if a sentence doesn't teach something specific, delete it. No filler.
 
 === INTERNAL LINKING (IMPORTANT) ===
 Sprinkle 2-3 of these contextual links naturally throughout the body where it actually makes sense:
@@ -576,19 +576,16 @@ Sprinkle 2-3 of these contextual links naturally throughout the body where it ac
 Don't dump them all in one place. Weave them into sentences naturally.
 
 === FORMATTING RULES ===
-- ## for main sections, ### for FAQ questions only
-- Headings sound like things people would actually say:
-  ✅ "Why Most Franchise Ads Flop"
-  ❌ "Examination of Franchise Advertising Effectiveness"
+- ## for main sections, ### for FAQ questions and sub-mistake headings only
+- Headings sound like things people would actually say
 - Short paragraphs — 1 to 3 sentences max
 - Use **bold** for one or two key phrases per section
-- Use <mark>...</mark> (literal HTML) for 2-3 short phrases across the post that you want visually highlighted — pick the most quotable insights
+- Use <mark>...</mark> (literal HTML) for 2-3 short phrases across the post — the most quotable insights
 - Bullet lists when you have 3+ quick items
-- Drop in 2-3 short blockquotes (>) at different points — tips, warnings, or quotable lines
-- **Total length: 2,200-2,800 words MINIMUM. Posts shorter than 2,000 words will be rejected.**
-- Real blog posts breathe. Don't over-format, but DO go deep on every section.
-- Include specific numbers, percentages, dollar amounts, and timeframes throughout — vague advice is forbidden
-- ABSOLUTELY NO emojis anywhere in the content.
+- Drop in 3-4 short blockquotes (>) at different points
+- **Total length: 3,200-4,200 words MINIMUM. Posts shorter than 3,000 words will be rejected.**
+- Include specific numbers, percentages, dollar amounts, timeframes, named tools throughout — vague advice is forbidden
+- ABSOLUTELY NO emojis anywhere.
 
 === ABSOLUTELY FORBIDDEN ===
 - Repeating the title at the top of the content
@@ -612,9 +609,11 @@ Each prompt: 1-2 vivid sentences. Style examples: "modern professional photograp
 ${researchContext}
 
 CRITICAL REQUIREMENTS (your post will be REJECTED if any of these are missing):
-- Length: **2,200-2,800 words MINIMUM**. Anything shorter gets rejected. Go DEEP on every section.
-- Every section must have MULTIPLE specific points, examples, numbers, or tactics — never a single shallow takeaway.
-- Include real numbers, percentages, dollar amounts, and timeframes throughout the post.
+- Length: **3,200-4,200 words MINIMUM**. Anything under 3,000 gets rejected. Go DEEP on every section.
+- Every section must have MULTIPLE specific points, named tools, real examples, numbers, or tactics — never a single shallow takeaway.
+- Quality over quantity: every sentence must teach something. No filler, no fluff, no generic statements.
+- Include real numbers, percentages, dollar amounts, timeframes and named platforms (HubSpot, Zoho, GoHighLevel, Calendly, Birdeye, Meta Ads, LinkedIn Sales Navigator, etc.) throughout.
+- Speak to both franchise brands AND franchise brokers where relevant.
 - Start with the hook (adapt it naturally): "${topicData.hook}"
 - Reference this insight if it fits: "${topicData.stats}"
 - Angle: "${topicData.angle}"
@@ -639,7 +638,7 @@ Every sentence must sound human, like a friend giving advice — not a corporate
     properties: {
       title: { type: "string", description: "Casual, friendly title under 70 chars" },
       excerpt: { type: "string", description: "1 sentence hook, max 160 chars" },
-      content: { type: "string", description: "Full markdown body, 2,200-2,800 words. MUST NOT include the title or any H1. Start directly with the opening hook paragraph. Must include a ## FAQ section with 6-7 ### questions." },
+      content: { type: "string", description: "Full markdown body, 3,200-4,200 words. MUST NOT include the title or any H1. Start directly with the opening hook paragraph. Must include a ## FAQ section with 7 ### questions." },
       slug: { type: "string", description: "SEO-friendly URL slug, lowercase, dashes only" },
       tags: { type: "array", items: { type: "string" }, description: "5 relevant tags" },
       coverImagePrompt: { type: "string", description: "Vivid 1-2 sentence description for the cover image" },
@@ -659,7 +658,7 @@ Every sentence must sound human, like a friend giving advice — not a corporate
           contents: [{ role: "user", parts: [{ text: userPrompt }] }],
           generationConfig: {
             temperature: 0.85,
-            maxOutputTokens: 16000,
+            maxOutputTokens: 24000,
             responseMimeType: "application/json",
             responseSchema,
           },
