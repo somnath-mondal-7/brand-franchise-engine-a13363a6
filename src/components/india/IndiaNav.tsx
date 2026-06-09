@@ -41,9 +41,11 @@ const IndiaNav = () => {
 
   const links = [
     { label: "Home", href: "/" },
+    { label: "Case Studies", href: "/case-studies" },
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ];
+
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
@@ -130,6 +132,9 @@ const IndiaNav = () => {
 
               <Link to="/testimonials" className="text-sm font-medium text-primary-foreground/90 hover:text-accent transition-colors">
                 Our Clients
+              </Link>
+              <Link to="/case-studies" className="text-sm font-medium text-primary-foreground/90 hover:text-accent transition-colors">
+                Case Studies
               </Link>
               <Link to="/blog" className="text-sm font-medium text-primary-foreground/90 hover:text-accent transition-colors">
                 Blogs
