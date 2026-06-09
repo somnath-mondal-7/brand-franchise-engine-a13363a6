@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import IndiaNav from "@/components/india/IndiaNav";
+import IndiaFooter from "@/components/india/IndiaFooter";
 import SEOBreadcrumbs from "@/components/SEOBreadcrumbs";
 import TableOfContents from "@/components/blog/TableOfContents";
 import ReadingProgress from "@/components/blog/ReadingProgress";
@@ -111,12 +111,12 @@ const BlogPost = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background">
-        <Navigation />
+        <IndiaNav />
         <div className="container mx-auto px-4 py-20 text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
           <p className="mt-4 text-muted-foreground">Loading post...</p>
         </div>
-        <Footer />
+        <IndiaFooter />
       </div>
     );
   }
@@ -124,7 +124,7 @@ const BlogPost = () => {
   if (!post) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <Navigation />
+        <IndiaNav />
         <Card className="p-12 text-center max-w-md mx-4">
           <h1 className="text-3xl font-bold text-brand-navy mb-4">
             Post Not Found
@@ -139,7 +139,7 @@ const BlogPost = () => {
             </Button>
           </Link>
         </Card>
-        <Footer />
+        <IndiaFooter />
       </div>
     );
   }
@@ -214,7 +214,7 @@ const BlogPost = () => {
         </script>
       </Helmet>
 
-      <Navigation />
+      <IndiaNav />
       
       {/* Breadcrumbs */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24">
@@ -423,7 +423,7 @@ const BlogPost = () => {
         </div>
       </article>
 
-      <Footer />
+      <IndiaFooter />
     </div>
   );
 };

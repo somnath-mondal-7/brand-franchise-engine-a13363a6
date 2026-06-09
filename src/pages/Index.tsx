@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import Hero from "@/components/Hero";
-import Navigation from "@/components/Navigation";
+import IndiaNav from "@/components/india/IndiaNav";
 import PricingSection from "@/components/PricingSection";
 import PortfolioSection from "@/components/PortfolioSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -8,7 +8,7 @@ import CaseStudiesSection from "@/components/CaseStudiesSection";
 
 
 import FinalCTASection from "@/components/FinalCTASection";
-import Footer from "@/components/Footer";
+import IndiaFooter from "@/components/india/IndiaFooter";
 import SEOBreadcrumbs from "@/components/SEOBreadcrumbs";
 import SEOInternalLinks from "@/components/SEOInternalLinks";
 
@@ -66,7 +66,7 @@ const Index = () => {
         </script>
       </Helmet>
 
-      <Navigation />
+      <IndiaNav />
       <SEOBreadcrumbs />
       <Hero />
       <PortfolioSection />
@@ -75,7 +75,7 @@ const Index = () => {
       <PricingSection />
       <SEOInternalLinks />
       <FinalCTASection />
-      <Footer />
+      <IndiaFooter />
     </div>
   );
 };

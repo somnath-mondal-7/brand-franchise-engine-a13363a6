@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import IndiaNav from "@/components/india/IndiaNav";
+import IndiaFooter from "@/components/india/IndiaFooter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -89,12 +89,12 @@ const Blog = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background">
-        <Navigation />
+        <IndiaNav />
         <div className="container mx-auto px-4 py-20 text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
           <p className="mt-4 text-muted-foreground">Loading blog posts...</p>
         </div>
-        <Footer />
+        <IndiaFooter />
       </div>
     );
   }
@@ -127,7 +127,7 @@ const Blog = () => {
         </script>
       </Helmet>
 
-      <Navigation />
+      <IndiaNav />
       
       {/* Hero Section */}
       <section className="pt-24 pb-20 bg-gradient-to-br from-background via-accent/30 to-primary/5">
@@ -329,7 +329,7 @@ const Blog = () => {
         </div>
       </section>
 
-      <Footer />
+      <IndiaFooter />
     </div>
   );
 };

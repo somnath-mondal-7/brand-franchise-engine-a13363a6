@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import IndiaNav from "@/components/india/IndiaNav";
+import IndiaFooter from "@/components/india/IndiaFooter";
 import SEOBreadcrumbs from "@/components/SEOBreadcrumbs";
 
 const RefundPolicy = () => {
@@ -12,7 +12,7 @@ const RefundPolicy = () => {
         <link rel="canonical" href="https://www.franchiseleadspro.com/legal-terms/refund-satisfaction-guarantee-policy" />
       </Helmet>
 
-      <Navigation />
+      <IndiaNav />
       <SEOBreadcrumbs />
 
       <main className="container mx-auto px-4 py-12 max-w-4xl">
@@ -117,7 +117,7 @@ const RefundPolicy = () => {
         </div>
       </main>
 
-      <Footer />
+      <IndiaFooter />
     </>
   );
 };

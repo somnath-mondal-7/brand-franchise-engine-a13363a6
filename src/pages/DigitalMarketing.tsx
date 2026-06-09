@@ -3,8 +3,8 @@ import { ArrowRight, Target, Search, Phone, Code, Zap, TrendingUp, Globe, MouseP
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import IndiaNav from "@/components/india/IndiaNav";
+import IndiaFooter from "@/components/india/IndiaFooter";
 import SEOBreadcrumbs from "@/components/SEOBreadcrumbs";
 import { Helmet } from "react-helmet-async";
 
@@ -68,7 +68,7 @@ const DigitalMarketing = () => {
         <link rel="canonical" href="https://www.franchiseleadspro.com/digital-marketing" />
         <meta name="robots" content="index, follow" />
       </Helmet>
-      <Navigation />
+      <IndiaNav />
       <div className="min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-sky-100">
         <SEOBreadcrumbs />
         
@@ -211,7 +211,7 @@ const DigitalMarketing = () => {
           </div>
         </section>
       </div>
-      <Footer />
+      <IndiaFooter />
     </>
   );
 };
