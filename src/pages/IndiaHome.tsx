@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
-  ArrowRight, CheckCircle2, Linkedin, Share2, Globe, Bot, Crown, Users,
+  ArrowRight, CheckCircle2, Linkedin, Share2, Globe, Bot, Headphones, Smartphone, Users,
   IndianRupee, ShieldCheck, Sparkles, TrendingUp, Award,
 } from "lucide-react";
 import IndiaNav from "@/components/india/IndiaNav";
@@ -15,10 +15,10 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import somnathPhoto from "@/assets/somnath-photo.png";
 
 const solutions = [
-  { icon: Crown, title: "Franchise Strategy & Readiness", desc: "End-to-end franchise model design — unit economics, royalty structures, territory planning, and franchise-readiness audit for the U.S. market." },
-  { icon: ShieldCheck, title: "Franchise Documentation & FDD", desc: "FDD, franchise agreements, operations manuals, and SOPs drafted by franchise specialists — fully U.S.-compliant." },
+  { icon: Headphones, title: "CRM Support for Franchise Brands & Brokers", desc: "Full CRM setup, automation, pipeline design and ongoing support — purpose-built for franchise brands and brokers managing investor inquiries." },
+  { icon: Smartphone, title: "Application Development", desc: "Custom web and mobile apps — investor portals, franchisee onboarding apps and broker marketplaces — engineered for franchise operations." },
   { icon: Linkedin, title: "LinkedIn Investor Outreach", desc: "Hand-built outreach to qualified U.S. investors, family offices, and serious franchise buyers across all 50 states." },
-  { icon: Share2, title: "Performance Marketing & Ads", desc: "Meta, Google, Instagram and YouTube campaigns tuned for the American franchise investor." },
+  { icon: Share2, title: "Performance Marketing & Ads", desc: "Meta, Google, Instagram and YouTube campaigns tuned for the American franchise investor and franchise brokers." },
   { icon: Globe, title: "Franchise Website & Brand Build", desc: "Investor-grade websites, brand decks, and pitch material with CRM-integrated lead capture." },
   { icon: Users, title: "Franchisee Recruitment & Onboarding", desc: "From lead qualification to discovery day, agreement signing, and launch — we manage the full onboarding pipeline." },
 ];

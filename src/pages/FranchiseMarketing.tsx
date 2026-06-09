@@ -1,13 +1,13 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ArrowUpRight, FileText, Linkedin, Megaphone, Globe, Users, Compass } from "lucide-react";
+import { ArrowUpRight, Headphones, Smartphone, Linkedin, Megaphone, Globe, Users } from "lucide-react";
 import IndiaNav from "@/components/india/IndiaNav";
 import IndiaFooter from "@/components/india/IndiaFooter";
 import { Button } from "@/components/ui/button";
 
 export const SERVICES = [
-  { slug: "franchise-strategy", title: "Franchise Strategy", icon: Compass, tagline: "Blueprint for scalable franchise expansion.", summary: "Positioning, unit economics, territory mapping and the franchise model that fits your brand." },
-  { slug: "franchise-documentation", title: "Franchise Documentation", icon: FileText, tagline: "Agreements, FDD-grade manuals and operations playbooks.", summary: "Legally sound franchise agreements, disclosure documents and operations manuals built for India and international markets." },
+  { slug: "crm-support", title: "CRM Support", icon: Headphones, tagline: "CRM setup, automation and support for franchise brands & brokers.", summary: "Full CRM implementation, pipeline design, lead routing and ongoing support — built for franchise brands and franchise brokers managing investor pipelines." },
+  { slug: "application-development", title: "Application Development", icon: Smartphone, tagline: "Custom web and mobile apps for franchise operations.", summary: "Investor portals, franchisee apps, broker marketplaces and internal tools — purpose-built for franchise brands and brokers." },
   { slug: "linkedin-marketing", title: "LinkedIn Marketing", icon: Linkedin, tagline: "Reach decision-grade investors directly.", summary: "Founder-led LinkedIn campaigns, Sales Navigator outreach and thought leadership that gets investor replies." },
   { slug: "performance-marketing", title: "Performance Marketing", icon: Megaphone, tagline: "Paid acquisition tuned for franchise inquiries.", summary: "Meta, Google and LinkedIn ad systems engineered for qualified franchise lead capture, not just clicks." },
   { slug: "franchise-website", title: "Franchise Website", icon: Globe, tagline: "Investor-ready websites that convert.", summary: "Conversion-first franchise portals with territory pages, lead capture and full CMS control." },
