@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowUpRight, CheckCircle2, Quote, Calendar, Globe, Target, Megaphone } from "lucide-react";
 import IndiaNav from "@/components/india/IndiaNav";
 import IndiaFooter from "@/components/india/IndiaFooter";
+import jesicaThompsonVideo from "@/assets/videos/jesica-thompson-review.mp4.asset.json";
 
 const servicesDelivered = [
   "Paid Advertising (Meta + Google)",
@@ -113,7 +114,7 @@ const CaseStudies = () => {
                     preload="metadata"
                     poster="/videos/jesica-thompson-poster.jpg"
                   >
-                    <source src="/videos/jesica-thompson-review.mp4" type="video/mp4" />
+                    <source src={jesicaThompsonVideo.url} type="video/mp4" />
                   </video>
                 </div>
               </div>

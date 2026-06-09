@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Star, Quote, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import jesicaThompsonVideo from "@/assets/videos/jesica-thompson-review.mp4.asset.json";
+import jonathanMorganVideo from "@/assets/videos/jonathan-morgan-review.mp4.asset.json";
 
 const Testimonials = () => {
   const testimonials = [
@@ -162,8 +164,8 @@ const Testimonials = () => {
 
             <div className="grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
               {[
-                { name: "Jesica Thompson", title: "Consultant, Franchise Solutions Inc.", videoSrc: "/videos/jesica-thompson-review.mp4" },
-                { name: "Jonathan Morgan", title: "CEO, NextFranch Corp", videoSrc: "/videos/jonathan-morgan-review.mp4" },
+                { name: "Jesica Thompson", title: "Consultant, Franchise Solutions Inc.", videoSrc: jesicaThompsonVideo.url },
+                { name: "Jonathan Morgan", title: "CEO, NextFranch Corp", videoSrc: jonathanMorganVideo.url },
               ].map((video, index) => (
                 <Card key={index} className="overflow-hidden border-border/50 hover:shadow-xl transition-all duration-300">
                   <div className="aspect-[3/4] sm:aspect-[4/5] bg-muted relative overflow-hidden">

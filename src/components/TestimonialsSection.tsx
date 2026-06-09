@@ -1,14 +1,17 @@
+import shawnGurnVideo from "@/assets/videos/shawn-gurn-review.mp4.asset.json";
+import jonathanMorganVideo from "@/assets/videos/jonathan-morgan-review.mp4.asset.json";
+
 const TestimonialsSection = () => {
   const testimonials = [
     {
       name: "Shawn Gurn",
       title: "HOF Franchise Consulting Company • IFPG Member",
-      videoSrc: "/videos/shawn-gurn-review.mp4",
+      videoSrc: shawnGurnVideo.url,
     },
     {
       name: "Jonathan Morgan",
       title: "CEO, NextFranch Corp",
-      videoSrc: "/videos/jonathan-morgan-review.mp4",
+      videoSrc: jonathanMorganVideo.url,
     },
     {
       name: "Robert Williams",
