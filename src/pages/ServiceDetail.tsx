@@ -14,27 +14,27 @@ type Detail = {
 };
 
 const DETAILS: Record<string, Detail> = {
-  "franchise-strategy": {
-    intro: "We design the franchise model from first principles — unit economics, territory rights, fees, and the value proposition an investor will actually pay for.",
-    deliverables: ["Franchise model & fee structure", "Unit economics workbook", "Territory & rollout map", "Investor pitch deck", "Brand positioning narrative", "Go-to-market plan"],
+  "crm-support": {
+    intro: "We implement and run the CRM backbone behind your franchise pipeline — for brands selling units and brokers managing buyers across multiple concepts.",
+    deliverables: ["CRM setup (HubSpot, Zoho, GoHighLevel)", "Investor pipeline & stage design", "Lead routing & assignment rules", "Email & WhatsApp automations", "Broker-friendly multi-brand workspace", "Ongoing admin & support"],
     process: [
-      { step: "Discovery", desc: "Deep dive into business, margins and ambition." },
-      { step: "Modeling", desc: "Define formats, fees, royalties and territories." },
-      { step: "Validation", desc: "Stress-test economics against real market data." },
-      { step: "Activation", desc: "Hand over a launch-ready strategy package." },
+      { step: "Audit", desc: "Map your current lead flow, tools and gaps." },
+      { step: "Build", desc: "Configure pipelines, fields, automations and roles." },
+      { step: "Integrate", desc: "Connect ads, forms, calendars and inboxes." },
+      { step: "Support", desc: "Ongoing admin, training and optimization." },
     ],
-    outcome: "A franchise model investors take seriously and a team that knows exactly how to sell it.",
+    outcome: "A clean, automated franchise CRM that no lead falls out of — and a support team that keeps it that way.",
   },
-  "franchise-documentation": {
-    intro: "Every document a franchise sale needs — drafted, reviewed and ready for investor scrutiny.",
-    deliverables: ["Franchise Agreement", "Disclosure Document (FDD-grade)", "Operations Manual", "Training & SOP playbook", "Brand standards guide", "Pre-opening checklist"],
+  "application-development": {
+    intro: "Custom web and mobile applications purpose-built for franchise brands and franchise brokers — from investor portals to franchisee operations apps.",
+    deliverables: ["Investor application portals", "Franchisee onboarding & ops apps", "Broker marketplace platforms", "Custom dashboards & reporting", "API & CRM integrations", "iOS, Android and web builds"],
     process: [
-      { step: "Audit", desc: "Map existing IP, SOPs and contracts." },
-      { step: "Drafting", desc: "Build documents to international standards." },
-      { step: "Legal Review", desc: "Coordinate with empaneled franchise counsel." },
-      { step: "Handover", desc: "Editable masters + version control." },
+      { step: "Discovery", desc: "Define user roles, workflows and integrations." },
+      { step: "Design", desc: "Prototype UX for brands, brokers and franchisees." },
+      { step: "Build", desc: "Ship scalable web and mobile apps." },
+      { step: "Launch", desc: "Deploy, train your team and support post-launch." },
     ],
-    outcome: "A document set that protects you, signals professionalism and shortens the investor decision cycle.",
+    outcome: "A digital product that makes your franchise operation faster, cleaner and visibly more professional to investors.",
   },
   "linkedin-marketing": {
     intro: "We turn LinkedIn into a working investor pipeline — founder authority, targeted outreach and conversations that convert.",

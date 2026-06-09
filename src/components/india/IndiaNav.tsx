@@ -7,10 +7,10 @@ type MegaCol = { title: string; links: { label: string; href: string }[] };
 
 const servicesMega: MegaCol[] = [
   {
-    title: "Strategy & Documents",
+    title: "CRM & Apps",
     links: [
-      { label: "Franchise Strategy", href: "/franchise-marketing/franchise-strategy" },
-      { label: "Franchise Documentation", href: "/franchise-marketing/franchise-documentation" },
+      { label: "CRM Support", href: "/franchise-marketing/crm-support" },
+      { label: "Application Development", href: "/franchise-marketing/application-development" },
       { label: "franchiseFLOW System", href: "/franchise-flow" },
       { label: "All Services", href: "/franchise-marketing" },
     ],
