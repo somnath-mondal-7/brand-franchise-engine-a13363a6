@@ -1,5 +1,5 @@
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import IndiaNav from "@/components/india/IndiaNav";
+import IndiaFooter from "@/components/india/IndiaFooter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -105,7 +105,7 @@ const Contact = () => {
           })}
         </script>
       </Helmet>
-      <Navigation />
+      <IndiaNav />
       
       {/* Hero Section */}
       <section className="pt-24 pb-20 bg-gradient-to-br from-background via-accent/30 to-primary/5">
@@ -412,7 +412,7 @@ const Contact = () => {
         </div>
       </section>
 
-      <Footer />
+      <IndiaFooter />
     </div>
   );
 };

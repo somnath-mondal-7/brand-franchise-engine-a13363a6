@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import IndiaNav from "@/components/india/IndiaNav";
+import IndiaFooter from "@/components/india/IndiaFooter";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, TrendingUp, Users, DollarSign } from "lucide-react";
 
@@ -48,7 +48,7 @@ const FranchiseLeadsDubai = () => {
       </Helmet>
       
       <div className="min-h-screen bg-background">
-        <Navigation />
+        <IndiaNav />
         
         {/* Hero Section */}
         <section className="py-20 bg-gradient-primary text-white">
@@ -273,7 +273,7 @@ const FranchiseLeadsDubai = () => {
           </div>
         </section>
 
-        <Footer />
+        <IndiaFooter />
       </div>
     </>
   );

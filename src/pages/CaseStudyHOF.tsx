@@ -1,5 +1,5 @@
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import IndiaNav from "@/components/india/IndiaNav";
+import IndiaFooter from "@/components/india/IndiaFooter";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -57,7 +57,7 @@ const CaseStudyHOF = () => {
         <meta property="og:description" content="From outdated WordPress to a blazing-fast React SPA — see how we rebuilt HOF Franchise Consulting's entire digital presence." />
         <meta property="og:image" content="https://www.franchiseleadspro.com/og-image.png" />
       </Helmet>
-      <Navigation />
+      <IndiaNav />
 
       {/* Hero */}
       <section className="pt-24 pb-16 relative overflow-hidden">
@@ -325,7 +325,7 @@ const CaseStudyHOF = () => {
         </div>
       </section>
 
-      <Footer />
+      <IndiaFooter />
     </div>
   );
 };

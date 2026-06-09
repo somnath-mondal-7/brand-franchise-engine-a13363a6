@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import IndiaNav from "@/components/india/IndiaNav";
+import IndiaFooter from "@/components/india/IndiaFooter";
 import { useMemo } from "react";
 
 const Search = () => {
@@ -14,7 +14,7 @@ const Search = () => {
         <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href={`https://www.franchiseleadspro.com/search${q ? `?q=${encodeURIComponent(q)}` : ""}`} />
       </Helmet>
-      <Navigation />
+      <IndiaNav />
       <main className="py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
@@ -31,7 +31,7 @@ const Search = () => {
           </div>
         </div>
       </main>
-      <Footer />
+      <IndiaFooter />
     </div>
   );
 };

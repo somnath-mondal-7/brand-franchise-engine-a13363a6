@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import IndiaNav from "@/components/india/IndiaNav";
+import IndiaFooter from "@/components/india/IndiaFooter";
 import CTASection from "@/components/CTASection";
 
 interface BreadcrumbItem {
@@ -34,7 +34,7 @@ const ProgrammaticPageShell = ({
 }: ProgrammaticPageShellProps) => {
   return (
     <>
-      <Navigation />
+      <IndiaNav />
 
       <main className="pt-16 bg-background">
         <section className="relative overflow-hidden border-b border-border bg-background">
@@ -95,7 +95,7 @@ const ProgrammaticPageShell = ({
         {showGlobalCta && <CTASection />}
       </main>
 
-      <Footer />
+      <IndiaFooter />
     </>
   );
 };

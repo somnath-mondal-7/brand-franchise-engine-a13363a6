@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import IndiaNav from "@/components/india/IndiaNav";
+import IndiaFooter from "@/components/india/IndiaFooter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Linkedin, Share2, Globe, ArrowRight, Target, TrendingUp, Users } from "lucide-react";
@@ -77,7 +77,7 @@ const Services = () => {
         <meta property="og:type" content="website" />
       </Helmet>
       <div className="min-h-screen bg-background">
-        <Navigation />
+        <IndiaNav />
       
         {/* Hero */}
         <section className="pt-24 pb-20 bg-gradient-to-br from-background via-accent/30 to-primary/5">
@@ -182,7 +182,7 @@ const Services = () => {
           </div>
         </section>
 
-        <Footer />
+        <IndiaFooter />
       </div>
     </>
   );
