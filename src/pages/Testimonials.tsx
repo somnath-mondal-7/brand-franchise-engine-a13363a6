@@ -130,7 +130,7 @@ const Testimonials = () => {
         <link rel="canonical" href="https://www.franchiseleadspro.com/testimonials" />
         <meta name="robots" content="index, follow" />
       </Helmet>
-      <Navigation />
+      <IndiaNav />
       
       {/* Hero Section */}
       <section className="pt-24 pb-20 bg-gradient-to-br from-background via-accent/30 to-primary/5">
@@ -297,7 +297,7 @@ const Testimonials = () => {
         </div>
       </section>
 
-      <Footer />
+      <IndiaFooter />
     </div>
   );
 };
