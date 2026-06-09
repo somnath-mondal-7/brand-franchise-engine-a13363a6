@@ -114,7 +114,7 @@ const CaseStudies = () => {
                     preload="metadata"
                     poster="/videos/jesica-thompson-poster.jpg"
                   >
-                    <source src="/videos/jesica-thompson-review.mp4" type="video/mp4" />
+                    <source src={jesicaThompsonVideo.url} type="video/mp4" />
                   </video>
                 </div>
               </div>
