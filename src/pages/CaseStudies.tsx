@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowUpRight, CheckCircle2, Quote, Calendar, Globe, Target, Megaphone } from "lucide-react";
 import IndiaNav from "@/components/india/IndiaNav";
 import IndiaFooter from "@/components/india/IndiaFooter";
-import jesicaThompsonVideo from "@/assets/videos/jesica-thompson-review.mp4.asset.json";
+import jonathanMorganVideoCS from "@/assets/videos/jonathan-morgan-review.mp4.asset.json";
 
 const servicesDelivered = [
   "Paid Advertising (Meta + Google)",
@@ -20,7 +20,7 @@ const timeline = [
     phase: "Discovery",
     title: "Understanding the franchise portfolio",
     body:
-      "We sat down with Jesica to map every brand she represents at Franchise Solutions Inc., the typical investor profile for each, and the friction points in her existing intake process.",
+      "We sat down with Jonathan to map every brand she represents at Franchise Solutions Inc., the typical investor profile for each, and the friction points in her existing intake process.",
   },
   {
     phase: "Build",
@@ -32,7 +32,7 @@ const timeline = [
     phase: "Scale",
     title: "Steady, qualified inbound — every week",
     body:
-      "Once the engine was live, our role shifted to optimisation — sharper targeting, better qualification, faster follow-up — so Jesica spends her time on conversations that actually close.",
+      "Once the engine was live, our role shifted to optimisation — sharper targeting, better qualification, faster follow-up — so Jonathan spends her time on conversations that actually close.",
   },
 ];
 
@@ -88,7 +88,7 @@ const CaseStudies = () => {
         </div>
       </section>
 
-      {/* FEATURED CASE STUDY — Jesica Thompson */}
+      {/* FEATURED CASE STUDY — Jonathan Morgan */}
       <section className="py-20 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-10">
@@ -97,7 +97,7 @@ const CaseStudies = () => {
               <header>
                 <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">Featured Case Study</p>
                 <h2 className="font-display text-4xl sm:text-5xl leading-[1.05] text-foreground mb-4">
-                  Jesica Thompson — <em>Franchise Solutions Inc.</em>
+                  Jonathan Morgan — <em>Franchise Solutions Inc.</em>
                 </h2>
                 <p className="text-muted-foreground text-lg leading-relaxed">
                   Independent franchise consultant. Multiple brands in her portfolio. No active LinkedIn channel.
@@ -112,9 +112,9 @@ const CaseStudies = () => {
                     className="w-full h-full object-cover"
                     controls
                     preload="metadata"
-                    poster="/videos/jesica-thompson-poster.jpg"
+                    poster="/videos/jonathan-morgan-poster.jpg"
                   >
-                    <source src={jesicaThompsonVideo.url} type="video/mp4" />
+                    <source src={jonathanMorganVideoCS.url} type="video/mp4" />
                   </video>
                 </div>
               </div>
@@ -123,7 +123,7 @@ const CaseStudies = () => {
               <div>
                 <h3 className="font-display text-2xl text-foreground mb-3">Overview</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Jesica came to us running her consultancy almost entirely on referrals and word of mouth.
+                  Jonathan came to us running her consultancy almost entirely on referrals and word of mouth.
                   Strong brand, great close rate — but no predictable top-of-funnel. We built her a paid
                   advertising + CRM + website inbound system that puts qualified franchise buyer enquiries
                   in front of her every single week.
@@ -172,7 +172,7 @@ const CaseStudies = () => {
                   quality of conversations they put on my calendar."
                 </p>
                 <div>
-                  <p className="font-semibold">Jesica Thompson</p>
+                  <p className="font-semibold">Jonathan Morgan</p>
                   <p className="text-sm text-primary-foreground/70">Franchise Consultant, Franchise Solutions Inc.</p>
                 </div>
               </div>
@@ -183,7 +183,7 @@ const CaseStudies = () => {
               <div className="lg:sticky lg:top-32 space-y-6">
                 <div className="rounded-2xl border border-border bg-card p-6">
                   <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Client</p>
-                  <p className="font-display text-xl text-foreground mb-1">Jesica Thompson</p>
+                  <p className="font-display text-xl text-foreground mb-1">Jonathan Morgan</p>
                   <p className="text-sm text-muted-foreground mb-6">Franchise Solutions Inc.</p>
 
                   <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">Services Delivered</p>

@@ -1414,7 +1414,7 @@ function staticPage(path) {
       content: `
         <section>
           <h2>Featured Case Study — Franchise Solutions Inc.</h2>
-          <p>Jesica Thompson, a veteran franchise consultant at Franchise Solutions Inc., partnered with ${BRAND} to scale her digital presence and generate a consistent flow of qualified inbound leads.</p>
+          <p>Jonathan Morgan, a veteran franchise consultant at Franchise Solutions Inc., partnered with ${BRAND} to scale her digital presence and generate a consistent flow of qualified inbound leads.</p>
           <h3>Services Delivered</h3>
           <ul>
             <li>Paid Advertising (Google Ads + Meta Ads)</li>
@@ -1423,7 +1423,7 @@ function staticPage(path) {
             <li>Franchise Inquiry Management</li>
             <li>Weekly Performance Reporting</li>
           </ul>
-          <blockquote>"${BRAND} didn't just bring us leads — they brought us the right leads. Our pipeline went from sporadic referrals to a predictable stream of serious franchise investors."<br>— Jesica Thompson, Franchise Consultant, Franchise Solutions Inc.</blockquote>
+          <blockquote>"${BRAND} didn't just bring us leads — they brought us the right leads. Our pipeline went from sporadic referrals to a predictable stream of serious franchise investors."<br>— Jonathan Morgan, Franchise Consultant, Franchise Solutions Inc.</blockquote>
         </section>
         <section>
           <h2>Want Results Like These?</h2>
