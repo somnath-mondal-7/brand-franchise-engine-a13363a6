@@ -1,41 +1,29 @@
-## What I'll do
+## Add Case Studies Section to Home Page
 
-Rebuild your whole site to mirror **hoopdesk.com** — same layout, same sections, same look-and-feel — but with your **FranchiseLeadsPro** brand and your actual content (videos, brands, contact, etc.). Backend stays on Lovable Cloud (Supabase) so your chat widget, blog admin, and contact form keep working.
+Add a new "Case Studies" section to the home page (`src/pages/Index.tsx`), placed between `TestimonialsSection` and `PricingSection`.
 
-Because this is a large rebuild, I'll do it in **3 small phases** so you can review each one before I move to the next. Each phase is one chat reply from me.
+### What it will contain
 
----
+A clean, on-brand section that mirrors the style of the existing `/case-studies` page:
 
-## Phase 1 — Sitewide shell + Home (already done) + About + Our Clients
+- Section heading: "Real Clients. *Real Results.*"
+- Short intro line: "A closer look at how franchise consultants run their investor lead pipeline with FranchiseLeadsPro."
+- **2 case study cards** in a responsive grid:
+  1. **Jesica Thompson — Franchise Solutions Inc.** (Paid Ads + CRM + Website Inbound) → links to `/case-studies`
+  2. **HOF Franchise Consulting — Shawn Gurn** (Website Redesign + Brand) → links to `/case-studies/hof-franchise-consulting`
+- Each card: small label, title, 2-line description, "Read case study →" link
+- Bottom CTA button: "View All Case Studies" → links to `/case-studies`
 
-1. Polish the homepage match (hero collage spacing, logo strip section "Franchise Marketing Systems Has Helped Over 500 Businesses Grow", services preview, testimonials, CTA band).
-2. Rebuild `/about` to mirror hoopdesk's About page (founder story, mission, what we do, CTA).
-3. Rebuild `/case-studies` route as the new **Our Clients** page (logo wall + featured client cards + testimonials, hoopdesk style).
+### What I'll build
 
-## Phase 2 — Franchise Marketing hub + sub-pages + franchiseFLOW
+- New component: `src/components/CaseStudiesSection.tsx` (uses existing design tokens: `bg-card`, `border-border`, `text-accent`, `font-display`, etc.)
+- Edit `src/pages/Index.tsx` to import it and render between `<TestimonialsSection />` and `<PricingSection />`
 
-4. Build a `/franchise-marketing` hub page (like hoopdesk's mega-menu landing).
-5. Build the 6 service sub-pages it links to (Strategy, Documentation, LinkedIn, Performance Marketing, Website, Recruitment) — all in the dark/yellow hoopdesk template.
-6. Build `/franchise-flow` page (hoopdesk's signature framework page).
+### What I will NOT touch
 
-## Phase 3 — Franchises For Sale + Blogs + Footer
+- The existing `/case-studies` page itself
+- Any other home page sections, copy, or styling
+- No new images, no videos in this section (keeps it lightweight)
+- No backend / data changes
 
-7. Rebuild `/brands` listing as **Franchises For Sale** in hoopdesk's card-grid layout (your existing brand data stays).
-8. Restyle the `/blog` index and post template to match hoopdesk's editorial dark/yellow look.
-9. Rebuild the footer (4-column hoopdesk layout: brand block, navigation, contact, newsletter) and a unified bottom-of-page CTA strip.
-
----
-
-## What I will NOT touch
-
-- Your Lovable Cloud backend (database, chat AI, blog admin, contact email function) — all keep working.
-- Your blog posts, brand data, video testimonials — content is preserved, only layout/styling changes.
-- The `/usa` page (kept as the legacy USA-style version) — unless you ask me to remove it.
-
----
-
-## What I need from you
-
-Just reply **"Go phase 1"** and I'll start. After each phase you'll see the result live and can say "Go next" or "Tweak this first".
-
-Heads up: I'll use generic stock imagery in the same style as hoopdesk for any visual we don't have yet — you can swap in your own photos any time.
+Reply **"Go"** and I'll implement it.
