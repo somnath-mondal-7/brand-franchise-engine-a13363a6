@@ -1537,7 +1537,7 @@ function buildWebPageSchema(title, description, canonical) {
       "sameAs": [
         "https://linkedin.com/company/franchiseleadspro",
         "https://twitter.com/franchiseleadspro",
-        "https://facebook.com/franchiseleadspro"
+        "https://www.facebook.com/somnath.mondal.535492"
       ]
     }
   };
