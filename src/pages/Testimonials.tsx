@@ -9,6 +9,7 @@ import { Helmet } from "react-helmet-async";
 import jonathanMorganVideo from "@/assets/videos/jonathan-morgan-review.mp4.asset.json";
 import shawnGurnVideo from "@/assets/videos/shawn-gurn-review.mp4.asset.json";
 import dionGarnettVideo from "@/assets/videos/dion-garnett-review.mp4.asset.json";
+import johnThompsonVideo from "@/assets/videos/john-thompson-review.mp4.asset.json";
 
 const Testimonials = () => {
   const testimonials = [
@@ -167,6 +168,7 @@ const Testimonials = () => {
               {[
                 { name: "Jonathan Morgan", title: "CEO, NextFranch Corp", videoSrc: jonathanMorganVideo.url },
                 { name: "Shawn Gurn", title: "HOF Franchise Consulting Company • IFPG Member", videoSrc: shawnGurnVideo.url },
+                { name: "John Thompson", title: "Franchise Development Leader", videoSrc: johnThompsonVideo.url },
                 { name: "Dion Garnett", title: "Franchise Development Partner", videoSrc: dionGarnettVideo.url },
               ].map((video, index) => (
                 <Card key={index} className="overflow-hidden border-border/50 hover:shadow-xl transition-all duration-300">
