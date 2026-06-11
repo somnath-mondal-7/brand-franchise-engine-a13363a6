@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import jonathanMorganVideo from "@/assets/videos/jonathan-morgan-review.mp4.asset.json";
 import shawnGurnVideo from "@/assets/videos/shawn-gurn-review.mp4.asset.json";
-import dionGarnettVideo from "@/assets/videos/dion-garnett-review.mp4.asset.json";
+
 import johnThompsonVideo from "@/assets/videos/john-thompson-review.mp4.asset.json";
 
 const Testimonials = () => {
