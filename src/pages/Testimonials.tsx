@@ -168,6 +168,7 @@ const Testimonials = () => {
               {[
                 { name: "Jonathan Morgan", title: "CEO, NextFranch Corp", videoSrc: jonathanMorganVideo.url },
                 { name: "Shawn Gurn", title: "HOF Franchise Consulting Company • IFPG Member", videoSrc: shawnGurnVideo.url },
+                { name: "John Thompson", title: "Franchise Development Leader", videoSrc: johnThompsonVideo.url },
                 { name: "Dion Garnett", title: "Franchise Development Partner", videoSrc: dionGarnettVideo.url },
               ].map((video, index) => (
                 <Card key={index} className="overflow-hidden border-border/50 hover:shadow-xl transition-all duration-300">
