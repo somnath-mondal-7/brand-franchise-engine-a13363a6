@@ -128,13 +128,15 @@ const TestimonialsSection = () => {
                   </p>
                 </div>
               ) : (
-                <div className="aspect-[3/4] sm:aspect-[4/5] bg-muted relative overflow-hidden">
+                <div className="aspect-[3/4] sm:aspect-[4/5] bg-black relative overflow-hidden">
                   <video
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain bg-black"
                     controls
+                    playsInline
                     preload="metadata"
                   >
                     <source src={testimonial.videoSrc} type="video/mp4" />
+                    Your browser does not support the video tag.
                   </video>
                 </div>
               )}
