@@ -144,7 +144,10 @@ const TestimonialsSection = () => {
               "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
           }}
         >
-          <div className="flex gap-5 w-max animate-marquee">
+          <div
+            className="flex gap-5 w-max animate-marquee"
+            style={{ animationDuration: "420s" }}
+          >
             {loopTestimonials.map((testimonial, index) => (
               <div
                 key={index}
