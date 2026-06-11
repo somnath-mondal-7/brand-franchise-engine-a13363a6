@@ -146,7 +146,7 @@ const TestimonialsSection = () => {
         >
           <div
             className="flex gap-5 w-max animate-marquee"
-            style={{ animationDuration: "300s" }}
+            style={{ animationDuration: "200s" }}
           >
             {loopTestimonials.map((testimonial, index) => (
               <div
