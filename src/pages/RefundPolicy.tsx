@@ -20,7 +20,7 @@ const RefundPolicy = () => {
 
         <div className="prose prose-lg max-w-none">
           <p className="text-lg text-muted-foreground mb-8">
-            Last updated: {new Date().toLocaleDateString()}
+            Last updated: 7/2/2021
           </p>
 
           <section className="mb-8">
