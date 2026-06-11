@@ -20,7 +20,7 @@ const PrivacyPolicy = () => {
 
       <main className="container mx-auto px-4 py-16 max-w-4xl">
         <h1 className="text-4xl font-bold mb-4 text-foreground">Privacy Policy</h1>
-        <p className="text-muted-foreground mb-10">Last updated: {new Date().toLocaleDateString()}</p>
+        <p className="text-muted-foreground mb-10">Last updated: 7/2/2021</p>
 
         <div className="prose prose-lg max-w-none text-foreground space-y-8">
           <section>
