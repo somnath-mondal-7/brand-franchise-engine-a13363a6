@@ -166,15 +166,14 @@ const Testimonials = () => {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { name: "Jonathan Morgan", title: "CEO, NextFranch Corp", videoSrc: jonathanMorganVideo.url },
-                { name: "Shawn Gurn", title: "HOF Franchise Consulting Company • IFPG Member", videoSrc: shawnGurnVideo.url },
-                { name: "John Thompson", title: "Franchise Development Leader", videoSrc: johnThompsonVideo.url },
-                { name: "Dion Garnett", title: "Franchise Development Partner", videoSrc: dionGarnettVideo.url },
+                { name: "Jonathan Morgan", title: "CEO, NextFranch Corp", videoSrc: jonathanMorganVideo.url, fit: "contain" as const },
+                { name: "Shawn Gurn", title: "HOF Franchise Consulting Company • IFPG Member", videoSrc: shawnGurnVideo.url, fit: "contain" as const },
+                { name: "John Thompson", title: "Franchise Development Leader", videoSrc: johnThompsonVideo.url, fit: "cover" as const },
               ].map((video, index) => (
                 <Card key={index} className="overflow-hidden border-border/50 hover:shadow-xl transition-all duration-300">
                   <div className="aspect-[3/4] sm:aspect-[4/5] bg-black relative overflow-hidden">
                     <video
-                      className="w-full h-full object-contain bg-black"
+                      className={`w-full h-full bg-black ${video.fit === "cover" ? "object-cover" : "object-contain"}`}
                       controls
                       playsInline
                       preload="metadata"
