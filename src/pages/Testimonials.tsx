@@ -163,14 +163,23 @@ const Testimonials = () => {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 { name: "Jonathan Morgan", title: "CEO, NextFranch Corp", videoSrc: jonathanMorganVideo.url },
+                { name: "Shawn Gurn", title: "HOF Franchise Consulting Company • IFPG Member", videoSrc: shawnGurnVideo.url },
+                { name: "Dion Garnett", title: "Franchise Development Partner", videoSrc: dionGarnettVideo.url },
               ].map((video, index) => (
                 <Card key={index} className="overflow-hidden border-border/50 hover:shadow-xl transition-all duration-300">
-                  <div className="aspect-[3/4] sm:aspect-[4/5] bg-muted relative overflow-hidden">
-                    <video className="w-full h-full object-cover" controls preload="metadata">
+                  <div className="aspect-[3/4] sm:aspect-[4/5] bg-black relative overflow-hidden">
+                    <video
+                      className="w-full h-full object-contain bg-black"
+                      controls
+                      playsInline
+                      preload="metadata"
+                      crossOrigin="anonymous"
+                    >
                       <source src={video.videoSrc} type="video/mp4" />
+                      Your browser does not support the video tag.
                     </video>
                   </div>
                   <CardContent className="p-5">
