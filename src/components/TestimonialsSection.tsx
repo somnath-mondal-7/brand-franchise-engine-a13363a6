@@ -134,40 +134,38 @@ const TestimonialsSection = () => {
           ))}
         </div>
 
-        {/* Vertical auto-scrolling text testimonials */}
-        <div className="max-w-2xl mx-auto">
-          <div
-            className="relative h-[480px] overflow-hidden"
-            style={{
-              maskImage:
-                "linear-gradient(to bottom, transparent, black 12%, black 88%, transparent)",
-              WebkitMaskImage:
-                "linear-gradient(to bottom, transparent, black 12%, black 88%, transparent)",
-            }}
-          >
-            <div className="flex flex-col gap-5 animate-scroll-vertical">
-              {loopTestimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className="rounded-2xl border border-border/50 bg-card p-6 shadow-sm"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <span className="text-lg font-bold text-primary">
-                        {testimonial.name.charAt(0)}
-                      </span>
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm text-foreground/80 leading-relaxed italic mb-3">
-                        "{testimonial.quote}"
-                      </p>
-                      <h4 className="text-sm font-bold text-foreground">{testimonial.name}</h4>
-                      <p className="text-xs text-muted-foreground mt-0.5">{testimonial.title}</p>
-                    </div>
+        {/* Horizontal auto-scrolling text testimonials */}
+        <div
+          className="relative overflow-hidden"
+          style={{
+            maskImage:
+              "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+          }}
+        >
+          <div className="flex gap-5 w-max animate-marquee">
+            {loopTestimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className="w-[340px] sm:w-[400px] flex-shrink-0 rounded-2xl border border-border/50 bg-card p-6 shadow-sm"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-lg font-bold text-primary">
+                      {testimonial.name.charAt(0)}
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm text-foreground/80 leading-relaxed italic mb-3">
+                      "{testimonial.quote}"
+                    </p>
+                    <h4 className="text-sm font-bold text-foreground">{testimonial.name}</h4>
+                    <p className="text-xs text-muted-foreground mt-0.5">{testimonial.title}</p>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
